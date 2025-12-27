@@ -100,6 +100,8 @@ By the end of this module, you should be able to:
 - [PyTorch Examples](https://pytorch.org/tutorials/)
 - [Deep Learning Projects (Kaggle)](https://www.kaggle.com/learn/deep-learning)
 
+**[Complete Detailed Guide →](deep-learning-frameworks.md)**
+
 ---
 
 **Previous Phase:** [09-neural-networks-basics](../09-neural-networks-basics/README.md)  
