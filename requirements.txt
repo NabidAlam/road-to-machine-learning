@@ -1,0 +1,49 @@
+# Core Data Science Libraries
+numpy>=1.24.0
+pandas>=2.0.0
+matplotlib>=3.7.0
+seaborn>=0.12.0
+
+# Machine Learning
+scikit-learn>=1.3.0
+xgboost>=2.0.0
+lightgbm>=4.0.0
+
+# Deep Learning
+tensorflow>=2.13.0
+keras>=2.13.0
+torch>=2.0.0
+torchvision>=0.15.0
+
+# Natural Language Processing
+nltk>=3.8.0
+spacy>=3.6.0
+transformers>=4.30.0
+
+# Computer Vision
+opencv-python>=4.8.0
+Pillow>=10.0.0
+
+# Model Deployment
+flask>=2.3.0
+fastapi>=0.100.0
+uvicorn>=0.23.0
+joblib>=1.3.0
+
+# MLOps
+mlflow>=2.6.0
+dvc>=3.0.0
+
+# Utilities
+jupyter>=1.0.0
+notebook>=7.0.0
+ipykernel>=6.25.0
+tqdm>=4.65.0
+requests>=2.31.0
+
+# Data Validation
+great-expectations>=0.18.0
+
+# Visualization
+plotly>=5.15.0
+
