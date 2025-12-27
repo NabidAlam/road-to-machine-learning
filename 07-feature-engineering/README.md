@@ -71,10 +71,30 @@ By the end of this module, you should be able to:
 - **Feature Importance**: Understand which features matter
 - **Curse of Dimensionality**: Too many features can hurt
 
-##  Additional Resources
+## Documentation & Learning Resources
 
+**Official Documentation:**
 - [Feature Selection - Scikit-learn](https://scikit-learn.org/stable/modules/feature_selection.html)
 - [PCA - Scikit-learn](https://scikit-learn.org/stable/modules/decomposition.html#pca)
+- [Feature Engineering Guide](https://scikit-learn.org/stable/modules/preprocessing.html)
+
+**Free Courses:**
+- [Feature Engineering (Kaggle Learn)](https://www.kaggle.com/learn/feature-engineering) - Free comprehensive course
+- [Feature Engineering (Coursera)](https://www.coursera.org/learn/feature-engineering) - Free audit available
+
+**Tutorials:**
+- [Feature Engineering Tutorial](https://www.kaggle.com/learn/feature-engineering)
+- [PCA Explained Simply](https://towardsdatascience.com/a-one-stop-shop-for-principal-component-analysis-5582fb7e0a9c)
+- [Feature Selection Methods](https://machinelearningmastery.com/feature-selection-machine-learning-python/)
+- [Categorical Encoding Guide](https://machinelearningmastery.com/one-hot-encoding-for-categorical-data/)
+
+**Video Tutorials:**
+- [PCA (StatQuest)](https://www.youtube.com/watch?v=FgakZw6K1QQ)
+- [Feature Engineering (3Blue1Brown)](https://www.youtube.com/watch?v=aircAruvnKk)
+- [Dimensionality Reduction](https://www.youtube.com/watch?v=9Z4wKJY5J8I)
+
+**Books:**
+- [Feature Engineering Book](https://www.oreilly.com/library/view/feature-engineering-for/9781491953235/) - Check library access
 
 ---
 

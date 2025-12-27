@@ -70,11 +70,31 @@ By the end of this module, you should be able to:
 - **Learning curves** help diagnose model issues
 - **Regularization** helps prevent overfitting
 
-##  Additional Resources
+## Documentation & Learning Resources
 
+**Official Documentation:**
 - [Model Evaluation - Scikit-learn](https://scikit-learn.org/stable/modules/model_evaluation.html)
 - [Cross-Validation - Scikit-learn](https://scikit-learn.org/stable/modules/cross_validation.html)
 - [Hyperparameter Tuning - Scikit-learn](https://scikit-learn.org/stable/modules/grid_search.html)
+
+**Free Courses:**
+- [Model Evaluation (Coursera)](https://www.coursera.org/learn/machine-learning) - Week 6 of Andrew Ng's course
+- [Hyperparameter Tuning (Kaggle Learn)](https://www.kaggle.com/learn/intro-to-machine-learning) - Free micro-course
+
+**Tutorials:**
+- [Cross-Validation Explained](https://scikit-learn.org/stable/modules/cross_validation.html)
+- [Hyperparameter Tuning Guide](https://machinelearningmastery.com/hyperparameter-optimization-with-random-search-and-grid-search/)
+- [Bias-Variance Tradeoff Explained](https://towardsdatascience.com/understanding-the-bias-variance-tradeoff-165e6942b229)
+- [Learning Curves Tutorial](https://scikit-learn.org/stable/auto_examples/model_selection/plot_learning_curve.html)
+
+**Video Tutorials:**
+- [Cross-Validation (StatQuest)](https://www.youtube.com/watch?v=fSytzGwwBVw)
+- [Bias-Variance Tradeoff (StatQuest)](https://www.youtube.com/watch?v=EuBBz3bI-aA)
+- [Overfitting (StatQuest)](https://www.youtube.com/watch?v=Anq4Pgd5el8)
+
+**Tools:**
+- [Optuna Documentation](https://optuna.org/) - Advanced hyperparameter optimization
+- [Hyperopt Documentation](http://hyperopt.github.io/hyperopt/) - Bayesian optimization
 
 ---
 

@@ -81,11 +81,40 @@ By the end of this module, you should be able to:
 - **Automation**: Reduce manual work
 - **Collaboration**: Work effectively in teams
 
-##  Additional Resources
+## Documentation & Learning Resources
 
+**Official Documentation:**
 - [MLflow Documentation](https://mlflow.org/docs/latest/index.html)
 - [DVC Documentation](https://dvc.org/doc)
-- [MLOps Guide](https://ml-ops.org/)
+- [Weights & Biases Documentation](https://docs.wandb.ai/)
+- [Kubeflow Documentation](https://www.kubeflow.org/docs/)
+
+**Free Courses:**
+- [MLOps Specialization (Coursera)](https://www.coursera.org/specializations/machine-learning-engineering-for-production-mlops) - Free audit available
+- [Full Stack Deep Learning](https://fullstackdeeplearning.com/) - Free course on production ML
+- [MLOps Course (YouTube)](https://www.youtube.com/playlist?list=PL3N9eeOlFerPYKDqX8mB5d7X_8u4pYJ4U) - Free course
+
+**Tutorials:**
+- [MLflow Tutorial](https://mlflow.org/docs/latest/tutorials-and-examples/tutorial.html)
+- [DVC Tutorial](https://dvc.org/doc/start)
+- [MLOps Guide](https://ml-ops.org/) - Comprehensive guide
+- [Experiment Tracking Guide](https://www.mlflow.org/docs/latest/tracking.html)
+
+**Video Tutorials:**
+- [MLflow Tutorial (Sentdex)](https://www.youtube.com/watch?v=1ykg4YmbFVA)
+- [DVC Tutorial](https://www.youtube.com/watch?v=kLKBcPonMYw)
+- [MLOps Explained](https://www.youtube.com/watch?v=86nE7st3c2k)
+
+**Tools & Platforms:**
+- [MLflow](https://mlflow.org/) - Open-source ML lifecycle platform
+- [DVC](https://dvc.org/) - Data version control
+- [Weights & Biases](https://wandb.ai/) - Experiment tracking
+- [Neptune.ai](https://neptune.ai/) - ML experiment management
+- [Kubeflow](https://www.kubeflow.org/) - ML toolkit for Kubernetes
+
+**Best Practices:**
+- [MLOps Best Practices](https://ml-ops.org/content/mlops-principles)
+- [ML Engineering Guide](https://github.com/visenger/awesome-mlops)
 
 ---
 

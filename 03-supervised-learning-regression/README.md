@@ -57,10 +57,31 @@ By the end of this module, you should be able to:
 - **Multicollinearity**: High correlation between features
 - **Feature Scaling**: Important for regularization
 
-##  Additional Resources
+## Documentation & Learning Resources
 
+**Official Documentation:**
 - [Linear Regression - Scikit-learn](https://scikit-learn.org/stable/modules/linear_model.html)
 - [Regression Metrics Explained](https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics)
+- [Scikit-learn Linear Models](https://scikit-learn.org/stable/modules/linear_model.html)
+
+**Free Courses:**
+- [Linear Regression (Coursera)](https://www.coursera.org/learn/machine-learning) - Week 1-2 of Andrew Ng's course
+- [Regression Analysis (edX)](https://www.edx.org/course/regression-analysis) - Free audit available
+- [Linear Regression (Kaggle Learn)](https://www.kaggle.com/learn/linear-regression) - Free micro-course
+
+**Tutorials:**
+- [Linear Regression Tutorial (Real Python)](https://realpython.com/linear-regression-in-python/)
+- [Regression Analysis Tutorial](https://www.statisticshowto.com/probability-and-statistics/regression-analysis/)
+- [Ridge and Lasso Regression Explained](https://towardsdatascience.com/ridge-and-lasso-regression-a-complete-guide-with-python-scikit-learn-e20e34bcbf0b)
+
+**Video Tutorials:**
+- [Linear Regression (StatQuest)](https://www.youtube.com/watch?v=PaFPbb66DxQ)
+- [Ridge Regression (StatQuest)](https://www.youtube.com/watch?v=Q81RR3yKn30)
+- [Lasso Regression (StatQuest)](https://www.youtube.com/watch?v=NGf0voTMlcs)
+
+**Practice:**
+- [House Prices Competition (Kaggle)](https://www.kaggle.com/c/house-prices-advanced-regression-techniques) - Practice regression
+- [Regression Exercises (GitHub)](https://github.com/justmarkham/scikit-learn-videos)
 
 ---
 

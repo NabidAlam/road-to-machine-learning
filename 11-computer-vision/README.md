@@ -73,11 +73,35 @@ By the end of this module, you should be able to:
 - **Feature Maps**: Outputs of convolution layers
 - **Transfer Learning**: Leverage pre-trained knowledge
 
-##  Additional Resources
+## Documentation & Learning Resources
 
-- [CS231n - Stanford](http://cs231n.stanford.edu/) - Best CV course
+**Official Documentation:**
 - [TensorFlow Image Classification](https://www.tensorflow.org/tutorials/images/classification)
 - [PyTorch Vision Tutorials](https://pytorch.org/tutorials/beginner/transfer_learning_tutorial.html)
+- [Keras Computer Vision](https://keras.io/examples/vision/)
+- [OpenCV Documentation](https://docs.opencv.org/)
+
+**Free Courses:**
+- [CS231n - Stanford](http://cs231n.stanford.edu/) - Best CV course, completely free
+- [CS231n YouTube Lectures](https://www.youtube.com/playlist?list=PL3FW7Lu3i5JvHM8ljYj-zLfQRF3EO8sYv) - Full course videos
+- [Computer Vision (Coursera)](https://www.coursera.org/learn/convolutional-neural-networks) - Free audit available
+- [Fast.ai Computer Vision](https://course.fast.ai/) - Free practical course
+
+**Tutorials:**
+- [CNN Tutorial (TensorFlow)](https://www.tensorflow.org/tutorials/images/cnn)
+- [Transfer Learning Tutorial](https://www.tensorflow.org/tutorials/images/transfer_learning)
+- [Image Classification Guide](https://keras.io/examples/vision/image_classification_from_scratch/)
+- [Object Detection Tutorial](https://www.tensorflow.org/hub/tutorials/object_detection)
+
+**Video Tutorials:**
+- [CNNs Explained (3Blue1Brown)](https://www.youtube.com/watch?v=aircAruvnKk)
+- [Computer Vision (Sentdex)](https://www.youtube.com/playlist?list=PLQVvvaa0QuDdT9aSiF-CoLNX7xK5g7p1_)
+- [Transfer Learning Explained](https://www.youtube.com/watch?v=yofjFQddwHE)
+
+**Practice:**
+- [Computer Vision Competitions (Kaggle)](https://www.kaggle.com/competitions?search=image)
+- [CIFAR-10 Classification](https://www.kaggle.com/c/cifar-10)
+- [Image Classification Projects](https://www.kaggle.com/learn/computer-vision)
 
 ---
 

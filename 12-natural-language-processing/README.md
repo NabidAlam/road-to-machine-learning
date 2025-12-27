@@ -82,12 +82,36 @@ By the end of this module, you should be able to:
 - **Attention**: Focus on relevant information
 - **Transfer Learning**: Pre-trained models are powerful
 
-##  Additional Resources
+## Documentation & Learning Resources
 
-- [CS224n - Stanford NLP](https://web.stanford.edu/class/cs224n/)
-- [Hugging Face Course](https://huggingface.co/course)
-- [NLTK Book](https://www.nltk.org/book/)
+**Official Documentation:**
+- [Hugging Face Documentation](https://huggingface.co/docs)
+- [Hugging Face Course](https://huggingface.co/course) - Free comprehensive NLP course
+- [NLTK Book](https://www.nltk.org/book/) - Free online book
 - [spaCy Documentation](https://spacy.io/)
+- [Transformers Documentation](https://huggingface.co/docs/transformers)
+
+**Free Courses:**
+- [CS224n - Stanford NLP](https://web.stanford.edu/class/cs224n/) - Best NLP course, completely free
+- [CS224n YouTube Lectures](https://www.youtube.com/playlist?list=PLoROMvodv4rOSH4v6133s9LFPRHjEmbmJ) - Full course videos
+- [NLP Specialization (Coursera)](https://www.coursera.org/specializations/natural-language-processing) - Free audit available
+- [NLP with Deep Learning (Stanford)](https://web.stanford.edu/class/cs224n/) - Free course
+
+**Tutorials:**
+- [NLP Tutorial (Hugging Face)](https://huggingface.co/course)
+- [Text Classification Tutorial](https://huggingface.co/docs/transformers/tasks/sequence_classification)
+- [Sentiment Analysis Guide](https://huggingface.co/docs/transformers/tasks/sequence_classification)
+- [Transformers Tutorial](https://huggingface.co/docs/transformers/quicktour)
+
+**Video Tutorials:**
+- [NLP Course (Stanford CS224n)](https://www.youtube.com/playlist?list=PLoROMvodv4rOSH4v6133s9LFPRHjEmbmJ)
+- [Transformers Explained (3Blue1Brown)](https://www.youtube.com/watch?v=aircAruvnKk)
+- [BERT Explained](https://www.youtube.com/watch?v=xI0HHN5XKDo)
+
+**Practice:**
+- [NLP Competitions (Kaggle)](https://www.kaggle.com/competitions?search=nlp)
+- [Sentiment Analysis Projects](https://www.kaggle.com/learn/natural-language-processing)
+- [NLP Datasets (Hugging Face)](https://huggingface.co/datasets)
 
 ---
 

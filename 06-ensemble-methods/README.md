@@ -56,11 +56,32 @@ By the end of this module, you should be able to:
 - **Bias-Variance**: Ensembles reduce variance
 - **Computational Cost**: Ensembles are more expensive
 
-##  Additional Resources
+## Documentation & Learning Resources
 
+**Official Documentation:**
 - [Ensemble Methods - Scikit-learn](https://scikit-learn.org/stable/modules/ensemble.html)
 - [XGBoost Documentation](https://xgboost.readthedocs.io/)
 - [LightGBM Documentation](https://lightgbm.readthedocs.io/)
+- [CatBoost Documentation](https://catboost.ai/en/docs/)
+
+**Free Courses:**
+- [Ensemble Methods (Coursera)](https://www.coursera.org/learn/machine-learning) - Advanced topics
+- [XGBoost Tutorial (Kaggle Learn)](https://www.kaggle.com/learn/xgboost) - Free micro-course
+
+**Tutorials:**
+- [Ensemble Methods Explained](https://scikit-learn.org/stable/modules/ensemble.html)
+- [XGBoost Tutorial](https://xgboost.readthedocs.io/en/stable/tutorials/index.html)
+- [Gradient Boosting Explained](https://towardsdatascience.com/understanding-gradient-boosting-machines-9be9fe2f0f9a)
+- [Bagging vs Boosting](https://towardsdatascience.com/bagging-vs-boosting-in-machine-learning-8a8e0c0e3c0e)
+
+**Video Tutorials:**
+- [Gradient Boosting (StatQuest)](https://www.youtube.com/watch?v=3CC4N4z3GJc)
+- [XGBoost (StatQuest)](https://www.youtube.com/watch?v=OtD8wVaFm6E)
+- [Random Forest vs Gradient Boosting](https://www.youtube.com/watch?v=3kYujfHjvrA)
+
+**Practice:**
+- [Ensemble Methods (Kaggle)](https://www.kaggle.com/learn/ensemble-methods) - Free course
+- [XGBoost Competitions (Kaggle)](https://www.kaggle.com/competitions) - Practice with real data
 
 ---
 

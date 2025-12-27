@@ -68,10 +68,32 @@ By the end of this module, you should be able to:
 - **Anomaly Detection**: Find unusual patterns
 - **Evaluation**: Harder without labels (use silhouette score, etc.)
 
-##  Additional Resources
+## Documentation & Learning Resources
 
+**Official Documentation:**
 - [Clustering - Scikit-learn](https://scikit-learn.org/stable/modules/clustering.html)
 - [Dimensionality Reduction - Scikit-learn](https://scikit-learn.org/stable/modules/decomposition.html)
+- [Anomaly Detection - Scikit-learn](https://scikit-learn.org/stable/modules/outlier_detection.html)
+
+**Free Courses:**
+- [Unsupervised Learning (Coursera)](https://www.coursera.org/learn/machine-learning) - Week 8 of Andrew Ng's course
+- [Clustering (Kaggle Learn)](https://www.kaggle.com/learn/clustering) - Free micro-course
+
+**Tutorials:**
+- [K-Means Clustering Tutorial](https://scikit-learn.org/stable/modules/clustering.html#k-means)
+- [PCA Tutorial](https://scikit-learn.org/stable/modules/decomposition.html#pca)
+- [t-SNE Explained](https://towardsdatascience.com/t-sne-clearly-explained-84c85e2b88a)
+- [Anomaly Detection Guide](https://scikit-learn.org/stable/modules/outlier_detection.html)
+
+**Video Tutorials:**
+- [K-Means Clustering (StatQuest)](https://www.youtube.com/watch?v=4b5d3muPQmA)
+- [Hierarchical Clustering (StatQuest)](https://www.youtube.com/watch?v=7xHsRkOdVwo)
+- [PCA (StatQuest)](https://www.youtube.com/watch?v=FgakZw6K1QQ)
+- [t-SNE (StatQuest)](https://www.youtube.com/watch?v=NEaUSP4YerM)
+
+**Practice:**
+- [Customer Segmentation Projects](https://www.kaggle.com/datasets?search=customer+segmentation)
+- [Clustering Exercises](https://www.kaggle.com/learn/clustering)
 
 ---
 

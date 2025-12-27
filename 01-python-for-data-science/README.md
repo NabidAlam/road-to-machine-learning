@@ -69,12 +69,64 @@ By the end of this phase, you should be able to:
 - Learn to read documentation - it's a crucial skill
 - Experiment with different plot types
 
-##  Additional Resources
+## Documentation & Learning Resources
 
-- [NumPy Documentation](https://numpy.org/doc/stable/)
-- [Pandas Documentation](https://pandas.pydata.org/docs/)
-- [Matplotlib Gallery](https://matplotlib.org/stable/gallery/index.html)
-- [Seaborn Gallery](https://seaborn.pydata.org/examples/index.html)
+### NumPy
+
+**Official Documentation:**
+- [NumPy Official Documentation](https://numpy.org/doc/stable/)
+- [NumPy User Guide](https://numpy.org/doc/stable/user/index.html)
+- [NumPy API Reference](https://numpy.org/doc/stable/reference/)
+
+**Free Courses & Tutorials:**
+- [NumPy Tutorial (W3Schools)](https://www.w3schools.com/python/numpy/)
+- [NumPy Quickstart Tutorial](https://numpy.org/doc/stable/user/quickstart.html)
+- [NumPy Tutorial (DataCamp)](https://www.datacamp.com/tutorial numpy-tutorial-for-beginners) - Free tutorial
+- [NumPy Basics (Real Python)](https://realpython.com/numpy-tutorial/)
+
+**Video Tutorials:**
+- [NumPy Tutorial (Corey Schafer)](https://www.youtube.com/watch?v=QUT1VHiLmmI)
+- [NumPy Arrays (Sentdex)](https://www.youtube.com/playlist?list=PLQVvvaa0QuDfKTOs3Keq_kaG2P55YRn5v)
+
+### Pandas
+
+**Official Documentation:**
+- [Pandas Official Documentation](https://pandas.pydata.org/docs/)
+- [Pandas User Guide](https://pandas.pydata.org/docs/user_guide/index.html)
+- [Pandas API Reference](https://pandas.pydata.org/docs/reference/index.html)
+
+**Free Courses & Tutorials:**
+- [Pandas Tutorial (W3Schools)](https://www.w3schools.com/python/pandas/)
+- [10 Minutes to Pandas](https://pandas.pydata.org/docs/user_guide/10min.html) - Quick start guide
+- [Pandas Tutorial (DataCamp)](https://www.datacamp.com/tutorial/pandas) - Free tutorial
+- [Pandas Tutorial (Real Python)](https://realpython.com/pandas-python-explore-dataset/)
+
+**Video Tutorials:**
+- [Pandas Tutorial (Corey Schafer)](https://www.youtube.com/watch?v=ZyhVh-qRZPA)
+- [Pandas for Data Science (Keith Galli)](https://www.youtube.com/watch?v=vmEHCJofslg)
+
+**Practice:**
+- [Pandas Exercises (GitHub)](https://github.com/guipsamora/pandas_exercises)
+- [Pandas Practice Problems (Kaggle)](https://www.kaggle.com/learn/pandas)
+
+### Matplotlib & Seaborn
+
+**Official Documentation:**
+- [Matplotlib Documentation](https://matplotlib.org/stable/contents.html)
+- [Matplotlib Gallery](https://matplotlib.org/stable/gallery/index.html) - Examples for every plot type
+- [Seaborn Documentation](https://seaborn.pydata.org/)
+- [Seaborn Gallery](https://seaborn.pydata.org/examples/index.html) - Statistical visualization examples
+
+**Free Courses & Tutorials:**
+- [Matplotlib Tutorial (W3Schools)](https://www.w3schools.com/python/matplotlib_intro.asp)
+- [Matplotlib Tutorial (Real Python)](https://realpython.com/python-matplotlib-guide/)
+- [Seaborn Tutorial (Real Python)](https://realpython.com/python-seaborn-tutorial/)
+- [Data Visualization with Python (Coursera)](https://www.coursera.org/learn/python-for-data-visualization) - Free audit available
+
+**Video Tutorials:**
+- [Matplotlib Tutorial (Corey Schafer)](https://www.youtube.com/watch?v=UO98lJQ3QGI)
+- [Seaborn Tutorial (Corey Schafer)](https://www.youtube.com/watch?v=6GUZXDef2U0)
+- [Data Visualization (Keith Galli)](https://www.youtube.com/watch?v=0P7QnIQx2IE)
 
 ---
 

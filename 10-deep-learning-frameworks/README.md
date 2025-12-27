@@ -69,12 +69,36 @@ By the end of this module, you should be able to:
 - **Transfer Learning**: Use pre-trained models (saves time!)
 - **GPU Acceleration**: Essential for large models
 
-##  Additional Resources
+## Documentation & Learning Resources
 
+**TensorFlow/Keras:**
+- [TensorFlow Official Documentation](https://www.tensorflow.org/api_docs)
 - [TensorFlow Tutorials](https://www.tensorflow.org/tutorials)
 - [Keras Documentation](https://keras.io/)
+- [Keras Guide](https://keras.io/guides/)
+- [TensorFlow Guide](https://www.tensorflow.org/guide)
+
+**PyTorch:**
+- [PyTorch Official Documentation](https://pytorch.org/docs/stable/index.html)
 - [PyTorch Tutorials](https://pytorch.org/tutorials/)
-- [Fast.ai Course](https://www.fast.ai/) - Great practical course
+- [PyTorch Learning Path](https://pytorch.org/tutorials/beginner/deep_learning_60min_blitz.html)
+- [PyTorch Examples](https://github.com/pytorch/examples)
+
+**Free Courses:**
+- [Fast.ai Practical Deep Learning](https://www.fast.ai/) - Completely free, top-down approach
+- [Deep Learning Specialization (Coursera)](https://www.coursera.org/specializations/deep-learning) - Free audit available
+- [TensorFlow Developer Certificate Course](https://www.coursera.org/professional-certificates/tensorflow-in-practice) - Free audit available
+- [PyTorch for Deep Learning (YouTube)](https://www.youtube.com/watch?v=V_xro1bcAuA) - Free course
+
+**Video Tutorials:**
+- [TensorFlow Tutorial (Sentdex)](https://www.youtube.com/playlist?list=PLQVvvaa0QuDfhTox0AjmQ6tvTgMBZBEFN)
+- [PyTorch Tutorial (Sentdex)](https://www.youtube.com/playlist?list=PLQVvvaa0QuDdeMyHEYc0gxFpYwHY2Qfdh)
+- [Deep Learning (3Blue1Brown)](https://www.youtube.com/playlist?list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi)
+
+**Practice:**
+- [TensorFlow Examples](https://www.tensorflow.org/tutorials)
+- [PyTorch Examples](https://pytorch.org/tutorials/)
+- [Deep Learning Projects (Kaggle)](https://www.kaggle.com/learn/deep-learning)
 
 ---
 
