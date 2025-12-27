@@ -95,6 +95,8 @@ By the end of this module, you should be able to:
 - [Customer Segmentation Projects](https://www.kaggle.com/datasets?search=customer+segmentation)
 - [Clustering Exercises](https://www.kaggle.com/learn/clustering)
 
+**[Complete Detailed Guide →](unsupervised-learning.md)**
+
 ---
 
 **Previous Phase:** [07-feature-engineering](../07-feature-engineering/README.md)  
