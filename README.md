@@ -405,6 +405,12 @@ road-to-ml/
 ### Cheatsheets & Guides
 - [Data Science & ML Cheatsheet](resources/data_science_cheatsheet.md) - Quick reference for daily work (NumPy, Pandas, PyTorch, TensorFlow, OpenCV, FastAPI, and more)
 - [Complete Git & GitHub Guide](resources/git_guide.md) - Comprehensive Git tutorial with commands, outputs, practice exercises, and solutions
+- [Math Formulas Reference](resources/math_formulas.md) - Essential mathematical formulas for ML (Statistics, Linear Algebra, Calculus, ML metrics)
+- [Common Errors & Debugging Guide](resources/common_errors.md) - Troubleshooting guide for common ML errors and debugging strategies
+
+### Career & Interview Resources
+- [Career & Portfolio Guide](resources/career_portfolio.md) - Build your portfolio, prepare for interviews, and launch your ML career
+- [Interview Preparation Guide](resources/interview_prep.md) - ML interview questions, coding challenges, system design, and preparation strategies
 
 ## Learning Tips
 
