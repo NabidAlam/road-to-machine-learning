@@ -468,7 +468,7 @@ By completing this roadmap, you'll be able to:
 
 *Remember: The journey of a thousand miles begins with a single step. Start with module 00 and keep going!*
 
-[⬆ Back to Top](#road-to-ml-from-zero-to-hero)
+[Back to Top](#road-to-ml-from-zero-to-hero)
 
 </div>
 
