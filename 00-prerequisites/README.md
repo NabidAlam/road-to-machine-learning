@@ -118,6 +118,20 @@ Each module includes:
 - [Mathematics for Machine Learning (Coursera)](https://www.coursera.org/specializations/mathematics-machine-learning) - Free audit available
 - [Mathematics for ML (mml-book.github.io)](https://mml-book.github.io/) - Free online book
 
+### Git & Version Control
+
+**Essential for ML Projects:**
+- [Complete Git & GitHub Guide](../resources/git_guide.md) - Comprehensive guide with commands, outputs, exercises, and solutions
+- [Git Official Documentation](https://git-scm.com/doc) - Official Git reference
+- [GitHub Docs](https://docs.github.com) - GitHub-specific documentation
+- [Learn Git Branching](https://learngitbranching.js.org/) - Interactive visual tutorial
+
+**Why Learn Git:**
+- Track changes in your ML projects
+- Collaborate with others
+- Backup your work
+- Professional standard in data science
+
 ---
 
 **Next Phase:** [01-python-for-data-science](../01-python-for-data-science/README.md)
