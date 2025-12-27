@@ -43,6 +43,7 @@ Set up your development environment for ML work.
 - Installing Jupyter Notebook
 - Installing Essential Libraries
 - IDE Setup (VS Code/PyCharm)
+- Git & GitHub Setup
 
 **Time Estimate:** 1 day
 

@@ -10,7 +10,7 @@
 
 **A comprehensive, step-by-step guide to learning Machine Learning from absolute basics to advanced topics**
 
-*Perfect for beginners • 18 Learning Modules • 16+ Real-World Projects • Production-Ready Skills*
+*Perfect for beginners • 15 Learning Modules • 18 Real-World Projects • Production-Ready Skills*
 
 [Get Started](#getting-started) • [Learning Path](#learning-path) • [Projects](#phase-8-projects) • [Contribute](#contributing)
 
@@ -22,7 +22,7 @@
 
 - **Zero to Hero Path**: Complete learning journey from basics to advanced ML
 - **Beginner-Friendly**: No prior experience needed - we cover everything
-- **Hands-On Learning**: 16+ practical projects to build your portfolio
+- **Hands-On Learning**: 18 practical projects to build your portfolio
 - **Production Focus**: Learn deployment, MLOps, and real-world skills
 - **Well-Organized**: Logical progression with clear learning objectives
 - **Community-Driven**: Open source, contributions welcome!
@@ -173,24 +173,29 @@ This repository provides a structured learning path for machine learning, organi
 ### Phase 8: Projects
 **Goal**: Apply knowledge through real-world projects
 
-- **15-projects-beginner**
-  - House Price Prediction
-  - Iris Flower Classification
-  - Titanic Survival Prediction
-  - Spam Email Detection
+- **15-projects-beginner** (5 projects)
+  - Iris Flower Classification ✓ (Available)
+  - House Price Prediction (Planned)
+  - Titanic Survival Prediction (Planned)
+  - Spam Email Detection (Planned)
+  - Wine Quality Prediction (Planned)
 
-- **16-projects-intermediate**
-  - Handwritten Digit Recognition (MNIST)
-  - Customer Churn Prediction
-  - Movie Recommendation System
-  - Credit Card Fraud Detection
+- **16-projects-intermediate** (6 projects)
+  - Handwritten Digit Recognition (MNIST) (Planned)
+  - Customer Churn Prediction (Planned)
+  - Movie Recommendation System (Planned)
+  - Credit Card Fraud Detection (Planned)
+  - Customer Segmentation (Planned)
+  - Time Series Forecasting (Planned)
 
-- **17-projects-advanced**
-  - Image Classification (CIFAR-10)
-  - Sentiment Analysis on Reviews
-  - Time Series Forecasting
-  - Chatbot Development
-  - Object Detection
+- **17-projects-advanced** (7 projects)
+  - Image Classification (CIFAR-10) (Planned)
+  - Sentiment Analysis on Reviews (Planned)
+  - Time Series Forecasting (Advanced) (Planned)
+  - Chatbot Development (Planned)
+  - Object Detection (Planned)
+  - End-to-End ML Pipeline (Planned)
+  - Generative Model (GAN/VAE) (Planned)
 
 ## Prerequisites
 
@@ -259,6 +264,8 @@ jupyter notebook
 4. Practice, practice, practice!
 
 ## Repository Structure
+
+**Note:** The structure below shows the planned organization. Currently, most modules contain README files with learning objectives and resources. Projects are being added incrementally. Check each module's README for current content.
 
 ```
 road-to-ml/
@@ -337,23 +344,28 @@ road-to-ml/
     README.md
 
  15-projects-beginner/
-    project-01-house-price-prediction/
-    project-02-iris-classification/
-    project-03-titanic-survival/
-    project-04-spam-detection/
+    project-02-iris-classification/  (Available)
+    project-01-house-price-prediction/  (Planned)
+    project-03-titanic-survival/  (Planned)
+    project-04-spam-detection/  (Planned)
+    project-05-wine-quality/  (Planned)
 
  16-projects-intermediate/
-    project-01-mnist-digit-recognition/
-    project-02-customer-churn/
-    project-03-movie-recommendation/
-    project-04-fraud-detection/
+    project-01-mnist-digit-recognition/  (Planned)
+    project-02-customer-churn/  (Planned)
+    project-03-movie-recommendation/  (Planned)
+    project-04-fraud-detection/  (Planned)
+    project-05-customer-segmentation/  (Planned)
+    project-06-time-series-forecasting/  (Planned)
 
  17-projects-advanced/
-    project-01-cifar10-classification/
-    project-02-sentiment-analysis/
-    project-03-time-series-forecasting/
-    project-04-chatbot/
-    project-05-object-detection/
+    project-01-cifar10-classification/  (Planned)
+    project-02-sentiment-analysis/  (Planned)
+    project-03-time-series-forecasting/  (Planned)
+    project-04-chatbot/  (Planned)
+    project-05-object-detection/  (Planned)
+    project-06-end-to-end-pipeline/  (Planned)
+    project-07-generative-model/  (Planned)
 
  resources/
     books.md
@@ -390,8 +402,9 @@ road-to-ml/
 - [Kaggle Forums](https://www.kaggle.com/discussions)
 - [Stack Overflow](https://stackoverflow.com/questions/tagged/machine-learning)
 
-### Cheatsheets
+### Cheatsheets & Guides
 - [Data Science & ML Cheatsheet](resources/data_science_cheatsheet.md) - Quick reference for daily work (NumPy, Pandas, PyTorch, TensorFlow, OpenCV, FastAPI, and more)
+- [Complete Git & GitHub Guide](resources/git_guide.md) - Comprehensive Git tutorial with commands, outputs, practice exercises, and solutions
 
 ## Learning Tips
 
