@@ -116,6 +116,8 @@ By the end of this module, you should be able to:
 - [MLOps Best Practices](https://ml-ops.org/content/mlops-principles)
 - [ML Engineering Guide](https://github.com/visenger/awesome-mlops)
 
+**[Complete Detailed Guide →](mlops.md)**
+
 ---
 
 **Previous Phase:** [13-model-deployment](../13-model-deployment/README.md)  
