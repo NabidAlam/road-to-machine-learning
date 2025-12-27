@@ -124,6 +124,8 @@ By the end of this module, you should be able to:
 - [Docker Tutorial (TechWorld with Nana)](https://www.youtube.com/watch?v=3c-iBn73dDE)
 - [ML Deployment (Sentdex)](https://www.youtube.com/playlist?list=PLQVvvaa0QuDfKTOs3Keq_kaG2P55YRn5v)
 
+**[Complete Detailed Guide →](deployment.md)**
+
 ---
 
 **Previous Phase:** [12-natural-language-processing](../12-natural-language-processing/README.md)  
