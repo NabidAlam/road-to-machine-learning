@@ -407,6 +407,7 @@ road-to-ml/
 - [Complete Git & GitHub Guide](resources/git_guide.md) - Comprehensive Git tutorial with commands, outputs, practice exercises, and solutions
 - [Math Formulas Reference](resources/math_formulas.md) - Essential mathematical formulas for ML (Statistics, Linear Algebra, Calculus, ML metrics)
 - [Common Errors & Debugging Guide](resources/common_errors.md) - Troubleshooting guide for common ML errors and debugging strategies
+- [Ethics in ML Guide](resources/ethics_in_ml.md) - Comprehensive guide to bias, fairness, responsible AI, and ethical ML practices
 
 ### Career & Interview Resources
 - [Career & Portfolio Guide](resources/career_portfolio.md) - Build your portfolio, prepare for interviews, and launch your ML career
