@@ -1,4 +1,6 @@
+# ============================================
 # Python
+# ============================================
 __pycache__/
 *.py[cod]
 *$py.class
@@ -19,55 +21,235 @@ wheels/
 *.egg-info/
 .installed.cfg
 *.egg
+pip-log.txt
+pip-delete-this-directory.txt
 
+# ============================================
 # Virtual Environments
+# ============================================
 venv/
 env/
 ENV/
 ml-env/
 .venv
+env.bak/
+venv.bak/
 
+# ============================================
 # Jupyter Notebook
-.ipynb_checkpoints
+# ============================================
+.ipynb_checkpoints/
 *.ipynb_checkpoints
+.ipython/
 
-# IDE
+# ============================================
+# IDE - Visual Studio Code
+# ============================================
 .vscode/
+*.code-workspace
+
+# ============================================
+# IDE - PyCharm
+# ============================================
 .idea/
+*.iml
+*.iws
+*.ipr
+
+# ============================================
+# IDE - Other
+# ============================================
+*.sublime-project
+*.sublime-workspace
 *.swp
 *.swo
 *~
+.netrwhist
+*.elc
+auto-save-list
+tramp
+.\#*
 
-# OS
+# ============================================
+# OS - macOS
+# ============================================
 .DS_Store
-Thumbs.db
+.AppleDouble
+.LSOverride
+Icon
+._*
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
 
-# Data
+# ============================================
+# OS - Windows
+# ============================================
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+*.stackdump
+[Dd]esktop.ini
+$RECYCLE.BIN/
+*.cab
+*.msi
+*.msix
+*.msm
+*.msp
+*.lnk
+
+# ============================================
+# OS - Linux
+# ============================================
+*~
+.fuse_hidden*
+.directory
+.Trash-*
+.nfs*
+
+# ============================================
+# Data Files
+# Users should download their own datasets
+# ============================================
 *.csv
 *.json
 *.pkl
+*.pickle
 *.h5
 *.hdf5
 *.pth
 *.pt
 *.ckpt
+*.model
+*.joblib
 data/
 datasets/
-models/
-*.model
+raw_data/
+processed_data/
+*.db
+*.sqlite
+*.sqlite3
 
-# Logs
+# ============================================
+# Model Files
+# Users should train their own models
+# ============================================
+models/
+checkpoints/
+saved_models/
+*.pb
+*.onnx
+*.tflite
+
+# ============================================
+# Logs and Output Files
+# Users will generate these when running code
+# ============================================
 *.log
 logs/
+*.out
+output/
+results/
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.pdf
+*.svg
 
-# Environment variables
+# Keep example/documentation images
+!README_images/
+!docs/images/
+!example_outputs/
+
+# ============================================
+# Environment Variables
+# ============================================
 .env
 .env.local
+.env.*.local
+*.env
 
+# ============================================
 # MLflow
+# ============================================
 mlruns/
+.mlflow/
 
-# DVC
+# ============================================
+# DVC (Data Version Control)
+# ============================================
 .dvc/
 .dvcignore
+.dvc/cache
 
+# ============================================
+# Testing
+# ============================================
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.hypothesis/
+*.cover
+*.py,cover
+.cache
+nosetests.xml
+coverage.xml
+*.coveragerc
+
+# ============================================
+# Documentation Builds
+# ============================================
+docs/_build/
+docs/.doctrees/
+site/
+
+# ============================================
+# Temporary Files
+# ============================================
+*.tmp
+*.temp
+*.bak
+*.backup
+
+# ============================================
+# Package Files
+# ============================================
+*.whl
+*.tar.gz
+
+# ============================================
+# Profiling
+# ============================================
+*.prof
+*.lprof
+
+# ============================================
+# Type Checking
+# ============================================
+.mypy_cache/
+.dmypy.json
+dmypy.json
+.pyre/
+.pytype/
+
+# ============================================
+# Other Tools
+# ============================================
+celerybeat-schedule
+celerybeat.pid
+*.sage.py
+.spyderproject
+.spyproject
+.ropeproject
+profile_default/
+ipython_config.py
+.python-version
+Pipfile.lock
+__pypackages__/

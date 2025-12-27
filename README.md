@@ -250,7 +250,9 @@ jupyter notebook
 
 ### 4. Start Learning!
 
-Follow the modules in order:
+**Quick Start Option**: Want to see ML in action immediately? Check out [GETTING_STARTED.md](GETTING_STARTED.md) for a 30-minute first project!
+
+**Full Learning Path**: Follow the modules in order:
 1. Start with `00-prerequisites`
 2. Progress through each module sequentially
 3. Complete exercises and projects
