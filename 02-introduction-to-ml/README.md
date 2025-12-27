@@ -55,6 +55,8 @@ Understand what machine learning is, how it works, and the different types of ML
 - Document everything
 - Version control your code and data
 
+**[Complete Detailed Guide →](introduction-to-ml.md)**
+
 ##  Learning Objectives
 
 By the end of this module, you should be able to:
