@@ -97,6 +97,8 @@ By the end of this module, you should be able to:
 - [Neural Networks Tutorial (PyTorch)](https://pytorch.org/tutorials/beginner/blitz/neural_network_tutorial.html)
 - [Understanding Neural Networks](https://towardsdatascience.com/understanding-neural-networks-19020b758230)
 
+**[Complete Detailed Guide →](neural-networks.md)**
+
 ---
 
 **Previous Phase:** [08-unsupervised-learning](../08-unsupervised-learning/README.md)  
