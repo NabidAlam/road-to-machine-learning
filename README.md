@@ -391,7 +391,7 @@ road-to-ml/
 - [Stack Overflow](https://stackoverflow.com/questions/tagged/machine-learning)
 
 ### Cheatsheets
-- [Python Data Science Cheatsheet](resources/python_cheatsheet.md) - Quick reference for daily work
+- [Data Science & ML Cheatsheet](resources/data_science_cheatsheet.md) - Quick reference for daily work (NumPy, Pandas, PyTorch, TensorFlow, OpenCV, FastAPI, and more)
 
 ## Learning Tips
 

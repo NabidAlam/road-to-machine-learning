@@ -1,6 +1,6 @@
-# Python Data Science Cheatsheet
+# Data Science & Machine Learning Cheatsheet
 
-Quick reference for common Python syntax and operations used in everyday data science work.
+Quick reference for common syntax and operations used in everyday data science and machine learning work. Covers Python, NumPy, Pandas, Scikit-learn, PyTorch, TensorFlow, OpenCV, FastAPI, and more.
 
 ## Table of Contents
 
