@@ -23,6 +23,8 @@ Learn NumPy - the foundation of numerical computing in Python.
 
 **Time Estimate:** 1 week
 
+**[Complete Guide →](01-numpy.md)**
+
 ### 02-pandas
 Master Pandas - the most important library for data manipulation.
 
@@ -37,6 +39,8 @@ Master Pandas - the most important library for data manipulation.
 
 **Time Estimate:** 2 weeks
 
+**[Complete Guide →](02-pandas.md)**
+
 ### 03-visualization
 Create beautiful and informative visualizations.
 
@@ -48,6 +52,8 @@ Create beautiful and informative visualizations.
 - Saving Figures
 
 **Time Estimate:** 1 week
+
+**[Complete Guide →](03-visualization.md)**
 
 ##  Learning Objectives
 
