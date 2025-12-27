@@ -1682,6 +1682,646 @@ with mlflow.start_run():
 
 ---
 
+## FastAPI & Web Development
+
+### FastAPI Basics
+
+```python
+from fastapi import FastAPI, HTTPException, Query, Path, Body
+from fastapi.responses import JSONResponse
+from pydantic import BaseModel, Field
+from typing import Optional, List
+import uvicorn
+
+# Create app
+app = FastAPI(
+    title="ML API",
+    description="Machine Learning API for predictions",
+    version="1.0.0"
+)
+
+# Basic route
+@app.get("/")
+def read_root():
+    return {"message": "Welcome to ML API"}
+
+# Route with path parameter
+@app.get("/items/{item_id}")
+def read_item(item_id: int):
+    return {"item_id": item_id}
+
+# Route with query parameters
+@app.get("/items/")
+def read_items(skip: int = 0, limit: int = 10):
+    return {"skip": skip, "limit": limit}
+
+# POST request with Pydantic model
+class Item(BaseModel):
+    name: str
+    description: Optional[str] = None
+    price: float
+    tax: Optional[float] = None
+
+@app.post("/items/")
+def create_item(item: Item):
+    return item
+
+# Run server
+# uvicorn main:app --reload
+```
+
+### Pydantic Models for Data Validation
+
+```python
+from pydantic import BaseModel, Field, validator
+from typing import Optional, List
+from datetime import datetime
+
+# Basic model
+class User(BaseModel):
+    name: str
+    email: str
+    age: int
+
+# Model with validation
+class PredictionRequest(BaseModel):
+    feature1: float = Field(..., gt=0, description="Feature 1 must be positive")
+    feature2: float = Field(..., ge=0, le=100, description="Feature 2 between 0-100")
+    feature3: Optional[str] = None
+    
+    @validator('feature1')
+    def validate_feature1(cls, v):
+        if v > 1000:
+            raise ValueError('Feature1 too large')
+        return v
+    
+    class Config:
+        schema_extra = {
+            "example": {
+                "feature1": 5.5,
+                "feature2": 50.0,
+                "feature3": "category_a"
+            }
+        }
+
+class PredictionResponse(BaseModel):
+    prediction: float
+    confidence: float
+    model_version: str
+```
+
+### ML Model Deployment with FastAPI
+
+```python
+import pickle
+import numpy as np
+from fastapi import FastAPI, HTTPException
+from pydantic import BaseModel
+import joblib
+
+# Load model
+model = joblib.load('model.pkl')
+scaler = joblib.load('scaler.pkl')
+
+app = FastAPI(title="House Price Prediction API")
+
+class HouseFeatures(BaseModel):
+    bedrooms: int
+    bathrooms: float
+    sqft_living: int
+    sqft_lot: int
+    floors: float
+    waterfront: int
+    view: int
+    condition: int
+    grade: int
+    sqft_above: int
+    sqft_basement: int
+    yr_built: int
+    yr_renovated: int
+
+@app.post("/predict", response_model=dict)
+async def predict_price(features: HouseFeatures):
+    try:
+        # Convert to array
+        feature_array = np.array([[
+            features.bedrooms,
+            features.bathrooms,
+            features.sqft_living,
+            features.sqft_lot,
+            features.floors,
+            features.waterfront,
+            features.view,
+            features.condition,
+            features.grade,
+            features.sqft_above,
+            features.sqft_basement,
+            features.yr_built,
+            features.yr_renovated
+        ]])
+        
+        # Scale features
+        scaled_features = scaler.transform(feature_array)
+        
+        # Predict
+        prediction = model.predict(scaled_features)[0]
+        
+        return {
+            "predicted_price": float(prediction),
+            "status": "success"
+        }
+    except Exception as e:
+        raise HTTPException(status_code=400, detail=str(e))
+
+@app.get("/health")
+def health_check():
+    return {"status": "healthy", "model_loaded": model is not None}
+```
+
+### File Upload for ML Models
+
+```python
+from fastapi import FastAPI, File, UploadFile
+from fastapi.responses import FileResponse
+import pandas as pd
+import io
+
+app = FastAPI()
+
+@app.post("/predict-batch")
+async def predict_batch(file: UploadFile = File(...)):
+    # Read CSV file
+    contents = await file.read()
+    df = pd.read_csv(io.StringIO(contents.decode('utf-8')))
+    
+    # Make predictions
+    predictions = model.predict(df.values)
+    
+    # Add predictions to dataframe
+    df['predictions'] = predictions
+    
+    # Convert to CSV
+    output = io.StringIO()
+    df.to_csv(output, index=False)
+    
+    return {"predictions": predictions.tolist()}
+
+@app.post("/upload-image")
+async def upload_image(file: UploadFile = File(...)):
+    # Read image
+    contents = await file.read()
+    
+    # Process image (e.g., with OpenCV or PIL)
+    # ... image processing code ...
+    
+    # Make prediction
+    prediction = image_model.predict(processed_image)
+    
+    return {"prediction": prediction}
+```
+
+### Error Handling
+
+```python
+from fastapi import FastAPI, HTTPException, Request
+from fastapi.responses import JSONResponse
+from fastapi.exceptions import RequestValidationError
+from starlette.exceptions import HTTPException as StarletteHTTPException
+
+app = FastAPI()
+
+# Custom exception handler
+@app.exception_handler(ValueError)
+async def value_error_handler(request: Request, exc: ValueError):
+    return JSONResponse(
+        status_code=400,
+        content={"message": str(exc), "type": "ValueError"}
+    )
+
+# Validation error handler
+@app.exception_handler(RequestValidationError)
+async def validation_exception_handler(request: Request, exc: RequestValidationError):
+    return JSONResponse(
+        status_code=422,
+        content={"detail": exc.errors(), "body": exc.body}
+    )
+
+# HTTP exception handler
+@app.exception_handler(StarletteHTTPException)
+async def http_exception_handler(request: Request, exc: StarletteHTTPException):
+    return JSONResponse(
+        status_code=exc.status_code,
+        content={"message": exc.detail}
+    )
+
+# Usage
+@app.get("/items/{item_id}")
+def get_item(item_id: int):
+    if item_id < 0:
+        raise HTTPException(status_code=400, detail="Item ID must be positive")
+    if item_id > 1000:
+        raise ValueError("Item ID too large")
+    return {"item_id": item_id}
+```
+
+### Authentication & Security
+
+```python
+from fastapi import FastAPI, Depends, HTTPException, status
+from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
+from jose import JWTError, jwt
+from passlib.context import CryptContext
+from datetime import datetime, timedelta
+
+SECRET_KEY = "your-secret-key"
+ALGORITHM = "HS256"
+ACCESS_TOKEN_EXPIRE_MINUTES = 30
+
+security = HTTPBearer()
+pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
+
+def verify_token(credentials: HTTPAuthorizationCredentials = Depends(security)):
+    try:
+        payload = jwt.decode(credentials.credentials, SECRET_KEY, algorithms=[ALGORITHM])
+        return payload
+    except JWTError:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Invalid authentication credentials"
+        )
+
+@app.get("/protected")
+def protected_route(payload: dict = Depends(verify_token)):
+    return {"message": "This is a protected route", "user": payload.get("sub")}
+```
+
+### CORS and Middleware
+
+```python
+from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
+from fastapi.middleware.trustedhost import TrustedHostMiddleware
+
+app = FastAPI()
+
+# CORS middleware
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # In production, specify exact origins
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+# Trusted host middleware
+app.add_middleware(
+    TrustedHostMiddleware,
+    allowed_hosts=["example.com", "*.example.com"]
+)
+
+# Custom middleware
+from starlette.middleware.base import BaseHTTPMiddleware
+import time
+
+class TimingMiddleware(BaseHTTPMiddleware):
+    async def dispatch(self, request, call_next):
+        start_time = time.time()
+        response = await call_next(request)
+        process_time = time.time() - start_time
+        response.headers["X-Process-Time"] = str(process_time)
+        return response
+
+app.add_middleware(TimingMiddleware)
+```
+
+### Background Tasks
+
+```python
+from fastapi import FastAPI, BackgroundTasks
+import asyncio
+
+app = FastAPI()
+
+def write_log(message: str):
+    with open("log.txt", "a") as f:
+        f.write(f"{message}\n")
+
+def train_model_async():
+    # Long-running ML training task
+    # ... training code ...
+    pass
+
+@app.post("/train")
+def train_model(background_tasks: BackgroundTasks):
+    background_tasks.add_task(train_model_async)
+    return {"message": "Training started in background"}
+
+@app.post("/send-notification")
+def send_notification(email: str, background_tasks: BackgroundTasks):
+    background_tasks.add_task(write_log, f"Notification sent to {email}")
+    return {"message": "Notification will be sent"}
+```
+
+### Database Integration
+
+```python
+from fastapi import FastAPI, Depends
+from sqlalchemy import create_engine, Column, Integer, String
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import sessionmaker, Session
+
+DATABASE_URL = "sqlite:///./ml_predictions.db"
+
+engine = create_engine(DATABASE_URL)
+SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+Base = declarative_base()
+
+class Prediction(Base):
+    __tablename__ = "predictions"
+    id = Column(Integer, primary_key=True, index=True)
+    input_data = Column(String)
+    prediction = Column(String)
+    timestamp = Column(String)
+
+Base.metadata.create_all(bind=engine)
+
+def get_db():
+    db = SessionLocal()
+    try:
+        yield db
+    finally:
+        db.close()
+
+@app.post("/predict-with-db")
+def predict_with_db(features: HouseFeatures, db: Session = Depends(get_db)):
+    # Make prediction
+    prediction = model.predict([...])
+    
+    # Save to database
+    db_prediction = Prediction(
+        input_data=str(features.dict()),
+        prediction=str(prediction),
+        timestamp=datetime.now().isoformat()
+    )
+    db.add(db_prediction)
+    db.commit()
+    
+    return {"prediction": prediction, "id": db_prediction.id}
+```
+
+### Testing FastAPI
+
+```python
+from fastapi.testclient import TestClient
+from fastapi import FastAPI
+
+app = FastAPI()
+
+@app.get("/")
+def read_root():
+    return {"message": "Hello World"}
+
+# Test client
+client = TestClient(app)
+
+def test_read_root():
+    response = client.get("/")
+    assert response.status_code == 200
+    assert response.json() == {"message": "Hello World"}
+
+def test_predict():
+    response = client.post(
+        "/predict",
+        json={
+            "bedrooms": 3,
+            "bathrooms": 2.5,
+            "sqft_living": 2000
+        }
+    )
+    assert response.status_code == 200
+    assert "predicted_price" in response.json()
+```
+
+### Deployment
+
+```python
+# Dockerfile example
+"""
+FROM python:3.9-slim
+
+WORKDIR /app
+
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+COPY . .
+
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
+"""
+
+# docker-compose.yml
+"""
+version: '3.8'
+services:
+  api:
+    build: .
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./models:/app/models
+    environment:
+      - MODEL_PATH=/app/models/model.pkl
+"""
+
+# Run with uvicorn
+# uvicorn main:app --host 0.0.0.0 --port 8000
+# uvicorn main:app --reload  # Development mode
+# uvicorn main:app --workers 4  # Production with multiple workers
+```
+
+### API Documentation
+
+```python
+from fastapi import FastAPI
+from fastapi.openapi.utils import get_openapi
+
+app = FastAPI(
+    title="ML Prediction API",
+    description="""
+    ## Machine Learning Prediction API
+    
+    This API provides endpoints for:
+    * House price prediction
+    * Image classification
+    * Batch predictions
+    
+    ## Authentication
+    Use Bearer token in Authorization header
+    """,
+    version="1.0.0",
+    terms_of_service="http://example.com/terms/",
+    contact={
+        "name": "API Support",
+        "email": "support@example.com",
+    },
+    license_info={
+        "name": "MIT",
+    },
+)
+
+# Custom OpenAPI schema
+def custom_openapi():
+    if app.openapi_schema:
+        return app.openapi_schema
+    openapi_schema = get_openapi(
+        title="ML API",
+        version="1.0.0",
+        description="Custom API documentation",
+        routes=app.routes,
+    )
+    app.openapi_schema = openapi_schema
+    return app.openapi_schema
+
+app.openapi = custom_openapi
+```
+
+### Best Practices for Data Scientists
+
+```python
+# 1. Always validate input data
+class PredictionInput(BaseModel):
+    features: List[float] = Field(..., min_items=10, max_items=10)
+    
+    @validator('features')
+    def validate_features(cls, v):
+        if any(x < 0 for x in v):
+            raise ValueError('All features must be non-negative')
+        return v
+
+# 2. Handle model loading errors
+try:
+    model = joblib.load('model.pkl')
+except FileNotFoundError:
+    raise HTTPException(status_code=500, detail="Model not found")
+
+# 3. Add logging
+import logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
+
+@app.post("/predict")
+def predict(data: PredictionInput):
+    logger.info(f"Received prediction request: {data}")
+    try:
+        result = model.predict([data.features])
+        logger.info(f"Prediction successful: {result}")
+        return {"prediction": result[0]}
+    except Exception as e:
+        logger.error(f"Prediction failed: {str(e)}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+# 4. Version your API
+@app.get("/v1/predict")
+def predict_v1():
+    pass
+
+@app.get("/v2/predict")
+def predict_v2():
+    pass
+
+# 5. Add rate limiting (use slowapi)
+from slowapi import Limiter, _rate_limit_exceeded_handler
+from slowapi.util import get_remote_address
+from slowapi.errors import RateLimitExceeded
+
+limiter = Limiter(key_func=get_remote_address)
+app.state.limiter = limiter
+app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
+
+@app.post("/predict")
+@limiter.limit("10/minute")
+def predict(request: Request, data: PredictionInput):
+    return {"prediction": model.predict([data.features])[0]}
+```
+
+### Learning Resources
+
+#### Official Documentation
+- **FastAPI Official Docs**: https://fastapi.tiangolo.com/
+- **Pydantic Documentation**: https://docs.pydantic.dev/
+- **Uvicorn Documentation**: https://www.uvicorn.org/
+
+#### Tutorials & Courses
+- **FastAPI Tutorial**: https://fastapi.tiangolo.com/tutorial/
+- **Real Python FastAPI Guide**: https://realpython.com/fastapi-python-web-apis/
+- **Full Stack FastAPI Template**: https://github.com/tiangolo/full-stack-fastapi-template
+
+#### YouTube Channels
+- **FastAPI Official Channel**: https://www.youtube.com/c/FastAPI
+- **Pretty Printed**: FastAPI tutorials
+- **Tech With Tim**: FastAPI for ML deployment
+
+#### Books
+- **"Building Data Science Applications with FastAPI"** by Francois Voron
+- **"FastAPI Modern Python Web Development"** by Bill Lubanovic
+
+#### Best Practices Guides
+- **FastAPI Best Practices**: https://github.com/zhanymkanov/fastapi-best-practices
+- **API Design Guidelines**: https://restfulapi.net/
+- **12 Factor App**: https://12factor.net/
+
+#### Deployment Platforms
+- **Heroku**: https://devcenter.heroku.com/articles/getting-started-with-python
+- **AWS Lambda**: https://aws.amazon.com/lambda/
+- **Google Cloud Run**: https://cloud.google.com/run
+- **DigitalOcean App Platform**: https://www.digitalocean.com/products/app-platform
+- **Railway**: https://railway.app/
+- **Render**: https://render.com/
+
+#### Additional Tools
+- **Postman**: API testing - https://www.postman.com/
+- **Swagger UI**: Auto-generated API docs (built into FastAPI)
+- **Docker**: Containerization - https://www.docker.com/
+- **Nginx**: Reverse proxy - https://www.nginx.com/
+
+### Quick Reference: Common Patterns
+
+```python
+# Pattern 1: Simple ML API
+@app.post("/predict")
+def predict(features: Features):
+    prediction = model.predict([features.to_array()])
+    return {"prediction": prediction[0]}
+
+# Pattern 2: Batch Prediction
+@app.post("/predict-batch")
+def predict_batch(features_list: List[Features]):
+    predictions = model.predict([f.to_array() for f in features_list])
+    return {"predictions": predictions.tolist()}
+
+# Pattern 3: Async Prediction
+@app.post("/predict-async")
+async def predict_async(features: Features):
+    loop = asyncio.get_event_loop()
+    prediction = await loop.run_in_executor(
+        None, model.predict, [[features.to_array()]]
+    )
+    return {"prediction": prediction[0]}
+
+# Pattern 4: Model Versioning
+MODEL_VERSION = "v1.2.0"
+
+@app.get("/model-info")
+def model_info():
+    return {
+        "version": MODEL_VERSION,
+        "features": model.n_features_in_,
+        "model_type": type(model).__name__
+    }
+```
+
+---
+
 ## File Operations
 
 ### Reading Files
