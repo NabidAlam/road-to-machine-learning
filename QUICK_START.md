@@ -5,8 +5,8 @@ Get started with Road to ML in 5 minutes!
 ## Step 1: Clone the Repository
 
 ```bash
-git clone https://github.com/yourusername/road-to-ml.git
-cd road-to-ml
+git clone https://github.com/NabidAlam/road-to-machine-learning.git
+cd road-to-machine-learning
 ```
 
 ## Step 2: Set Up Environment

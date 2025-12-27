@@ -24,6 +24,8 @@ Learn Python from scratch - variables, data types, control flow, functions, and 
 
 **Time Estimate:** 2-3 weeks
 
+**📖 [Complete Guide →](01-python-basics.md)**
+
 ### 02-mathematics-basics
 Essential mathematical concepts needed for understanding ML algorithms.
 
@@ -33,6 +35,8 @@ Essential mathematical concepts needed for understanding ML algorithms.
 - **Calculus**: Derivatives, Gradients, Optimization Basics
 
 **Time Estimate:** 2-3 weeks
+
+**[Complete Guide →](02-mathematics-basics.md)**
 
 ### 03-environment-setup
 Set up your development environment for ML work.
@@ -46,6 +50,8 @@ Set up your development environment for ML work.
 - Git & GitHub Setup
 
 **Time Estimate:** 1 day
+
+**[Complete Guide →](03-environment-setup.md)**
 
 ##  Learning Objectives
 
