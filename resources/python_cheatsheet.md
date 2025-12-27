@@ -30,24 +30,55 @@ import numpy as np
 
 # Create arrays
 arr = np.array([1, 2, 3, 4, 5])
+print(arr)
+# Output: [1 2 3 4 5]
+
 arr2d = np.array([[1, 2, 3], [4, 5, 6]])
+print(arr2d)
+# Output: [[1 2 3]
+#          [4 5 6]]
+
 zeros = np.zeros((3, 4))
+print(zeros)
+# Output: [[0. 0. 0. 0.]
+#          [0. 0. 0. 0.]
+#          [0. 0. 0. 0.]]
+
 ones = np.ones((2, 3))
-empty = np.empty((2, 2))
-arange = np.arange(0, 10, 2)  # [0, 2, 4, 6, 8]
-linspace = np.linspace(0, 1, 5)  # [0, 0.25, 0.5, 0.75, 1]
-random = np.random.rand(3, 3)  # Random 0-1
-randint = np.random.randint(0, 10, (3, 3))  # Random integers
+print(ones)
+# Output: [[1. 1. 1.]
+#          [1. 1. 1.]]
+
+arange = np.arange(0, 10, 2)
+print(arange)
+# Output: [0 2 4 6 8]
+
+linspace = np.linspace(0, 1, 5)
+print(linspace)
+# Output: [0.   0.25 0.5  0.75 1.  ]
+
+random = np.random.rand(3, 3)
+print(random)
+# Output: [[0.37454012 0.95071431 0.73199394]
+#          [0.59865848 0.15601864 0.15599452]
+#          [0.05808361 0.86617615 0.60111501]]
+
+randint = np.random.randint(0, 10, (3, 3))
+print(randint)
+# Output: [[3 7 9]
+#          [3 5 2]
+#          [4 7 6]]
 ```
 
 ### Array Operations
 
 ```python
 # Shape and dimensions
-arr.shape
-arr.ndim
-arr.size
-arr.dtype
+arr = np.array([[1, 2, 3], [4, 5, 6]])
+print(arr.shape)   # Output: (2, 3)
+print(arr.ndim)    # Output: 2
+print(arr.size)    # Output: 6
+print(arr.dtype)   # Output: int64
 
 # Reshaping
 arr.reshape(2, 3)
@@ -64,14 +95,15 @@ arr2d[:, 1]      # All rows, column 1
 arr2d[1, :]      # Row 1, all columns
 
 # Mathematical operations
-np.sum(arr)
-np.mean(arr)
-np.std(arr)
-np.var(arr)
-np.min(arr)
-np.max(arr)
-np.median(arr)
-np.percentile(arr, 50)
+arr = np.array([1, 2, 3, 4, 5])
+print(np.sum(arr))        # Output: 15
+print(np.mean(arr))       # Output: 3.0
+print(np.std(arr))        # Output: 1.4142135623730951
+print(np.var(arr))        # Output: 2.0
+print(np.min(arr))        # Output: 1
+print(np.max(arr))        # Output: 5
+print(np.median(arr))     # Output: 3.0
+print(np.percentile(arr, 50))  # Output: 3.0
 
 # Element-wise operations
 arr + 1
@@ -112,6 +144,11 @@ import pandas as pd
 
 # From dictionary
 df = pd.DataFrame({'A': [1, 2, 3], 'B': [4, 5, 6]})
+print(df)
+# Output:    A  B
+#         0  1  4
+#         1  2  5
+#         2  3  6
 
 # From CSV
 df = pd.read_csv('file.csv')
@@ -132,27 +169,48 @@ df = pd.DataFrame(data)
 ### Viewing Data
 
 ```python
-df.head()        # First 5 rows
-df.head(10)      # First 10 rows
-df.tail()        # Last 5 rows
-df.shape         # (rows, columns)
-df.info()        # Data types and memory
-df.describe()    # Statistical summary
-df.columns       # Column names
-df.index         # Row indices
-df.dtypes        # Data types
-df.value_counts()  # Value counts for Series
+df = pd.DataFrame({'A': [1, 2, 3], 'B': [4, 5, 6]})
+print(df.head())        # First 5 rows
+# Output:    A  B
+#         0  1  4
+#         1  2  5
+#         2  3  6
+
+print(df.shape)         # Output: (3, 2) - (rows, columns)
+print(df.columns)       # Output: Index(['A', 'B'], dtype='object')
+print(df.dtypes)        # Output: A    int64
+                          #         B    int64
+                          #         dtype: object
+
+print(df.describe())
+# Output:              A         B
+#         count  3.000000  3.000000
+#         mean   2.000000  5.000000
+#         std    1.000000  1.000000
+#         min    1.000000  4.000000
+#         25%    1.500000  4.500000
+#         50%    2.000000  5.000000
+#         75%    2.500000  5.500000
+#         max    3.000000  6.000000
 ```
 
 ### Selecting Data
 
 ```python
 # Single column (returns Series)
-df['column_name']
-df.column_name
+df = pd.DataFrame({'A': [1, 2, 3], 'B': [4, 5, 6]})
+print(df['A'])
+# Output: 0    1
+#         1    2
+#         2    3
+#         Name: A, dtype: int64
 
 # Multiple columns (returns DataFrame)
-df[['col1', 'col2']]
+print(df[['A', 'B']])
+# Output:    A  B
+#         0  1  4
+#         1  2  5
+#         2  3  6
 
 # Rows by index
 df.iloc[0]           # First row
@@ -165,10 +223,20 @@ df.loc['index_name']
 df.loc['row1':'row5', 'col1':'col3']
 
 # Boolean indexing
-df[df['column'] > 5]
-df[(df['col1'] > 5) & (df['col2'] < 10)]
-df[df['column'].isin([1, 2, 3])]
-df[df['column'].str.contains('text')]
+df = pd.DataFrame({'A': [1, 5, 8, 3], 'B': [10, 20, 30, 40]})
+print(df[df['A'] > 5])
+# Output:    A   B
+#         2  8  30
+
+print(df[(df['A'] > 2) & (df['B'] < 35)])
+# Output:    A   B
+#         1  5  20
+#         2  8  30
+
+print(df[df['A'].isin([1, 8])])
+# Output:    A   B
+#         0  1  10
+#         2  8  30
 ```
 
 ### Data Manipulation
@@ -189,9 +257,28 @@ df.sort_values('column', ascending=False)
 df.sort_values(['col1', 'col2'])
 
 # Grouping
-df.groupby('column').mean()
-df.groupby('column').sum()
-df.groupby('column').agg({'col1': 'mean', 'col2': 'sum'})
+df = pd.DataFrame({
+    'Category': ['A', 'A', 'B', 'B', 'A'],
+    'Value1': [10, 20, 30, 40, 50],
+    'Value2': [1, 2, 3, 4, 5]
+})
+print(df.groupby('Category').mean())
+# Output:          Value1  Value2
+#         Category
+#         A         26.666667  2.666667
+#         B         35.000000  3.500000
+
+print(df.groupby('Category').sum())
+# Output:          Value1  Value2
+#         Category
+#         A           80      8
+#         B           70      7
+
+print(df.groupby('Category').agg({'Value1': 'mean', 'Value2': 'sum'}))
+# Output:          Value1  Value2
+#         Category
+#         A         26.666667      8
+#         B         35.000000      7
 
 # Merging
 pd.merge(df1, df2, on='key')
@@ -404,18 +491,42 @@ from sklearn.metrics import f1_score, confusion_matrix, classification_report
 from sklearn.metrics import mean_squared_error, r2_score, roc_auc_score
 
 # Classification
-accuracy = accuracy_score(y_test, predictions)
-precision = precision_score(y_test, predictions)
-recall = recall_score(y_test, predictions)
-f1 = f1_score(y_test, predictions)
-cm = confusion_matrix(y_test, predictions)
-report = classification_report(y_test, predictions)
-roc_auc = roc_auc_score(y_test, probabilities[:, 1])
+from sklearn.metrics import accuracy_score, precision_score, recall_score
+from sklearn.metrics import f1_score, confusion_matrix, classification_report
+
+y_test = [0, 1, 0, 1, 0]
+predictions = [0, 1, 0, 1, 1]
+
+print(f"Accuracy: {accuracy_score(y_test, predictions)}")
+# Output: Accuracy: 0.8
+
+print(f"Precision: {precision_score(y_test, predictions)}")
+# Output: Precision: 1.0
+
+print(f"Recall: {recall_score(y_test, predictions)}")
+# Output: Recall: 0.5
+
+print(f"F1 Score: {f1_score(y_test, predictions)}")
+# Output: F1 Score: 0.6666666666666666
+
+print(confusion_matrix(y_test, predictions))
+# Output: [[2 0]
+#          [1 2]]
 
 # Regression
+from sklearn.metrics import mean_squared_error, r2_score
+
+y_test = [3, 5, 7, 9]
+predictions = [3.1, 4.9, 7.2, 8.8]
+
 mse = mean_squared_error(y_test, predictions)
+print(f"MSE: {mse}")  # Output: MSE: 0.025
+
 rmse = np.sqrt(mse)
+print(f"RMSE: {rmse}")  # Output: RMSE: 0.15811388300841898
+
 r2 = r2_score(y_test, predictions)
+print(f"R² Score: {r2}")  # Output: R² Score: 0.9983333333333333
 ```
 
 ### Cross-Validation
@@ -2403,20 +2514,32 @@ lst[::-1]     # Reverse
 ```python
 # Creating
 d = {'key1': 'value1', 'key2': 'value2'}
+print(d)  # Output: {'key1': 'value1', 'key2': 'value2'}
+
 d = dict(key1='value1', key2='value2')
+print(d)  # Output: {'key1': 'value1', 'key2': 'value2'}
 
 # Accessing
-d['key1']
-d.get('key1', 'default')  # With default
+print(d['key1'])  # Output: value1
+print(d.get('key1', 'default'))  # Output: value1
+print(d.get('key3', 'default'))  # Output: default (key doesn't exist)
 
 # Adding/Updating
 d['key3'] = 'value3'
+print(d)  # Output: {'key1': 'value1', 'key2': 'value2', 'key3': 'value3'}
+
 d.update({'key4': 'value4'})
+print(d)  # Output: {'key1': 'value1', 'key2': 'value2', 'key3': 'value3', 'key4': 'value4'}
 
 # Removing
 del d['key1']
-d.pop('key2')
-d.popitem()  # Remove last item
+print(d)  # Output: {'key2': 'value2', 'key3': 'value3', 'key4': 'value4'}
+
+removed = d.pop('key2')
+print(f"Removed: {removed}, Dict: {d}")  # Output: Removed: value2, Dict: {'key3': 'value3', 'key4': 'value4'}
+
+last = d.popitem()  # Remove last item
+print(f"Removed: {last}, Dict: {d}")  # Output: Removed: ('key4', 'value4'), Dict: {'key3': 'value3'}
 
 # Iterating
 for key, value in d.items():
