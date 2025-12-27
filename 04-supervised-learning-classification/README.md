@@ -104,6 +104,8 @@ By the end of this module, you should be able to:
 - [Titanic Competition (Kaggle)](https://www.kaggle.com/c/titanic) - Classic classification problem
 - [Classification Exercises](https://www.kaggle.com/learn/machine-learning)
 
+**[Complete Detailed Guide →](classification.md)**
+
 ---
 
 **Previous Phase:** [03-supervised-learning-regression](../03-supervised-learning-regression/README.md)  
