@@ -461,9 +461,9 @@ By completing this roadmap, you'll be able to:
 
 ## Statistics
 
-- **18 Learning Modules** covering all ML topics
-- **16+ Projects** from beginner to advanced
-- **100+ Resources** including books, courses, and tools
+- **15 Learning Modules** covering all ML topics
+- **18 Projects** from beginner to advanced
+- **86+ Resources** including books, courses, datasets, and tools
 - **5-6 Months** estimated learning time
 - **Zero Prerequisites** - start from scratch!
 
