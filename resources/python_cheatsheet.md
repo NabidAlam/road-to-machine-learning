@@ -1128,6 +1128,560 @@ clahe_img = clahe.apply(gray)
 
 ---
 
+## Hyperparameter Tuning & Model Optimization
+
+### Scikit-learn Hyperparameter Tuning
+
+```python
+from sklearn.model_selection import GridSearchCV, RandomizedSearchCV
+from sklearn.model_selection import cross_val_score
+from sklearn.ensemble import RandomForestClassifier
+
+# Grid Search
+param_grid = {
+    'n_estimators': [50, 100, 200],
+    'max_depth': [3, 5, 7, None],
+    'min_samples_split': [2, 5, 10],
+    'min_samples_leaf': [1, 2, 4]
+}
+
+grid_search = GridSearchCV(
+    estimator=RandomForestClassifier(random_state=42),
+    param_grid=param_grid,
+    cv=5,
+    scoring='accuracy',
+    n_jobs=-1,
+    verbose=1
+)
+
+grid_search.fit(X_train, y_train)
+best_model = grid_search.best_estimator_
+best_params = grid_search.best_params_
+best_score = grid_search.best_score_
+
+# Randomized Search (faster for large parameter spaces)
+from scipy.stats import randint, uniform
+
+param_dist = {
+    'n_estimators': randint(50, 200),
+    'max_depth': [3, 5, 7, None],
+    'min_samples_split': randint(2, 10),
+    'min_samples_leaf': randint(1, 4),
+    'max_features': uniform(0.1, 0.9)
+}
+
+random_search = RandomizedSearchCV(
+    estimator=RandomForestClassifier(random_state=42),
+    param_distributions=param_dist,
+    n_iter=100,
+    cv=5,
+    scoring='accuracy',
+    n_jobs=-1,
+    random_state=42
+)
+
+random_search.fit(X_train, y_train)
+```
+
+### Optuna - Advanced Hyperparameter Optimization
+
+```python
+import optuna
+from optuna.visualization import plot_optimization_history, plot_param_importances
+
+# Define objective function
+def objective(trial):
+    # Suggest hyperparameters
+    n_estimators = trial.suggest_int('n_estimators', 50, 200)
+    max_depth = trial.suggest_int('max_depth', 3, 10)
+    min_samples_split = trial.suggest_int('min_samples_split', 2, 10)
+    learning_rate = trial.suggest_float('learning_rate', 0.01, 0.3, log=True)
+    
+    # Create model
+    model = RandomForestClassifier(
+        n_estimators=n_estimators,
+        max_depth=max_depth,
+        min_samples_split=min_samples_split,
+        random_state=42
+    )
+    
+    # Cross-validation score
+    scores = cross_val_score(model, X_train, y_train, cv=5, scoring='accuracy')
+    return scores.mean()
+
+# Create study and optimize
+study = optuna.create_study(direction='maximize', study_name='rf_optimization')
+study.optimize(objective, n_trials=100, n_jobs=-1)
+
+# Get best parameters
+best_params = study.best_params
+best_score = study.best_value
+best_trial = study.best_trial
+
+# Visualize optimization
+plot_optimization_history(study).show()
+plot_param_importances(study).show()
+
+# Pruning (early stopping)
+def objective_with_pruning(trial):
+    # ... model setup ...
+    for step in range(n_steps):
+        # Training step
+        intermediate_value = train_step()
+        trial.report(intermediate_value, step)
+        
+        # Prune if not promising
+        if trial.should_prune():
+            raise optuna.TrialPruned()
+    
+    return final_value
+
+study = optuna.create_study(pruner=optuna.pruners.MedianPruner())
+```
+
+### Hyperopt - Bayesian Optimization
+
+```python
+from hyperopt import hp, fmin, tpe, Trials, STATUS_OK
+
+# Define search space
+space = {
+    'n_estimators': hp.choice('n_estimators', [50, 100, 200]),
+    'max_depth': hp.choice('max_depth', [3, 5, 7, None]),
+    'min_samples_split': hp.uniform('min_samples_split', 2, 10),
+    'learning_rate': hp.loguniform('learning_rate', np.log(0.01), np.log(0.3))
+}
+
+# Objective function
+def objective(params):
+    model = RandomForestClassifier(**params, random_state=42)
+    score = cross_val_score(model, X_train, y_train, cv=5).mean()
+    return {'loss': -score, 'status': STATUS_OK}
+
+# Optimize
+trials = Trials()
+best = fmin(
+    fn=objective,
+    space=space,
+    algo=tpe.suggest,
+    max_evals=100,
+    trials=trials
+)
+```
+
+### Ray Tune - Distributed Hyperparameter Tuning
+
+```python
+from ray import tune
+from ray.tune.schedulers import ASHAScheduler
+
+def train_model(config):
+    model = RandomForestClassifier(
+        n_estimators=config['n_estimators'],
+        max_depth=config['max_depth'],
+        random_state=42
+    )
+    score = cross_val_score(model, X_train, y_train, cv=5).mean()
+    tune.report(accuracy=score)
+
+# Define search space
+config = {
+    'n_estimators': tune.choice([50, 100, 200]),
+    'max_depth': tune.choice([3, 5, 7, None])
+}
+
+# Run optimization
+analysis = tune.run(
+    train_model,
+    config=config,
+    num_samples=100,
+    scheduler=ASHAScheduler(metric='accuracy', mode='max'),
+    resources_per_trial={'cpu': 2}
+)
+
+best_config = analysis.get_best_config(metric='accuracy', mode='max')
+```
+
+### Model Optimization Techniques
+
+#### Learning Rate Scheduling
+
+```python
+# PyTorch Learning Rate Scheduler
+from torch.optim.lr_scheduler import StepLR, ExponentialLR, ReduceLROnPlateau
+
+# Step LR
+scheduler = StepLR(optimizer, step_size=10, gamma=0.1)
+
+# Exponential LR
+scheduler = ExponentialLR(optimizer, gamma=0.95)
+
+# Reduce on Plateau
+scheduler = ReduceLROnPlateau(optimizer, mode='min', factor=0.5, patience=5)
+
+# In training loop
+for epoch in range(epochs):
+    train()
+    val_loss = validate()
+    scheduler.step(val_loss)  # For ReduceLROnPlateau
+    # or scheduler.step() for others
+
+# TensorFlow/Keras Learning Rate Scheduling
+from tensorflow.keras.callbacks import ReduceLROnPlateau, LearningRateScheduler
+
+# Reduce on Plateau
+reduce_lr = ReduceLROnPlateau(
+    monitor='val_loss',
+    factor=0.5,
+    patience=5,
+    min_lr=1e-7
+)
+
+# Custom schedule
+def scheduler(epoch, lr):
+    if epoch < 10:
+        return lr
+    else:
+        return lr * 0.95
+
+lr_scheduler = LearningRateScheduler(scheduler)
+
+model.fit(..., callbacks=[reduce_lr, lr_scheduler])
+```
+
+#### Early Stopping
+
+```python
+# Scikit-learn (manual)
+from sklearn.model_selection import validation_curve
+
+train_scores, val_scores = validation_curve(
+    model, X_train, y_train, param_name='max_depth',
+    param_range=[1, 3, 5, 7, 9], cv=5
+)
+
+# PyTorch Early Stopping
+class EarlyStopping:
+    def __init__(self, patience=7, min_delta=0):
+        self.patience = patience
+        self.min_delta = min_delta
+        self.counter = 0
+        self.best_loss = None
+    
+    def __call__(self, val_loss):
+        if self.best_loss is None:
+            self.best_loss = val_loss
+        elif val_loss < self.best_loss - self.min_delta:
+            self.best_loss = val_loss
+            self.counter = 0
+        else:
+            self.counter += 1
+        
+        if self.counter >= self.patience:
+            return True
+        return False
+
+# TensorFlow/Keras Early Stopping
+from tensorflow.keras.callbacks import EarlyStopping
+
+early_stop = EarlyStopping(
+    monitor='val_loss',
+    patience=10,
+    restore_best_weights=True,
+    min_delta=0.001
+)
+```
+
+#### Regularization Techniques
+
+```python
+# L1/L2 Regularization
+from sklearn.linear_model import Lasso, Ridge, ElasticNet
+
+# L1 (Lasso)
+lasso = Lasso(alpha=0.1)
+
+# L2 (Ridge)
+ridge = Ridge(alpha=0.1)
+
+# Elastic Net (L1 + L2)
+elastic = ElasticNet(alpha=0.1, l1_ratio=0.5)
+
+# Dropout (PyTorch)
+import torch.nn as nn
+
+model = nn.Sequential(
+    nn.Linear(784, 256),
+    nn.ReLU(),
+    nn.Dropout(0.5),  # 50% dropout
+    nn.Linear(256, 10)
+)
+
+# Dropout (TensorFlow/Keras)
+from tensorflow.keras import layers
+
+model = keras.Sequential([
+    layers.Dense(256, activation='relu'),
+    layers.Dropout(0.5),
+    layers.Dense(10, activation='softmax')
+])
+
+# Batch Normalization
+# PyTorch
+nn.BatchNorm1d(256)
+nn.BatchNorm2d(64)
+
+# TensorFlow/Keras
+layers.BatchNormalization()
+```
+
+#### Model Ensembling
+
+```python
+# Voting Classifier
+from sklearn.ensemble import VotingClassifier
+
+ensemble = VotingClassifier(
+    estimators=[
+        ('rf', RandomForestClassifier()),
+        ('svm', SVC(probability=True)),
+        ('lr', LogisticRegression())
+    ],
+    voting='soft'  # or 'hard'
+)
+
+# Stacking
+from sklearn.ensemble import StackingClassifier
+
+stacking = StackingClassifier(
+    estimators=[
+        ('rf', RandomForestClassifier()),
+        ('svm', SVC()),
+        ('lr', LogisticRegression())
+    ],
+    final_estimator=LogisticRegression(),
+    cv=5
+)
+
+# Blending
+# Train base models on training set
+# Make predictions on validation set
+# Train meta-model on validation predictions
+```
+
+### Advanced Optimization Techniques
+
+#### Gradient Clipping
+
+```python
+# PyTorch
+torch.nn.utils.clip_grad_norm_(model.parameters(), max_norm=1.0)
+
+# In training loop
+loss.backward()
+torch.nn.utils.clip_grad_norm_(model.parameters(), max_norm=1.0)
+optimizer.step()
+
+# TensorFlow/Keras
+optimizer = keras.optimizers.Adam(clipnorm=1.0)
+optimizer = keras.optimizers.Adam(clipvalue=0.5)
+```
+
+#### Mixed Precision Training
+
+```python
+# PyTorch
+from torch.cuda.amp import autocast, GradScaler
+
+scaler = GradScaler()
+
+with autocast():
+    output = model(input)
+    loss = criterion(output, target)
+
+scaler.scale(loss).backward()
+scaler.step(optimizer)
+scaler.update()
+
+# TensorFlow/Keras
+policy = keras.mixed_precision.Policy('mixed_float16')
+keras.mixed_precision.set_global_policy(policy)
+```
+
+#### Model Pruning
+
+```python
+# PyTorch Pruning
+import torch.nn.utils.prune as prune
+
+# L1 Unstructured Pruning
+prune.l1_unstructured(module, name='weight', amount=0.2)
+
+# Global Pruning
+parameters_to_prune = (
+    (model.fc1, 'weight'),
+    (model.fc2, 'weight'),
+)
+prune.global_unstructured(
+    parameters_to_prune,
+    pruning_method=prune.L1Unstructured,
+    amount=0.2,
+)
+
+# TensorFlow Model Optimization
+import tensorflow_model_optimization as tfmot
+
+pruning_params = {
+    'pruning_schedule': tfmot.sparsity.keras.PolynomialDecay(
+        initial_sparsity=0.0,
+        final_sparsity=0.5,
+        begin_step=0,
+        end_step=1000
+    )
+}
+
+model = tfmot.sparsity.keras.prune_low_magnitude(model, **pruning_params)
+```
+
+#### Quantization
+
+```python
+# PyTorch Quantization
+import torch.quantization
+
+# Dynamic Quantization
+quantized_model = torch.quantization.quantize_dynamic(
+    model, {torch.nn.Linear}, dtype=torch.qint8
+)
+
+# TensorFlow Quantization
+converter = tf.lite.TFLiteConverter.from_saved_model(saved_model_dir)
+converter.optimizations = [tf.lite.Optimize.DEFAULT]
+tflite_quant_model = converter.convert()
+```
+
+### Hyperparameter Tuning Best Practices
+
+```python
+# 1. Define reasonable search spaces
+# Too narrow: miss good solutions
+# Too wide: waste computation
+
+# 2. Use appropriate search strategy
+# Grid Search: Small, discrete spaces
+# Random Search: Large spaces, faster
+# Bayesian Optimization: Expensive evaluations
+
+# 3. Cross-validation for robust evaluation
+from sklearn.model_selection import StratifiedKFold
+
+cv = StratifiedKFold(n_splits=5, shuffle=True, random_state=42)
+scores = cross_val_score(model, X, y, cv=cv)
+
+# 4. Track experiments
+import mlflow
+
+mlflow.set_experiment("hyperparameter_tuning")
+
+with mlflow.start_run():
+    mlflow.log_params(best_params)
+    mlflow.log_metric("accuracy", best_score)
+    mlflow.sklearn.log_model(best_model, "model")
+
+# 5. Use validation set properly
+# Train set: Training models
+# Validation set: Tuning hyperparameters
+# Test set: Final evaluation (only once!)
+
+# 6. Consider computational budget
+# Start with random search (fast)
+# Refine with grid/bayesian (thorough)
+
+# 7. Monitor overfitting
+# Track train vs validation performance
+# Use early stopping
+# Regularize appropriately
+```
+
+### Modern Optimization Tools
+
+```python
+# Weights & Biases (W&B) for tracking
+import wandb
+
+wandb.init(project="ml-optimization")
+
+config = {
+    'learning_rate': 0.001,
+    'batch_size': 32,
+    'epochs': 10
+}
+
+wandb.config.update(config)
+
+for epoch in range(epochs):
+    train_loss = train()
+    val_loss = validate()
+    
+    wandb.log({
+        'train_loss': train_loss,
+        'val_loss': val_loss,
+        'epoch': epoch
+    })
+
+# MLflow for experiment tracking
+import mlflow
+
+mlflow.set_tracking_uri("http://localhost:5000")
+mlflow.set_experiment("model_optimization")
+
+with mlflow.start_run():
+    mlflow.log_param("n_estimators", 100)
+    mlflow.log_metric("accuracy", 0.95)
+    mlflow.sklearn.log_model(model, "model")
+```
+
+### Quick Reference: Common Hyperparameters
+
+```python
+# Random Forest
+{
+    'n_estimators': [50, 100, 200, 500],
+    'max_depth': [3, 5, 7, 10, None],
+    'min_samples_split': [2, 5, 10],
+    'min_samples_leaf': [1, 2, 4],
+    'max_features': ['sqrt', 'log2', None]
+}
+
+# XGBoost
+{
+    'n_estimators': [100, 200, 500],
+    'max_depth': [3, 5, 7],
+    'learning_rate': [0.01, 0.1, 0.3],
+    'subsample': [0.6, 0.8, 1.0],
+    'colsample_bytree': [0.6, 0.8, 1.0]
+}
+
+# Neural Networks
+{
+    'learning_rate': [0.001, 0.01, 0.1],
+    'batch_size': [16, 32, 64, 128],
+    'dropout': [0.1, 0.3, 0.5],
+    'hidden_units': [64, 128, 256, 512],
+    'optimizer': ['adam', 'sgd', 'rmsprop']
+}
+
+# CNN
+{
+    'filters': [32, 64, 128],
+    'kernel_size': [3, 5, 7],
+    'pool_size': [2, 3],
+    'dense_units': [64, 128, 256]
+}
+```
+
+---
+
 ## File Operations
 
 ### Reading Files
