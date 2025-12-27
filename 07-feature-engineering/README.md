@@ -96,6 +96,8 @@ By the end of this module, you should be able to:
 **Books:**
 - [Feature Engineering Book](https://www.oreilly.com/library/view/feature-engineering-for/9781491953235/) - Check library access
 
+**[Complete Detailed Guide →](feature-engineering.md)**
+
 ---
 
 **Previous Phase:** [06-ensemble-methods](../06-ensemble-methods/README.md)  
