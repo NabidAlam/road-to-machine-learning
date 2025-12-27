@@ -83,6 +83,8 @@ By the end of this module, you should be able to:
 - [House Prices Competition (Kaggle)](https://www.kaggle.com/c/house-prices-advanced-regression-techniques) - Practice regression
 - [Regression Exercises (GitHub)](https://github.com/justmarkham/scikit-learn-videos)
 
+**[Complete Detailed Guide →](regression.md)**
+
 ---
 
 **Previous Phase:** [02-introduction-to-ml](../02-introduction-to-ml/README.md)  
