@@ -467,6 +467,19 @@ By completing this roadmap, you'll be able to:
 - **5-6 Months** estimated learning time
 - **Zero Prerequisites** - start from scratch!
 
+## Disclaimer
+
+**External Links Disclaimer:**
+
+This repository contains links to external websites, courses, documentation, and resources provided for educational purposes only. The maintainers:
+
+- **Do not endorse** any specific external service or content provider
+- **Are not responsible** for the availability, accuracy, or content of external links
+- **Cannot guarantee** that external links will remain accessible or unchanged
+- **Do not assume liability** for any issues arising from the use of external resources
+
+External links may become unavailable or change without notice. Always verify links before use. See [DISCLAIMER.md](DISCLAIMER.md) for complete disclaimer information.
+
 ---
 
 <div align="center">
