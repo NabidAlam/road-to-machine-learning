@@ -113,6 +113,8 @@ By the end of this module, you should be able to:
 - [Sentiment Analysis Projects](https://www.kaggle.com/learn/natural-language-processing)
 - [NLP Datasets (Hugging Face)](https://huggingface.co/datasets)
 
+**[Complete Detailed Guide →](nlp.md)**
+
 ---
 
 **Previous Phase:** [11-computer-vision](../11-computer-vision/README.md)  
