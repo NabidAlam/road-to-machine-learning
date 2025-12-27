@@ -174,28 +174,28 @@ This repository provides a structured learning path for machine learning, organi
 **Goal**: Apply knowledge through real-world projects
 
 - **15-projects-beginner** (5 projects)
+  - House Price Prediction ✓ (Available)
   - Iris Flower Classification ✓ (Available)
-  - House Price Prediction (Planned)
-  - Titanic Survival Prediction (Planned)
-  - Spam Email Detection (Planned)
-  - Wine Quality Prediction (Planned)
+  - Titanic Survival Prediction ✓ (Available)
+  - Spam Email Detection ✓ (Available)
+  - Wine Quality Prediction ✓ (Available)
 
 - **16-projects-intermediate** (6 projects)
-  - Handwritten Digit Recognition (MNIST) (Planned)
-  - Customer Churn Prediction (Planned)
-  - Movie Recommendation System (Planned)
-  - Credit Card Fraud Detection (Planned)
-  - Customer Segmentation (Planned)
-  - Time Series Forecasting (Planned)
+  - Handwritten Digit Recognition (MNIST) ✓ (Available - README)
+  - Customer Churn Prediction ✓ (Available - README)
+  - Movie Recommendation System ✓ (Available - README)
+  - Credit Card Fraud Detection ✓ (Available - README)
+  - Customer Segmentation ✓ (Available - README)
+  - Time Series Forecasting ✓ (Available - README)
 
 - **17-projects-advanced** (7 projects)
-  - Image Classification (CIFAR-10) (Planned)
-  - Sentiment Analysis on Reviews (Planned)
-  - Time Series Forecasting (Advanced) (Planned)
-  - Chatbot Development (Planned)
-  - Object Detection (Planned)
-  - End-to-End ML Pipeline (Planned)
-  - Generative Model (GAN/VAE) (Planned)
+  - Image Classification (CIFAR-10) ✓ (Available - README)
+  - Sentiment Analysis on Reviews ✓ (Available - README)
+  - Time Series Forecasting (Advanced) ✓ (Available - README)
+  - Chatbot Development ✓ (Available - README)
+  - Object Detection ✓ (Available - README)
+  - End-to-End ML Pipeline ✓ (Available - README)
+  - Generative Model (GAN/VAE) ✓ (Available - README)
 
 ## Prerequisites
 
@@ -265,7 +265,7 @@ jupyter notebook
 
 ## Repository Structure
 
-**Note:** The structure below shows the planned organization. Currently, most modules contain README files with learning objectives and resources. Projects are being added incrementally. Check each module's README for current content.
+**Note:** All learning modules now include comprehensive detailed guides with code examples, exercises, and solutions. Beginner projects are fully available with READMEs and code. Intermediate and advanced projects have detailed READMEs with instructions.
 
 ```
 road-to-ml/
@@ -344,28 +344,28 @@ road-to-ml/
     README.md
 
  15-projects-beginner/
+    project-01-house-price-prediction/  (Available)
     project-02-iris-classification/  (Available)
-    project-01-house-price-prediction/  (Planned)
-    project-03-titanic-survival/  (Planned)
-    project-04-spam-detection/  (Planned)
-    project-05-wine-quality/  (Planned)
+    project-03-titanic-survival/  (Available)
+    project-04-spam-detection/  (Available)
+    project-05-wine-quality/  (Available)
 
  16-projects-intermediate/
-    project-01-mnist-digit-recognition/  (Planned)
-    project-02-customer-churn/  (Planned)
-    project-03-movie-recommendation/  (Planned)
-    project-04-fraud-detection/  (Planned)
-    project-05-customer-segmentation/  (Planned)
-    project-06-time-series-forecasting/  (Planned)
+    project-01-mnist-digit-recognition/  (Available - README)
+    project-02-customer-churn/  (Available - README)
+    project-03-movie-recommendation/  (Available - README)
+    project-04-fraud-detection/  (Available - README)
+    project-05-customer-segmentation/  (Available - README)
+    project-06-time-series-forecasting/  (Available - README)
 
  17-projects-advanced/
-    project-01-cifar10-classification/  (Planned)
-    project-02-sentiment-analysis/  (Planned)
-    project-03-time-series-forecasting/  (Planned)
-    project-04-chatbot/  (Planned)
-    project-05-object-detection/  (Planned)
-    project-06-end-to-end-pipeline/  (Planned)
-    project-07-generative-model/  (Planned)
+    project-01-cifar10-classification/  (Available - README)
+    project-02-sentiment-analysis/  (Available - README)
+    project-03-time-series-forecasting/  (Available - README)
+    project-04-chatbot/  (Available - README)
+    project-05-object-detection/  (Available - README)
+    project-06-end-to-end-pipeline/  (Available - README)
+    project-07-generative-model/  (Available - README)
 
  resources/
     books.md
