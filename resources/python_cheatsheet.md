@@ -81,18 +81,26 @@ print(arr.size)    # Output: 6
 print(arr.dtype)   # Output: int64
 
 # Reshaping
-arr.reshape(2, 3)
-arr.flatten()
-arr.ravel()
+arr = np.array([1, 2, 3, 4, 5, 6])
+reshaped = arr.reshape(2, 3)
+print(reshaped)
+# Output: [[1 2 3]
+#          [4 5 6]]
+
+flattened = arr.flatten()
+print(flattened)  # Output: [1 2 3 4 5 6]
 
 # Indexing and slicing
-arr[0]           # First element
-arr[-1]          # Last element
-arr[1:4]         # Slice
-arr[arr > 5]     # Boolean indexing
-arr2d[0, 1]      # 2D indexing
-arr2d[:, 1]      # All rows, column 1
-arr2d[1, :]      # Row 1, all columns
+arr = np.array([1, 2, 3, 4, 5])
+print(arr[0])      # Output: 1 - First element
+print(arr[-1])     # Output: 5 - Last element
+print(arr[1:4])    # Output: [2 3 4] - Slice
+print(arr[arr > 3])  # Output: [4 5] - Boolean indexing
+
+arr2d = np.array([[1, 2, 3], [4, 5, 6]])
+print(arr2d[0, 1])   # Output: 2 - 2D indexing
+print(arr2d[:, 1])   # Output: [2 5] - All rows, column 1
+print(arr2d[1, :])   # Output: [4 5 6] - Row 1, all columns
 
 # Mathematical operations
 arr = np.array([1, 2, 3, 4, 5])
@@ -106,19 +114,30 @@ print(np.median(arr))     # Output: 3.0
 print(np.percentile(arr, 50))  # Output: 3.0
 
 # Element-wise operations
-arr + 1
-arr * 2
-arr ** 2
-np.sqrt(arr)
-np.exp(arr)
-np.log(arr)
-np.sin(arr)
+arr = np.array([1, 2, 3, 4])
+print(arr + 1)      # Output: [2 3 4 5]
+print(arr * 2)      # Output: [2 4 6 8]
+print(arr ** 2)     # Output: [ 1  4  9 16]
+print(np.sqrt(arr)) # Output: [1.         1.41421356 1.73205081 2.        ]
+print(np.exp([1, 2]))  # Output: [2.71828183 7.3890561 ]
+print(np.log([1, np.e]))  # Output: [0. 1.]
 
 # Array operations
-arr1 + arr2      # Element-wise addition
-arr1 * arr2      # Element-wise multiplication
-np.dot(arr1, arr2)  # Matrix multiplication
-arr1 @ arr2      # Matrix multiplication (Python 3.5+)
+arr1 = np.array([1, 2, 3])
+arr2 = np.array([4, 5, 6])
+print(arr1 + arr2)  # Output: [5 7 9] - Element-wise addition
+print(arr1 * arr2)  # Output: [ 4 10 18] - Element-wise multiplication
+
+# Matrix multiplication
+arr1 = np.array([[1, 2], [3, 4]])
+arr2 = np.array([[5, 6], [7, 8]])
+print(np.dot(arr1, arr2))
+# Output: [[19 22]
+#          [43 50]]
+
+print(arr1 @ arr2)  # Same as dot product
+# Output: [[19 22]
+#          [43 50]]
 ```
 
 ### Useful NumPy Functions
@@ -2562,25 +2581,31 @@ for value in d.values():
 ```python
 # Basic operations
 s = "Hello World"
-s.lower()
-s.upper()
-s.strip()
-s.split(' ')
-s.replace('old', 'new')
-s.startswith('H')
-s.endswith('d')
-s.find('World')
-s.count('l')
+print(s.lower())        # Output: hello world
+print(s.upper())        # Output: HELLO WORLD
+print(s.strip())        # Output: Hello World (removes whitespace)
+
+s_with_spaces = "  Hello World  "
+print(s_with_spaces.strip())  # Output: Hello World
+
+print(s.split(' '))     # Output: ['Hello', 'World']
+print(s.replace('World', 'Python'))  # Output: Hello Python
+print(s.startswith('H'))  # Output: True
+print(s.endswith('d'))    # Output: True
+print(s.find('World'))    # Output: 6 (index where 'World' starts)
+print(s.count('l'))      # Output: 3 (count of 'l')
 
 # Formatting
-f"Value: {value}"
-"Value: {}".format(value)
-"Value: {:.2f}".format(3.14159)
+value = 42
+print(f"Value: {value}")  # Output: Value: 42
+print("Value: {}".format(value))  # Output: Value: 42
+print("Value: {:.2f}".format(3.14159))  # Output: Value: 3.14
 
 # Checking
-s.isdigit()
-s.isalpha()
-s.isalnum()
+print("123".isdigit())   # Output: True
+print("abc".isalpha())   # Output: True
+print("abc123".isalnum())  # Output: True
+print("abc 123".isalnum())  # Output: False (contains space)
 ```
 
 ---
@@ -2592,20 +2617,36 @@ from datetime import datetime, timedelta
 
 # Current time
 now = datetime.now()
+print(now)  # Output: 2024-01-15 14:30:45.123456
+
 today = datetime.today()
+print(today)  # Output: 2024-01-15 14:30:45.123456
 
 # Creating dates
 date = datetime(2024, 1, 1)
+print(date)  # Output: 2024-01-01 00:00:00
+
 date = datetime.strptime('2024-01-01', '%Y-%m-%d')
+print(date)  # Output: 2024-01-01 00:00:00
 
 # Formatting
-date.strftime('%Y-%m-%d')
-date.strftime('%B %d, %Y')
+formatted = date.strftime('%Y-%m-%d')
+print(formatted)  # Output: 2024-01-01
+
+formatted = date.strftime('%B %d, %Y')
+print(formatted)  # Output: January 01, 2024
 
 # Operations
-date + timedelta(days=7)
-date - timedelta(days=7)
-(date2 - date1).days
+date1 = datetime(2024, 1, 1)
+date2 = date1 + timedelta(days=7)
+print(date2)  # Output: 2024-01-08 00:00:00
+
+date3 = date1 - timedelta(days=7)
+print(date3)  # Output: 2023-12-25 00:00:00
+
+date2 = datetime(2024, 1, 8)
+diff = (date2 - date1).days
+print(diff)  # Output: 7
 ```
 
 ### Pandas Date Operations
