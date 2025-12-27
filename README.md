@@ -478,7 +478,9 @@ This repository contains links to external websites, courses, documentation, and
 - **Cannot guarantee** that external links will remain accessible or unchanged
 - **Do not assume liability** for any issues arising from the use of external resources
 
-External links may become unavailable or change without notice. Always verify links before use. See [DISCLAIMER.md](DISCLAIMER.md) for complete disclaimer information.
+**GDPR Compliance:**
+
+This repository does not collect, store, or process any personal data. It is a static educational resource. Any data processing occurs through GitHub (the platform) or external websites, which have their own privacy policies. See [DISCLAIMER.md](DISCLAIMER.md) for complete disclaimer and GDPR information.
 
 ---
 
