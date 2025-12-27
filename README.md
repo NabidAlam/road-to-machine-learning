@@ -458,10 +458,6 @@ By completing this roadmap, you'll be able to:
 - **5-6 Months** estimated learning time
 - **Zero Prerequisites** - start from scratch!
 
-## Star History
-
-[![Star History Chart](https://api.star-history.com/svg?repos=NabidAlam/road-to-machine-learning&type=Date)](https://star-history.com/#NabidAlam/road-to-machine-learning&Date)
-
 ---
 
 <div align="center">
