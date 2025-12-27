@@ -390,6 +390,9 @@ road-to-ml/
 - [Kaggle Forums](https://www.kaggle.com/discussions)
 - [Stack Overflow](https://stackoverflow.com/questions/tagged/machine-learning)
 
+### Cheatsheets
+- [Python Data Science Cheatsheet](resources/python_cheatsheet.md) - Quick reference for daily work
+
 ## Learning Tips
 
 1. **Follow the Order**: Modules are designed to build on each other. Don't skip ahead!
