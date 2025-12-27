@@ -79,10 +79,30 @@ By the end of this module, you should be able to:
 - **Overfitting**: Model memorizes training data, performs poorly on new data
 - **Underfitting**: Model is too simple, can't capture patterns
 
-##  Additional Resources
+## Documentation & Learning Resources
 
-- [Machine Learning Crash Course - Google](https://developers.google.com/machine-learning/crash-course)
-- [Introduction to Machine Learning - MIT](https://ocw.mit.edu/courses/6-036-introduction-to-machine-learning-fall-2020/)
+**Official Documentation:**
+- [Scikit-learn User Guide](https://scikit-learn.org/stable/user_guide.html)
+- [Scikit-learn API Reference](https://scikit-learn.org/stable/modules/classes.html)
+
+**Free Courses:**
+- [Machine Learning Crash Course - Google](https://developers.google.com/machine-learning/crash-course) - Free comprehensive course
+- [Introduction to Machine Learning - MIT](https://ocw.mit.edu/courses/6-036-introduction-to-machine-learning-fall-2020/) - Free MIT course
+- [Machine Learning (Coursera - Andrew Ng)](https://www.coursera.org/learn/machine-learning) - Free audit available
+- [Machine Learning with Python (IBM Coursera)](https://www.coursera.org/learn/machine-learning-with-python) - Free audit available
+
+**Tutorials:**
+- [Scikit-learn Tutorial](https://scikit-learn.org/stable/tutorial/index.html)
+- [Machine Learning Tutorial (W3Schools)](https://www.w3schools.com/python/python_ml_getting_started.asp)
+- [ML Basics (Kaggle Learn)](https://www.kaggle.com/learn/intro-to-machine-learning) - Free micro-course
+
+**Video Tutorials:**
+- [Machine Learning Course (StatQuest)](https://www.youtube.com/playlist?list=PLblh5JKOoLUICTaGLRoHQDuF_7q2GfuJF)
+- [Machine Learning Explained (3Blue1Brown)](https://www.youtube.com/playlist?list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi)
+
+**Books (Free):**
+- [Introduction to Statistical Learning (Free PDF)](https://www.statlearning.com/)
+- [Hands-On Machine Learning (O'Reilly)](https://www.oreilly.com/library/view/hands-on-machine-learning/9781492032632/) - Check library access
 
 ---
 
