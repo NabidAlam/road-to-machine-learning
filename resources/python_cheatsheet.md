@@ -12,6 +12,7 @@ Quick reference for common Python syntax and operations used in everyday data sc
 - [TensorFlow/Keras](#tensorflowkeras)
 - [OpenCV](#opencv)
 - [Hyperparameter Tuning & Model Optimization](#hyperparameter-tuning--model-optimization)
+- [FastAPI & Web Development](#fastapi--web-development)
 - [File Operations](#file-operations)
 - [List & Dictionary Operations](#list--dictionary-operations)
 - [String Operations](#string-operations)
