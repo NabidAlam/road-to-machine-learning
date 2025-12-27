@@ -432,6 +432,10 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for detailed guidelines.
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
+## Disclaimer
+
+This repository contains links to external resources. Please see [DISCLAIMER.md](DISCLAIMER.md) for important information about external links and resources.
+
 ## Show Your Support
 
 If you find this repository helpful, please consider:

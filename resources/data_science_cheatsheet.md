@@ -2387,10 +2387,6 @@ def predict(request: Request, data: PredictionInput):
 - **Real Python FastAPI Guide**: https://realpython.com/fastapi-python-web-apis/
 - **Full Stack FastAPI Template**: https://github.com/tiangolo/full-stack-fastapi-template
 
-#### YouTube Channels
-- **FastAPI Official Channel**: https://www.youtube.com/c/FastAPI
-- **Pretty Printed**: FastAPI tutorials
-- **Tech With Tim**: FastAPI for ML deployment
 
 #### Books
 - **"Building Data Science Applications with FastAPI"** by Francois Voron
