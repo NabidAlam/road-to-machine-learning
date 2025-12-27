@@ -103,6 +103,8 @@ By the end of this module, you should be able to:
 - [CIFAR-10 Classification](https://www.kaggle.com/c/cifar-10)
 - [Image Classification Projects](https://www.kaggle.com/learn/computer-vision)
 
+**[Complete Detailed Guide →](computer-vision.md)**
+
 ---
 
 **Previous Phase:** [10-deep-learning-frameworks](../10-deep-learning-frameworks/README.md)  
