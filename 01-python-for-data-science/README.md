@@ -7,6 +7,8 @@ Master the essential Python libraries for data manipulation, analysis, and visua
 - NumPy for numerical computing
 - Pandas for data manipulation
 - Matplotlib and Seaborn for data visualization
+- Exploratory Data Analysis (EDA) techniques
+- Working with APIs, databases, and web scraping
 
 ##  Modules
 
@@ -55,13 +57,46 @@ Create beautiful and informative visualizations.
 
 **[Complete Guide →](03-visualization.md)**
 
+### 04-exploratory-data-analysis
+Systematic approach to understanding your data before modeling.
+
+**Topics:**
+- EDA Workflow and Best Practices
+- Univariate Analysis (Numerical and Categorical)
+- Bivariate Analysis (Relationships between variables)
+- Multivariate Analysis (Correlations, PCA)
+- Data Quality Checks (Outliers, Consistency)
+- Creating EDA Reports
+
+**Time Estimate:** 1-2 weeks
+
+**[Complete Guide →](04-exploratory-data-analysis.md)**
+
+### 05-data-sources-and-integration
+Work with various data sources: APIs, databases, web scraping, and file formats.
+
+**Topics:**
+- Working with REST APIs
+- Database Integration (SQL, NoSQL)
+- Web Scraping (BeautifulSoup, Selenium)
+- File Formats (CSV, Excel, JSON, Parquet, XML)
+- Data Integration Pipelines
+- Error Handling and Validation
+
+**Time Estimate:** 1-2 weeks
+
+**[Complete Guide →](05-data-sources-and-integration.md)**
+
 ##  Learning Objectives
 
 By the end of this phase, you should be able to:
 - Perform numerical operations with NumPy
 - Load, clean, and manipulate datasets with Pandas
 - Create various types of visualizations
-- Perform exploratory data analysis (EDA)
+- Perform systematic exploratory data analysis (EDA)
+- Fetch data from APIs and databases
+- Scrape data from websites
+- Work with various file formats
 
 ##  Projects
 
