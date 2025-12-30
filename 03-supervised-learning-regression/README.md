@@ -39,9 +39,14 @@ Learn to predict continuous values using regression algorithms.
 
 By the end of this module, you should be able to:
 - Implement linear and polynomial regression
-- Apply regularization techniques
+- Understand how gradient descent works
+- Apply regularization techniques (Ridge, Lasso, Elastic Net)
 - Evaluate regression models using appropriate metrics
-- Build a regression model from scratch
+- Perform residual analysis and model diagnostics
+- Handle outliers and multicollinearity
+- Transform features for better performance
+- Tune hyperparameters using cross-validation
+- Build a complete regression project from scratch
 
 ##  Projects
 
@@ -84,6 +89,11 @@ By the end of this module, you should be able to:
 - [Regression Exercises (GitHub)](https://github.com/justmarkham/scikit-learn-videos)
 
 **[Complete Detailed Guide →](regression.md)**
+
+### Additional Resources
+
+- **[Advanced Regression Topics](regression-advanced-topics.md)** - Gradient descent, residual analysis, outliers, multicollinearity, feature transformations, model interpretation, and hyperparameter tuning
+- **[Complete Regression Project Tutorial](regression-project-tutorial.md)** - Step-by-step walkthrough building a house price prediction model from scratch
 
 ---
 
