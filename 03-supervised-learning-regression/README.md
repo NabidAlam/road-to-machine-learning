@@ -94,6 +94,7 @@ By the end of this module, you should be able to:
 
 - **[Advanced Regression Topics](regression-advanced-topics.md)** - Gradient descent, residual analysis, outliers, multicollinearity, feature transformations, model interpretation, and hyperparameter tuning
 - **[Complete Regression Project Tutorial](regression-project-tutorial.md)** - Step-by-step walkthrough building a house price prediction model from scratch
+- **[Regression Quick Reference](regression-quick-reference.md)** - Quick reference guide with code snippets, algorithm selection, metrics, and troubleshooting
 
 ---
 
