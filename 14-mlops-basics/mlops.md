@@ -178,7 +178,7 @@ with mlflow.start_run():
 
 - Set up MLflow for your projects
 - Implement CI/CD pipelines
-- Practice with [15-projects-beginner](../15-projects-beginner/README.md)
+- Practice with [16-projects-beginner](../16-projects-beginner/README.md)
 
 **Remember**: MLOps makes ML production-ready!
 

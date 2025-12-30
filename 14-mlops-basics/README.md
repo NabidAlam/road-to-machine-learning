@@ -121,5 +121,5 @@ By the end of this module, you should be able to:
 ---
 
 **Previous Phase:** [13-model-deployment](../13-model-deployment/README.md)  
-**Next Phase:** [15-projects-beginner](../15-projects-beginner/README.md)
+**Next Phase:** [15-time-series-analysis](../15-time-series-analysis/README.md) or [16-projects-beginner](../16-projects-beginner/README.md)
 

@@ -204,5 +204,5 @@ After completing these projects, you should be able to:
 
 **Ready for a challenge?** Start with MNIST if you want to learn deep learning, or Customer Churn for a business-focused project.
 
-**Next Level:** [17-projects-advanced](../17-projects-advanced/README.md)
+**Next Level:** [18-projects-advanced](../18-projects-advanced/README.md)
 

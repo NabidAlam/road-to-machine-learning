@@ -27,7 +27,7 @@ pip install numpy pandas matplotlib seaborn scikit-learn
 Navigate to the project directory:
 
 ```bash
-cd 15-projects-beginner/project-02-iris-classification
+cd 16-projects-beginner/project-02-iris-classification
 ```
 
 Run the complete implementation:
@@ -91,5 +91,5 @@ The script will:
 
 ---
 
-**Ready?** Go to `15-projects-beginner/project-02-iris-classification/` and start coding!
+**Ready?** Go to `16-projects-beginner/project-02-iris-classification/` and start coding!
 

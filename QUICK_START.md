@@ -71,7 +71,7 @@ pip install jupyter notebook
 
 After completing the basics:
 
-1. Go to `15-projects-beginner/`
+1. Go to `16-projects-beginner/`
 2. Choose a project (start with Iris Classification)
 3. Follow the project README
 4. Build, learn, iterate!

@@ -10,7 +10,7 @@
 
 **A comprehensive, step-by-step guide to learning Machine Learning from absolute basics to advanced topics**
 
-*Perfect for beginners • 15 Learning Modules • 18 Real-World Projects • Production-Ready Skills*
+*Perfect for beginners • 16 Learning Modules • 18 Real-World Projects • Production-Ready Skills*
 
 [Get Started](#getting-started) • [Learning Path](#learning-path) • [Projects](#phase-8-projects) • [Contribute](#contributing)
 
@@ -154,6 +154,13 @@ This repository provides a structured learning path for machine learning, organi
   - Transformers Basics
   - Sentiment Analysis
 
+- **15-time-series-analysis**
+  - Time Series Fundamentals (Trend, Seasonality, Stationarity)
+  - Statistical Methods (ARIMA, SARIMA, Exponential Smoothing)
+  - Deep Learning for Time Series (LSTM, GRU, Transformers)
+  - Feature Engineering for Time Series
+  - Evaluation and Validation
+
 ### Phase 7: Production & Deployment
 **Goal**: Learn to deploy ML models in production
 
@@ -173,14 +180,14 @@ This repository provides a structured learning path for machine learning, organi
 ### Phase 8: Projects
 **Goal**: Apply knowledge through real-world projects
 
-- **15-projects-beginner** (5 projects)
+- **16-projects-beginner** (5 projects)
   - House Price Prediction ✓ (Available)
   - Iris Flower Classification ✓ (Available)
   - Titanic Survival Prediction ✓ (Available)
   - Spam Email Detection ✓ (Available)
   - Wine Quality Prediction ✓ (Available)
 
-- **16-projects-intermediate** (6 projects)
+- **17-projects-intermediate** (6 projects)
   - Handwritten Digit Recognition (MNIST) ✓ (Available - README)
   - Customer Churn Prediction ✓ (Available - README)
   - Movie Recommendation System ✓ (Available - README)
@@ -188,7 +195,7 @@ This repository provides a structured learning path for machine learning, organi
   - Customer Segmentation ✓ (Available - README)
   - Time Series Forecasting ✓ (Available - README)
 
-- **17-projects-advanced** (7 projects)
+- **18-projects-advanced** (7 projects)
   - Image Classification (CIFAR-10) ✓ (Available - README)
   - Sentiment Analysis on Reviews ✓ (Available - README)
   - Time Series Forecasting (Advanced) ✓ (Available - README)
@@ -343,14 +350,18 @@ road-to-ml/
     exercises/
     README.md
 
- 15-projects-beginner/
+ 15-time-series-analysis/
+    time-series-analysis.md
+    README.md
+
+ 16-projects-beginner/
     project-01-house-price-prediction/  (Available)
     project-02-iris-classification/  (Available)
     project-03-titanic-survival/  (Available)
     project-04-spam-detection/  (Available)
     project-05-wine-quality/  (Available)
 
- 16-projects-intermediate/
+ 17-projects-intermediate/
     project-01-mnist-digit-recognition/  (Available - README)
     project-02-customer-churn/  (Available - README)
     project-03-movie-recommendation/  (Available - README)
@@ -358,7 +369,7 @@ road-to-ml/
     project-05-customer-segmentation/  (Available - README)
     project-06-time-series-forecasting/  (Available - README)
 
- 17-projects-advanced/
+ 18-projects-advanced/
     project-01-cifar10-classification/  (Available - README)
     project-02-sentiment-analysis/  (Available - README)
     project-03-time-series-forecasting/  (Available - README)
@@ -485,9 +496,9 @@ By completing this roadmap, you'll be able to:
 
 ## Statistics
 
-- **15 Learning Modules** covering all ML topics
+- **16 Learning Modules** covering all ML topics
 - **18 Projects** from beginner to advanced
-- **86+ Resources** including books, courses, datasets, and tools
+- **90+ Resources** including books, courses, datasets, and tools
 - **5-6 Months** estimated learning time
 - **Zero Prerequisites** - start from scratch!
 

@@ -144,5 +144,5 @@ After completing these projects, you should be able to:
 
 **Ready to start?** Pick a project and begin! Start with Iris Classification if you're completely new, or jump to House Price Prediction for a more comprehensive project.
 
-**Next Level:** [16-projects-intermediate](../16-projects-intermediate/README.md)
+**Next Level:** [17-projects-intermediate](../17-projects-intermediate/README.md)
 
