@@ -408,6 +408,10 @@ road-to-ml/
 - [Math Formulas Reference](resources/math_formulas.md) - Essential mathematical formulas for ML (Statistics, Linear Algebra, Calculus, ML metrics)
 - [Common Errors & Debugging Guide](resources/common_errors.md) - Troubleshooting guide for common ML errors and debugging strategies
 - [Ethics in ML Guide](resources/ethics_in_ml.md) - Comprehensive guide to bias, fairness, responsible AI, and ethical ML practices
+- [Model Interpretability Guide](resources/model_interpretability.md) - Understanding and explaining ML model predictions (SHAP, LIME, feature importance)
+- [ML Glossary](resources/ml_glossary.md) - Comprehensive glossary of ML terms and concepts for beginners
+- [Reinforcement Learning Basics](resources/reinforcement_learning.md) - Introduction to RL, key concepts, algorithms, and applications
+- [Recommender Systems Guide](resources/recommender_systems.md) - Building recommendation systems (collaborative filtering, content-based, hybrid approaches)
 
 ### Career & Interview Resources
 - [Career & Portfolio Guide](resources/career_portfolio.md) - Build your portfolio, prepare for interviews, and launch your ML career

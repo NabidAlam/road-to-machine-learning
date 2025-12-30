@@ -47,3 +47,14 @@ great-expectations>=0.18.0
 # Visualization
 plotly>=5.15.0
 
+# Model Interpretability
+shap>=0.42.0
+lime>=0.2.0
+
+# Recommender Systems
+surprise>=2.1.0
+
+# Reinforcement Learning
+gym>=0.26.0
+stable-baselines3>=2.0.0
+
