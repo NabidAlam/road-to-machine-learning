@@ -57,19 +57,32 @@ Understand what machine learning is, how it works, and the different types of ML
 
 **[Complete Detailed Guide →](introduction-to-ml.md)**
 
+### Additional Resources
+
+- **[ML Terminology Reference](ml-terminology.md)** - Comprehensive glossary of ML terms with examples
+- **[Problem Identification & Algorithm Selection](problem-identification-algorithm-selection.md)** - Guide to identifying ML problems and choosing algorithms
+- **[Your First ML Project Tutorial](first-ml-project-tutorial.md)** - Step-by-step walkthrough building an Iris classifier
+- **[Common Pitfalls & Best Practices](common-pitfalls-best-practices.md)** - Avoid mistakes and follow best practices
+
 ##  Learning Objectives
 
 By the end of this module, you should be able to:
-- Explain what machine learning is
-- Distinguish between different types of ML
-- Understand the ML workflow
-- Identify which type of ML to use for a problem
+- Explain what machine learning is and when to use it
+- Distinguish between different types of ML (Supervised, Unsupervised, Reinforcement)
+- Understand the complete ML workflow from problem to deployment
+- Identify which type of ML to use for a given problem
+- Select appropriate algorithms for different scenarios
+- Build your first ML model from scratch
+- Understand common ML terminology
+- Avoid common pitfalls and follow best practices
 
 ##  Exercises
 
-1. Identify ML problem types in real-world scenarios
-2. Design an ML workflow for a given problem
-3. Research ML applications in different industries
+1. **Identify ML Problem Types**: Classify real-world scenarios (regression/classification/clustering)
+2. **Design ML Workflow**: Create workflow for a given business problem
+3. **Build First Model**: Complete the [First ML Project Tutorial](first-ml-project-tutorial.md)
+4. **Algorithm Selection**: Use the [Algorithm Selection Guide](problem-identification-algorithm-selection.md) to choose algorithms for different problems
+5. **Terminology Quiz**: Test your understanding using the [ML Terminology Reference](ml-terminology.md)
 
 ##  Key Concepts
 
@@ -103,8 +116,19 @@ By the end of this module, you should be able to:
 - [Machine Learning Explained (3Blue1Brown)](https://www.youtube.com/playlist?list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi)
 
 **Books (Free):**
-- [Introduction to Statistical Learning (Free PDF)](https://www.statlearning.com/)
+- [Introduction to Statistical Learning (Free PDF)](https://www.statlearning.com/) - Free comprehensive textbook
 - [Hands-On Machine Learning (O'Reilly)](https://www.oreilly.com/library/view/hands-on-machine-learning/9781492032632/) - Check library access
+- [Pattern Recognition and Machine Learning (Bishop)](https://www.microsoft.com/en-us/research/uploads/prod/2006/01/Bishop-Pattern-Recognition-and-Machine-Learning-2006.pdf) - Advanced but comprehensive
+
+**Interactive Learning:**
+- [Kaggle Learn - Intro to Machine Learning](https://www.kaggle.com/learn/intro-to-machine-learning) - Free hands-on course
+- [Google's Machine Learning Crash Course](https://developers.google.com/machine-learning/crash-course) - Free with exercises
+- [Fast.ai Practical Deep Learning](https://www.fast.ai/) - Free practical ML course
+
+**Tools and Platforms:**
+- [Scikit-learn Algorithm Cheat Sheet](https://scikit-learn.org/stable/tutorial/machine_learning_map/index.html) - Visual algorithm selection guide
+- [Google Colab](https://colab.research.google.com/) - Free Jupyter notebooks in the cloud
+- [Kaggle Notebooks](https://www.kaggle.com/code) - Free ML environment with datasets
 
 ---
 
