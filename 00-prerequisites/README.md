@@ -5,7 +5,9 @@ Welcome to the foundation phase! Before diving into machine learning, we need to
 ##  What You'll Learn
 
 - Python programming fundamentals
-- Essential mathematics for ML (Linear Algebra, Statistics, Calculus)
+- **Linear Algebra**: Deep understanding of vectors, matrices, and transformations
+- **Statistics & Probability**: Comprehensive coverage for model evaluation
+- **Calculus**: Optimization and gradient descent for training models
 - Setting up your development environment
 
 ##  Modules
@@ -26,19 +28,54 @@ Learn Python from scratch - variables, data types, control flow, functions, and 
 
 **📖 [Complete Guide →](01-python-basics.md)**
 
-### 02-mathematics-basics
-Essential mathematical concepts needed for understanding ML algorithms.
+### 02-linear-algebra
+Deep dive into linear algebra - the mathematical foundation of machine learning.
 
 **Topics:**
-- **Linear Algebra**: Vectors, Matrices, Matrix Operations, Eigenvalues
-- **Statistics**: Mean, Median, Mode, Variance, Standard Deviation, Probability Distributions
-- **Calculus**: Derivatives, Gradients, Optimization Basics
+- Vectors and Vector Operations (addition, dot product, norms)
+- Matrices and Matrix Operations (multiplication, transpose, inverse)
+- Linear Transformations and their geometric meaning
+- Eigenvalues and Eigenvectors (with PCA applications)
+- Matrix Decompositions (SVD, QR, Eigendecomposition)
+- Applications in Neural Networks, Linear Regression, PCA
 
 **Time Estimate:** 2-3 weeks
 
-**[Complete Guide →](02-mathematics-basics.md)**
+**[Complete Guide →](02-linear-algebra.md)**
 
-### 03-environment-setup
+### 03-statistics-probability
+Comprehensive statistics and probability theory for ML model evaluation and understanding.
+
+**Topics:**
+- Descriptive Statistics (mean, median, mode, variance, std dev, quartiles)
+- Correlation and Covariance
+- Probability Fundamentals (conditional probability, Bayes' theorem)
+- Probability Distributions (Normal, Binomial, Poisson)
+- Inferential Statistics (sampling, CLT, confidence intervals)
+- Hypothesis Testing (t-tests, chi-square tests)
+- Applications in Model Evaluation and Feature Analysis
+
+**Time Estimate:** 2-3 weeks
+
+**[Complete Guide →](03-statistics-probability.md)**
+
+### 04-calculus
+Calculus for optimization and training machine learning models.
+
+**Topics:**
+- Derivatives and their geometric meaning
+- Partial Derivatives for multivariable functions
+- Gradients and direction of steepest ascent/descent
+- Gradient Descent Algorithm (with learning rate)
+- Chain Rule and Backpropagation
+- Optimization techniques (momentum, local vs global minima)
+- Applications in Neural Network Training and Linear Regression
+
+**Time Estimate:** 1-2 weeks
+
+**[Complete Guide →](04-calculus.md)**
+
+### 05-environment-setup
 Set up your development environment for ML work.
 
 **Topics:**
@@ -57,7 +94,9 @@ Set up your development environment for ML work.
 
 By the end of this phase, you should be able to:
 - Write basic Python programs
-- Understand mathematical notation used in ML
+- Understand and work with vectors and matrices
+- Perform statistical analysis and understand probability
+- Understand gradients and optimization (gradient descent)
 - Set up and use Jupyter Notebooks
 - Install and manage Python packages
 
@@ -73,8 +112,10 @@ Each module includes:
 
 1. Start with `01-python-basics`
 2. Complete all exercises
-3. Move to `02-mathematics-basics`
-4. Set up your environment in `03-environment-setup`
+3. Study `02-linear-algebra` (foundation of ML)
+4. Study `03-statistics-probability` (for model evaluation)
+5. Study `04-calculus` (for optimization)
+6. Set up your environment in `05-environment-setup`
 
 ##  Tips
 
@@ -123,6 +164,8 @@ Each module includes:
 **Mathematics for ML (Combined):**
 - [Mathematics for Machine Learning (Coursera)](https://www.coursera.org/specializations/mathematics-machine-learning) - Free audit available
 - [Mathematics for ML (mml-book.github.io)](https://mml-book.github.io/) - Free online book
+- [3Blue1Brown - Essence of Linear Algebra](https://www.youtube.com/playlist?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab) - **Highly recommended visual explanations!**
+- [3Blue1Brown - Essence of Calculus](https://www.youtube.com/playlist?list=PLZHQObOWTQDMsr9K-rj53DwVRMYO3t5Yr) - Visual calculus explanations
 
 ### Git & Version Control
 
@@ -141,4 +184,33 @@ Each module includes:
 ---
 
 **Next Phase:** [01-python-for-data-science](../01-python-for-data-science/README.md)
+
+---
+
+## Important Notes
+
+### Mathematics Learning Strategy
+
+1. **Don't Skip Math**: Strong mathematical foundation makes ML much easier
+2. **Focus on Intuition**: Understand concepts, not just formulas
+3. **Practice with Code**: Use NumPy to implement concepts
+4. **Visual Learning**: Watch 3Blue1Brown videos for geometric intuition
+5. **Apply to ML**: Connect each concept to ML applications
+
+### Recommended Learning Order
+
+1. **Linear Algebra First**: Foundation for everything
+2. **Statistics Second**: Needed for data understanding
+3. **Calculus Third**: Needed for optimization
+4. **Practice Together**: Work on exercises combining all three
+
+### Time Investment
+
+- **Total Time**: 6-8 weeks for thorough understanding
+- **Minimum**: 4 weeks for basic understanding
+- **Practice**: Code along with examples, don't just read!
+
+---
+
+**Remember**: A strong mathematical foundation will make all subsequent ML learning much smoother. Take your time with this phase!
 
