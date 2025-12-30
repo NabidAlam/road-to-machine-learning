@@ -17,7 +17,7 @@ Comprehensive guide to identifying ML problems and selecting the right algorithm
 
 ### When to Use ML
 
-✅ **Use ML when:**
+**Use ML when:**
 - Problem is too complex for explicit rules
 - Patterns exist but are hard to define
 - Data is available and representative
@@ -32,7 +32,7 @@ Comprehensive guide to identifying ML problems and selecting the right algorithm
 
 ### When NOT to Use ML
 
-❌ **Don't use ML when:**
+**Don't use ML when:**
 - Simple rule-based solution works
 - Data is insufficient or poor quality
 - Problem requires 100% accuracy (safety-critical)
@@ -450,28 +450,28 @@ Want to reduce dimensions?
 
 ### Mistake 1: Using Complex Algorithm When Simple Works
 
-❌ **Wrong**: Using neural network for simple linear problem
-✅ **Right**: Start with Linear Regression, upgrade if needed
+**Wrong**: Using neural network for simple linear problem
+**Right**: Start with Linear Regression, upgrade if needed
 
 ### Mistake 2: Wrong Problem Type
 
-❌ **Wrong**: Using classification for regression problem
-✅ **Right**: Identify output type first (continuous vs category)
+**Wrong**: Using classification for regression problem
+**Right**: Identify output type first (continuous vs category)
 
 ### Mistake 3: Ignoring Data Characteristics
 
-❌ **Wrong**: Using algorithm that doesn't fit data size
-✅ **Right**: Consider dataset size when selecting algorithm
+**Wrong**: Using algorithm that doesn't fit data size
+**Right**: Consider dataset size when selecting algorithm
 
 ### Mistake 4: Not Considering Interpretability Needs
 
-❌ **Wrong**: Using black-box model when explanations needed
-✅ **Right**: Use interpretable models (Decision Tree, Linear Regression) when required
+**Wrong**: Using black-box model when explanations needed
+**Right**: Use interpretable models (Decision Tree, Linear Regression) when required
 
 ### Mistake 5: Overlooking Data Quality
 
-❌ **Wrong**: Selecting algorithm without checking data quality
-✅ **Right**: Clean data first, then select algorithm
+**Wrong**: Selecting algorithm without checking data quality
+**Right**: Clean data first, then select algorithm
 
 ---
 

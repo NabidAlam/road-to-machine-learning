@@ -21,12 +21,12 @@ Essential guide to avoiding common mistakes and following best practices when bu
 
 **Examples:**
 ```python
-# ❌ WRONG: Scaling before splitting
+# WRONG: Scaling before splitting
 scaler = StandardScaler()
 X_scaled = scaler.fit_transform(X)  # Uses all data including test!
 X_train, X_test = train_test_split(X_scaled, y)
 
-# ✅ CORRECT: Split first, then scale
+# CORRECT: Split first, then scale
 X_train, X_test, y_train, y_test = train_test_split(X, y)
 scaler = StandardScaler()
 X_train_scaled = scaler.fit_transform(X_train)  # Fit only on train
@@ -150,11 +150,11 @@ test_accuracy = 0.53   # Poor on test
 **Solution**: Use validation set or cross-validation to tune hyperparameters.
 
 ```python
-# ❌ WRONG: Use defaults without checking
+# WRONG: Use defaults without checking
 model = RandomForestClassifier()
 model.fit(X_train, y_train)
 
-# ✅ BETTER: Tune hyperparameters
+# BETTER: Tune hyperparameters
 from sklearn.model_selection import GridSearchCV
 
 param_grid = {
@@ -193,7 +193,7 @@ best_model = grid_search.best_estimator_
 **Solution**: Use train/validation/test split or cross-validation.
 
 ```python
-# ✅ CORRECT: Three-way split
+# CORRECT: Three-way split
 X_train, X_temp, y_train, y_temp = train_test_split(X, y, test_size=0.4)
 X_val, X_test, y_val, y_test = train_test_split(X_temp, y_temp, test_size=0.5)
 
