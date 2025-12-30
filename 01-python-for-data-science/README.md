@@ -87,6 +87,51 @@ Work with various data sources: APIs, databases, web scraping, and file formats.
 
 **[Complete Guide →](05-data-sources-and-integration.md)**
 
+### 06-regular-expressions-text-processing
+Master regular expressions and text processing for cleaning and analyzing text data.
+
+**Topics:**
+- Regular Expressions Basics and Patterns
+- Text Processing with Pandas
+- Pattern Matching and Extraction
+- Text Cleaning Pipelines
+- Real-World Text Processing Examples
+
+**Time Estimate:** 1 week
+
+**[Complete Guide →](06-regular-expressions-text-processing.md)**
+
+### 07-advanced-data-wrangling
+Advanced data manipulation: reshaping, pivoting, and transforming data.
+
+**Topics:**
+- Reshaping Data (Wide vs Long Format)
+- Pivot Tables and Cross-tabulation
+- Melt and Unpivot Operations
+- Stack and Unstack
+- Advanced Grouping Techniques
+- Performance Optimization
+
+**Time Estimate:** 1 week
+
+**[Complete Guide →](07-advanced-data-wrangling.md)**
+
+### 08-working-with-dates-times
+Comprehensive guide to handling dates, times, and time-based data.
+
+**Topics:**
+- Creating and Parsing Dates
+- Date Arithmetic and Differences
+- Time Series Indexing
+- Extracting Date/Time Components
+- Time Zones
+- Resampling and Frequency Conversion
+- Rolling Windows and Shifting
+
+**Time Estimate:** 1 week
+
+**[Complete Guide →](08-working-with-dates-times.md)**
+
 ##  Learning Objectives
 
 By the end of this phase, you should be able to:
@@ -97,6 +142,9 @@ By the end of this phase, you should be able to:
 - Fetch data from APIs and databases
 - Scrape data from websites
 - Work with various file formats
+- Use regular expressions for text processing
+- Reshape and transform data efficiently
+- Handle dates and times effectively
 
 ##  Projects
 
