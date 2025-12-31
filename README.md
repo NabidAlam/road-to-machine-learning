@@ -228,22 +228,25 @@ This repository provides a structured learning path for machine learning, organi
 ### Phase 8: Projects
 **Goal**: Apply knowledge through real-world projects
 
-- **16-projects-beginner** (5 projects)
+- **16-projects-beginner** (6 projects)
   - House Price Prediction ✓ (Available)
   - Iris Flower Classification ✓ (Available)
   - Titanic Survival Prediction ✓ (Available)
   - Spam Email Detection ✓ (Available)
   - Wine Quality Prediction ✓ (Available)
+  - Customer Data Dashboard with Streamlit ✓ (Available - README)
 
-- **17-projects-intermediate** (6 projects)
+- **17-projects-intermediate** (8 projects)
   - Handwritten Digit Recognition (MNIST) ✓ (Available - README)
   - Customer Churn Prediction ✓ (Available - README)
   - Movie Recommendation System ✓ (Available - README)
   - Credit Card Fraud Detection ✓ (Available - README)
   - Customer Segmentation ✓ (Available - README)
   - Time Series Forecasting ✓ (Available - README)
+  - Feature Engineering Mastery ✓ (Available - README)
+  - Ensemble Methods Comparison ✓ (Available - README)
 
-- **18-projects-advanced** (7 projects)
+- **18-projects-advanced** (9 projects)
   - Image Classification (CIFAR-10) ✓ (Available - README)
   - Sentiment Analysis on Reviews ✓ (Available - README)
   - Time Series Forecasting (Advanced) ✓ (Available - README)
@@ -251,6 +254,8 @@ This repository provides a structured learning path for machine learning, organi
   - Object Detection ✓ (Available - README)
   - End-to-End ML Pipeline ✓ (Available - README)
   - Generative Model (GAN/VAE) ✓ (Available - README)
+  - Model Explainability & Interpretability ✓ (Available - README)
+  - Model Deployment & Serving ✓ (Available - README)
 
 ## Prerequisites
 
@@ -631,7 +636,7 @@ By completing this roadmap, you'll be able to:
 ## Statistics
 
 - **22 Learning Modules** (00-21) covering all ML topics from basics to advanced
-- **18 Projects** from beginner to advanced with complete code and READMEs
+- **23 Projects** from beginner to advanced with complete code and READMEs
 - **18 Resource Guides** including cheatsheets, tutorials, and career guides
 - **156+ Markdown Files** with comprehensive content, code examples, and exercises
 - **5-6 Months** estimated learning time for complete path
