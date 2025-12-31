@@ -143,6 +143,42 @@ for name, method in clustering_methods.items():
 
 ## Advanced Dimensionality Reduction
 
+### LDA (Linear Discriminant Analysis)
+
+Supervised dimensionality reduction that maximizes class separation.
+
+```python
+from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
+
+# LDA (requires labels - supervised!)
+lda = LinearDiscriminantAnalysis(n_components=2)
+X_lda = lda.fit_transform(X_scaled, y)
+
+# Visualize
+plt.figure(figsize=(10, 6))
+for i, label in enumerate(np.unique(y)):
+    plt.scatter(X_lda[y == label, 0], X_lda[y == label, 1], 
+                label=f'Class {label}', alpha=0.6)
+plt.xlabel('First LDA Component', fontsize=12)
+plt.ylabel('Second LDA Component', fontsize=12)
+plt.title('LDA Visualization', fontsize=14, fontweight='bold')
+plt.legend()
+plt.grid(True, alpha=0.3)
+plt.tight_layout()
+plt.show()
+
+# Explained variance ratio
+print(f"Explained variance ratio: {lda.explained_variance_ratio_}")
+
+# Compare with PCA
+from sklearn.decomposition import PCA
+pca = PCA(n_components=2)
+X_pca = pca.fit_transform(X_scaled)
+
+# Note: LDA is supervised (needs labels), unlike PCA
+# LDA maximizes class separation, PCA maximizes variance
+```
+
 ### Kernel PCA
 
 Non-linear PCA using kernel trick.
