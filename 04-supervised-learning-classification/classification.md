@@ -254,6 +254,24 @@ plot_tree(tree, filled=True, feature_names=iris.feature_names,
 plt.title('Decision Tree Visualization')
 plt.show()
 
+# Advanced visualization with dtreeviz (optional)
+# Install: pip install dtreeviz
+try:
+    from dtreeviz.trees import dtreeviz
+    
+    viz = dtreeviz(
+        tree,
+        X_train,
+        y_train,
+        target_name='Species',
+        feature_names=iris.feature_names,
+        class_names=list(iris.target_names),
+        title="Decision Tree Visualization"
+    )
+    viz.view()
+except ImportError:
+    print("Install dtreeviz for advanced visualizations: pip install dtreeviz")
+
 # Feature importance
 print("\nFeature Importance:")
 feature_importance = pd.DataFrame({

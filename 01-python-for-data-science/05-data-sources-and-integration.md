@@ -621,6 +621,239 @@ df = create_data_pipeline(config)
 
 ---
 
+## ETL with AWS RDS
+
+### Introduction to ETL
+
+ETL (Extract, Transform, Load) is a process for:
+- **Extract**: Get data from source systems
+- **Transform**: Clean, validate, and transform data
+- **Load**: Load data into target database (AWS RDS)
+
+### AWS RDS Overview
+
+Amazon RDS (Relational Database Service) is a managed database service supporting:
+- MySQL
+- PostgreSQL
+- MariaDB
+- Oracle
+- SQL Server
+
+### Setting Up AWS RDS
+
+**1. Create RDS Instance:**
+```python
+import boto3
+
+# Create RDS client
+rds_client = boto3.client('rds', region_name='us-east-1')
+
+# Create database instance (example - use AWS Console for actual setup)
+# This is typically done via AWS Console or CloudFormation
+```
+
+**2. Connect to RDS:**
+```python
+import pymysql
+import pandas as pd
+
+# Connection parameters
+host = 'your-rds-endpoint.region.rds.amazonaws.com'
+port = 3306
+user = 'admin'
+password = 'your-password'
+database = 'your-database'
+
+# Connect to MySQL RDS
+connection = pymysql.connect(
+    host=host,
+    port=port,
+    user=user,
+    password=password,
+    database=database
+)
+```
+
+### ETL Pipeline Example
+
+**Extract:**
+```python
+def extract_from_source():
+    """Extract data from source (CSV, API, etc.)"""
+    # Example: Extract from CSV
+    df = pd.read_csv('source_data.csv')
+    return df
+
+# Or extract from API
+def extract_from_api():
+    import requests
+    response = requests.get('https://api.example.com/data')
+    data = response.json()
+    return pd.DataFrame(data)
+```
+
+**Transform:**
+```python
+def transform_data(df):
+    """Clean and transform data"""
+    # Remove duplicates
+    df = df.drop_duplicates()
+    
+    # Handle missing values
+    df = df.fillna(0)
+    
+    # Data type conversions
+    df['date'] = pd.to_datetime(df['date'])
+    df['amount'] = pd.to_numeric(df['amount'], errors='coerce')
+    
+    # Add calculated columns
+    df['total'] = df['quantity'] * df['price']
+    
+    # Filter data
+    df = df[df['amount'] > 0]
+    
+    return df
+```
+
+**Load:**
+```python
+def load_to_rds(df, table_name, connection):
+    """Load transformed data to RDS"""
+    try:
+        # Use pandas to_sql for easy loading
+        df.to_sql(
+            name=table_name,
+            con=connection,
+            if_exists='append',  # or 'replace'
+            index=False,
+            method='multi'  # Batch insert for performance
+        )
+        print(f"Successfully loaded {len(df)} rows to {table_name}")
+    except Exception as e:
+        print(f"Error loading data: {e}")
+        raise
+
+# Or use SQL directly
+def load_with_sql(df, table_name, connection):
+    """Load using SQL INSERT statements"""
+    cursor = connection.cursor()
+    
+    for _, row in df.iterrows():
+        sql = f"""
+        INSERT INTO {table_name} (col1, col2, col3)
+        VALUES (%s, %s, %s)
+        """
+        cursor.execute(sql, (row['col1'], row['col2'], row['col3']))
+    
+    connection.commit()
+    cursor.close()
+```
+
+### Complete ETL Pipeline
+
+```python
+import pandas as pd
+import pymysql
+from sqlalchemy import create_engine
+
+def etl_pipeline():
+    """Complete ETL pipeline"""
+    
+    # 1. Extract
+    print("Extracting data...")
+    source_df = extract_from_source()
+    print(f"Extracted {len(source_df)} rows")
+    
+    # 2. Transform
+    print("Transforming data...")
+    transformed_df = transform_data(source_df)
+    print(f"Transformed to {len(transformed_df)} rows")
+    
+    # 3. Load
+    print("Loading to RDS...")
+    # Create SQLAlchemy engine
+    engine = create_engine(
+        f'mysql+pymysql://{user}:{password}@{host}:{port}/{database}'
+    )
+    
+    load_to_rds(transformed_df, 'target_table', engine)
+    print("ETL pipeline completed successfully!")
+
+# Run pipeline
+if __name__ == '__main__':
+    etl_pipeline()
+```
+
+### Scheduled ETL with AWS Lambda
+
+```python
+import json
+import boto3
+
+def lambda_handler(event, context):
+    """AWS Lambda function for scheduled ETL"""
+    try:
+        # Run ETL pipeline
+        etl_pipeline()
+        
+        return {
+            'statusCode': 200,
+            'body': json.dumps('ETL completed successfully')
+        }
+    except Exception as e:
+        return {
+            'statusCode': 500,
+            'body': json.dumps(f'Error: {str(e)}')
+        }
+```
+
+### Best Practices
+
+1. **Error Handling**: Wrap operations in try-except
+2. **Logging**: Log each ETL step
+3. **Validation**: Validate data before loading
+4. **Incremental Loads**: Load only new/changed data
+5. **Monitoring**: Monitor ETL job performance
+6. **Backup**: Backup data before transformations
+
+### Advanced: Using AWS Glue
+
+AWS Glue is a serverless ETL service:
+
+```python
+import sys
+from awsglue.transforms import *
+from awsglue.utils import getResolvedOptions
+from pyspark.context import SparkContext
+from awsglue.context import GlueContext
+
+# Initialize Glue context
+sc = SparkContext()
+glueContext = GlueContext(sc)
+spark = glueContext.spark_session
+
+# Read from source
+datasource = glueContext.create_dynamic_frame.from_catalog(
+    database="source_db",
+    table_name="source_table"
+)
+
+# Transform
+transformed = ApplyMapping.apply(
+    frame=datasource,
+    mappings=[("col1", "string", "new_col1", "string")]
+)
+
+# Write to RDS
+glueContext.write_dynamic_frame.from_jdbc_conf(
+    frame=transformed,
+    catalog_connection="rds-connection",
+    connection_options={"dbtable": "target_table"}
+)
+```
+
+---
+
 ## Resources
 
 ### Libraries

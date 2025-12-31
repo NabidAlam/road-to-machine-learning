@@ -201,6 +201,240 @@ except ImportError:
 
 ---
 
+## Apache Kafka for Data Streaming
+
+### Introduction to Kafka
+
+Apache Kafka is a distributed streaming platform for building real-time data pipelines and streaming applications.
+
+### Key Concepts
+
+- **Topics**: Categories of messages
+- **Producers**: Send messages to topics
+- **Consumers**: Read messages from topics
+- **Brokers**: Kafka servers
+- **Partitions**: Topics are divided into partitions
+
+### Installing Kafka
+
+```bash
+# Download Kafka
+wget https://downloads.apache.org/kafka/2.8.0/kafka_2.13-2.8.0.tgz
+tar -xzf kafka_2.13-2.8.0.tgz
+
+# Start Zookeeper
+bin/zookeeper-server-start.sh config/zookeeper.properties
+
+# Start Kafka
+bin/kafka-server-start.sh config/server.properties
+```
+
+### Python Kafka Producer
+
+```python
+from kafka import KafkaProducer
+import json
+
+# Create producer
+producer = KafkaProducer(
+    bootstrap_servers=['localhost:9092'],
+    value_serializer=lambda v: json.dumps(v).encode('utf-8')
+)
+
+# Send messages
+for i in range(10):
+    message = {'id': i, 'data': f'message_{i}'}
+    producer.send('ml-events', message)
+
+producer.flush()
+producer.close()
+```
+
+### Python Kafka Consumer
+
+```python
+from kafka import KafkaConsumer
+import json
+
+# Create consumer
+consumer = KafkaConsumer(
+    'ml-events',
+    bootstrap_servers=['localhost:9092'],
+    value_deserializer=lambda m: json.loads(m.decode('utf-8')),
+    auto_offset_reset='earliest',
+    group_id='ml-group'
+)
+
+# Consume messages
+for message in consumer:
+    print(f"Received: {message.value}")
+    # Process message
+    process_ml_event(message.value)
+```
+
+### Use Cases in MLOps
+
+**Real-time Feature Ingestion:**
+```python
+# Producer: Send features
+producer.send('features', {
+    'user_id': 123,
+    'features': [1.2, 3.4, 5.6],
+    'timestamp': '2024-01-01T12:00:00'
+})
+
+# Consumer: Process features for model
+consumer = KafkaConsumer('features', ...)
+for message in consumer:
+    features = message.value['features']
+    prediction = model.predict([features])
+    # Send prediction back
+    producer.send('predictions', {'prediction': prediction})
+```
+
+**Model Monitoring:**
+```python
+# Stream predictions for monitoring
+producer.send('predictions', {
+    'model_version': 'v1.0',
+    'prediction': prediction,
+    'features': features,
+    'timestamp': datetime.now().isoformat()
+})
+```
+
+---
+
+## Apache Spark for Big Data Processing
+
+### Introduction to Spark
+
+Apache Spark is a unified analytics engine for large-scale data processing. It's essential for big data ML pipelines.
+
+### Key Features
+
+- **Distributed Computing**: Process data across clusters
+- **In-Memory Processing**: Faster than Hadoop MapReduce
+- **Multiple APIs**: SQL, Streaming, MLlib, GraphX
+- **Fault Tolerance**: Automatic recovery
+
+### Installing Spark
+
+```bash
+# Download Spark
+wget https://archive.apache.org/dist/spark/spark-3.3.0/spark-3.3.0-bin-hadoop3.tgz
+tar -xzf spark-3.3.0-bin-hadoop3.tgz
+
+# Install PySpark
+pip install pyspark
+```
+
+### Basic Spark Operations
+
+```python
+from pyspark.sql import SparkSession
+
+# Create Spark session
+spark = SparkSession.builder \
+    .appName("MLPipeline") \
+    .getOrCreate()
+
+# Read data
+df = spark.read.csv('data.csv', header=True, inferSchema=True)
+
+# Transformations
+df_filtered = df.filter(df['age'] > 25)
+df_grouped = df.groupBy('category').agg({'sales': 'sum'})
+
+# Actions
+df_filtered.show()
+df_grouped.collect()
+```
+
+### Spark MLlib
+
+**Training Model:**
+```python
+from pyspark.ml import Pipeline
+from pyspark.ml.classification import RandomForestClassifier
+from pyspark.ml.feature import VectorAssembler
+
+# Prepare features
+assembler = VectorAssembler(
+    inputCols=['feature1', 'feature2', 'feature3'],
+    outputCol='features'
+)
+
+# Create model
+rf = RandomForestClassifier(
+    labelCol='label',
+    featuresCol='features',
+    numTrees=100
+)
+
+# Create pipeline
+pipeline = Pipeline(stages=[assembler, rf])
+
+# Train
+model = pipeline.fit(train_df)
+
+# Predict
+predictions = model.transform(test_df)
+```
+
+### Spark Streaming
+
+```python
+from pyspark.streaming import StreamingContext
+
+# Create streaming context
+ssc = StreamingContext(sparkContext, 1)  # 1 second batches
+
+# Read from Kafka
+lines = ssc.socketTextStream("localhost", 9999)
+
+# Process stream
+words = lines.flatMap(lambda line: line.split(" "))
+pairs = words.map(lambda word: (word, 1))
+word_counts = pairs.reduceByKey(lambda a, b: a + b)
+word_counts.pprint()
+
+# Start streaming
+ssc.start()
+ssc.awaitTermination()
+```
+
+### Spark for MLOps
+
+**Distributed Training:**
+```python
+# Train model on distributed data
+model = pipeline.fit(train_df.repartition(100))
+
+# Batch predictions
+predictions = model.transform(test_df)
+predictions.write.parquet('predictions/')
+```
+
+**Feature Engineering:**
+```python
+from pyspark.ml.feature import StandardScaler, OneHotEncoder
+
+# Scale features
+scaler = StandardScaler(
+    inputCol='features',
+    outputCol='scaled_features'
+)
+
+# Encode categorical
+encoder = OneHotEncoder(
+    inputCols=['category'],
+    outputCols=['category_encoded']
+)
+```
+
+---
+
 ## Common Pitfalls and Solutions
 
 ### Pitfall 1: Not Versioning Data

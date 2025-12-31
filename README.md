@@ -57,7 +57,8 @@ This repository provides a structured learning path for machine learning, organi
   - Python Basics (Variables, Data Types, Control Flow, Functions, OOP)
   - Time Complexity & Algorithm Efficiency (Big O notation)
   - Iterators & Generators (Memory-efficient data processing)
-  - Essential Mathematics (Linear Algebra, Statistics, Calculus basics)
+  - GUI Development with tkinter
+  - Essential Mathematics (Linear Algebra including Tensors, Statistics, Calculus basics)
   - Environment Setup (Python, Jupyter, Virtual Environments)
 
 ### Phase 1: Data Fundamentals
@@ -69,7 +70,10 @@ This repository provides a structured learning path for machine learning, organi
   - Matplotlib & Seaborn: Data visualization
   - Plotly & Dash: Interactive visualizations and web applications
   - Streamlit: Building interactive dashboards and ML applications
+  - Flask: Web applications and REST APIs
+  - Tableau: Professional data visualization and dashboards
   - EDA, Data Sources, Regular Expressions, Advanced Data Wrangling
+  - ETL with AWS RDS: Extract, Transform, Load pipelines
 
 ### Phase 2: Machine Learning Basics
 **Goal**: Understand core ML concepts and algorithms
@@ -117,6 +121,7 @@ This repository provides a structured learning path for machine learning, organi
   - Feature Scaling and Normalization
   - Dimensionality Reduction (PCA)
   - Advanced Discretization (Decision Tree-based binning, custom strategies)
+  - Decision Tree Visualization with dtreeviz
 
 ### Phase 4: Unsupervised Learning
 **Goal**: Learn to work with unlabeled data
@@ -178,6 +183,7 @@ This repository provides a structured learning path for machine learning, organi
   - Advanced SQL Topics (CTEs, Window Functions, Stored Procedures)
   - Data Cleaning with SQL
   - SQL with Python Integration
+  - NoSQL Databases (MongoDB, Redis, Cassandra, Neo4j)
 
 - **20-handling-imbalanced-data**
   - Understanding Imbalanced Data Problems
@@ -203,6 +209,7 @@ This repository provides a structured learning path for machine learning, organi
   - REST APIs with Flask/FastAPI
   - Docker for ML
   - Cloud Deployment (AWS, GCP, Azure)
+  - AWS SageMaker Comprehensive Guide
   - Model Monitoring
 
 - **14-mlops-basics**
@@ -210,6 +217,9 @@ This repository provides a structured learning path for machine learning, organi
   - CI/CD for ML
   - Experiment Tracking
   - Model Registry
+  - Cookiecutter for Data Science
+  - Apache Kafka for Data Streaming
+  - Apache Spark for Big Data Processing
 
 ### Phase 8: Projects
 **Goal**: Apply knowledge through real-world projects
@@ -518,6 +528,7 @@ road-to-ml/
 ### Career & Interview Resources
 - [Career & Portfolio Guide](resources/career_portfolio.md) - Build your portfolio, prepare for interviews, and launch your ML career
 - [Interview Preparation Guide](resources/interview_prep.md) - ML interview questions, coding challenges, system design, and preparation strategies
+- [Open Source Contribution Guide](resources/open_source_contribution.md) - How to contribute to open source projects in data science and ML
 
 ## Learning Tips
 

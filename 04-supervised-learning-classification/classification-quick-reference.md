@@ -482,16 +482,16 @@ model = RandomForestClassifier(n_jobs=-1)  # Use all CPUs
 
 ## Common Mistakes to Avoid
 
-1. ❌ Using accuracy for imbalanced data
-2. ❌ Not scaling features for SVM/KNN
-3. ❌ Data leakage (scaling before split)
-4. ❌ Overfitting (too complex model)
-5. ❌ Not using cross-validation
-6. ❌ Ignoring class imbalance
-7. ❌ Not trying multiple algorithms
-8. ❌ Using test set for hyperparameter tuning
-9. ❌ Not saving preprocessing steps
-10. ❌ Not checking confusion matrix
+1. Using accuracy for imbalanced data
+2. Not scaling features for SVM/KNN
+3. Data leakage (scaling before split)
+4. Overfitting (too complex model)
+5. Not using cross-validation
+6. Ignoring class imbalance
+7. Not trying multiple algorithms
+8. Using test set for hyperparameter tuning
+9. Not saving preprocessing steps
+10. Not checking confusion matrix
 
 ---
 

@@ -561,6 +561,45 @@ stages:
       - metrics/accuracy.json
 ```
 
+### Cookiecutter for Data Science
+
+Cookiecutter provides standardized project templates for data science projects.
+
+**Installation:**
+```bash
+pip install cookiecutter
+```
+
+**Create Project:**
+```bash
+cookiecutter https://github.com/drivendata/cookiecutter-data-science
+```
+
+**Project Structure:**
+```
+project/
+├── data/
+│   ├── raw/
+│   ├── processed/
+│   └── external/
+├── notebooks/
+├── src/
+│   ├── data/
+│   ├── features/
+│   ├── models/
+│   └── visualization/
+├── reports/
+│   └── figures/
+├── requirements.txt
+└── README.md
+```
+
+**Benefits:**
+- Standardized structure
+- Best practices built-in
+- Easy collaboration
+- Quick project setup
+
 ---
 
 ## Practice Exercises
