@@ -161,6 +161,27 @@ This repository provides a structured learning path for machine learning, organi
   - Feature Engineering for Time Series
   - Evaluation and Validation
 
+- **19-sql-database-fundamentals**
+  - Database Fundamentals and SQL Basics
+  - SQL DDL and DML Commands
+  - SQL Joins, Subqueries, and Window Functions
+  - Advanced SQL Topics
+  - SQL with Python Integration
+
+- **20-handling-imbalanced-data**
+  - Understanding Imbalanced Data Problems
+  - Resampling Techniques (SMOTE, Undersampling, Combined)
+  - Algorithm-Level Solutions (Class Weights, Threshold Tuning)
+  - Appropriate Evaluation Metrics
+  - Best Practices
+
+- **21-model-explainability**
+  - Feature Importance Methods
+  - SHAP (SHapley Additive exPlanations)
+  - LIME (Local Interpretable Model-agnostic Explanations)
+  - Partial Dependence Plots
+  - Model Interpretation Best Practices
+
 ### Phase 7: Production & Deployment
 **Goal**: Learn to deploy ML models in production
 
