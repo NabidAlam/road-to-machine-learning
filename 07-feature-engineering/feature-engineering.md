@@ -407,6 +407,10 @@ print(df['income_group'].value_counts().sort_index())
 
 ### Discretization
 
+Discretization converts continuous variables into categorical bins. Useful for handling non-linear relationships and outliers.
+
+#### Basic Discretization Methods
+
 ```python
 from sklearn.preprocessing import KBinsDiscretizer
 
@@ -428,6 +432,304 @@ for idx, strategy in enumerate(strategies):
 plt.tight_layout()
 plt.show()
 ```
+
+#### Advanced Discretization Techniques
+
+**1. Decision Tree-Based Binning**
+
+Uses decision trees to find optimal bin boundaries based on target variable.
+
+```python
+from sklearn.tree import DecisionTreeRegressor, DecisionTreeClassifier
+import numpy as np
+
+def decision_tree_binning(X, y, n_bins=5, task='regression'):
+    """
+    Create bins using decision tree
+    """
+    if task == 'regression':
+        tree = DecisionTreeRegressor(max_leaf_nodes=n_bins, random_state=42)
+    else:
+        tree = DecisionTreeClassifier(max_leaf_nodes=n_bins, random_state=42)
+    
+    tree.fit(X.reshape(-1, 1), y)
+    
+    # Get bin boundaries from tree
+    thresholds = tree.tree_.threshold[tree.tree_.threshold != -2]
+    thresholds = np.sort(thresholds)
+    
+    # Create bins
+    bins = np.concatenate([[-np.inf], thresholds, [np.inf]])
+    X_binned = np.digitize(X, bins) - 1
+    
+    return X_binned, bins
+
+# Example
+X_continuous = np.random.randn(1000)
+y_target = X_continuous ** 2 + np.random.randn(1000) * 0.1
+
+X_binned, bin_boundaries = decision_tree_binning(
+    X_continuous, y_target, n_bins=5, task='regression'
+)
+
+print(f"Bin boundaries: {bin_boundaries}")
+print(f"Bin distribution: {np.bincount(X_binned)}")
+```
+
+**2. Custom Binning with Domain Knowledge**
+
+```python
+# Age groups based on domain knowledge
+def age_binning(ages):
+    """Custom age binning"""
+    bins = [0, 18, 25, 35, 50, 65, 100]
+    labels = ['Child', 'Young Adult', 'Adult', 'Middle Age', 'Senior', 'Elderly']
+    return pd.cut(ages, bins=bins, labels=labels, include_lowest=True)
+
+# Income brackets
+def income_binning(incomes):
+    """Custom income binning"""
+    bins = [0, 25000, 50000, 75000, 100000, np.inf]
+    labels = ['Low', 'Lower-Middle', 'Middle', 'Upper-Middle', 'High']
+    return pd.cut(incomes, bins=bins, labels=labels)
+```
+
+**3. Optimal Binning for Target Encoding**
+
+```python
+def optimal_binning_for_target(X, y, n_bins=5):
+    """
+    Find bins that maximize separation of target variable
+    """
+    # Sort by feature value
+    sorted_indices = np.argsort(X)
+    X_sorted = X[sorted_indices]
+    y_sorted = y[sorted_indices]
+    
+    # Try different split points
+    n_samples = len(X)
+    bin_size = n_samples // n_bins
+    
+    bins = []
+    for i in range(1, n_bins):
+        split_idx = i * bin_size
+        bins.append(X_sorted[split_idx])
+    
+    # Create bins
+    bins = np.concatenate([[-np.inf], sorted(bins), [np.inf]])
+    X_binned = np.digitize(X, bins) - 1
+    
+    return X_binned, bins
+
+# Example usage
+X_binned, optimal_bins = optimal_binning_for_target(X_continuous, y_target, n_bins=5)
+```
+
+**4. When to Use Each Discretization Method**
+
+| Method | When to Use | Pros | Cons |
+|--------|-------------|------|------|
+| **Uniform** | Equal-width bins needed | Simple, interpretable | May create empty bins |
+| **Quantile** | Equal-frequency bins | Handles outliers well | May group very different values |
+| **K-Means** | Clustering-based | Data-driven | Computationally expensive |
+| **Decision Tree** | Target-aware binning | Optimal for prediction | Can overfit |
+| **Custom** | Domain knowledge available | Interpretable, meaningful | Requires expertise |
+
+### Weight of Evidence (WOE) Encoding
+
+WOE is a powerful encoding technique used in credit scoring and risk modeling. It measures the strength of relationship between a feature and target.
+
+#### Understanding WOE
+
+**WOE Formula:**
+```
+WOE = ln(% of Non-Events in Group / % of Events in Group)
+     = ln((Non-Events_i / Total Non-Events) / (Events_i / Total Events))
+```
+
+**Information Value (IV):**
+```
+IV = Σ (Distribution of Non-Events - Distribution of Events) × WOE
+```
+
+#### WOE Calculation
+
+```python
+def calculate_woe_iv(df, feature, target):
+    """
+    Calculate WOE and IV for a feature
+    """
+    # Create bins (you can use any discretization method)
+    df['binned'] = pd.qcut(df[feature], q=5, duplicates='drop')
+    
+    # Calculate WOE for each bin
+    woe_iv_data = []
+    
+    total_events = df[target].sum()
+    total_non_events = (df[target] == 0).sum()
+    
+    for bin_name in df['binned'].cat.categories:
+        bin_data = df[df['binned'] == bin_name]
+        
+        events = bin_data[target].sum()
+        non_events = (bin_data[target] == 0).sum()
+        
+        # Avoid division by zero
+        if events == 0:
+            events = 0.5
+        if non_events == 0:
+            non_events = 0.5
+        
+        # Calculate distributions
+        dist_events = events / total_events
+        dist_non_events = non_events / total_non_events
+        
+        # Calculate WOE
+        if dist_events == 0:
+            woe = np.log(dist_non_events / 0.0001)
+        elif dist_non_events == 0:
+            woe = np.log(0.0001 / dist_events)
+        else:
+            woe = np.log(dist_non_events / dist_events)
+        
+        # Calculate IV component
+        iv_component = (dist_non_events - dist_events) * woe
+        
+        woe_iv_data.append({
+            'Bin': bin_name,
+            'Events': events,
+            'Non-Events': non_events,
+            'WOE': woe,
+            'IV_Component': iv_component
+        })
+    
+    woe_iv_df = pd.DataFrame(woe_iv_data)
+    total_iv = woe_iv_df['IV_Component'].sum()
+    
+    return woe_iv_df, total_iv
+
+# Example usage
+df_example = pd.DataFrame({
+    'age': np.random.randint(18, 80, 1000),
+    'target': np.random.binomial(1, 0.3, 1000)
+})
+
+woe_df, iv = calculate_woe_iv(df_example, 'age', 'target')
+print("WOE and IV Calculation:")
+print(woe_df)
+print(f"\nTotal Information Value (IV): {iv:.4f}")
+
+# IV Interpretation
+if iv < 0.02:
+    print("Predictive power: Not useful")
+elif iv < 0.1:
+    print("Predictive power: Weak")
+elif iv < 0.3:
+    print("Predictive power: Medium")
+else:
+    print("Predictive power: Strong")
+```
+
+#### WOE Encoding Implementation
+
+```python
+from sklearn.base import BaseEstimator, TransformerMixin
+
+class WOEEncoder(BaseEstimator, TransformerMixin):
+    """
+    Weight of Evidence Encoder
+    """
+    def __init__(self, n_bins=5):
+        self.n_bins = n_bins
+        self.woe_dict = {}
+        self.bin_edges = {}
+    
+    def fit(self, X, y):
+        """
+        Calculate WOE for each feature
+        """
+        X = pd.DataFrame(X) if not isinstance(X, pd.DataFrame) else X
+        y = pd.Series(y) if not isinstance(y, pd.Series) else y
+        
+        total_events = y.sum()
+        total_non_events = (y == 0).sum()
+        
+        for col in X.columns:
+            # Create bins
+            _, bin_edges = pd.qcut(X[col], q=self.n_bins, retbins=True, duplicates='drop')
+            self.bin_edges[col] = bin_edges
+            
+            # Calculate WOE for each bin
+            woe_dict_col = {}
+            X_binned = pd.cut(X[col], bins=bin_edges, include_lowest=True)
+            
+            for bin_name in X_binned.cat.categories:
+                mask = X_binned == bin_name
+                events = y[mask].sum()
+                non_events = (y[mask] == 0).sum()
+                
+                # Avoid division by zero
+                if events == 0:
+                    events = 0.5
+                if non_events == 0:
+                    non_events = 0.5
+                
+                dist_events = events / total_events
+                dist_non_events = non_events / total_non_events
+                
+                if dist_events == 0:
+                    woe = np.log(dist_non_events / 0.0001)
+                elif dist_non_events == 0:
+                    woe = np.log(0.0001 / dist_events)
+                else:
+                    woe = np.log(dist_non_events / dist_events)
+                
+                woe_dict_col[bin_name] = woe
+            
+            self.woe_dict[col] = woe_dict_col
+        
+        return self
+    
+    def transform(self, X):
+        """
+        Transform features to WOE values
+        """
+        X = pd.DataFrame(X) if not isinstance(X, pd.DataFrame) else X
+        X_woe = X.copy()
+        
+        for col in X.columns:
+            if col in self.woe_dict:
+                X_binned = pd.cut(X[col], bins=self.bin_edges[col], include_lowest=True)
+                X_woe[col] = X_binned.map(self.woe_dict[col])
+                # Handle new values (out of bin range)
+                X_woe[col] = X_woe[col].fillna(X_woe[col].median())
+        
+        return X_woe.values
+
+# Usage example
+woe_encoder = WOEEncoder(n_bins=5)
+X_train_woe = woe_encoder.fit_transform(X_train, y_train)
+X_test_woe = woe_encoder.transform(X_test)
+```
+
+#### When to Use WOE Encoding
+
+**Use WOE when:**
+- Working with credit scoring or risk modeling
+- Features have non-linear relationships with target
+- You need interpretable encoding
+- Features need to be monotonic with target
+
+**Advantages:**
+- Handles non-linear relationships
+- Creates monotonic relationship with target
+- Interpretable (higher WOE = higher risk/event probability)
+- Standard in credit scoring industry
+
+**Disadvantages:**
+- Requires target variable (supervised)
+- Can overfit if bins are too fine
+- More complex than simple encoding methods
 
 ---
 
