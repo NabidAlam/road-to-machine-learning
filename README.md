@@ -10,7 +10,7 @@
 
 **A comprehensive, step-by-step guide to learning Machine Learning from absolute basics to advanced topics**
 
-*Perfect for beginners • 21 Learning Modules • 18 Real-World Projects • Production-Ready Skills*
+*Perfect for beginners • 22 Learning Modules • 18 Real-World Projects • Production-Ready Skills*
 
 [Get Started](#getting-started) • [Learning Path](#learning-path) • [Projects](#phase-8-projects) • [Contribute](#contributing)
 
@@ -101,9 +101,10 @@ This repository provides a structured learning path for machine learning, organi
 
 - **05-model-evaluation-optimization**
   - Train/Validation/Test Split
-  - Cross-Validation (K-Fold, Stratified)
-  - Hyperparameter Tuning (Grid Search, Random Search)
+  - Cross-Validation (K-Fold, Stratified, Leave-One-Out, Time Series Split)
+  - Hyperparameter Tuning (Grid Search, Random Search, Bayesian Optimization with Optuna)
   - Bias-Variance Tradeoff
+  - Learning Curves
   - Overfitting and Underfitting
 
 ### Phase 3: Advanced Supervised Learning
@@ -337,11 +338,13 @@ road-to-ml/
     02-pandas.md
     03-visualization.md (includes Plotly & Dash)
     04-exploratory-data-analysis.md
-    05-data-sources-and-integration.md
-    06-regular-expressions-text-processing.md
+    05-data-sources-and-integration.md (includes ETL with AWS RDS, Advanced Selenium)
+    06-regular-expressions-text-processing.md (includes advanced regex: lookahead, lookbehind, back references)
     07-advanced-data-wrangling.md
     08-working-with-dates-times.md
-    09-streamlit-dashboards.md (NEW)
+    09-streamlit-dashboards.md
+    10-flask-web-development.md
+    11-tableau-visualization.md
     README.md
 
  02-introduction-to-ml/
@@ -360,7 +363,7 @@ road-to-ml/
     README.md
 
  04-supervised-learning-classification/
-    classification.md
+    classification.md (includes dtreeviz visualization)
     classification-advanced-topics.md
     classification-project-tutorial.md
     classification-quick-reference.md
@@ -382,14 +385,14 @@ road-to-ml/
 
  07-feature-engineering/
     feature-engineering.md (includes WOE encoding, advanced discretization)
-    feature-engineering-advanced-topics.md
+    feature-engineering-advanced-topics.md (includes sklearn Deep Dive: Estimators, Mixins, Composite Transformers, FeatureUnion)
     feature-engineering-project-tutorial.md
     feature-engineering-quick-reference.md
     README.md
 
  08-unsupervised-learning/
     unsupervised-learning.md
-    unsupervised-learning-advanced-topics.md
+    unsupervised-learning-advanced-topics.md (includes SVD - Singular Value Decomposition with PCA connection)
     unsupervised-learning-project-tutorial.md
     unsupervised-learning-quick-reference.md
     README.md
@@ -423,15 +426,15 @@ road-to-ml/
     README.md
 
  13-model-deployment/
-    deployment.md
-    deployment-advanced-topics.md
+    deployment.md (includes FastAPI advanced features: type checking, dependency injection, background tasks)
+    deployment-advanced-topics.md (includes AWS SageMaker comprehensive guide)
     deployment-project-tutorial.md
     deployment-quick-reference.md
     README.md
 
  14-mlops-basics/
-    mlops.md
-    mlops-advanced-topics.md
+    mlops.md (includes Cookiecutter for Data Science)
+    mlops-advanced-topics.md (includes Apache Kafka, Apache Spark, Feature Stores)
     mlops-project-tutorial.md
     mlops-quick-reference.md
     README.md
@@ -459,21 +462,21 @@ road-to-ml/
     [7 project directories with READMEs]
     README.md
 
- 19-sql-database-fundamentals/ (NEW)
+ 19-sql-database-fundamentals/
     sql-database.md
-    sql-database-advanced-topics.md
+    sql-database-advanced-topics.md (includes NoSQL: MongoDB, Redis, Cassandra, Neo4j)
     sql-database-project-tutorial.md
     sql-database-quick-reference.md
     README.md
 
- 20-handling-imbalanced-data/ (NEW)
+ 20-handling-imbalanced-data/
     imbalanced-data.md
     imbalanced-data-advanced-topics.md
     imbalanced-data-project-tutorial.md
     imbalanced-data-quick-reference.md
     README.md
 
- 21-model-explainability/ (NEW)
+ 21-model-explainability/
     model-explainability.md
     model-explainability-advanced-topics.md
     model-explainability-project-tutorial.md
@@ -481,7 +484,24 @@ road-to-ml/
     README.md
 
  resources/
-    [15 comprehensive guides including cheatsheets, git guide, etc.]
+    data_science_cheatsheet.md
+    git_guide.md
+    math_formulas.md
+    common_errors.md
+    ethics_in_ml.md
+    model_interpretability.md
+    ml_glossary.md
+    reinforcement_learning.md
+    recommender_systems.md
+    career_portfolio.md
+    interview_prep.md
+    open_source_contribution.md
+    kaggle_competitions.md
+    docker_tutorial.md
+    books.md
+    courses.md
+    datasets.md
+    tools.md
 
  requirements.txt
  LICENSE
@@ -527,6 +547,7 @@ road-to-ml/
 - [ML Glossary](resources/ml_glossary.md) - Comprehensive glossary of ML terms and concepts for beginners
 - [Reinforcement Learning Basics](resources/reinforcement_learning.md) - Introduction to RL, key concepts, algorithms, and applications
 - [Recommender Systems Guide](resources/recommender_systems.md) - Building recommendation systems (collaborative filtering, content-based, hybrid approaches)
+- [Docker Complete Tutorial](resources/docker_tutorial.md) - Comprehensive Docker guide for ML: containerization, Dockerfile, docker-compose, best practices, and deployment
 
 ### Career & Interview Resources
 - [Career & Portfolio Guide](resources/career_portfolio.md) - Build your portfolio, prepare for interviews, and launch your ML career
@@ -534,6 +555,12 @@ road-to-ml/
 - [Open Source Contribution Guide](resources/open_source_contribution.md) - How to contribute to open source projects in data science and ML
 - [Kaggle Competitions Guide](resources/kaggle_competitions.md) - Complete guide to participating in Kaggle competitions, strategy, and collaboration
 - [Docker Complete Tutorial](resources/docker_tutorial.md) - Comprehensive Docker guide for ML: containerization, Dockerfile, docker-compose, best practices, and deployment
+
+### Additional Resource Files
+- [Books](resources/books.md) - Recommended books for ML and data science
+- [Courses](resources/courses.md) - Online courses and learning platforms
+- [Datasets](resources/datasets.md) - Curated list of datasets for practice
+- [Tools](resources/tools.md) - Essential tools and libraries for ML
 
 ## Learning Tips
 
@@ -603,10 +630,11 @@ By completing this roadmap, you'll be able to:
 
 ## Statistics
 
-- **21 Learning Modules** covering all ML topics (including SQL, Imbalanced Data, Model Explainability)
-- **18 Projects** from beginner to advanced
-- **90+ Resources** including books, courses, datasets, and tools
-- **5-6 Months** estimated learning time
+- **22 Learning Modules** (00-21) covering all ML topics from basics to advanced
+- **18 Projects** from beginner to advanced with complete code and READMEs
+- **18 Resource Guides** including cheatsheets, tutorials, and career guides
+- **156+ Markdown Files** with comprehensive content, code examples, and exercises
+- **5-6 Months** estimated learning time for complete path
 - **Zero Prerequisites** - start from scratch!
 
 ## Disclaimer
