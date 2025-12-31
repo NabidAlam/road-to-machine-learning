@@ -533,6 +533,7 @@ road-to-ml/
 - [Interview Preparation Guide](resources/interview_prep.md) - ML interview questions, coding challenges, system design, and preparation strategies
 - [Open Source Contribution Guide](resources/open_source_contribution.md) - How to contribute to open source projects in data science and ML
 - [Kaggle Competitions Guide](resources/kaggle_competitions.md) - Complete guide to participating in Kaggle competitions, strategy, and collaboration
+- [Docker Complete Tutorial](resources/docker_tutorial.md) - Comprehensive Docker guide for ML: containerization, Dockerfile, docker-compose, best practices, and deployment
 
 ## Learning Tips
 
