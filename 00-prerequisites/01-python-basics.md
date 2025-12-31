@@ -593,6 +593,463 @@ print(account.get_balance())  # Output: Account 12345 balance: $1300
 
 ---
 
+## Time Complexity and Algorithm Efficiency
+
+Understanding time complexity is crucial for writing efficient code, especially when working with large datasets in data science and machine learning.
+
+### What is Time Complexity?
+
+Time complexity describes how the runtime of an algorithm grows as the input size increases. We use Big O notation to express this.
+
+### Big O Notation
+
+Big O notation describes the worst-case scenario for how long an algorithm takes.
+
+**Common Time Complexities:**
+
+1. **O(1) - Constant Time**
+   - Accessing an element in a list by index
+   - Operations that take the same time regardless of input size
+
+```python
+# O(1) - Constant time
+def get_first_element(lst):
+    return lst[0]  # Always takes same time
+
+# Dictionary lookup is O(1) on average
+my_dict = {'a': 1, 'b': 2, 'c': 3}
+value = my_dict['a']  # O(1)
+```
+
+2. **O(log n) - Logarithmic Time**
+   - Binary search
+   - Operations that divide the problem in half each time
+
+```python
+# O(log n) - Binary search
+def binary_search(arr, target):
+    left, right = 0, len(arr) - 1
+    while left <= right:
+        mid = (left + right) // 2
+        if arr[mid] == target:
+            return mid
+        elif arr[mid] < target:
+            left = mid + 1
+        else:
+            right = mid - 1
+    return -1
+```
+
+3. **O(n) - Linear Time**
+   - Iterating through a list
+   - Operations that process each element once
+
+```python
+# O(n) - Linear time
+def find_max(lst):
+    max_val = lst[0]
+    for num in lst:  # Process each element once
+        if num > max_val:
+            max_val = num
+    return max_val
+```
+
+4. **O(n log n) - Linearithmic Time**
+   - Efficient sorting algorithms (merge sort, quick sort)
+   - Common in data science operations
+
+```python
+# O(n log n) - Sorting
+sorted_list = sorted([3, 1, 4, 1, 5, 9, 2, 6])
+```
+
+5. **O(n²) - Quadratic Time**
+   - Nested loops
+   - Comparing all pairs
+
+```python
+# O(n²) - Quadratic time
+def find_duplicates(lst):
+    duplicates = []
+    for i in range(len(lst)):
+        for j in range(i + 1, len(lst)):
+            if lst[i] == lst[j]:
+                duplicates.append(lst[i])
+    return duplicates
+```
+
+6. **O(2ⁿ) - Exponential Time**
+   - Recursive algorithms without memoization
+   - Very slow, avoid if possible
+
+```python
+# O(2ⁿ) - Exponential (inefficient Fibonacci)
+def fibonacci(n):
+    if n <= 1:
+        return n
+    return fibonacci(n-1) + fibonacci(n-2)  # Very slow!
+```
+
+### Space Complexity
+
+Space complexity describes how much memory an algorithm uses.
+
+```python
+# O(1) space - Constant space
+def find_max(lst):
+    max_val = lst[0]  # Only one variable
+    for num in lst:
+        if num > max_val:
+            max_val = num
+    return max_val
+
+# O(n) space - Linear space
+def double_list(lst):
+    return [x * 2 for x in lst]  # Creates new list of size n
+```
+
+### Practical Examples
+
+**Example 1: List Operations**
+
+```python
+# O(1) - Constant time
+my_list = [1, 2, 3, 4, 5]
+first = my_list[0]  # Direct access
+
+# O(n) - Linear time
+total = sum(my_list)  # Must visit each element
+
+# O(n) - Linear time
+my_list.append(6)  # Usually O(1), but can be O(n) if list needs to resize
+
+# O(n) - Linear time
+my_list.insert(0, 0)  # Must shift all elements
+```
+
+**Example 2: Dictionary vs List Lookup**
+
+```python
+# List lookup: O(n) - must search through list
+my_list = [1, 2, 3, 4, 5]
+if 3 in my_list:  # O(n) - checks each element
+    print("Found")
+
+# Dictionary lookup: O(1) - direct hash lookup
+my_dict = {1: 'a', 2: 'b', 3: 'c', 4: 'd', 5: 'e'}
+if 3 in my_dict:  # O(1) - direct access
+    print("Found")
+```
+
+**Example 3: Optimizing Code**
+
+```python
+# Inefficient: O(n²)
+def has_duplicate_inefficient(lst):
+    for i in range(len(lst)):
+        for j in range(i + 1, len(lst)):
+            if lst[i] == lst[j]:
+                return True
+    return False
+
+# Efficient: O(n)
+def has_duplicate_efficient(lst):
+    seen = set()  # O(1) lookup
+    for item in lst:
+        if item in seen:  # O(1) check
+            return True
+        seen.add(item)  # O(1) add
+    return False
+```
+
+### Time Complexity in Data Science
+
+Understanding time complexity is crucial when working with large datasets:
+
+```python
+import pandas as pd
+import numpy as np
+
+# O(n) - Efficient
+df['new_col'] = df['col1'] + df['col2']  # Vectorized operation
+
+# O(n²) - Inefficient (avoid!)
+for idx, row in df.iterrows():  # Very slow for large DataFrames
+    df.loc[idx, 'new_col'] = row['col1'] + row['col2']
+```
+
+### Key Takeaways for Time Complexity
+
+1. **Choose the right data structure**: Lists vs Sets vs Dictionaries
+2. **Avoid nested loops**: Often leads to O(n²) or worse
+3. **Use vectorized operations**: NumPy/Pandas are optimized
+4. **Profile your code**: Use `timeit` or `cProfile` to measure actual performance
+5. **Understand trade-offs**: Sometimes O(n log n) is acceptable for simplicity
+
+---
+
+## Iterators and Generators
+
+Iterators and generators are powerful Python features that enable memory-efficient processing of large datasets, which is crucial in data science.
+
+### What are Iterables?
+
+An iterable is any object that can be looped over (lists, tuples, strings, dictionaries).
+
+```python
+# All of these are iterables
+my_list = [1, 2, 3]
+my_string = "hello"
+my_dict = {'a': 1, 'b': 2}
+
+# You can iterate over them
+for item in my_list:
+    print(item)
+```
+
+### What are Iterators?
+
+An iterator is an object that implements the iterator protocol:
+- `__iter__()`: Returns the iterator object
+- `__next__()`: Returns the next value
+
+```python
+# Lists are iterables, not iterators
+my_list = [1, 2, 3]
+iterator = iter(my_list)  # Convert to iterator
+
+print(next(iterator))  # 1
+print(next(iterator))  # 2
+print(next(iterator))  # 3
+# print(next(iterator))  # Raises StopIteration
+```
+
+### Creating Custom Iterators
+
+```python
+class CountDown:
+    def __init__(self, start):
+        self.current = start
+    
+    def __iter__(self):
+        return self
+    
+    def __next__(self):
+        if self.current <= 0:
+            raise StopIteration
+        self.current -= 1
+        return self.current + 1
+
+# Use the iterator
+counter = CountDown(5)
+for num in counter:
+    print(num)  # 5, 4, 3, 2, 1
+```
+
+### What are Generators?
+
+Generators are a simple way to create iterators using functions. They use `yield` instead of `return`.
+
+**Key Benefits:**
+- Memory efficient (lazy evaluation)
+- Can represent infinite sequences
+- Cleaner code than custom iterators
+
+### Generator Functions
+
+```python
+# Regular function (eager evaluation)
+def squares_list(n):
+    result = []
+    for i in range(n):
+        result.append(i ** 2)
+    return result  # Returns entire list in memory
+
+# Generator function (lazy evaluation)
+def squares_generator(n):
+    for i in range(n):
+        yield i ** 2  # Yields one value at a time
+
+# Compare memory usage
+list_squares = squares_list(1000)  # Stores all 1000 values
+gen_squares = squares_generator(1000)  # Doesn't store anything yet!
+
+# Generator only computes when you iterate
+for square in gen_squares:
+    print(square)  # Computes on-the-fly
+```
+
+### Generator Expressions
+
+Generator expressions are like list comprehensions but for generators:
+
+```python
+# List comprehension (eager)
+squares_list = [x**2 for x in range(10)]  # Creates list immediately
+
+# Generator expression (lazy)
+squares_gen = (x**2 for x in range(10))  # Creates generator
+
+# Memory efficient
+print(sum(squares_gen))  # Generator computes values as needed
+```
+
+### Practical Examples
+
+**Example 1: Reading Large Files**
+
+```python
+# Inefficient: Loads entire file into memory
+def read_file_inefficient(filename):
+    with open(filename, 'r') as f:
+        return f.readlines()  # Loads all lines at once
+
+# Efficient: Generator reads one line at a time
+def read_file_efficient(filename):
+    with open(filename, 'r') as f:
+        for line in f:
+            yield line.strip()  # Yields one line at a time
+
+# Process large file without loading into memory
+for line in read_file_efficient('large_file.txt'):
+    process(line)  # Process one line at a time
+```
+
+**Example 2: Infinite Sequences**
+
+```python
+# Generator for infinite Fibonacci sequence
+def fibonacci():
+    a, b = 0, 1
+    while True:
+        yield a
+        a, b = b, a + b
+
+# Use generator (won't run forever unless you break)
+fib = fibonacci()
+for i, num in enumerate(fib):
+    if i >= 10:  # Only get first 10
+        break
+    print(num)  # 0, 1, 1, 2, 3, 5, 8, 13, 21, 34
+```
+
+**Example 3: Processing Large Datasets**
+
+```python
+# Generator for processing data in chunks
+def process_in_chunks(data, chunk_size=1000):
+    for i in range(0, len(data), chunk_size):
+        yield data[i:i + chunk_size]
+
+# Process large dataset in chunks
+large_dataset = list(range(1000000))
+for chunk in process_in_chunks(large_dataset, chunk_size=10000):
+    process_chunk(chunk)  # Process 10k items at a time
+```
+
+**Example 4: Pipeline Processing**
+
+```python
+# Generator pipeline for data processing
+def read_numbers(filename):
+    with open(filename, 'r') as f:
+        for line in f:
+            yield int(line.strip())
+
+def filter_even(numbers):
+    for num in numbers:
+        if num % 2 == 0:
+            yield num
+
+def square(numbers):
+    for num in numbers:
+        yield num ** 2
+
+# Chain generators (memory efficient)
+numbers = read_numbers('numbers.txt')
+evens = filter_even(numbers)
+squares = square(evens)
+
+# Process on-the-fly
+for square_val in squares:
+    print(square_val)
+```
+
+### Generator vs Iterator
+
+```python
+# Generator function (simpler)
+def count_up_to(max):
+    count = 1
+    while count <= max:
+        yield count
+        count += 1
+
+# Custom iterator (more verbose)
+class CountUpTo:
+    def __init__(self, max):
+        self.max = max
+        self.count = 1
+    
+    def __iter__(self):
+        return self
+    
+    def __next__(self):
+        if self.count > self.max:
+            raise StopIteration
+        current = self.count
+        self.count += 1
+        return current
+
+# Both work the same way
+for num in count_up_to(5):
+    print(num)  # 1, 2, 3, 4, 5
+```
+
+### When to Use Generators
+
+**Use generators when:**
+- Working with large datasets
+- Processing data in streams
+- Creating infinite sequences
+- Memory is a concern
+- You want lazy evaluation
+
+**Use lists when:**
+- You need random access (indexing)
+- You need to iterate multiple times
+- Dataset is small
+- You need list methods (append, extend, etc.)
+
+### Generator Best Practices
+
+```python
+# Good: Generator for large data
+def process_large_file(filename):
+    with open(filename, 'r') as f:
+        for line in f:
+            yield process_line(line)
+
+# Good: Generator expression for filtering
+large_list = range(1000000)
+evens = (x for x in large_list if x % 2 == 0)
+
+# Avoid: Converting generator to list unnecessarily
+# bad: list(gen) if you only need to iterate once
+# good: iterate directly over generator
+```
+
+### Key Takeaways for Iterators and Generators
+
+1. **Generators are memory efficient**: Process data one item at a time
+2. **Use `yield` for generators**: Creates iterator automatically
+3. **Generator expressions are concise**: `(x**2 for x in range(10))`
+4. **Perfect for large datasets**: Don't load everything into memory
+5. **Can represent infinite sequences**: Useful for streaming data
+6. **Chain generators**: Create processing pipelines
+
+---
+
 ## Key Takeaways
 
 1. **Python is dynamically typed** - no need to declare variable types
