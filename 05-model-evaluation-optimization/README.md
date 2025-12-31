@@ -98,6 +98,12 @@ By the end of this module, you should be able to:
 
 **[Complete Detailed Guide →](evaluation-optimization.md)**
 
+### Additional Resources
+
+- **[Advanced Evaluation Topics](evaluation-optimization-advanced-topics.md)** - Nested cross-validation, custom scoring functions, model selection strategies, early stopping, ensemble model selection, performance profiling, and common pitfalls
+- **[Complete Evaluation Project Tutorial](evaluation-optimization-project-tutorial.md)** - Step-by-step walkthrough of properly evaluating and optimizing a model from data splitting to final evaluation
+- **[Evaluation Quick Reference](evaluation-optimization-quick-reference.md)** - Quick reference guide with code snippets, data splitting strategies, cross-validation methods, hyperparameter tuning, and best practices
+
 ---
 
 **Previous Phase:** [04-supervised-learning-classification](../04-supervised-learning-classification/README.md)  
