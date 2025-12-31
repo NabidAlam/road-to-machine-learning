@@ -50,6 +50,8 @@ This repository provides a structured learning path for machine learning, organi
 
 ## Learning Path
 
+**Note on Module Numbering**: Module numbers (00-21) don't strictly follow the learning path order. The phases below represent the recommended learning sequence. Some modules can be learned in parallel or in different orders based on your goals. See individual module READMEs for prerequisites and suggested learning order.
+
 ### Phase 0: Foundation (Prerequisites)
 **Goal**: Build the mathematical and programming foundation needed for ML
 
@@ -176,9 +178,15 @@ This repository provides a structured learning path for machine learning, organi
   - Deep Learning for Time Series (LSTM, GRU, Transformers)
   - Feature Engineering for Time Series
   - Evaluation and Validation
+  - **Note**: Module 15 is placed here logically but numbered after modules 13-14. It can be learned in parallel with modules 11-12 or after Phase 5.
 
 ### Phase 6.5: Essential Data Science Skills
 **Goal**: Master critical skills for real-world ML applications
+
+**Note**: These modules can be learned in parallel with other phases or integrated earlier in your learning journey:
+- **SQL** can be learned after Phase 1 (Data Fundamentals) for better data access skills
+- **Imbalanced Data** is most useful after Phase 2 (Classification) when you encounter real-world datasets
+- **Model Explainability** is valuable after Phase 3 (Advanced ML) when working with complex models
 
 - **19-sql-database-fundamentals**
   - Database Fundamentals and SQL Basics
@@ -188,6 +196,7 @@ This repository provides a structured learning path for machine learning, organi
   - Data Cleaning with SQL
   - SQL with Python Integration
   - NoSQL Databases (MongoDB, Redis, Cassandra, Neo4j)
+  - **Suggested Timing**: Can be learned after Phase 1 or in parallel with Phase 2
 
 - **20-handling-imbalanced-data**
   - Understanding Imbalanced Data Problems
@@ -196,6 +205,7 @@ This repository provides a structured learning path for machine learning, organi
   - Appropriate Evaluation Metrics (PR-AUC, F1-Score)
   - Complete Workflow Examples
   - Best Practices and Common Pitfalls
+  - **Suggested Timing**: Best learned after Phase 2 (Classification) or Phase 3 (Advanced ML)
 
 - **21-model-explainability**
   - Feature Importance Methods (Tree-based, Permutation)
@@ -204,9 +214,12 @@ This repository provides a structured learning path for machine learning, organi
   - Partial Dependence Plots (PDP) and ICE Plots
   - Model Interpretation Best Practices
   - Regulatory Compliance and Ethical AI
+  - **Suggested Timing**: Best learned after Phase 3 (Advanced ML) or Phase 5 (Deep Learning)
 
 ### Phase 7: Production & Deployment
 **Goal**: Learn to deploy ML models in production
+
+**Note**: Modules 13-14 are numbered before modules 15-18 but logically come after specialized deep learning topics. Learn these after you have built and trained models.
 
 - **13-model-deployment**
   - Model Serialization
@@ -228,7 +241,10 @@ This repository provides a structured learning path for machine learning, organi
 ### Phase 8: Projects
 **Goal**: Apply knowledge through real-world projects
 
+**Note**: Projects are numbered 16-18 but should be worked on throughout your learning journey. Start beginner projects after Phase 2, intermediate after Phase 3-4, and advanced after Phase 6-7.
+
 - **16-projects-beginner** (6 projects)
+  - **Prerequisites**: Complete Phases 0-2 before starting
   - House Price Prediction ✓ (Available)
   - Iris Flower Classification ✓ (Available)
   - Titanic Survival Prediction ✓ (Available)
@@ -237,6 +253,7 @@ This repository provides a structured learning path for machine learning, organi
   - Customer Data Dashboard with Streamlit ✓ (Available - README)
 
 - **17-projects-intermediate** (8 projects)
+  - **Prerequisites**: Complete Phases 0-4 and some Phase 6.5 topics recommended
   - Handwritten Digit Recognition (MNIST) ✓ (Available - README)
   - Customer Churn Prediction ✓ (Available - README)
   - Movie Recommendation System ✓ (Available - README)
@@ -247,6 +264,7 @@ This repository provides a structured learning path for machine learning, organi
   - Ensemble Methods Comparison ✓ (Available - README)
 
 - **18-projects-advanced** (9 projects)
+  - **Prerequisites**: Complete Phases 0-7 recommended for full benefit
   - Image Classification (CIFAR-10) ✓ (Available - README)
   - Sentiment Analysis on Reviews ✓ (Available - README)
   - Time Series Forecasting (Advanced) ✓ (Available - README)
