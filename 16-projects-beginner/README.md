@@ -98,6 +98,31 @@ Predict wine quality based on chemical properties (can be regression or classifi
 
 ---
 
+### Project 6: Customer Data Dashboard with Streamlit
+**Difficulty**:   
+**Time**: 2-3 days  
+**Skills**: Streamlit, Data Visualization, Interactive Dashboards
+
+Build an interactive dashboard to visualize and analyze customer data using Streamlit.
+
+**What you'll learn:**
+- Build interactive web applications with Streamlit
+- Create dynamic visualizations
+- Implement user input and filtering
+- Design user-friendly dashboards
+- Deploy Streamlit applications
+- Work with real-world customer data
+
+**Dataset**: E-commerce Customer Data, Telco Customer Churn, or any customer dataset
+
+**Extensions:**
+- Add machine learning predictions
+- Real-time data updates
+- Multi-page dashboard
+- Advanced visualizations
+
+---
+
 ##  Project Structure
 
 Each project should include:

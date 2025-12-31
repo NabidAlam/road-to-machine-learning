@@ -150,6 +150,54 @@ Forecast future values in a time series (sales, stock prices, etc.).
 
 ---
 
+### Project 7: Feature Engineering Mastery
+**Difficulty**:   
+**Time**: 4-5 days  
+**Skills**: Feature Engineering, Feature Selection, sklearn Pipeline, Advanced Encoding
+
+Master comprehensive feature engineering techniques on a complex real-world dataset.
+
+**What you'll learn:**
+- Apply comprehensive feature engineering techniques
+- Use sklearn Pipeline and ColumnTransformer effectively
+- Handle mixed data types (numeric, categorical, text)
+- Implement advanced encoding techniques (WOE, Target Encoding)
+- Perform feature selection using multiple methods
+- Build robust preprocessing pipelines
+
+**Dataset**: House Prices, Credit Card Default, or Employee Attrition datasets
+
+**Extensions:**
+- Automated feature engineering
+- Feature store implementation
+- Feature monitoring
+
+---
+
+### Project 8: Ensemble Methods Comparison
+**Difficulty**:   
+**Time**: 4-5 days  
+**Skills**: Ensemble Methods, Bagging, Boosting, Stacking, Hyperparameter Tuning
+
+Comprehensive comparison of ensemble methods: Bagging, Boosting, Stacking, and Voting.
+
+**What you'll learn:**
+- Understand different ensemble methods and when to use them
+- Implement and compare Bagging vs Boosting
+- Use advanced boosting algorithms (XGBoost, LightGBM, CatBoost)
+- Build Stacking and Voting ensembles
+- Tune hyperparameters for ensemble methods
+- Compare model performance comprehensively
+
+**Dataset**: Titanic, Credit Card Fraud, Customer Churn, or House Prices
+
+**Extensions:**
+- Custom ensemble creation
+- Ensemble of ensembles
+- Feature importance comparison
+
+---
+
 ##  Project Structure
 
 Each project should include:
