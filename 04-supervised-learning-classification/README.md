@@ -106,6 +106,12 @@ By the end of this module, you should be able to:
 
 **[Complete Detailed Guide →](classification.md)**
 
+### Additional Resources
+
+- **[Advanced Classification Topics](classification-advanced-topics.md)** - Handling imbalanced data, feature engineering, hyperparameter tuning, model interpretation, ensemble methods, and common pitfalls
+- **[Complete Classification Project Tutorial](classification-project-tutorial.md)** - Step-by-step walkthrough building a spam detection model from scratch
+- **[Classification Quick Reference](classification-quick-reference.md)** - Quick reference guide with code snippets, algorithm selection, metrics, and troubleshooting
+
 ---
 
 **Previous Phase:** [03-supervised-learning-regression](../03-supervised-learning-regression/README.md)  
