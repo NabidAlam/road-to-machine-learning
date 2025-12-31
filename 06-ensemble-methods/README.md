@@ -85,6 +85,12 @@ By the end of this module, you should be able to:
 
 **[Complete Detailed Guide →](ensemble-methods.md)**
 
+### Additional Resources
+
+- **[Advanced Ensemble Topics](ensemble-methods-advanced-topics.md)** - Ensemble diversity, advanced boosting techniques, ensemble hyperparameter tuning, ensemble selection, feature importance, interpretability, and common pitfalls
+- **[Complete Ensemble Project Tutorial](ensemble-methods-project-tutorial.md)** - Step-by-step walkthrough building and comparing multiple ensemble methods from baselines to final selection
+- **[Ensemble Methods Quick Reference](ensemble-methods-quick-reference.md)** - Quick reference guide with code snippets, method selection guide, hyperparameter tuning, and best practices
+
 ---
 
 **Previous Phase:** [05-model-evaluation-optimization](../05-model-evaluation-optimization/README.md)  
