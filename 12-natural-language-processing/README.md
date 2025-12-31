@@ -115,6 +115,11 @@ By the end of this module, you should be able to:
 
 **[Complete Detailed Guide →](nlp.md)**
 
+**Additional Resources:**
+- [Advanced Topics →](nlp-advanced-topics.md) - Advanced transformers, sequence-to-sequence, optimization
+- [Project Tutorial →](nlp-project-tutorial.md) - Step-by-step sentiment analysis project
+- [Quick Reference →](nlp-quick-reference.md) - Quick lookup guide for NLP
+
 ---
 
 **Previous Phase:** [11-computer-vision](../11-computer-vision/README.md)  

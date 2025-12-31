@@ -126,6 +126,11 @@ By the end of this module, you should be able to:
 
 **[Complete Detailed Guide →](deployment.md)**
 
+**Additional Resources:**
+- [Advanced Topics →](deployment-advanced-topics.md) - Advanced deployment patterns, Kubernetes, edge deployment
+- [Project Tutorial →](deployment-project-tutorial.md) - Step-by-step model deployment project
+- [Quick Reference →](deployment-quick-reference.md) - Quick lookup guide for model deployment
+
 ---
 
 **Previous Phase:** [12-natural-language-processing](../12-natural-language-processing/README.md)  

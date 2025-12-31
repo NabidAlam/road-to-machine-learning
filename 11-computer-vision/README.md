@@ -105,6 +105,11 @@ By the end of this module, you should be able to:
 
 **[Complete Detailed Guide →](computer-vision.md)**
 
+**Additional Resources:**
+- [Advanced Topics →](computer-vision-advanced-topics.md) - Advanced architectures, object detection, optimization
+- [Project Tutorial →](computer-vision-project-tutorial.md) - Step-by-step CIFAR-10 classification project
+- [Quick Reference →](computer-vision-quick-reference.md) - Quick lookup guide for computer vision
+
 ---
 
 **Previous Phase:** [10-deep-learning-frameworks](../10-deep-learning-frameworks/README.md)  

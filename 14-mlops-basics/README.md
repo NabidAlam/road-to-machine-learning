@@ -118,6 +118,11 @@ By the end of this module, you should be able to:
 
 **[Complete Detailed Guide →](mlops.md)**
 
+**Additional Resources:**
+- [Advanced Topics →](mlops-advanced-topics.md) - Advanced tracking, feature stores, monitoring, automation
+- [Project Tutorial →](mlops-project-tutorial.md) - Step-by-step MLOps pipeline setup
+- [Quick Reference →](mlops-quick-reference.md) - Quick lookup guide for MLOps
+
 ---
 
 **Previous Phase:** [13-model-deployment](../13-model-deployment/README.md)  
