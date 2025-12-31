@@ -120,17 +120,14 @@
 
 ## YouTube Channels
 
-### 17. **3Blue1Brown - Neural Networks**
-   - **Why**: Best visual explanations of neural networks
-   - **Link**: [YouTube](https://www.youtube.com/playlist?list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi)
+For a comprehensive list of YouTube channels, see [YouTube Channels Guide](youtube_channels.md)
 
-### 18. **StatQuest with Josh Starmer**
-   - **Why**: Clear explanations of ML concepts
-   - **Link**: [YouTube](https://www.youtube.com/user/joshstarmer)
-
-### 19. **Sentdex - Machine Learning**
-   - **Why**: Practical Python ML tutorials
-   - **Link**: [YouTube](https://www.youtube.com/user/sentdex)
+### Top Recommendations:
+- **3Blue1Brown**: Best visual explanations of neural networks
+- **StatQuest**: Clear explanations of ML concepts
+- **Sentdex**: Practical Python ML tutorials
+- **DeepLearning.AI**: Official channel with course materials
+- **Two Minute Papers**: Latest research explained simply
 
 ## Learning Path Recommendation
 

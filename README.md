@@ -566,6 +566,9 @@ road-to-ml/
 - [Courses](resources/courses.md) - Online courses and learning platforms
 - [Datasets](resources/datasets.md) - Curated list of datasets for practice
 - [Tools](resources/tools.md) - Essential tools and libraries for ML
+- [YouTube Channels](resources/youtube_channels.md) - Comprehensive list of free ML YouTube channels
+- [Blogs & Websites](resources/blogs_websites.md) - Recommended blogs, websites, and online resources
+- [Practice Platforms](resources/practice_platforms.md) - Platforms to practice ML, coding, and data science
 
 ## Learning Tips
 
