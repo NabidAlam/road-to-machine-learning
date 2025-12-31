@@ -144,7 +144,7 @@ logger = logging.getLogger(__name__)
 
 # Load model
 try:
-    model = joblib.load('model.joblib')
+model = joblib.load('model.joblib')
     logger.info("Model loaded successfully")
 except Exception as e:
     logger.error(f"Error loading model: {e}")
@@ -278,12 +278,12 @@ model = joblib.load('model.joblib')
 def predict():
     """Prediction endpoint"""
     try:
-        data = request.get_json()
+    data = request.get_json()
         if 'features' not in data:
             return jsonify({'error': 'Missing features'}), 400
         
-        features = np.array(data['features']).reshape(1, -1)
-        prediction = model.predict(features)[0]
+    features = np.array(data['features']).reshape(1, -1)
+    prediction = model.predict(features)[0]
         probability = model.predict_proba(features)[0].tolist()
         
         return jsonify({

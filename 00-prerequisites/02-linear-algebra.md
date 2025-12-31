@@ -5,6 +5,7 @@ Comprehensive guide to linear algebra concepts essential for understanding machi
 ## Table of Contents
 
 - [Introduction](#introduction)
+- [Tensors](#tensors)
 - [Vectors](#vectors)
 - [Matrices](#matrices)
 - [Matrix Operations](#matrix-operations)
@@ -37,6 +38,221 @@ Linear algebra is the **language of machine learning**. Almost every ML algorith
 - Eigenvalues/eigenvectors and their importance
 - Matrix decompositions (SVD, eigendecomposition)
 - How these concepts apply to ML algorithms
+
+---
+
+## Tensors
+
+### What are Tensors?
+
+A **tensor** is a generalization of scalars, vectors, and matrices to higher dimensions. In machine learning, tensors are fundamental data structures used in deep learning frameworks like TensorFlow and PyTorch.
+
+### Tensor Dimensions
+
+**0D Tensor (Scalar)**
+- A single number
+- Shape: `()`
+- Example: `5`, `3.14`
+
+```python
+import numpy as np
+
+# 0D tensor (scalar)
+scalar = np.array(5)
+print(f"Scalar: {scalar}")
+print(f"Shape: {scalar.shape}")  # ()
+print(f"Dimensions: {scalar.ndim}")  # 0
+```
+
+**1D Tensor (Vector)**
+- An array of numbers
+- Shape: `(n,)`
+- Example: `[1, 2, 3, 4]`
+
+```python
+# 1D tensor (vector)
+vector = np.array([1, 2, 3, 4])
+print(f"Vector: {vector}")
+print(f"Shape: {vector.shape}")  # (4,)
+print(f"Dimensions: {vector.ndim}")  # 1
+```
+
+**2D Tensor (Matrix)**
+- A 2D array of numbers
+- Shape: `(m, n)`
+- Example: `[[1, 2], [3, 4]]`
+
+```python
+# 2D tensor (matrix)
+matrix = np.array([[1, 2, 3],
+                   [4, 5, 6]])
+print(f"Matrix:\n{matrix}")
+print(f"Shape: {matrix.shape}")  # (2, 3)
+print(f"Dimensions: {matrix.ndim}")  # 2
+```
+
+**3D Tensor**
+- A 3D array
+- Shape: `(d, m, n)`
+- Example: Batch of images, RGB images
+
+```python
+# 3D tensor (e.g., batch of 2D images)
+tensor_3d = np.array([[[1, 2], [3, 4]],
+                       [[5, 6], [7, 8]]])
+print(f"3D Tensor:\n{tensor_3d}")
+print(f"Shape: {tensor_3d.shape}")  # (2, 2, 2)
+print(f"Dimensions: {tensor_3d.ndim}")  # 3
+```
+
+**4D Tensor**
+- Common in deep learning for batches of images
+- Shape: `(batch, height, width, channels)`
+- Example: Batch of RGB images: `(32, 224, 224, 3)`
+
+```python
+# 4D tensor (e.g., batch of RGB images)
+# Shape: (batch_size, height, width, channels)
+batch_images = np.random.rand(32, 224, 224, 3)
+print(f"4D Tensor Shape: {batch_images.shape}")  # (32, 224, 224, 3)
+print(f"Dimensions: {batch_images.ndim}")  # 4
+print(f"Total elements: {batch_images.size}")  # 32 * 224 * 224 * 3
+```
+
+**5D Tensor**
+- Used for video data or 3D medical images
+- Shape: `(batch, time, height, width, channels)`
+
+```python
+# 5D tensor (e.g., video frames)
+# Shape: (batch, frames, height, width, channels)
+video = np.random.rand(8, 16, 224, 224, 3)
+print(f"5D Tensor Shape: {video.shape}")  # (8, 16, 224, 224, 3)
+print(f"Dimensions: {video.ndim}")  # 5
+```
+
+### Tensor Properties
+
+**Rank (Order)**
+- The number of dimensions (axes) of a tensor
+- Scalar: rank 0, Vector: rank 1, Matrix: rank 2, etc.
+
+```python
+tensors = [
+    np.array(5),                    # Rank 0
+    np.array([1, 2, 3]),            # Rank 1
+    np.array([[1, 2], [3, 4]]),    # Rank 2
+    np.random.rand(2, 3, 4)         # Rank 3
+]
+
+for i, t in enumerate(tensors):
+    print(f"Tensor {i}: Rank = {t.ndim}, Shape = {t.shape}")
+```
+
+**Axes (Dimensions)**
+- Each dimension is an axis
+- Axis 0: first dimension, Axis 1: second dimension, etc.
+
+```python
+matrix = np.array([[1, 2, 3],
+                   [4, 5, 6]])
+
+# Sum along axis 0 (rows)
+print(f"Sum along axis 0 (columns): {matrix.sum(axis=0)}")  # [5 7 9]
+
+# Sum along axis 1 (columns)
+print(f"Sum along axis 1 (rows): {matrix.sum(axis=1)}")  # [6 15]
+```
+
+**Shape**
+- Tuple describing the size of each dimension
+- `(batch_size, height, width, channels)` for images
+
+```python
+# Common tensor shapes in ML
+examples = {
+    'scalar': np.array(5).shape,                    # ()
+    'vector': np.array([1, 2, 3]).shape,            # (3,)
+    'matrix': np.array([[1, 2], [3, 4]]).shape,     # (2, 2)
+    'image': np.random.rand(224, 224, 3).shape,    # (224, 224, 3)
+    'batch_images': np.random.rand(32, 224, 224, 3).shape  # (32, 224, 224, 3)
+}
+
+for name, shape in examples.items():
+    print(f"{name}: {shape}")
+```
+
+### Tensor Operations
+
+**Reshaping**
+```python
+# Reshape tensor
+vector = np.array([1, 2, 3, 4, 5, 6])
+matrix = vector.reshape(2, 3)
+print(f"Reshaped to matrix:\n{matrix}")
+
+# Flatten
+flattened = matrix.flatten()
+print(f"Flattened: {flattened}")
+```
+
+**Broadcasting**
+```python
+# Broadcasting: operations between tensors of different shapes
+matrix = np.array([[1, 2, 3],
+                   [4, 5, 6]])
+vector = np.array([10, 20, 30])
+
+# Broadcasting: vector is added to each row
+result = matrix + vector
+print(f"Broadcasting result:\n{result}")
+```
+
+### Tensors in Machine Learning
+
+**Neural Networks**
+- Input: `(batch_size, features)` - 2D tensor
+- Weights: `(input_features, output_features)` - 2D tensor
+- Output: `(batch_size, output_features)` - 2D tensor
+
+**Convolutional Neural Networks**
+- Input images: `(batch, height, width, channels)` - 4D tensor
+- Convolution filters: `(filter_height, filter_width, in_channels, out_channels)` - 4D tensor
+
+**Recurrent Neural Networks**
+- Sequences: `(batch, time_steps, features)` - 3D tensor
+
+```python
+# Example: Neural network forward pass
+batch_size = 32
+input_features = 784
+hidden_units = 128
+output_units = 10
+
+# Input tensor: (32, 784)
+X = np.random.rand(batch_size, input_features)
+
+# Weight tensor: (784, 128)
+W1 = np.random.rand(input_features, hidden_units)
+
+# Output tensor: (32, 128)
+hidden = X @ W1  # Matrix multiplication
+
+print(f"Input shape: {X.shape}")
+print(f"Weight shape: {W1.shape}")
+print(f"Output shape: {hidden.shape}")
+```
+
+### Key Takeaways
+
+1. **Scalars** (0D): Single numbers
+2. **Vectors** (1D): Arrays of numbers
+3. **Matrices** (2D): 2D arrays
+4. **Higher-order tensors** (3D+): Multi-dimensional arrays
+5. **Rank**: Number of dimensions
+6. **Shape**: Size of each dimension
+7. **Axes**: Each dimension is an axis
+8. **Essential in Deep Learning**: All data in neural networks are tensors
 
 ---
 

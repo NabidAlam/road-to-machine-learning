@@ -1050,6 +1050,217 @@ evens = (x for x in large_list if x % 2 == 0)
 
 ---
 
+## GUI Development with tkinter
+
+### Introduction to tkinter
+
+tkinter is Python's built-in GUI (Graphical User Interface) library. It allows you to create desktop applications with windows, buttons, and other widgets.
+
+### Why Learn GUI Development?
+
+- **Desktop Applications**: Create standalone applications
+- **User Interfaces**: Build interactive tools
+- **Data Visualization**: Create custom visualization tools
+- **Prototyping**: Quick UI prototypes
+
+### Basic tkinter Application
+
+```python
+import tkinter as tk
+from tkinter import ttk
+
+# Create main window
+root = tk.Tk()
+root.title("My First GUI")
+root.geometry("400x300")
+
+# Add label
+label = tk.Label(root, text="Hello, tkinter!", font=("Arial", 16))
+label.pack(pady=20)
+
+# Add button
+def button_clicked():
+    label.config(text="Button clicked!")
+
+button = tk.Button(root, text="Click Me", command=button_clicked)
+button.pack(pady=10)
+
+# Run application
+root.mainloop()
+```
+
+### Common Widgets
+
+**Entry (Text Input):**
+```python
+entry = tk.Entry(root, width=30)
+entry.pack()
+
+def get_text():
+    text = entry.get()
+    print(f"Entered: {text}")
+
+button = tk.Button(root, text="Get Text", command=get_text)
+button.pack()
+```
+
+**Text Widget (Multi-line):**
+```python
+text_widget = tk.Text(root, width=40, height=10)
+text_widget.pack()
+
+# Get all text
+content = text_widget.get("1.0", tk.END)
+```
+
+**Checkbox:**
+```python
+var = tk.BooleanVar()
+checkbox = tk.Checkbutton(root, text="I agree", variable=var)
+checkbox.pack()
+
+def check_value():
+    print(f"Checked: {var.get()}")
+```
+
+**Radio Buttons:**
+```python
+var = tk.StringVar(value="option1")
+
+radio1 = tk.Radiobutton(root, text="Option 1", variable=var, value="option1")
+radio1.pack()
+
+radio2 = tk.Radiobutton(root, text="Option 2", variable=var, value="option2")
+radio2.pack()
+```
+
+**Listbox:**
+```python
+listbox = tk.Listbox(root)
+listbox.pack()
+
+# Add items
+for item in ["Item 1", "Item 2", "Item 3"]:
+    listbox.insert(tk.END, item)
+
+# Get selected
+def get_selected():
+    selection = listbox.curselection()
+    if selection:
+        print(listbox.get(selection[0]))
+```
+
+### Layout Managers
+
+**Pack (Simple):**
+```python
+label1 = tk.Label(root, text="Label 1")
+label1.pack(side=tk.LEFT)
+
+label2 = tk.Label(root, text="Label 2")
+label2.pack(side=tk.RIGHT)
+```
+
+**Grid (Table-like):**
+```python
+label = tk.Label(root, text="Row 0, Col 0")
+label.grid(row=0, column=0)
+
+button = tk.Button(root, text="Row 1, Col 0")
+button.grid(row=1, column=0)
+```
+
+**Place (Absolute):**
+```python
+label = tk.Label(root, text="At (100, 50)")
+label.place(x=100, y=50)
+```
+
+### Example: Simple Calculator
+
+```python
+import tkinter as tk
+
+def calculate():
+    try:
+        num1 = float(entry1.get())
+        num2 = float(entry2.get())
+        result = num1 + num2
+        result_label.config(text=f"Result: {result}")
+    except ValueError:
+        result_label.config(text="Invalid input")
+
+root = tk.Tk()
+root.title("Simple Calculator")
+
+entry1 = tk.Entry(root, width=10)
+entry1.pack(pady=5)
+
+entry2 = tk.Entry(root, width=10)
+entry2.pack(pady=5)
+
+button = tk.Button(root, text="Add", command=calculate)
+button.pack(pady=5)
+
+result_label = tk.Label(root, text="Result: ")
+result_label.pack(pady=5)
+
+root.mainloop()
+```
+
+### Data Science Application Example
+
+```python
+import tkinter as tk
+from tkinter import filedialog
+import pandas as pd
+import matplotlib.pyplot as plt
+from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
+
+def load_data():
+    filename = filedialog.askopenfilename(
+        filetypes=[("CSV files", "*.csv")]
+    )
+    if filename:
+        df = pd.read_csv(filename)
+        # Display data
+        print(df.head())
+        return df
+    return None
+
+def plot_data():
+    df = load_data()
+    if df is not None:
+        fig, ax = plt.subplots(figsize=(6, 4))
+        df.plot(ax=ax)
+        
+        # Embed in tkinter
+        canvas = FigureCanvasTkAgg(fig, root)
+        canvas.draw()
+        canvas.get_tk_widget().pack()
+
+root = tk.Tk()
+root.title("Data Science Tool")
+
+load_button = tk.Button(root, text="Load CSV", command=load_data)
+load_button.pack(pady=10)
+
+plot_button = tk.Button(root, text="Plot Data", command=plot_data)
+plot_button.pack(pady=10)
+
+root.mainloop()
+```
+
+### Key Takeaways
+
+1. **tkinter is built-in**: No installation needed
+2. **Widgets**: Labels, buttons, entries, etc.
+3. **Layout**: Pack, Grid, or Place
+4. **Events**: Use commands for button clicks
+5. **Simple GUIs**: Great for quick tools
+
+---
+
 ## Key Takeaways
 
 1. **Python is dynamically typed** - no need to declare variable types

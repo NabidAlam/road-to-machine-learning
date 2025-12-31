@@ -9,6 +9,8 @@ Master the essential Python libraries for data manipulation, analysis, and visua
 - Matplotlib and Seaborn for data visualization
 - Plotly and Dash for interactive visualizations
 - Streamlit for building dashboards and ML applications
+- Flask for web applications and REST APIs
+- Tableau for professional data visualization
 - Exploratory Data Analysis (EDA) techniques
 - Working with APIs, databases, and web scraping
 
@@ -151,13 +153,47 @@ Build interactive web applications and dashboards for data science and machine l
 
 **[Complete Guide →](09-streamlit-dashboards.md)**
 
+### 10-flask-web-development
+Build web applications and REST APIs with Flask.
+
+**Topics:**
+- Flask Basics and Routing
+- Templates and Jinja2
+- Forms and User Input
+- REST API Development
+- Database Integration
+- Authentication and Sessions
+- Deployment
+- Flask vs Streamlit Comparison
+
+**Time Estimate:** 1-2 weeks
+
+**[Complete Guide →](10-flask-web-development.md)**
+
+### 11-tableau-visualization
+Create professional data visualizations and dashboards with Tableau.
+
+**Topics:**
+- Tableau Basics and Interface
+- Connecting to Data Sources
+- Basic and Advanced Visualizations
+- Calculations and Functions
+- Dashboards and Stories
+- Tableau vs Python Visualization
+- Best Practices
+
+**Time Estimate:** 1-2 weeks
+
+**[Complete Guide →](11-tableau-visualization.md)**
+
 ##  Learning Objectives
 
 By the end of this phase, you should be able to:
 - Perform numerical operations with NumPy
 - Load, clean, and manipulate datasets with Pandas
 - Create various types of visualizations (static and interactive)
-- Build interactive dashboards with Plotly, Dash, and Streamlit
+- Build interactive dashboards with Plotly, Dash, Streamlit, and Tableau
+- Create web applications and REST APIs with Flask
 - Perform systematic exploratory data analysis (EDA)
 - Fetch data from APIs and databases
 - Scrape data from websites
