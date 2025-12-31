@@ -257,6 +257,184 @@ async def predict_batch(requests: List[PredictionRequest]):
 # Docs: http://localhost:8000/docs
 ```
 
+### FastAPI Advanced Features
+
+**1. Type Checking and Validation:**
+```python
+from fastapi import FastAPI, HTTPException, Query, Path, Body
+from pydantic import BaseModel, Field, validator
+from typing import List, Optional
+from enum import Enum
+
+app = FastAPI()
+
+# Enum for validation
+class ModelType(str, Enum):
+    CLASSIFICATION = "classification"
+    REGRESSION = "regression"
+
+# Advanced Pydantic model with validators
+class PredictionRequest(BaseModel):
+    features: List[float] = Field(..., min_items=1, max_items=100)
+    model_type: ModelType = ModelType.CLASSIFICATION
+    threshold: Optional[float] = Field(None, ge=0.0, le=1.0)
+    
+    @validator('features')
+    def validate_features(cls, v):
+        if len(v) < 1:
+            raise ValueError('At least one feature required')
+        if any(not isinstance(x, (int, float)) for x in v):
+            raise ValueError('All features must be numbers')
+        return v
+    
+    class Config:
+        schema_extra = {
+            "example": {
+                "features": [1.0, 2.0, 3.0, 4.0],
+                "model_type": "classification",
+                "threshold": 0.5
+            }
+        }
+
+@app.post("/predict")
+async def predict(request: PredictionRequest):
+    """Make prediction with validated input"""
+    # Pydantic automatically validates and converts types
+    features = np.array(request.features)
+    # ... prediction logic
+    return {"prediction": 1}
+```
+
+**2. Query Parameters and Path Parameters:**
+```python
+from fastapi import Query, Path
+
+@app.get("/items/{item_id}")
+async def get_item(
+    item_id: int = Path(..., description="Item ID", gt=0),
+    skip: int = Query(0, ge=0, description="Skip items"),
+    limit: int = Query(10, ge=1, le=100, description="Limit items"),
+    q: Optional[str] = Query(None, min_length=3, max_length=50)
+):
+    """Get item with path and query parameters"""
+    return {
+        "item_id": item_id,
+        "skip": skip,
+        "limit": limit,
+        "q": q
+    }
+```
+
+**3. Dependency Injection:**
+```python
+from fastapi import Depends
+
+def get_model():
+    """Dependency to load model"""
+    return joblib.load('model.joblib')
+
+@app.post("/predict")
+async def predict(
+    request: PredictionRequest,
+    model = Depends(get_model)
+):
+    """Predict using injected model"""
+    prediction = model.predict([request.features])
+    return {"prediction": int(prediction[0])}
+```
+
+**4. Background Tasks:**
+```python
+from fastapi import BackgroundTasks
+
+def log_prediction(features, prediction):
+    """Background task to log prediction"""
+    with open('predictions.log', 'a') as f:
+        f.write(f"{features},{prediction}\n")
+
+@app.post("/predict")
+async def predict(
+    request: PredictionRequest,
+    background_tasks: BackgroundTasks,
+    model = Depends(get_model)
+):
+    """Predict with background logging"""
+    prediction = model.predict([request.features])[0]
+    
+    # Add background task
+    background_tasks.add_task(log_prediction, request.features, prediction)
+    
+    return {"prediction": int(prediction)}
+```
+
+**5. Error Handling:**
+```python
+from fastapi import HTTPException, status
+from fastapi.exceptions import RequestValidationError
+from fastapi.responses import JSONResponse
+
+@app.exception_handler(RequestValidationError)
+async def validation_exception_handler(request, exc):
+    """Custom validation error handler"""
+    return JSONResponse(
+        status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
+        content={"detail": exc.errors(), "body": exc.body}
+    )
+
+@app.post("/predict")
+async def predict(request: PredictionRequest):
+    try:
+        # Prediction logic
+        pass
+    except ValueError as e:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail=str(e)
+        )
+```
+
+**6. CORS and Security:**
+```python
+from fastapi.middleware.cors import CORSMiddleware
+from fastapi.middleware.trustedhost import TrustedHostMiddleware
+
+# Add CORS
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["https://example.com"],  # Specific origins
+    allow_credentials=True,
+    allow_methods=["GET", "POST"],
+    allow_headers=["*"],
+)
+
+# Add trusted hosts
+app.add_middleware(
+    TrustedHostMiddleware,
+    allowed_hosts=["example.com", "*.example.com"]
+)
+```
+
+**7. Automatic API Documentation:**
+FastAPI automatically generates OpenAPI/Swagger documentation:
+- Interactive docs: `http://localhost:8000/docs` (Swagger UI)
+- Alternative docs: `http://localhost:8000/redoc` (ReDoc)
+- OpenAPI schema: `http://localhost:8000/openapi.json`
+
+**8. Testing FastAPI:**
+```python
+from fastapi.testclient import TestClient
+
+client = TestClient(app)
+
+def test_predict():
+    response = client.post(
+        "/predict",
+        json={"features": [1.0, 2.0, 3.0, 4.0]}
+    )
+    assert response.status_code == 200
+    assert "prediction" in response.json()
+```
+
 ### Flask Example
 
 Flask is simpler but less feature-rich than FastAPI.

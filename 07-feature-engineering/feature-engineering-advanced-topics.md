@@ -732,6 +732,459 @@ interaction_pipeline = Pipeline([
 
 ---
 
+## sklearn Deep Dive: Estimators, Mixins, and Composite Transformers
+
+### Understanding sklearn Architecture
+
+sklearn uses a consistent interface for all estimators and transformers, built on base classes and mixins.
+
+### Base Classes
+
+**1. BaseEstimator:**
+Base class for all sklearn objects. Provides `get_params()` and `set_params()`.
+
+```python
+from sklearn.base import BaseEstimator
+
+class CustomEstimator(BaseEstimator):
+    def __init__(self, param1=1, param2=2):
+        self.param1 = param1
+        self.param2 = param2
+    
+    def get_params(self, deep=True):
+        """Get parameters for this estimator"""
+        return {'param1': self.param1, 'param2': self.param2}
+    
+    def set_params(self, **params):
+        """Set parameters for this estimator"""
+        for key, value in params.items():
+            setattr(self, key, value)
+        return self
+
+# Usage
+estimator = CustomEstimator(param1=10, param2=20)
+print(estimator.get_params())  # {'param1': 10, 'param2': 20}
+estimator.set_params(param1=100)
+print(estimator.param1)  # 100
+```
+
+**2. TransformerMixin:**
+Mixin for transformers. Provides `fit_transform()` method.
+
+```python
+from sklearn.base import BaseEstimator, TransformerMixin
+
+class CustomTransformer(BaseEstimator, TransformerMixin):
+    def __init__(self, multiplier=1.0):
+        self.multiplier = multiplier
+    
+    def fit(self, X, y=None):
+        """Fit transformer (learn parameters)"""
+        # Store any necessary statistics
+        self.mean_ = X.mean(axis=0)
+        return self
+    
+    def transform(self, X):
+        """Transform data"""
+        return (X - self.mean_) * self.multiplier
+    
+    # fit_transform() is automatically provided by TransformerMixin
+    # It calls fit() then transform()
+
+# Usage
+transformer = CustomTransformer(multiplier=2.0)
+X_transformed = transformer.fit_transform(X)
+```
+
+**3. ClassifierMixin:**
+Mixin for classifiers. Provides `score()` method for classification.
+
+```python
+from sklearn.base import BaseEstimator, ClassifierMixin
+
+class CustomClassifier(BaseEstimator, ClassifierMixin):
+    def __init__(self, threshold=0.5):
+        self.threshold = threshold
+    
+    def fit(self, X, y):
+        """Train classifier"""
+        # Store training data (simple example)
+        self.X_train_ = X
+        self.y_train_ = y
+        return self
+    
+    def predict(self, X):
+        """Make predictions"""
+        # Simple nearest neighbor example
+        from sklearn.metrics.pairwise import euclidean_distances
+        distances = euclidean_distances(X, self.X_train_)
+        nearest_indices = distances.argmin(axis=1)
+        return self.y_train_[nearest_indices]
+    
+    def predict_proba(self, X):
+        """Predict probabilities"""
+        predictions = self.predict(X)
+        # Convert to probabilities (simplified)
+        proba = np.zeros((len(X), len(np.unique(self.y_train_))))
+        for i, pred in enumerate(predictions):
+            proba[i, pred] = 1.0
+        return proba
+    
+    # score() is automatically provided by ClassifierMixin
+    # It uses accuracy_score by default
+
+# Usage
+classifier = CustomClassifier(threshold=0.5)
+classifier.fit(X_train, y_train)
+score = classifier.score(X_test, y_test)  # Accuracy
+```
+
+**4. RegressorMixin:**
+Mixin for regressors. Provides `score()` method for regression (R²).
+
+```python
+from sklearn.base import BaseEstimator, RegressorMixin
+
+class CustomRegressor(BaseEstimator, RegressorMixin):
+    def __init__(self, learning_rate=0.1):
+        self.learning_rate = learning_rate
+    
+    def fit(self, X, y):
+        """Train regressor"""
+        # Simple linear regression example
+        from sklearn.linear_model import LinearRegression
+        self.model_ = LinearRegression()
+        self.model_.fit(X, y)
+        return self
+    
+    def predict(self, X):
+        """Make predictions"""
+        return self.model_.predict(X)
+    
+    # score() is automatically provided by RegressorMixin
+    # It uses r2_score by default
+
+# Usage
+regressor = CustomRegressor(learning_rate=0.1)
+regressor.fit(X_train, y_train)
+score = regressor.score(X_test, y_test)  # R² score
+```
+
+### Complete Custom Estimator Example
+
+**Custom Classifier with Full sklearn Interface:**
+```python
+from sklearn.base import BaseEstimator, ClassifierMixin
+from sklearn.utils.validation import check_X_y, check_array
+from sklearn.utils.multiclass import unique_labels
+import numpy as np
+
+class SimpleKNNClassifier(BaseEstimator, ClassifierMixin):
+    """
+    Simple k-Nearest Neighbors Classifier
+    Implements full sklearn interface
+    """
+    
+    def __init__(self, n_neighbors=5, metric='euclidean'):
+        self.n_neighbors = n_neighbors
+        self.metric = metric
+    
+    def fit(self, X, y):
+        """
+        Fit the model
+        
+        Parameters
+        ----------
+        X : array-like of shape (n_samples, n_features)
+            Training data
+        y : array-like of shape (n_samples,)
+            Target values
+        
+        Returns
+        -------
+        self : object
+            Returns self
+        """
+        # Validate inputs
+        X, y = check_X_y(X, y)
+        
+        # Store training data
+        self.X_train_ = X
+        self.y_train_ = y
+        
+        # Store classes
+        self.classes_ = unique_labels(y)
+        self.n_classes_ = len(self.classes_)
+        
+        return self
+    
+    def predict(self, X):
+        """
+        Predict class labels
+        
+        Parameters
+        ----------
+        X : array-like of shape (n_samples, n_features)
+            Test data
+        
+        Returns
+        -------
+        y_pred : array of shape (n_samples,)
+            Predicted class labels
+        """
+        # Validate that fit has been called
+        check_is_fitted(self)
+        
+        # Validate input
+        X = check_array(X)
+        
+        # Compute distances
+        from sklearn.metrics.pairwise import euclidean_distances
+        distances = euclidean_distances(X, self.X_train_)
+        
+        # Find k nearest neighbors
+        nearest_indices = distances.argsort(axis=1)[:, :self.n_neighbors]
+        nearest_labels = self.y_train_[nearest_indices]
+        
+        # Majority vote
+        predictions = []
+        for labels in nearest_labels:
+            unique, counts = np.unique(labels, return_counts=True)
+            predictions.append(unique[np.argmax(counts)])
+        
+        return np.array(predictions)
+    
+    def predict_proba(self, X):
+        """
+        Predict class probabilities
+        
+        Parameters
+        ----------
+        X : array-like of shape (n_samples, n_features)
+            Test data
+        
+        Returns
+        -------
+        proba : array of shape (n_samples, n_classes_)
+            Class probabilities
+        """
+        check_is_fitted(self)
+        X = check_array(X)
+        
+        from sklearn.metrics.pairwise import euclidean_distances
+        distances = euclidean_distances(X, self.X_train_)
+        nearest_indices = distances.argsort(axis=1)[:, :self.n_neighbors]
+        nearest_labels = self.y_train_[nearest_indices]
+        
+        # Calculate probabilities
+        proba = np.zeros((len(X), self.n_classes_))
+        for i, labels in enumerate(nearest_labels):
+            unique, counts = np.unique(labels, return_counts=True)
+            for j, label in enumerate(self.classes_):
+                if label in unique:
+                    idx = np.where(unique == label)[0][0]
+                    proba[i, j] = counts[idx] / self.n_neighbors
+        
+        return proba
+
+# Usage
+from sklearn.datasets import make_classification
+from sklearn.model_selection import train_test_split
+
+X, y = make_classification(n_samples=1000, n_features=4, random_state=42)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+knn = SimpleKNNClassifier(n_neighbors=5)
+knn.fit(X_train, y_train)
+predictions = knn.predict(X_test)
+probabilities = knn.predict_proba(X_test)
+score = knn.score(X_test, y_test)
+
+print(f"Accuracy: {score:.3f}")
+```
+
+### Composite Transformers
+
+**1. FeatureUnion:**
+Combine multiple transformers in parallel (all applied, results concatenated).
+
+```python
+from sklearn.pipeline import FeatureUnion
+from sklearn.decomposition import PCA
+from sklearn.decomposition import TruncatedSVD
+from sklearn.preprocessing import PolynomialFeatures
+
+# Create FeatureUnion
+feature_union = FeatureUnion([
+    ('pca', PCA(n_components=5)),
+    ('svd', TruncatedSVD(n_components=3)),
+    ('poly', PolynomialFeatures(degree=2, include_bias=False))
+])
+
+# Fit and transform
+X_combined = feature_union.fit_transform(X)
+
+print(f"Original shape: {X.shape}")
+print(f"Combined shape: {X_combined.shape}")  # (n_samples, 5+3+n_poly_features)
+
+# Get feature names
+feature_names = feature_union.get_feature_names_out()
+print(f"Feature names: {feature_names}")
+```
+
+**2. Custom Composite Transformer:**
+```python
+from sklearn.base import BaseEstimator, TransformerMixin
+from sklearn.pipeline import FeatureUnion
+
+class CustomFeatureUnion(BaseEstimator, TransformerMixin):
+    """Custom composite transformer"""
+    
+    def __init__(self, transformers):
+        self.transformers = transformers
+    
+    def fit(self, X, y=None):
+        """Fit all transformers"""
+        for name, transformer in self.transformers:
+            transformer.fit(X, y)
+        return self
+    
+    def transform(self, X):
+        """Transform with all transformers and concatenate"""
+        results = []
+        for name, transformer in self.transformers:
+            transformed = transformer.transform(X)
+            results.append(transformed)
+        return np.hstack(results)
+    
+    def get_feature_names_out(self, input_features=None):
+        """Get feature names"""
+        feature_names = []
+        for name, transformer in self.transformers:
+            if hasattr(transformer, 'get_feature_names_out'):
+                names = transformer.get_feature_names_out(input_features)
+                feature_names.extend([f"{name}__{n}" for n in names])
+            else:
+                n_features = transformer.n_features_out_ if hasattr(transformer, 'n_features_out_') else X.shape[1]
+                feature_names.extend([f"{name}__feature_{i}" for i in range(n_features)])
+        return np.array(feature_names)
+
+# Usage
+custom_union = CustomFeatureUnion([
+    ('scaler', StandardScaler()),
+    ('pca', PCA(n_components=2))
+])
+X_transformed = custom_union.fit_transform(X)
+```
+
+**3. Advanced FeatureUnion with Conditional Logic:**
+```python
+class ConditionalFeatureUnion(BaseEstimator, TransformerMixin):
+    """FeatureUnion with conditional transformers"""
+    
+    def __init__(self, transformers, selector=None):
+        self.transformers = transformers
+        self.selector = selector  # Function to select which transformers to use
+    
+    def fit(self, X, y=None):
+        """Fit selected transformers"""
+        selected = self._select_transformers(X, y)
+        for name, transformer in selected:
+            transformer.fit(X, y)
+        return self
+    
+    def transform(self, X):
+        """Transform with selected transformers"""
+        selected = self._select_transformers(X, y=None)
+        results = []
+        for name, transformer in selected:
+            results.append(transformer.transform(X))
+        return np.hstack(results) if results else X
+    
+    def _select_transformers(self, X, y):
+        """Select transformers based on selector function"""
+        if self.selector is None:
+            return self.transformers
+        return [t for t in self.transformers if self.selector(t[0], X, y)]
+
+# Usage with selector
+def select_numeric_only(name, X, y):
+    """Only use numeric transformers"""
+    return name in ['scaler', 'pca']
+
+conditional_union = ConditionalFeatureUnion(
+    transformers=[
+        ('scaler', StandardScaler()),
+        ('pca', PCA(n_components=2)),
+        ('text_tfidf', TfidfVectorizer())  # Would be skipped
+    ],
+    selector=select_numeric_only
+)
+```
+
+### Best Practices for Custom Estimators
+
+**1. Input Validation:**
+```python
+from sklearn.utils.validation import check_X_y, check_array, check_is_fitted
+
+class ValidatedEstimator(BaseEstimator, ClassifierMixin):
+    def fit(self, X, y):
+        # Validate inputs
+        X, y = check_X_y(X, y)
+        # Store fitted state
+        self.is_fitted_ = True
+        return self
+    
+    def predict(self, X):
+        # Check if fitted
+        check_is_fitted(self, 'is_fitted_')
+        # Validate input
+        X = check_array(X)
+        # Make predictions
+        return np.zeros(len(X))
+```
+
+**2. Feature Names Support:**
+```python
+class NamedFeatureTransformer(BaseEstimator, TransformerMixin):
+    def fit(self, X, y=None):
+        if hasattr(X, 'columns'):
+            self.feature_names_in_ = X.columns.tolist()
+        return self
+    
+    def transform(self, X):
+        return X
+    
+    def get_feature_names_out(self, input_features=None):
+        if input_features is None:
+            input_features = self.feature_names_in_
+        return np.array([f"transformed_{name}" for name in input_features])
+```
+
+**3. Metadata Routing:**
+```python
+from sklearn.utils.metadata_routing import get_routing_for_object
+
+class MetadataAwareEstimator(BaseEstimator):
+    def fit(self, X, y, sample_weight=None):
+        # Handle sample_weight if provided
+        if sample_weight is not None:
+            # Use sample weights in training
+            pass
+        return self
+```
+
+### Key Takeaways
+
+1. **BaseEstimator**: Provides parameter management
+2. **Mixins**: Add functionality (TransformerMixin, ClassifierMixin, RegressorMixin)
+3. **FeatureUnion**: Combine transformers in parallel
+4. **Validation**: Always use sklearn validation utilities
+5. **Interface**: Follow sklearn conventions for compatibility
+
+---
+
 ## Feature Importance and Selection
 
 ### Multiple Selection Methods
