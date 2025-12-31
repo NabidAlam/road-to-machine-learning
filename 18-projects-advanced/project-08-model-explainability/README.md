@@ -277,14 +277,14 @@ importance_df.plot(x='Feature', kind='barh', figsize=(10, 8))
 ## Evaluation Criteria
 
 Your explainability project should:
-- ✅ Implement multiple explanation methods
-- ✅ Provide both global and local explanations
-- ✅ Create clear visualizations
-- ✅ Build interactive dashboard
-- ✅ Compare different methods
-- ✅ Document methodology
-- ✅ Address regulatory compliance
-- ✅ Be accessible to non-technical stakeholders
+- Implement multiple explanation methods
+- Provide both global and local explanations
+- Create clear visualizations
+- Build interactive dashboard
+- Compare different methods
+- Document methodology
+- Address regulatory compliance
+- Be accessible to non-technical stakeholders
 
 ## Key Deliverables
 
@@ -344,12 +344,12 @@ Your explainability project should:
 
 ## Common Pitfalls to Avoid
 
-- ❌ Using only one explanation method
-- ❌ Not validating explanations
-- ❌ Over-complicating visualizations
-- ❌ Ignoring regulatory requirements
-- ❌ Not considering stakeholder needs
-- ❌ Explaining without context
+- Using only one explanation method
+- Not validating explanations
+- Over-complicating visualizations
+- Ignoring regulatory requirements
+- Not considering stakeholder needs
+- Explaining without context
 
 ## Next Steps
 
