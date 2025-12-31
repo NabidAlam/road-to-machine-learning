@@ -98,6 +98,11 @@ By the end of this module, you should be able to:
 
 **[Complete Detailed Guide →](feature-engineering.md)**
 
+**Additional Resources:**
+- [Advanced Topics →](feature-engineering-advanced-topics.md) - Automated feature engineering, pipelines, advanced techniques
+- [Project Tutorial →](feature-engineering-project-tutorial.md) - Step-by-step feature engineering project
+- [Quick Reference →](feature-engineering-quick-reference.md) - Quick lookup guide for feature engineering
+
 ---
 
 **Previous Phase:** [06-ensemble-methods](../06-ensemble-methods/README.md)  
