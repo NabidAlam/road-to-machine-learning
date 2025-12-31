@@ -7,6 +7,8 @@ Master the essential Python libraries for data manipulation, analysis, and visua
 - NumPy for numerical computing
 - Pandas for data manipulation
 - Matplotlib and Seaborn for data visualization
+- Plotly and Dash for interactive visualizations
+- Streamlit for building dashboards and ML applications
 - Exploratory Data Analysis (EDA) techniques
 - Working with APIs, databases, and web scraping
 
@@ -49,11 +51,13 @@ Create beautiful and informative visualizations.
 **Topics:**
 - Matplotlib Basics (Line, Bar, Scatter, Histogram plots)
 - Seaborn Statistical Visualizations
+- Plotly & Dash for Interactive Visualizations
 - Customizing Plots
 - Subplots and Multiple Plots
+- Building Interactive Dashboards
 - Saving Figures
 
-**Time Estimate:** 1 week
+**Time Estimate:** 1-2 weeks
 
 **[Complete Guide →](03-visualization.md)**
 
@@ -132,12 +136,28 @@ Comprehensive guide to handling dates, times, and time-based data.
 
 **[Complete Guide →](08-working-with-dates-times.md)**
 
+### 09-streamlit-dashboards
+Build interactive web applications and dashboards for data science and machine learning.
+
+**Topics:**
+- Streamlit Basics and Components
+- Interactive Widgets (Sliders, Dropdowns, Buttons)
+- Data Visualization Integration
+- Building ML Model Interfaces
+- Creating Data Exploration Dashboards
+- Deployment and Best Practices
+
+**Time Estimate:** 1 week
+
+**[Complete Guide →](09-streamlit-dashboards.md)**
+
 ##  Learning Objectives
 
 By the end of this phase, you should be able to:
 - Perform numerical operations with NumPy
 - Load, clean, and manipulate datasets with Pandas
-- Create various types of visualizations
+- Create various types of visualizations (static and interactive)
+- Build interactive dashboards with Plotly, Dash, and Streamlit
 - Perform systematic exploratory data analysis (EDA)
 - Fetch data from APIs and databases
 - Scrape data from websites

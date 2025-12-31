@@ -23,6 +23,8 @@ Learn Python from scratch - variables, data types, control flow, functions, and 
 - File I/O
 - Error Handling
 - Object-Oriented Programming Basics
+- Time Complexity and Algorithm Efficiency (Big O notation)
+- Iterators and Generators (Memory-efficient processing)
 
 **Time Estimate:** 2-3 weeks
 
@@ -94,6 +96,8 @@ Set up your development environment for ML work.
 
 By the end of this phase, you should be able to:
 - Write basic Python programs
+- Understand time complexity and write efficient code
+- Use iterators and generators for memory-efficient processing
 - Understand and work with vectors and matrices
 - Perform statistical analysis and understand probability
 - Understand gradients and optimization (gradient descent)

@@ -10,7 +10,7 @@
 
 **A comprehensive, step-by-step guide to learning Machine Learning from absolute basics to advanced topics**
 
-*Perfect for beginners • 16 Learning Modules • 18 Real-World Projects • Production-Ready Skills*
+*Perfect for beginners • 21 Learning Modules • 18 Real-World Projects • Production-Ready Skills*
 
 [Get Started](#getting-started) • [Learning Path](#learning-path) • [Projects](#phase-8-projects) • [Contribute](#contributing)
 
@@ -54,7 +54,9 @@ This repository provides a structured learning path for machine learning, organi
 **Goal**: Build the mathematical and programming foundation needed for ML
 
 - **00-prerequisites**
-  - Python Basics (Variables, Data Types, Control Flow, Functions)
+  - Python Basics (Variables, Data Types, Control Flow, Functions, OOP)
+  - Time Complexity & Algorithm Efficiency (Big O notation)
+  - Iterators & Generators (Memory-efficient data processing)
   - Essential Mathematics (Linear Algebra, Statistics, Calculus basics)
   - Environment Setup (Python, Jupyter, Virtual Environments)
 
@@ -65,6 +67,9 @@ This repository provides a structured learning path for machine learning, organi
   - NumPy: Arrays, operations, broadcasting
   - Pandas: DataFrames, data manipulation, cleaning
   - Matplotlib & Seaborn: Data visualization
+  - Plotly & Dash: Interactive visualizations and web applications
+  - Streamlit: Building interactive dashboards and ML applications
+  - EDA, Data Sources, Regular Expressions, Advanced Data Wrangling
 
 ### Phase 2: Machine Learning Basics
 **Goal**: Understand core ML concepts and algorithms
@@ -79,6 +84,7 @@ This repository provides a structured learning path for machine learning, organi
   - Polynomial Regression
   - Regularization (Ridge, Lasso)
   - Evaluation Metrics (MSE, RMSE, MAE, R²)
+  - Statistical Regression Analysis (statsmodels: TSS, RSS, ESS, F-statistic, p-values, confidence intervals)
 
 - **04-supervised-learning-classification**
   - Logistic Regression
@@ -107,9 +113,10 @@ This repository provides a structured learning path for machine learning, organi
 - **07-feature-engineering**
   - Feature Selection
   - Feature Transformation
-  - Handling Categorical Variables
+  - Handling Categorical Variables (One-Hot, Label, Target, Frequency, WOE Encoding)
   - Feature Scaling and Normalization
   - Dimensionality Reduction (PCA)
+  - Advanced Discretization (Decision Tree-based binning, custom strategies)
 
 ### Phase 4: Unsupervised Learning
 **Goal**: Learn to work with unlabeled data
@@ -161,26 +168,32 @@ This repository provides a structured learning path for machine learning, organi
   - Feature Engineering for Time Series
   - Evaluation and Validation
 
+### Phase 6.5: Essential Data Science Skills
+**Goal**: Master critical skills for real-world ML applications
+
 - **19-sql-database-fundamentals**
   - Database Fundamentals and SQL Basics
   - SQL DDL and DML Commands
   - SQL Joins, Subqueries, and Window Functions
-  - Advanced SQL Topics
+  - Advanced SQL Topics (CTEs, Window Functions, Stored Procedures)
+  - Data Cleaning with SQL
   - SQL with Python Integration
 
 - **20-handling-imbalanced-data**
   - Understanding Imbalanced Data Problems
-  - Resampling Techniques (SMOTE, Undersampling, Combined)
-  - Algorithm-Level Solutions (Class Weights, Threshold Tuning)
-  - Appropriate Evaluation Metrics
-  - Best Practices
+  - Resampling Techniques (SMOTE, ADASYN, Undersampling, Combined)
+  - Algorithm-Level Solutions (Class Weights, Threshold Tuning, Cost-Sensitive Learning)
+  - Appropriate Evaluation Metrics (PR-AUC, F1-Score)
+  - Complete Workflow Examples
+  - Best Practices and Common Pitfalls
 
 - **21-model-explainability**
-  - Feature Importance Methods
-  - SHAP (SHapley Additive exPlanations)
+  - Feature Importance Methods (Tree-based, Permutation)
+  - SHAP (SHapley Additive exPlanations) - Tree, Kernel, and Advanced
   - LIME (Local Interpretable Model-agnostic Explanations)
-  - Partial Dependence Plots
+  - Partial Dependence Plots (PDP) and ICE Plots
   - Model Interpretation Best Practices
+  - Regulatory Compliance and Ethical AI
 
 ### Phase 7: Production & Deployment
 **Goal**: Learn to deploy ML models in production
@@ -299,115 +312,172 @@ jupyter notebook
 road-to-ml/
 
  00-prerequisites/
-    01-python-basics/
-    02-mathematics-basics/
-    03-environment-setup/
+    01-python-basics.md (includes time complexity, iterators/generators)
+    02-linear-algebra.md
+    03-statistics-probability.md
+    04-calculus.md
+    05-environment-setup.md
+    README.md
 
  01-python-for-data-science/
-    01-numpy/
-    02-pandas/
-    03-visualization/
+    01-numpy.md
+    02-pandas.md
+    03-visualization.md (includes Plotly & Dash)
+    04-exploratory-data-analysis.md
+    05-data-sources-and-integration.md
+    06-regular-expressions-text-processing.md
+    07-advanced-data-wrangling.md
+    08-working-with-dates-times.md
+    09-streamlit-dashboards.md (NEW)
+    README.md
 
  02-introduction-to-ml/
+    introduction-to-ml.md
+    ml-terminology.md
+    problem-identification-algorithm-selection.md
+    first-ml-project-tutorial.md
+    common-pitfalls-best-practices.md
     README.md
 
  03-supervised-learning-regression/
-    notebooks/
-    exercises/
+    regression.md
+    regression-advanced-topics.md (includes statsmodels)
+    regression-project-tutorial.md
+    regression-quick-reference.md
     README.md
 
  04-supervised-learning-classification/
-    notebooks/
-    exercises/
+    classification.md
+    classification-advanced-topics.md
+    classification-project-tutorial.md
+    classification-quick-reference.md
     README.md
 
  05-model-evaluation-optimization/
-    notebooks/
-    exercises/
+    evaluation-optimization.md
+    evaluation-optimization-advanced-topics.md
+    evaluation-optimization-project-tutorial.md
+    evaluation-optimization-quick-reference.md
     README.md
 
  06-ensemble-methods/
-    notebooks/
-    exercises/
+    ensemble-methods.md
+    ensemble-methods-advanced-topics.md
+    ensemble-methods-project-tutorial.md
+    ensemble-methods-quick-reference.md
     README.md
 
  07-feature-engineering/
-    notebooks/
-    exercises/
+    feature-engineering.md (includes WOE encoding, advanced discretization)
+    feature-engineering-advanced-topics.md
+    feature-engineering-project-tutorial.md
+    feature-engineering-quick-reference.md
     README.md
 
  08-unsupervised-learning/
-    notebooks/
-    exercises/
+    unsupervised-learning.md
+    unsupervised-learning-advanced-topics.md
+    unsupervised-learning-project-tutorial.md
+    unsupervised-learning-quick-reference.md
     README.md
 
  09-neural-networks-basics/
-    notebooks/
-    exercises/
+    neural-networks.md
+    neural-networks-advanced-topics.md
+    neural-networks-project-tutorial.md
+    neural-networks-quick-reference.md
     README.md
 
  10-deep-learning-frameworks/
-    notebooks/
-    exercises/
+    deep-learning-frameworks.md
+    deep-learning-frameworks-advanced-topics.md
+    deep-learning-frameworks-project-tutorial.md
+    deep-learning-frameworks-quick-reference.md
     README.md
 
  11-computer-vision/
-    notebooks/
-    exercises/
+    computer-vision.md
+    computer-vision-advanced-topics.md
+    computer-vision-project-tutorial.md
+    computer-vision-quick-reference.md
     README.md
 
  12-natural-language-processing/
-    notebooks/
-    exercises/
+    nlp.md
+    nlp-advanced-topics.md
+    nlp-project-tutorial.md
+    nlp-quick-reference.md
     README.md
 
  13-model-deployment/
-    notebooks/
-    exercises/
+    deployment.md
+    deployment-advanced-topics.md
+    deployment-project-tutorial.md
+    deployment-quick-reference.md
     README.md
 
  14-mlops-basics/
-    notebooks/
-    exercises/
+    mlops.md
+    mlops-advanced-topics.md
+    mlops-project-tutorial.md
+    mlops-quick-reference.md
     README.md
 
  15-time-series-analysis/
     time-series-analysis.md
+    time-series-analysis-advanced-topics.md
+    time-series-project-tutorial.md
+    time-series-quick-reference.md
     README.md
 
  16-projects-beginner/
-    project-01-house-price-prediction/  (Available)
-    project-02-iris-classification/  (Available)
-    project-03-titanic-survival/  (Available)
-    project-04-spam-detection/  (Available)
-    project-05-wine-quality/  (Available)
+    projects-beginner.md
+    projects-beginner-advanced-topics.md
+    projects-beginner-project-tutorial.md
+    projects-beginner-quick-reference.md
+    [5 project directories with code]
+    README.md
 
  17-projects-intermediate/
-    project-01-mnist-digit-recognition/  (Available - README)
-    project-02-customer-churn/  (Available - README)
-    project-03-movie-recommendation/  (Available - README)
-    project-04-fraud-detection/  (Available - README)
-    project-05-customer-segmentation/  (Available - README)
-    project-06-time-series-forecasting/  (Available - README)
+    [6 project directories with READMEs]
+    README.md
 
  18-projects-advanced/
-    project-01-cifar10-classification/  (Available - README)
-    project-02-sentiment-analysis/  (Available - README)
-    project-03-time-series-forecasting/  (Available - README)
-    project-04-chatbot/  (Available - README)
-    project-05-object-detection/  (Available - README)
-    project-06-end-to-end-pipeline/  (Available - README)
-    project-07-generative-model/  (Available - README)
+    [7 project directories with READMEs]
+    README.md
+
+ 19-sql-database-fundamentals/ (NEW)
+    sql-database.md
+    sql-database-advanced-topics.md
+    sql-database-project-tutorial.md
+    sql-database-quick-reference.md
+    README.md
+
+ 20-handling-imbalanced-data/ (NEW)
+    imbalanced-data.md
+    imbalanced-data-advanced-topics.md
+    imbalanced-data-project-tutorial.md
+    imbalanced-data-quick-reference.md
+    README.md
+
+ 21-model-explainability/ (NEW)
+    model-explainability.md
+    model-explainability-advanced-topics.md
+    model-explainability-project-tutorial.md
+    model-explainability-quick-reference.md
+    README.md
 
  resources/
-    books.md
-    courses.md
-    datasets.md
-    tools.md
+    [15 comprehensive guides including cheatsheets, git guide, etc.]
 
  requirements.txt
  LICENSE
  README.md
+ CONTRIBUTING.md
+ DISCLAIMER.md
+ GETTING_STARTED.md
+ LEARNING_ROADMAP.md
+ QUICK_START.md
 ```
 
 ## Resources
@@ -517,7 +587,7 @@ By completing this roadmap, you'll be able to:
 
 ## Statistics
 
-- **16 Learning Modules** covering all ML topics
+- **21 Learning Modules** covering all ML topics (including SQL, Imbalanced Data, Model Explainability)
 - **18 Projects** from beginner to advanced
 - **90+ Resources** including books, courses, datasets, and tools
 - **5-6 Months** estimated learning time
