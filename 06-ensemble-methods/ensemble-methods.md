@@ -195,14 +195,34 @@ Boosting trains models sequentially, where each new model focuses on correcting 
 
 Adaptive boosting - focuses on misclassified samples by increasing their weights.
 
+#### How AdaBoost Works
+
+**Components:**
+1. **Weak Learners**: Simple models (typically decision stumps - depth 1 trees)
+2. **Weights**: Each instance has a weight that increases if misclassified
+3. **Model Weights**: Each weak learner has a weight based on its accuracy
+4. **Final Model**: Weighted combination of all weak learners
+
+**Algorithm Steps:**
+1. Initialize equal weights for all instances
+2. For each iteration:
+   - Train weak learner on weighted data
+   - Calculate error rate
+   - Compute learner weight (α)
+   - Update instance weights (increase for misclassified)
+   - Normalize weights
+3. Final prediction: Weighted vote of all learners
+
 ```python
 from sklearn.ensemble import AdaBoostClassifier
+from sklearn.tree import DecisionTreeClassifier
 
+# AdaBoost with detailed configuration
 adaboost = AdaBoostClassifier(
-    base_estimator=None,      # Default: DecisionTreeClassifier(max_depth=1)
-    n_estimators=50,
-    learning_rate=1.0,        # Shrinkage factor
-    algorithm='SAMME.R',      # 'SAMME' or 'SAMME.R'
+    base_estimator=DecisionTreeClassifier(max_depth=1),  # Weak learner (stump)
+    n_estimators=50,        # Number of weak learners
+    learning_rate=1.0,      # Shrinkage factor (weight multiplier)
+    algorithm='SAMME.R',    # 'SAMME' or 'SAMME.R' (more efficient)
     random_state=42
 )
 adaboost.fit(X_train, y_train)
@@ -216,7 +236,114 @@ for name, importance in zip(feature_names, adaboost.feature_importances_):
 
 # Estimator weights (how much each model contributes)
 print(f"\nEstimator Weights (first 5): {adaboost.estimator_weights_[:5]}")
+
+# Error rate at each stage
+print("\nError Rate by Stage:")
+for i, estimator in enumerate(adaboost.estimators_[:10]):
+    stage_pred = estimator.predict(X_test)
+    error = 1 - accuracy_score(y_test, stage_pred)
+    weight = adaboost.estimator_weights_[i]
+    print(f"Stage {i+1}: Error={error:.3f}, Weight={weight:.3f}")
 ```
+
+#### AdaBoost Mathematics
+
+**Weight Calculation:**
+```
+α_t = (1/2) × ln((1 - ε_t) / ε_t)
+
+Where:
+- α_t: Weight of t-th weak learner
+- ε_t: Error rate of t-th weak learner
+```
+
+**Instance Weight Update:**
+```
+w_i^(t+1) = w_i^(t) × exp(-α_t × y_i × h_t(x_i)) / Z_t
+
+Where:
+- w_i: Weight of instance i
+- y_i: True label
+- h_t(x_i): Prediction of t-th learner
+- Z_t: Normalization factor
+```
+
+**Final Prediction:**
+```
+H(x) = sign(Σ α_t × h_t(x))
+
+Where:
+- H(x): Final prediction
+- h_t(x): Prediction of t-th learner
+- α_t: Weight of t-th learner
+```
+
+#### AdaBoost Components in Detail
+
+**1. Weak Learners:**
+```python
+# Decision stumps (depth 1)
+stump = DecisionTreeClassifier(max_depth=1)
+
+# Or use other weak learners
+from sklearn.naive_bayes import GaussianNB
+adaboost_nb = AdaBoostClassifier(
+    base_estimator=GaussianNB(),
+    n_estimators=50,
+    random_state=42
+)
+```
+
+**2. Learning Rate:**
+```python
+# Lower learning rate = more conservative updates
+learning_rates = [0.5, 1.0, 1.5]
+for lr in learning_rates:
+    model = AdaBoostClassifier(
+        learning_rate=lr,
+        n_estimators=50,
+        random_state=42
+    )
+    model.fit(X_train, y_train)
+    score = model.score(X_test, y_test)
+    print(f"Learning Rate {lr}: {score:.3f}")
+```
+
+**3. Number of Estimators:**
+```python
+# More estimators = better but slower
+n_estimators_list = [10, 25, 50, 100, 200]
+for n in n_estimators_list:
+    model = AdaBoostClassifier(n_estimators=n, random_state=42)
+    model.fit(X_train, y_train)
+    score = model.score(X_test, y_test)
+    print(f"n_estimators {n}: {score:.3f}")
+```
+
+#### AdaBoost for Regression
+
+```python
+from sklearn.ensemble import AdaBoostRegressor
+
+adaboost_reg = AdaBoostRegressor(
+    base_estimator=None,  # Default: DecisionTreeRegressor(max_depth=3)
+    n_estimators=50,
+    learning_rate=1.0,
+    loss='linear',  # 'linear', 'square', 'exponential'
+    random_state=42
+)
+
+adaboost_reg.fit(X_train, y_train_regression)
+y_pred = adaboost_reg.predict(X_test)
+```
+
+#### Key Takeaways
+
+1. **Weak Learners**: Simple models (decision stumps)
+2. **Adaptive**: Focuses on hard-to-classify instances
+3. **Weighted Combination**: Final model is weighted sum
+4. **Sequential**: Each learner depends on previous
+5. **Reduces Bias**: Unlike bagging which reduces variance
 
 ### Gradient Boosting
 
@@ -306,31 +433,346 @@ except ImportError:
 
 ### CatBoost
 
-Handles categorical features automatically.
+Handles categorical features automatically with advanced techniques.
+
+#### Key Features
+
+1. **Automatic Categorical Handling**: No need to encode categorical features
+2. **Ordered Boosting**: Reduces overfitting
+3. **GPU Support**: Fast training on GPUs
+4. **Built-in Cross-Validation**: Easy model validation
+
+#### Basic Usage
 
 ```python
 try:
     import catboost as cb
     
+    # CatBoost with categorical features
     cat_model = cb.CatBoostClassifier(
-        iterations=100,
-        learning_rate=0.1,
-        depth=3,
-        random_state=42,
+        iterations=100,           # Number of trees
+        learning_rate=0.1,        # Shrinkage
+        depth=6,                  # Tree depth
+        loss_function='Logloss',  # Loss function
+        eval_metric='Accuracy',   # Evaluation metric
+        random_seed=42,
+        verbose=False,            # Suppress output
+        early_stopping_rounds=10  # Early stopping
+    )
+    
+    # Fit with categorical features (specify indices)
+    cat_model.fit(
+        X_train, y_train,
+        cat_features=[0, 1, 2],  # Categorical feature indices
+        eval_set=(X_val, y_val),
         verbose=False
     )
-    cat_model.fit(X_train, y_train)
+    
     y_pred = cat_model.predict(X_test)
     print(f"CatBoost Accuracy: {accuracy_score(y_test, y_pred):.3f}")
+    
 except ImportError:
     print("Install CatBoost: pip install catboost")
 ```
+
+#### CatBoost Technical Aspects
+
+**1. Ordered Boosting:**
+- Uses permutation-based scheme
+- Reduces overfitting
+- More robust than standard boosting
+
+**2. Categorical Feature Handling:**
+- Uses target statistics
+- Handles high-cardinality categories
+- No need for one-hot encoding
+
+**3. Symmetric Trees:**
+- Balanced tree structure
+- Faster prediction
+- Better regularization
+
+#### Advanced CatBoost Parameters
+
+```python
+cat_model = cb.CatBoostClassifier(
+    # Tree structure
+    iterations=100,
+    depth=6,
+    learning_rate=0.1,
+    
+    # Regularization
+    l2_leaf_reg=3,              # L2 regularization
+    border_count=32,            # Number of splits for numerical features
+    bagging_temperature=1,      # Bayesian bagging
+    
+    # Categorical features
+    max_cat_to_onehot=4,        # One-hot encode if categories <= this
+    
+    # Sampling
+    subsample=0.8,              # Row sampling
+    colsample_bylevel=0.8,      # Column sampling
+    
+    # Early stopping
+    early_stopping_rounds=10,
+    
+    # Other
+    random_seed=42,
+    verbose=False
+)
+```
+
+#### CatBoost for Regression
+
+```python
+cat_reg = cb.CatBoostRegressor(
+    iterations=100,
+    learning_rate=0.1,
+    depth=6,
+    loss_function='RMSE',       # Regression loss
+    eval_metric='RMSE',
+    random_seed=42,
+    verbose=False
+)
+
+cat_reg.fit(X_train, y_train_regression, cat_features=[0, 1, 2])
+y_pred = cat_reg.predict(X_test)
+```
+
+#### CatBoost vs Other Boosting
+
+| Feature | CatBoost | XGBoost | LightGBM |
+|---------|----------|---------|----------|
+| **Categorical** | Native | Needs encoding | Native |
+| **Speed** | Medium | Slow | Fast |
+| **Overfitting** | Low (ordered boosting) | Medium | Medium |
+| **Ease of Use** | Very Easy | Medium | Easy |
+
+#### Key Takeaways
+
+1. **Best for Categorical**: Excellent with categorical features
+2. **Easy to Use**: Minimal preprocessing needed
+3. **Robust**: Ordered boosting reduces overfitting
+4. **Fast**: Good performance-speed balance
 
 ---
 
 ## Stacking
 
 Train a meta-learner on predictions from base models. More sophisticated than voting.
+
+### How Stacking Works
+
+**Steps:**
+1. **Base Models**: Train diverse models (Level 0)
+2. **Meta-Model**: Train on base model predictions (Level 1)
+3. **Final Prediction**: Meta-model predicts from base predictions
+
+**Key Principle**: Learn how to best combine base model predictions.
+
+### Basic Stacking
+
+```python
+from sklearn.ensemble import StackingClassifier
+from sklearn.linear_model import LogisticRegression
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.svm import SVC
+from sklearn.neighbors import KNeighborsClassifier
+
+# Define base models
+base_models = [
+    ('dt', DecisionTreeClassifier(max_depth=5, random_state=42)),
+    ('svm', SVC(probability=True, random_state=42)),
+    ('knn', KNeighborsClassifier(n_neighbors=5))
+]
+
+# Define meta-model
+meta_model = LogisticRegression(random_state=42)
+
+# Create stacking classifier
+stacking = StackingClassifier(
+    estimators=base_models,
+    final_estimator=meta_model,
+    cv=5,  # Cross-validation for base predictions
+    stack_method='predict_proba',  # Use probabilities
+    n_jobs=-1
+)
+
+stacking.fit(X_train, y_train)
+y_pred = stacking.predict(X_test)
+print(f"Stacking Accuracy: {accuracy_score(y_test, y_pred):.3f}")
+```
+
+### Detailed Stacking Process
+
+**Step 1: Train Base Models**
+```python
+from sklearn.model_selection import cross_val_predict
+
+# Train base models and get out-of-fold predictions
+base_predictions = {}
+
+for name, model in base_models:
+    # Get cross-validated predictions (out-of-fold)
+    pred = cross_val_predict(model, X_train, y_train, cv=5, method='predict_proba')
+    base_predictions[name] = pred
+    print(f"{name} trained")
+
+# Combine predictions
+X_meta = np.hstack([base_predictions[name] for name, _ in base_models])
+print(f"Meta features shape: {X_meta.shape}")
+```
+
+**Step 2: Train Meta-Model**
+```python
+# Train meta-model on base predictions
+meta_model.fit(X_meta, y_train)
+
+# Evaluate
+meta_score = meta_model.score(X_meta, y_train)
+print(f"Meta-model training score: {meta_score:.3f}")
+```
+
+**Step 3: Make Predictions**
+```python
+# Get base model predictions on test set
+test_base_predictions = {}
+for name, model in base_models:
+    model.fit(X_train, y_train)
+    pred = model.predict_proba(X_test)
+    test_base_predictions[name] = pred
+
+# Combine test predictions
+X_test_meta = np.hstack([test_base_predictions[name] for name, _ in base_models])
+
+# Meta-model prediction
+final_predictions = meta_model.predict(X_test_meta)
+```
+
+### Stacking Variations
+
+**1. Multi-Level Stacking:**
+```python
+# Level 1: Base models
+level1_models = [
+    ('rf', RandomForestClassifier(n_estimators=100, random_state=42)),
+    ('gb', GradientBoostingClassifier(n_estimators=100, random_state=42)),
+    ('xgb', xgb.XGBClassifier(n_estimators=100, random_state=42))
+]
+
+# Level 2: Meta-model on Level 1 predictions
+level2_model = LogisticRegression(random_state=42)
+
+# Create multi-level stacking
+stacking = StackingClassifier(
+    estimators=level1_models,
+    final_estimator=level2_model,
+    cv=5
+)
+```
+
+**2. Blending (Hold-out Validation):**
+```python
+# Split data for blending
+X_train_blend, X_val_blend, y_train_blend, y_val_blend = train_test_split(
+    X_train, y_train, test_size=0.2, random_state=42
+)
+
+# Train base models on training set
+base_predictions_blend = {}
+for name, model in base_models:
+    model.fit(X_train_blend, y_train_blend)
+    pred = model.predict_proba(X_val_blend)
+    base_predictions_blend[name] = pred
+
+# Train meta-model on validation predictions
+X_meta_blend = np.hstack([base_predictions_blend[name] for name, _ in base_models])
+meta_model.fit(X_meta_blend, y_val_blend)
+```
+
+**3. Different Meta-Models:**
+```python
+# Try different meta-models
+meta_models = {
+    'Logistic Regression': LogisticRegression(random_state=42),
+    'Random Forest': RandomForestClassifier(n_estimators=50, random_state=42),
+    'XGBoost': xgb.XGBClassifier(n_estimators=50, random_state=42)
+}
+
+for name, meta in meta_models.items():
+    stacking = StackingClassifier(
+        estimators=base_models,
+        final_estimator=meta,
+        cv=5
+    )
+    stacking.fit(X_train, y_train)
+    score = stacking.score(X_test, y_test)
+    print(f"{name} as meta-model: {score:.3f}")
+```
+
+### Stacking Best Practices
+
+**1. Diverse Base Models:**
+```python
+# Use different algorithms
+diverse_models = [
+    ('tree', DecisionTreeClassifier(random_state=42)),
+    ('linear', LogisticRegression(random_state=42)),
+    ('svm', SVC(probability=True, random_state=42)),
+    ('knn', KNeighborsClassifier()),
+    ('nb', GaussianNB())
+]
+```
+
+**2. Use Probabilities:**
+```python
+# Better than hard predictions
+stacking = StackingClassifier(
+    estimators=base_models,
+    final_estimator=meta_model,
+    stack_method='predict_proba',  # Use probabilities
+    cv=5
+)
+```
+
+**3. Cross-Validation:**
+```python
+# Always use CV to prevent overfitting
+stacking = StackingClassifier(
+    estimators=base_models,
+    final_estimator=meta_model,
+    cv=5,  # Use cross-validation
+    passthrough=False  # Don't include original features
+)
+```
+
+**4. Feature Engineering for Meta-Model:**
+```python
+# Can include original features
+stacking = StackingClassifier(
+    estimators=base_models,
+    final_estimator=meta_model,
+    cv=5,
+    passthrough=True  # Include original features in meta-model
+)
+```
+
+### Stacking vs Blending
+
+| Aspect | Stacking | Blending |
+|--------|----------|----------|
+| **Validation** | Cross-validation | Hold-out set |
+| **Data Usage** | Uses all data | Splits data |
+| **Complexity** | More complex | Simpler |
+| **Overfitting Risk** | Lower (CV) | Higher (single split) |
+
+### Key Takeaways
+
+1. **Base Models**: Should be diverse and complementary
+2. **Meta-Model**: Learns optimal combination
+3. **Cross-Validation**: Essential to prevent overfitting
+4. **Probabilities**: Better than hard predictions
+5. **Diversity**: More important than individual performance
 
 **How it works:**
 1. Train multiple diverse base models

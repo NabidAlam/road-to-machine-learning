@@ -315,6 +315,324 @@ except ImportError:
 
 ---
 
+## Comprehensive sklearn Pipeline and ColumnTransformer Guide
+
+### Introduction to Pipelines
+
+Pipelines automate the ML workflow and prevent data leakage by ensuring transformations are applied consistently.
+
+**Benefits:**
+- Prevents data leakage
+- Ensures consistent transformations
+- Simplifies code
+- Makes models reproducible
+- Easy to deploy
+
+### Basic Pipeline
+
+```python
+from sklearn.pipeline import Pipeline
+from sklearn.preprocessing import StandardScaler
+from sklearn.linear_model import LogisticRegression
+
+# Simple pipeline
+pipeline = Pipeline([
+    ('scaler', StandardScaler()),
+    ('classifier', LogisticRegression(random_state=42))
+])
+
+# Fit and predict
+pipeline.fit(X_train, y_train)
+predictions = pipeline.predict(X_test)
+score = pipeline.score(X_test, y_test)
+```
+
+### ColumnTransformer Basics
+
+ColumnTransformer applies different transformations to different columns.
+
+```python
+from sklearn.compose import ColumnTransformer
+from sklearn.preprocessing import StandardScaler, OneHotEncoder
+
+# Define column types
+numeric_cols = ['age', 'income', 'score']
+categorical_cols = ['city', 'category']
+
+# Create ColumnTransformer
+preprocessor = ColumnTransformer(
+    transformers=[
+        ('num', StandardScaler(), numeric_cols),
+        ('cat', OneHotEncoder(drop='first', sparse=False), categorical_cols)
+    ],
+    remainder='drop'  # What to do with remaining columns
+)
+
+# Use in pipeline
+pipeline = Pipeline([
+    ('preprocessor', preprocessor),
+    ('classifier', LogisticRegression(random_state=42))
+])
+```
+
+### Advanced ColumnTransformer
+
+**Multiple Transformations per Column Type:**
+```python
+from sklearn.compose import ColumnTransformer
+from sklearn.pipeline import Pipeline
+from sklearn.preprocessing import StandardScaler, RobustScaler, OneHotEncoder
+from sklearn.impute import SimpleImputer
+
+# Complex preprocessing
+preprocessor = ColumnTransformer(
+    transformers=[
+        # Numeric: impute then scale
+        ('numeric', Pipeline([
+            ('imputer', SimpleImputer(strategy='median')),
+            ('scaler', StandardScaler())
+        ]), ['age', 'income']),
+        
+        # Skewed numeric: impute, transform, scale
+        ('skewed', Pipeline([
+            ('imputer', SimpleImputer(strategy='median')),
+            ('transformer', PowerTransformer(method='yeo-johnson')),
+            ('scaler', RobustScaler())
+        ]), ['price', 'revenue']),
+        
+        # Categorical: impute then encode
+        ('categorical', Pipeline([
+            ('imputer', SimpleImputer(strategy='most_frequent')),
+            ('encoder', OneHotEncoder(drop='first', sparse=False, handle_unknown='ignore'))
+        ]), ['city', 'category']),
+        
+        # Binary: just encode
+        ('binary', OneHotEncoder(drop='if_binary', sparse=False), ['is_active'])
+    ],
+    remainder='passthrough'  # Keep other columns
+)
+```
+
+### Custom Transformers
+
+**Creating Custom Transformers:**
+```python
+from sklearn.base import BaseEstimator, TransformerMixin
+import numpy as np
+import pandas as pd
+
+class LogTransformer(BaseEstimator, TransformerMixin):
+    """Log transformation with error handling"""
+    
+    def fit(self, X, y=None):
+        return self
+    
+    def transform(self, X):
+        return np.log1p(np.maximum(X, 0))  # Handle negative values
+    
+    def fit_transform(self, X, y=None):
+        return self.fit(X, y).transform(X)
+
+class FeatureInteraction(BaseEstimator, TransformerMixin):
+    """Create interaction features"""
+    
+    def __init__(self, interactions):
+        self.interactions = interactions  # List of (i, j) tuples
+    
+    def fit(self, X, y=None):
+        return self
+    
+    def transform(self, X):
+        X_new = X.copy()
+        for i, j in self.interactions:
+            X_new = np.hstack([X_new, (X[:, i] * X[:, j]).reshape(-1, 1)])
+        return X_new
+
+class TargetEncoder(BaseEstimator, TransformerMixin):
+    """Target encoding with cross-validation"""
+    
+    def __init__(self, cv=5):
+        self.cv = cv
+        self.encodings = {}
+    
+    def fit(self, X, y):
+        from sklearn.model_selection import KFold
+        kf = KFold(n_splits=self.cv, shuffle=True, random_state=42)
+        
+        # Calculate encodings for each fold
+        for train_idx, val_idx in kf.split(X):
+            X_train_fold, y_train_fold = X[train_idx], y[train_idx]
+            for category in np.unique(X_train_fold):
+                mask = X_train_fold == category
+                if category not in self.encodings:
+                    self.encodings[category] = []
+                self.encodings[category].append(y_train_fold[mask].mean())
+        
+        # Average across folds
+        for cat in self.encodings:
+            self.encodings[cat] = np.mean(self.encodings[cat])
+        
+        return self
+    
+    def transform(self, X):
+        return np.array([self.encodings.get(cat, 0) for cat in X])
+```
+
+### Complex Pipeline Example
+
+```python
+from sklearn.pipeline import Pipeline, FeatureUnion
+from sklearn.compose import ColumnTransformer
+from sklearn.preprocessing import StandardScaler, PolynomialFeatures
+from sklearn.feature_selection import SelectKBest, f_classif
+from sklearn.impute import SimpleImputer
+
+# Step 1: Preprocessing
+preprocessing = ColumnTransformer(
+    transformers=[
+        ('numeric', Pipeline([
+            ('imputer', SimpleImputer(strategy='median')),
+            ('scaler', StandardScaler())
+        ]), numeric_features),
+        
+        ('categorical', Pipeline([
+            ('imputer', SimpleImputer(strategy='most_frequent')),
+            ('encoder', OneHotEncoder(drop='first', sparse=False))
+        ]), categorical_features)
+    ]
+)
+
+# Step 2: Feature Engineering
+feature_engineering = FeatureUnion([
+    ('polynomial', PolynomialFeatures(degree=2, include_bias=False)),
+    ('interactions', FeatureInteraction([(0, 1), (0, 2)]))
+])
+
+# Step 3: Feature Selection
+feature_selection = SelectKBest(score_func=f_classif, k=20)
+
+# Step 4: Model
+model = RandomForestClassifier(n_estimators=100, random_state=42)
+
+# Complete pipeline
+full_pipeline = Pipeline([
+    ('preprocessing', preprocessing),
+    ('feature_engineering', feature_engineering),
+    ('feature_selection', feature_selection),
+    ('model', model)
+])
+
+# Fit and evaluate
+full_pipeline.fit(X_train, y_train)
+score = full_pipeline.score(X_test, y_test)
+```
+
+### Pipeline Best Practices
+
+**1. Always Use Pipelines:**
+```python
+# Bad: Manual transformations
+scaler = StandardScaler()
+X_train_scaled = scaler.fit_transform(X_train)
+X_test_scaled = scaler.transform(X_test)  # Easy to forget!
+model.fit(X_train_scaled, y_train)
+
+# Good: Pipeline
+pipeline = Pipeline([('scaler', StandardScaler()), ('model', model)])
+pipeline.fit(X_train, y_train)  # Automatically handles train/test
+```
+
+**2. Get Feature Names:**
+```python
+# After fitting, get feature names
+feature_names = pipeline.named_steps['preprocessor'].get_feature_names_out()
+print(f"Feature names: {feature_names}")
+```
+
+**3. Access Intermediate Steps:**
+```python
+# Access fitted transformers
+scaler = pipeline.named_steps['scaler']
+print(f"Mean: {scaler.mean_}")
+print(f"Scale: {scaler.scale_}")
+```
+
+**4. Grid Search with Pipelines:**
+```python
+from sklearn.model_selection import GridSearchCV
+
+# Parameter grid
+param_grid = {
+    'preprocessor__num__scaler': [StandardScaler(), RobustScaler()],
+    'model__n_estimators': [50, 100, 200],
+    'model__max_depth': [5, 10, 15]
+}
+
+# Grid search
+grid_search = GridSearchCV(
+    pipeline,
+    param_grid,
+    cv=5,
+    scoring='accuracy',
+    n_jobs=-1
+)
+
+grid_search.fit(X_train, y_train)
+print(f"Best score: {grid_search.best_score_:.3f}")
+print(f"Best params: {grid_search.best_params_}")
+```
+
+### Common Pipeline Patterns
+
+**Pattern 1: Simple Preprocessing + Model**
+```python
+pipeline = Pipeline([
+    ('scaler', StandardScaler()),
+    ('model', LogisticRegression())
+])
+```
+
+**Pattern 2: Mixed Data Types**
+```python
+preprocessor = ColumnTransformer(
+    transformers=[
+        ('num', StandardScaler(), numeric_cols),
+        ('cat', OneHotEncoder(), categorical_cols)
+    ]
+)
+pipeline = Pipeline([
+    ('preprocessor', preprocessor),
+    ('model', RandomForestClassifier())
+])
+```
+
+**Pattern 3: Feature Engineering + Selection + Model**
+```python
+pipeline = Pipeline([
+    ('preprocessor', preprocessor),
+    ('poly', PolynomialFeatures(degree=2)),
+    ('selector', SelectKBest(k=10)),
+    ('model', LogisticRegression())
+])
+```
+
+### Debugging Pipelines
+
+```python
+# Check pipeline steps
+print("Pipeline steps:", pipeline.named_steps.keys())
+
+# Check intermediate outputs
+X_transformed = pipeline.named_steps['preprocessor'].transform(X_train)
+print(f"Transformed shape: {X_transformed.shape}")
+
+# Visualize pipeline
+from sklearn.utils import estimator_html_repr
+print(estimator_html_repr(pipeline))
+```
+
+---
+
 ## Feature Engineering Pipelines
 
 ### Complete Pipeline

@@ -307,41 +307,333 @@ df = scrape_table('https://example.com/table')
 print(df.head())
 ```
 
-### Selenium for Dynamic Content
+### Advanced Selenium Web Scraping
+
+Selenium is essential for scraping JavaScript-rendered content that BeautifulSoup cannot handle.
+
+#### Installation and Setup
+
+```bash
+# Install Selenium
+pip install selenium
+
+# Download ChromeDriver
+# https://chromedriver.chromium.org/downloads
+# Or use webdriver-manager
+pip install webdriver-manager
+```
+
+#### Basic Selenium Setup
 
 ```python
 from selenium import webdriver
+from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.chrome.options import Options
+from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import pandas as pd
+import time
 
-def scrape_dynamic_content(url):
+# Setup Chrome options
+chrome_options = Options()
+chrome_options.add_argument('--headless')  # Run in background
+chrome_options.add_argument('--no-sandbox')
+chrome_options.add_argument('--disable-dev-shm-usage')
+chrome_options.add_argument('--disable-blink-features=AutomationControlled')
+chrome_options.add_experimental_option("excludeSwitches", ["enable-automation"])
+chrome_options.add_experimental_option('useAutomationExtension', False)
+
+# Setup driver
+service = Service(ChromeDriverManager().install())
+driver = webdriver.Chrome(service=service, options=chrome_options)
+```
+
+#### Advanced Selenium Techniques
+
+**1. Handling Dynamic Content:**
+```python
+def wait_for_element(driver, by, value, timeout=10):
+    """Wait for element to be present"""
+    wait = WebDriverWait(driver, timeout)
+    return wait.until(EC.presence_of_element_located((by, value)))
+
+def wait_for_clickable(driver, by, value, timeout=10):
+    """Wait for element to be clickable"""
+    wait = WebDriverWait(driver, timeout)
+    return wait.until(EC.element_to_be_clickable((by, value)))
+
+# Usage
+driver.get(url)
+element = wait_for_element(driver, By.CLASS_NAME, "content")
+```
+
+**2. Scrolling and Pagination:**
+```python
+def scroll_to_load_content(driver, scroll_pause_time=2):
+    """Scroll page to load dynamic content"""
+    # Get scroll height
+    last_height = driver.execute_script("return document.body.scrollHeight")
+    
+    while True:
+        # Scroll down
+        driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+        
+        # Wait for new content
+        time.sleep(scroll_pause_time)
+        
+        # Calculate new scroll height
+        new_height = driver.execute_script("return document.body.scrollHeight")
+        
+        if new_height == last_height:
+            break
+        last_height = new_height
+
+# Scroll to load all content
+driver.get(url)
+scroll_to_load_content(driver)
+```
+
+**3. Handling Multiple Windows/Tabs:**
+```python
+# Get current window
+main_window = driver.current_window_handle
+
+# Click link that opens new tab
+link = driver.find_element(By.LINK_TEXT, "Open New Tab")
+link.click()
+
+# Switch to new window
+for window_handle in driver.window_handles:
+    if window_handle != main_window:
+        driver.switch_to.window(window_handle)
+        break
+
+# Scrape new tab
+data = scrape_data(driver)
+
+# Close tab and switch back
+driver.close()
+driver.switch_to.window(main_window)
+```
+
+**4. Handling Frames:**
+```python
+# Switch to iframe
+iframe = driver.find_element(By.ID, "iframe_id")
+driver.switch_to.frame(iframe)
+
+# Scrape content in iframe
+content = driver.find_element(By.CLASS_NAME, "content").text
+
+# Switch back to main content
+driver.switch_to.default_content()
+```
+
+**5. Handling Dropdowns and Select Elements:**
+```python
+from selenium.webdriver.support.ui import Select
+
+# Find select element
+select_element = driver.find_element(By.ID, "dropdown_id")
+select = Select(select_element)
+
+# Select by value
+select.select_by_value("option_value")
+
+# Select by visible text
+select.select_by_visible_text("Option Text")
+
+# Get all options
+options = select.options
+for option in options:
+    print(option.text)
+```
+
+**6. Handling Alerts and Popups:**
+```python
+# Wait for alert
+alert = WebDriverWait(driver, 10).until(EC.alert_is_present())
+alert_text = alert.text
+alert.accept()  # or alert.dismiss()
+
+# Handle popup windows
+popup = driver.switch_to.alert
+popup.dismiss()
+```
+
+#### Smartprix Example (E-commerce Scraping)
+
+```python
+def scrape_smartprix_products(search_term, max_pages=5):
     """
-    Scrape content from JavaScript-rendered pages
+    Scrape product data from Smartprix
     """
-    # Setup driver (requires ChromeDriver)
-    driver = webdriver.Chrome()
+    driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
+    all_products = []
+    
+    try:
+        # Navigate to search page
+        search_url = f"https://www.smartprix.com/search?q={search_term}"
+        driver.get(search_url)
+        
+        # Wait for products to load
+        wait = WebDriverWait(driver, 10)
+        wait.until(EC.presence_of_element_located((By.CLASS_NAME, "product")))
+        
+        for page in range(1, max_pages + 1):
+            # Scroll to load all products
+            scroll_to_load_content(driver)
+            
+            # Find all product elements
+            products = driver.find_elements(By.CLASS_NAME, "product")
+            
+            for product in products:
+                try:
+                    # Extract product data
+                    name = product.find_element(By.CLASS_NAME, "product-name").text
+                    price = product.find_element(By.CLASS_NAME, "price").text
+                    rating = product.find_element(By.CLASS_NAME, "rating").text
+                    link = product.find_element(By.TAG_NAME, "a").get_attribute("href")
+                    
+                    all_products.append({
+                        'name': name,
+                        'price': price,
+                        'rating': rating,
+                        'link': link
+                    })
+                except Exception as e:
+                    print(f"Error extracting product: {e}")
+                    continue
+            
+            # Go to next page
+            if page < max_pages:
+                try:
+                    next_button = wait_for_clickable(driver, By.CLASS_NAME, "next-page")
+                    next_button.click()
+                    time.sleep(2)  # Wait for page load
+                except:
+                    print(f"No more pages after page {page}")
+                    break
+        
+        return pd.DataFrame(all_products)
+    
+    finally:
+        driver.quit()
+
+# Usage
+# df = scrape_smartprix_products("laptop", max_pages=3)
+```
+
+#### Advanced Selenium Patterns
+
+**1. Retry Logic:**
+```python
+from functools import wraps
+import time
+
+def retry_on_exception(max_retries=3, delay=1):
+    def decorator(func):
+        @wraps(func)
+        def wrapper(*args, **kwargs):
+            for attempt in range(max_retries):
+                try:
+                    return func(*args, **kwargs)
+                except Exception as e:
+                    if attempt == max_retries - 1:
+                        raise
+                    print(f"Attempt {attempt + 1} failed: {e}")
+                    time.sleep(delay)
+            return None
+        return wrapper
+    return decorator
+
+@retry_on_exception(max_retries=3)
+def scrape_with_retry(driver, url):
     driver.get(url)
-    
-    # Wait for content to load
-    wait = WebDriverWait(driver, 10)
-    element = wait.until(EC.presence_of_element_located((By.CLASS_NAME, "content")))
-    
-    # Extract data
-    data = []
-    items = driver.find_elements(By.CLASS_NAME, "item")
-    
-    for item in items:
-        title = item.find_element(By.CLASS_NAME, "title").text
-        price = item.find_element(By.CLASS_NAME, "price").text
-        data.append({'title': title, 'price': price})
-    
-    driver.quit()
-    return pd.DataFrame(data)
+    return driver.find_element(By.CLASS_NAME, "content").text
+```
 
-# Note: Requires ChromeDriver installation
-# df = scrape_dynamic_content('https://example.com')
+**2. Parallel Scraping:**
+```python
+from concurrent.futures import ThreadPoolExecutor
+
+def scrape_url(url):
+    """Scrape single URL"""
+    driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
+    try:
+        driver.get(url)
+        data = extract_data(driver)
+        return data
+    finally:
+        driver.quit()
+
+# Scrape multiple URLs in parallel
+urls = ["url1", "url2", "url3"]
+with ThreadPoolExecutor(max_workers=3) as executor:
+    results = list(executor.map(scrape_url, urls))
+```
+
+**3. Stealth Mode (Avoid Detection):**
+```python
+from selenium_stealth import stealth
+
+# Setup driver
+driver = webdriver.Chrome()
+
+# Apply stealth
+stealth(driver,
+        languages=["en-US", "en"],
+        vendor="Google Inc.",
+        platform="Win32",
+        webgl_vendor="Intel Inc.",
+        renderer="Intel Iris OpenGL Engine",
+        fix_hairline=True,
+)
+
+driver.get(url)
+```
+
+#### Best Practices
+
+1. **Always use waits**: Don't use `time.sleep()` - use WebDriverWait
+2. **Handle exceptions**: Wrap scraping in try-except
+3. **Respect robots.txt**: Check before scraping
+4. **Add delays**: Be respectful to servers
+5. **Use headless mode**: For production
+6. **Clean up**: Always quit driver
+7. **Handle dynamic content**: Use explicit waits
+
+#### Common Issues and Solutions
+
+**Issue 1: Element not found**
+```python
+# Solution: Use explicit waits
+element = WebDriverWait(driver, 10).until(
+    EC.presence_of_element_located((By.ID, "element_id"))
+)
+```
+
+**Issue 2: Stale element reference**
+```python
+# Solution: Re-find element
+try:
+    element.click()
+except StaleElementReferenceException:
+    element = driver.find_element(By.ID, "element_id")
+    element.click()
+```
+
+**Issue 3: Timeout errors**
+```python
+# Solution: Increase timeout or check element existence
+try:
+    element = WebDriverWait(driver, 30).until(
+        EC.presence_of_element_located((By.ID, "element_id"))
+    )
+except TimeoutException:
+    print("Element not found within timeout")
 ```
 
 ### Web Scraping Best Practices

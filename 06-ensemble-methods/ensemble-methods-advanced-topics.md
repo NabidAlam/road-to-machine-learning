@@ -130,18 +130,38 @@ print(f"Best validation score: {gb.train_score_[-1]:.3f}")
 
 ### XGBoost Advanced Features
 
+#### XGBoost Regularization Parameters
+
+XGBoost provides multiple ways to reduce overfitting:
+
 ```python
 try:
     import xgboost as xgb
     
-    # XGBoost with custom objective and evaluation
+    # XGBoost with comprehensive regularization
     xgb_model = xgb.XGBClassifier(
+        # Tree structure
         n_estimators=100,
-        learning_rate=0.1,
-        max_depth=3,
-        objective='multi:softprob',  # For multiclass
-        eval_metric='mlogloss',       # Evaluation metric
-        early_stopping_rounds=10,     # Early stopping
+        max_depth=6,              # Maximum tree depth (reduce to prevent overfitting)
+        min_child_weight=1,       # Minimum sum of instance weight in child (increase to prevent overfitting)
+        
+        # Learning rate
+        learning_rate=0.1,        # Shrinkage (lower = more conservative, prevents overfitting)
+        
+        # Regularization
+        gamma=0,                  # Minimum loss reduction required for split (increase to prevent overfitting)
+        reg_alpha=0,              # L1 regularization (increase to add L1 penalty)
+        reg_lambda=1,             # L2 regularization (increase to add L2 penalty)
+        
+        # Sampling
+        subsample=0.8,            # Row sampling (fraction of samples for each tree)
+        colsample_bytree=0.8,     # Column sampling per tree
+        colsample_bylevel=1.0,    # Column sampling per level
+        colsample_bynode=1.0,     # Column sampling per node
+        
+        # Early stopping
+        early_stopping_rounds=10,
+        
         random_state=42
     )
     
@@ -163,19 +183,299 @@ except ImportError:
     print("Install XGBoost: pip install xgboost")
 ```
 
+#### XGBoost Regularization Strategies
+
+**1. Gamma (Minimum Loss Reduction):**
+```python
+# Higher gamma = more conservative splits
+gammas = [0, 0.1, 0.5, 1.0]
+for gamma in gammas:
+    model = xgb.XGBClassifier(gamma=gamma, n_estimators=100, random_state=42)
+    model.fit(X_train, y_train)
+    score = model.score(X_test, y_test)
+    print(f"Gamma {gamma}: {score:.3f}")
+```
+
+**2. Max Depth:**
+```python
+# Lower max_depth = simpler trees, less overfitting
+depths = [3, 5, 7, 10]
+for depth in depths:
+    model = xgb.XGBClassifier(max_depth=depth, n_estimators=100, random_state=42)
+    model.fit(X_train, y_train)
+    score = model.score(X_test, y_test)
+    print(f"Max Depth {depth}: {score:.3f}")
+```
+
+**3. Min Child Weight:**
+```python
+# Higher min_child_weight = more conservative splits
+weights = [1, 3, 5, 10]
+for weight in weights:
+    model = xgb.XGBClassifier(min_child_weight=weight, n_estimators=100, random_state=42)
+    model.fit(X_train, y_train)
+    score = model.score(X_test, y_test)
+    print(f"Min Child Weight {weight}: {score:.3f}")
+```
+
+**4. L1 and L2 Regularization:**
+```python
+# L1 (alpha) and L2 (lambda) regularization
+alphas = [0, 0.1, 0.5, 1.0]
+lambdas = [1, 2, 5, 10]
+
+for alpha, lam in zip(alphas, lambdas):
+    model = xgb.XGBClassifier(
+        reg_alpha=alpha,
+        reg_lambda=lam,
+        n_estimators=100,
+        random_state=42
+    )
+    model.fit(X_train, y_train)
+    score = model.score(X_test, y_test)
+    print(f"Alpha {alpha}, Lambda {lam}: {score:.3f}")
+```
+
+**5. Subsampling:**
+```python
+# Row and column sampling
+subsamples = [0.6, 0.8, 1.0]
+col_samples = [0.6, 0.8, 1.0]
+
+for sub, col in zip(subsamples, col_samples):
+    model = xgb.XGBClassifier(
+        subsample=sub,
+        colsample_bytree=col,
+        n_estimators=100,
+        random_state=42
+    )
+    model.fit(X_train, y_train)
+    score = model.score(X_test, y_test)
+    print(f"Subsample {sub}, Colsample {col}: {score:.3f}")
+```
+
+#### XGBoost Optimizations
+
+**1. Approximate Split Finding:**
+```python
+# XGBoost uses approximate algorithms for speed
+model = xgb.XGBClassifier(
+    tree_method='hist',  # Histogram-based (fast, approximate)
+    # tree_method='exact',  # Exact greedy (slow, exact)
+    # tree_method='approx',  # Approximate (balanced)
+    n_estimators=100,
+    random_state=42
+)
+```
+
+**2. Quantiles Sketch:**
+```python
+# XGBoost uses quantile sketch for approximate split finding
+# This reduces computation while maintaining accuracy
+
+model = xgb.XGBClassifier(
+    tree_method='hist',
+    max_bin=256,  # Number of bins for histogram (more = more accurate, slower)
+    n_estimators=100,
+    random_state=42
+)
+```
+
+**3. Weighted Quantiles Sketch:**
+```python
+# For weighted data, XGBoost uses weighted quantile sketch
+# Automatically handles instance weights
+
+# Create sample weights
+sample_weights = np.ones(len(X_train))
+sample_weights[y_train == 1] = 2.0  # Weight positive class more
+
+model = xgb.XGBClassifier(n_estimators=100, random_state=42)
+model.fit(X_train, y_train, sample_weight=sample_weights)
+```
+
+#### XGBoost Missing Value Handling
+
+XGBoost has built-in handling for missing values:
+
+```python
+# Create data with missing values
+X_with_missing = X_train.copy()
+X_with_missing.iloc[0:100, 0] = np.nan  # Add missing values
+
+# XGBoost automatically handles missing values
+model = xgb.XGBClassifier(
+    n_estimators=100,
+    random_state=42,
+    tree_method='hist'
+)
+
+# No need to impute - XGBoost learns best direction for missing values
+model.fit(X_with_missing, y_train)
+
+# Predictions work with missing values too
+X_test_missing = X_test.copy()
+X_test_missing.iloc[0:50, 0] = np.nan
+predictions = model.predict(X_test_missing)
+```
+
+**How XGBoost Handles Missing Values:**
+1. During training, XGBoost learns the best direction (left or right child) for missing values
+2. This is more sophisticated than simple imputation
+3. Works automatically - no preprocessing needed
+
+#### Complete Mathematics of XGBoost
+
+**Objective Function:**
+```
+Obj(θ) = Σ L(y_i, ŷ_i) + Σ Ω(f_k)
+
+Where:
+- L: Loss function (e.g., squared error, log loss)
+- Ω: Regularization term
+- f_k: k-th tree
+```
+
+**Regularization Term:**
+```
+Ω(f) = γT + (1/2)λ||w||²
+
+Where:
+- T: Number of leaves
+- w: Leaf weights
+- γ: Minimum loss reduction (gamma)
+- λ: L2 regularization (lambda)
+```
+
+**Tree Structure Score (Similarity Score):**
+```
+Similarity = (Σ g_i)² / (Σ h_i + λ)
+
+Where:
+- g_i: First-order gradient
+- h_i: Second-order gradient (Hessian)
+- λ: L2 regularization
+```
+
+**Gain (Split Quality):**
+```
+Gain = Similarity_left + Similarity_right - Similarity_parent - γ
+
+Where:
+- γ: Minimum gain threshold
+```
+
+**Example Calculation:**
+```python
+# Simplified XGBoost calculation example
+def calculate_similarity(gradients, hessians, lambda_reg=1.0):
+    """Calculate similarity score for a leaf"""
+    sum_g = np.sum(gradients)
+    sum_h = np.sum(hessians)
+    similarity = (sum_g ** 2) / (sum_h + lambda_reg)
+    return similarity
+
+# Example gradients and hessians
+gradients = np.array([0.5, -0.3, 0.8, -0.2])
+hessians = np.array([0.25, 0.15, 0.4, 0.1])
+
+similarity = calculate_similarity(gradients, hessians)
+print(f"Similarity score: {similarity:.4f}")
+```
+
+#### XGBoost for Regression
+
+```python
+import xgboost as xgb
+
+# Regression model
+xgb_reg = xgb.XGBRegressor(
+    n_estimators=100,
+    max_depth=6,
+    learning_rate=0.1,
+    objective='reg:squarederror',  # Regression objective
+    eval_metric='rmse',              # Evaluation metric
+    random_state=42
+)
+
+xgb_reg.fit(X_train, y_train_regression)
+y_pred = xgb_reg.predict(X_test)
+```
+
+#### XGBoost for Classification
+
+```python
+# Binary classification
+xgb_clf = xgb.XGBClassifier(
+    n_estimators=100,
+    max_depth=6,
+    learning_rate=0.1,
+    objective='binary:logistic',  # Binary classification
+    eval_metric='logloss',
+    random_state=42
+)
+
+# Multiclass classification
+xgb_multi = xgb.XGBClassifier(
+    n_estimators=100,
+    max_depth=6,
+    learning_rate=0.1,
+    objective='multi:softprob',   # Multiclass
+    eval_metric='mlogloss',
+    num_class=3,                  # Number of classes
+    random_state=42
+)
+```
+
+#### Key XGBoost Parameters Summary
+
+| Parameter | Purpose | Typical Range | Effect |
+|-----------|---------|---------------|--------|
+| **n_estimators** | Number of trees | 50-500 | More = better but slower |
+| **max_depth** | Tree depth | 3-10 | Lower = less overfitting |
+| **learning_rate** | Shrinkage | 0.01-0.3 | Lower = more conservative |
+| **gamma** | Min loss reduction | 0-5 | Higher = more regularization |
+| **min_child_weight** | Min samples in leaf | 1-10 | Higher = more regularization |
+| **subsample** | Row sampling | 0.6-1.0 | Lower = more regularization |
+| **colsample_bytree** | Column sampling | 0.6-1.0 | Lower = more regularization |
+| **reg_alpha** | L1 regularization | 0-10 | Higher = sparser model |
+| **reg_lambda** | L2 regularization | 1-10 | Higher = smoother model |
+
+#### Best Practices
+
+1. **Start with defaults**: XGBoost has good defaults
+2. **Tune learning_rate and n_estimators together**: Lower learning rate needs more trees
+3. **Use early stopping**: Prevents overfitting automatically
+4. **Scale features**: XGBoost is tree-based but scaling can help
+5. **Handle missing values**: XGBoost does this automatically
+6. **Use cross-validation**: For reliable performance estimates
+
 ### LightGBM Advanced Features
+
+#### GOSS (Gradient-based One-Side Sampling)
+
+GOSS keeps instances with large gradients and randomly samples instances with small gradients.
+
+**Why GOSS?**
+- Instances with large gradients contribute more to information gain
+- Randomly sampling small-gradient instances maintains accuracy
+- Reduces computational cost significantly
 
 ```python
 try:
     import lightgbm as lgb
     
-    # LightGBM with categorical features
+    # LightGBM with GOSS (automatic)
     lgb_model = lgb.LGBMClassifier(
         n_estimators=100,
         learning_rate=0.1,
         max_depth=3,
-        categorical_feature=[0, 1],  # Specify categorical columns
         num_leaves=31,
+        
+        # GOSS parameters
+        top_rate=0.2,        # Keep top 20% instances with large gradients
+        other_rate=0.1,      # Randomly sample 10% of remaining instances
+        
         feature_fraction=0.8,
         bagging_fraction=0.8,
         random_state=42
@@ -189,6 +489,133 @@ try:
 except ImportError:
     print("Install LightGBM: pip install lightgbm")
 ```
+
+**GOSS Algorithm:**
+1. Sort instances by gradient magnitude
+2. Keep top `a × 100%` instances (large gradients)
+3. Randomly sample `b × 100%` from remaining (small gradients)
+4. Use weighted sampling to compensate for bias
+
+#### EFB (Exclusive Feature Bundling)
+
+EFB bundles mutually exclusive features (features that rarely take non-zero values simultaneously) into a single feature.
+
+**Why EFB?**
+- Reduces number of features
+- Speeds up training
+- Maintains accuracy
+
+```python
+try:
+    import lightgbm as lgb
+    
+    # LightGBM with EFB (automatic)
+    lgb_model = lgb.LGBMClassifier(
+        n_estimators=100,
+        learning_rate=0.1,
+        max_depth=3,
+        num_leaves=31,
+        
+        # EFB parameters
+        max_bin=255,         # Number of bins (affects bundling)
+        min_data_in_bin=3,   # Minimum data in bin
+        
+        feature_fraction=0.8,
+        bagging_fraction=0.8,
+        random_state=42
+    )
+    
+    lgb_model.fit(X_train, y_train)
+    
+except ImportError:
+    print("Install LightGBM: pip install lightgbm")
+```
+
+**EFB Algorithm:**
+1. Identify mutually exclusive features
+2. Bundle them into single features
+3. Use different bin boundaries to distinguish
+4. Reduces feature count without information loss
+
+#### LightGBM with Categorical Features
+
+```python
+try:
+    import lightgbm as lgb
+    
+    # LightGBM handles categorical features natively
+    lgb_model = lgb.LGBMClassifier(
+        n_estimators=100,
+        learning_rate=0.1,
+        max_depth=3,
+        num_leaves=31,
+        
+        # Categorical features (specify indices)
+        categorical_feature=[0, 1, 2],  # Column indices
+        
+        # Or let LightGBM auto-detect
+        # categorical_feature='auto',
+        
+        feature_fraction=0.8,
+        bagging_fraction=0.8,
+        random_state=42
+    )
+    
+    # Fit with categorical features
+    lgb_model.fit(X_train, y_train, 
+                  categorical_feature=[0, 1, 2])
+    
+except ImportError:
+    print("Install LightGBM: pip install lightgbm")
+```
+
+#### LightGBM Leaf-wise Growth
+
+Unlike level-wise growth (XGBoost), LightGBM uses leaf-wise growth:
+
+**Level-wise (XGBoost):**
+- Grows tree level by level
+- All nodes at same level split
+- More balanced but slower
+
+**Leaf-wise (LightGBM):**
+- Grows tree by finding best leaf to split
+- More efficient
+- Can create deeper trees
+
+```python
+# LightGBM uses leaf-wise growth by default
+# Control with num_leaves (max number of leaves)
+lgb_model = lgb.LGBMClassifier(
+    num_leaves=31,  # Maximum leaves (2^max_depth - 1 for balanced tree)
+    max_depth=5,    # Limit depth
+    n_estimators=100,
+    random_state=42
+)
+```
+
+#### LightGBM vs XGBoost
+
+| Feature | LightGBM | XGBoost |
+|---------|----------|---------|
+| **Growth Strategy** | Leaf-wise | Level-wise |
+| **Speed** | Faster | Slower |
+| **Memory** | Lower | Higher |
+| **Categorical** | Native support | Needs encoding |
+| **GOSS** | Yes | No |
+| **EFB** | Yes | No |
+| **Accuracy** | Similar | Similar |
+
+**Choose LightGBM when:**
+- Large datasets
+- Many categorical features
+- Speed is important
+- Memory is limited
+
+**Choose XGBoost when:**
+- Need more control
+- Smaller datasets
+- Want more regularization options
 
 ---
 

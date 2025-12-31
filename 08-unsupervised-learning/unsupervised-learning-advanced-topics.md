@@ -143,6 +143,340 @@ for name, method in clustering_methods.items():
 
 ## Advanced Dimensionality Reduction
 
+### Singular Value Decomposition (SVD)
+
+SVD is a fundamental matrix decomposition technique that underlies PCA and has many applications in machine learning.
+
+#### What is SVD?
+
+SVD decomposes any matrix A (m×n) into three matrices:
+- **U**: Left singular vectors (m×m, orthogonal)
+- **Σ (Sigma)**: Singular values (diagonal matrix, m×n)
+- **V^T**: Right singular vectors (n×n, orthogonal)
+
+**Mathematical Formulation:**
+```
+A = U × Σ × V^T
+```
+
+#### Intuition of SVD
+
+**Geometric Interpretation:**
+- SVD finds the best low-rank approximation of a matrix
+- U: Rotation/reflection in input space
+- Σ: Scaling along principal axes
+- V^T: Rotation/reflection in output space
+
+**For Non-Square Matrices:**
+- Rectangular matrices don't have eigenvalues
+- SVD works for any matrix (square or rectangular)
+- Provides similar insights to eigendecomposition
+
+#### Relationship with Eigen Decomposition
+
+**For Square Symmetric Matrices:**
+- SVD and eigendecomposition are related
+- If A is symmetric: A = U × Σ × U^T (eigendecomposition)
+- Singular values = absolute values of eigenvalues
+
+**For PCA:**
+- PCA can be computed using SVD
+- SVD of centered data matrix = PCA
+- More numerically stable than eigendecomposition
+
+#### How to Calculate SVD
+
+**Step-by-Step Process:**
+
+```python
+import numpy as np
+from scipy.linalg import svd
+
+# Example matrix
+A = np.array([[1, 2, 3],
+              [4, 5, 6],
+              [7, 8, 9]])
+
+# Compute SVD
+U, s, Vt = svd(A, full_matrices=False)
+
+# s is 1D array of singular values
+# Convert to diagonal matrix
+Sigma = np.diag(s)
+
+print("Original Matrix A:")
+print(A)
+print(f"\nShape: {A.shape}")
+
+print("\nU (Left singular vectors):")
+print(U)
+print(f"Shape: {U.shape}")
+
+print("\nSingular Values (s):")
+print(s)
+
+print("\nSigma (Diagonal matrix):")
+print(Sigma)
+print(f"Shape: {Sigma.shape}")
+
+print("\nV^T (Right singular vectors, transposed):")
+print(Vt)
+print(f"Shape: {Vt.shape}")
+
+# Reconstruct A
+A_reconstructed = U @ Sigma @ Vt
+print("\nReconstructed A:")
+print(A_reconstructed)
+print(f"\nReconstruction error: {np.abs(A - A_reconstructed).max():.2e}")
+```
+
+#### SVD in PCA
+
+**Connection:**
+- PCA can be computed via SVD of the centered data matrix
+- More numerically stable than computing covariance matrix
+
+```python
+from sklearn.decomposition import PCA
+from sklearn.preprocessing import StandardScaler
+import numpy as np
+
+# Sample data
+X = np.random.randn(100, 10)
+
+# Center the data
+X_centered = X - X.mean(axis=0)
+
+# Method 1: PCA (uses SVD internally)
+pca = PCA(n_components=5)
+X_pca = pca.fit_transform(X_centered)
+
+# Method 2: Direct SVD
+U, s, Vt = np.linalg.svd(X_centered, full_matrices=False)
+
+# Principal components from SVD
+# Vt contains the principal components (eigenvectors of covariance)
+# s contains singular values (related to eigenvalues)
+principal_components_svd = Vt[:5].T  # First 5 components
+
+# Project data using SVD
+X_svd = X_centered @ principal_components_svd
+
+print("PCA components shape:", pca.components_.shape)
+print("SVD components shape:", principal_components_svd.shape)
+print("\nComponents match:", np.allclose(pca.components_.T, principal_components_svd, atol=1e-10))
+```
+
+#### Low-Rank Approximation
+
+**Key Application:** SVD provides the best low-rank approximation of a matrix.
+
+```python
+# Create a matrix with some structure
+np.random.seed(42)
+A = np.random.randn(50, 30)
+
+# Add some structure (rank-5 matrix + noise)
+true_rank = 5
+U_true = np.random.randn(50, true_rank)
+V_true = np.random.randn(true_rank, 30)
+A_structured = U_true @ V_true + 0.1 * np.random.randn(50, 30)
+
+# Compute SVD
+U, s, Vt = np.linalg.svd(A_structured, full_matrices=False)
+
+# Low-rank approximations
+ranks = [1, 3, 5, 10, 20]
+approximation_errors = []
+
+for rank in ranks:
+    # Truncate SVD
+    U_k = U[:, :rank]
+    s_k = s[:rank]
+    Vt_k = Vt[:rank, :]
+    
+    # Reconstruct
+    A_approx = U_k @ np.diag(s_k) @ Vt_k
+    
+    # Error
+    error = np.linalg.norm(A_structured - A_approx, 'fro')
+    approximation_errors.append(error)
+    
+    print(f"Rank {rank:2d} approximation error: {error:.4f}")
+
+# Plot
+import matplotlib.pyplot as plt
+plt.figure(figsize=(10, 6))
+plt.plot(ranks, approximation_errors, 'bo-', linewidth=2, markersize=8)
+plt.xlabel('Rank', fontsize=12)
+plt.ylabel('Approximation Error (Frobenius norm)', fontsize=12)
+plt.title('SVD Low-Rank Approximation', fontsize=14, fontweight='bold')
+plt.grid(True, alpha=0.3)
+plt.tight_layout()
+plt.show()
+```
+
+#### Applications of SVD
+
+**1. Image Compression:**
+```python
+from PIL import Image
+import numpy as np
+
+# Load image
+img = Image.open('image.jpg')
+img_array = np.array(img.convert('L'))  # Convert to grayscale
+
+# SVD
+U, s, Vt = np.linalg.svd(img_array, full_matrices=False)
+
+# Compress with different ranks
+ranks = [10, 50, 100, 200]
+fig, axes = plt.subplots(1, len(ranks) + 1, figsize=(15, 3))
+
+axes[0].imshow(img_array, cmap='gray')
+axes[0].set_title('Original', fontsize=10)
+axes[0].axis('off')
+
+for idx, rank in enumerate(ranks, 1):
+    # Reconstruct with rank-k approximation
+    U_k = U[:, :rank]
+    s_k = s[:rank]
+    Vt_k = Vt[:rank, :]
+    img_compressed = U_k @ np.diag(s_k) @ Vt_k
+    
+    axes[idx].imshow(img_compressed, cmap='gray')
+    axes[idx].set_title(f'Rank {rank}\nCompression: {rank/img_array.shape[1]*100:.1f}%', fontsize=10)
+    axes[idx].axis('off')
+
+plt.tight_layout()
+plt.show()
+```
+
+**2. Recommender Systems:**
+```python
+# User-item matrix (ratings)
+ratings = np.array([
+    [5, 4, 0, 0, 1],
+    [4, 5, 3, 0, 2],
+    [0, 0, 5, 4, 3],
+    [0, 0, 4, 5, 4],
+    [1, 2, 3, 4, 5]
+])
+
+# SVD for matrix factorization
+U, s, Vt = np.linalg.svd(ratings, full_matrices=False)
+
+# Low-rank approximation (latent factors)
+k = 2
+U_k = U[:, :k]
+s_k = s[:k]
+Vt_k = Vt[:k, :]
+
+# Reconstructed ratings (predictions)
+ratings_pred = U_k @ np.diag(s_k) @ Vt_k
+
+print("Original ratings:")
+print(ratings)
+print("\nPredicted ratings (SVD approximation):")
+print(ratings_pred.round(2))
+```
+
+**3. Noise Reduction:**
+```python
+# Signal with noise
+t = np.linspace(0, 10, 1000)
+signal = np.sin(2 * np.pi * t) + 0.5 * np.sin(4 * np.pi * t)
+noise = 0.3 * np.random.randn(1000)
+noisy_signal = signal + noise
+
+# Create matrix from signal (sliding window)
+window_size = 50
+matrix = np.array([noisy_signal[i:i+window_size] 
+                   for i in range(len(noisy_signal) - window_size + 1)])
+
+# SVD
+U, s, Vt = np.linalg.svd(matrix, full_matrices=False)
+
+# Keep only top singular values (remove noise)
+k = 5  # Keep top 5 components
+U_k = U[:, :k]
+s_k = s[:k]
+Vt_k = Vt[:k, :]
+
+# Reconstruct
+matrix_denoised = U_k @ np.diag(s_k) @ Vt_k
+
+# Extract denoised signal
+denoised_signal = matrix_denoised[:, window_size // 2]
+
+# Plot
+plt.figure(figsize=(12, 6))
+plt.plot(t[:len(signal)], signal, 'b-', label='Original Signal', linewidth=2)
+plt.plot(t[:len(noisy_signal)], noisy_signal, 'r-', alpha=0.5, label='Noisy Signal')
+plt.plot(t[:len(denoised_signal)], denoised_signal, 'g-', label='Denoised (SVD)', linewidth=2)
+plt.xlabel('Time', fontsize=12)
+plt.ylabel('Amplitude', fontsize=12)
+plt.title('Signal Denoising with SVD', fontsize=14, fontweight='bold')
+plt.legend()
+plt.grid(True, alpha=0.3)
+plt.tight_layout()
+plt.show()
+```
+
+#### SVD vs PCA
+
+| Aspect | SVD | PCA |
+|--------|-----|-----|
+| **Input** | Any matrix | Data matrix |
+| **Method** | Matrix decomposition | Covariance eigendecomposition |
+| **Stability** | More numerically stable | Can be unstable |
+| **Computation** | Direct | Via SVD internally |
+| **Applications** | General matrix operations | Dimensionality reduction |
+
+**Key Insight:** PCA is essentially SVD applied to the centered data matrix.
+
+#### Properties of SVD
+
+**1. Uniqueness:**
+- Singular values are unique (up to ordering)
+- Singular vectors are unique up to sign
+
+**2. Optimality:**
+- Best low-rank approximation (Eckart-Young theorem)
+- Minimizes Frobenius norm error
+
+**3. Rank:**
+- Rank of matrix = number of non-zero singular values
+- Numerical rank = number of "significant" singular values
+
+```python
+# Find numerical rank
+A = np.random.randn(100, 100)
+U, s, Vt = np.linalg.svd(A, full_matrices=False)
+
+# True rank (all singular values)
+true_rank = np.sum(s > 1e-10)
+
+# Numerical rank (significant singular values)
+tolerance = s[0] * 1e-6  # Relative tolerance
+numerical_rank = np.sum(s > tolerance)
+
+print(f"True rank: {true_rank}")
+print(f"Numerical rank: {numerical_rank}")
+print(f"First 10 singular values: {s[:10]}")
+```
+
+#### Key Takeaways
+
+1. **SVD decomposes any matrix** into U, Σ, V^T
+2. **PCA uses SVD internally** - more stable than eigendecomposition
+3. **Low-rank approximation** - SVD provides best approximation
+4. **Applications**: Image compression, recommender systems, noise reduction
+5. **Numerical stability** - SVD is preferred for large matrices
+
+---
+
 ### LDA (Linear Discriminant Analysis)
 
 Supervised dimensionality reduction that maximizes class separation.

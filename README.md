@@ -74,6 +74,7 @@ This repository provides a structured learning path for machine learning, organi
   - Tableau: Professional data visualization and dashboards
   - EDA, Data Sources, Regular Expressions, Advanced Data Wrangling
   - ETL with AWS RDS: Extract, Transform, Load pipelines
+  - Advanced Selenium Web Scraping: Chromedriver, dynamic content, Smartprix example
 
 ### Phase 2: Machine Learning Basics
 **Goal**: Understand core ML concepts and algorithms
@@ -110,8 +111,8 @@ This repository provides a structured learning path for machine learning, organi
 
 - **06-ensemble-methods**
   - Bagging (Bootstrap Aggregating)
-  - Boosting (AdaBoost, Gradient Boosting, XGBoost)
-  - Stacking
+  - Boosting (AdaBoost with detailed components, Gradient Boosting, XGBoost with advanced topics, LightGBM with GOSS & EFB, CatBoost)
+  - Stacking (detailed steps and best practices)
   - Voting Classifiers
 
 - **07-feature-engineering**
@@ -122,13 +123,15 @@ This repository provides a structured learning path for machine learning, organi
   - Dimensionality Reduction (PCA)
   - Advanced Discretization (Decision Tree-based binning, custom strategies)
   - Decision Tree Visualization with dtreeviz
+  - Comprehensive sklearn Pipeline and ColumnTransformer Guide
 
 ### Phase 4: Unsupervised Learning
 **Goal**: Learn to work with unlabeled data
 
 - **08-unsupervised-learning**
   - Clustering (K-Means, Hierarchical, DBSCAN)
-  - Dimensionality Reduction (PCA, t-SNE)
+  - Dimensionality Reduction (PCA, t-SNE, SVD)
+  - SVD (Singular Value Decomposition) and its connection to PCA
   - Anomaly Detection
   - Association Rules
 
@@ -529,6 +532,7 @@ road-to-ml/
 - [Career & Portfolio Guide](resources/career_portfolio.md) - Build your portfolio, prepare for interviews, and launch your ML career
 - [Interview Preparation Guide](resources/interview_prep.md) - ML interview questions, coding challenges, system design, and preparation strategies
 - [Open Source Contribution Guide](resources/open_source_contribution.md) - How to contribute to open source projects in data science and ML
+- [Kaggle Competitions Guide](resources/kaggle_competitions.md) - Complete guide to participating in Kaggle competitions, strategy, and collaboration
 
 ## Learning Tips
 
