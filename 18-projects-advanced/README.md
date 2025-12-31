@@ -191,6 +191,57 @@ Build a generative model to create new images or text.
 
 ---
 
+### Project 8: Model Explainability & Interpretability
+**Difficulty**:   
+**Time**: 1-2 weeks  
+**Skills**: SHAP, LIME, Model Interpretation, Explainable AI
+
+Build a comprehensive explainable ML system using SHAP, LIME, and other interpretability techniques.
+
+**What you'll learn:**
+- SHAP values (Tree, Kernel, Deep)
+- LIME for local explanations
+- Partial Dependence Plots
+- Feature importance analysis
+- Building explainable ML systems
+- Regulatory compliance considerations
+
+**Dataset**: Credit scoring, medical diagnosis, or loan approval datasets
+
+**Extensions:**
+- Text/image explanations
+- Counterfactual explanations
+- Fairness analysis
+- Explanation quality metrics
+
+---
+
+### Project 9: Model Deployment & Serving
+**Difficulty**:   
+**Time**: 1-2 weeks  
+**Skills**: FastAPI, Docker, REST APIs, Cloud Deployment, Model Monitoring
+
+Deploy a machine learning model as a production-ready API service with Docker, monitoring, and best practices.
+
+**What you'll learn:**
+- Building production-ready REST APIs with FastAPI
+- Containerizing ML models with Docker
+- Deploying models to cloud platforms
+- Implementing model versioning
+- Setting up monitoring and logging
+- Handling errors and edge cases
+- Optimizing for production
+
+**Dataset**: Any trained model from previous projects
+
+**Extensions:**
+- A/B testing
+- Model monitoring
+- Feature store integration
+- Kubernetes deployment
+
+---
+
 ##  Project Structure
 
 Each project should include:
