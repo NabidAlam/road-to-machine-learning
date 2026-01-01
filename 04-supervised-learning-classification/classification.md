@@ -10,6 +10,8 @@ Comprehensive guide to classification algorithms for predicting categories.
 - [Random Forests](#random-forests)
 - [Support Vector Machines (SVM)](#support-vector-machines-svm)
 - [K-Nearest Neighbors (KNN)](#k-nearest-neighbors-knn)
+- [Naive Bayes](#naive-bayes)
+- [Multi-Class Classification Strategies](#multi-class-classification-strategies)
 - [Evaluation Metrics](#evaluation-metrics)
 - [Practice Exercises](#practice-exercises)
 
@@ -518,6 +520,496 @@ plt.show()
 
 ---
 
+## Naive Bayes
+
+### Introduction to Naive Bayes
+
+**Naive Bayes** is a probabilistic classification algorithm based on Bayes' theorem with a "naive" assumption of feature independence. Despite this simplification, it often performs surprisingly well and is particularly effective for text classification and small datasets.
+
+**Key Idea**: Calculate the probability of each class given the features, then predict the class with the highest probability.
+
+### Bayes' Theorem
+
+Bayes' theorem states:
+```
+P(Class | Features) = P(Features | Class) × P(Class) / P(Features)
+```
+
+Where:
+- **P(Class | Features)**: Posterior probability (what we want to predict)
+- **P(Features | Class)**: Likelihood (probability of features given class)
+- **P(Class)**: Prior probability (probability of class)
+- **P(Features)**: Evidence (normalizing constant)
+
+**Naive Assumption**: Features are conditionally independent given the class. This means:
+```
+P(Features | Class) = P(Feature₁ | Class) × P(Feature₂ | Class) × ... × P(Featureₙ | Class)
+```
+
+### Types of Naive Bayes
+
+#### 1. Gaussian Naive Bayes
+
+Assumes features follow a Gaussian (normal) distribution. Best for continuous numerical data.
+
+```python
+from sklearn.naive_bayes import GaussianNB
+from sklearn.datasets import load_iris
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import accuracy_score, classification_report
+
+# Load data
+iris = load_iris()
+X, y = iris.data, iris.target
+
+# Split data
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.2, random_state=42
+)
+
+# Create and train Gaussian Naive Bayes
+gnb = GaussianNB()
+gnb.fit(X_train, y_train)
+
+# Make predictions
+y_pred = gnb.predict(X_test)
+y_pred_proba = gnb.predict_proba(X_test)
+
+# Evaluate
+accuracy = accuracy_score(y_test, y_pred)
+print(f"Gaussian Naive Bayes Accuracy: {accuracy:.3f}")
+print("\nClassification Report:")
+print(classification_report(y_test, y_pred, target_names=iris.target_names))
+
+# View class probabilities for first test sample
+print(f"\nClass probabilities for first test sample:")
+for i, class_name in enumerate(iris.target_names):
+    print(f"  {class_name}: {y_pred_proba[0][i]:.3f}")
+```
+
+**How it works:**
+- For each class, estimate mean (μ) and variance (σ²) of each feature
+- Calculate likelihood using Gaussian probability density function
+- Combine with prior probabilities to get posterior probabilities
+
+#### 2. Multinomial Naive Bayes
+
+Best for discrete count data, especially text classification (word counts, document-term matrices).
+
+```python
+from sklearn.naive_bayes import MultinomialNB
+from sklearn.feature_extraction.text import CountVectorizer
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import accuracy_score, classification_report
+
+# Sample text data
+texts = [
+    "I love this movie",
+    "This movie is great",
+    "I hate this film",
+    "This film is terrible",
+    "Amazing movie",
+    "Worst film ever"
+]
+labels = [1, 1, 0, 0, 1, 0]  # 1 = positive, 0 = negative
+
+# Convert text to feature vectors (word counts)
+vectorizer = CountVectorizer()
+X = vectorizer.fit_transform(texts)
+y = labels
+
+# Split data
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.3, random_state=42
+)
+
+# Create and train Multinomial Naive Bayes
+mnb = MultinomialNB()
+mnb.fit(X_train, y_train)
+
+# Make predictions
+y_pred = mnb.predict(X_test)
+y_pred_proba = mnb.predict_proba(X_test)
+
+# Evaluate
+accuracy = accuracy_score(y_test, y_pred)
+print(f"Multinomial Naive Bayes Accuracy: {accuracy:.3f}")
+print("\nClassification Report:")
+print(classification_report(y_test, y_pred, target_names=['Negative', 'Positive']))
+
+# Test on new text
+new_text = ["This movie is amazing"]
+new_X = vectorizer.transform(new_text)
+prediction = mnb.predict(new_X)[0]
+probability = mnb.predict_proba(new_X)[0]
+print(f"\nNew text: '{new_text[0]}'")
+print(f"Prediction: {'Positive' if prediction == 1 else 'Negative'}")
+print(f"Probability: {probability[prediction]:.3f}")
+```
+
+**Use Cases:**
+- Spam email detection
+- Sentiment analysis
+- Document classification
+- Any text classification task
+
+#### 3. Bernoulli Naive Bayes
+
+Best for binary/boolean features (features that are either present or absent). Each feature is treated as a binary variable.
+
+```python
+from sklearn.naive_bayes import BernoulliNB
+from sklearn.datasets import make_classification
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import accuracy_score
+
+# Generate binary feature data
+X, y = make_classification(
+    n_samples=1000,
+    n_features=20,
+    n_informative=10,
+    n_redundant=0,
+    n_classes=2,
+    random_state=42
+)
+
+# Convert to binary features (0 or 1)
+X_binary = (X > 0).astype(int)
+
+# Split data
+X_train, X_test, y_train, y_test = train_test_split(
+    X_binary, y, test_size=0.2, random_state=42
+)
+
+# Create and train Bernoulli Naive Bayes
+bnb = BernoulliNB()
+bnb.fit(X_train, y_train)
+
+# Make predictions
+y_pred = bnb.predict(X_test)
+
+# Evaluate
+accuracy = accuracy_score(y_test, y_pred)
+print(f"Bernoulli Naive Bayes Accuracy: {accuracy:.3f}")
+```
+
+**Use Cases:**
+- Text classification with binary word presence (word appears or doesn't)
+- Binary feature datasets
+- Recommendation systems
+
+### When to Use Naive Bayes
+
+**Advantages:**
+- **Fast**: Very fast training and prediction
+- **Simple**: Easy to understand and implement
+- **Small Data**: Works well with small datasets
+- **Text Classification**: Excellent for text/spam detection
+- **Probabilistic**: Provides probability estimates
+- **No Hyperparameters**: Few parameters to tune
+
+**Disadvantages:**
+- **Feature Independence Assumption**: Rarely true in practice, but often works anyway
+- **Limited Expressiveness**: May not capture complex relationships
+- **Sensitive to Irrelevant Features**: Can be affected by noisy features
+
+**Best For:**
+- Text classification (spam, sentiment, document categorization)
+- Small to medium datasets
+- When you need fast predictions
+- When interpretability is important
+- Multi-class problems with many classes
+
+**Not Best For:**
+- Complex non-linear relationships
+- When feature interactions are important
+- Very large datasets (other algorithms may perform better)
+
+### Hyperparameters
+
+```python
+# Gaussian Naive Bayes
+gnb = GaussianNB(
+    var_smoothing=1e-9  # Additive smoothing for variance (prevents zero variance)
+)
+
+# Multinomial Naive Bayes
+mnb = MultinomialNB(
+    alpha=1.0,  # Additive smoothing parameter (Laplace smoothing)
+    fit_prior=True  # Learn class prior probabilities
+)
+
+# Bernoulli Naive Bayes
+bnb = BernoulliNB(
+    alpha=1.0,  # Additive smoothing parameter
+    binarize=0.0,  # Threshold for binarizing features
+    fit_prior=True
+)
+```
+
+### Comparison with Other Algorithms
+
+```python
+from sklearn.naive_bayes import GaussianNB
+from sklearn.linear_model import LogisticRegression
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.model_selection import cross_val_score
+from sklearn.datasets import load_iris
+
+iris = load_iris()
+X, y = iris.data, iris.target
+
+models = {
+    'Gaussian Naive Bayes': GaussianNB(),
+    'Logistic Regression': LogisticRegression(max_iter=1000, random_state=42),
+    'Random Forest': RandomForestClassifier(n_estimators=100, random_state=42)
+}
+
+print("Algorithm Comparison on Iris Dataset:")
+print("=" * 50)
+for name, model in models.items():
+    scores = cross_val_score(model, X, y, cv=5, scoring='accuracy')
+    print(f"{name:25s}: {scores.mean():.3f} (+/- {scores.std():.3f})")
+```
+
+### Key Takeaways
+
+1. **Naive Bayes is fast and simple** - Great baseline for classification
+2. **Excellent for text** - Multinomial NB is a go-to for text classification
+3. **Works with small data** - Can perform well even with limited samples
+4. **Probabilistic output** - Provides interpretable probability estimates
+5. **Feature independence assumption** - Often violated but still works well
+6. **Choose the right variant** - Gaussian for continuous, Multinomial for counts, Bernoulli for binary
+
+---
+
+## Multi-Class Classification Strategies
+
+### Introduction
+
+When you have more than two classes, some algorithms (like SVM, Logistic Regression) are inherently binary. We need strategies to extend them to multi-class problems.
+
+### One-vs-Rest (OvR) / One-vs-All (OvA)
+
+**How it works:**
+- Train one binary classifier per class
+- Each classifier distinguishes one class from all others
+- For prediction, choose the class with the highest confidence/probability
+
+**Example with 3 classes (A, B, C):**
+- Classifier 1: A vs (B, C)
+- Classifier 2: B vs (A, C)
+- Classifier 3: C vs (A, B)
+- Prediction: Class with highest probability wins
+
+```python
+from sklearn.multiclass import OneVsRestClassifier
+from sklearn.svm import SVC
+from sklearn.linear_model import LogisticRegression
+from sklearn.datasets import load_iris
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import accuracy_score, classification_report
+
+# Load data
+iris = load_iris()
+X, y = iris.data, iris.target
+
+# Split data
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.2, random_state=42
+)
+
+# OvR with SVM (SVM is binary by default)
+ovr_svm = OneVsRestClassifier(SVC(probability=True, random_state=42))
+ovr_svm.fit(X_train, y_train)
+y_pred_ovr = ovr_svm.predict(X_test)
+
+print("One-vs-Rest with SVM:")
+print(f"Accuracy: {accuracy_score(y_test, y_pred_ovr):.3f}")
+print("\nClassification Report:")
+print(classification_report(y_test, y_pred_ovr, target_names=iris.target_names))
+
+# Logistic Regression uses OvR by default for multiclass
+lr = LogisticRegression(max_iter=1000, random_state=42, multi_class='ovr')
+lr.fit(X_train, y_train)
+y_pred_lr = lr.predict(X_test)
+
+print("\nLogistic Regression (OvR by default):")
+print(f"Accuracy: {accuracy_score(y_test, y_pred_lr):.3f}")
+```
+
+**Advantages:**
+- Simple and intuitive
+- Works with any binary classifier
+- Computationally efficient (n classifiers for n classes)
+- Good for many classes
+
+**Disadvantages:**
+- Class imbalance (one class vs many)
+- May not capture class relationships
+- Can be sensitive to outliers
+
+**When to use:**
+- Many classes
+- When classes are well-separated
+- Default choice for most binary classifiers
+
+### One-vs-One (OvO)
+
+**How it works:**
+- Train one binary classifier for each pair of classes
+- For n classes, train n×(n-1)/2 classifiers
+- Use voting: each classifier votes for one class, class with most votes wins
+
+**Example with 3 classes (A, B, C):**
+- Classifier 1: A vs B
+- Classifier 2: A vs C
+- Classifier 3: B vs C
+- Prediction: Majority vote
+
+```python
+from sklearn.multiclass import OneVsOneClassifier
+from sklearn.svm import SVC
+from sklearn.datasets import load_iris
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import accuracy_score, classification_report
+
+# Load data
+iris = load_iris()
+X, y = iris.data, iris.target
+
+# Split data
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.2, random_state=42
+)
+
+# OvO with SVM
+ovo_svm = OneVsOneClassifier(SVC(random_state=42))
+ovo_svm.fit(X_train, y_train)
+y_pred_ovo = ovo_svm.predict(X_test)
+
+print("One-vs-One with SVM:")
+print(f"Accuracy: {accuracy_score(y_test, y_pred_ovo):.3f}")
+print("\nClassification Report:")
+print(classification_report(y_test, y_pred_ovo, target_names=iris.target_names))
+
+# Number of classifiers for 3 classes: 3 × 2 / 2 = 3
+print(f"\nNumber of binary classifiers: {len(ovo_svm.estimators_)}")
+```
+
+**Advantages:**
+- Each classifier only sees two classes (simpler problem)
+- Often more accurate than OvR
+- Good for small datasets
+- Better when classes overlap
+
+**Disadvantages:**
+- More classifiers needed (n×(n-1)/2)
+- Slower training and prediction
+- Can be computationally expensive for many classes
+
+**When to use:**
+- Few classes (typically < 10)
+- Small datasets
+- When classes overlap significantly
+- When accuracy is more important than speed
+
+### Comparison: OvR vs OvO
+
+```python
+from sklearn.multiclass import OneVsRestClassifier, OneVsOneClassifier
+from sklearn.svm import SVC
+from sklearn.datasets import load_iris, load_wine
+from sklearn.model_selection import cross_val_score
+import numpy as np
+
+def compare_strategies(X, y, dataset_name):
+    """Compare OvR and OvO strategies"""
+    print(f"\n{dataset_name} Dataset ({len(np.unique(y))} classes):")
+    print("=" * 60)
+    
+    # OvR
+    ovr = OneVsRestClassifier(SVC(random_state=42))
+    ovr_scores = cross_val_score(ovr, X, y, cv=5, scoring='accuracy')
+    
+    # OvO
+    ovo = OneVsOneClassifier(SVC(random_state=42))
+    ovo_scores = cross_val_score(ovo, X, y, cv=5, scoring='accuracy')
+    
+    print(f"One-vs-Rest:  {ovr_scores.mean():.3f} (+/- {ovr_scores.std():.3f})")
+    print(f"One-vs-One:   {ovo_scores.mean():.3f} (+/- {ovo_scores.std():.3f})")
+    
+    n_classes = len(np.unique(y))
+    print(f"\nNumber of classifiers:")
+    print(f"  OvR: {n_classes}")
+    print(f"  OvO: {n_classes * (n_classes - 1) // 2}")
+
+# Test on different datasets
+iris = load_iris()
+wine = load_wine()
+
+compare_strategies(iris.data, iris.target, "Iris")
+compare_strategies(wine.data, wine.target, "Wine")
+```
+
+### Decision Guide
+
+```
+How many classes?
+│
+├─ 2 classes → Use binary classifier directly
+│
+├─ 3-10 classes → Consider OvO (often more accurate)
+│  │
+│  └─ Need speed? → Use OvR
+│
+└─ > 10 classes → Use OvR (OvO becomes too expensive)
+   │
+   └─ Small dataset? → Still consider OvO
+```
+
+### Native Multi-Class Support
+
+Some algorithms natively support multi-class classification:
+- **Decision Trees**: Native multi-class
+- **Random Forests**: Native multi-class
+- **K-Nearest Neighbors**: Native multi-class
+- **Naive Bayes**: Native multi-class
+- **Neural Networks**: Native multi-class
+
+```python
+# These work directly with multi-class problems
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.naive_bayes import GaussianNB
+
+# No need for OvR or OvO wrappers
+models = {
+    'Decision Tree': DecisionTreeClassifier(random_state=42),
+    'Random Forest': RandomForestClassifier(random_state=42),
+    'KNN': KNeighborsClassifier(n_neighbors=5),
+    'Naive Bayes': GaussianNB()
+}
+
+iris = load_iris()
+X, y = iris.data, iris.target
+
+for name, model in models.items():
+    scores = cross_val_score(model, X, y, cv=5, scoring='accuracy')
+    print(f"{name:20s}: {scores.mean():.3f} (+/- {scores.std():.3f})")
+```
+
+### Key Takeaways
+
+1. **OvR**: Train n classifiers (one per class), good for many classes
+2. **OvO**: Train n×(n-1)/2 classifiers (one per pair), often more accurate for few classes
+3. **Choose based on**: Number of classes, dataset size, speed requirements
+4. **Many algorithms**: Support multi-class natively (no wrapper needed)
+5. **Default behavior**: Most sklearn classifiers use OvR automatically
+
+---
+
 ## Evaluation Metrics
 
 ### Confusion Matrix
@@ -850,6 +1342,7 @@ for dataset_name, dataset in datasets.items():
 | **Random Forests** | General purpose, robust | Handles overfitting, feature importance | Less interpretable, slower |
 | **SVM** | Complex boundaries, small datasets | Effective for non-linear, good generalization | Slow for large datasets, memory intensive |
 | **KNN** | Non-linear, small datasets | Simple, no assumptions | Slow for large datasets, sensitive to scale |
+| **Naive Bayes** | Text classification, small datasets | Very fast, works with small data, probabilistic | Assumes feature independence |
 
 ### Quick Selection Guide
 
@@ -865,8 +1358,12 @@ Need interpretability?
    │  └─ NO → Random Forest
    │
    └─ Need probabilities?
-      ├─ YES → Logistic Regression or Random Forest
+      ├─ YES → Logistic Regression, Random Forest, or Naive Bayes
       └─ NO → SVM or Decision Tree
+   │
+   └─ Text classification or small dataset?
+      ├─ YES → Naive Bayes
+      └─ NO → Continue with other algorithms
 ```
 
 ## Key Takeaways
@@ -876,9 +1373,11 @@ Need interpretability?
 3. **Random Forests**: Robust, handles overfitting, feature importance
 4. **SVM**: Good for complex boundaries, memory intensive
 5. **KNN**: Simple, but slow for large datasets, needs scaling
-6. **Evaluation**: Use multiple metrics, especially for imbalanced data
-7. **Feature Scaling**: Important for SVM, KNN, and Logistic Regression
-8. **Hyperparameter Tuning**: Critical for optimal performance
+6. **Naive Bayes**: Very fast, excellent for text classification, works with small data
+7. **Multi-Class Strategies**: Use OvR for many classes, OvO for few classes with overlapping
+8. **Evaluation**: Use multiple metrics, especially for imbalanced data
+9. **Feature Scaling**: Important for SVM, KNN, and Logistic Regression
+10. **Hyperparameter Tuning**: Critical for optimal performance
 
 ---
 
