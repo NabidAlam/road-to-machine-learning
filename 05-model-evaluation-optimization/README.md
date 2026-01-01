@@ -10,6 +10,7 @@ Learn to properly evaluate models and optimize their performance.
 - Bias-Variance Tradeoff
 - Overfitting and Underfitting
 - Model Selection Strategies
+- Model Calibration (Probability Calibration, Platt Scaling, Isotonic Regression)
 
 ##  Topics Covered
 
