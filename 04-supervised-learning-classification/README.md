@@ -9,6 +9,8 @@ Learn to classify data into categories using various classification algorithms.
 - Random Forests
 - Support Vector Machines (SVM)
 - K-Nearest Neighbors (KNN)
+- Naive Bayes (Gaussian, Multinomial, Bernoulli)
+- Multi-Class Classification Strategies (One-vs-Rest, One-vs-One)
 - Evaluation Metrics for Classification
 - Real-world Classification Projects
 
