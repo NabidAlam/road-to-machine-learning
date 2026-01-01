@@ -9,6 +9,7 @@ Comprehensive guide to properly evaluating models and optimizing their performan
 - [Hyperparameter Tuning](#hyperparameter-tuning)
 - [Bias-Variance Tradeoff](#bias-variance-tradeoff)
 - [Learning Curves](#learning-curves)
+- [Model Calibration](#model-calibration)
 - [Practice Exercises](#practice-exercises)
 
 ---
@@ -667,6 +668,279 @@ print(f"R²: {r2:.3f}")
 - **Outliers don't matter**: MAE
 - **Interpretability**: R² (proportion of variance explained)
 
+---
+
+## Model Calibration
+
+### What is Model Calibration?
+
+**Model calibration** refers to how well a model's predicted probabilities match the actual observed frequencies. A well-calibrated model means that when it predicts a 70% probability, the outcome should be positive about 70% of the time.
+
+**Example:**
+- **Well-calibrated**: If model predicts 0.8 probability for 100 samples, ~80 should be positive
+- **Poorly calibrated**: If model predicts 0.8 probability for 100 samples, but only 50 are positive (overconfident)
+
+### Why Calibration Matters
+
+1. **Decision Making**: When probabilities are used for business decisions (e.g., risk assessment)
+2. **Cost-Benefit Analysis**: Need accurate probabilities to calculate expected values
+3. **Threshold Selection**: Calibrated probabilities help choose optimal decision thresholds
+4. **Trust**: Stakeholders need to trust probability estimates
+
+### Calibration Curves
+
+A calibration curve plots predicted probabilities against observed frequencies. A perfectly calibrated model would follow the diagonal line.
+
+```python
+from sklearn.calibration import calibration_curve, CalibratedClassifierCV
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.linear_model import LogisticRegression
+from sklearn.datasets import make_classification
+from sklearn.model_selection import train_test_split
+import matplotlib.pyplot as plt
+import numpy as np
+
+# Generate sample data
+X, y = make_classification(
+    n_samples=1000,
+    n_features=20,
+    n_informative=10,
+    n_classes=2,
+    random_state=42
+)
+
+# Split data
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.2, random_state=42
+)
+
+# Train models
+rf = RandomForestClassifier(n_estimators=100, random_state=42)
+rf.fit(X_train, y_train)
+
+lr = LogisticRegression(max_iter=1000, random_state=42)
+lr.fit(X_train, y_train)
+
+# Get predicted probabilities
+rf_proba = rf.predict_proba(X_test)[:, 1]
+lr_proba = lr.predict_proba(X_test)[:, 1]
+
+# Calculate calibration curves
+rf_fraction_of_positives, rf_mean_predicted_value = calibration_curve(
+    y_test, rf_proba, n_bins=10
+)
+lr_fraction_of_positives, lr_mean_predicted_value = calibration_curve(
+    y_test, lr_proba, n_bins=10
+)
+
+# Plot calibration curves
+plt.figure(figsize=(10, 6))
+plt.plot([0, 1], [0, 1], 'k--', label='Perfectly calibrated')
+plt.plot(rf_mean_predicted_value, rf_fraction_of_positives, 
+         's-', label='Random Forest (uncalibrated)')
+plt.plot(lr_mean_predicted_value, lr_fraction_of_positives, 
+         'o-', label='Logistic Regression')
+plt.xlabel('Mean Predicted Probability', fontsize=12)
+plt.ylabel('Fraction of Positives', fontsize=12)
+plt.title('Calibration Curves', fontsize=14, fontweight='bold')
+plt.legend()
+plt.grid(True, alpha=0.3)
+plt.tight_layout()
+plt.show()
+
+# Calculate Brier score (lower is better, 0 = perfect)
+from sklearn.metrics import brier_score_loss
+
+rf_brier = brier_score_loss(y_test, rf_proba)
+lr_brier = brier_score_loss(y_test, lr_proba)
+
+print(f"Brier Score (lower is better):")
+print(f"  Random Forest: {rf_brier:.4f}")
+print(f"  Logistic Regression: {lr_brier:.4f}")
+```
+
+### Calibration Methods
+
+#### 1. Platt Scaling (Sigmoid Calibration)
+
+Uses logistic regression to map uncalibrated probabilities to calibrated probabilities. Best for models that are already somewhat well-calibrated.
+
+```python
+from sklearn.calibration import CalibratedClassifierCV
+from sklearn.svm import SVC
+from sklearn.datasets import make_classification
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import brier_score_loss, calibration_curve
+import matplotlib.pyplot as plt
+
+# Generate data
+X, y = make_classification(n_samples=1000, n_features=20, n_classes=2, random_state=42)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# Train uncalibrated SVM (SVM probabilities are often poorly calibrated)
+svm = SVC(probability=True, random_state=42)
+svm.fit(X_train, y_train)
+
+# Calibrate using Platt scaling
+svm_calibrated = CalibratedClassifierCV(svm, method='sigmoid', cv=3)
+svm_calibrated.fit(X_train, y_train)
+
+# Get probabilities
+svm_proba = svm.predict_proba(X_test)[:, 1]
+svm_calibrated_proba = svm_calibrated.predict_proba(X_test)[:, 1]
+
+# Compare Brier scores
+print("Brier Score (lower is better):")
+print(f"  Uncalibrated SVM: {brier_score_loss(y_test, svm_proba):.4f}")
+print(f"  Calibrated SVM (Platt): {brier_score_loss(y_test, svm_calibrated_proba):.4f}")
+
+# Plot calibration curves
+fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(14, 5))
+
+# Uncalibrated
+fraction_of_positives, mean_predicted_value = calibration_curve(
+    y_test, svm_proba, n_bins=10
+)
+ax1.plot([0, 1], [0, 1], 'k--', label='Perfectly calibrated')
+ax1.plot(mean_predicted_value, fraction_of_positives, 's-', label='SVM (uncalibrated)')
+ax1.set_xlabel('Mean Predicted Probability')
+ax1.set_ylabel('Fraction of Positives')
+ax1.set_title('Before Calibration')
+ax1.legend()
+ax1.grid(True, alpha=0.3)
+
+# Calibrated
+fraction_of_positives, mean_predicted_value = calibration_curve(
+    y_test, svm_calibrated_proba, n_bins=10
+)
+ax2.plot([0, 1], [0, 1], 'k--', label='Perfectly calibrated')
+ax2.plot(mean_predicted_value, fraction_of_positives, 's-', label='SVM (Platt calibrated)')
+ax2.set_xlabel('Mean Predicted Probability')
+ax2.set_ylabel('Fraction of Positives')
+ax2.set_title('After Platt Calibration')
+ax2.legend()
+ax2.grid(True, alpha=0.3)
+
+plt.tight_layout()
+plt.show()
+```
+
+#### 2. Isotonic Regression
+
+Uses a non-parametric approach (piecewise constant function) to map probabilities. More flexible than Platt scaling, can handle any monotonic relationship.
+
+```python
+# Calibrate using Isotonic Regression
+svm_calibrated_isotonic = CalibratedClassifierCV(svm, method='isotonic', cv=3)
+svm_calibrated_isotonic.fit(X_train, y_train)
+
+svm_calibrated_isotonic_proba = svm_calibrated_isotonic.predict_proba(X_test)[:, 1]
+
+print("Brier Score Comparison:")
+print(f"  Uncalibrated SVM: {brier_score_loss(y_test, svm_proba):.4f}")
+print(f"  Platt Scaling: {brier_score_loss(y_test, svm_calibrated_proba):.4f}")
+print(f"  Isotonic Regression: {brier_score_loss(y_test, svm_calibrated_isotonic_proba):.4f}")
+
+# Plot all three
+fraction_of_positives, mean_predicted_value = calibration_curve(
+    y_test, svm_calibrated_isotonic_proba, n_bins=10
+)
+plt.figure(figsize=(10, 6))
+plt.plot([0, 1], [0, 1], 'k--', label='Perfectly calibrated')
+plt.plot(mean_predicted_value, fraction_of_positives, 'o-', label='Isotonic Regression')
+plt.xlabel('Mean Predicted Probability')
+plt.ylabel('Fraction of Positives')
+plt.title('Isotonic Regression Calibration')
+plt.legend()
+plt.grid(True, alpha=0.3)
+plt.show()
+```
+
+### When to Calibrate
+
+**Models that often need calibration:**
+- **Random Forest**: Often overconfident (probabilities too extreme)
+- **SVM**: Probabilities can be poorly calibrated
+- **Neural Networks**: Can be overconfident
+- **Gradient Boosting**: Often needs calibration
+
+**Models that are usually well-calibrated:**
+- **Logistic Regression**: Usually well-calibrated by design
+- **Naive Bayes**: Often well-calibrated
+- **Linear models**: Generally well-calibrated
+
+### Complete Calibration Workflow
+
+```python
+from sklearn.calibration import CalibratedClassifierCV
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import brier_score_loss, roc_auc_score, log_loss
+from sklearn.datasets import make_classification
+
+# Generate data
+X, y = make_classification(n_samples=1000, n_features=20, n_classes=2, random_state=42)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# Train base model
+rf = RandomForestClassifier(n_estimators=100, random_state=42)
+rf.fit(X_train, y_train)
+
+# Calibrate model
+rf_calibrated = CalibratedClassifierCV(
+    rf, 
+    method='isotonic',  # or 'sigmoid' for Platt scaling
+    cv=3  # Use 3-fold cross-validation for calibration
+)
+rf_calibrated.fit(X_train, y_train)
+
+# Evaluate both models
+rf_proba = rf.predict_proba(X_test)[:, 1]
+rf_calibrated_proba = rf_calibrated.predict_proba(X_test)[:, 1]
+
+print("Model Evaluation:")
+print("=" * 50)
+print(f"Brier Score (lower is better):")
+print(f"  Uncalibrated: {brier_score_loss(y_test, rf_proba):.4f}")
+print(f"  Calibrated: {brier_score_loss(y_test, rf_calibrated_proba):.4f}")
+print(f"\nLog Loss (lower is better):")
+print(f"  Uncalibrated: {log_loss(y_test, rf_proba):.4f}")
+print(f"  Calibrated: {log_loss(y_test, rf_calibrated_proba):.4f}")
+print(f"\nROC-AUC (higher is better):")
+print(f"  Uncalibrated: {roc_auc_score(y_test, rf_proba):.4f}")
+print(f"  Calibrated: {roc_auc_score(y_test, rf_calibrated_proba):.4f}")
+```
+
+### Key Points
+
+1. **Calibration doesn't change ranking**: Well-calibrated probabilities don't necessarily improve ranking (ROC-AUC), but they improve probability estimates
+2. **Use cross-validation**: Always use `CalibratedClassifierCV` with cross-validation to avoid overfitting
+3. **Choose method**: Platt scaling for smooth calibration, Isotonic for more flexibility
+4. **Evaluate with Brier Score**: Lower Brier score = better calibration
+5. **Production importance**: Critical when probabilities are used for decision-making
+
+### Common Issues
+
+**Overconfident Models:**
+- Predictions too extreme (e.g., always 0.9 or 0.1)
+- Common with Random Forest, Neural Networks
+- Solution: Calibration brings probabilities closer to 0.5
+
+**Underconfident Models:**
+- Predictions too conservative (e.g., always around 0.5)
+- Less common but can occur
+- Solution: Calibration can help, but may indicate model issues
+
+### Best Practices
+
+1. **Always check calibration** for models used in production
+2. **Use cross-validation** for calibration to avoid overfitting
+3. **Compare methods**: Try both Platt scaling and Isotonic regression
+4. **Monitor in production**: Recalibrate if data distribution changes
+5. **Document calibration**: Note which method was used and why
+
+---
+
 ## Key Takeaways
 
 1. **Three sets**: Train, Validation, Test - never touch test set until final evaluation
@@ -675,6 +949,7 @@ print(f"R²: {r2:.3f}")
 4. **Bias-Variance**: Balance model complexity - high bias (underfitting) vs high variance (overfitting)
 5. **Learning curves**: Diagnose overfitting/underfitting, determine if more data helps
 6. **Evaluation metrics**: Choose appropriate metrics based on problem type and data characteristics
+7. **Model calibration**: Ensure predicted probabilities match actual frequencies (critical for production)
 
 ## Common Mistakes to Avoid
 
