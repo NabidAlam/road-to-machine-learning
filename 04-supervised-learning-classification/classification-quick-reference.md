@@ -50,7 +50,7 @@ Need to classify into categories?
 | **SVM** | Complex boundaries, small datasets | Effective for non-linear, good generalization | Slow for large datasets, memory intensive | `SVC()` |
 | **KNN** | Non-linear, small datasets | Simple, no assumptions | Slow for large datasets, sensitive to scale | `KNeighborsClassifier()` |
 | **XGBoost** | Large datasets, high performance | Very accurate, handles missing values | Complex, many hyperparameters | `XGBClassifier()` |
-| **Naive Bayes** | Text classification, small datasets | Fast, works well with few samples | Assumes feature independence | `GaussianNB()` |
+| **Naive Bayes** | Text classification, small datasets | Fast, works well with few samples | Assumes feature independence | `GaussianNB()`, `MultinomialNB()`, `BernoulliNB()` |
 
 ---
 
@@ -222,6 +222,42 @@ xgb_clf = xgb.XGBClassifier(
     colsample_bytree=0.8,
     random_state=42
 )
+```
+
+### Naive Bayes
+
+```python
+from sklearn.naive_bayes import GaussianNB, MultinomialNB, BernoulliNB
+
+# Gaussian (continuous data)
+gnb = GaussianNB()
+gnb.fit(X_train, y_train)
+
+# Multinomial (discrete counts, text)
+mnb = MultinomialNB()
+mnb.fit(X_train_counts, y_train)  # Use CountVectorizer/TF-IDF
+
+# Bernoulli (binary features)
+bnb = BernoulliNB()
+bnb.fit(X_binary, y_train)
+```
+
+### Multi-Class Classification Strategies
+
+```python
+from sklearn.multiclass import OneVsRestClassifier, OneVsOneClassifier
+
+# One-vs-Rest (OvR): Train N binary classifiers
+ovr = OneVsRestClassifier(LogisticRegression())
+ovr.fit(X_train, y_train)
+
+# One-vs-One (OvO): Train N(N-1)/2 binary classifiers
+ovo = OneVsOneClassifier(SVC())
+ovo.fit(X_train, y_train)
+
+# Most algorithms handle multi-class automatically
+# LogisticRegression: multi_class='multinomial' or 'ovr'
+# SVC: decision_function_shape='ovr' or 'ovo'
 ```
 
 ---

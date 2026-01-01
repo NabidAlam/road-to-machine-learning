@@ -177,6 +177,39 @@ print("Best params:", study.best_params)
 
 ---
 
+## Model Calibration
+
+### What is Calibration?
+
+Model calibration ensures predicted probabilities match actual frequencies. A well-calibrated model: if it predicts 70%, outcome should be positive ~70% of the time.
+
+### Calibration Techniques
+
+```python
+from sklearn.calibration import CalibratedClassifierCV, calibration_curve
+
+# Platt Scaling (sigmoid)
+calibrated = CalibratedClassifierCV(model, method='sigmoid', cv=5)
+calibrated.fit(X_train, y_train)
+
+# Isotonic Regression (non-parametric)
+calibrated = CalibratedClassifierCV(model, method='isotonic', cv=5)
+calibrated.fit(X_train, y_train)
+
+# Evaluate with Brier Score
+from sklearn.metrics import brier_score_loss
+brier_score = brier_score_loss(y_test, y_pred_proba)
+```
+
+### When to Calibrate
+
+- **Tree-based models** (Random Forest, XGBoost) often need calibration
+- **Logistic Regression** usually well-calibrated
+- **SVM** benefits from calibration
+- Use when probabilities matter (cost-sensitive learning, decision thresholds)
+
+---
+
 ## Evaluation Metrics
 
 ### Classification Metrics
