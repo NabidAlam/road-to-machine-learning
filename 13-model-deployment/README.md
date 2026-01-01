@@ -48,7 +48,7 @@ Learn to deploy machine learning models to production.
 ### 5. Model Serving
 - **Batch Inference**: Process in batches
 - **Real-time Inference**: Low latency
-- **A/B Testing**: Compare model versions
+- **A/B Testing**: Compare model versions (statistical significance, multi-armed bandits, sequential testing)
 - **Canary Deployments**: Gradual rollout
 
 ### 6. Model Monitoring
