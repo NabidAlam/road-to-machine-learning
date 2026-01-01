@@ -10,7 +10,7 @@
 
 **A comprehensive, step-by-step guide to learning Machine Learning from absolute basics to advanced topics**
 
-*Perfect for beginners • 22 Learning Modules • 18 Real-World Projects • Production-Ready Skills*
+*Perfect for beginners • 22 Learning Modules • 23 Real-World Projects • Production-Ready Skills*
 
 [Get Started](#getting-started) • [Learning Path](#learning-path) • [Projects](#phase-8-projects) • [Contribute](#contributing)
 
@@ -22,7 +22,7 @@
 
 - **Zero to Hero Path**: Complete learning journey from basics to advanced ML
 - **Beginner-Friendly**: No prior experience needed - we cover everything
-- **Hands-On Learning**: 18 practical projects to build your portfolio
+- **Hands-On Learning**: 23 practical projects to build your portfolio
 - **Production Focus**: Learn deployment, MLOps, and real-world skills
 - **Well-Organized**: Logical progression with clear learning objectives
 - **Community-Driven**: Open source, contributions welcome!
@@ -99,6 +99,8 @@ This repository provides a structured learning path for machine learning, organi
   - Random Forests
   - Support Vector Machines (SVM)
   - K-Nearest Neighbors (KNN)
+  - Naive Bayes (Gaussian, Multinomial, Bernoulli)
+  - Multi-Class Classification Strategies (One-vs-Rest, One-vs-One)
   - Evaluation Metrics (Accuracy, Precision, Recall, F1, ROC-AUC)
 
 - **05-model-evaluation-optimization**
@@ -108,6 +110,7 @@ This repository provides a structured learning path for machine learning, organi
   - Bias-Variance Tradeoff
   - Learning Curves
   - Overfitting and Underfitting
+  - Model Calibration (Probability Calibration, Platt Scaling, Isotonic Regression)
 
 ### Phase 3: Advanced Supervised Learning
 **Goal**: Explore ensemble methods and advanced techniques
@@ -227,6 +230,7 @@ This repository provides a structured learning path for machine learning, organi
   - Docker for ML
   - Cloud Deployment (AWS, GCP, Azure)
   - AWS SageMaker Comprehensive Guide
+  - A/B Testing (Statistical Significance, Multi-Armed Bandits, Sequential Testing)
   - Model Monitoring
 
 - **14-mlops-basics**
@@ -521,10 +525,17 @@ road-to-ml/
     open_source_contribution.md
     kaggle_competitions.md
     docker_tutorial.md
+    ml_model_testing.md
+    stakeholder_communication.md
+    automl_basics.md
+    data_validation.md
     books.md
     courses.md
     datasets.md
     tools.md
+    youtube_channels.md
+    blogs_websites.md
+    practice_platforms.md
 
  requirements.txt
  LICENSE
@@ -816,8 +827,8 @@ By completing this roadmap, you'll be able to:
 
 - **22 Learning Modules** (00-21) covering all ML topics from basics to advanced
 - **23 Projects** from beginner to advanced with complete code and READMEs
-- **18 Resource Guides** including cheatsheets, tutorials, and career guides
-- **156+ Markdown Files** with comprehensive content, code examples, and exercises
+- **25 Resource Guides** including cheatsheets, tutorials, and career guides
+- **160+ Markdown Files** with comprehensive content, code examples, and exercises
 - **5-6 Months** estimated learning time for complete path
 - **Zero Prerequisites** - start from scratch!
 
