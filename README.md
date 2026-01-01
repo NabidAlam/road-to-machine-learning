@@ -161,11 +161,21 @@ This repository provides a structured learning path for machine learning, organi
 **Goal**: Master domain-specific deep learning applications
 
 - **11-computer-vision**
+  - Introduction to Computer Vision and Visual Cortex
+  - Images and Pixels (RGB, Grayscale, Color Models)
+  - Convolution and Edge Detection (Sobel, Canny, Prewitt)
+  - Padding, Strides, and Spatial Arrangement
   - Convolutional Neural Networks (CNNs)
-  - Image Classification
+  - Pooling Mechanisms (Max, Average)
+  - CNN Training Optimization (Batch Normalization, Dropout, Callbacks)
+  - CNN Architectures: LeNet, AlexNet, VGGNet, ResNet
+  - ImageNet and Large-Scale Recognition
   - Transfer Learning
   - Data Augmentation
-  - Object Detection Basics
+  - Object Detection (R-CNN to YOLO)
+  - Semantic and Instance Segmentation
+  - GANs for Image Generation
+  - Recent Breakthroughs (Vision Transformers, CLIP)
 
 - **12-natural-language-processing**
   - Text Preprocessing
