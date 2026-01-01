@@ -272,6 +272,18 @@ df = pd.DataFrame(list(results))
 
 ## Web Scraping
 
+**Note**: For a comprehensive web scraping guide covering Requests, Beautiful Soup, Selenium, Scrapy, and advanced techniques, see [Web Scraping Guide](../resources/web_scraping_guide.md).
+
+This section provides a quick overview. The full guide includes:
+- Introduction to web scraping (types, ethics, advantages/disadvantages)
+- Primer on web technologies (HTTP, client-server architecture)
+- Mastering Requests library (GET, POST, headers, error handling)
+- Beautiful Soup for HTML parsing (complete guide)
+- Selenium for dynamic content (waits, scrolling, iframes, alerts)
+- Scrapy for large-scale scraping (spiders, pipelines, middleware)
+- Handling challenges (CAPTCHAs, rate limiting)
+- Best practices and real-world projects
+
 ### BeautifulSoup for HTML Parsing
 
 ```python

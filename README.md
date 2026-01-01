@@ -529,6 +529,7 @@ road-to-ml/
     stakeholder_communication.md
     automl_basics.md
     data_validation.md
+    web_scraping_guide.md
     books.md
     courses.md
     datasets.md
@@ -586,6 +587,7 @@ road-to-ml/
 - [Stakeholder Communication Guide](resources/stakeholder_communication.md) - Effective communication of ML concepts, results, and business value to non-technical stakeholders
 - [AutoML Basics Guide](resources/automl_basics.md) - Introduction to Automated Machine Learning: when to use, popular tools, and integration strategies
 - [Data Validation Guide](resources/data_validation.md) - Comprehensive data validation: schema validation, quality checks, drift detection, and automated pipelines
+- [Web Scraping Guide](resources/web_scraping_guide.md) - Complete web scraping guide from basics to advanced: Requests, Beautiful Soup, Selenium, Scrapy, CAPTCHA handling, and real-world projects
 
 ### Career & Interview Resources
 - [Career & Portfolio Guide](resources/career_portfolio.md) - Build your portfolio, prepare for interviews, and launch your ML career
@@ -827,7 +829,7 @@ By completing this roadmap, you'll be able to:
 
 - **22 Learning Modules** (00-21) covering all ML topics from basics to advanced
 - **23 Projects** from beginner to advanced with complete code and READMEs
-- **25 Resource Guides** including cheatsheets, tutorials, and career guides
+- **26 Resource Guides** including cheatsheets, tutorials, and career guides
 - **160+ Markdown Files** with comprehensive content, code examples, and exercises
 - **5-6 Months** estimated learning time for complete path
 - **Zero Prerequisites** - start from scratch!
