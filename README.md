@@ -600,6 +600,12 @@ road-to-ml/
 - [Web Scraping Guide](resources/web_scraping_guide.md) - Complete web scraping guide from basics to advanced: Requests, Beautiful Soup, Selenium, Scrapy, CAPTCHA handling, and real-world projects
 - [Power BI Guide](resources/powerbi_guide.md) - Complete Power BI guide: visualizations, DAX, Power Query, data modeling, dashboards, and AI integration
 - [Excel Data Analysis Guide](resources/excel_data_analysis_guide.md) - Comprehensive Excel guide: functions, pivot tables, charts, dashboards, Power Query, and advanced techniques
+- [MLFlow Comprehensive Guide](resources/mlflow_comprehensive_guide.md) - Complete MLFlow guide: experiment tracking, model registry, hyperparameter tuning (Grid Search, Hyperopt, Optuna), MLFlow UI, model evaluation, and Docker deployment
+- [Transformer Fine-Tuning Guide](resources/transformer_fine_tuning_guide.md) - Comprehensive guide to fine-tuning transformers (T5, BERT, GPT) with Hugging Face: text summarization, classification, generation, and optimization techniques
+- [Langchain Guide](resources/langchain_guide.md) - Complete Langchain guide: building Gen AI projects, chains, agents, memory, RAG, document loaders, and vector stores
+- [LlamaIndex Guide](resources/llamaindex_guide.md) - Comprehensive LlamaIndex guide: data indexing, querying, retrieval, chat engines, and advanced generative AI projects
+- [AI Agents Guide](resources/ai_agents_guide.md) - Complete guide to AI agents: CrewAI, AutoGen, Langgraph, AutoGPT for building intelligent autonomous systems
+- [DSA for ML Guide](resources/dsa_for_ml_guide.md) - Essential data structures and algorithms for machine learning: arrays, trees, graphs, sorting, searching, and ML-specific applications
 
 ### Career & Interview Resources
 - [Career & Portfolio Guide](resources/career_portfolio.md) - Build your portfolio, prepare for interviews, and launch your ML career
@@ -841,7 +847,7 @@ By completing this roadmap, you'll be able to:
 
 - **22 Learning Modules** (00-21) covering all ML topics from basics to advanced
 - **23 Projects** from beginner to advanced with complete code and READMEs
-- **28 Resource Guides** including cheatsheets, tutorials, and career guides
+- **34 Resource Guides** including cheatsheets, tutorials, and career guides
 - **160+ Markdown Files** with comprehensive content, code examples, and exercises
 - **5-6 Months** estimated learning time for complete path
 - **Zero Prerequisites** - start from scratch!
