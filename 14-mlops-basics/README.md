@@ -99,6 +99,7 @@ By the end of this module, you should be able to:
 - [DVC Tutorial](https://dvc.org/doc/start)
 - [MLOps Guide](https://ml-ops.org/) - Comprehensive guide
 - [Experiment Tracking Guide](https://www.mlflow.org/docs/latest/tracking.html)
+- [MLFlow Comprehensive Guide](../resources/mlflow_comprehensive_guide.md) - Complete MLFlow guide with hyperparameter tuning, model registry, and deployment
 
 **Video Tutorials:**
 - [MLflow Tutorial (Sentdex)](https://www.youtube.com/watch?v=1ykg4YmbFVA)
