@@ -527,19 +527,15 @@ road-to-ml/
     README.md
 
  16-projects-beginner/
-    projects-beginner.md
-    projects-beginner-advanced-topics.md
-    projects-beginner-project-tutorial.md
-    projects-beginner-quick-reference.md
-    [5 project directories with code]
+    [6 project directories with code and READMEs]
     README.md
 
  17-projects-intermediate/
-    [6 project directories with READMEs]
+    [8 project directories with READMEs]
     README.md
 
  18-projects-advanced/
-    [7 project directories with READMEs]
+    [9 project directories with READMEs]
     README.md
 
  19-sql-database-fundamentals/
@@ -583,6 +579,14 @@ road-to-ml/
     automl_basics.md
     data_validation.md
     web_scraping_guide.md
+    powerbi_guide.md
+    excel_data_analysis_guide.md
+    mlflow_comprehensive_guide.md
+    transformer_fine_tuning_guide.md
+    langchain_guide.md
+    llamaindex_guide.md
+    ai_agents_guide.md
+    dsa_for_ml_guide.md
     books.md
     courses.md
     datasets.md
@@ -737,7 +741,9 @@ A: Realistic time estimates vary significantly based on your background and time
 | Data Fundamentals | NumPy, Pandas, Visualization | 2-3 months | 4-6 months |
 | ML Basics | Regression, Classification, Evaluation | 2-3 months | 4-6 months |
 | Advanced ML | Ensembles, Feature Engineering | 1-2 months | 2-4 months |
-| Deep Learning | Neural Networks, Frameworks | 3-4 months | 6-8 months |
+| Deep Learning Fundamentals | Neural Networks, Frameworks | 2 months | 4 months |
+| Specialized Deep Learning | Computer Vision, NLP, Time Series | 3-4 months | 6-8 months |
+| Essential Skills | SQL, Imbalanced Data, Explainability | 1-2 months | 2-4 months |
 | Production & MLOps | Deployment, MLOps | 2-3 months | 4-6 months |
 | Projects (23 total) | Hands-on Practice | 4-6 months | 8-12 months |
 | **Total** | **Complete Path** | **12-18 months** | **24-30 months** |
@@ -931,10 +937,6 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for detailed guidelines.
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## Disclaimer
-
-This repository contains links to external resources. Please see [DISCLAIMER.md](DISCLAIMER.md) for important information about external links and resources.
 
 ## Show Your Support
 
