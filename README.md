@@ -810,10 +810,15 @@ Focus on projects relevant to your career goals.
 A: Absolutely! Using your own data makes projects more meaningful. Just ensure the dataset is appropriate for the project type.
 
 **Q: How long should each project take?**  
-A: 
-- Beginner: 1-3 days
-- Intermediate: 3-7 days
-- Advanced: 1-2 weeks
+A: Recommended project completion by level:
+
+| Level | Projects to Complete | Time per Project | Total Time |
+|-------|---------------------|------------------|------------|
+| **Beginner** | 3-4 projects | 1-3 days | 1-2 weeks |
+| **Intermediate** | 4-5 projects | 3-7 days | 3-5 weeks |
+| **Advanced** | 2-3 projects | 1-2 weeks | 2-6 weeks |
+| **Total Minimum** | **9-12 projects** | - | **6-13 weeks** |
+| **Recommended** | **15-18 projects** | - | **10-20 weeks** |
 
 ### Career and Job Market
 
