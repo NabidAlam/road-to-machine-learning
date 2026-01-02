@@ -177,6 +177,8 @@ This repository provides a structured learning path for machine learning, organi
   - Object Detection (R-CNN to YOLO)
   - Semantic and Instance Segmentation
   - GANs for Image Generation
+  - Diffusion Models and Stable Diffusion (with Hugging Face integration)
+  - Variational Autoencoders (VAEs)
   - Recent Breakthroughs (Vision Transformers, CLIP)
 
 - **12-natural-language-processing**
@@ -185,6 +187,8 @@ This repository provides a structured learning path for machine learning, organi
   - Recurrent Neural Networks (RNNs)
   - Long Short-Term Memory (LSTM)
   - Transformers Basics
+  - Fine-tuning Transformers (T5, BERT, GPT with Hugging Face)
+  - RAG (Retrieval Augmented Generation)
   - Sentiment Analysis
 
 - **15-time-series-analysis**
