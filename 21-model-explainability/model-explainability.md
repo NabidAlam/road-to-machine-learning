@@ -144,52 +144,438 @@ print(importance_df)
 
 ## SHAP (SHapley Additive exPlanations)
 
-SHAP values explain individual predictions.
+SHAP (SHapley Additive exPlanations) is a unified framework for explaining model predictions. It's based on Shapley values from cooperative game theory and provides a mathematically principled way to explain any machine learning model.
+
+### SHAP Concepts
+
+**Core Idea:**
+SHAP values explain the output of any model by computing the contribution of each feature to the prediction. The sum of all SHAP values equals the difference between the model's prediction and the expected value.
+
+**Key Properties:**
+1. **Efficiency**: Sum of SHAP values = prediction - expected value
+2. **Symmetry**: Features with equal marginal contributions get equal SHAP values
+3. **Dummy**: Features that don't affect output get zero SHAP value
+4. **Additivity**: SHAP values are additive across features
+
+**Mathematical Foundation:**
+SHAP values are based on Shapley values from game theory, which fairly distribute the "payout" (prediction) among "players" (features).
+
+### Installation
+
+```bash
+pip install shap
+```
 
 ### Tree SHAP
 
+Tree SHAP is optimized for tree-based models (Random Forest, XGBoost, LightGBM, etc.). It's fast and exact.
+
 ```python
-try:
-    import shap
-    
-    # Tree explainer (for tree-based models)
-    explainer = shap.TreeExplainer(model)
-    shap_values = explainer.shap_values(X_test)
-    
-    # Summary plot
-    shap.summary_plot(shap_values, X_test, feature_names=feature_names)
-    
-    # Waterfall plot for single prediction
-    shap.waterfall_plot(
-        shap.Explanation(
-            values=shap_values[0][0],
-            base_values=explainer.expected_value,
-            data=X_test.iloc[0],
-            feature_names=feature_names
-        )
+import shap
+import pandas as pd
+import numpy as np
+from sklearn.ensemble import RandomForestClassifier
+
+# Train model
+model = RandomForestClassifier(n_estimators=100, random_state=42)
+model.fit(X_train, y_train)
+
+# Create Tree explainer
+explainer = shap.TreeExplainer(model)
+
+# Calculate SHAP values
+shap_values = explainer.shap_values(X_test)
+
+# For binary classification, shap_values is a list
+# shap_values[0] for class 0, shap_values[1] for class 1
+# For multi-class, list of arrays for each class
+
+# Summary plot (global interpretation)
+shap.summary_plot(shap_values, X_test, feature_names=feature_names, show=False)
+
+# Summary plot with bar chart (mean absolute SHAP values)
+shap.summary_plot(shap_values, X_test, plot_type="bar", feature_names=feature_names, show=False)
+
+# Waterfall plot for single prediction
+shap.waterfall_plot(
+    shap.Explanation(
+        values=shap_values[0][0],  # First instance, first class
+        base_values=explainer.expected_value[0],
+        data=X_test.iloc[0],
+        feature_names=feature_names
     )
-    
-except ImportError:
-    print("Install SHAP: pip install shap")
+)
+
+# Force plot (interactive)
+shap.force_plot(
+    explainer.expected_value[0],
+    shap_values[0][0],
+    X_test.iloc[0],
+    feature_names=feature_names,
+    matplotlib=True
+)
 ```
 
 ### Kernel SHAP
 
-Model-agnostic SHAP.
+Kernel SHAP is model-agnostic and works with any model. It's slower but more flexible.
 
 ```python
 import shap
 
 # Kernel explainer (works with any model)
-explainer = shap.KernelExplainer(model.predict_proba, X_train[:100])
+# Background data: representative sample of training data
+explainer = shap.KernelExplainer(
+    model.predict_proba,  # Prediction function
+    X_train[:100]  # Background data (small sample for speed)
+)
+
+# Calculate SHAP values for test instances
 shap_values = explainer.shap_values(X_test[0:5])
 
 # Force plot
 shap.force_plot(
-    explainer.expected_value[1],
-    shap_values[1][0],
+    explainer.expected_value[1],  # Expected value for class 1
+    shap_values[1][0],  # SHAP values for first instance, class 1
     X_test.iloc[0],
-    feature_names=feature_names
+    feature_names=feature_names,
+    matplotlib=True
+)
+
+# Summary plot
+shap.summary_plot(shap_values[1], X_test[0:5], feature_names=feature_names, show=False)
+```
+
+### Effect of Background Data
+
+**What is Background Data?**
+Background data is a representative sample used to compute expected values and SHAP values. It represents the "average" or "baseline" prediction.
+
+**Impact of Background Data:**
+- **Size**: Larger background = more accurate but slower
+- **Representativeness**: Should represent your data distribution
+- **Selection**: Random sample or stratified sample
+
+**Example:**
+```python
+# Small background (fast, less accurate)
+explainer_small = shap.KernelExplainer(model.predict_proba, X_train[:50])
+
+# Large background (slow, more accurate)
+explainer_large = shap.KernelExplainer(model.predict_proba, X_train[:500])
+
+# Stratified background (balanced classes)
+from sklearn.model_selection import train_test_split
+_, X_background = train_test_split(
+    X_train, 
+    test_size=100, 
+    stratify=y_train,
+    random_state=42
+)
+explainer_stratified = shap.KernelExplainer(model.predict_proba, X_background)
+```
+
+### SHAP for Regression
+
+```python
+from sklearn.ensemble import RandomForestRegressor
+import shap
+
+# Train regression model
+model = RandomForestRegressor(n_estimators=100, random_state=42)
+model.fit(X_train, y_train)
+
+# Tree explainer for regression
+explainer = shap.TreeExplainer(model)
+shap_values = explainer.shap_values(X_test)
+
+# Summary plot
+shap.summary_plot(shap_values, X_test, feature_names=feature_names, show=False)
+
+# Dependence plot (feature interaction)
+shap.dependence_plot(0, shap_values, X_test, feature_names=feature_names, show=False)
+
+# Waterfall plot
+shap.waterfall_plot(
+    shap.Explanation(
+        values=shap_values[0],
+        base_values=explainer.expected_value,
+        data=X_test.iloc[0],
+        feature_names=feature_names
+    )
+)
+```
+
+### SHAP for Classification
+
+```python
+from sklearn.ensemble import RandomForestClassifier
+import shap
+
+# Train classification model
+model = RandomForestClassifier(n_estimators=100, random_state=42)
+model.fit(X_train, y_train)
+
+# Tree explainer
+explainer = shap.TreeExplainer(model)
+shap_values = explainer.shap_values(X_test)
+
+# For binary classification
+if isinstance(shap_values, list):
+    shap_values_class1 = shap_values[1]  # Class 1 SHAP values
+else:
+    shap_values_class1 = shap_values
+
+# Summary plot
+shap.summary_plot(shap_values_class1, X_test, feature_names=feature_names, show=False)
+
+# Summary plot with class labels
+shap.summary_plot(shap_values, X_test, feature_names=feature_names, class_names=['Class 0', 'Class 1'], show=False)
+```
+
+### SHAP for Neural Networks (ANN)
+
+```python
+import tensorflow as tf
+from tensorflow import keras
+import shap
+
+# Train neural network
+model = keras.Sequential([
+    keras.layers.Dense(64, activation='relu', input_shape=(X_train.shape[1],)),
+    keras.layers.Dense(32, activation='relu'),
+    keras.layers.Dense(1, activation='sigmoid')
+])
+model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy'])
+model.fit(X_train, y_train, epochs=10, validation_split=0.2, verbose=0)
+
+# Deep explainer (for neural networks)
+explainer = shap.DeepExplainer(model, X_train[:100])  # Background data
+shap_values = explainer.shap_values(X_test[:10])
+
+# Summary plot
+shap.summary_plot(shap_values[0], X_test[:10], feature_names=feature_names, show=False)
+
+# Force plot
+shap.force_plot(
+    explainer.expected_value[0],
+    shap_values[0][0],
+    X_test.iloc[0],
+    feature_names=feature_names,
+    matplotlib=True
+)
+```
+
+### SHAP for Convolutional Neural Networks (CNN)
+
+```python
+import tensorflow as tf
+from tensorflow import keras
+import shap
+import numpy as np
+
+# Train CNN (example for image classification)
+model = keras.Sequential([
+    keras.layers.Conv2D(32, 3, activation='relu', input_shape=(28, 28, 1)),
+    keras.layers.MaxPooling2D(),
+    keras.layers.Conv2D(64, 3, activation='relu'),
+    keras.layers.MaxPooling2D(),
+    keras.layers.Flatten(),
+    keras.layers.Dense(10, activation='softmax')
+])
+model.compile(optimizer='adam', loss='sparse_categorical_crossentropy', metrics=['accuracy'])
+model.fit(X_train_images, y_train, epochs=5, verbose=0)
+
+# Deep explainer for CNN
+# Use subset of training images as background
+background_images = X_train_images[:50]
+explainer = shap.DeepExplainer(model, background_images)
+
+# Explain test images
+test_images = X_test_images[:5]
+shap_values = explainer.shap_values(test_images)
+
+# For multi-class, shap_values is a list
+# Visualize SHAP values for first class
+shap.image_plot(shap_values[0], test_images, show=False)
+
+# Summary plot (flattened)
+shap.summary_plot(
+    shap_values[0].reshape(len(test_images), -1),
+    test_images.reshape(len(test_images), -1),
+    feature_names=[f"pixel_{i}" for i in range(test_images[0].size)],
+    show=False
+)
+```
+
+### Global vs Local Interpretations
+
+**Local Interpretation:**
+Explains a single prediction.
+
+```python
+# Explain single instance
+instance_idx = 0
+shap_values_single = explainer.shap_values(X_test.iloc[instance_idx:instance_idx+1])
+
+# Waterfall plot (local)
+shap.waterfall_plot(
+    shap.Explanation(
+        values=shap_values_single[0],
+        base_values=explainer.expected_value,
+        data=X_test.iloc[instance_idx],
+        feature_names=feature_names
+    )
+)
+
+# Force plot (local)
+shap.force_plot(
+    explainer.expected_value,
+    shap_values_single[0],
+    X_test.iloc[instance_idx],
+    feature_names=feature_names,
+    matplotlib=True
+)
+```
+
+**Global Interpretation:**
+Explains the model's overall behavior.
+
+```python
+# Summary plot (global - shows all instances)
+shap.summary_plot(shap_values, X_test, feature_names=feature_names, show=False)
+
+# Bar plot (mean absolute SHAP values - global feature importance)
+shap.summary_plot(shap_values, X_test, plot_type="bar", feature_names=feature_names, show=False)
+
+# Dependence plot (feature interaction - global)
+shap.dependence_plot(
+    "feature1",  # Feature to analyze
+    shap_values,
+    X_test,
+    feature_names=feature_names,
+    interaction_index="feature2",  # Feature to show interaction with
+    show=False
+)
+```
+
+### Math Behind SHAP (Shapley Values)
+
+**Shapley Value Formula:**
+
+For a feature i, the Shapley value is:
+
+```
+φᵢ = Σ [|S|!(n-|S|-1)!/n!] × [f(S ∪ {i}) - f(S)]
+```
+
+Where:
+- S: Subset of features (coalition)
+- n: Total number of features
+- f(S): Model prediction with features in S
+- f(S ∪ {i}): Model prediction with feature i added
+
+**Intuition:**
+- Shapley value = Average marginal contribution of feature i
+- Marginal contribution = How much feature i adds to prediction
+- Averaged over all possible feature combinations
+
+**Properties:**
+1. **Efficiency**: Σᵢ φᵢ = f(N) - f(∅)
+2. **Symmetry**: If features i and j contribute equally, φᵢ = φⱼ
+3. **Dummy**: If feature i never affects output, φᵢ = 0
+4. **Additivity**: For combined models, SHAP values add up
+
+**Example Calculation:**
+```python
+# Simplified example: 3 features
+# Model: f(x1, x2, x3) = x1 + 2*x2 + 3*x3
+# For instance: x1=1, x2=2, x3=3
+# Prediction: 1 + 4 + 9 = 14
+# Expected value (average): 0
+
+# Feature 1 (x1) Shapley value:
+# S={}: f({1}) - f({}) = 1 - 0 = 1
+# S={2}: f({1,2}) - f({2}) = 5 - 4 = 1
+# S={3}: f({1,3}) - f({3}) = 10 - 9 = 1
+# S={2,3}: f({1,2,3}) - f({2,3}) = 14 - 13 = 1
+# Average: 1
+
+# Similarly for features 2 and 3
+# SHAP values: [1, 4, 9] (matches feature contributions)
+```
+
+**Computational Complexity:**
+- Exact calculation: O(2ⁿ) where n = number of features
+- Tree SHAP: O(TLD²) where T = trees, L = leaves, D = depth
+- Kernel SHAP: Approximates with sampling
+
+### SHAP Visualizations
+
+**1. Summary Plot:**
+Shows feature importance and impact on predictions.
+
+```python
+# Summary plot (beeswarm)
+shap.summary_plot(shap_values, X_test, feature_names=feature_names, show=False)
+
+# Bar plot (mean absolute SHAP)
+shap.summary_plot(shap_values, X_test, plot_type="bar", feature_names=feature_names, show=False)
+```
+
+**2. Waterfall Plot:**
+Shows how SHAP values accumulate from base value to prediction.
+
+```python
+shap.waterfall_plot(
+    shap.Explanation(
+        values=shap_values[0],
+        base_values=explainer.expected_value,
+        data=X_test.iloc[0],
+        feature_names=feature_names
+    )
+)
+```
+
+**3. Force Plot:**
+Interactive visualization showing feature contributions.
+
+```python
+shap.force_plot(
+    explainer.expected_value,
+    shap_values[0],
+    X_test.iloc[0],
+    feature_names=feature_names,
+    matplotlib=True
+)
+```
+
+**4. Dependence Plot:**
+Shows how a feature's value affects its SHAP value.
+
+```python
+shap.dependence_plot(
+    "feature1",
+    shap_values,
+    X_test,
+    feature_names=feature_names,
+    interaction_index="feature2",  # Color by interaction feature
+    show=False
+)
+```
+
+**5. Heatmap:**
+Shows SHAP values for multiple instances.
+
+```python
+shap.plots.heatmap(
+    shap.Explanation(
+        values=shap_values,
+        base_values=explainer.expected_value,
+        data=X_test,
+        feature_names=feature_names
+    ),
+    show=False
 )
 ```
 
@@ -197,40 +583,446 @@ shap.force_plot(
 
 ## LIME (Local Interpretable Model-agnostic Explanations)
 
-Explains individual predictions locally.
+LIME (Local Interpretable Model-agnostic Explanations) explains individual predictions by approximating the model locally with an interpretable model (usually linear).
+
+### LIME Concepts
+
+**Core Idea:**
+LIME creates a local, interpretable approximation of the model around a specific prediction. It:
+1. Generates perturbed samples around the instance
+2. Gets predictions from the black-box model
+3. Fits a simple interpretable model (linear) to these predictions
+4. Uses the simple model's coefficients as explanations
+
+**Key Properties:**
+- **Local**: Explains individual predictions, not the whole model
+- **Model-agnostic**: Works with any model
+- **Interpretable**: Uses simple models (linear) for explanation
+- **Approximate**: Local approximation, not exact
+
+**When to Use LIME:**
+- Need local explanations (single predictions)
+- Model is complex black-box
+- SHAP is too slow
+- Want to understand specific predictions
+
+### Installation
+
+```bash
+pip install lime
+```
+
+### LIME for Tabular Data
 
 ```python
-try:
-    from lime import lime_tabular
-    from lime.lime_tabular import LimeTabularExplainer
-    
-    # Create explainer
-    explainer = LimeTabularExplainer(
-        X_train.values,
-        feature_names=feature_names,
-        class_names=['Class 0', 'Class 1'],
-        mode='classification'
-    )
-    
-    # Explain single prediction
-    explanation = explainer.explain_instance(
-        X_test.iloc[0].values,
+from lime import lime_tabular
+from lime.lime_tabular import LimeTabularExplainer
+
+# Create explainer
+explainer = LimeTabularExplainer(
+    X_train.values,
+    feature_names=feature_names,
+    class_names=['Class 0', 'Class 1'],
+    mode='classification',
+    training_labels=y_train,
+    discretize_continuous=True  # Discretize continuous features
+)
+
+# Explain single prediction
+explanation = explainer.explain_instance(
+    X_test.iloc[0].values,
+    model.predict_proba,
+    num_features=10,  # Top 10 features
+    top_labels=1  # Explain top predicted class
+)
+
+# Show explanation in notebook
+explanation.show_in_notebook(show_table=True, show_all=False)
+
+# Get explanation as list
+explanation_list = explanation.as_list(label=1)  # For class 1
+print("\nFeature Contributions:")
+for feature, value in explanation_list:
+    print(f"  {feature}: {value:.4f}")
+
+# Get explanation as map (feature index -> contribution)
+explanation_map = explanation.as_map()[1]  # For class 1
+print("\nFeature Contributions (by index):")
+for idx, value in explanation_map:
+    print(f"  Feature {idx} ({feature_names[idx]}): {value:.4f}")
+
+# Visualize
+explanation.show_in_notebook()
+```
+
+### LIME for Regression
+
+```python
+from lime import lime_tabular
+
+# Create explainer for regression
+explainer = LimeTabularExplainer(
+    X_train.values,
+    feature_names=feature_names,
+    mode='regression',
+    discretize_continuous=True
+)
+
+# Explain single prediction
+explanation = explainer.explain_instance(
+    X_test.iloc[0].values,
+    model.predict,  # Regression: predict, not predict_proba
+    num_features=10
+)
+
+# Show explanation
+explanation.show_in_notebook(show_table=True)
+
+# Get explanation
+explanation_list = explanation.as_list()
+for feature, value in explanation_list:
+    print(f"{feature}: {value:.4f}")
+```
+
+### LIME for Text Data
+
+```python
+from lime import lime_text
+from lime.lime_text import LimeTextExplainer
+
+# Create text explainer
+explainer = LimeTextExplainer(class_names=['Negative', 'Positive'])
+
+# Explain text prediction
+text = "This movie was terrible and boring"
+explanation = explainer.explain_instance(
+    text,
+    model.predict_proba,  # Text classification model
+    num_features=10
+)
+
+# Show explanation
+explanation.show_in_notebook()
+
+# Get explanation
+explanation_list = explanation.as_list()
+print("\nWord Contributions:")
+for word, value in explanation_list:
+    print(f"  {word}: {value:.4f}")
+```
+
+### LIME for Image Data
+
+```python
+from lime import lime_image
+from lime.lime_image import LimeImageExplainer
+from skimage.segmentation import mark_boundaries
+import matplotlib.pyplot as plt
+
+# Create image explainer
+explainer = LimeImageExplainer()
+
+# Explain image prediction
+explanation = explainer.explain_instance(
+    image,  # Input image (numpy array)
+    model.predict,  # Image classification model
+    top_labels=5,  # Top 5 classes
+    hide_color=0,  # Color to hide segments
+    num_samples=1000  # Number of perturbed samples
+)
+
+# Get explanation for top class
+temp, mask = explanation.get_image_and_mask(
+    explanation.top_labels[0],  # Top predicted class
+    positive_only=True,  # Only show positive contributions
+    num_features=5,  # Top 5 segments
+    hide_rest=True
+)
+
+# Visualize
+plt.imshow(mark_boundaries(temp / 2 + 0.5, mask))
+plt.title(f"LIME Explanation for Class {explanation.top_labels[0]}")
+plt.axis('off')
+plt.show()
+```
+
+### Comparing SHAP and LIME
+
+| Aspect | SHAP | LIME |
+|--------|------|------|
+| **Scope** | Global and local | Local only |
+| **Theoretical Foundation** | Game theory (Shapley values) | Local linear approximation |
+| **Accuracy** | Exact (for tree models) or approximate | Approximate |
+| **Speed** | Fast (Tree SHAP) or slow (Kernel SHAP) | Moderate |
+| **Interpretability** | Feature contributions | Feature contributions |
+| **Consistency** | Consistent (efficiency property) | May vary with sampling |
+| **Use Case** | Comprehensive explanations | Quick local explanations |
+
+**When to Use SHAP:**
+- Need global and local explanations
+- Want theoretical guarantees
+- Tree-based models (use Tree SHAP)
+- Need consistent explanations
+
+**When to Use LIME:**
+- Only need local explanations
+- Model is very complex
+- Quick explanations needed
+- Text or image data
+
+**Example: Using Both:**
+```python
+# Use SHAP for global understanding
+shap_explainer = shap.TreeExplainer(model)
+shap_values = shap_explainer.shap_values(X_test)
+shap.summary_plot(shap_values, X_test, feature_names=feature_names)
+
+# Use LIME for specific predictions
+lime_explainer = LimeTabularExplainer(X_train.values, feature_names=feature_names)
+for idx in [0, 5, 10]:  # Explain specific instances
+    explanation = lime_explainer.explain_instance(
+        X_test.iloc[idx].values,
         model.predict_proba,
         num_features=10
     )
-    
-    # Show explanation
-    explanation.show_in_notebook(show_table=True)
-    
-    # Get explanation as list
-    explanation_list = explanation.as_list()
-    print("\nFeature Contributions:")
-    for feature, value in explanation_list:
-        print(f"  {feature}: {value:.4f}")
-    
-except ImportError:
-    print("Install LIME: pip install lime")
+    explanation.show_in_notebook()
 ```
+
+---
+
+## SHAP Case Studies
+
+### Case Study 1: Regression
+
+**Problem:** Predict house prices using features like size, location, age, etc.
+
+```python
+import shap
+import pandas as pd
+import numpy as np
+from sklearn.ensemble import RandomForestRegressor
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import mean_squared_error, r2_score
+
+# Load and prepare data
+# X_train, X_test, y_train, y_test = ...
+
+# Train model
+model = RandomForestRegressor(n_estimators=100, random_state=42)
+model.fit(X_train, y_train)
+
+# Evaluate
+y_pred = model.predict(X_test)
+print(f"R² Score: {r2_score(y_test, y_pred):.4f}")
+print(f"RMSE: {np.sqrt(mean_squared_error(y_test, y_pred)):.4f}")
+
+# SHAP Explanation
+explainer = shap.TreeExplainer(model)
+shap_values = explainer.shap_values(X_test)
+
+# Global interpretation
+shap.summary_plot(shap_values, X_test, feature_names=feature_names, show=False)
+
+# Local interpretation for specific house
+house_idx = 0
+print(f"\nActual Price: ${y_test.iloc[house_idx]:,.2f}")
+print(f"Predicted Price: ${y_pred[house_idx]:,.2f}")
+print(f"Expected Value (Average): ${explainer.expected_value:,.2f}")
+
+# Waterfall plot
+shap.waterfall_plot(
+    shap.Explanation(
+        values=shap_values[house_idx],
+        base_values=explainer.expected_value,
+        data=X_test.iloc[house_idx],
+        feature_names=feature_names
+    )
+)
+
+# Feature contributions
+contributions = pd.DataFrame({
+    'Feature': feature_names,
+    'Value': X_test.iloc[house_idx].values,
+    'SHAP Value': shap_values[house_idx]
+})
+contributions['Contribution'] = contributions['SHAP Value']
+contributions = contributions.sort_values('Contribution', key=abs, ascending=False)
+print("\nFeature Contributions:")
+print(contributions.head(10))
+```
+
+**Interpretation:**
+- Positive SHAP value: Feature increases prediction
+- Negative SHAP value: Feature decreases prediction
+- Magnitude: How much the feature affects prediction
+
+### Case Study 2: Classification
+
+**Problem:** Classify customer churn using customer features.
+
+```python
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import classification_report, confusion_matrix
+import shap
+
+# Train model
+model = RandomForestClassifier(n_estimators=100, random_state=42)
+model.fit(X_train, y_train)
+
+# Evaluate
+y_pred = model.predict(X_test)
+print(classification_report(y_test, y_pred))
+
+# SHAP Explanation
+explainer = shap.TreeExplainer(model)
+shap_values = explainer.shap_values(X_test)
+
+# For binary classification, explain class 1 (churn)
+shap_values_churn = shap_values[1]
+
+# Global interpretation
+shap.summary_plot(shap_values_churn, X_test, feature_names=feature_names, show=False)
+
+# Local interpretation for specific customer
+customer_idx = 0
+predicted_class = model.predict(X_test.iloc[customer_idx:customer_idx+1])[0]
+predicted_proba = model.predict_proba(X_test.iloc[customer_idx:customer_idx+1])[0]
+
+print(f"\nCustomer ID: {customer_idx}")
+print(f"Predicted Class: {predicted_class} ({'Churn' if predicted_class == 1 else 'No Churn'})")
+print(f"Predicted Probability: {predicted_proba[1]:.4f}")
+
+# Waterfall plot
+shap.waterfall_plot(
+    shap.Explanation(
+        values=shap_values_churn[customer_idx],
+        base_values=explainer.expected_value[1],
+        data=X_test.iloc[customer_idx],
+        feature_names=feature_names
+    )
+)
+
+# Top features driving churn prediction
+contributions = pd.DataFrame({
+    'Feature': feature_names,
+    'Value': X_test.iloc[customer_idx].values,
+    'SHAP Value': shap_values_churn[customer_idx]
+})
+contributions = contributions.sort_values('SHAP Value', ascending=False)
+print("\nTop Features Increasing Churn Probability:")
+print(contributions.head(5))
+print("\nTop Features Decreasing Churn Probability:")
+print(contributions.tail(5))
+```
+
+### Case Study 3: Artificial Neural Network (ANN)
+
+**Problem:** Classify images or tabular data using neural networks.
+
+```python
+import tensorflow as tf
+from tensorflow import keras
+import shap
+import numpy as np
+
+# Build and train ANN
+model = keras.Sequential([
+    keras.layers.Dense(128, activation='relu', input_shape=(X_train.shape[1],)),
+    keras.layers.Dropout(0.3),
+    keras.layers.Dense(64, activation='relu'),
+    keras.layers.Dropout(0.3),
+    keras.layers.Dense(32, activation='relu'),
+    keras.layers.Dense(1, activation='sigmoid')
+])
+
+model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy'])
+model.fit(X_train, y_train, epochs=50, batch_size=32, validation_split=0.2, verbose=0)
+
+# SHAP Explanation with Deep Explainer
+# Use subset of training data as background
+background_data = X_train[:100].values
+explainer = shap.DeepExplainer(model, background_data)
+
+# Explain test instances
+test_data = X_test[:20].values
+shap_values = explainer.shap_values(test_data)
+
+# Summary plot
+shap.summary_plot(shap_values[0], test_data, feature_names=feature_names, show=False)
+
+# Local explanation
+instance_idx = 0
+shap.force_plot(
+    explainer.expected_value[0],
+    shap_values[0][instance_idx],
+    test_data[instance_idx],
+    feature_names=feature_names,
+    matplotlib=True
+)
+
+# Compare with model's feature importance (if available)
+print(f"\nExpected Value: {explainer.expected_value[0]:.4f}")
+print(f"Prediction: {model.predict(test_data[instance_idx:instance_idx+1])[0][0]:.4f}")
+print(f"Sum of SHAP values: {np.sum(shap_values[0][instance_idx]):.4f}")
+print(f"Expected + SHAP sum: {explainer.expected_value[0] + np.sum(shap_values[0][instance_idx]):.4f}")
+```
+
+### Case Study 4: Convolutional Neural Network (CNN)
+
+**Problem:** Classify images using CNN.
+
+```python
+import tensorflow as tf
+from tensorflow import keras
+import shap
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Build and train CNN (example: CIFAR-10)
+model = keras.Sequential([
+    keras.layers.Conv2D(32, 3, activation='relu', input_shape=(32, 32, 3)),
+    keras.layers.MaxPooling2D(),
+    keras.layers.Conv2D(64, 3, activation='relu'),
+    keras.layers.MaxPooling2D(),
+    keras.layers.Conv2D(64, 3, activation='relu'),
+    keras.layers.Flatten(),
+    keras.layers.Dense(64, activation='relu'),
+    keras.layers.Dense(10, activation='softmax')
+])
+
+model.compile(optimizer='adam', loss='sparse_categorical_crossentropy', metrics=['accuracy'])
+# model.fit(X_train_images, y_train, epochs=10, verbose=0)
+
+# SHAP Explanation for CNN
+# Use subset of training images as background
+background_images = X_train_images[:50]
+explainer = shap.DeepExplainer(model, background_images)
+
+# Explain test images
+test_images = X_test_images[:5]
+shap_values = explainer.shap_values(test_images)
+
+# Visualize SHAP values for first class
+class_idx = 0
+shap.image_plot(shap_values[class_idx], test_images, show=False)
+
+# For specific image
+image_idx = 0
+predicted_class = np.argmax(model.predict(test_images[image_idx:image_idx+1])[0])
+print(f"Predicted Class: {predicted_class}")
+
+# Visualize SHAP values for predicted class
+shap.image_plot(
+    shap_values[predicted_class][image_idx:image_idx+1],
+    test_images[image_idx:image_idx+1],
+    show=False
+)
+```
+
+**Interpretation:**
+- Red regions: Increase probability of predicted class
+- Blue regions: Decrease probability of predicted class
+- Intensity: Magnitude of contribution
 
 ---
 
