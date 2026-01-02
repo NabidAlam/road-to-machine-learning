@@ -30,6 +30,9 @@ Learn Python from scratch - variables, data types, control flow, functions, and 
 
 **📖 [Complete Guide →](01-python-basics.md)**
 
+**Additional Resources:**
+- [DSA for ML Guide](../resources/dsa_for_ml_guide.md) - Essential data structures and algorithms specifically for machine learning
+
 ### 02-linear-algebra
 Deep dive into linear algebra - the mathematical foundation of machine learning.
 
