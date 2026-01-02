@@ -671,6 +671,269 @@ profile.to_file("eda_report.html")
 
 ---
 
+## Data Storytelling
+
+### What is Data Storytelling?
+
+Data storytelling is the art of communicating insights from data analysis in a clear, compelling, and actionable way. It combines data analysis, visualization, and narrative to help stakeholders understand and act on findings.
+
+### Why Data Storytelling Matters
+
+- **Actionable Insights**: Turns data into decisions
+- **Stakeholder Engagement**: Keeps audience interested
+- **Clear Communication**: Makes complex data understandable
+- **Business Impact**: Drives organizational change
+- **Persuasion**: Influences decision-making
+
+### Elements of Effective Data Stories
+
+**1. Clear Narrative Structure**
+
+**Three-Act Structure:**
+- **Act 1: Setup (Context)**
+  - What is the business problem?
+  - Why does it matter?
+  - What data do we have?
+
+- **Act 2: Confrontation (Analysis)**
+  - What did we discover?
+  - What patterns emerged?
+  - What are the key insights?
+
+- **Act 3: Resolution (Action)**
+  - What should we do?
+  - What are the recommendations?
+  - What's the expected impact?
+
+**Example Structure:**
+```
+Problem: Customer churn is increasing
+Analysis: Found 3 key factors driving churn
+Solution: Implement retention strategies targeting high-risk segments
+Impact: Expected 15% reduction in churn rate
+```
+
+**2. Know Your Audience**
+
+**Executive Audience:**
+- Focus on business impact
+- High-level insights
+- ROI and strategic implications
+- Keep it brief (5-10 minutes)
+
+**Analytical Audience:**
+- Detailed methodology
+- Statistical significance
+- Technical details
+- Can be longer (30-60 minutes)
+
+**General Business Audience:**
+- Clear explanations
+- Avoid jargon
+- Use analogies
+- Focus on practical implications
+
+**3. Effective Visualizations**
+
+**Choose the Right Chart:**
+- **Comparison**: Bar charts, column charts
+- **Trends**: Line charts, area charts
+- **Distribution**: Histograms, box plots
+- **Relationships**: Scatter plots, correlation heatmaps
+- **Composition**: Pie charts, stacked bar charts
+- **Geographic**: Maps, choropleth maps
+
+**Visualization Best Practices:**
+```python
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# Clear, professional styling
+sns.set_style("whitegrid")
+plt.figure(figsize=(10, 6))
+
+# Example: Sales trend
+plt.plot(df['date'], df['sales'], linewidth=2, color='#2E86AB')
+plt.title('Monthly Sales Trend (2023)', fontsize=16, fontweight='bold')
+plt.xlabel('Month', fontsize=12)
+plt.ylabel('Sales ($)', fontsize=12)
+plt.grid(True, alpha=0.3)
+
+# Add annotations for key points
+plt.annotate('Peak Sales', 
+             xy=('2023-11', df.loc[df['date']=='2023-11', 'sales'].values[0]),
+             xytext=(10, 10), textcoords='offset points',
+             bbox=dict(boxstyle='round,pad=0.5', fc='yellow', alpha=0.7),
+             arrowprops=dict(arrowstyle='->', connectionstyle='arc3,rad=0'))
+
+plt.tight_layout()
+plt.show()
+```
+
+**4. Key Principles**
+
+**Simplicity:**
+- One main message per visualization
+- Remove clutter
+- Use clear labels
+- Avoid 3D charts (hard to read)
+
+**Consistency:**
+- Same color scheme throughout
+- Consistent formatting
+- Standardized scales
+
+**Emphasis:**
+- Highlight important findings
+- Use color strategically
+- Draw attention to key insights
+
+**5. Narrative Techniques**
+
+**Start with a Hook:**
+```
+"Last quarter, we lost $2M in revenue due to customer churn. 
+Today, I'll show you why and what we can do about it."
+```
+
+**Use Analogies:**
+```
+"Think of our customer segments like neighborhoods. 
+Some neighborhoods have higher crime rates (churn), 
+and we need to understand why."
+```
+
+**Tell a Story:**
+```
+"Let's follow a typical customer journey. 
+They start here [point to chart], 
+encounter this problem [show data], 
+and here's where we lose them [highlight]."
+```
+
+**6. Actionable Recommendations**
+
+**Structure Recommendations:**
+1. **What**: Specific action
+2. **Why**: Data-driven rationale
+3. **Impact**: Expected outcome
+4. **How**: Implementation steps
+
+**Example:**
+```
+Recommendation: Implement targeted email campaigns for 
+high-risk customers (churn probability > 0.7)
+
+Why: Our analysis shows these customers have 3x higher 
+churn rate and respond well to personalized communication
+
+Impact: Expected 20% reduction in churn for this segment, 
+saving $400K annually
+
+How: 
+1. Identify high-risk customers using our model
+2. Create personalized email templates
+3. Send weekly engagement emails
+4. Track response rates and adjust
+```
+
+### Creating a Data Story
+
+**Step 1: Define Your Message**
+- What's the main insight?
+- What action should be taken?
+- Why does it matter?
+
+**Step 2: Structure Your Story**
+- Problem → Analysis → Solution → Impact
+- Use the three-act structure
+
+**Step 3: Choose Visualizations**
+- Select charts that support your message
+- Ensure clarity and readability
+- Remove unnecessary elements
+
+**Step 4: Write the Narrative**
+- Connect visualizations with text
+- Explain what each chart shows
+- Highlight key findings
+
+**Step 5: Add Context**
+- Business context
+- Methodology (brief)
+- Limitations
+- Next steps
+
+### Example: Complete Data Story
+
+**Title: Understanding Customer Churn**
+
+**Slide 1: The Problem**
+```
+Customer churn increased 25% last quarter
+Lost revenue: $2M
+Need to understand why and take action
+```
+
+**Slide 2: Key Finding**
+```
+Visualization: Bar chart showing churn by customer segment
+Insight: Segment A has 3x higher churn rate
+```
+
+**Slide 3: Root Cause Analysis**
+```
+Visualization: Correlation heatmap
+Insight: Low engagement score correlates with churn
+```
+
+**Slide 4: Recommendation**
+```
+Action: Implement engagement program for Segment A
+Expected Impact: 20% reduction in churn = $400K saved
+```
+
+**Slide 5: Next Steps**
+```
+1. Launch pilot program (next month)
+2. Measure engagement metrics
+3. Expand if successful
+```
+
+### Tools for Data Storytelling
+
+**Python:**
+- Matplotlib/Seaborn: Visualizations
+- Plotly: Interactive charts
+- Streamlit: Interactive dashboards
+- Jupyter Notebooks: Narrative + code
+
+**Other Tools:**
+- Tableau: Professional dashboards
+- Power BI: Business intelligence
+- Excel: Quick visualizations
+- PowerPoint: Presentations
+
+### Best Practices
+
+1. **Start with the End in Mind**: Know your message before creating visuals
+2. **Less is More**: Fewer, clearer visualizations beat many cluttered ones
+3. **Test Your Story**: Practice with colleagues before presenting
+4. **Be Honest**: Acknowledge limitations and uncertainties
+5. **Focus on Action**: Every insight should lead to a recommendation
+6. **Use Data Ethically**: Present data accurately, avoid manipulation
+
+### Common Mistakes to Avoid
+
+1. **Data Dump**: Showing all data without narrative
+2. **Overwhelming Visuals**: Too many charts, too much information
+3. **No Clear Message**: Audience doesn't know what to take away
+4. **Ignoring Audience**: Too technical or too simple for audience
+5. **No Call to Action**: Insights without recommendations
+6. **Misleading Visuals**: Incorrect scales, cherry-picked data
+
+---
+
 ## Key Takeaways
 
 1. **EDA is Essential**: Never skip this step
@@ -679,8 +942,9 @@ profile.to_file("eda_report.html")
 4. **Document**: Keep notes of findings
 5. **Iterate**: EDA is an ongoing process
 6. **Validate**: Check assumptions and data quality
+7. **Tell Stories**: Communicate insights effectively
 
 ---
 
-**Remember**: Good EDA leads to better models. Spend time understanding your data before modeling!
+**Remember**: Good EDA leads to better models. Spend time understanding your data before modeling, and communicate your findings clearly to drive action!
 
