@@ -52,6 +52,8 @@ This repository provides a structured learning path for machine learning, organi
 
 **Note on Module Numbering**: Module numbers (00-21) don't strictly follow the learning path order. The phases below represent the recommended learning sequence. Some modules can be learned in parallel or in different orders based on your goals. See individual module READMEs for prerequisites and suggested learning order.
 
+**Time Estimates**: Realistic completion time is **12-18 months (full-time, 30-40 hrs/week)** or **24-30 months (part-time, 10-15 hrs/week)** for comprehensive coverage including all 22 modules and 23 projects. See [FAQ section](#common-questions--learning-guide) for detailed breakdown.
+
 ### Phase 0: Foundation (Prerequisites)
 **Goal**: Build the mathematical and programming foundation needed for ML
 
@@ -642,7 +644,33 @@ road-to-ml/
 A: Start with `00-prerequisites` - specifically `01-python-basics.md`. No prior experience needed! Follow the modules in order.
 
 **Q: How long will it take to complete this roadmap?**  
-A: Approximately 5-6 months for full-time learners, 8-12 months for part-time learners. The pace depends on your background and time commitment.
+A: Realistic time estimates vary significantly based on your background and time commitment:
+
+**Full-Time Learners (30-40 hours/week):**
+- **Minimum (Fast Track)**: 8-10 months - Covers core concepts, skips some advanced topics
+- **Standard Path**: 12-15 months - Complete coverage with all modules and projects
+- **Comprehensive (Recommended)**: 15-18 months - Deep understanding, all projects, portfolio building
+
+**Part-Time Learners (10-15 hours/week):**
+- **Minimum**: 18-24 months - Core concepts and essential projects
+- **Standard Path**: 24-30 months - Complete coverage
+- **Comprehensive**: 30-36 months - Deep mastery with extensive projects
+
+**Key Factors:**
+- Prior programming experience: -2 to -4 months
+- Prior math background: -1 to -2 months
+- Number of projects completed: +2 to +6 months
+- Time spent on practice vs. reading: Practice takes longer but is essential
+
+**Realistic Breakdown:**
+- Prerequisites: 2-3 months
+- Data Fundamentals: 2-3 months
+- ML Basics: 2-3 months
+- Advanced ML: 1-2 months
+- Deep Learning: 3-4 months
+- Production & MLOps: 2-3 months
+- Projects (23 total): 4-6 months
+- **Total: 16-24 months for comprehensive learning**
 
 **Q: Do I need a powerful computer?**  
 A: No! Most modules work fine on a regular laptop. Deep learning modules (11-12) benefit from GPUs but can be done on cloud platforms (Google Colab, Kaggle) for free.
@@ -849,7 +877,7 @@ By completing this roadmap, you'll be able to:
 - **23 Projects** from beginner to advanced with complete code and READMEs
 - **34 Resource Guides** including cheatsheets, tutorials, and career guides
 - **160+ Markdown Files** with comprehensive content, code examples, and exercises
-- **5-6 Months** estimated learning time for complete path
+- **Realistic Learning Time**: 12-18 months (full-time) or 24-30 months (part-time) for comprehensive coverage
 - **Zero Prerequisites** - start from scratch!
 
 ## Disclaimer
