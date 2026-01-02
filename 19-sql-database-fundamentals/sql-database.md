@@ -81,6 +81,189 @@ Software that manages databases:
 - **SQL Server**: Microsoft's RDBMS
 - **Oracle**: Enterprise RDBMS
 
+### OLAP vs OLTP: Understanding Database Types
+
+Understanding the difference between OLAP and OLTP is crucial for data analysis and database design.
+
+#### OLTP (Online Transaction Processing)
+
+**Purpose**: Handle day-to-day transactional operations
+
+**Characteristics**:
+- **High transaction volume**: Many small, frequent transactions
+- **Fast response time**: Milliseconds for queries
+- **Normalized data**: Optimized for writes and updates
+- **Current data**: Real-time, up-to-date information
+- **Small queries**: Simple SELECT, INSERT, UPDATE, DELETE operations
+- **ACID compliance**: Ensures data consistency
+
+**Examples**:
+- E-commerce order processing
+- Banking transactions (deposits, withdrawals)
+- Inventory management systems
+- Customer relationship management (CRM)
+- Online booking systems
+
+**Database Design**:
+```sql
+-- OLTP: Normalized structure (minimal redundancy)
+CREATE TABLE orders (
+    order_id INT PRIMARY KEY,
+    customer_id INT,
+    order_date DATE,
+    total_amount DECIMAL(10,2),
+    FOREIGN KEY (customer_id) REFERENCES customers(customer_id)
+);
+
+CREATE TABLE order_items (
+    item_id INT PRIMARY KEY,
+    order_id INT,
+    product_id INT,
+    quantity INT,
+    price DECIMAL(10,2),
+    FOREIGN KEY (order_id) REFERENCES orders(order_id)
+);
+```
+
+#### OLAP (Online Analytical Processing)
+
+**Purpose**: Support complex analytical queries and reporting
+
+**Characteristics**:
+- **Low transaction volume**: Fewer, but complex queries
+- **Slower response time**: Seconds to minutes acceptable
+- **Denormalized data**: Optimized for reads and aggregations
+- **Historical data**: Time-series, aggregated data
+- **Large queries**: Complex JOINs, aggregations, GROUP BY
+- **Read-heavy**: Primarily SELECT operations
+
+**Examples**:
+- Business intelligence dashboards
+- Data warehouses
+- Sales reporting and analytics
+- Financial reporting
+- Trend analysis
+
+**Database Design**:
+```sql
+-- OLAP: Denormalized structure (star schema)
+CREATE TABLE fact_sales (
+    sale_id INT PRIMARY KEY,
+    date_id INT,
+    product_id INT,
+    customer_id INT,
+    store_id INT,
+    quantity INT,
+    revenue DECIMAL(10,2),
+    profit DECIMAL(10,2)
+);
+
+CREATE TABLE dim_date (
+    date_id INT PRIMARY KEY,
+    date DATE,
+    year INT,
+    quarter INT,
+    month INT,
+    day_of_week VARCHAR(10)
+);
+
+CREATE TABLE dim_product (
+    product_id INT PRIMARY KEY,
+    product_name VARCHAR(100),
+    category VARCHAR(50),
+    brand VARCHAR(50)
+);
+```
+
+#### Key Differences
+
+| Aspect | OLTP | OLAP |
+|--------|------|------|
+| **Purpose** | Transaction processing | Data analysis |
+| **Users** | Clerks, operators | Analysts, managers |
+| **Data** | Current, detailed | Historical, aggregated |
+| **Design** | Normalized | Denormalized (star/snowflake) |
+| **Queries** | Simple, fast | Complex, analytical |
+| **Operations** | INSERT, UPDATE, DELETE | SELECT (mostly) |
+| **Size** | Small to medium | Large to very large |
+| **Response Time** | Milliseconds | Seconds to minutes |
+| **Example** | Order entry system | Sales reporting system |
+
+#### When to Use Each
+
+**Use OLTP when**:
+- You need to process transactions in real-time
+- Data must be current and accurate
+- You need fast write operations
+- You're building operational systems
+- Examples: E-commerce, banking, inventory
+
+**Use OLAP when**:
+- You need to analyze historical data
+- You're building reports and dashboards
+- You need complex aggregations
+- You're doing business intelligence
+- Examples: Data warehouses, BI tools, analytics platforms
+
+#### ETL Process: OLTP to OLAP
+
+In practice, data flows from OLTP to OLAP:
+
+```
+OLTP Database (Operational)
+    ↓
+ETL Process (Extract, Transform, Load)
+    ↓
+OLAP Database (Data Warehouse)
+    ↓
+BI Tools (Power BI, Tableau, etc.)
+```
+
+**ETL Process**:
+1. **Extract**: Pull data from OLTP systems
+2. **Transform**: Clean, aggregate, denormalize
+3. **Load**: Store in OLAP data warehouse
+
+**Example ETL Pipeline**:
+```python
+# Extract from OLTP
+import pandas as pd
+import sqlalchemy
+
+# Connect to OLTP database
+oltp_engine = sqlalchemy.create_engine('postgresql://oltp_db')
+
+# Extract daily sales
+query = """
+    SELECT 
+        DATE(order_date) as sale_date,
+        product_id,
+        customer_id,
+        SUM(quantity) as total_quantity,
+        SUM(amount) as total_revenue
+    FROM orders
+    WHERE order_date >= CURRENT_DATE - INTERVAL '1 day'
+    GROUP BY DATE(order_date), product_id, customer_id
+"""
+
+df = pd.read_sql(query, oltp_engine)
+
+# Transform: Add dimensions
+df['year'] = pd.to_datetime(df['sale_date']).dt.year
+df['month'] = pd.to_datetime(df['sale_date']).dt.month
+df['quarter'] = pd.to_datetime(df['sale_date']).dt.quarter
+
+# Load into OLAP data warehouse
+olap_engine = sqlalchemy.create_engine('postgresql://olap_db')
+df.to_sql('fact_sales', olap_engine, if_exists='append', index=False)
+```
+
+#### Resources
+
+- [OLTP vs OLAP Explained (GeeksforGeeks)](https://www.geeksforgeeks.org/difference-between-oltp-and-olap/)
+- [Data Warehouse Concepts (Oracle)](https://docs.oracle.com/cd/B10501_01/server.920/a96520/concept.htm)
+- [Star Schema Design (Kimball Group)](https://www.kimballgroup.com/data-warehouse-business-intelligence-resources/)
+
 ---
 
 ## Database Fundamentals
