@@ -54,6 +54,22 @@ This repository provides a structured learning path for machine learning, organi
 
 **Time Estimates**: Realistic completion time is **12-18 months (full-time, 30-40 hrs/week)** or **24-30 months (part-time, 10-15 hrs/week)** for comprehensive coverage including all 22 modules and 23 projects. See [FAQ section](#common-questions--learning-guide) for detailed breakdown.
 
+## Learning Path Overview
+
+| Phase | Modules | Focus Area | Est. Time (Full-Time) | Est. Time (Part-Time) |
+|-------|---------|------------|----------------------|----------------------|
+| **Phase 0** | 00 | Foundation (Python, Math) | 2-3 months | 4-6 months |
+| **Phase 1** | 01 | Data Fundamentals | 2-3 months | 4-6 months |
+| **Phase 2** | 02-05 | ML Basics | 2-3 months | 4-6 months |
+| **Phase 3** | 06-07 | Advanced ML | 1-2 months | 2-4 months |
+| **Phase 4** | 08 | Unsupervised Learning | 1 month | 2 months |
+| **Phase 5** | 09-10 | Deep Learning Fundamentals | 2 months | 4 months |
+| **Phase 6** | 11-12, 15 | Specialized Deep Learning | 3-4 months | 6-8 months |
+| **Phase 6.5** | 19-21 | Essential Skills (SQL, Imbalanced Data, Explainability) | 1-2 months | 2-4 months |
+| **Phase 7** | 13-14 | Production & MLOps | 2-3 months | 4-6 months |
+| **Phase 8** | 16-18 | Projects (23 total) | 4-6 months | 8-12 months |
+| **Total** | 22 modules | Complete Path | **12-18 months** | **24-30 months** |
+
 ### Phase 0: Foundation (Prerequisites)
 **Goal**: Build the mathematical and programming foundation needed for ML
 
@@ -263,37 +279,58 @@ This repository provides a structured learning path for machine learning, organi
 
 **Note**: Projects are numbered 16-18 but should be worked on throughout your learning journey. Start beginner projects after Phase 2, intermediate after Phase 3-4, and advanced after Phase 6-7.
 
-- **16-projects-beginner** (6 projects)
-  - **Prerequisites**: Complete Phases 0-2 before starting
-  - House Price Prediction ✓ (Available)
-  - Iris Flower Classification ✓ (Available)
-  - Titanic Survival Prediction ✓ (Available)
-  - Spam Email Detection ✓ (Available)
-  - Wine Quality Prediction ✓ (Available)
-  - Customer Data Dashboard with Streamlit ✓ (Available - README)
+#### Projects Summary
 
-- **17-projects-intermediate** (8 projects)
-  - **Prerequisites**: Complete Phases 0-4 and some Phase 6.5 topics recommended
-  - Handwritten Digit Recognition (MNIST) ✓ (Available - README)
-  - Customer Churn Prediction ✓ (Available - README)
-  - Movie Recommendation System ✓ (Available - README)
-  - Credit Card Fraud Detection ✓ (Available - README)
-  - Customer Segmentation ✓ (Available - README)
-  - Time Series Forecasting ✓ (Available - README)
-  - Feature Engineering Mastery ✓ (Available - README)
-  - Ensemble Methods Comparison ✓ (Available - README)
+| Category | Count | Prerequisites | Est. Time | Status |
+|----------|-------|---------------|-----------|--------|
+| **Beginner** | 6 | Phases 0-2 | 2-3 weeks | All Available |
+| **Intermediate** | 8 | Phases 0-4 | 4-6 weeks | All Available |
+| **Advanced** | 9 | Phases 0-7 | 8-12 weeks | All Available |
+| **Total** | **23** | - | **4-6 months** | **100% Complete** |
 
-- **18-projects-advanced** (9 projects)
-  - **Prerequisites**: Complete Phases 0-7 recommended for full benefit
-  - Image Classification (CIFAR-10) ✓ (Available - README)
-  - Sentiment Analysis on Reviews ✓ (Available - README)
-  - Time Series Forecasting (Advanced) ✓ (Available - README)
-  - Chatbot Development ✓ (Available - README)
-  - Object Detection ✓ (Available - README)
-  - End-to-End ML Pipeline ✓ (Available - README)
-  - Generative Model (GAN/VAE) ✓ (Available - README)
-  - Model Explainability & Interpretability ✓ (Available - README)
-  - Model Deployment & Serving ✓ (Available - README)
+#### Beginner Projects (6 projects)
+
+| # | Project Name | Skills | Time | Status |
+|---|--------------|--------|------|--------|
+| 1 | House Price Prediction | Regression, Feature Engineering, EDA | 2-3 days | ✓ Available |
+| 2 | Iris Flower Classification | Classification, EDA, Multiple Algorithms | 1 day | ✓ Available |
+| 3 | Titanic Survival Prediction | Classification, Data Cleaning, Feature Engineering | 2-3 days | ✓ Available |
+| 4 | Spam Email Detection | Text Classification, NLP Basics | 2-3 days | ✓ Available |
+| 5 | Wine Quality Prediction | Regression, Feature Engineering | 2-3 days | ✓ Available |
+| 6 | Customer Data Dashboard with Streamlit | Data Visualization, Streamlit | 3-5 days | ✓ Available |
+
+**Prerequisites**: Complete Phases 0-2 before starting
+
+#### Intermediate Projects (8 projects)
+
+| # | Project Name | Skills | Time | Status |
+|---|--------------|--------|------|--------|
+| 1 | Handwritten Digit Recognition (MNIST) | Neural Networks, Image Processing | 3-5 days | ✓ Available |
+| 2 | Customer Churn Prediction | Classification, Imbalanced Data, Business Metrics | 4-5 days | ✓ Available |
+| 3 | Movie Recommendation System | Collaborative Filtering, Content-Based | 5-7 days | ✓ Available |
+| 4 | Credit Card Fraud Detection | Anomaly Detection, Imbalanced Data | 4-5 days | ✓ Available |
+| 5 | Customer Segmentation | Clustering, Unsupervised Learning | 3-4 days | ✓ Available |
+| 6 | Time Series Forecasting | Time Series Analysis, ARIMA, LSTM | 5-7 days | ✓ Available |
+| 7 | Feature Engineering Mastery | Feature Engineering, Advanced Techniques | 4-5 days | ✓ Available |
+| 8 | Ensemble Methods Comparison | Ensemble Methods, Model Comparison | 3-4 days | ✓ Available |
+
+**Prerequisites**: Complete Phases 0-4 and some Phase 6.5 topics recommended
+
+#### Advanced Projects (9 projects)
+
+| # | Project Name | Skills | Time | Status |
+|---|--------------|--------|------|--------|
+| 1 | Image Classification (CIFAR-10) | CNNs, Transfer Learning, Data Augmentation | 1-2 weeks | ✓ Available |
+| 2 | Sentiment Analysis on Reviews | NLP, RNNs/LSTMs, Transformers | 1-2 weeks | ✓ Available |
+| 3 | Time Series Forecasting (Advanced) | Advanced Time Series, Deep Learning | 1-2 weeks | ✓ Available |
+| 4 | Chatbot Development | NLP, Sequence-to-Sequence, Transformers | 1-2 weeks | ✓ Available |
+| 5 | Object Detection | Computer Vision, YOLO, R-CNN | 1-2 weeks | ✓ Available |
+| 6 | End-to-End ML Pipeline | Full ML Pipeline, MLOps | 2-3 weeks | ✓ Available |
+| 7 | Generative Model (GAN/VAE) | GANs, VAEs, Image Generation | 1-2 weeks | ✓ Available |
+| 8 | Model Explainability & Interpretability | SHAP, LIME, Model Interpretation | 1-2 weeks | ✓ Available |
+| 9 | Model Deployment & Serving | Model Deployment, APIs, Cloud | 1-2 weeks | ✓ Available |
+
+**Prerequisites**: Complete Phases 0-7 recommended for full benefit
 
 ## Prerequisites
 
@@ -589,29 +626,59 @@ road-to-ml/
 - [Stack Overflow](https://stackoverflow.com/questions/tagged/machine-learning)
 
 ### Cheatsheets & Guides
-- [Data Science & ML Cheatsheet](resources/data_science_cheatsheet.md) - Quick reference for daily work (NumPy, Pandas, PyTorch, TensorFlow, OpenCV, FastAPI, and more)
-- [Complete Git & GitHub Guide](resources/git_guide.md) - Comprehensive Git tutorial with commands, outputs, practice exercises, and solutions
-- [Math Formulas Reference](resources/math_formulas.md) - Essential mathematical formulas for ML (Statistics, Linear Algebra, Calculus, ML metrics)
-- [Common Errors & Debugging Guide](resources/common_errors.md) - Troubleshooting guide for common ML errors and debugging strategies
-- [Ethics in ML Guide](resources/ethics_in_ml.md) - Comprehensive guide to bias, fairness, responsible AI, and ethical ML practices
-- [Model Interpretability Guide](resources/model_interpretability.md) - Understanding and explaining ML model predictions (SHAP, LIME, feature importance)
-- [ML Glossary](resources/ml_glossary.md) - Comprehensive glossary of ML terms and concepts for beginners
-- [Reinforcement Learning Basics](resources/reinforcement_learning.md) - Introduction to RL, key concepts, algorithms, and applications
-- [Recommender Systems Guide](resources/recommender_systems.md) - Building recommendation systems (collaborative filtering, content-based, hybrid approaches)
-- [Docker Complete Tutorial](resources/docker_tutorial.md) - Comprehensive Docker guide for ML: containerization, Dockerfile, docker-compose, best practices, and deployment
-- [ML Model Testing Guide](resources/ml_model_testing.md) - Comprehensive guide to testing ML models, pipelines, and APIs (unit tests, integration tests, best practices)
-- [Stakeholder Communication Guide](resources/stakeholder_communication.md) - Effective communication of ML concepts, results, and business value to non-technical stakeholders
-- [AutoML Basics Guide](resources/automl_basics.md) - Introduction to Automated Machine Learning: when to use, popular tools, and integration strategies
-- [Data Validation Guide](resources/data_validation.md) - Comprehensive data validation: schema validation, quality checks, drift detection, and automated pipelines
-- [Web Scraping Guide](resources/web_scraping_guide.md) - Complete web scraping guide from basics to advanced: Requests, Beautiful Soup, Selenium, Scrapy, CAPTCHA handling, and real-world projects
-- [Power BI Guide](resources/powerbi_guide.md) - Complete Power BI guide: visualizations, DAX, Power Query, data modeling, dashboards, and AI integration
-- [Excel Data Analysis Guide](resources/excel_data_analysis_guide.md) - Comprehensive Excel guide: functions, pivot tables, charts, dashboards, Power Query, and advanced techniques
-- [MLFlow Comprehensive Guide](resources/mlflow_comprehensive_guide.md) - Complete MLFlow guide: experiment tracking, model registry, hyperparameter tuning (Grid Search, Hyperopt, Optuna), MLFlow UI, model evaluation, and Docker deployment
-- [Transformer Fine-Tuning Guide](resources/transformer_fine_tuning_guide.md) - Comprehensive guide to fine-tuning transformers (T5, BERT, GPT) with Hugging Face: text summarization, classification, generation, and optimization techniques
-- [Langchain Guide](resources/langchain_guide.md) - Complete Langchain guide: building Gen AI projects, chains, agents, memory, RAG, document loaders, and vector stores
-- [LlamaIndex Guide](resources/llamaindex_guide.md) - Comprehensive LlamaIndex guide: data indexing, querying, retrieval, chat engines, and advanced generative AI projects
-- [AI Agents Guide](resources/ai_agents_guide.md) - Complete guide to AI agents: CrewAI, AutoGen, Langgraph, AutoGPT for building intelligent autonomous systems
-- [DSA for ML Guide](resources/dsa_for_ml_guide.md) - Essential data structures and algorithms for machine learning: arrays, trees, graphs, sorting, searching, and ML-specific applications
+
+#### Core ML & Data Science Guides
+
+| Guide | Description |
+|-------|-------------|
+| [Data Science & ML Cheatsheet](resources/data_science_cheatsheet.md) | Quick reference for daily work (NumPy, Pandas, PyTorch, TensorFlow, OpenCV, FastAPI, and more) |
+| [Math Formulas Reference](resources/math_formulas.md) | Essential mathematical formulas for ML (Statistics, Linear Algebra, Calculus, ML metrics) |
+| [ML Glossary](resources/ml_glossary.md) | Comprehensive glossary of ML terms and concepts for beginners |
+| [Common Errors & Debugging Guide](resources/common_errors.md) | Troubleshooting guide for common ML errors and debugging strategies |
+| [DSA for ML Guide](resources/dsa_for_ml_guide.md) | Essential data structures and algorithms for machine learning |
+
+#### Development & Tools
+
+| Guide | Description |
+|-------|-------------|
+| [Complete Git & GitHub Guide](resources/git_guide.md) | Comprehensive Git tutorial with commands, outputs, practice exercises, and solutions |
+| [Docker Complete Tutorial](resources/docker_tutorial.md) | Comprehensive Docker guide for ML: containerization, Dockerfile, docker-compose, best practices, and deployment |
+| [Web Scraping Guide](resources/web_scraping_guide.md) | Complete web scraping guide from basics to advanced: Requests, Beautiful Soup, Selenium, Scrapy, CAPTCHA handling |
+
+#### Advanced ML Topics
+
+| Guide | Description |
+|-------|-------------|
+| [MLFlow Comprehensive Guide](resources/mlflow_comprehensive_guide.md) | Complete MLFlow guide: experiment tracking, model registry, hyperparameter tuning, MLFlow UI, Docker deployment |
+| [Transformer Fine-Tuning Guide](resources/transformer_fine_tuning_guide.md) | Comprehensive guide to fine-tuning transformers (T5, BERT, GPT) with Hugging Face |
+| [Model Interpretability Guide](resources/model_interpretability.md) | Understanding and explaining ML model predictions (SHAP, LIME, feature importance) |
+| [Reinforcement Learning Basics](resources/reinforcement_learning.md) | Introduction to RL, key concepts, algorithms, and applications |
+| [Recommender Systems Guide](resources/recommender_systems.md) | Building recommendation systems (collaborative filtering, content-based, hybrid approaches) |
+| [AutoML Basics Guide](resources/automl_basics.md) | Introduction to Automated Machine Learning: when to use, popular tools, and integration strategies |
+| [Data Validation Guide](resources/data_validation.md) | Comprehensive data validation: schema validation, quality checks, drift detection, and automated pipelines |
+
+#### Generative AI & Modern Tools
+
+| Guide | Description |
+|-------|-------------|
+| [Langchain Guide](resources/langchain_guide.md) | Complete Langchain guide: building Gen AI projects, chains, agents, memory, RAG, document loaders, and vector stores |
+| [LlamaIndex Guide](resources/llamaindex_guide.md) | Comprehensive LlamaIndex guide: data indexing, querying, retrieval, chat engines, and advanced generative AI projects |
+| [AI Agents Guide](resources/ai_agents_guide.md) | Complete guide to AI agents: CrewAI, AutoGen, Langgraph, AutoGPT for building intelligent autonomous systems |
+
+#### Business & Communication
+
+| Guide | Description |
+|-------|-------------|
+| [Stakeholder Communication Guide](resources/stakeholder_communication.md) | Effective communication of ML concepts, results, and business value to non-technical stakeholders |
+| [ML Model Testing Guide](resources/ml_model_testing.md) | Comprehensive guide to testing ML models, pipelines, and APIs (unit tests, integration tests, best practices) |
+| [Ethics in ML Guide](resources/ethics_in_ml.md) | Comprehensive guide to bias, fairness, responsible AI, and ethical ML practices |
+
+#### Data Analysis Tools
+
+| Guide | Description |
+|-------|-------------|
+| [Power BI Guide](resources/powerbi_guide.md) | Complete Power BI guide: visualizations, DAX, Power Query, data modeling, dashboards, and AI integration |
+| [Excel Data Analysis Guide](resources/excel_data_analysis_guide.md) | Comprehensive Excel guide: functions, pivot tables, charts, dashboards, Power Query, and advanced techniques |
 
 ### Career & Interview Resources
 - [Career & Portfolio Guide](resources/career_portfolio.md) - Build your portfolio, prepare for interviews, and launch your ML career
@@ -650,31 +717,39 @@ A: Start with `00-prerequisites` - specifically `01-python-basics.md`. No prior 
 **Q: How long will it take to complete this roadmap?**  
 A: Realistic time estimates vary significantly based on your background and time commitment:
 
-**Full-Time Learners (30-40 hours/week):**
-- **Minimum (Fast Track)**: 8-10 months - Covers core concepts, skips some advanced topics
-- **Standard Path**: 12-15 months - Complete coverage with all modules and projects
-- **Comprehensive (Recommended)**: 15-18 months - Deep understanding, all projects, portfolio building
+#### Time Estimates by Commitment Level
 
-**Part-Time Learners (10-15 hours/week):**
-- **Minimum**: 18-24 months - Core concepts and essential projects
-- **Standard Path**: 24-30 months - Complete coverage
-- **Comprehensive**: 30-36 months - Deep mastery with extensive projects
+| Commitment Level | Hours/Week | Minimum | Standard | Comprehensive |
+|------------------|------------|---------|----------|----------------|
+| **Full-Time** | 30-40 hrs | 8-10 months | 12-15 months | 15-18 months |
+| **Part-Time** | 10-15 hrs | 18-24 months | 24-30 months | 30-36 months |
 
-**Key Factors:**
-- Prior programming experience: -2 to -4 months
-- Prior math background: -1 to -2 months
-- Number of projects completed: +2 to +6 months
-- Time spent on practice vs. reading: Practice takes longer but is essential
+**Definitions:**
+- **Minimum**: Core concepts, skips some advanced topics
+- **Standard**: Complete coverage with all modules and projects
+- **Comprehensive**: Deep understanding, all projects, portfolio building
 
-**Realistic Breakdown:**
-- Prerequisites: 2-3 months
-- Data Fundamentals: 2-3 months
-- ML Basics: 2-3 months
-- Advanced ML: 1-2 months
-- Deep Learning: 3-4 months
-- Production & MLOps: 2-3 months
-- Projects (23 total): 4-6 months
-- **Total: 16-24 months for comprehensive learning**
+#### Phase-by-Phase Breakdown
+
+| Phase | Focus | Full-Time | Part-Time |
+|-------|-------|-----------|-----------|
+| Prerequisites | Python, Math | 2-3 months | 4-6 months |
+| Data Fundamentals | NumPy, Pandas, Visualization | 2-3 months | 4-6 months |
+| ML Basics | Regression, Classification, Evaluation | 2-3 months | 4-6 months |
+| Advanced ML | Ensembles, Feature Engineering | 1-2 months | 2-4 months |
+| Deep Learning | Neural Networks, Frameworks | 3-4 months | 6-8 months |
+| Production & MLOps | Deployment, MLOps | 2-3 months | 4-6 months |
+| Projects (23 total) | Hands-on Practice | 4-6 months | 8-12 months |
+| **Total** | **Complete Path** | **12-18 months** | **24-30 months** |
+
+#### Factors Affecting Timeline
+
+| Factor | Impact on Timeline |
+|--------|-------------------|
+| Prior programming experience | -2 to -4 months |
+| Prior math background | -1 to -2 months |
+| Number of projects completed | +2 to +6 months |
+| Practice vs. reading ratio | Practice takes longer but is essential |
 
 **Q: Do I need a powerful computer?**  
 A: No! Most modules work fine on a regular laptop. Deep learning modules (11-12) benefit from GPUs but can be done on cloud platforms (Google Colab, Kaggle) for free.
@@ -743,11 +818,15 @@ A:
 ### Career and Job Market
 
 **Q: What jobs can I get after completing this?**  
-A: 
-- **Data Scientist**: Focus on modules 0-8, 15, 19-21
-- **ML Engineer**: Focus on modules 0-14, emphasize deployment and MLOps
-- **Research Scientist**: Deep focus on modules 9-12, advanced topics
-- **Business Analyst**: Focus on modules 0-7, 19, add business context
+A: Different roles require different module focuses:
+
+| Role | Key Modules | Focus Areas | Est. Time |
+|------|-------------|-------------|-----------|
+| **Data Scientist** | 0-8, 15, 19-21 | Data analysis, modeling, SQL, explainability | 10-14 months |
+| **ML Engineer** | 0-14 | Full stack: modeling to deployment, MLOps | 12-18 months |
+| **Research Scientist** | 0-12, advanced topics | Deep learning, research, publications | 15-20 months |
+| **Business Analyst** | 0-7, 19 | Data analysis, SQL, business context | 8-12 months |
+| **Data Engineer** | 0-1, 13-14, 19 | Data pipelines, infrastructure, SQL | 10-14 months |
 
 **Q: Do I need a degree?**  
 A: Not necessarily! Many successful ML practitioners are self-taught. However, a degree can help with:
@@ -877,12 +956,15 @@ By completing this roadmap, you'll be able to:
 
 ## Statistics
 
-- **22 Learning Modules** (00-21) covering all ML topics from basics to advanced
-- **23 Projects** from beginner to advanced with complete code and READMEs
-- **34 Resource Guides** including cheatsheets, tutorials, and career guides
-- **178 Markdown Files** with comprehensive content, code examples, and exercises
-- **Realistic Learning Time**: 12-18 months (full-time) or 24-30 months (part-time) for comprehensive coverage
-- **Zero Prerequisites** - start from scratch!
+| Metric | Count | Details |
+|--------|-------|---------|
+| **Learning Modules** | 22 | Modules 00-21 covering all ML topics from basics to advanced |
+| **Projects** | 23 | 6 beginner + 8 intermediate + 9 advanced with complete code and READMEs |
+| **Resource Guides** | 34 | Cheatsheets, tutorials, and career guides |
+| **Markdown Files** | 178 | Comprehensive content, code examples, and exercises |
+| **Learning Time (Full-Time)** | 12-18 months | 30-40 hours/week for comprehensive coverage |
+| **Learning Time (Part-Time)** | 24-30 months | 10-15 hours/week for comprehensive coverage |
+| **Prerequisites** | Zero | Start from scratch - no prior experience needed! |
 
 ## Disclaimer
 
