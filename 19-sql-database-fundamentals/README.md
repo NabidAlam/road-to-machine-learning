@@ -16,6 +16,7 @@ Master SQL and database management for data science.
 ### 1. Database Fundamentals
 - What is a Database?
 - Types of Databases (Relational, NoSQL)
+- OLAP vs OLTP: Understanding Database Types
 - Database Relationships
 - CRUD Operations
 
