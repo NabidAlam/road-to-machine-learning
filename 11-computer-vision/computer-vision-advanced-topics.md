@@ -498,7 +498,11 @@ def medical_segmentation_example():
 
 ## Image Generation
 
-### Advanced Topics: GANs for Image Synthesis and Editing
+### Advanced Topics: Generative Models for Image Synthesis
+
+This section covers GANs, Diffusion Models, and Stable Diffusion for image generation.
+
+## GANs for Image Synthesis and Editing
 
 **Generative Adversarial Networks (GANs)** consist of two networks competing:
 - **Generator**: Creates fake images
@@ -700,6 +704,283 @@ gan_training_tips = {
     ]
 }
 ```
+
+---
+
+## Diffusion Models and Stable Diffusion
+
+**Diffusion Models** are a class of generative models that learn to generate images by reversing a gradual noising process.
+
+### Understanding Diffusion Models
+
+**Core Concept:**
+1. **Forward Process**: Gradually add noise to images until pure noise
+2. **Reverse Process**: Learn to remove noise step-by-step to generate images
+3. **Training**: Model learns to predict noise at each step
+
+**Key Advantages over GANs:**
+- More stable training
+- Better mode coverage (less mode collapse)
+- High-quality generation
+- Controllable generation
+
+### Diffusion Process
+
+```python
+import torch
+import torch.nn as nn
+import numpy as np
+
+def forward_diffusion_process(x_0, t, beta_schedule):
+    """
+    Forward diffusion: gradually add noise
+    
+    x_0: Original image
+    t: Time step
+    beta_schedule: Noise schedule
+    """
+    # Calculate cumulative noise
+    alpha_bar_t = torch.prod(1 - beta_schedule[:t+1])
+    
+    # Sample noise
+    noise = torch.randn_like(x_0)
+    
+    # Add noise
+    x_t = torch.sqrt(alpha_bar_t) * x_0 + torch.sqrt(1 - alpha_bar_t) * noise
+    
+    return x_t, noise
+
+def reverse_diffusion_step(x_t, t, model, beta_schedule):
+    """
+    Reverse diffusion: remove noise step by step
+    """
+    # Predict noise
+    predicted_noise = model(x_t, t)
+    
+    # Calculate parameters
+    alpha_t = 1 - beta_schedule[t]
+    alpha_bar_t = torch.prod(1 - beta_schedule[:t+1])
+    alpha_bar_t_prev = torch.prod(1 - beta_schedule[:t])
+    
+    # Denoise
+    pred_x_0 = (x_t - torch.sqrt(1 - alpha_bar_t) * predicted_noise) / torch.sqrt(alpha_bar_t)
+    
+    # Sample next step
+    posterior_variance = beta_schedule[t] * (1 - alpha_bar_t_prev) / (1 - alpha_bar_t)
+    x_t_prev = torch.sqrt(alpha_bar_t_prev) * pred_x_0 + torch.sqrt(posterior_variance) * torch.randn_like(x_t)
+    
+    return x_t_prev
+```
+
+### Stable Diffusion
+
+**Stable Diffusion** is a latent diffusion model that:
+- Works in latent space (faster than pixel space)
+- Uses VAE for encoding/decoding
+- Uses U-Net for denoising
+- Supports text conditioning via CLIP
+
+### Using Stable Diffusion with Hugging Face
+
+```python
+from diffusers import StableDiffusionPipeline
+import torch
+
+# Load pre-trained Stable Diffusion
+pipe = StableDiffusionPipeline.from_pretrained(
+    "runwayml/stable-diffusion-v1-5",
+    torch_dtype=torch.float16 if torch.cuda.is_available() else torch.float32
+)
+
+# Move to GPU if available
+if torch.cuda.is_available():
+    pipe = pipe.to("cuda")
+
+# Generate image from text
+prompt = "a beautiful landscape with mountains and a lake, sunset, highly detailed"
+negative_prompt = "blurry, low quality, distorted"
+
+image = pipe(
+    prompt=prompt,
+    negative_prompt=negative_prompt,
+    num_inference_steps=50,  # More steps = better quality, slower
+    guidance_scale=7.5,  # How closely to follow prompt
+    height=512,
+    width=512
+).images[0]
+
+# Save image
+image.save("generated_image.png")
+```
+
+### Advanced Stable Diffusion Features
+
+**1. Image-to-Image:**
+```python
+from diffusers import StableDiffusionImg2ImgPipeline
+from PIL import Image
+
+# Load img2img pipeline
+pipe = StableDiffusionImg2ImgPipeline.from_pretrained(
+    "runwayml/stable-diffusion-v1-5",
+    torch_dtype=torch.float16
+).to("cuda")
+
+# Load input image
+init_image = Image.open("input.jpg").convert("RGB")
+init_image = init_image.resize((512, 512))
+
+# Generate
+image = pipe(
+    prompt="transform this into a painting style",
+    image=init_image,
+    strength=0.75,  # How much to transform (0-1)
+    num_inference_steps=50
+).images[0]
+```
+
+**2. Inpainting:**
+```python
+from diffusers import StableDiffusionInpaintPipeline
+from PIL import Image, ImageDraw
+
+# Load inpainting pipeline
+pipe = StableDiffusionInpaintPipeline.from_pretrained(
+    "runwayml/stable-diffusion-inpainting",
+    torch_dtype=torch.float16
+).to("cuda")
+
+# Load image and mask
+image = Image.open("image.jpg")
+mask = Image.open("mask.png")  # White = inpaint, Black = keep
+
+# Inpaint
+image = pipe(
+    prompt="a beautiful flower",
+    image=image,
+    mask_image=mask,
+    num_inference_steps=50
+).images[0]
+```
+
+**3. ControlNet (Conditional Control):**
+```python
+from diffusers import StableDiffusionControlNetPipeline, ControlNetModel
+from diffusers.utils import load_image
+import cv2
+
+# Load ControlNet
+controlnet = ControlNetModel.from_pretrained(
+    "lllyasviel/sd-controlnet-canny",
+    torch_dtype=torch.float16
+)
+
+pipe = StableDiffusionControlNetPipeline.from_pretrained(
+    "runwayml/stable-diffusion-v1-5",
+    controlnet=controlnet,
+    torch_dtype=torch.float16
+).to("cuda")
+
+# Create Canny edge image
+image = load_image("input.jpg")
+image = np.array(image)
+canny_image = cv2.Canny(image, 100, 200)
+
+# Generate with edge control
+output = pipe(
+    prompt="a beautiful landscape",
+    image=canny_image,
+    num_inference_steps=20
+).images[0]
+```
+
+### Variational Autoencoders (VAEs)
+
+**VAEs** are used in Stable Diffusion for encoding/decoding between pixel and latent space.
+
+```python
+from diffusers import AutoencoderKL
+import torch
+
+# Load VAE
+vae = AutoencoderKL.from_pretrained(
+    "stabilityai/sd-vae-ft-mse",
+    torch_dtype=torch.float16
+).to("cuda")
+
+# Encode image to latent
+with torch.no_grad():
+    latent = vae.encode(image_tensor).latent_dist.sample()
+
+# Decode latent to image
+with torch.no_grad():
+    image = vae.decode(latent).sample
+```
+
+### Training Diffusion Models
+
+**Basic Training Loop:**
+```python
+import torch.nn as nn
+
+class DiffusionModel(nn.Module):
+    def __init__(self):
+        super().__init__()
+        # U-Net architecture for noise prediction
+        self.unet = UNet()
+    
+    def forward(self, x, t):
+        # Predict noise at timestep t
+        return self.unet(x, t)
+
+# Training
+model = DiffusionModel()
+optimizer = torch.optim.Adam(model.parameters(), lr=1e-4)
+
+for epoch in range(num_epochs):
+    for batch in dataloader:
+        # Sample random timestep
+        t = torch.randint(0, num_timesteps, (batch_size,))
+        
+        # Add noise
+        noise = torch.randn_like(batch)
+        alpha_bar_t = get_alpha_bar(t)
+        noisy_images = torch.sqrt(alpha_bar_t) * batch + torch.sqrt(1 - alpha_bar_t) * noise
+        
+        # Predict noise
+        predicted_noise = model(noisy_images, t)
+        
+        # Loss
+        loss = nn.functional.mse_loss(predicted_noise, noise)
+        
+        # Backward
+        optimizer.zero_grad()
+        loss.backward()
+        optimizer.step()
+```
+
+### Comparing GANs, VAEs, and Diffusion Models
+
+| Model | Training Stability | Quality | Speed | Controllability |
+|-------|-------------------|---------|-------|-----------------|
+| **GANs** | Unstable | High | Fast | Moderate |
+| **VAEs** | Stable | Lower | Fast | Good |
+| **Diffusion** | Stable | Very High | Slow | Excellent |
+
+### Best Practices
+
+1. **Prompt Engineering**: Use detailed, specific prompts
+2. **Negative Prompts**: Specify what to avoid
+3. **Guidance Scale**: 7-9 for good balance
+4. **Steps**: 20-50 steps (more = better but slower)
+5. **Seed**: Use same seed for reproducibility
+6. **Resolution**: 512x512 or 768x768 for good quality
+
+### Resources
+
+- [Stable Diffusion Paper](https://arxiv.org/abs/2112.10752)
+- [Hugging Face Diffusers](https://huggingface.co/docs/diffusers)
+- [Stable Diffusion Models](https://huggingface.co/models?search=stable-diffusion)
 
 ---
 
