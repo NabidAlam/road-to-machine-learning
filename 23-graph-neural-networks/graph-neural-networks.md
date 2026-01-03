@@ -99,14 +99,12 @@ X = np.array([
 
 ### Mathematical Formulation
 
-For node v at layer l:
+For node $v$ at layer $l$:
 
-```
-h_v^(l+1) = UPDATE(h_v^(l), AGGREGATE({h_u^(l) : u ∈ N(v)}))
-```
+$$h_v^{(l+1)} = \text{UPDATE}(h_v^{(l)}, \text{AGGREGATE}(\{h_u^{(l)} : u \in \mathcal{N}(v)\}))$$
 
 Where:
-- `h_v^(l)`: Representation of node v at layer l
+- $h_v^{(l)}$: Representation of node $v$ at layer $l$
 - `N(v)`: Neighbors of node v
 - `UPDATE`: Update function
 - `AGGREGATE`: Aggregation function (sum, mean, max, etc.)
@@ -145,16 +143,14 @@ class SimpleGNN(nn.Module):
 
 #### GCN Formula
 
-```
-H^(l+1) = σ(D^(-1/2) A D^(-1/2) H^(l) W^(l))
-```
+$$H^{(l+1)} = \sigma(D^{-1/2} A D^{-1/2} H^{(l)} W^{(l)})$$
 
 Where:
-- `H^(l)`: Node features at layer l
-- `A`: Adjacency matrix
-- `D`: Degree matrix (diagonal matrix with node degrees)
-- `W^(l)`: Learnable weight matrix
-- `σ`: Activation function
+- $H^{(l)}$: Node features at layer $l$
+- $A$: Adjacency matrix
+- $D$: Degree matrix (diagonal matrix with node degrees)
+- $W^{(l)}$: Learnable weight matrix
+- $\sigma$: Activation function
 
 ### Implementation
 
@@ -226,15 +222,11 @@ def normalize_adjacency(adj):
 
 ### GAT Formula
 
-```
-h_v^(l+1) = σ(Σ(u∈N(v)) α_vu W^(l) h_u^(l))
-```
+$$h_v^{(l+1)} = \sigma\left(\sum_{u \in \mathcal{N}(v)} \alpha_{vu} W^{(l)} h_u^{(l)}\right)$$
 
-Where `α_vu` is the attention weight:
+Where $\alpha_{vu}$ is the attention weight:
 
-```
-α_vu = softmax(LeakyReLU(a^T [W h_v || W h_u]))
-```
+$$\alpha_{vu} = \text{softmax}(\text{LeakyReLU}(a^T [W h_v \| W h_u]))$$
 
 ### Implementation
 
@@ -374,13 +366,11 @@ class LSTMAggregator(nn.Module):
 
 #### GIN Formula
 
-```
-h_v^(l+1) = MLP^((l))((1 + ε^(l)) · h_v^(l) + Σ(u∈N(v)) h_u^(l))
-```
+$$h_v^{(l+1)} = \text{MLP}^{(l)}\left((1 + \epsilon^{(l)}) \cdot h_v^{(l)} + \sum_{u \in \mathcal{N}(v)} h_u^{(l)}\right)$$
 
 Where:
-- `ε^(l)`: Learnable parameter (can be fixed to 0)
-- `MLP^((l))`: Multi-layer perceptron at layer l
+- $\epsilon^{(l)}$: Learnable parameter (can be fixed to 0)
+- $\text{MLP}^{(l)}$: Multi-layer perceptron at layer $l$
 
 #### Implementation
 

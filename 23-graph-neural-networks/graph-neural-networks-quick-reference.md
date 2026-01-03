@@ -5,19 +5,13 @@ Quick reference for GNN formulas, architectures, and code.
 ## Key Formulas
 
 ### Message Passing
-```
-h_v^(l+1) = UPDATE(h_v^(l), AGGREGATE({h_u^(l) : u ∈ N(v)}))
-```
+$$h_v^{(l+1)} = \text{UPDATE}(h_v^{(l)}, \text{AGGREGATE}(\{h_u^{(l)} : u \in \mathcal{N}(v)\}))$$
 
 ### GCN
-```
-H^(l+1) = σ(D^(-1/2) A D^(-1/2) H^(l) W^(l))
-```
+$$H^{(l+1)} = \sigma(D^{-1/2} A D^{-1/2} H^{(l)} W^{(l)})$$
 
 ### GAT Attention
-```
-α_vu = softmax(LeakyReLU(a^T [W h_v || W h_u]))
-```
+$$\alpha_{vu} = \text{softmax}(\text{LeakyReLU}(a^T [W h_v \| W h_u]))$$
 
 ## Architectures Comparison
 
