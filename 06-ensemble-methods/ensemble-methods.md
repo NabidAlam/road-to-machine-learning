@@ -1155,6 +1155,72 @@ print(f"Multi-Level Ensemble Accuracy: {accuracy_score(y_test, final_pred):.3f}"
 
 ---
 
+## Resources and Further Learning
+
+### Books
+
+1. **"Ensemble Methods: Foundations and Algorithms"** - Zhi-Hua Zhou
+   - Comprehensive textbook on ensemble methods
+   - Covers theory and practice
+
+2. **"The Elements of Statistical Learning"** - Hastie, Tibshirani & Friedman
+   - [Free Online](https://web.stanford.edu/~hastie/ElemStatLearn/)
+   - Chapter 8: Model Inference and Averaging
+   - Chapter 15: Random Forests
+
+3. **"Hands-On Machine Learning"** - Aurélien Géron
+   - [Book Website](https://github.com/ageron/handson-ml2)
+   - Chapter 7: Ensemble Learning and Random Forests
+
+### Important Papers
+
+1. **"Random Forests"** - Breiman, 2001
+2. **"Gradient Boosting Machines"** - Friedman, 2001
+3. **"XGBoost: A Scalable Tree Boosting System"** - Chen & Guestrin, 2016
+4. **"LightGBM: A Highly Efficient Gradient Boosting Decision Tree"** - Ke et al., 2017
+5. **"CatBoost: Unbiased Boosting with Categorical Features"** - Prokhorenkova et al., 2018
+6. **"Stacked Generalization"** - Wolpert, 1992
+
+### Online Courses
+
+1. **Ensemble Methods** - Coursera (University of Washington)
+   - Part of Machine Learning Specialization
+   - Covers bagging, boosting, stacking
+
+2. **Kaggle Learn: Intro to Machine Learning**
+   - [Course Link](https://www.kaggle.com/learn/intro-to-machine-learning)
+   - Includes ensemble methods
+
+### Datasets
+
+1. **Kaggle Competitions**: Great for practicing ensemble methods
+   - [House Prices](https://www.kaggle.com/c/house-prices-advanced-regression-techniques)
+   - [Titanic](https://www.kaggle.com/c/titanic)
+   - [Porto Seguro's Safe Driver Prediction](https://www.kaggle.com/c/porto-seguro-safe-driver-prediction)
+
+2. **UCI Machine Learning Repository**
+   - [Dataset Collection](https://archive.ics.uci.edu/ml/datasets.php)
+
+### Tools and Libraries
+
+1. **scikit-learn**: Ensemble methods
+   - [Documentation](https://scikit-learn.org/)
+   - Random Forest, Gradient Boosting, Voting, Stacking
+
+2. **XGBoost**: Extreme Gradient Boosting
+   - [Documentation](https://xgboost.readthedocs.io/)
+   - Highly optimized gradient boosting
+
+3. **LightGBM**: Light Gradient Boosting Machine
+   - [Documentation](https://lightgbm.readthedocs.io/)
+   - Fast and memory-efficient
+
+4. **CatBoost**: Categorical Boosting
+   - [Documentation](https://catboost.ai/)
+   - Handles categorical features natively
+
+---
+
 ## Next Steps
 
 - Practice with real datasets (Kaggle competitions)

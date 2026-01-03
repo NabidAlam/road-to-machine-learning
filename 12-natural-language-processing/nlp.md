@@ -599,6 +599,92 @@ model = AutoModelForSequenceClassification.from_pretrained(model_name, num_label
 
 ---
 
+## Resources and Further Learning
+
+### Books
+
+1. **"Speech and Language Processing"** - Jurafsky & Martin
+   - [Free Online (3rd Edition)](https://web.stanford.edu/~jurafsky/slp3/)
+   - Comprehensive NLP textbook covering all major topics
+
+2. **"Natural Language Processing with Python"** - Bird, Klein & Loper
+   - [NLTK Book](https://www.nltk.org/book/)
+   - Practical guide using NLTK
+
+3. **"Deep Learning for Natural Language Processing"** - Palash Goyal, Sumit Pandey, Karan Jain
+   - Covers modern deep learning approaches to NLP
+
+### Important Papers
+
+1. **"Attention Is All You Need"** - Vaswani et al., 2017 (Transformers)
+2. **"BERT: Pre-training of Deep Bidirectional Transformers"** - Devlin et al., 2018
+3. **"GPT-3: Language Models are Few-Shot Learners"** - Brown et al., 2020
+4. **"Word2Vec"** - Mikolov et al., 2013 (Word embeddings)
+5. **"GloVe: Global Vectors for Word Representation"** - Pennington et al., 2014
+6. **"Sequence to Sequence Learning with Neural Networks"** - Sutskever et al., 2014
+7. **"Long Short-Term Memory"** - Hochreiter & Schmidhuber, 1997 (LSTM)
+
+### Online Courses
+
+1. **CS224N: Natural Language Processing with Deep Learning** - Stanford
+   - [Course Website](https://web.stanford.edu/class/cs224n/)
+   - Comprehensive deep learning for NLP course
+
+2. **Natural Language Processing Specialization** - Coursera (DeepLearning.AI)
+   - [Course Link](https://www.coursera.org/specializations/natural-language-processing)
+   - Practical NLP with transformers
+
+3. **Fast.ai NLP Course**
+   - [Course Website](https://www.fast.ai/)
+   - Practical deep learning for NLP
+
+### Datasets
+
+1. **Text Classification**:
+   - [IMDB Movie Reviews](https://www.kaggle.com/datasets/lakshmi25npathi/imdb-dataset-of-50k-movie-reviews)
+   - [20 Newsgroups](https://scikit-learn.org/stable/datasets/real_world.html#the-20-newsgroups-text-dataset)
+   - [AG News](https://www.kaggle.com/datasets/amananandrai/ag-news-classification-dataset)
+
+2. **Sentiment Analysis**:
+   - [Sentiment140](http://help.sentiment140.com/for-students)
+   - [Amazon Reviews](https://www.kaggle.com/datasets/bittlingmayer/amazonreviews)
+
+3. **Named Entity Recognition**:
+   - [CoNLL-2003](https://www.clips.uantwerpen.be/conll2003/ner/)
+   - [OntoNotes](https://catalog.ldc.upenn.edu/LDC2013T19)
+
+4. **Question Answering**:
+   - [SQuAD](https://rajpurkar.github.io/SQuAD-explorer/)
+   - [MS MARCO](https://microsoft.github.io/msmarco/)
+
+5. **Machine Translation**:
+   - [WMT](http://www.statmt.org/wmt20/)
+   - [OPUS](https://opus.nlpl.eu/)
+
+### Tools and Libraries
+
+1. **NLTK**: Natural Language Toolkit
+   - [Documentation](https://www.nltk.org/)
+   - Comprehensive NLP library
+
+2. **spaCy**: Industrial-strength NLP
+   - [Documentation](https://spacy.io/)
+   - Fast and efficient NLP library
+
+3. **Hugging Face Transformers**: Pre-trained transformer models
+   - [Documentation](https://huggingface.co/docs/transformers/)
+   - Easy access to state-of-the-art models
+
+4. **Gensim**: Topic modeling and word embeddings
+   - [Documentation](https://radimrehurek.com/gensim/)
+   - Word2Vec, Doc2Vec, LDA
+
+5. **TextBlob**: Simple NLP library
+   - [Documentation](https://textblob.readthedocs.io/)
+   - Easy-to-use text processing
+
+---
+
 ## Key Takeaways
 
 1. **Preprocessing**: Essential for good NLP models

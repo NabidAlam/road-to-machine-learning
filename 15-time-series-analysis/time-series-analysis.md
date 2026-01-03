@@ -914,25 +914,94 @@ print(f"SMAPE: {smape:.2f}%")
 
 ---
 
-## Resources
-
-### Libraries
-
-- **statsmodels**: Statistical models (ARIMA, SARIMA)
-- **pmdarima**: Auto ARIMA
-- **prophet**: Facebook's forecasting tool
-- **TensorFlow/Keras**: Deep learning models
-
-### Datasets
-
-- [Time Series Datasets](https://www.kaggle.com/datasets?search=time+series)
-- [UCI Time Series](https://archive.ics.uci.edu/ml/datasets.php)
-- [M4 Competition](https://www.m4.unic.ac.cy/)
+## Resources and Further Learning
 
 ### Books
 
-- **"Forecasting: Principles and Practice"** by Rob J Hyndman
-  - [Online Book](https://otexts.com/fpp3/)
+1. **"Forecasting: Principles and Practice"** - Rob J Hyndman & George Athanasopoulos
+   - [Free Online Book (3rd Edition)](https://otexts.com/fpp3/)
+   - Comprehensive time series forecasting guide
+
+2. **"Time Series Analysis: Forecasting and Control"** - Box, Jenkins & Reinsel
+   - Classic textbook on ARIMA models
+   - Statistical approach to time series
+
+3. **"Introduction to Time Series and Forecasting"** - Brockwell & Davis
+   - Mathematical foundation of time series
+
+4. **"Deep Learning for Time Series Forecasting"** - Jason Brownlee
+   - Practical guide to deep learning for time series
+
+### Important Papers
+
+1. **"ARIMA Models"** - Box & Jenkins, 1970
+2. **"Long Short-Term Memory"** - Hochreiter & Schmidhuber, 1997 (LSTM for sequences)
+3. **"Attention Is All You Need"** - Vaswani et al., 2017 (Transformers for time series)
+4. **"Temporal Convolutional Networks"** - Bai et al., 2018
+5. **"N-BEATS: Neural basis expansion analysis"** - Oreshkin et al., 2019
+
+### Online Courses
+
+1. **Time Series Analysis** - Coursera (Duke University)
+   - [Course Link](https://www.coursera.org/learn/time-series-analysis)
+   - Statistical methods for time series
+
+2. **Practical Time Series Analysis** - Coursera (State University of New York)
+   - [Course Link](https://www.coursera.org/learn/practical-time-series-analysis)
+   - Hands-on time series forecasting
+
+3. **Deep Learning for Time Series** - Fast.ai
+   - [Course Website](https://www.fast.ai/)
+   - Deep learning approaches
+
+### Datasets
+
+1. **Financial**:
+   - [Stock Prices](https://www.kaggle.com/datasets?search=stock+price)
+   - [Cryptocurrency](https://www.kaggle.com/datasets?search=cryptocurrency)
+   - [Exchange Rates](https://www.kaggle.com/datasets?search=exchange+rate)
+
+2. **Business**:
+   - [Sales Forecasting](https://www.kaggle.com/datasets?search=sales+forecast)
+   - [Website Traffic](https://www.kaggle.com/datasets?search=website+traffic)
+
+3. **Environmental**:
+   - [Temperature Data](https://www.kaggle.com/datasets?search=temperature)
+   - [Air Quality](https://www.kaggle.com/datasets?search=air+quality)
+
+4. **Competitions**:
+   - [M4 Competition](https://www.m4.unic.ac.cy/)
+   - [M5 Forecasting](https://www.kaggle.com/c/m5-forecasting-accuracy)
+
+### Tools and Libraries
+
+1. **statsmodels**: Statistical models
+   - [Documentation](https://www.statsmodels.org/)
+   - ARIMA, SARIMA, VAR, state space models
+
+2. **pmdarima**: Auto ARIMA
+   - [Documentation](https://alkaline-ml.com/pmdarima/)
+   - Automatic ARIMA parameter selection
+
+3. **prophet**: Facebook's forecasting tool
+   - [Documentation](https://facebook.github.io/prophet/)
+   - Automatic forecasting with seasonality
+
+4. **TensorFlow/Keras**: Deep learning models
+   - [Documentation](https://www.tensorflow.org/)
+   - LSTM, GRU, CNN for time series
+
+5. **PyTorch**: Deep learning framework
+   - [Documentation](https://pytorch.org/)
+   - Custom architectures for time series
+
+6. **tsfresh**: Time series feature extraction
+   - [Documentation](https://tsfresh.readthedocs.io/)
+   - Automatic feature engineering
+
+7. **sktime**: Scikit-learn for time series
+   - [Documentation](https://www.sktime.org/)
+   - Unified interface for time series ML
 
 ---
 

@@ -1506,6 +1506,71 @@ for name, encoder in encodings.items():
 
 ---
 
+## Resources and Further Learning
+
+### Books
+
+1. **"Feature Engineering for Machine Learning"** - Alice Zheng & Amanda Casari
+   - Comprehensive guide to feature engineering
+   - Practical examples and techniques
+
+2. **"Hands-On Machine Learning"** - Aurélien Géron
+   - [Book Website](https://github.com/ageron/handson-ml2)
+   - Chapter 2: End-to-End Machine Learning Project (includes feature engineering)
+
+3. **"The Art of Feature Engineering"** - Pablo Duboue
+   - Advanced feature engineering techniques
+
+### Important Papers
+
+1. **"A Few Useful Things to Know About Machine Learning"** - Domingos, 2012
+   - Emphasizes importance of feature engineering
+
+2. **"Feature Selection for High-Dimensional Data"** - Guyon & Elisseeff, 2003
+
+3. **"Target Encoding for Categorical Variables"** - Micci-Barreca, 2001
+
+### Online Courses
+
+1. **Feature Engineering** - Coursera (University of Washington)
+   - Part of Machine Learning Specialization
+   - Covers feature selection and transformation
+
+2. **Kaggle Learn: Feature Engineering**
+   - [Course Link](https://www.kaggle.com/learn/feature-engineering)
+   - Practical feature engineering techniques
+
+### Datasets
+
+1. **Kaggle Competitions**: Great for practicing feature engineering
+   - [House Prices](https://www.kaggle.com/c/house-prices-advanced-regression-techniques)
+   - [Titanic](https://www.kaggle.com/c/titanic)
+   - [Porto Seguro's Safe Driver Prediction](https://www.kaggle.com/c/porto-seguro-safe-driver-prediction)
+
+2. **UCI Machine Learning Repository**
+   - [Dataset Collection](https://archive.ics.uci.edu/ml/datasets.php)
+   - Various domains for practice
+
+### Tools and Libraries
+
+1. **scikit-learn**: Feature selection and transformation
+   - [Documentation](https://scikit-learn.org/)
+   - Feature selection, scaling, encoding
+
+2. **feature-engine**: Feature engineering library
+   - [Documentation](https://feature-engine.readthedocs.io/)
+   - Comprehensive feature engineering tools
+
+3. **category_encoders**: Categorical encoding
+   - [Documentation](https://contrib.scikit-learn.org/category_encoders/)
+   - Various encoding techniques
+
+4. **tsfresh**: Time series feature extraction
+   - [Documentation](https://tsfresh.readthedocs.io/)
+   - Automatic feature engineering for time series
+
+---
+
 ## Next Steps
 
 - Practice with real datasets

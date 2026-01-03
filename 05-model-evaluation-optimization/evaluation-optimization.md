@@ -962,6 +962,76 @@ print(f"  Calibrated: {roc_auc_score(y_test, rf_calibrated_proba):.4f}")
 
 ---
 
+## Resources and Further Learning
+
+### Books
+
+1. **"An Introduction to Statistical Learning"** - James, Witten, Hastie & Tibshirani
+   - [Free Online](https://www.statlearning.com/)
+   - Chapter 5: Resampling Methods (Cross-Validation)
+   - Chapter 6: Linear Model Selection and Regularization
+
+2. **"The Elements of Statistical Learning"** - Hastie, Tibshirani & Friedman
+   - [Free Online](https://web.stanford.edu/~hastie/ElemStatLearn/)
+   - Chapter 7: Model Assessment and Selection
+
+3. **"Hands-On Machine Learning"** - Aurélien Géron
+   - [Book Website](https://github.com/ageron/handson-ml2)
+   - Chapter 2: End-to-End Machine Learning Project
+   - Chapter 4: Training Models (includes evaluation)
+
+### Important Papers
+
+1. **"A Study of Cross-Validation and Bootstrap for Accuracy Estimation"** - Kohavi, 1995
+2. **"Hyperparameter Optimization"** - Feurer & Hutter, 2019
+3. **"Optuna: A Next-generation Hyperparameter Optimization Framework"** - Akiba et al., 2019
+4. **"Bayesian Optimization"** - Frazier, 2018
+
+### Online Courses
+
+1. **Model Evaluation and Validation** - Coursera (University of Washington)
+   - Part of Machine Learning Specialization
+   - Covers cross-validation, metrics, hyperparameter tuning
+
+2. **Kaggle Learn: Model Validation**
+   - [Course Link](https://www.kaggle.com/learn/model-validation)
+   - Practical validation techniques
+
+### Datasets
+
+1. **Classification**:
+   - [Iris Dataset](https://archive.ics.uci.edu/ml/datasets/iris)
+   - [Breast Cancer](https://archive.ics.uci.edu/ml/datasets/breast+cancer+wisconsin+(diagnostic))
+   - [Titanic](https://www.kaggle.com/c/titanic)
+
+2. **Regression**:
+   - [Boston Housing](https://www.kaggle.com/datasets/vikrishnan/boston-house-prices)
+   - [House Prices](https://www.kaggle.com/c/house-prices-advanced-regression-techniques)
+
+### Tools and Libraries
+
+1. **scikit-learn**: Model evaluation and optimization
+   - [Documentation](https://scikit-learn.org/)
+   - Cross-validation, metrics, hyperparameter tuning
+
+2. **Optuna**: Hyperparameter optimization
+   - [Documentation](https://optuna.org/)
+   - Bayesian optimization, pruning
+
+3. **Hyperopt**: Hyperparameter optimization
+   - [Documentation](http://hyperopt.github.io/hyperopt/)
+   - Tree-structured Parzen Estimator
+
+4. **scikit-optimize**: Sequential model-based optimization
+   - [Documentation](https://scikit-optimize.github.io/)
+   - Bayesian optimization
+
+5. **Ray Tune**: Distributed hyperparameter tuning
+   - [Documentation](https://docs.ray.io/en/latest/tune/index.html)
+   - Scalable hyperparameter tuning
+
+---
+
 ## Next Steps
 
 - Practice with different datasets

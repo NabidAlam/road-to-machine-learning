@@ -850,6 +850,76 @@ for i, (name1, result1) in enumerate(results.items()):
 
 ---
 
+## Resources and Further Learning
+
+### Books
+
+1. **"Pattern Recognition and Machine Learning"** - Christopher Bishop
+   - Comprehensive coverage of clustering and dimensionality reduction
+   - Chapter 9: Mixture Models and EM
+   - Chapter 12: Continuous Latent Variables (PCA, etc.)
+
+2. **"The Elements of Statistical Learning"** - Hastie, Tibshirani & Friedman
+   - [Free Online](https://web.stanford.edu/~hastie/ElemStatLearn/)
+   - Chapter 14: Unsupervised Learning
+
+3. **"Hands-On Unsupervised Learning"** - Ankur A. Patel
+   - Practical guide with code examples
+
+### Important Papers
+
+1. **"A Tutorial on Principal Component Analysis"** - Shlens, 2014
+2. **"Visualizing Data using t-SNE"** - van der Maaten & Hinton, 2008
+3. **"UMAP: Uniform Manifold Approximation and Projection"** - McInnes et al., 2018
+4. **"Some methods for classification and analysis of multivariate observations"** - MacQueen, 1967 (K-Means)
+5. **"A density-based algorithm for discovering clusters"** - Ester et al., 1996 (DBSCAN)
+6. **"Isolation Forest"** - Liu et al., 2008
+
+### Online Courses
+
+1. **Unsupervised Learning** - Coursera (Andrew Ng)
+   - Part of Machine Learning course
+   - Covers K-Means, PCA
+
+2. **CS229: Machine Learning** - Stanford
+   - [Course Website](http://cs229.stanford.edu/)
+   - Covers clustering, dimensionality reduction
+
+### Datasets
+
+1. **Clustering**:
+   - [Iris Dataset](https://archive.ics.uci.edu/ml/datasets/iris)
+   - [Wine Dataset](https://archive.ics.uci.edu/ml/datasets/wine)
+   - [Customer Segmentation](https://www.kaggle.com/datasets?search=customer+segmentation)
+
+2. **Dimensionality Reduction**:
+   - [MNIST](http://yann.lecun.com/exdb/mnist/)
+   - [Fashion-MNIST](https://github.com/zalandoresearch/fashion-mnist)
+
+3. **Anomaly Detection**:
+   - [Credit Card Fraud](https://www.kaggle.com/datasets/mlg-ulb/creditcardfraud)
+   - [Network Intrusion](https://www.kaggle.com/datasets?search=intrusion)
+
+### Tools and Libraries
+
+1. **scikit-learn**: Comprehensive ML library
+   - [Documentation](https://scikit-learn.org/)
+   - K-Means, DBSCAN, PCA, t-SNE, Isolation Forest
+
+2. **UMAP**: Uniform Manifold Approximation and Projection
+   - [Documentation](https://umap-learn.readthedocs.io/)
+   - Better alternative to t-SNE
+
+3. **hdbscan**: Hierarchical DBSCAN
+   - [Documentation](https://hdbscan.readthedocs.io/)
+   - Improved clustering algorithm
+
+4. **PyOD**: Python Outlier Detection
+   - [Documentation](https://pyod.readthedocs.io/)
+   - Comprehensive anomaly detection library
+
+---
+
 ## Next Steps
 
 - Practice with real datasets

@@ -2361,6 +2361,99 @@ model.fit(train_data, epochs=5)
 
 ---
 
+## Resources and Further Learning
+
+### Books
+
+1. **"Deep Learning"** - Ian Goodfellow, Yoshua Bengio & Aaron Courville
+   - [Free Online](https://www.deeplearningbook.org/)
+   - Chapter 9: Convolutional Networks
+
+2. **"Computer Vision: Algorithms and Applications"** - Richard Szeliski
+   - [Free Online](https://szeliski.org/Book/)
+   - Comprehensive computer vision textbook
+
+3. **"Programming Computer Vision with Python"** - Jan Erik Solem
+   - Practical guide with code examples
+
+### Important Papers
+
+1. **"ImageNet Classification with Deep Convolutional Neural Networks"** - Krizhevsky et al., 2012 (AlexNet)
+2. **"Very Deep Convolutional Networks for Large-Scale Image Recognition"** - Simonyan & Zisserman, 2014 (VGG)
+3. **"Deep Residual Learning for Image Recognition"** - He et al., 2015 (ResNet)
+4. **"Going Deeper with Convolutions"** - Szegedy et al., 2014 (GoogLeNet/Inception)
+5. **"EfficientNet: Rethinking Model Scaling for Convolutional Neural Networks"** - Tan & Le, 2019
+6. **"Rich feature hierarchies for accurate object detection"** - Girshick et al., 2013 (R-CNN)
+7. **"You Only Look Once: Unified, Real-Time Object Detection"** - Redmon et al., 2015 (YOLO)
+8. **"Fully Convolutional Networks for Semantic Segmentation"** - Long et al., 2014
+
+### Online Courses
+
+1. **CS231n: Convolutional Neural Networks for Visual Recognition** - Stanford
+   - [Course Website](http://cs231n.stanford.edu/)
+   - Comprehensive deep learning for computer vision
+
+2. **Deep Learning Specialization** - Coursera (DeepLearning.AI)
+   - [Course Link](https://www.coursera.org/specializations/deep-learning)
+   - Course 4: Convolutional Neural Networks
+
+3. **Fast.ai: Practical Deep Learning for Coders**
+   - [Course Website](https://www.fast.ai/)
+   - Practical computer vision with deep learning
+
+### Datasets
+
+1. **Image Classification**:
+   - [MNIST](http://yann.lecun.com/exdb/mnist/)
+   - [CIFAR-10/100](https://www.cs.toronto.edu/~kriz/cifar.html)
+   - [ImageNet](https://www.image-net.org/)
+   - [Fashion-MNIST](https://github.com/zalandoresearch/fashion-mnist)
+
+2. **Object Detection**:
+   - [COCO](https://cocodataset.org/)
+   - [PASCAL VOC](http://host.robots.ox.ac.uk/pascal/VOC/)
+   - [Open Images](https://storage.googleapis.com/openimages/web/index.html)
+
+3. **Semantic Segmentation**:
+   - [Cityscapes](https://www.cityscapes-dataset.com/)
+   - [ADE20K](https://groups.csail.mit.edu/vision/datasets/ADE20K/)
+
+4. **Face Recognition**:
+   - [LFW](http://vis-www.cs.umass.edu/lfw/)
+   - [CelebA](http://mmlab.ie.cuhk.edu.hk/projects/CelebA.html)
+
+### Tools and Libraries
+
+1. **OpenCV**: Computer vision library
+   - [Documentation](https://opencv.org/)
+   - Image processing, feature detection
+
+2. **TensorFlow/Keras**: Deep learning framework
+   - [Documentation](https://www.tensorflow.org/)
+   - Pre-trained models, transfer learning
+
+3. **PyTorch**: Deep learning framework
+   - [Documentation](https://pytorch.org/)
+   - torchvision for computer vision
+
+4. **Pillow (PIL)**: Image processing
+   - [Documentation](https://pillow.readthedocs.io/)
+   - Image manipulation
+
+5. **albumentations**: Image augmentation
+   - [Documentation](https://albumentations.ai/)
+   - Advanced data augmentation
+
+6. **ultralytics (YOLO)**: Object detection
+   - [Documentation](https://docs.ultralytics.com/)
+   - YOLO implementation
+
+7. **detectron2**: Object detection and segmentation
+   - [Documentation](https://github.com/facebookresearch/detectron2)
+   - Facebook's computer vision library
+
+---
+
 ## Next Steps
 
 - Practice with image datasets (MNIST, CIFAR-10, custom)
