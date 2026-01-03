@@ -37,6 +37,7 @@
 - [Getting Started](#getting-started)
 - [Repository Structure](#repository-structure)
 - [Resources](#resources)
+- [Career Roadmaps](#career-roadmaps)
 - [Contributing](#contributing)
 
 ## Overview
@@ -569,6 +570,7 @@ road-to-ml/
     ml_glossary.md
     reinforcement_learning.md
     recommender_systems.md
+    career_roadmap_guide.md
     career_portfolio.md
     interview_prep.md
     open_source_contribution.md
@@ -700,6 +702,32 @@ road-to-ml/
 - [YouTube Channels](resources/youtube_channels.md) - Comprehensive list of free ML YouTube channels
 - [Blogs & Websites](resources/blogs_websites.md) - Recommended blogs, websites, and online resources
 - [Practice Platforms](resources/practice_platforms.md) - Platforms to practice ML, coding, and data science
+
+## Career Roadmaps
+
+**Not sure which path to take?** Check out our comprehensive [Career Roadmap Guide](resources/career_roadmap_guide.md) for role-specific learning paths:
+
+| Role | Focus | Est. Time | Key Modules |
+|------|-------|-----------|-------------|
+| **Data Analyst** | Insights & Reports | 8-12 months | 00, 01, 19, 20, 21 |
+| **Data Scientist** | Predictive Models | 13-20 months | 00-08, 15, 19-21 |
+| **ML Engineer** | Production ML | 17-26 months | 00-10, 13-14, 19-21 |
+| **LLM Engineer** | Language Models | 17-24 months | 00-01, 05, 09-10, 12-14, 19 |
+| **Computer Vision Engineer** | Image Processing | 16-25 months | 00-01, 04-05, 09-11, 13-14, 19, 21 |
+| **AI Engineer** | Generalist AI | 23-35 months | 00-15, 19-21 |
+| **Data Engineer** | Data Infrastructure | 14-20 months | 00-01, 13-14, 19-20 |
+| **MLOps Engineer** | ML Operations | 16-24 months | 00-01, 05, 09-10, 13-14, 19 |
+| **Research Scientist** | Research & Innovation | 22-31 months | 00-12, 15, 19, 21 |
+| **BI Analyst** | Business Intelligence | 10-15 months | 00-01, 19-21 |
+
+Each roadmap includes:
+- Detailed module recommendations with priorities
+- Role-specific projects to build
+- Essential resources and tools
+- Skills checklist for each role
+- Time estimates and learning path
+
+[**View Full Career Roadmap Guide →**](resources/career_roadmap_guide.md)
 
 ## Learning Tips
 
