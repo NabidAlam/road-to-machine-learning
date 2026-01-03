@@ -361,9 +361,10 @@ This guide provides clear, role-specific learning paths for different careers in
 | **Unsupervised Learning** | 08 | Clustering, Dimensionality Reduction | 1-2 months |
 | **Deep Learning** | 09-10 | Neural Networks, PyTorch, TensorFlow | 2-3 months |
 | **Specialized DL** | 11-12, 15 | Computer Vision, NLP, Time Series | 6-8 months |
+| **Advanced Specialized** | 22-24 | Reinforcement Learning, Graph Neural Networks, Audio/Speech | 2-3 months |
 | **Production** | 13-14 | Model Deployment, MLOps | 3-4 months |
 | **Essential Skills** | 19-21 | SQL, Imbalanced Data, Explainability | 2-3 months |
-| **Total** | **16 modules** | **Complete Path** | **23-35 months** |
+| **Total** | **19 modules** | **Complete Path** | **25-38 months** |
 
 ### Essential Modules
 
@@ -383,6 +384,9 @@ This guide provides clear, role-specific learning paths for different careers in
 | **11-computer-vision** | CNNs, Object Detection, Segmentation, GANs, Diffusion | ⭐⭐⭐ Critical |
 | **12-natural-language-processing** | NLP, Transformers, Fine-tuning, RAG | ⭐⭐⭐ Critical |
 | **15-time-series-analysis** | Time Series, Forecasting | ⭐⭐ Important |
+| **22-reinforcement-learning** | RL, Q-Learning, DQN, Policy Gradients, Multi-Agent RL | ⭐⭐ Important |
+| **23-graph-neural-networks** | GNNs, GCNs, GATs, Graph Applications | ⭐⭐ Important |
+| **24-audio-speech-processing** | ASR, TTS, Audio Classification, Music Generation | ⭐ Optional |
 | **13-model-deployment** | Deployment, APIs, Cloud | ⭐⭐⭐ Critical |
 | **14-mlops-basics** | MLOps, CI/CD, MLflow | ⭐⭐⭐ Critical |
 | **19-sql-database-fundamentals** | SQL, Databases | ⭐⭐ Important |
@@ -412,6 +416,9 @@ This guide provides clear, role-specific learning paths for different careers in
 - Deep learning (CNNs, RNNs, Transformers)
 - Computer vision (Object Detection, Segmentation)
 - Natural language processing (NLP, Transformers, RAG)
+- Reinforcement learning (Q-Learning, DQN, Policy Gradients)
+- Graph neural networks (GCNs, GATs, Graph Applications)
+- Audio and speech processing (ASR, TTS, Audio Classification)
 - Generative AI (GANs, Diffusion Models, LLMs)
 - Model deployment and MLOps
 - Software engineering and system design
@@ -557,8 +564,9 @@ This guide provides clear, role-specific learning paths for different careers in
 | **Unsupervised Learning** | 08 | Advanced Clustering, Dimensionality Reduction | 2-3 months |
 | **Deep Learning** | 09-10 | Neural Networks, Frameworks | 3-4 months |
 | **Specialized DL** | 11-12, 15 | Computer Vision, NLP, Time Series | 6-8 months |
+| **Advanced Specialized** | 22-24 | Reinforcement Learning, Graph Neural Networks, Audio/Speech | 2-3 months |
 | **Essential Skills** | 19-21 | SQL, Explainability | 1-2 months |
-| **Total** | **13 modules** | **Complete Path** | **22-31 months** |
+| **Total** | **16 modules** | **Complete Path** | **24-34 months** |
 
 ### Essential Modules
 
@@ -578,6 +586,9 @@ This guide provides clear, role-specific learning paths for different careers in
 | **11-computer-vision** | CV Theory, Architectures, Research | ⭐⭐⭐ Critical |
 | **12-natural-language-processing** | NLP Theory, Transformers, Research | ⭐⭐⭐ Critical |
 | **15-time-series-analysis** | Time Series Theory | ⭐⭐ Important |
+| **22-reinforcement-learning** | RL Theory, MDPs, Deep RL, Multi-Agent RL | ⭐⭐⭐ Critical |
+| **23-graph-neural-networks** | GNN Theory, Graph Algorithms, Research | ⭐⭐⭐ Critical |
+| **24-audio-speech-processing** | Audio Processing Theory, ASR, TTS | ⭐⭐ Important |
 | **19-sql-database-fundamentals** | SQL Basics | ⭐ Optional |
 | **21-model-explainability** | Explainability Theory, Research | ⭐⭐ Important |
 
@@ -592,7 +603,7 @@ This guide provides clear, role-specific learning paths for different careers in
 
 | Resource Type | Files |
 |--------------|-------|
-| **Core Skills** | [Math Formulas](math_formulas.md), [ML Glossary](ml_glossary.md), [Reinforcement Learning](reinforcement_learning.md) |
+| **Core Skills** | [Math Formulas](math_formulas.md), [ML Glossary](ml_glossary.md), [Reinforcement Learning](reinforcement_learning.md), [Causal Inference Guide](causal_inference_guide.md) |
 | **Advanced Topics** | [Model Interpretability Guide](model_interpretability.md), [Recommender Systems](recommender_systems.md) |
 | **Career** | [Career & Portfolio Guide](career_portfolio.md), [Open Source Contribution](open_source_contribution.md) |
 
@@ -602,6 +613,9 @@ This guide provides clear, role-specific learning paths for different careers in
 - Deep understanding of ML theory and algorithms
 - Research methodology and experimental design
 - Deep learning architectures and theory
+- Reinforcement learning theory and applications
+- Graph neural networks and graph algorithms
+- Audio and speech processing
 - Ability to read and implement research papers
 - Publication and writing skills
 - Programming (Python, PyTorch, TensorFlow)
