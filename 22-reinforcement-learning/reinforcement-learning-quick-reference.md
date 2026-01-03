@@ -5,24 +5,16 @@ Quick reference guide for reinforcement learning algorithms, formulas, and code 
 ## Key Formulas
 
 ### Return (Cumulative Reward)
-```
-Gt = Rt+1 + γRt+2 + γ²Rt+3 + ...
-```
+$$G_t = R_{t+1} + \gamma R_{t+2} + \gamma^2 R_{t+3} + \ldots$$
 
 ### Q-Learning Update
-```
-Q(s,a) ← Q(s,a) + α[r + γ max(a') Q(s',a') - Q(s,a)]
-```
+$$Q(s,a) \leftarrow Q(s,a) + \alpha[r + \gamma \max_{a'} Q(s',a') - Q(s,a)]$$
 
 ### Policy Gradient
-```
-∇θ J(θ) = Eπ[∇θ log π(a|s) * Q^π(s,a)]
-```
+$$\nabla_{\theta} J(\theta) = \mathbb{E}_{\pi}[\nabla_{\theta} \log \pi(a|s) \cdot Q^{\pi}(s,a)]$$
 
 ### Bellman Equation for Q
-```
-Q^π(s,a) = Σ(s',r) P(s',r|s,a) [r + γΣ(a') π(a'|s') Q^π(s',a')]
-```
+$$Q^{\pi}(s,a) = \sum_{s',r} P(s',r|s,a) [r + \gamma \sum_{a'} \pi(a'|s') Q^{\pi}(s',a')]$$
 
 ## Algorithms Comparison
 

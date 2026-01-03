@@ -70,7 +70,7 @@ Policy: Which move to make in each position
 - **Actions (A)**: Set of possible actions
 - **Transition Probabilities (P)**: P(s'|s,a) - probability of moving to state s' from state s by taking action a
 - **Rewards (R)**: R(s,a,s') - immediate reward for state-action-next state
-- **Discount Factor (γ)**: How much we value future rewards (0 ≤ γ ≤ 1)
+- **Discount Factor ($\gamma$)**: How much we value future rewards ($0 \leq \gamma \leq 1$)
 
 ### Markov Property
 
@@ -82,64 +82,52 @@ P(St+1 | St, At, St-1, At-1, ...) = P(St+1 | St, At)
 
 ### Return (Cumulative Reward)
 
-**Return (Gt)**: Total discounted reward from time t:
+**Return ($G_t$)**: Total discounted reward from time $t$:
 
-```
-Gt = Rt+1 + γRt+2 + γ²Rt+3 + ... = Σ(k=0 to ∞) γ^k * Rt+k+1
-```
+$$G_t = R_{t+1} + \gamma R_{t+2} + \gamma^2 R_{t+3} + \ldots = \sum_{k=0}^{\infty} \gamma^k R_{t+k+1}$$
 
-**Discount Factor (γ):**
-- **γ = 0**: Only care about immediate reward
-- **γ = 1**: Care equally about all future rewards
-- **γ = 0.9**: Typical value, values near future more
+**Discount Factor ($\gamma$):**
+- **$\gamma = 0$**: Only care about immediate reward
+- **$\gamma = 1$**: Care equally about all future rewards
+- **$\gamma = 0.9$**: Typical value, values near future more
 
 ### Value Functions
 
-#### State Value Function V(s)
+#### State Value Function $V(s)$
 
-**V^π(s)**: Expected return starting from state s, following policy π:
+**$V^{\pi}(s)$**: Expected return starting from state $s$, following policy $\pi$:
 
-```
-V^π(s) = Eπ[Gt | St = s]
-```
+$$V^{\pi}(s) = \mathbb{E}_{\pi}[G_t | S_t = s]$$
 
-**Interpretation**: How good is it to be in state s under policy π?
+**Interpretation**: How good is it to be in state $s$ under policy $\pi$?
 
-#### Action Value Function Q(s,a)
+#### Action Value Function $Q(s,a)$
 
-**Q^π(s,a)**: Expected return starting from state s, taking action a, then following policy π:
+**$Q^{\pi}(s,a)$**: Expected return starting from state $s$, taking action $a$, then following policy $\pi$:
 
-```
-Q^π(s,a) = Eπ[Gt | St = s, At = a]
-```
+$$Q^{\pi}(s,a) = \mathbb{E}_{\pi}[G_t | S_t = s, A_t = a]$$
 
-**Interpretation**: How good is it to take action a in state s under policy π?
+**Interpretation**: How good is it to take action $a$ in state $s$ under policy $\pi$?
 
 ### Bellman Equations
 
-#### Bellman Equation for V(s)
+#### Bellman Equation for $V(s)$
 
-```
-V^π(s) = Σ(a) π(a|s) Σ(s',r) P(s',r|s,a) [r + γV^π(s')]
-```
+$$V^{\pi}(s) = \sum_a \pi(a|s) \sum_{s',r} P(s',r|s,a) [r + \gamma V^{\pi}(s')]$$
 
-#### Bellman Equation for Q(s,a)
+#### Bellman Equation for $Q(s,a)$
 
-```
-Q^π(s,a) = Σ(s',r) P(s',r|s,a) [r + γΣ(a') π(a'|s') Q^π(s',a')]
-```
+$$Q^{\pi}(s,a) = \sum_{s',r} P(s',r|s,a) [r + \gamma \sum_{a'} \pi(a'|s') Q^{\pi}(s',a')]$$
 
 ### Optimal Policy
 
-**Optimal Policy (π*)**: Policy that maximizes expected return:
+**Optimal Policy ($\pi^*$)**: Policy that maximizes expected return:
 
-```
-π* = argmax(π) V^π(s) for all s
-```
+$$\pi^* = \arg\max_{\pi} V^{\pi}(s) \text{ for all } s$$
 
 **Optimal Value Functions:**
-- **V*(s)**: Maximum value achievable from state s
-- **Q*(s,a)**: Maximum value achievable from state s taking action a
+- **$V^*(s)$**: Maximum value achievable from state $s$
+- **$Q^*(s,a)$**: Maximum value achievable from state $s$ taking action $a$
 
 ---
 
@@ -166,15 +154,13 @@ For each episode:
 
 #### Q-Learning Update Rule
 
-```
-Q(s,a) ← Q(s,a) + α[r + γ max(a') Q(s',a') - Q(s,a)]
-```
+$$Q(s,a) \leftarrow Q(s,a) + \alpha[r + \gamma \max_{a'} Q(s',a') - Q(s,a)]$$
 
 Where:
-- **α**: Learning rate
-- **r**: Immediate reward
-- **γ**: Discount factor
-- **max(a') Q(s',a')**: Maximum Q-value in next state
+- **$\alpha$**: Learning rate
+- **$r$**: Immediate reward
+- **$\gamma$**: Discount factor
+- **$\max_{a'} Q(s',a')$**: Maximum Q-value in next state
 
 #### Implementation
 
@@ -211,7 +197,7 @@ class QLearning:
 
 ### Deep Q-Network (DQN)
 
-**DQN** uses a neural network to approximate Q(s,a) instead of a Q-table.
+**DQN** uses a neural network to approximate $Q(s,a)$ instead of a Q-table.
 
 #### Key Innovations
 
@@ -337,7 +323,7 @@ class DoubleDQNAgent(DQNAgent):
 - **Value V(s)**: How good is state s?
 - **Advantage A(s,a)**: How much better is action a than average?
 
-**Q(s,a) = V(s) + (A(s,a) - mean(A(s,a)))**
+$$Q(s,a) = V(s) + (A(s,a) - \text{mean}(A(s,a)))$$
 
 ```python
 class DuelingDQN(nn.Module):
@@ -360,7 +346,7 @@ class DuelingDQN(nn.Module):
         value = self.value_stream(x)
         advantage = self.advantage_stream(x)
         
-        # Combine: Q(s,a) = V(s) + (A(s,a) - mean(A(s,a)))
+        # Combine: Q(s,a) = V(s) + (A(s,a) - mean(A(s,a)))  # Mathematical: Q = V + (A - mean(A))
         q_values = value + (advantage - advantage.mean(dim=1, keepdim=True))
         
         return q_values
@@ -503,7 +489,7 @@ class REINFORCE:
 
 ### Advantage Actor-Critic (A2C)
 
-**A2C** uses advantage function A(s,a) = Q(s,a) - V(s) instead of Q-values.
+**A2C** uses advantage function $A(s,a) = Q(s,a) - V(s)$ instead of Q-values.
 
 **Advantage**: Reduces variance in policy gradient estimates.
 
