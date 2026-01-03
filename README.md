@@ -79,7 +79,7 @@ This repository provides a structured learning path for machine learning, organi
 
 **Note on Module Numbering**: Module numbers (00-21) don't strictly follow the learning path order. The phases below represent the recommended learning sequence. Some modules can be learned in parallel or in different orders based on your goals. See individual module READMEs for prerequisites and suggested learning order.
 
-**Time Estimates**: Realistic completion time is **12-18 months (full-time, 30-40 hrs/week)** or **24-30 months (part-time, 10-15 hrs/week)** for comprehensive coverage including all 22 modules and 23 projects. See [FAQ section](#common-questions--learning-guide) for detailed breakdown.
+**Time Estimates**: Realistic completion time is **14-20 months (full-time, 30-40 hrs/week)** or **28-35 months (part-time, 10-15 hrs/week)** for comprehensive coverage including all 25 modules and 23 projects. See [FAQ section](#common-questions--learning-guide) for detailed breakdown.
 
 ## Learning Path Overview
 
@@ -95,7 +95,8 @@ This repository provides a structured learning path for machine learning, organi
 | **Phase 6.5** | 19-21 | Essential Skills (SQL, Imbalanced Data, Explainability) | 1-2 months | 2-4 months |
 | **Phase 7** | 13-14 | Production & MLOps | 2-3 months | 4-6 months |
 | **Phase 8** | 16-18 | Projects (23 total) | 4-6 months | 8-12 months |
-| **Total** | 22 modules | Complete Path | **12-18 months** | **24-30 months** |
+| **Phase 9** | 22-24 | Advanced Specialized Topics (RL, GNNs, Audio) | 2-3 months | 4-6 months |
+| **Total** | 25 modules | Complete Path | **14-20 months** | **28-35 months** |
 
 ### Phase 0: Foundation (Prerequisites)
 **Goal**: Build the mathematical and programming foundation needed for ML
@@ -241,6 +242,36 @@ This repository provides a structured learning path for machine learning, organi
   - Feature Engineering for Time Series
   - Evaluation and Validation
   - **Note**: Module 15 is placed here logically but numbered after modules 13-14. It can be learned in parallel with modules 11-12 or after Phase 5.
+
+### Phase 9: Advanced Specialized Topics
+**Goal**: Master advanced specialized ML domains
+
+**Note**: These modules cover advanced topics that build on deep learning fundamentals. Learn these after completing Phase 5 (Deep Learning Fundamentals) and Phase 6 (Specialized Deep Learning).
+
+- **22-reinforcement-learning**
+  - Markov Decision Processes (MDPs)
+  - Value-Based Methods (Q-Learning, DQN)
+  - Policy-Based Methods (REINFORCE, Policy Gradients)
+  - Actor-Critic Methods
+  - Deep Reinforcement Learning
+  - Multi-Agent RL, Hierarchical RL, Imitation Learning
+  - Applications: Game Playing, Robotics, Recommendation Systems
+
+- **23-graph-neural-networks**
+  - Graph Fundamentals and Representations
+  - Message Passing in GNNs
+  - Graph Convolutional Networks (GCNs)
+  - Graph Attention Networks (GATs)
+  - GraphSAGE and Other Architectures
+  - Applications: Social Networks, Recommendation Systems, Molecular Analysis
+
+- **24-audio-speech-processing**
+  - Audio Signal Fundamentals (Waveforms, Spectrograms, MFCCs)
+  - Speech Recognition (ASR) - CTC, Attention-based, Whisper
+  - Text-to-Speech (TTS) - Neural TTS, Voice Cloning
+  - Audio Classification (Music, Events, Emotions)
+  - Music Generation
+  - Voice Processing (VAD, Speaker ID, Enhancement)
 
 ### Phase 6.5: Essential Data Science Skills
 **Goal**: Master critical skills for real-world ML applications
@@ -553,6 +584,27 @@ road-to-ml/
     time-series-quick-reference.md
     README.md
 
+ 22-reinforcement-learning/
+    reinforcement-learning.md
+    reinforcement-learning-advanced-topics.md
+    reinforcement-learning-project-tutorial.md
+    reinforcement-learning-quick-reference.md
+    README.md
+
+ 23-graph-neural-networks/
+    graph-neural-networks.md
+    graph-neural-networks-advanced-topics.md
+    graph-neural-networks-project-tutorial.md
+    graph-neural-networks-quick-reference.md
+    README.md
+
+ 24-audio-speech-processing/
+    audio-speech-processing.md
+    audio-speech-processing-advanced-topics.md
+    audio-speech-processing-project-tutorial.md
+    audio-speech-processing-quick-reference.md
+    README.md
+
  16-projects-beginner/
     [6 project directories with code and READMEs]
     README.md
@@ -615,6 +667,7 @@ road-to-ml/
     llamaindex_guide.md
     ai_agents_guide.md
     dsa_for_ml_guide.md
+    causal_inference_guide.md
     books.md
     courses.md
     datasets.md
@@ -688,6 +741,7 @@ road-to-ml/
 | [Recommender Systems Guide](resources/recommender_systems.md) | Building recommendation systems (collaborative filtering, content-based, hybrid approaches) |
 | [AutoML Basics Guide](resources/automl_basics.md) | Introduction to Automated Machine Learning: when to use, popular tools, and integration strategies |
 | [Data Validation Guide](resources/data_validation.md) | Comprehensive data validation: schema validation, quality checks, drift detection, and automated pipelines |
+| [Causal Inference Guide](resources/causal_inference_guide.md) | Comprehensive guide to causal inference: potential outcomes, confounding, RCTs, observational methods (propensity scores, DiD, IV, RDD), causal ML, and tools (DoWhy, EconML) |
 
 #### Generative AI & Modern Tools
 
@@ -994,12 +1048,12 @@ By completing this roadmap, you'll be able to:
 
 | Metric | Count | Details |
 |--------|-------|---------|
-| **Learning Modules** | 22 | Modules 00-21 covering all ML topics from basics to advanced |
+| **Learning Modules** | 25 | Modules 00-24 covering all ML topics from basics to advanced |
 | **Projects** | 23 | 6 beginner + 8 intermediate + 9 advanced with complete code and READMEs |
-| **Resource Guides** | 35 | Cheatsheets, tutorials, and career guides |
-| **Markdown Files** | 179 | Comprehensive content, code examples, and exercises |
-| **Learning Time (Full-Time)** | 12-18 months | 30-40 hours/week for comprehensive coverage |
-| **Learning Time (Part-Time)** | 24-30 months | 10-15 hours/week for comprehensive coverage |
+| **Resource Guides** | 36 | Cheatsheets, tutorials, and career guides |
+| **Markdown Files** | 195+ | Comprehensive content, code examples, and exercises |
+| **Learning Time (Full-Time)** | 14-20 months | 30-40 hours/week for comprehensive coverage |
+| **Learning Time (Part-Time)** | 28-35 months | 10-15 hours/week for comprehensive coverage |
 | **Prerequisites** | Zero | Start from scratch - no prior experience needed! |
 
 ## Disclaimer
