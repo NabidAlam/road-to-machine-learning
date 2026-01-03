@@ -685,6 +685,7 @@ road-to-ml/
 | [Excel Data Analysis Guide](resources/excel_data_analysis_guide.md) | Comprehensive Excel guide: functions, pivot tables, charts, dashboards, Power Query, and advanced techniques |
 
 ### Career & Interview Resources
+- [Career Roadmap Guide](resources/career_roadmap_guide.md) - **Role-specific learning paths**: Data Analyst, Data Scientist, ML Engineer, LLM Engineer, Computer Vision Engineer, AI Engineer, Data Engineer, MLOps Engineer, Research Scientist, BI Analyst
 - [Career & Portfolio Guide](resources/career_portfolio.md) - Build your portfolio, prepare for interviews, and launch your ML career
 - [Interview Preparation Guide](resources/interview_prep.md) - ML interview questions, coding challenges, system design, and preparation strategies
 - [Open Source Contribution Guide](resources/open_source_contribution.md) - How to contribute to open source projects in data science and ML
@@ -967,8 +968,8 @@ By completing this roadmap, you'll be able to:
 |--------|-------|---------|
 | **Learning Modules** | 22 | Modules 00-21 covering all ML topics from basics to advanced |
 | **Projects** | 23 | 6 beginner + 8 intermediate + 9 advanced with complete code and READMEs |
-| **Resource Guides** | 34 | Cheatsheets, tutorials, and career guides |
-| **Markdown Files** | 178 | Comprehensive content, code examples, and exercises |
+| **Resource Guides** | 35 | Cheatsheets, tutorials, and career guides |
+| **Markdown Files** | 173 | Comprehensive content, code examples, and exercises |
 | **Learning Time (Full-Time)** | 12-18 months | 30-40 hours/week for comprehensive coverage |
 | **Learning Time (Part-Time)** | 24-30 months | 10-15 hours/week for comprehensive coverage |
 | **Prerequisites** | Zero | Start from scratch - no prior experience needed! |
