@@ -289,20 +289,193 @@ class GATLayer(nn.Module):
 
 ### GraphSAGE
 
-**GraphSAGE (Graph Sample and Aggregate)** learns node embeddings by sampling and aggregating from neighborhoods.
+**GraphSAGE (Graph Sample and Aggregate)** learns node embeddings by sampling and aggregating from neighborhoods. Unlike GCN which requires the full graph, GraphSAGE can work inductively on new nodes.
 
-**Key Features:**
-- Inductive learning (works on new graphs)
-- Neighborhood sampling
-- Aggregation functions (mean, max, LSTM)
+#### Key Features
+
+1. **Inductive Learning**: Works on new graphs and nodes not seen during training
+2. **Neighborhood Sampling**: Samples fixed-size neighborhoods for efficiency
+3. **Aggregation Functions**: Mean, max, or LSTM aggregators
+
+#### GraphSAGE Algorithm
+
+```
+For each node v:
+  1. Sample k neighbors uniformly
+  2. Aggregate neighbor features: h_N(v) = AGGREGATE({h_u : u ∈ N(v)})
+  3. Update: h_v = σ(W · CONCAT(h_v, h_N(v)))
+```
+
+#### Implementation
+
+```python
+import torch
+import torch.nn as nn
+import torch.nn.functional as F
+from torch_geometric.nn import SAGEConv
+
+class GraphSAGE(nn.Module):
+    def __init__(self, input_dim, hidden_dim, output_dim, num_layers=2):
+        super(GraphSAGE, self).__init__()
+        self.convs = nn.ModuleList()
+        self.convs.append(SAGEConv(input_dim, hidden_dim))
+        for _ in range(num_layers - 2):
+            self.convs.append(SAGEConv(hidden_dim, hidden_dim))
+        self.convs.append(SAGEConv(hidden_dim, output_dim))
+    
+    def forward(self, x, edge_index):
+        for i, conv in enumerate(self.convs[:-1]):
+            x = conv(x, edge_index)
+            x = F.relu(x)
+            x = F.dropout(x, training=self.training)
+        x = self.convs[-1](x, edge_index)
+        return x
+
+# Usage
+model = GraphSAGE(input_dim=1433, hidden_dim=64, output_dim=7)
+```
+
+#### Aggregation Functions
+
+**Mean Aggregator**:
+```python
+def mean_aggregate(neighbor_features):
+    return torch.mean(neighbor_features, dim=0)
+```
+
+**Max Aggregator**:
+```python
+def max_aggregate(neighbor_features):
+    return torch.max(neighbor_features, dim=0)[0]
+```
+
+**LSTM Aggregator**:
+```python
+class LSTMAggregator(nn.Module):
+    def __init__(self, input_dim, hidden_dim):
+        super(LSTMAggregator, self).__init__()
+        self.lstm = nn.LSTM(input_dim, hidden_dim, batch_first=True)
+    
+    def forward(self, neighbor_features):
+        # neighbor_features: [num_neighbors, feature_dim]
+        out, _ = self.lstm(neighbor_features.unsqueeze(0))
+        return out[0, -1]  # Return last hidden state
+```
 
 ### Graph Isomorphism Network (GIN)
 
-**GIN** is provably as powerful as the Weisfeiler-Lehman test.
+**Graph Isomorphism Network (GIN)** is provably as powerful as the Weisfeiler-Lehman (WL) graph isomorphism test, making it one of the most expressive GNN architectures.
+
+#### Why GIN?
+
+- **Maximum Expressive Power**: Can distinguish any non-isomorphic graphs
+- **Theoretical Guarantees**: Based on graph theory
+- **Simple Architecture**: Easy to implement
+
+#### GIN Formula
+
+```
+h_v^(l+1) = MLP^((l))((1 + ε^(l)) · h_v^(l) + Σ(u∈N(v)) h_u^(l))
+```
+
+Where:
+- `ε^(l)`: Learnable parameter (can be fixed to 0)
+- `MLP^((l))`: Multi-layer perceptron at layer l
+
+#### Implementation
+
+```python
+from torch_geometric.nn import GINConv
+
+class GIN(nn.Module):
+    def __init__(self, input_dim, hidden_dim, output_dim, num_layers=3):
+        super(GIN, self).__init__()
+        self.convs = nn.ModuleList()
+        
+        # First layer
+        nn1 = nn.Sequential(
+            nn.Linear(input_dim, hidden_dim),
+            nn.ReLU(),
+            nn.Linear(hidden_dim, hidden_dim)
+        )
+        self.convs.append(GINConv(nn1, train_eps=True))
+        
+        # Hidden layers
+        for _ in range(num_layers - 2):
+            nn_hidden = nn.Sequential(
+                nn.Linear(hidden_dim, hidden_dim),
+                nn.ReLU(),
+                nn.Linear(hidden_dim, hidden_dim)
+            )
+            self.convs.append(GINConv(nn_hidden, train_eps=True))
+        
+        # Output layer
+        nn_out = nn.Sequential(
+            nn.Linear(hidden_dim, hidden_dim),
+            nn.ReLU(),
+            nn.Linear(hidden_dim, output_dim)
+        )
+        self.convs.append(GINConv(nn_out, train_eps=True))
+    
+    def forward(self, x, edge_index):
+        for conv in self.convs:
+            x = conv(x, edge_index)
+            x = F.relu(x)
+        return x
+```
 
 ### Graph Transformer
 
-**Graph Transformer** applies transformer architecture to graphs.
+**Graph Transformer** applies the transformer architecture to graphs, using self-attention over nodes.
+
+#### Key Components
+
+1. **Positional Encoding**: Encode graph structure (e.g., Laplacian eigenvectors)
+2. **Self-Attention**: Attention over all nodes
+3. **Graph-aware Mechanisms**: Incorporate edge information
+
+#### Implementation
+
+```python
+from torch_geometric.nn import TransformerConv
+
+class GraphTransformer(nn.Module):
+    def __init__(self, input_dim, hidden_dim, output_dim, num_heads=8, num_layers=3):
+        super(GraphTransformer, self).__init__()
+        self.convs = nn.ModuleList()
+        
+        self.convs.append(TransformerConv(input_dim, hidden_dim, heads=num_heads))
+        for _ in range(num_layers - 2):
+            self.convs.append(TransformerConv(hidden_dim * num_heads, hidden_dim, heads=num_heads))
+        self.convs.append(TransformerConv(hidden_dim * num_heads, output_dim, heads=1))
+    
+    def forward(self, x, edge_index):
+        for conv in self.convs[:-1]:
+            x = conv(x, edge_index)
+            x = F.relu(x)
+            x = F.dropout(x, training=self.training)
+        x = self.convs[-1](x, edge_index)
+        return x
+```
+
+### Gated Graph Neural Networks (GGNN)
+
+**GGNN** uses gated recurrent units (GRUs) for message passing.
+
+```python
+from torch_geometric.nn import GatedGraphConv
+
+class GGNN(nn.Module):
+    def __init__(self, input_dim, hidden_dim, output_dim, num_layers=3):
+        super(GGNN, self).__init__()
+        self.conv = GatedGraphConv(out_channels=hidden_dim, num_layers=num_layers)
+        self.fc = nn.Linear(hidden_dim, output_dim)
+    
+    def forward(self, x, edge_index):
+        x = self.conv(x, edge_index)
+        x = self.fc(x)
+        return x
+```
 
 ---
 
@@ -348,26 +521,305 @@ class GCN(nn.Module):
 
 ---
 
+## GNN Tasks and Applications
+
+### Node Classification
+
+**Node Classification** assigns labels to nodes in a graph.
+
+**Example**: Classify research papers in a citation network by subject.
+
+```python
+from torch_geometric.datasets import Planetoid
+from torch_geometric.nn import GCNConv
+import torch.nn.functional as F
+
+# Load dataset
+dataset = Planetoid(root='/tmp/Cora', name='Cora')
+data = dataset[0]
+
+# Model
+class NodeClassifier(nn.Module):
+    def __init__(self, input_dim, hidden_dim, num_classes):
+        super(NodeClassifier, self).__init__()
+        self.conv1 = GCNConv(input_dim, hidden_dim)
+        self.conv2 = GCNConv(hidden_dim, num_classes)
+    
+    def forward(self, x, edge_index):
+        x = self.conv1(x, edge_index)
+        x = F.relu(x)
+        x = F.dropout(x, training=self.training)
+        x = self.conv2(x, edge_index)
+        return F.log_softmax(x, dim=1)
+
+# Training
+model = NodeClassifier(dataset.num_features, 64, dataset.num_classes)
+optimizer = torch.optim.Adam(model.parameters(), lr=0.01)
+
+def train():
+    model.train()
+    optimizer.zero_grad()
+    out = model(data.x, data.edge_index)
+    loss = F.nll_loss(out[data.train_mask], data.y[data.train_mask])
+    loss.backward()
+    optimizer.step()
+    return loss.item()
+
+for epoch in range(200):
+    loss = train()
+    if epoch % 20 == 0:
+        print(f'Epoch {epoch}, Loss: {loss:.4f}')
+```
+
+### Link Prediction
+
+**Link Prediction** predicts whether an edge exists between two nodes.
+
+**Example**: Predict friendships in social networks or citations in academic networks.
+
+```python
+from torch_geometric.nn import GCNConv
+from torch_geometric.utils import negative_sampling
+
+class LinkPredictor(nn.Module):
+    def __init__(self, input_dim, hidden_dim):
+        super(LinkPredictor, self).__init__()
+        self.conv1 = GCNConv(input_dim, hidden_dim)
+        self.conv2 = GCNConv(hidden_dim, hidden_dim)
+        self.fc = nn.Linear(hidden_dim * 2, 1)
+    
+    def encode(self, x, edge_index):
+        x = self.conv1(x, edge_index)
+        x = F.relu(x)
+        x = self.conv2(x, edge_index)
+        return x
+    
+    def decode(self, z, edge_index):
+        # Get node embeddings for edge endpoints
+        row, col = edge_index
+        z_i = z[row]
+        z_j = z[col]
+        # Concatenate and predict
+        return torch.sigmoid(self.fc(torch.cat([z_i, z_j], dim=1)))
+    
+    def forward(self, x, edge_index, neg_edge_index=None):
+        z = self.encode(x, edge_index)
+        pos_pred = self.decode(z, edge_index)
+        if neg_edge_index is not None:
+            neg_pred = self.decode(z, neg_edge_index)
+            return pos_pred, neg_pred
+        return pos_pred
+
+# Training
+model = LinkPredictor(dataset.num_features, 64)
+optimizer = torch.optim.Adam(model.parameters(), lr=0.01)
+
+def train():
+    model.train()
+    optimizer.zero_grad()
+    z = model.encode(data.x, data.edge_index)
+    
+    # Positive edges
+    pos_pred = model.decode(z, data.edge_index)
+    pos_loss = F.binary_cross_entropy(pos_pred, torch.ones(pos_pred.size(0), 1))
+    
+    # Negative edges
+    neg_edge_index = negative_sampling(data.edge_index, num_nodes=data.num_nodes)
+    neg_pred = model.decode(z, neg_edge_index)
+    neg_loss = F.binary_cross_entropy(neg_pred, torch.zeros(neg_pred.size(0), 1))
+    
+    loss = pos_loss + neg_loss
+    loss.backward()
+    optimizer.step()
+    return loss.item()
+```
+
+### Graph Classification
+
+**Graph Classification** assigns labels to entire graphs.
+
+**Example**: Classify molecules by their properties (e.g., toxicity, solubility).
+
+```python
+from torch_geometric.nn import GCNConv, global_mean_pool
+from torch_geometric.datasets import TUDataset
+
+class GraphClassifier(nn.Module):
+    def __init__(self, input_dim, hidden_dim, num_classes):
+        super(GraphClassifier, self).__init__()
+        self.conv1 = GCNConv(input_dim, hidden_dim)
+        self.conv2 = GCNConv(hidden_dim, hidden_dim)
+        self.conv3 = GCNConv(hidden_dim, hidden_dim)
+        self.fc = nn.Linear(hidden_dim, num_classes)
+    
+    def forward(self, x, edge_index, batch):
+        # Node embeddings
+        x = self.conv1(x, edge_index)
+        x = F.relu(x)
+        x = self.conv2(x, edge_index)
+        x = F.relu(x)
+        x = self.conv3(x, edge_index)
+        
+        # Graph-level representation (pooling)
+        x = global_mean_pool(x, batch)
+        
+        # Classification
+        x = self.fc(x)
+        return F.log_softmax(x, dim=1)
+
+# Load molecular dataset
+dataset = TUDataset(root='/tmp/MUTAG', name='MUTAG')
+```
+
+### Recommendation Systems
+
+**GNN-based Recommendation** uses graph structure of user-item interactions.
+
+**Example**: Recommend products to users based on interaction graph.
+
+```python
+class GNNRecommender(nn.Module):
+    def __init__(self, num_users, num_items, embedding_dim, hidden_dim):
+        super(GNNRecommender, self).__init__()
+        self.user_embedding = nn.Embedding(num_users, embedding_dim)
+        self.item_embedding = nn.Embedding(num_items, embedding_dim)
+        self.conv1 = GCNConv(embedding_dim, hidden_dim)
+        self.conv2 = GCNConv(hidden_dim, hidden_dim)
+        self.fc = nn.Linear(hidden_dim, 1)
+    
+    def forward(self, user_idx, item_idx, edge_index):
+        # Initialize node features
+        x = torch.cat([self.user_embedding.weight, self.item_embedding.weight], dim=0)
+        
+        # GNN layers
+        x = self.conv1(x, edge_index)
+        x = F.relu(x)
+        x = self.conv2(x, edge_index)
+        
+        # Get user and item embeddings
+        user_emb = x[user_idx]
+        item_emb = x[item_idx + self.user_embedding.num_embeddings]
+        
+        # Predict rating
+        rating = self.fc((user_emb * item_emb).sum(dim=1))
+        return torch.sigmoid(rating)
+```
+
+## Common Challenges and Solutions
+
+### Over-smoothing
+
+**Problem**: Deep GNNs can cause node representations to become too similar.
+
+**Solutions**:
+- Use residual connections
+- Limit depth (2-3 layers often sufficient)
+- Use skip connections
+- Apply normalization techniques
+
+```python
+class ResidualGCN(nn.Module):
+    def __init__(self, input_dim, hidden_dim, output_dim):
+        super(ResidualGCN, self).__init__()
+        self.conv1 = GCNConv(input_dim, hidden_dim)
+        self.conv2 = GCNConv(hidden_dim, hidden_dim)
+        self.conv3 = GCNConv(hidden_dim, output_dim)
+    
+    def forward(self, x, edge_index):
+        x1 = self.conv1(x, edge_index)
+        x1 = F.relu(x1)
+        
+        x2 = self.conv2(x1, edge_index)
+        x2 = F.relu(x2 + x1)  # Residual connection
+        
+        x3 = self.conv3(x2, edge_index)
+        return x3
+```
+
+### Scalability
+
+**Problem**: Large graphs don't fit in memory.
+
+**Solutions**:
+- Use GraphSAGE with neighborhood sampling
+- Mini-batch training
+- Subgraph sampling
+- Use efficient libraries (DGL, PyTorch Geometric)
+
+### Heterogeneous Graphs
+
+**Problem**: Real-world graphs have multiple node/edge types.
+
+**Solutions**:
+- Use heterogeneous GNNs (RGCN, HAN)
+- Separate embeddings for each type
+- Type-specific message passing
+
 ## Practice Exercises
 
-1. **Node Classification**: Classify nodes in Cora citation network
-2. **Link Prediction**: Predict missing edges
-3. **Graph Classification**: Classify molecular graphs
-4. **Recommendation System**: Build GNN-based recommender
-5. **Knowledge Graph**: Learn entity embeddings
+1. **Node Classification**: Classify nodes in Cora citation network using GCN
+2. **Link Prediction**: Predict missing edges in a social network
+3. **Graph Classification**: Classify molecular graphs by toxicity
+4. **Recommendation System**: Build GNN-based recommender for movies
+5. **Knowledge Graph**: Learn entity embeddings for question answering
+6. **Fraud Detection**: Detect fraudulent transactions in transaction graph
+7. **Traffic Prediction**: Predict traffic flow using road network graph
 
----
+## Resources and Further Learning
+
+### Books and Papers
+
+1. **"Graph Neural Networks: A Review of Methods and Applications"** - Wu et al., 2020
+2. **"Semi-Supervised Classification with Graph Convolutional Networks"** - Kipf & Welling, 2017 (GCN)
+3. **"Graph Attention Networks"** - Veličković et al., 2018 (GAT)
+4. **"Inductive Representation Learning on Large Graphs"** - Hamilton et al., 2017 (GraphSAGE)
+5. **"How Powerful are Graph Neural Networks?"** - Xu et al., 2019 (GIN)
+
+### Online Courses
+
+1. **CS224W: Machine Learning with Graphs** - Stanford
+   - [Course Website](http://web.stanford.edu/class/cs224w/)
+   - Comprehensive coverage of GNNs, graph algorithms, and applications
+
+2. **Graph Neural Networks** - DeepLearning.AI
+   - Practical course on building GNNs
+
+### Tutorials and Blogs
+
+1. **PyTorch Geometric Tutorials**
+   - [Official Tutorials](https://pytorch-geometric.readthedocs.io/en/latest/tutorial/index.html)
+   - Comprehensive examples and use cases
+
+2. **DGL Tutorials**
+   - [DGL Tutorials](https://docs.dgl.ai/tutorials/index.html)
+   - Step-by-step guides for various tasks
+
+### Datasets
+
+1. **Cora, CiteSeer, PubMed**: Citation networks
+2. **OGB (Open Graph Benchmark)**: Large-scale graph datasets
+3. **TUDataset**: Molecular and social network datasets
+4. **Karate Club**: Small social network for testing
+
+### Tools and Libraries
+
+1. **PyTorch Geometric**: Most popular GNN library
+2. **Deep Graph Library (DGL)**: Efficient and scalable
+3. **Spektral**: Keras/TensorFlow GNN library
+4. **StellarGraph**: Graph ML library with many algorithms
 
 ## Key Takeaways
 
-1. **Graphs are Everywhere**: Many problems have graph structure
-2. **Message Passing**: Core mechanism of GNNs
-3. **Neighborhood Aggregation**: Combine information from neighbors
-4. **Attention**: Learn importance of neighbors (GAT)
-5. **Libraries**: Use PyTorch Geometric or DGL for efficiency
-6. **Applications**: Social networks, molecules, knowledge graphs
+1. **Graphs are Everywhere**: Many real-world problems have graph structure
+2. **Message Passing**: Core mechanism of GNNs - aggregate information from neighbors
+3. **Neighborhood Aggregation**: Combine information from neighbors (sum, mean, max, attention)
+4. **Architecture Choice**: GCN for simple cases, GAT for attention, GraphSAGE for large graphs, GIN for maximum expressivity
+5. **Libraries**: Use PyTorch Geometric or DGL for efficiency and ease of use
+6. **Applications**: Social networks, molecules, knowledge graphs, recommendation systems, fraud detection
+7. **Challenges**: Over-smoothing, scalability, heterogeneous graphs
+8. **Best Practices**: Use residual connections, limit depth, normalize properly, sample neighborhoods for large graphs
 
 ---
 
-**Next Steps**: Explore [Advanced Topics](graph-neural-networks-advanced-topics.md) for graph transformers, dynamic graphs, and heterogeneous graphs.
+**Next Steps**: Explore [Advanced Topics](graph-neural-networks-advanced-topics.md) for graph transformers, dynamic graphs, heterogeneous graphs, and graph generation.
 
