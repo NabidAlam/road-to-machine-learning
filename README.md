@@ -761,7 +761,8 @@ road-to-ml/
 |-------|-------------|
 | [Langchain Guide](resources/langchain_guide.md) | Complete Langchain guide: building Gen AI projects, chains, agents, memory, RAG, document loaders, and vector stores |
 | [LlamaIndex Guide](resources/llamaindex_guide.md) | Comprehensive LlamaIndex guide: data indexing, querying, retrieval, chat engines, and advanced generative AI projects |
-| [AI Agents Guide](resources/ai_agents_guide.md) | Complete guide to AI agents: CrewAI, AutoGen, Langgraph, AutoGPT for building intelligent autonomous systems |
+| [AI Agents Guide](resources/ai_agents_guide.md) | Complete guide to AI agents: CrewAI, AutoGen, Langgraph, AutoGPT, MCP (Model Context Protocol), and A2A (Agent-to-Agent) communication |
+| [GenAI Production Deployment Guide](resources/genai_production_deployment.md) | Comprehensive guide to deploying GenAI at scale: RAG architectures, multi-agent systems, hyperscaler deployment (AWS, GCP, Azure), scaling strategies, monitoring, and cost optimization |
 
 #### Business & Communication
 
@@ -1062,7 +1063,7 @@ By completing this roadmap, you'll be able to:
 |--------|-------|---------|
 | **Learning Modules** | 25 | Modules 00-24 covering all ML topics from basics to advanced |
 | **Projects** | 23 | 6 beginner + 8 intermediate + 9 advanced with complete code and READMEs |
-| **Resource Guides** | 42 | Cheatsheets, tutorials, and career guides |
+| **Resource Guides** | 43 | Cheatsheets, tutorials, and career guides |
 | **Markdown Files** | 197 | Comprehensive content, code examples, and exercises |
 | **Learning Time (Full-Time)** | 14-20 months | 30-40 hours/week for comprehensive coverage |
 | **Learning Time (Part-Time)** | 28-35 months | 10-15 hours/week for comprehensive coverage |

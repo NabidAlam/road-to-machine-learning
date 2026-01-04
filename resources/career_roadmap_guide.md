@@ -8,6 +8,7 @@ This guide provides clear, role-specific learning paths for different careers in
 - [Data Scientist](#data-scientist)
 - [Machine Learning Engineer](#machine-learning-engineer)
 - [LLM Engineer (Large Language Models)](#llm-engineer-large-language-models)
+- [GenAI Solution Architect](#genai-solution-architect)
 - [Computer Vision Engineer](#computer-vision-engineer)
 - [AI Engineer (Generalist)](#ai-engineer-generalist)
 - [Data Engineer](#data-engineer)
@@ -690,6 +691,7 @@ This guide provides clear, role-specific learning paths for different careers in
 | **Data Scientist** | Predictive Models | ML, Statistics, Python | Classification, Forecasting |
 | **ML Engineer** | Production ML | Software Engineering, MLOps | Model Deployment, APIs |
 | **LLM Engineer** | Language Models | Transformers, NLP, RAG | Chatbots, RAG Systems |
+| **GenAI Solution Architect** | Production GenAI | RAG, Multi-Agent, MCP, A2A, Hyperscalers | Enterprise GenAI Solutions |
 | **CV Engineer** | Image Processing | CNNs, Object Detection | Image Classification, Detection |
 | **AI Engineer** | Generalist AI | ML, DL, CV, NLP | Multi-domain Projects |
 | **Data Engineer** | Data Infrastructure | ETL, Databases, Spark | Data Pipelines, Warehouses |
