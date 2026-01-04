@@ -772,6 +772,10 @@ road-to-ml/
 | [Stakeholder Communication Guide](resources/stakeholder_communication.md) | Effective communication of ML concepts, results, and business value to non-technical stakeholders |
 | [ML Model Testing Guide](resources/ml_model_testing.md) | Comprehensive guide to testing ML models, pipelines, and APIs (unit tests, integration tests, best practices) |
 | [Ethics in ML Guide](resources/ethics_in_ml.md) | Comprehensive guide to bias, fairness, responsible AI, and ethical ML practices |
+| [Agile Data Science Guide](resources/agile_data_science.md) | Applying Agile methodologies (Scrum, Kanban) to data science projects: sprint planning, standups, retrospectives |
+| [Data Products Guide](resources/data_products_guide.md) | Building production-ready data products: APIs, dashboards, recommendation systems, real-time analytics |
+| [Enterprise Data Tools Guide](resources/enterprise_data_tools.md) | Enterprise data platforms: Snowflake, Informatica, Talend, Cloudera, Stibo, Qlik, Tableau integration |
+| [Java for Data Science Guide](resources/java_for_data_science.md) | Using Java in data science: ML libraries (Weka, Deeplearning4j), Spark integration, enterprise systems |
 
 #### Data Analysis Tools
 
@@ -1064,7 +1068,7 @@ By completing this roadmap, you'll be able to:
 |--------|-------|---------|
 | **Learning Modules** | 25 | Modules 00-24 covering all ML topics from basics to advanced |
 | **Projects** | 23 | 6 beginner + 8 intermediate + 9 advanced with complete code and READMEs |
-| **Resource Guides** | 43 | Cheatsheets, tutorials, and career guides |
+| **Resource Guides** | 47 | Cheatsheets, tutorials, and career guides |
 | **Markdown Files** | 197 | Comprehensive content, code examples, and exercises |
 | **Learning Time (Full-Time)** | 14-20 months | 30-40 hours/week for comprehensive coverage |
 | **Learning Time (Part-Time)** | 28-35 months | 10-15 hours/week for comprehensive coverage |
