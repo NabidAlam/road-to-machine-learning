@@ -40,10 +40,10 @@
 | **ML Engineer** | Production ML | 17-26 months | 00-10, 13-14, 19-21 | [View Guide →](resources/career_roadmap_guide.md#machine-learning-engineer) |
 | **LLM Engineer** | Language Models | 17-24 months | 00-01, 05, 09-10, 12-14, 19 | [View Guide →](resources/career_roadmap_guide.md#llm-engineer-large-language-models) |
 | **Computer Vision Engineer** | Image Processing | 16-25 months | 00-01, 04-05, 09-11, 13-14, 19, 21 | [View Guide →](resources/career_roadmap_guide.md#computer-vision-engineer) |
-| **AI Engineer** | Generalist AI | 23-35 months | 00-15, 19-21 | [View Guide →](resources/career_roadmap_guide.md#ai-engineer-generalist) |
+| **AI Engineer** | Generalist AI | 25-38 months | 00-15, 19-21, 22-24 | [View Guide →](resources/career_roadmap_guide.md#ai-engineer-generalist) |
 | **Data Engineer** | Data Infrastructure | 14-20 months | 00-01, 13-14, 19-20 | [View Guide →](resources/career_roadmap_guide.md#data-engineer) |
 | **MLOps Engineer** | ML Operations | 16-24 months | 00-01, 05, 09-10, 13-14, 19 | [View Guide →](resources/career_roadmap_guide.md#mlops-engineer) |
-| **Research Scientist** | Research & Innovation | 22-31 months | 00-12, 15, 19, 21 | [View Guide →](resources/career_roadmap_guide.md#research-scientist) |
+| **Research Scientist** | Research & Innovation | 24-34 months | 00-12, 15, 19, 21, 22-24 | [View Guide →](resources/career_roadmap_guide.md#research-scientist) |
 | **BI Analyst** | Business Intelligence | 10-15 months | 00-01, 19-21 | [View Guide →](resources/career_roadmap_guide.md#business-intelligence-analyst) |
 
 **Each role-specific guide includes:**
