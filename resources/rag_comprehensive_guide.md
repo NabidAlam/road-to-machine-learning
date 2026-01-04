@@ -125,7 +125,7 @@ Response + Sources
 │  Vector Search  │ (Vector Database)
 │  - FAISS        │
 │  - Pinecone     │
-│  - Weaviate      │
+│  - Weaviate     │
 └──────┬──────────┘
        │
        ▼
