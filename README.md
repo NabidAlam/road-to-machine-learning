@@ -10,7 +10,7 @@
 
 **A comprehensive, step-by-step guide to learning Machine Learning from absolute basics to advanced topics**
 
-*Perfect for beginners • 22 Learning Modules • 23 Real-World Projects • Production-Ready Skills*
+*Perfect for beginners • 25 Learning Modules • 23 Real-World Projects • Production-Ready Skills*
 
 [Get Started](#getting-started) • [Learning Path](#learning-path) • [Projects](#phase-8-projects) • [Contribute](#contributing)
 
@@ -640,6 +640,12 @@ road-to-ml/
 
  resources/
     data_science_cheatsheet.md
+    prerequisites_cheatsheet.md
+    introduction_to_ml_cheatsheet.md
+    mlops_cheatsheet.md
+    model_deployment_cheatsheet.md
+    imbalanced_data_cheatsheet.md
+    model_explainability_cheatsheet.md
     git_guide.md
     math_formulas.md
     common_errors.md
@@ -717,6 +723,8 @@ road-to-ml/
 | Guide | Description |
 |-------|-------------|
 | [Data Science & ML Cheatsheet](resources/data_science_cheatsheet.md) | Quick reference for daily work (NumPy, Pandas, PyTorch, TensorFlow, OpenCV, FastAPI, and more) |
+| [Prerequisites Cheatsheet](resources/prerequisites_cheatsheet.md) | Quick reference for Python, Mathematics, and Statistics fundamentals needed for ML |
+| [Introduction to ML Cheatsheet](resources/introduction_to_ml_cheatsheet.md) | Quick reference for ML fundamentals, types, workflow, and key concepts |
 | [Math Formulas Reference](resources/math_formulas.md) | Essential mathematical formulas for ML (Statistics, Linear Algebra, Calculus, ML metrics) |
 | [ML Glossary](resources/ml_glossary.md) | Comprehensive glossary of ML terms and concepts for beginners |
 | [Common Errors & Debugging Guide](resources/common_errors.md) | Troubleshooting guide for common ML errors and debugging strategies |
@@ -735,6 +743,10 @@ road-to-ml/
 | Guide | Description |
 |-------|-------------|
 | [MLFlow Comprehensive Guide](resources/mlflow_comprehensive_guide.md) | Complete MLFlow guide: experiment tracking, model registry, hyperparameter tuning, MLFlow UI, Docker deployment |
+| [MLOps Cheatsheet](resources/mlops_cheatsheet.md) | Quick reference for MLOps tools, practices, and workflows (DVC, MLflow, CI/CD, monitoring) |
+| [Model Deployment Cheatsheet](resources/model_deployment_cheatsheet.md) | Quick reference for deploying ML models (APIs, Docker, cloud platforms, A/B testing) |
+| [Imbalanced Data Cheatsheet](resources/imbalanced_data_cheatsheet.md) | Quick reference for handling imbalanced datasets (resampling, class weights, metrics) |
+| [Model Explainability Cheatsheet](resources/model_explainability_cheatsheet.md) | Quick reference for explaining ML models (SHAP, LIME, feature importance, PDP) |
 | [Transformer Fine-Tuning Guide](resources/transformer_fine_tuning_guide.md) | Comprehensive guide to fine-tuning transformers (T5, BERT, GPT) with Hugging Face |
 | [Model Interpretability Guide](resources/model_interpretability.md) | Understanding and explaining ML model predictions (SHAP, LIME, feature importance) |
 | [Reinforcement Learning Basics](resources/reinforcement_learning.md) | Introduction to RL, key concepts, algorithms, and applications |
@@ -1050,8 +1062,8 @@ By completing this roadmap, you'll be able to:
 |--------|-------|---------|
 | **Learning Modules** | 25 | Modules 00-24 covering all ML topics from basics to advanced |
 | **Projects** | 23 | 6 beginner + 8 intermediate + 9 advanced with complete code and READMEs |
-| **Resource Guides** | 36 | Cheatsheets, tutorials, and career guides |
-| **Markdown Files** | 195+ | Comprehensive content, code examples, and exercises |
+| **Resource Guides** | 42 | Cheatsheets, tutorials, and career guides |
+| **Markdown Files** | 197 | Comprehensive content, code examples, and exercises |
 | **Learning Time (Full-Time)** | 14-20 months | 30-40 hours/week for comprehensive coverage |
 | **Learning Time (Part-Time)** | 28-35 months | 10-15 hours/week for comprehensive coverage |
 | **Prerequisites** | Zero | Start from scratch - no prior experience needed! |
