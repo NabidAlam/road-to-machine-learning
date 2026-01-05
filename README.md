@@ -1070,7 +1070,7 @@ By completing this roadmap, you'll be able to:
 | **Learning Modules** | 25 | Modules 00-24 covering all ML topics from basics to advanced |
 | **Projects** | 23 | 6 beginner + 8 intermediate + 9 advanced with complete code and READMEs |
 | **Resource Guides** | 48 | Cheatsheets, tutorials, and career guides |
-| **Markdown Files** | 197 | Comprehensive content, code examples, and exercises |
+| **Markdown Files** | 207+ | Comprehensive content, code examples, and exercises |
 | **Learning Time (Full-Time)** | 14-20 months | 30-40 hours/week for comprehensive coverage |
 | **Learning Time (Part-Time)** | 28-35 months | 10-15 hours/week for comprehensive coverage |
 | **Prerequisites** | Zero | Start from scratch - no prior experience needed! |
