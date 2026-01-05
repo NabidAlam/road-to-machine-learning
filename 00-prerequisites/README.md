@@ -93,7 +93,15 @@ Set up your development environment for ML work.
 
 **Time Estimate:** 1 day
 
-**[Complete Guide →](03-environment-setup.md)**
+**[Complete Guide →](05-environment-setup.md)**
+
+**Note**: The file was renamed from `03-environment-setup.md` to `05-environment-setup.md` to maintain logical ordering.
+
+### Additional Resources
+
+- **[Advanced Prerequisites Topics](prerequisites-advanced-topics.md)** - Advanced Python concepts, NumPy operations, mathematical concepts, performance optimization, and advanced statistics
+- **[Prerequisites Project Tutorial](prerequisites-project-tutorial.md)** - Build a neural network from scratch using only NumPy, combining all prerequisite skills
+- **[Prerequisites Quick Reference](prerequisites-quick-reference.md)** - Quick lookup guide for Python syntax, NumPy operations, math formulas, and common patterns
 
 ##  Learning Objectives
 
