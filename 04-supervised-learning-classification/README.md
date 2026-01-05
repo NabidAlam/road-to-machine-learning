@@ -55,10 +55,13 @@ Learn to classify data into categories using various classification algorithms.
 ##  Learning Objectives
 
 By the end of this module, you should be able to:
-- Implement various classification algorithms
+- Implement various classification algorithms (Logistic Regression, Decision Trees, Random Forest, SVM, KNN)
 - Choose appropriate algorithms for different problems
-- Evaluate classification models using multiple metrics
-- Handle imbalanced datasets
+- Evaluate classification models using multiple metrics (Accuracy, Precision, Recall, F1, ROC-AUC, PR-AUC)
+- Handle imbalanced datasets using resampling, class weights, and threshold tuning
+- Calibrate probabilities for meaningful predictions
+- Interpret model predictions and feature importance
+- Build a complete classification project from scratch
 
 ##  Projects
 
@@ -105,6 +108,12 @@ By the end of this module, you should be able to:
 - [Classification Exercises](https://www.kaggle.com/learn/machine-learning)
 
 **[Complete Detailed Guide →](classification.md)**
+
+### Additional Resources
+
+- **[Advanced Classification Topics](classification-advanced-topics.md)** - Handling imbalanced data, probability calibration, threshold tuning, precision-recall curves, model interpretation, and multiclass strategies
+- **[Complete Classification Project Tutorial](classification-project-tutorial.md)** - Step-by-step walkthrough building a customer churn prediction model from scratch
+- **[Classification Quick Reference](classification-quick-reference.md)** - Quick reference guide with code snippets, algorithm selection, metrics, and troubleshooting
 
 ---
 
