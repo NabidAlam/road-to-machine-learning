@@ -273,6 +273,12 @@ By the end of this phase, you should be able to:
 - [Seaborn Tutorial (Corey Schafer)](https://www.youtube.com/watch?v=6GUZXDef2U0)
 - [Data Visualization (Keith Galli)](https://www.youtube.com/watch?v=0P7QnIQx2IE)
 
+### Additional Resources
+
+- **[Advanced Python for Data Science Topics](python-for-data-science-advanced-topics.md)** - Advanced Pandas techniques, performance optimization, advanced visualization, memory optimization, advanced EDA, data pipeline design, and tool integration
+- **[Complete Data Science Project Tutorial](python-for-data-science-project-tutorial.md)** - End-to-end project from data collection (web scraping) to interactive dashboard using all data science tools
+- **[Python for Data Science Quick Reference](python-for-data-science-quick-reference.md)** - Quick lookup guide for NumPy, Pandas, visualization, data manipulation patterns, and file I/O
+
 ---
 
 **Previous Phase:** [00-prerequisites](../00-prerequisites/README.md)  

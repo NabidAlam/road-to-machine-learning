@@ -63,6 +63,8 @@ Understand what machine learning is, how it works, and the different types of ML
 - **[Problem Identification & Algorithm Selection](problem-identification-algorithm-selection.md)** - Guide to identifying ML problems and choosing algorithms
 - **[Your First ML Project Tutorial](first-ml-project-tutorial.md)** - Step-by-step walkthrough building an Iris classifier
 - **[Common Pitfalls & Best Practices](common-pitfalls-best-practices.md)** - Avoid mistakes and follow best practices
+- **[Advanced Introduction to ML Topics](introduction-to-ml-advanced-topics.md)** - Advanced ML workflow patterns, system design principles, data-centric vs model-centric approaches, ML project management, and production considerations
+- **[Introduction to ML Quick Reference](introduction-to-ml-quick-reference.md)** - Quick lookup guide for algorithm selection, ML workflow checklist, problem type identification, terminology, and common patterns
 
 ##  Learning Objectives
 
