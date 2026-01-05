@@ -98,6 +98,31 @@ Predict wine quality based on chemical properties (can be regression or classifi
 
 ---
 
+### Project 6: Customer Data Dashboard with Streamlit
+**Difficulty**:   
+**Time**: 2-3 days  
+**Skills**: Streamlit, Data Visualization, Interactive Dashboards
+
+Build an interactive dashboard to visualize and analyze customer data using Streamlit.
+
+**What you'll learn:**
+- Build interactive web applications with Streamlit
+- Create dynamic visualizations
+- Implement user input and filtering
+- Design user-friendly dashboards
+- Deploy Streamlit applications
+- Work with real-world customer data
+
+**Dataset**: E-commerce Customer Data, Telco Customer Churn, or any customer dataset
+
+**Extensions:**
+- Add machine learning predictions
+- Real-time data updates
+- Multi-page dashboard
+- Advanced visualizations
+
+---
+
 ##  Project Structure
 
 Each project should include:
@@ -141,6 +166,12 @@ After completing these projects, you should be able to:
 - [Papers with Code](https://paperswithcode.com/) - See how others solved problems
 
 ---
+
+**Complete Guide:**
+- [Projects Beginner Guide →](projects-beginner.md) - Comprehensive guide to building ML projects
+- [Advanced Topics →](projects-beginner-advanced-topics.md) - Advanced techniques for improving projects
+- [Project Tutorial →](projects-beginner-project-tutorial.md) - Step-by-step Titanic project walkthrough
+- [Quick Reference →](projects-beginner-quick-reference.md) - Quick lookup guide
 
 **Ready to start?** Pick a project and begin! Start with Iris Classification if you're completely new, or jump to House Price Prediction for a more comprehensive project.
 

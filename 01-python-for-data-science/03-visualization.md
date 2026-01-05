@@ -601,12 +601,171 @@ def plot_eda(df):
 
 ---
 
+## Plotly and Dash for Interactive Visualizations
+
+Plotly is a powerful library for creating interactive, publication-quality visualizations. Dash is a framework built on Plotly for building analytical web applications.
+
+### Why Plotly?
+
+**Advantages:**
+- **Interactive**: Hover, zoom, pan, and filter
+- **Publication Quality**: Professional-looking plots
+- **Web-Ready**: Works in Jupyter notebooks and web browsers
+- **Multiple Backends**: Python, R, JavaScript
+- **Rich Features**: 3D plots, animations, subplots
+
+### Installation
+
+```bash
+pip install plotly dash
+```
+
+### Plotly Express (Simple API)
+
+Plotly Express provides a simple, high-level interface for creating plots.
+
+#### Basic Plots
+
+```python
+import plotly.express as px
+import pandas as pd
+import numpy as np
+
+# Create sample data
+df = pd.DataFrame({
+    'x': np.random.randn(100),
+    'y': np.random.randn(100),
+    'category': np.random.choice(['A', 'B', 'C'], 100),
+    'size': np.random.rand(100) * 100
+})
+
+# Scatter plot
+fig = px.scatter(df, x='x', y='y', color='category', size='size',
+                 title='Interactive Scatter Plot',
+                 labels={'x': 'X Axis', 'y': 'Y Axis'})
+fig.show()
+
+# Line plot
+df_time = pd.DataFrame({
+    'date': pd.date_range('2024-01-01', periods=100),
+    'value': np.cumsum(np.random.randn(100))
+})
+fig = px.line(df_time, x='date', y='value', title='Time Series')
+fig.show()
+
+# Bar chart
+df_bar = pd.DataFrame({
+    'category': ['A', 'B', 'C', 'D'],
+    'value': [10, 20, 15, 25]
+})
+fig = px.bar(df_bar, x='category', y='value', title='Bar Chart')
+fig.show()
+
+# Histogram
+fig = px.histogram(df, x='x', nbins=30, title='Histogram')
+fig.show()
+
+# Box plot
+fig = px.box(df, x='category', y='y', title='Box Plot')
+fig.show()
+```
+
+#### Advanced Plotly Express
+
+```python
+# 3D Scatter
+fig = px.scatter_3d(df, x='x', y='y', z='size', color='category')
+fig.show()
+
+# Faceted plots
+fig = px.scatter(df, x='x', y='y', facet_col='category', 
+                 title='Faceted Scatter Plot')
+fig.show()
+
+# Heatmap
+correlation_matrix = df[['x', 'y', 'size']].corr()
+fig = px.imshow(correlation_matrix, text_auto=True, aspect="auto",
+                title='Correlation Heatmap')
+fig.show()
+```
+
+### Plotly Graph Objects (Advanced Control)
+
+For more control, use Plotly Graph Objects:
+
+```python
+import plotly.graph_objects as go
+from plotly.subplots import make_subplots
+
+# Create figure
+fig = go.Figure()
+
+# Add traces
+fig.add_trace(go.Scatter(
+    x=[1, 2, 3, 4],
+    y=[10, 11, 12, 13],
+    mode='lines+markers',
+    name='Line 1'
+))
+
+# Update layout
+fig.update_layout(
+    title='Custom Plot',
+    xaxis_title='X Axis',
+    yaxis_title='Y Axis',
+    hovermode='x unified'
+)
+
+fig.show()
+```
+
+### Dash for Web Applications
+
+Dash allows you to build interactive web applications with Plotly.
+
+#### Basic Dash App
+
+```python
+import dash
+from dash import dcc, html
+import plotly.express as px
+import pandas as pd
+
+# Create Dash app
+app = dash.Dash(__name__)
+
+# Create figure
+fig = px.scatter(df, x='x', y='y', color='category')
+
+# Define app layout
+app.layout = html.Div([
+    html.H1("My Dash App"),
+    dcc.Graph(figure=fig)
+])
+
+# Run app
+if __name__ == '__main__':
+    app.run_server(debug=True)
+```
+
+### Key Takeaways for Plotly and Dash
+
+1. **Plotly Express**: Simple API for quick interactive plots
+2. **Plotly Graph Objects**: Advanced control and customization
+3. **Dash**: Build interactive web applications
+4. **Interactivity**: Hover, zoom, pan, filter built-in
+5. **Deployment**: Deploy Dash apps to cloud platforms
+
+---
+
 ## Next Steps
 
 - Practice creating different plot types
 - Work with real datasets
 - Experiment with customization
+- Try Plotly for interactive visualizations
+- Build a Dash dashboard for your project
 - Move to [02-introduction-to-ml](../02-introduction-to-ml/README.md) for ML concepts
 
-**Remember**: Good visualizations tell a story - always think about what message you want to convey!
+**Remember**: Good visualizations tell a story - always think about what message you want to convey! Plotly and Dash take your visualizations to the next level with interactivity and web deployment.
 

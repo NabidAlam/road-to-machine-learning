@@ -102,6 +102,11 @@ By the end of this module, you should be able to:
 
 **[Complete Detailed Guide →](deep-learning-frameworks.md)**
 
+**Additional Resources:**
+- [Advanced Topics →](deep-learning-frameworks-advanced-topics.md) - Custom layers, advanced training, optimization, deployment
+- [Project Tutorial →](deep-learning-frameworks-project-tutorial.md) - Step-by-step comparison of Keras and PyTorch
+- [Quick Reference →](deep-learning-frameworks-quick-reference.md) - Quick lookup guide for both frameworks
+
 ---
 
 **Previous Phase:** [09-neural-networks-basics](../09-neural-networks-basics/README.md)  

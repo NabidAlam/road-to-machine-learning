@@ -707,6 +707,375 @@ plot_learning_curves(model, X_train_scaled, y_train)
 
 ---
 
+## Statistical Regression Analysis with statsmodels
+
+While scikit-learn is great for predictions, statsmodels provides comprehensive statistical analysis including hypothesis testing, confidence intervals, and model diagnostics.
+
+### Why Use statsmodels?
+
+**scikit-learn focuses on:**
+- Predictions
+- Model performance
+- Machine learning workflow
+
+**statsmodels focuses on:**
+- Statistical inference
+- Hypothesis testing
+- Confidence intervals
+- Model diagnostics
+- Understanding relationships
+
+### Installation
+
+```python
+# Install statsmodels
+# pip install statsmodels
+import statsmodels.api as sm
+from statsmodels.stats.outliers_influence import variance_inflation_factor
+import numpy as np
+import pandas as pd
+```
+
+### Basic Statistical Regression
+
+```python
+from sklearn.datasets import load_boston
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
+
+# Load data
+boston = load_boston()
+X, y = boston.data, boston.target
+feature_names = boston.feature_names
+
+# Prepare data
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.2, random_state=42
+)
+
+# Add constant term (intercept) - required by statsmodels
+X_train_const = sm.add_constant(X_train)
+X_test_const = sm.add_constant(X_test)
+
+# Fit OLS (Ordinary Least Squares) model
+model = sm.OLS(y_train, X_train_const).fit()
+
+# Print summary
+print(model.summary())
+```
+
+### Understanding the Summary Output
+
+The statsmodels summary provides extensive statistical information:
+
+```
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                      y   R-squared:                       0.750
+Model:                            OLS   Adj. R-squared:                  0.734
+Method:                 Least Squares   F-statistic:                     47.06
+Date:                ...              Prob (F-statistic):           2.39e-62
+Time:                        ...      Log-Likelihood:                -1234.5
+No. Observations:                 404   AIC:                             2495.
+Df Residuals:                     391   BIC:                             2551.
+Df Model:                          12                                         
+Covariance Type:            nonrobust                                         
+==============================================================================
+                 coef    std err          t      P>|t|      [0.025      0.975]
+------------------------------------------------------------------------------
+const         36.4595      5.103      7.144      0.000      26.411      46.508
+x1            -0.1080      0.033     -3.287      0.001      -0.173      -0.043
+x2             0.0464      0.014      3.382      0.001       0.019       0.074
+...
+==============================================================================
+Omnibus:                      178.041   Durbin-Watson:                   1.078
+Prob(Omnibus):                 0.000   Jarque-Bera (JB):              784.772
+Skew:                           1.521   Prob(JB):                    1.20e-171
+Kurtosis:                       8.003   Cond. No.                     6.88e+03
+==============================================================================
+```
+
+### Key Statistical Concepts
+
+#### 1. Total Sum of Squares (TSS)
+
+Measures total variation in the dependent variable.
+
+```python
+# TSS = Σ(y - ȳ)²
+y_mean = np.mean(y_train)
+tss = np.sum((y_train - y_mean) ** 2)
+print(f"Total Sum of Squares (TSS): {tss:.2f}")
+```
+
+#### 2. Residual Sum of Squares (RSS)
+
+Measures unexplained variation (errors).
+
+```python
+# RSS = Σ(y - ŷ)²
+y_pred = model.predict(X_train_const)
+rss = np.sum((y_train - y_pred) ** 2)
+print(f"Residual Sum of Squares (RSS): {rss:.2f}")
+```
+
+#### 3. Explained Sum of Squares (ESS)
+
+Measures variation explained by the model.
+
+```python
+# ESS = Σ(ŷ - ȳ)²
+ess = np.sum((y_pred - y_mean) ** 2)
+print(f"Explained Sum of Squares (ESS): {ess:.2f}")
+
+# Relationship: TSS = ESS + RSS
+print(f"TSS = ESS + RSS: {tss:.2f} = {ess:.2f} + {rss:.2f}")
+```
+
+#### 4. R-squared (Coefficient of Determination)
+
+Proportion of variance explained by the model.
+
+```python
+# R² = ESS / TSS = 1 - (RSS / TSS)
+r_squared = ess / tss
+print(f"R-squared: {r_squared:.4f}")
+print(f"Model R-squared: {model.rsquared:.4f}")  # From statsmodels
+```
+
+#### 5. Adjusted R-squared
+
+R-squared adjusted for number of predictors.
+
+```python
+n = len(y_train)  # Number of observations
+p = X_train.shape[1]  # Number of predictors
+
+adj_r_squared = 1 - (1 - r_squared) * (n - 1) / (n - p - 1)
+print(f"Adjusted R-squared: {adj_r_squared:.4f}")
+print(f"Model Adj. R-squared: {model.rsquared_adj:.4f}")
+```
+
+### Hypothesis Testing
+
+#### F-Test for Overall Model Significance
+
+Tests if the model is better than just using the mean.
+
+```python
+# F-statistic = (ESS / p) / (RSS / (n - p - 1))
+f_statistic = (ess / p) / (rss / (n - p - 1))
+print(f"F-statistic: {f_statistic:.4f}")
+print(f"Model F-statistic: {model.fvalue:.4f}")
+
+# P-value for F-test
+from scipy.stats import f
+f_pvalue = 1 - f.cdf(f_statistic, p, n - p - 1)
+print(f"F-test p-value: {f_pvalue:.6f}")
+print(f"Model F-test p-value: {model.f_pvalue:.6f}")
+
+# Interpretation
+if model.f_pvalue < 0.05:
+    print("Model is statistically significant (p < 0.05)")
+else:
+    print("Model is not statistically significant")
+```
+
+#### t-Test for Individual Coefficients
+
+Tests if each coefficient is significantly different from zero.
+
+```python
+# Get coefficient statistics
+print("\nCoefficient Statistics:")
+print(model.params)  # Coefficients
+print(model.pvalues)  # P-values
+print(model.tvalues)  # t-statistics
+print(model.conf_int())  # Confidence intervals
+
+# Check significance of each coefficient
+significant_coefs = model.pvalues[model.pvalues < 0.05]
+print(f"\nSignificant coefficients (p < 0.05): {len(significant_coefs)}")
+print(significant_coefs)
+```
+
+### Confidence Intervals
+
+```python
+# 95% confidence intervals for coefficients
+conf_int = model.conf_int(alpha=0.05)
+conf_int.columns = ['Lower CI', 'Upper CI']
+conf_int['Coefficient'] = model.params
+conf_int = conf_int[['Coefficient', 'Lower CI', 'Upper CI']]
+
+print("\n95% Confidence Intervals:")
+print(conf_int)
+
+# Interpretation: We're 95% confident the true coefficient lies in this interval
+# If interval doesn't contain 0, coefficient is significant
+```
+
+### Model Diagnostics
+
+#### 1. Residual Analysis
+
+```python
+import matplotlib.pyplot as plt
+from scipy import stats
+
+# Get residuals
+residuals = model.resid
+fitted_values = model.fittedvalues
+
+# Plot residuals
+fig, axes = plt.subplots(2, 2, figsize=(12, 10))
+
+# Residuals vs Fitted
+axes[0, 0].scatter(fitted_values, residuals, alpha=0.5)
+axes[0, 0].axhline(y=0, color='r', linestyle='--')
+axes[0, 0].set_xlabel('Fitted Values')
+axes[0, 0].set_ylabel('Residuals')
+axes[0, 0].set_title('Residuals vs Fitted')
+axes[0, 0].grid(True)
+
+# Q-Q Plot (check normality)
+stats.probplot(residuals, dist="norm", plot=axes[0, 1])
+axes[0, 1].set_title('Q-Q Plot (Normality Check)')
+axes[0, 1].grid(True)
+
+# Scale-Location Plot
+standardized_residuals = np.sqrt(np.abs(residuals))
+axes[1, 0].scatter(fitted_values, standardized_residuals, alpha=0.5)
+axes[1, 0].set_xlabel('Fitted Values')
+axes[1, 0].set_ylabel('√|Standardized Residuals|')
+axes[1, 0].set_title('Scale-Location Plot')
+axes[1, 0].grid(True)
+
+# Residuals vs Leverage
+axes[1, 1].scatter(model.get_influence().hat_matrix_diag, residuals, alpha=0.5)
+axes[1, 1].set_xlabel('Leverage')
+axes[1, 1].set_ylabel('Residuals')
+axes[1, 1].set_title('Residuals vs Leverage')
+axes[1, 1].grid(True)
+
+plt.tight_layout()
+plt.show()
+```
+
+#### 2. Normality Test
+
+```python
+from scipy.stats import jarque_bera, shapiro
+
+# Jarque-Bera test
+jb_stat, jb_pvalue = jarque_bera(residuals)
+print(f"Jarque-Bera test: statistic={jb_stat:.4f}, p-value={jb_pvalue:.6f}")
+
+if jb_pvalue < 0.05:
+    print("Residuals are NOT normally distributed (p < 0.05)")
+else:
+    print("Residuals appear normally distributed")
+
+# Shapiro-Wilk test (for smaller samples)
+if len(residuals) < 5000:
+    shapiro_stat, shapiro_pvalue = shapiro(residuals)
+    print(f"Shapiro-Wilk test: statistic={shapiro_stat:.4f}, p-value={shapiro_pvalue:.6f}")
+```
+
+#### 3. Homoscedasticity Test
+
+```python
+from statsmodels.stats.diagnostic import het_breuschpagan
+
+# Breusch-Pagan test for heteroscedasticity
+bp_stat, bp_pvalue, _, _ = het_breuschpagan(residuals, X_train_const)
+print(f"Breusch-Pagan test: statistic={bp_stat:.4f}, p-value={bp_pvalue:.6f}")
+
+if bp_pvalue < 0.05:
+    print("Heteroscedasticity detected (p < 0.05)")
+else:
+    print("Homoscedasticity assumption satisfied")
+```
+
+### Comparing Models
+
+```python
+# Compare models with different features
+model1 = sm.OLS(y_train, sm.add_constant(X_train[:, :5])).fit()
+model2 = sm.OLS(y_train, sm.add_constant(X_train)).fit()
+
+# AIC (Akaike Information Criterion) - lower is better
+print(f"Model 1 AIC: {model1.aic:.2f}")
+print(f"Model 2 AIC: {model2.aic:.2f}")
+
+# BIC (Bayesian Information Criterion) - lower is better
+print(f"Model 1 BIC: {model1.bic:.2f}")
+print(f"Model 2 BIC: {model2.bic:.2f}")
+
+# Likelihood Ratio Test
+from statsmodels.stats.diagnostic import lrtest
+lr_stat, lr_pvalue = lrtest(model1, model2)
+print(f"Likelihood Ratio Test: statistic={lr_stat:.4f}, p-value={lr_pvalue:.6f}")
+```
+
+### Practical Example: Complete Analysis
+
+```python
+# Complete statistical regression analysis
+def complete_regression_analysis(X, y, feature_names):
+    """Perform complete statistical regression analysis"""
+    
+    # Add constant
+    X_const = sm.add_constant(X)
+    
+    # Fit model
+    model = sm.OLS(y, X_const).fit()
+    
+    # Print summary
+    print(model.summary())
+    
+    # Key statistics
+    print("\n=== Key Statistics ===")
+    print(f"R-squared: {model.rsquared:.4f}")
+    print(f"Adjusted R-squared: {model.rsquared_adj:.4f}")
+    print(f"F-statistic: {model.fvalue:.4f}")
+    print(f"F-test p-value: {model.f_pvalue:.6f}")
+    print(f"AIC: {model.aic:.2f}")
+    print(f"BIC: {model.bic:.2f}")
+    
+    # Significant coefficients
+    print("\n=== Significant Coefficients (p < 0.05) ===")
+    significant = model.pvalues[model.pvalues < 0.05]
+    for feature, pvalue in significant.items():
+        coef = model.params[feature]
+        print(f"{feature}: {coef:.4f} (p={pvalue:.6f})")
+    
+    # Confidence intervals
+    print("\n=== 95% Confidence Intervals ===")
+    conf_int = model.conf_int()
+    for feature in conf_int.index:
+        lower, upper = conf_int.loc[feature]
+        coef = model.params[feature]
+        print(f"{feature}: [{lower:.4f}, {upper:.4f}]")
+    
+    return model
+
+# Run analysis
+model = complete_regression_analysis(X_train, y_train, feature_names)
+```
+
+### Key Takeaways
+
+1. **statsmodels for inference**: Use for statistical analysis, not just predictions
+2. **Understand TSS, RSS, ESS**: Foundation of regression statistics
+3. **F-test for model significance**: Is the model better than the mean?
+4. **t-test for coefficients**: Are individual predictors significant?
+5. **Check assumptions**: Normality, homoscedasticity, linearity
+6. **Use confidence intervals**: Understand uncertainty in coefficients
+7. **Compare models**: Use AIC, BIC, likelihood ratio tests
+
+---
+
 ## Common Regression Pitfalls
 
 ### Pitfall 1: Ignoring Assumptions

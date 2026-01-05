@@ -9,6 +9,8 @@ Learn to classify data into categories using various classification algorithms.
 - Random Forests
 - Support Vector Machines (SVM)
 - K-Nearest Neighbors (KNN)
+- Naive Bayes (Gaussian, Multinomial, Bernoulli)
+- Multi-Class Classification Strategies (One-vs-Rest, One-vs-One)
 - Evaluation Metrics for Classification
 - Real-world Classification Projects
 
@@ -111,7 +113,7 @@ By the end of this module, you should be able to:
 
 ### Additional Resources
 
-- **[Advanced Classification Topics](classification-advanced-topics.md)** - Handling imbalanced data, probability calibration, threshold tuning, precision-recall curves, model interpretation, and multiclass strategies
+- **[Advanced Classification Topics](classification-advanced-topics.md)** - Handling imbalanced data, probability calibration, threshold tuning, precision-recall curves, model interpretation, multiclass strategies, feature engineering, hyperparameter tuning, and ensemble methods
 - **[Complete Classification Project Tutorial](classification-project-tutorial.md)** - Step-by-step walkthrough building a customer churn prediction model from scratch
 - **[Classification Quick Reference](classification-quick-reference.md)** - Quick reference guide with code snippets, algorithm selection, metrics, and troubleshooting
 

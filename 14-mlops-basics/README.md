@@ -99,6 +99,7 @@ By the end of this module, you should be able to:
 - [DVC Tutorial](https://dvc.org/doc/start)
 - [MLOps Guide](https://ml-ops.org/) - Comprehensive guide
 - [Experiment Tracking Guide](https://www.mlflow.org/docs/latest/tracking.html)
+- [MLFlow Comprehensive Guide](../resources/mlflow_comprehensive_guide.md) - Complete MLFlow guide with hyperparameter tuning, model registry, and deployment
 
 **Video Tutorials:**
 - [MLflow Tutorial (Sentdex)](https://www.youtube.com/watch?v=1ykg4YmbFVA)
@@ -117,6 +118,11 @@ By the end of this module, you should be able to:
 - [ML Engineering Guide](https://github.com/visenger/awesome-mlops)
 
 **[Complete Detailed Guide →](mlops.md)**
+
+**Additional Resources:**
+- [Advanced Topics →](mlops-advanced-topics.md) - Advanced tracking, feature stores, monitoring, automation
+- [Project Tutorial →](mlops-project-tutorial.md) - Step-by-step MLOps pipeline setup
+- [Quick Reference →](mlops-quick-reference.md) - Quick lookup guide for MLOps
 
 ---
 

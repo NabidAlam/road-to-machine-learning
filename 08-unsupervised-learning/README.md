@@ -97,6 +97,11 @@ By the end of this module, you should be able to:
 
 **[Complete Detailed Guide →](unsupervised-learning.md)**
 
+**Additional Resources:**
+- [Advanced Topics →](unsupervised-learning-advanced-topics.md) - Advanced clustering, anomaly detection, association rules
+- [Project Tutorial →](unsupervised-learning-project-tutorial.md) - Step-by-step unsupervised learning project
+- [Quick Reference →](unsupervised-learning-quick-reference.md) - Quick lookup guide for unsupervised learning
+
 ---
 
 **Previous Phase:** [07-feature-engineering](../07-feature-engineering/README.md)  

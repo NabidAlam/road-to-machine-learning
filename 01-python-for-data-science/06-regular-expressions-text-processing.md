@@ -128,6 +128,248 @@ if match:
     print(match.group('age'))    # '30'
 ```
 
+### Advanced Grouping
+
+**1. Back References:**
+Reference previously captured groups in the same pattern.
+
+```python
+# Find repeated words
+text = "The the cat sat on the mat"
+pattern = r'\b(\w+)\s+\1\b'  # \1 refers to first captured group
+matches = re.findall(pattern, text, re.IGNORECASE)
+print(matches)  # ['the']
+
+# Find repeated patterns
+text = "123-123-456"
+pattern = r'(\d{3})-\1-(\d{3})'  # First group repeated
+match = re.search(pattern, text)
+if match:
+    print(match.groups())  # ('123', '456')
+
+# Named back references
+text = "John John Doe"
+pattern = r'(?P<name>\w+)\s+(?P=name)'  # (?P=name) references named group
+match = re.search(pattern, text)
+if match:
+    print(match.group())  # 'John John'
+```
+
+**2. Non-Capture Groups:**
+Group without capturing (useful for alternation or quantifiers).
+
+```python
+# Non-capture group: (?:...)
+text = "color colour"
+pattern = r'col(?:or|our)'  # Group but don't capture
+matches = re.findall(pattern, text)
+print(matches)  # ['color', 'colour']
+
+# With quantifiers
+text = "abc abcabc abcabcabc"
+pattern = r'(?:abc){2,3}'  # Match 'abc' 2-3 times as a group
+matches = re.findall(pattern, text)
+print(matches)  # ['abcabc', 'abcabcabc']
+
+# Compare with capture group
+pattern_capture = r'(abc){2,3}'
+matches_capture = re.findall(pattern_capture, text)
+print(matches_capture)  # ['abc', 'abc'] - only last repetition captured
+```
+
+**3. Lookahead Assertions:**
+Match pattern only if followed by another pattern (without consuming it).
+
+```python
+# Positive lookahead: (?=...)
+text = "cat dog catfish"
+pattern = r'cat(?=fish)'  # 'cat' followed by 'fish'
+match = re.search(pattern, text)
+if match:
+    print(match.group())  # 'cat' (from 'catfish')
+
+# Negative lookahead: (?!...)
+pattern = r'cat(?!fish)'  # 'cat' NOT followed by 'fish'
+matches = re.findall(pattern, text)
+print(matches)  # ['cat'] (from 'cat dog', not 'catfish')
+
+# Password validation: at least one digit, one letter
+password = "Password123"
+pattern = r'^(?=.*\d)(?=.*[a-zA-Z]).{8,}$'  # Multiple lookaheads
+is_valid = bool(re.match(pattern, password))
+print(f"Valid password: {is_valid}")  # True
+```
+
+**4. Lookbehind Assertions:**
+Match pattern only if preceded by another pattern (without consuming it).
+
+```python
+# Positive lookbehind: (?<=...)
+text = "price: $100, cost: $50"
+pattern = r'(?<=\$)\d+'  # Digits preceded by '$'
+matches = re.findall(pattern, text)
+print(matches)  # ['100', '50']
+
+# Negative lookbehind: (?<!...)
+text = "price: $100, cost: 50"
+pattern = r'(?<!\$)\d+'  # Digits NOT preceded by '$'
+matches = re.findall(pattern, text)
+print(matches)  # ['50'] (not '100' because it has '$' before)
+
+# Extract words after specific prefix
+text = "prefix_word1 suffix_word2 prefix_word3"
+pattern = r'(?<=prefix_)\w+'  # Words after 'prefix_'
+matches = re.findall(pattern, text)
+print(matches)  # ['word1', 'word3']
+```
+
+**5. Combined Assertions:**
+Use multiple assertions together.
+
+```python
+# Extract numbers between $ and ,
+text = "price: $100, cost: $50, total: $200"
+pattern = r'(?<=\$)(?=\d+)(\d+)(?=,)'  # Between $ and ,
+matches = re.findall(pattern, text)
+print(matches)  # ['100', '50', '200']
+
+# Word boundaries with lookahead/lookbehind
+text = "cat category catfish"
+pattern = r'(?<!\w)cat(?!\w)'  # 'cat' as whole word
+matches = re.findall(pattern, text)
+print(matches)  # ['cat'] (only standalone 'cat')
+```
+
+### Regex Flags
+
+Control regex behavior with flags.
+
+```python
+# re.IGNORECASE (or re.I): Case-insensitive matching
+text = "Hello HELLO hello"
+pattern = r'hello'
+matches = re.findall(pattern, text, re.IGNORECASE)
+print(matches)  # ['Hello', 'HELLO', 'hello']
+
+# re.MULTILINE (or re.M): ^ and $ match start/end of each line
+text = "Line 1\nLine 2\nLine 3"
+pattern = r'^Line'
+matches = re.findall(pattern, text, re.MULTILINE)
+print(matches)  # ['Line', 'Line', 'Line']
+
+# re.DOTALL (or re.S): . matches newline too
+text = "Start\nEnd"
+pattern = r'Start.*End'
+match1 = re.search(pattern, text)  # No match (default)
+match2 = re.search(pattern, text, re.DOTALL)  # Match
+print(f"Without DOTALL: {match1 is None}")  # True
+print(f"With DOTALL: {match2 is not None}")  # True
+
+# re.VERBOSE (or re.X): Allow whitespace and comments
+pattern = r'''
+    \d{3}      # Area code
+    -           # Separator
+    \d{3}       # Exchange
+    -           # Separator
+    \d{4}       # Number
+'''
+text = "123-456-7890"
+match = re.search(pattern, text, re.VERBOSE)
+print(match.group() if match else None)  # '123-456-7890'
+
+# Multiple flags: Combine with |
+text = "Hello\nHELLO\nhello"
+pattern = r'^hello$'
+matches = re.findall(pattern, text, re.IGNORECASE | re.MULTILINE)
+print(matches)  # ['Hello', 'HELLO', 'hello']
+```
+
+### Advanced Split and Substitution
+
+**1. Advanced Split:**
+```python
+# Split on multiple delimiters
+text = "apple,banana;cherry:grape"
+pattern = r'[,;:]'
+parts = re.split(pattern, text)
+print(parts)  # ['apple', 'banana', 'cherry', 'grape']
+
+# Split with capture groups (include delimiters)
+text = "apple,banana;cherry"
+pattern = r'([,;])'  # Capture delimiter
+parts = re.split(pattern, text)
+print(parts)  # ['apple', ',', 'banana', ';', 'cherry']
+
+# Split with maxsplit
+text = "one,two,three,four"
+parts = re.split(r',', text, maxsplit=2)
+print(parts)  # ['one', 'two', 'three,four']
+```
+
+**2. Advanced Substitution:**
+```python
+# Simple substitution
+text = "Hello World"
+new_text = re.sub(r'World', 'Python', text)
+print(new_text)  # 'Hello Python'
+
+# Substitution with function
+def replacer(match):
+    return match.group().upper()
+
+text = "hello world"
+new_text = re.sub(r'\w+', replacer, text)
+print(new_text)  # 'HELLO WORLD'
+
+# Substitution with back references
+text = "John Doe"
+new_text = re.sub(r'(\w+)\s+(\w+)', r'\2, \1', text)  # Swap groups
+print(new_text)  # 'Doe, John'
+
+# Named group substitution
+text = "2023-12-25"
+new_text = re.sub(r'(?P<year>\d{4})-(?P<month>\d{2})-(?P<day>\d{2})',
+                  r'\g<month>/\g<day>/\g<year>', text)
+print(new_text)  # '12/25/2023'
+
+# Count parameter
+text = "cat cat cat"
+new_text = re.sub(r'cat', 'dog', text, count=2)  # Replace first 2
+print(new_text)  # 'dog dog cat'
+```
+
+**3. Real-World Examples:**
+```python
+# Format phone numbers
+def format_phone(text):
+    pattern = r'(\d{3})(\d{3})(\d{4})'
+    return re.sub(pattern, r'(\1) \2-\3', text)
+
+text = "Call 1234567890"
+formatted = format_phone(text)
+print(formatted)  # 'Call (123) 456-7890'
+
+# Remove duplicate words
+def remove_duplicates(text):
+    pattern = r'\b(\w+)(\s+\1)+\b'
+    return re.sub(pattern, r'\1', text, flags=re.IGNORECASE)
+
+text = "the the cat sat on the the mat"
+cleaned = remove_duplicates(text)
+print(cleaned)  # 'the cat sat on the mat'
+
+# Extract and format dates
+def format_dates(text):
+    pattern = r'(?P<month>\d{1,2})/(?P<day>\d{1,2})/(?P<year>\d{4})'
+    def replacer(match):
+        return f"{match.group('year')}-{match.group('month').zfill(2)}-{match.group('day').zfill(2)}"
+    return re.sub(pattern, replacer, text)
+
+text = "Event on 12/25/2023"
+formatted = format_dates(text)
+print(formatted)  # 'Event on 2023-12-25'
+```
+
 ---
 
 ## Common Regex Patterns

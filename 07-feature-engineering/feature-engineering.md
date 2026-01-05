@@ -25,150 +25,915 @@ Comprehensive guide to creating and selecting the best features for your models.
 - Better features → Better models
 - Can improve performance more than algorithm choice
 - Domain knowledge is key
+- Often the difference between winning and losing in competitions
+
+### What is Feature Engineering?
+
+Feature engineering is the process of creating, selecting, and transforming features to improve model performance. It includes:
+
+1. **Feature Creation**: Creating new features from existing ones
+2. **Feature Selection**: Choosing the most relevant features
+3. **Feature Transformation**: Transforming features to better distributions
+4. **Feature Encoding**: Converting categorical to numerical
+5. **Feature Scaling**: Normalizing feature scales
+
+### When to Do Feature Engineering
+
+**Always!** But especially when:
+- Model performance is poor
+- Features have different scales
+- Categorical variables present
+- High-dimensional data
+- Skewed distributions
+- Missing relationships between features
 
 ---
 
 ## Feature Selection
 
+### Why Feature Selection?
+
+- Reduces overfitting
+- Improves model interpretability
+- Reduces training time
+- Removes noise and irrelevant features
+- Prevents curse of dimensionality
+
 ### Filter Methods
 
-Statistical tests to select features.
+Statistical tests to select features. Fast and independent of model.
+
+**Common Methods:**
+- **F-test (ANOVA)**: For numerical features and categorical target
+- **Chi-square**: For categorical features and categorical target
+- **Mutual Information**: Measures dependency between features and target
+- **Correlation**: Removes highly correlated features
 
 ```python
-from sklearn.feature_selection import SelectKBest, f_classif, chi2
+from sklearn.feature_selection import SelectKBest, f_classif, chi2, mutual_info_classif
+import pandas as pd
 
-# Select top k features using F-test
-selector = SelectKBest(score_func=f_classif, k=5)
-X_selected = selector.fit_transform(X, y)
+# Method 1: F-test (for numerical features)
+selector_f = SelectKBest(score_func=f_classif, k=5)
+X_selected_f = selector_f.fit_transform(X, y)
 
-# Get selected features
-selected_features = selector.get_support()
-print("Selected features:", feature_names[selected_features])
+# Get scores and selected features
+feature_scores = pd.DataFrame({
+    'feature': feature_names,
+    'score': selector_f.scores_,
+    'selected': selector_f.get_support()
+}).sort_values('score', ascending=False)
+
+print("F-test Feature Selection:")
+print(feature_scores)
+
+# Method 2: Mutual Information
+selector_mi = SelectKBest(score_func=mutual_info_classif, k=5)
+X_selected_mi = selector_mi.fit_transform(X, y)
+
+# Method 3: Chi-square (for categorical features)
+# selector_chi2 = SelectKBest(score_func=chi2, k=5)
+# X_selected_chi2 = selector_chi2.fit_transform(X_categorical, y)
+
+# Compare methods
+print(f"\nF-test selected: {feature_names[selector_f.get_support()]}")
+print(f"MI selected: {feature_names[selector_mi.get_support()]}")
+```
+
+### Correlation-Based Selection
+
+```python
+# Remove highly correlated features
+correlation_matrix = pd.DataFrame(X).corr().abs()
+
+# Find pairs with high correlation
+high_corr_pairs = []
+for i in range(len(correlation_matrix.columns)):
+    for j in range(i+1, len(correlation_matrix.columns)):
+        if correlation_matrix.iloc[i, j] > 0.8:  # Threshold
+            high_corr_pairs.append((
+                correlation_matrix.columns[i],
+                correlation_matrix.columns[j],
+                correlation_matrix.iloc[i, j]
+            ))
+
+print("Highly correlated feature pairs:")
+for feat1, feat2, corr in high_corr_pairs:
+    print(f"  {feat1} - {feat2}: {corr:.3f}")
+
+# Visualize correlation matrix
+plt.figure(figsize=(12, 10))
+sns.heatmap(correlation_matrix, annot=True, cmap='coolwarm', center=0,
+            square=True, linewidths=0.5)
+plt.title('Feature Correlation Matrix', fontsize=14, fontweight='bold')
+plt.tight_layout()
+plt.show()
 ```
 
 ### Wrapper Methods
 
-Use model performance to select features.
+Use model performance to select features. More accurate but slower than filter methods.
+
+**Types:**
+- **Forward Selection**: Start with no features, add one at a time
+- **Backward Elimination**: Start with all features, remove one at a time
+- **Recursive Feature Elimination (RFE)**: Recursively removes least important features
 
 ```python
-from sklearn.feature_selection import RFE
+from sklearn.feature_selection import RFE, RFECV
 from sklearn.linear_model import LogisticRegression
+from sklearn.model_selection import cross_val_score
 
 # Recursive Feature Elimination
-estimator = LogisticRegression()
-selector = RFE(estimator, n_features_to_select=5)
+estimator = LogisticRegression(random_state=42, max_iter=1000)
+selector = RFE(estimator, n_features_to_select=5, step=1)
 X_selected = selector.fit_transform(X, y)
 
-print("Selected features:", feature_names[selector.support_])
+print("RFE Selected features:")
+print(feature_names[selector.support_])
+print(f"\nFeature rankings (1 = selected):")
+for i, (name, rank) in enumerate(zip(feature_names, selector.ranking_)):
+    print(f"  {name}: {rank}")
+
+# RFE with Cross-Validation (finds optimal number of features)
+rfecv = RFECV(
+    estimator=estimator,
+    step=1,
+    cv=5,
+    scoring='accuracy',
+    n_jobs=-1
+)
+rfecv.fit(X, y)
+
+print(f"\nOptimal number of features: {rfecv.n_features_}")
+print(f"Selected features: {feature_names[rfecv.support_]}")
+
+# Plot number of features vs CV score
+plt.figure(figsize=(10, 6))
+plt.plot(range(1, len(rfecv.grid_scores_) + 1), rfecv.grid_scores_)
+plt.xlabel('Number of Features Selected', fontsize=12)
+plt.ylabel('Cross-Validated Score', fontsize=12)
+plt.title('RFE Cross-Validation', fontsize=14, fontweight='bold')
+plt.axvline(x=rfecv.n_features_, color='r', linestyle='--', label=f'Optimal: {rfecv.n_features_}')
+plt.legend()
+plt.grid(True, alpha=0.3)
+plt.tight_layout()
+plt.show()
+```
+
+### Sequential Feature Selection
+
+```python
+from sklearn.feature_selection import SequentialFeatureSelector
+
+# Forward selection
+sfs_forward = SequentialFeatureSelector(
+    estimator=LogisticRegression(random_state=42, max_iter=1000),
+    n_features_to_select=5,
+    direction='forward',
+    cv=5,
+    n_jobs=-1
+)
+sfs_forward.fit(X, y)
+
+print("Forward Selection features:")
+print(feature_names[sfs_forward.get_support()])
+
+# Backward elimination
+sfs_backward = SequentialFeatureSelector(
+    estimator=LogisticRegression(random_state=42, max_iter=1000),
+    n_features_to_select=5,
+    direction='backward',
+    cv=5,
+    n_jobs=-1
+)
+sfs_backward.fit(X, y)
+
+print("\nBackward Elimination features:")
+print(feature_names[sfs_backward.get_support()])
 ```
 
 ### Embedded Methods
 
-Feature selection built into model training.
+Feature selection built into model training. More efficient than wrapper methods.
+
+**Common Methods:**
+- **Lasso (L1)**: Sets coefficients to zero
+- **Elastic Net**: Combines L1 and L2
+- **Tree-based**: Feature importance from Random Forest, XGBoost
 
 ```python
-from sklearn.linear_model import LassoCV
+from sklearn.linear_model import LassoCV, ElasticNetCV
+from sklearn.ensemble import RandomForestClassifier
 
-# Lasso automatically selects features
-lasso = LassoCV(cv=5)
+# Method 1: Lasso (L1 regularization)
+lasso = LassoCV(cv=5, random_state=42, n_jobs=-1)
 lasso.fit(X, y)
 
 # Features with non-zero coefficients
-selected = lasso.coef_ != 0
-print("Selected features:", feature_names[selected])
+selected_lasso = lasso.coef_ != 0
+print("Lasso selected features:")
+print(feature_names[selected_lasso])
+print(f"Number of features: {selected_lasso.sum()}")
+print(f"Optimal alpha: {lasso.alpha_:.4f}")
+
+# Method 2: Elastic Net
+elastic = ElasticNetCV(cv=5, random_state=42, n_jobs=-1)
+elastic.fit(X, y)
+
+selected_elastic = elastic.coef_ != 0
+print(f"\nElastic Net selected features:")
+print(feature_names[selected_elastic])
+
+# Method 3: Tree-based feature importance
+rf = RandomForestClassifier(n_estimators=100, random_state=42)
+rf.fit(X, y)
+
+# Select top k features by importance
+importance_threshold = np.percentile(rf.feature_importances_, 75)
+selected_rf = rf.feature_importances_ > importance_threshold
+
+print(f"\nRandom Forest selected features (top 25%):")
+print(feature_names[selected_rf])
+
+# Compare methods
+print("\nFeature Selection Comparison:")
+comparison = pd.DataFrame({
+    'Feature': feature_names,
+    'Lasso': selected_lasso,
+    'Elastic Net': selected_elastic,
+    'Random Forest': selected_rf
+})
+print(comparison[comparison.any(axis=1)])  # Show only selected features
 ```
 
 ---
 
 ## Feature Transformation
 
+### Why Transform Features?
+
+- Handle skewed distributions
+- Meet algorithm assumptions (normality)
+- Improve model performance
+- Reduce impact of outliers
+
 ### Log Transformation
 
-Handle skewed distributions.
+Handle right-skewed distributions. Common for count data, prices, sizes.
 
 ```python
+import numpy as np
+import matplotlib.pyplot as plt
+
 # Log transform
 df['log_feature'] = np.log1p(df['feature'])  # log1p handles zeros
 
-# Before and after
-plt.figure(figsize=(12, 5))
-plt.subplot(1, 2, 1)
-plt.hist(df['feature'], bins=50)
-plt.title('Original (Skewed)')
+# Before and after comparison
+fig, axes = plt.subplots(1, 2, figsize=(14, 5))
 
-plt.subplot(1, 2, 2)
-plt.hist(df['log_feature'], bins=50)
-plt.title('Log Transformed')
+axes[0].hist(df['feature'], bins=50, edgecolor='black', alpha=0.7)
+axes[0].set_title('Original (Skewed)', fontsize=12, fontweight='bold')
+axes[0].set_xlabel('Value', fontsize=11)
+axes[0].set_ylabel('Frequency', fontsize=11)
+axes[0].grid(True, alpha=0.3)
+
+axes[1].hist(df['log_feature'], bins=50, edgecolor='black', alpha=0.7, color='green')
+axes[1].set_title('Log Transformed', fontsize=12, fontweight='bold')
+axes[1].set_xlabel('Log(Value)', fontsize=11)
+axes[1].set_ylabel('Frequency', fontsize=11)
+axes[1].grid(True, alpha=0.3)
+
+plt.tight_layout()
 plt.show()
+
+# Check skewness
+from scipy.stats import skew
+print(f"Original skewness: {skew(df['feature']):.3f}")
+print(f"Log transformed skewness: {skew(df['log_feature']):.3f}")
+
+# Different log transformations
+df['log'] = np.log1p(df['feature'])        # Natural log
+df['log10'] = np.log10(df['feature'] + 1)  # Base 10 log
+df['sqrt'] = np.sqrt(df['feature'])        # Square root (weaker transformation)
 ```
 
 ### Power Transformation
 
-Box-Cox transformation.
+Box-Cox and Yeo-Johnson transformations. Automatically finds best transformation.
 
 ```python
 from sklearn.preprocessing import PowerTransformer
+from scipy import stats
 
-# Box-Cox transformation
-pt = PowerTransformer(method='box-cox')
-X_transformed = pt.fit_transform(X)
+# Box-Cox transformation (requires positive values)
+# For positive values only
+X_positive = X - X.min() + 1  # Make all positive
+
+pt_boxcox = PowerTransformer(method='box-cox')
+X_boxcox = pt_boxcox.fit_transform(X_positive)
+
+# Yeo-Johnson transformation (works with any values)
+pt_yeojohnson = PowerTransformer(method='yeo-johnson')
+X_yeojohnson = pt_yeojohnson.fit_transform(X)
+
+# Compare transformations
+print("Skewness Comparison:")
+print(f"Original: {skew(X.flatten()):.3f}")
+print(f"Box-Cox: {skew(X_boxcox.flatten()):.3f}")
+print(f"Yeo-Johnson: {skew(X_yeojohnson.flatten()):.3f}")
+
+# Visualize
+fig, axes = plt.subplots(1, 3, figsize=(18, 5))
+axes[0].hist(X.flatten(), bins=50, edgecolor='black', alpha=0.7)
+axes[0].set_title('Original', fontsize=12, fontweight='bold')
+axes[1].hist(X_boxcox.flatten(), bins=50, edgecolor='black', alpha=0.7, color='green')
+axes[1].set_title('Box-Cox', fontsize=12, fontweight='bold')
+axes[2].hist(X_yeojohnson.flatten(), bins=50, edgecolor='black', alpha=0.7, color='orange')
+axes[2].set_title('Yeo-Johnson', fontsize=12, fontweight='bold')
+plt.tight_layout()
+plt.show()
+```
+
+### Square Root Transformation
+
+Weaker than log, good for count data.
+
+```python
+# Square root transformation
+df['sqrt_feature'] = np.sqrt(df['feature'])
+
+# Cube root (even weaker)
+df['cbrt_feature'] = np.cbrt(df['feature'])
 ```
 
 ### Binning
 
-Convert continuous to categorical.
+Convert continuous to categorical. Useful for non-linear relationships and handling outliers.
 
 ```python
-# Equal-width bins
-df['age_group'] = pd.cut(df['age'], bins=5, labels=['Young', 'Adult', 'Middle', 'Senior', 'Elderly'])
+# Equal-width bins (fixed width)
+df['age_group'] = pd.cut(
+    df['age'], 
+    bins=5, 
+    labels=['Very Young', 'Young', 'Adult', 'Senior', 'Elderly']
+)
 
-# Equal-frequency bins
-df['income_group'] = pd.qcut(df['income'], q=4, labels=['Low', 'Medium', 'High', 'Very High'])
+# Equal-frequency bins (quantiles)
+df['income_group'] = pd.qcut(
+    df['income'], 
+    q=4, 
+    labels=['Low', 'Medium', 'High', 'Very High'],
+    duplicates='drop'  # Handle duplicate edges
+)
+
+# Custom bins
+df['custom_age_group'] = pd.cut(
+    df['age'],
+    bins=[0, 18, 35, 50, 65, 100],
+    labels=['Child', 'Young Adult', 'Adult', 'Middle Age', 'Senior']
+)
+
+# One-hot encode bins
+df_encoded = pd.get_dummies(df, columns=['age_group'], prefix='age')
+
+# Compare binning strategies
+print("Equal-width bins:")
+print(df['age_group'].value_counts().sort_index())
+
+print("\nEqual-frequency bins:")
+print(df['income_group'].value_counts().sort_index())
 ```
+
+### Discretization
+
+Discretization converts continuous variables into categorical bins. Useful for handling non-linear relationships and outliers.
+
+#### Basic Discretization Methods
+
+```python
+from sklearn.preprocessing import KBinsDiscretizer
+
+# KBinsDiscretizer with different strategies
+strategies = ['uniform', 'quantile', 'kmeans']
+
+fig, axes = plt.subplots(1, 3, figsize=(18, 5))
+
+for idx, strategy in enumerate(strategies):
+    discretizer = KBinsDiscretizer(n_bins=5, encode='ordinal', strategy=strategy)
+    X_discrete = discretizer.fit_transform(X[:, [0]])  # Transform one feature
+    
+    axes[idx].hist(X_discrete.flatten(), bins=5, edgecolor='black', alpha=0.7)
+    axes[idx].set_title(f'{strategy.capitalize()} Strategy', fontsize=12, fontweight='bold')
+    axes[idx].set_xlabel('Bin', fontsize=11)
+    axes[idx].set_ylabel('Frequency', fontsize=11)
+    axes[idx].grid(True, alpha=0.3)
+
+plt.tight_layout()
+plt.show()
+```
+
+#### Advanced Discretization Techniques
+
+**1. Decision Tree-Based Binning**
+
+Uses decision trees to find optimal bin boundaries based on target variable.
+
+```python
+from sklearn.tree import DecisionTreeRegressor, DecisionTreeClassifier
+import numpy as np
+
+def decision_tree_binning(X, y, n_bins=5, task='regression'):
+    """
+    Create bins using decision tree
+    """
+    if task == 'regression':
+        tree = DecisionTreeRegressor(max_leaf_nodes=n_bins, random_state=42)
+    else:
+        tree = DecisionTreeClassifier(max_leaf_nodes=n_bins, random_state=42)
+    
+    tree.fit(X.reshape(-1, 1), y)
+    
+    # Get bin boundaries from tree
+    thresholds = tree.tree_.threshold[tree.tree_.threshold != -2]
+    thresholds = np.sort(thresholds)
+    
+    # Create bins
+    bins = np.concatenate([[-np.inf], thresholds, [np.inf]])
+    X_binned = np.digitize(X, bins) - 1
+    
+    return X_binned, bins
+
+# Example
+X_continuous = np.random.randn(1000)
+y_target = X_continuous ** 2 + np.random.randn(1000) * 0.1
+
+X_binned, bin_boundaries = decision_tree_binning(
+    X_continuous, y_target, n_bins=5, task='regression'
+)
+
+print(f"Bin boundaries: {bin_boundaries}")
+print(f"Bin distribution: {np.bincount(X_binned)}")
+```
+
+**2. Custom Binning with Domain Knowledge**
+
+```python
+# Age groups based on domain knowledge
+def age_binning(ages):
+    """Custom age binning"""
+    bins = [0, 18, 25, 35, 50, 65, 100]
+    labels = ['Child', 'Young Adult', 'Adult', 'Middle Age', 'Senior', 'Elderly']
+    return pd.cut(ages, bins=bins, labels=labels, include_lowest=True)
+
+# Income brackets
+def income_binning(incomes):
+    """Custom income binning"""
+    bins = [0, 25000, 50000, 75000, 100000, np.inf]
+    labels = ['Low', 'Lower-Middle', 'Middle', 'Upper-Middle', 'High']
+    return pd.cut(incomes, bins=bins, labels=labels)
+```
+
+**3. Optimal Binning for Target Encoding**
+
+```python
+def optimal_binning_for_target(X, y, n_bins=5):
+    """
+    Find bins that maximize separation of target variable
+    """
+    # Sort by feature value
+    sorted_indices = np.argsort(X)
+    X_sorted = X[sorted_indices]
+    y_sorted = y[sorted_indices]
+    
+    # Try different split points
+    n_samples = len(X)
+    bin_size = n_samples // n_bins
+    
+    bins = []
+    for i in range(1, n_bins):
+        split_idx = i * bin_size
+        bins.append(X_sorted[split_idx])
+    
+    # Create bins
+    bins = np.concatenate([[-np.inf], sorted(bins), [np.inf]])
+    X_binned = np.digitize(X, bins) - 1
+    
+    return X_binned, bins
+
+# Example usage
+X_binned, optimal_bins = optimal_binning_for_target(X_continuous, y_target, n_bins=5)
+```
+
+**4. When to Use Each Discretization Method**
+
+| Method | When to Use | Pros | Cons |
+|--------|-------------|------|------|
+| **Uniform** | Equal-width bins needed | Simple, interpretable | May create empty bins |
+| **Quantile** | Equal-frequency bins | Handles outliers well | May group very different values |
+| **K-Means** | Clustering-based | Data-driven | Computationally expensive |
+| **Decision Tree** | Target-aware binning | Optimal for prediction | Can overfit |
+| **Custom** | Domain knowledge available | Interpretable, meaningful | Requires expertise |
+
+### Weight of Evidence (WOE) Encoding
+
+WOE is a powerful encoding technique used in credit scoring and risk modeling. It measures the strength of relationship between a feature and target.
+
+#### Understanding WOE
+
+**WOE Formula:**
+```
+WOE = ln(% of Non-Events in Group / % of Events in Group)
+     = ln((Non-Events_i / Total Non-Events) / (Events_i / Total Events))
+```
+
+**Information Value (IV):**
+```
+IV = Σ (Distribution of Non-Events - Distribution of Events) × WOE
+```
+
+#### WOE Calculation
+
+```python
+def calculate_woe_iv(df, feature, target):
+    """
+    Calculate WOE and IV for a feature
+    """
+    # Create bins (you can use any discretization method)
+    df['binned'] = pd.qcut(df[feature], q=5, duplicates='drop')
+    
+    # Calculate WOE for each bin
+    woe_iv_data = []
+    
+    total_events = df[target].sum()
+    total_non_events = (df[target] == 0).sum()
+    
+    for bin_name in df['binned'].cat.categories:
+        bin_data = df[df['binned'] == bin_name]
+        
+        events = bin_data[target].sum()
+        non_events = (bin_data[target] == 0).sum()
+        
+        # Avoid division by zero
+        if events == 0:
+            events = 0.5
+        if non_events == 0:
+            non_events = 0.5
+        
+        # Calculate distributions
+        dist_events = events / total_events
+        dist_non_events = non_events / total_non_events
+        
+        # Calculate WOE
+        if dist_events == 0:
+            woe = np.log(dist_non_events / 0.0001)
+        elif dist_non_events == 0:
+            woe = np.log(0.0001 / dist_events)
+        else:
+            woe = np.log(dist_non_events / dist_events)
+        
+        # Calculate IV component
+        iv_component = (dist_non_events - dist_events) * woe
+        
+        woe_iv_data.append({
+            'Bin': bin_name,
+            'Events': events,
+            'Non-Events': non_events,
+            'WOE': woe,
+            'IV_Component': iv_component
+        })
+    
+    woe_iv_df = pd.DataFrame(woe_iv_data)
+    total_iv = woe_iv_df['IV_Component'].sum()
+    
+    return woe_iv_df, total_iv
+
+# Example usage
+df_example = pd.DataFrame({
+    'age': np.random.randint(18, 80, 1000),
+    'target': np.random.binomial(1, 0.3, 1000)
+})
+
+woe_df, iv = calculate_woe_iv(df_example, 'age', 'target')
+print("WOE and IV Calculation:")
+print(woe_df)
+print(f"\nTotal Information Value (IV): {iv:.4f}")
+
+# IV Interpretation
+if iv < 0.02:
+    print("Predictive power: Not useful")
+elif iv < 0.1:
+    print("Predictive power: Weak")
+elif iv < 0.3:
+    print("Predictive power: Medium")
+else:
+    print("Predictive power: Strong")
+```
+
+#### WOE Encoding Implementation
+
+```python
+from sklearn.base import BaseEstimator, TransformerMixin
+
+class WOEEncoder(BaseEstimator, TransformerMixin):
+    """
+    Weight of Evidence Encoder
+    """
+    def __init__(self, n_bins=5):
+        self.n_bins = n_bins
+        self.woe_dict = {}
+        self.bin_edges = {}
+    
+    def fit(self, X, y):
+        """
+        Calculate WOE for each feature
+        """
+        X = pd.DataFrame(X) if not isinstance(X, pd.DataFrame) else X
+        y = pd.Series(y) if not isinstance(y, pd.Series) else y
+        
+        total_events = y.sum()
+        total_non_events = (y == 0).sum()
+        
+        for col in X.columns:
+            # Create bins
+            _, bin_edges = pd.qcut(X[col], q=self.n_bins, retbins=True, duplicates='drop')
+            self.bin_edges[col] = bin_edges
+            
+            # Calculate WOE for each bin
+            woe_dict_col = {}
+            X_binned = pd.cut(X[col], bins=bin_edges, include_lowest=True)
+            
+            for bin_name in X_binned.cat.categories:
+                mask = X_binned == bin_name
+                events = y[mask].sum()
+                non_events = (y[mask] == 0).sum()
+                
+                # Avoid division by zero
+                if events == 0:
+                    events = 0.5
+                if non_events == 0:
+                    non_events = 0.5
+                
+                dist_events = events / total_events
+                dist_non_events = non_events / total_non_events
+                
+                if dist_events == 0:
+                    woe = np.log(dist_non_events / 0.0001)
+                elif dist_non_events == 0:
+                    woe = np.log(0.0001 / dist_events)
+                else:
+                    woe = np.log(dist_non_events / dist_events)
+                
+                woe_dict_col[bin_name] = woe
+            
+            self.woe_dict[col] = woe_dict_col
+        
+        return self
+    
+    def transform(self, X):
+        """
+        Transform features to WOE values
+        """
+        X = pd.DataFrame(X) if not isinstance(X, pd.DataFrame) else X
+        X_woe = X.copy()
+        
+        for col in X.columns:
+            if col in self.woe_dict:
+                X_binned = pd.cut(X[col], bins=self.bin_edges[col], include_lowest=True)
+                X_woe[col] = X_binned.map(self.woe_dict[col])
+                # Handle new values (out of bin range)
+                X_woe[col] = X_woe[col].fillna(X_woe[col].median())
+        
+        return X_woe.values
+
+# Usage example
+woe_encoder = WOEEncoder(n_bins=5)
+X_train_woe = woe_encoder.fit_transform(X_train, y_train)
+X_test_woe = woe_encoder.transform(X_test)
+```
+
+#### When to Use WOE Encoding
+
+**Use WOE when:**
+- Working with credit scoring or risk modeling
+- Features have non-linear relationships with target
+- You need interpretable encoding
+- Features need to be monotonic with target
+
+**Advantages:**
+- Handles non-linear relationships
+- Creates monotonic relationship with target
+- Interpretable (higher WOE = higher risk/event probability)
+- Standard in credit scoring industry
+
+**Disadvantages:**
+- Requires target variable (supervised)
+- Can overfit if bins are too fine
+- More complex than simple encoding methods
 
 ---
 
 ## Handling Categorical Variables
 
+### Why Encode Categorical Variables?
+
+Most ML algorithms require numerical input. Categorical variables must be converted to numbers.
+
 ### One-Hot Encoding
 
-Binary columns for each category.
+Binary columns for each category. Best for nominal categories (no order).
+
+**Pros:**
+- No ordinality assumption
+- Works well with linear models
+- Preserves all information
+
+**Cons:**
+- Creates many features (curse of dimensionality)
+- Can cause multicollinearity
 
 ```python
 from sklearn.preprocessing import OneHotEncoder
 
-# One-hot encoding
-encoder = OneHotEncoder(sparse=False, drop='first')
+# Method 1: Scikit-learn OneHotEncoder
+encoder = OneHotEncoder(sparse=False, drop='first', handle_unknown='ignore')
 X_encoded = encoder.fit_transform(df[['category']])
 
-# Or with pandas
-df_encoded = pd.get_dummies(df, columns=['category'], drop_first=True)
+# Get feature names
+feature_names_encoded = encoder.get_feature_names_out(['category'])
+print("Encoded features:", feature_names_encoded)
+
+# Method 2: Pandas get_dummies (easier for DataFrames)
+df_encoded = pd.get_dummies(df, columns=['category'], drop_first=True, prefix='cat')
+
+# Compare
+print(f"Original categories: {df['category'].nunique()}")
+print(f"One-hot encoded columns: {len(feature_names_encoded)}")
 ```
 
 ### Label Encoding
 
-Numeric labels (for tree models).
+Numeric labels (for tree models). Best for ordinal categories.
+
+**Pros:**
+- Only one column
+- Preserves ordinality
+- Works well with tree models
+
+**Cons:**
+- Assumes ordinality (can mislead linear models)
+- May create false relationships
 
 ```python
-from sklearn.preprocessing import LabelEncoder
+from sklearn.preprocessing import LabelEncoder, OrdinalEncoder
 
+# Method 1: LabelEncoder (for single column)
 le = LabelEncoder()
 df['category_encoded'] = le.fit_transform(df['category'])
+
+# Method 2: OrdinalEncoder (for multiple columns)
+ordinal_encoder = OrdinalEncoder()
+X_ordinal = ordinal_encoder.fit_transform(df[['category1', 'category2']])
+
+# Custom mapping for ordinal data
+ordinal_mapping = {
+    'Low': 1,
+    'Medium': 2,
+    'High': 3,
+    'Very High': 4
+}
+df['priority_encoded'] = df['priority'].map(ordinal_mapping)
 ```
 
 ### Target Encoding
 
-Mean target per category.
+Mean target per category. Powerful but can overfit.
+
+**Pros:**
+- Captures target relationship
+- Only one column
+- Often improves performance
+
+**Cons:**
+- Risk of overfitting
+- Needs careful cross-validation
 
 ```python
-# Calculate mean target per category
+from sklearn.model_selection import KFold
+
+# Method 1: Simple target encoding (can overfit!)
 target_mean = df.groupby('category')['target'].mean()
 df['category_target_encoded'] = df['category'].map(target_mean)
+
+# Method 2: Cross-validated target encoding (better!)
+def target_encode_cv(df, cat_col, target_col, cv=5):
+    """Target encoding with cross-validation to prevent overfitting"""
+    df_encoded = df.copy()
+    kf = KFold(n_splits=cv, shuffle=True, random_state=42)
+    
+    for train_idx, val_idx in kf.split(df):
+        train_mean = df.iloc[train_idx].groupby(cat_col)[target_col].mean()
+        df_encoded.loc[val_idx, f'{cat_col}_target_encoded'] = \
+            df.loc[val_idx, cat_col].map(train_mean)
+    
+    # Fill any remaining NaN with global mean
+    global_mean = df[target_col].mean()
+    df_encoded[f'{cat_col}_target_encoded'].fillna(global_mean, inplace=True)
+    
+    return df_encoded
+
+df_encoded = target_encode_cv(df, 'category', 'target', cv=5)
+```
+
+### Frequency Encoding
+
+Count of category occurrences.
+
+```python
+# Frequency encoding
+category_counts = df['category'].value_counts()
+df['category_frequency'] = df['category'].map(category_counts)
+
+# Normalized frequency
+category_freq_norm = df['category'].value_counts(normalize=True)
+df['category_freq_norm'] = df['category'].map(category_freq_norm)
+```
+
+### Binary Encoding
+
+Combines hash encoding and one-hot encoding.
+
+```python
+# Binary encoding (for high cardinality)
+import category_encoders as ce
+
+# Install: pip install category-encoders
+try:
+    encoder = ce.BinaryEncoder(cols=['category'])
+    df_encoded = encoder.fit_transform(df)
+    print("Binary encoding reduces features for high cardinality")
+except ImportError:
+    print("Install category-encoders: pip install category-encoders")
+```
+
+### Encoding Comparison
+
+```python
+# Compare encoding methods
+encoding_results = {}
+
+# One-hot encoding
+encoder_ohe = OneHotEncoder(drop='first', sparse=False)
+X_ohe = encoder_ohe.fit_transform(df[['category']])
+model_ohe = LogisticRegression(random_state=42, max_iter=1000)
+scores_ohe = cross_val_score(model_ohe, X_ohe, y, cv=5)
+encoding_results['One-Hot'] = scores_ohe.mean()
+
+# Label encoding
+le = LabelEncoder()
+X_le = le.fit_transform(df['category']).reshape(-1, 1)
+model_le = LogisticRegression(random_state=42, max_iter=1000)
+scores_le = cross_val_score(model_le, X_le, y, cv=5)
+encoding_results['Label'] = scores_le.mean()
+
+# Target encoding
+df_target = target_encode_cv(df, 'category', 'target')
+X_target = df_target[['category_target_encoded']].values
+model_target = LogisticRegression(random_state=42, max_iter=1000)
+scores_target = cross_val_score(model_target, X_target, y, cv=5)
+encoding_results['Target'] = scores_target.mean()
+
+print("Encoding Method Comparison:")
+for method, score in sorted(encoding_results.items(), key=lambda x: x[1], reverse=True):
+    print(f"  {method}: {score:.3f}")
 ```
 
 ---
 
 ## Feature Scaling
+
+### Why Scale Features?
+
+- Distance-based algorithms (KNN, SVM) are sensitive to scale
+- Gradient descent converges faster
+- Some algorithms assume features are on similar scales
+- Prevents features with large values from dominating
+
+### When to Scale
+
+**Always scale for:**
+- K-Nearest Neighbors
+- Support Vector Machines
+- Neural Networks
+- Logistic Regression (with regularization)
+- K-Means clustering
+- PCA
+
+**Don't need to scale for:**
+- Decision Trees
+- Random Forests
+- Gradient Boosting
+- XGBoost, LightGBM, CatBoost
 
 ### Standardization
 
@@ -202,20 +967,97 @@ print(f"Max: {X_normalized.max(axis=0)}")  # Should be 1
 
 ### Robust Scaling
 
-Using median and IQR (handles outliers).
+Using median and IQR. Best for data with outliers.
 
 ```python
 from sklearn.preprocessing import RobustScaler
 
 scaler = RobustScaler()
 X_robust = scaler.fit_transform(X)
+
+# Uses median and IQR instead of mean and std
+# Less affected by outliers
+
+# Compare scaling methods
+fig, axes = plt.subplots(2, 2, figsize=(14, 10))
+
+# Original
+axes[0, 0].boxplot(X[:, :5].T)
+axes[0, 0].set_title('Original', fontsize=12, fontweight='bold')
+
+# Standardized
+axes[0, 1].boxplot(X_scaled[:, :5].T)
+axes[0, 1].set_title('Standardized', fontsize=12, fontweight='bold')
+
+# Min-Max
+axes[1, 0].boxplot(X_normalized[:, :5].T)
+axes[1, 0].set_title('Min-Max Normalized', fontsize=12, fontweight='bold')
+
+# Robust
+axes[1, 1].boxplot(X_robust[:, :5].T)
+axes[1, 1].set_title('Robust Scaled', fontsize=12, fontweight='bold')
+
+plt.tight_layout()
+plt.show()
+```
+
+### MaxAbs Scaling
+
+Scale by maximum absolute value. Preserves sparsity.
+
+```python
+from sklearn.preprocessing import MaxAbsScaler
+
+scaler = MaxAbsScaler()
+X_maxabs = scaler.fit_transform(X)
+
+# Scales to [-1, 1] range
+print(f"Min: {X_maxabs.min(axis=0)[:5]}")
+print(f"Max: {X_maxabs.max(axis=0)[:5]}")
+```
+
+### Scaling Comparison
+
+```python
+# Compare impact on model performance
+from sklearn.neighbors import KNeighborsClassifier
+
+scalers = {
+    'No Scaling': None,
+    'StandardScaler': StandardScaler(),
+    'MinMaxScaler': MinMaxScaler(),
+    'RobustScaler': RobustScaler()
+}
+
+results = {}
+
+for name, scaler in scalers.items():
+    if scaler is None:
+        X_model = X
+    else:
+        X_model = scaler.fit_transform(X)
+    
+    model = KNeighborsClassifier(n_neighbors=5)
+    scores = cross_val_score(model, X_model, y, cv=5, scoring='accuracy')
+    results[name] = scores.mean()
+    print(f"{name:20s}: {scores.mean():.3f} (+/- {scores.std():.3f})")
 ```
 
 ---
 
 ## Dimensionality Reduction
 
+### Why Reduce Dimensions?
+
+- Reduce overfitting
+- Improve visualization
+- Reduce computational cost
+- Remove noise
+- Handle multicollinearity
+
 ### Principal Component Analysis (PCA)
+
+Linear dimensionality reduction. Finds directions of maximum variance.
 
 ```python
 from sklearn.decomposition import PCA
@@ -225,91 +1067,507 @@ pca = PCA(n_components=2)
 X_pca = pca.fit_transform(X)
 
 # Explained variance
-print(f"Explained variance: {pca.explained_variance_ratio_}")
-print(f"Total explained: {pca.explained_variance_ratio_.sum():.3f}")
+print(f"Explained variance per component: {pca.explained_variance_ratio_}")
+print(f"Total explained variance: {pca.explained_variance_ratio_.sum():.3f}")
 
-# Visualize
-plt.figure(figsize=(10, 6))
-plt.scatter(X_pca[:, 0], X_pca[:, 1], c=y)
-plt.xlabel('First Principal Component')
-plt.ylabel('Second Principal Component')
-plt.title('PCA Visualization')
+# Find optimal number of components
+pca_full = PCA()
+pca_full.fit(X)
+
+# Cumulative explained variance
+cumulative_variance = np.cumsum(pca_full.explained_variance_ratio_)
+
+# Plot explained variance
+plt.figure(figsize=(12, 5))
+
+plt.subplot(1, 2, 1)
+plt.plot(range(1, len(cumulative_variance) + 1), cumulative_variance, 'o-')
+plt.axhline(y=0.95, color='r', linestyle='--', label='95% variance')
+plt.xlabel('Number of Components', fontsize=12)
+plt.ylabel('Cumulative Explained Variance', fontsize=12)
+plt.title('PCA Explained Variance', fontsize=14, fontweight='bold')
+plt.legend()
+plt.grid(True, alpha=0.3)
+
+# Find components for 95% variance
+n_components_95 = np.argmax(cumulative_variance >= 0.95) + 1
+print(f"\nComponents needed for 95% variance: {n_components_95}")
+
+# Visualize in 2D
+plt.subplot(1, 2, 2)
+scatter = plt.scatter(X_pca[:, 0], X_pca[:, 1], c=y, cmap='viridis', alpha=0.6)
+plt.xlabel('First Principal Component', fontsize=12)
+plt.ylabel('Second Principal Component', fontsize=12)
+plt.title('PCA Visualization (2D)', fontsize=14, fontweight='bold')
+plt.colorbar(scatter)
+plt.grid(True, alpha=0.3)
+
+plt.tight_layout()
 plt.show()
+
+# Use PCA for dimensionality reduction
+pca_reduced = PCA(n_components=0.95)  # Keep 95% variance
+X_pca_reduced = pca_reduced.fit_transform(X)
+print(f"\nOriginal dimensions: {X.shape[1]}")
+print(f"Reduced dimensions: {X_pca_reduced.shape[1]}")
 ```
 
 ### t-SNE
 
-Non-linear visualization.
+Non-linear visualization. Good for visualization, not for feature reduction.
 
 ```python
 from sklearn.manifold import TSNE
 
-tsne = TSNE(n_components=2, random_state=42)
-X_tsne = tsne.fit_transform(X)
+# t-SNE (slow for large datasets)
+# Use subset for demonstration
+X_sample = X[:1000] if len(X) > 1000 else X
+y_sample = y[:1000] if len(y) > 1000 else y
+
+tsne = TSNE(n_components=2, random_state=42, perplexity=30)
+X_tsne = tsne.fit_transform(X_sample)
 
 plt.figure(figsize=(10, 6))
-plt.scatter(X_tsne[:, 0], X_tsne[:, 1], c=y)
-plt.title('t-SNE Visualization')
+scatter = plt.scatter(X_tsne[:, 0], X_tsne[:, 1], c=y_sample, cmap='viridis', alpha=0.6)
+plt.xlabel('t-SNE Component 1', fontsize=12)
+plt.ylabel('t-SNE Component 2', fontsize=12)
+plt.title('t-SNE Visualization', fontsize=14, fontweight='bold')
+plt.colorbar(scatter)
+plt.grid(True, alpha=0.3)
+plt.tight_layout()
 plt.show()
+
+# Note: t-SNE is for visualization, not feature engineering
+# Use PCA or other methods for actual dimensionality reduction
+```
+
+### UMAP
+
+Modern alternative to t-SNE. Faster and preserves global structure.
+
+```python
+try:
+    import umap
+    
+    # UMAP for dimensionality reduction
+    umap_reducer = umap.UMAP(n_components=2, random_state=42)
+    X_umap = umap_reducer.fit_transform(X)
+    
+    plt.figure(figsize=(10, 6))
+    scatter = plt.scatter(X_umap[:, 0], X_umap[:, 1], c=y, cmap='viridis', alpha=0.6)
+    plt.xlabel('UMAP Component 1', fontsize=12)
+    plt.ylabel('UMAP Component 2', fontsize=12)
+    plt.title('UMAP Visualization', fontsize=14, fontweight='bold')
+    plt.colorbar(scatter)
+    plt.grid(True, alpha=0.3)
+    plt.tight_layout()
+    plt.show()
+except ImportError:
+    print("Install UMAP: pip install umap-learn")
 ```
 
 ---
 
 ## Creating New Features
 
-### Domain Features
+### Why Create New Features?
+
+- Capture relationships between features
+- Encode domain knowledge
+- Improve model performance
+- Create non-linear relationships
+
+### Domain-Specific Features
+
+Use domain knowledge to create meaningful features.
 
 ```python
 # Example: E-commerce
 df['total_spent'] = df['quantity'] * df['price']
 df['avg_order_value'] = df['total_spent'] / df['order_count']
-df['days_since_last_purchase'] = (today - df['last_purchase']).days
+df['days_since_last_purchase'] = (pd.Timestamp.today() - df['last_purchase']).dt.days
+df['purchase_frequency'] = df['total_purchases'] / df['days_as_customer']
+df['discount_ratio'] = df['discount_amount'] / df['original_price']
+
+# Example: Time series
+df['hour'] = df['timestamp'].dt.hour
+df['day_of_week'] = df['timestamp'].dt.dayofweek
+df['is_weekend'] = df['day_of_week'].isin([5, 6]).astype(int)
+df['month'] = df['timestamp'].dt.month
+df['quarter'] = df['timestamp'].dt.quarter
+
+# Example: Text features
+df['text_length'] = df['text'].str.len()
+df['word_count'] = df['text'].str.split().str.len()
+df['avg_word_length'] = df['text_length'] / df['word_count']
 ```
 
 ### Interaction Features
 
+Combine features to capture interactions.
+
 ```python
 from sklearn.preprocessing import PolynomialFeatures
 
-# Create polynomial features
-poly = PolynomialFeatures(degree=2, interaction_only=True)
+# Polynomial features (all combinations)
+poly = PolynomialFeatures(degree=2, include_bias=False)
 X_poly = poly.fit_transform(X)
+
+print(f"Original features: {X.shape[1]}")
+print(f"Polynomial features: {X_poly.shape[1]}")
+
+# Interaction-only (no squared terms)
+poly_interaction = PolynomialFeatures(degree=2, interaction_only=True, include_bias=False)
+X_interaction = poly_interaction.fit_transform(X)
+
+print(f"Interaction features: {X_interaction.shape[1]}")
+
+# Manual interaction features
+df['feature1_x_feature2'] = df['feature1'] * df['feature2']
+df['feature1_div_feature2'] = df['feature1'] / (df['feature2'] + 1e-6)  # Avoid division by zero
+df['feature1_plus_feature2'] = df['feature1'] + df['feature2']
+df['feature1_minus_feature2'] = df['feature1'] - df['feature2']
+```
+
+### Aggregation Features
+
+Group statistics and aggregations.
+
+```python
+# Group aggregations
+group_stats = df.groupby('category').agg({
+    'value': ['mean', 'std', 'min', 'max', 'count']
+}).reset_index()
+
+# Flatten column names
+group_stats.columns = ['category', 'value_mean', 'value_std', 'value_min', 'value_max', 'value_count']
+
+# Merge back
+df = df.merge(group_stats, on='category', how='left')
+
+# Rolling statistics (for time series)
+df['value_rolling_mean_7'] = df['value'].rolling(window=7).mean()
+df['value_rolling_std_7'] = df['value'].rolling(window=7).std()
+df['value_lag_1'] = df['value'].shift(1)  # Previous value
+df['value_diff'] = df['value'].diff()  # Difference from previous
+```
+
+### Ratio and Difference Features
+
+```python
+# Ratio features
+df['price_per_unit'] = df['price'] / df['quantity']
+df['income_to_expense'] = df['income'] / (df['expenses'] + 1)
+
+# Difference features
+df['age_difference'] = df['age'] - df['avg_age']
+df['price_difference'] = df['price'] - df['avg_price']
+
+# Percentage change
+df['price_pct_change'] = df['price'].pct_change()
+```
+
+### Binning and Grouping Features
+
+```python
+# Create bins and use as features
+df['age_group'] = pd.cut(df['age'], bins=5, labels=False)
+df['income_quartile'] = pd.qcut(df['income'], q=4, labels=False, duplicates='drop')
+
+# Group by multiple features
+df['group_id'] = df.groupby(['category', 'region']).ngroup()
+```
+
+### Feature Engineering Pipeline
+
+```python
+from sklearn.pipeline import Pipeline
+from sklearn.compose import ColumnTransformer
+from sklearn.preprocessing import StandardScaler, OneHotEncoder
+
+# Create feature engineering pipeline
+numeric_features = ['feature1', 'feature2', 'feature3']
+categorical_features = ['category', 'region']
+
+preprocessor = ColumnTransformer(
+    transformers=[
+        ('num', StandardScaler(), numeric_features),
+        ('cat', OneHotEncoder(drop='first'), categorical_features)
+    ]
+)
+
+# Use in pipeline
+pipeline = Pipeline([
+    ('preprocessor', preprocessor),
+    ('model', LogisticRegression(random_state=42))
+])
+
+pipeline.fit(X_train, y_train)
 ```
 
 ---
 
+## Feature Engineering Workflow
+
+### Complete Pipeline
+
+```python
+from sklearn.pipeline import Pipeline
+from sklearn.compose import ColumnTransformer
+from sklearn.preprocessing import (StandardScaler, OneHotEncoder, 
+                                  PowerTransformer, FunctionTransformer)
+from sklearn.feature_selection import SelectKBest, f_classif
+
+# Define feature types
+numeric_features = ['feature1', 'feature2', 'feature3']
+categorical_features = ['category', 'region']
+skewed_features = ['price', 'income']
+
+# Create preprocessing pipeline
+preprocessor = ColumnTransformer(
+    transformers=[
+        ('numeric', StandardScaler(), numeric_features),
+        ('skewed', PowerTransformer(method='yeo-johnson'), skewed_features),
+        ('categorical', OneHotEncoder(drop='first', sparse=False), categorical_features)
+    ],
+    remainder='passthrough'
+)
+
+# Feature selection
+selector = SelectKBest(score_func=f_classif, k=10)
+
+# Complete pipeline
+pipeline = Pipeline([
+    ('preprocessor', preprocessor),
+    ('feature_selection', selector),
+    ('model', LogisticRegression(random_state=42, max_iter=1000))
+])
+
+# Fit and evaluate
+pipeline.fit(X_train, y_train)
+score = pipeline.score(X_test, y_test)
+print(f"Pipeline accuracy: {score:.3f}")
+```
+
 ## Practice Exercises
 
-### Exercise 1: Feature Selection
+### Exercise 1: Feature Selection Comparison
 
-**Task:** Select top 5 features using different methods and compare.
+**Task:** Select top 5 features using different methods and compare performance.
 
 **Solution:**
 ```python
+from sklearn.model_selection import cross_val_score
+from sklearn.linear_model import LogisticRegression
+
 # Method 1: Filter (F-test)
 selector1 = SelectKBest(score_func=f_classif, k=5)
 X1 = selector1.fit_transform(X, y)
+model1 = LogisticRegression(random_state=42, max_iter=1000)
+scores1 = cross_val_score(model1, X1, y, cv=5)
+print(f"F-test selection: {scores1.mean():.3f} (+/- {scores1.std():.3f})")
 
 # Method 2: Embedded (Lasso)
-lasso = LassoCV()
+lasso = LassoCV(cv=5, random_state=42)
 lasso.fit(X, y)
 selected2 = lasso.coef_ != 0
 X2 = X[:, selected2]
+model2 = LogisticRegression(random_state=42, max_iter=1000)
+scores2 = cross_val_score(model2, X2, y, cv=5)
+print(f"Lasso selection: {scores2.mean():.3f} (+/- {scores2.std():.3f})")
 
-# Compare
-print("Filter method features:", feature_names[selector1.get_support()])
-print("Lasso selected features:", feature_names[selected2])
+# Method 3: RFE
+from sklearn.feature_selection import RFE
+selector3 = RFE(LogisticRegression(random_state=42, max_iter=1000), n_features_to_select=5)
+X3 = selector3.fit_transform(X, y)
+scores3 = cross_val_score(selector3.estimator, X3, y, cv=5)
+print(f"RFE selection: {scores3.mean():.3f} (+/- {scores3.std():.3f})")
+
+# Compare selected features
+print("\nSelected features comparison:")
+print(f"F-test: {feature_names[selector1.get_support()]}")
+print(f"Lasso: {feature_names[selected2]}")
+print(f"RFE: {feature_names[selector3.support_]}")
 ```
+
+### Exercise 2: Feature Transformation Impact
+
+**Task:** Compare different transformations and their impact on model performance.
+
+**Solution:**
+```python
+from sklearn.preprocessing import PowerTransformer, QuantileTransformer
+
+transformations = {
+    'Original': None,
+    'Log': FunctionTransformer(np.log1p),
+    'Square Root': FunctionTransformer(np.sqrt),
+    'Box-Cox': PowerTransformer(method='box-cox'),
+    'Yeo-Johnson': PowerTransformer(method='yeo-johnson'),
+    'Quantile': QuantileTransformer(output_distribution='normal')
+}
+
+results = {}
+
+for name, transformer in transformations.items():
+    if transformer is None:
+        X_transformed = X
+    else:
+        X_transformed = transformer.fit_transform(X)
+    
+    # Scale after transformation
+    X_scaled = StandardScaler().fit_transform(X_transformed)
+    
+    model = LogisticRegression(random_state=42, max_iter=1000)
+    scores = cross_val_score(model, X_scaled, y, cv=5, scoring='accuracy')
+    results[name] = scores.mean()
+    
+    print(f"{name:20s}: {scores.mean():.3f} (+/- {scores.std():.3f})")
+
+# Find best transformation
+best_transform = max(results, key=results.get)
+print(f"\nBest transformation: {best_transform} ({results[best_transform]:.3f})")
+```
+
+### Exercise 3: Categorical Encoding Comparison
+
+**Task:** Compare different encoding methods for categorical variables.
+
+**Solution:**
+```python
+# Create sample data with categorical variable
+df_cat = pd.DataFrame({
+    'category': np.random.choice(['A', 'B', 'C', 'D'], size=1000),
+    'feature1': np.random.randn(1000),
+    'target': np.random.randint(0, 2, 1000)
+})
+
+# Different encoding methods
+encodings = {
+    'One-Hot': OneHotEncoder(drop='first', sparse=False),
+    'Label': LabelEncoder(),
+    'Target': None  # Will implement manually
+}
+
+encoding_results = {}
+
+for name, encoder in encodings.items():
+    if name == 'One-Hot':
+        X_encoded = encoder.fit_transform(df_cat[['category']])
+        X_final = np.hstack([X_encoded, df_cat[['feature1']].values])
+    elif name == 'Label':
+        X_encoded = encoder.fit_transform(df_cat['category']).reshape(-1, 1)
+        X_final = np.hstack([X_encoded, df_cat[['feature1']].values])
+    else:  # Target encoding
+        target_mean = df_cat.groupby('category')['target'].mean()
+        X_encoded = df_cat['category'].map(target_mean).values.reshape(-1, 1)
+        X_final = np.hstack([X_encoded, df_cat[['feature1']].values])
+    
+    model = LogisticRegression(random_state=42, max_iter=1000)
+    scores = cross_val_score(model, X_final, df_cat['target'], cv=5)
+    encoding_results[name] = scores.mean()
+    print(f"{name:15s}: {scores.mean():.3f} (+/- {scores.std():.3f})")
+```
+
+---
+
+## Feature Engineering Best Practices
+
+### Do's
+
+- Start with domain knowledge
+- Create features that make sense
+- Handle missing values before feature engineering
+- Scale features appropriately
+- Use cross-validation for target encoding
+- Document all transformations
+- Test feature importance
+
+### Don'ts
+
+- Don't create too many features (curse of dimensionality)
+- Don't leak target information (data leakage)
+- Don't overfit to validation set
+- Don't ignore feature interactions
+- Don't forget to scale after transformation
+- Don't use test set for feature engineering decisions
 
 ---
 
 ## Key Takeaways
 
-1. **Feature selection**: Remove irrelevant features
-2. **Transformation**: Handle skewed data
-3. **Encoding**: Convert categorical to numeric
-4. **Scaling**: Required for distance-based algorithms
-5. **Domain knowledge**: Most valuable!
+1. **Feature selection**: Remove irrelevant features using filter, wrapper, or embedded methods
+2. **Transformation**: Handle skewed data with log, power, or other transformations
+3. **Encoding**: Convert categorical to numeric (one-hot, label, target encoding)
+4. **Scaling**: Required for distance-based algorithms (standardization, normalization, robust)
+5. **Dimensionality reduction**: Use PCA for high-dimensional data
+6. **Feature creation**: Domain knowledge is most valuable for creating features
+7. **Pipeline**: Use pipelines to automate feature engineering
+
+---
+
+## Resources and Further Learning
+
+### Books
+
+1. **"Feature Engineering for Machine Learning"** - Alice Zheng & Amanda Casari
+   - Comprehensive guide to feature engineering
+   - Practical examples and techniques
+
+2. **"Hands-On Machine Learning"** - Aurélien Géron
+   - [Book Website](https://github.com/ageron/handson-ml2)
+   - Chapter 2: End-to-End Machine Learning Project (includes feature engineering)
+
+3. **"The Art of Feature Engineering"** - Pablo Duboue
+   - Advanced feature engineering techniques
+
+### Important Papers
+
+1. **"A Few Useful Things to Know About Machine Learning"** - Domingos, 2012
+   - Emphasizes importance of feature engineering
+
+2. **"Feature Selection for High-Dimensional Data"** - Guyon & Elisseeff, 2003
+
+3. **"Target Encoding for Categorical Variables"** - Micci-Barreca, 2001
+
+### Online Courses
+
+1. **Feature Engineering** - Coursera (University of Washington)
+   - Part of Machine Learning Specialization
+   - Covers feature selection and transformation
+
+2. **Kaggle Learn: Feature Engineering**
+   - [Course Link](https://www.kaggle.com/learn/feature-engineering)
+   - Practical feature engineering techniques
+
+### Datasets
+
+1. **Kaggle Competitions**: Great for practicing feature engineering
+   - [House Prices](https://www.kaggle.com/c/house-prices-advanced-regression-techniques)
+   - [Titanic](https://www.kaggle.com/c/titanic)
+   - [Porto Seguro's Safe Driver Prediction](https://www.kaggle.com/c/porto-seguro-safe-driver-prediction)
+
+2. **UCI Machine Learning Repository**
+   - [Dataset Collection](https://archive.ics.uci.edu/ml/datasets.php)
+   - Various domains for practice
+
+### Tools and Libraries
+
+1. **scikit-learn**: Feature selection and transformation
+   - [Documentation](https://scikit-learn.org/)
+   - Feature selection, scaling, encoding
+
+2. **feature-engine**: Feature engineering library
+   - [Documentation](https://feature-engine.readthedocs.io/)
+   - Comprehensive feature engineering tools
+
+3. **category_encoders**: Categorical encoding
+   - [Documentation](https://contrib.scikit-learn.org/category_encoders/)
+   - Various encoding techniques
+
+4. **tsfresh**: Time series feature extraction
+   - [Documentation](https://tsfresh.readthedocs.io/)
+   - Automatic feature engineering for time series
 
 ---
 
@@ -317,7 +1575,8 @@ print("Lasso selected features:", feature_names[selected2])
 
 - Practice with real datasets
 - Experiment with different techniques
+- Learn domain-specific feature engineering
 - Move to [08-unsupervised-learning](../08-unsupervised-learning/README.md)
 
-**Remember**: Good features beat complex algorithms!
+**Remember**: Good features beat complex algorithms! Invest time in feature engineering.
 

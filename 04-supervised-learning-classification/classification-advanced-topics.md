@@ -1,63 +1,84 @@
 # Advanced Classification Topics
 
-Comprehensive guide to advanced classification techniques, handling imbalanced data, probability calibration, and model interpretation.
+Comprehensive guide to advanced classification techniques, handling imbalanced data, and best practices.
 
 ## Table of Contents
 
-- [Handling Imbalanced Datasets](#handling-imbalanced-datasets)
-- [Probability Calibration](#probability-calibration)
-- [Threshold Tuning](#threshold-tuning)
-- [Precision-Recall Curves](#precision-recall-curves)
+- [Handling Imbalanced Data](#handling-imbalanced-data)
+- [Feature Engineering for Classification](#feature-engineering-for-classification)
+- [Hyperparameter Tuning](#hyperparameter-tuning)
 - [Model Interpretation](#model-interpretation)
-- [Multiclass Classification Strategies](#multiclass-classification-strategies)
+- [Ensemble Methods for Classification](#ensemble-methods-for-classification)
+- [Handling Missing Values](#handling-missing-values)
 - [Common Classification Pitfalls](#common-classification-pitfalls)
 
 ---
 
-## Handling Imbalanced Datasets
+## Handling Imbalanced Data
 
-### What is Class Imbalance?
+### The Problem
 
-When classes are not equally represented in the dataset.
-
-**Example:**
-- 99% class A, 1% class B
-- Model predicts A all the time → 99% accuracy but useless!
-
-### Detecting Imbalance
+When classes are not equally represented, accuracy becomes misleading.
 
 ```python
-import pandas as pd
 import numpy as np
-from collections import Counter
+import pandas as pd
+from sklearn.datasets import make_classification
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import classification_report, confusion_matrix
 
-# Check class distribution
-class_counts = Counter(y_train)
-print("Class Distribution:")
-for class_label, count in class_counts.items():
-    percentage = count / len(y_train) * 100
-    print(f"  Class {class_label}: {count} ({percentage:.1f}%)")
+# Create imbalanced dataset (90% class 0, 10% class 1)
+X, y = make_classification(
+    n_samples=1000, 
+    n_classes=2, 
+    weights=[0.9, 0.1],
+    random_state=42
+)
 
-# Visualize
-import matplotlib.pyplot as plt
+print("Class distribution:")
+print(pd.Series(y).value_counts())
+print(f"\nBaseline (always predict majority): {max(pd.Series(y).value_counts()) / len(y):.3f}")
 
-plt.figure(figsize=(8, 6))
-pd.Series(y_train).value_counts().plot(kind='bar')
-plt.xlabel('Class')
-plt.ylabel('Count')
-plt.title('Class Distribution')
-plt.show()
+# Train model
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.2, random_state=42, stratify=y
+)
 
-# Calculate imbalance ratio
-minority_class = min(class_counts.values())
-majority_class = max(class_counts.values())
-imbalance_ratio = majority_class / minority_class
-print(f"\nImbalance Ratio: {imbalance_ratio:.1f}:1")
-if imbalance_ratio > 10:
-    print("Warning: Severe class imbalance!")
+model = LogisticRegression(random_state=42)
+model.fit(X_train, y_train)
+y_pred = model.predict(X_test)
+
+print("\nClassification Report (imbalanced):")
+print(classification_report(y_test, y_pred))
 ```
 
-### Strategy 1: Resampling
+### Solution 1: Class Weights
+
+Adjust weights to penalize misclassification of minority class.
+
+```python
+# Option 1: Balanced weights
+model_balanced = LogisticRegression(
+    class_weight='balanced',
+    random_state=42
+)
+model_balanced.fit(X_train, y_train)
+y_pred_balanced = model_balanced.predict(X_test)
+
+print("\nWith balanced class weights:")
+print(classification_report(y_test, y_pred_balanced))
+
+# Option 2: Custom weights
+model_custom = LogisticRegression(
+    class_weight={0: 1, 1: 10},  # Penalize class 1 misclassification 10x more
+    random_state=42
+)
+model_custom.fit(X_train, y_train)
+y_pred_custom = model_custom.predict(X_test)
+```
+
+### Solution 2: Resampling
 
 #### Oversampling (SMOTE)
 
@@ -69,13 +90,14 @@ smote = SMOTE(random_state=42)
 X_resampled, y_resampled = smote.fit_resample(X_train, y_train)
 
 print("After SMOTE:")
-print(f"  Original shape: {X_train.shape}")
-print(f"  Resampled shape: {X_resampled.shape}")
-print(f"  Class distribution: {Counter(y_resampled)}")
+print(pd.Series(y_resampled).value_counts())
 
-# Train on resampled data
-model = LogisticRegression()
-model.fit(X_resampled, y_resampled)
+model_smote = LogisticRegression(random_state=42)
+model_smote.fit(X_resampled, y_resampled)
+y_pred_smote = model_smote.predict(X_test)
+
+print("\nWith SMOTE:")
+print(classification_report(y_test, y_pred_smote))
 ```
 
 #### Undersampling
@@ -85,451 +107,416 @@ from imblearn.under_sampling import RandomUnderSampler, TomekLinks
 
 # Random undersampling
 undersampler = RandomUnderSampler(random_state=42)
-X_resampled, y_resampled = undersampler.fit_resample(X_train, y_train)
+X_under, y_under = undersampler.fit_resample(X_train, y_train)
 
-# Tomek Links (removes borderline samples)
-tomek = TomekLinks()
-X_resampled, y_resampled = tomek.fit_resample(X_train, y_train)
+print("After undersampling:")
+print(pd.Series(y_under).value_counts())
 ```
 
-#### Combined Sampling
+#### Combined (SMOTE + Tomek Links)
 
 ```python
-from imblearn.combine import SMOTETomek, SMOTEENN
+from imblearn.combine import SMOTETomek
 
-# SMOTE + Tomek Links
+# Combine oversampling and undersampling
 smote_tomek = SMOTETomek(random_state=42)
-X_resampled, y_resampled = smote_tomek.fit_resample(X_train, y_train)
+X_combined, y_combined = smote_tomek.fit_resample(X_train, y_train)
+
+print("After SMOTE + Tomek Links:")
+print(pd.Series(y_combined).value_counts())
 ```
 
-### Strategy 2: Class Weights
+### Solution 3: Threshold Tuning
+
+Adjust decision threshold instead of default 0.5.
 
 ```python
-# Option 1: Balanced weights (automatic)
-model = LogisticRegression(class_weight='balanced')
-model.fit(X_train, y_train)
-
-# Option 2: Custom weights
-class_weights = {0: 1.0, 1: 10.0}  # Penalize class 1 misclassification more
-model = LogisticRegression(class_weight=class_weights)
-model.fit(X_train, y_train)
-
-# Option 3: Calculate weights inversely proportional to frequency
-from sklearn.utils.class_weight import compute_class_weight
-
-classes = np.unique(y_train)
-weights = compute_class_weight('balanced', classes=classes, y=y_train)
-class_weight_dict = dict(zip(classes, weights))
-print(f"Class weights: {class_weight_dict}")
-
-model = LogisticRegression(class_weight=class_weight_dict)
-model.fit(X_train, y_train)
-```
-
-### Strategy 3: Threshold Tuning
-
-```python
-# Instead of default 0.5 threshold, find optimal threshold
-from sklearn.metrics import f1_score
+from sklearn.metrics import precision_recall_curve
 
 # Get probabilities
 y_pred_proba = model.predict_proba(X_test)[:, 1]
 
-# Try different thresholds
-thresholds = np.arange(0.1, 0.9, 0.05)
-f1_scores = []
+# Find optimal threshold
+precision, recall, thresholds = precision_recall_curve(y_test, y_pred_proba)
 
-for threshold in thresholds:
-    y_pred_thresh = (y_pred_proba >= threshold).astype(int)
-    f1 = f1_score(y_test, y_pred_thresh)
-    f1_scores.append(f1)
+# Find threshold that maximizes F1-score
+f1_scores = 2 * (precision * recall) / (precision + recall)
+optimal_idx = np.argmax(f1_scores)
+optimal_threshold = thresholds[optimal_idx]
 
-# Find best threshold
-best_threshold = thresholds[np.argmax(f1_scores)]
-print(f"Best threshold: {best_threshold:.2f}")
-print(f"Best F1-score: {max(f1_scores):.3f}")
+print(f"Optimal threshold: {optimal_threshold:.3f}")
 
-# Use best threshold
-y_pred_optimal = (y_pred_proba >= best_threshold).astype(int)
+# Use optimal threshold
+y_pred_optimal = (y_pred_proba >= optimal_threshold).astype(int)
+
+print("\nWith optimal threshold:")
+print(classification_report(y_test, y_pred_optimal))
 ```
 
-### Strategy 4: Ensemble Methods
+### Comparison of Methods
 
 ```python
-from imblearn.ensemble import BalancedRandomForestClassifier, BalancedBaggingClassifier
-
-# Balanced Random Forest
-balanced_rf = BalancedRandomForestClassifier(n_estimators=100, random_state=42)
-balanced_rf.fit(X_train, y_train)
-
-# Balanced Bagging
-balanced_bag = BalancedBaggingClassifier(random_state=42)
-balanced_bag.fit(X_train, y_train)
-```
-
-### Comparison of Strategies
-
-```python
-from sklearn.metrics import classification_report, roc_auc_score
-
-strategies = {
-    'Original (No handling)': (X_train, y_train, LogisticRegression()),
-    'SMOTE': (X_resampled_smote, y_resampled_smote, LogisticRegression()),
-    'Class Weights': (X_train, y_train, LogisticRegression(class_weight='balanced')),
-    'Balanced RF': (X_train, y_train, BalancedRandomForestClassifier())
+methods = {
+    'Baseline': model,
+    'Class Weights': model_balanced,
+    'SMOTE': model_smote
 }
 
 results = {}
-for name, (X_tr, y_tr, model) in strategies.items():
-    model.fit(X_tr, y_tr)
-    y_pred = model.predict(X_test)
-    y_pred_proba = model.predict_proba(X_test)[:, 1]
+for name, model_method in methods.items():
+    if name == 'SMOTE':
+        y_pred_method = model_method.predict(X_test)
+    else:
+        y_pred_method = model_method.predict(X_test)
     
-    f1 = f1_score(y_test, y_pred)
-    auc = roc_auc_score(y_test, y_pred_proba)
-    
-    results[name] = {'F1': f1, 'AUC': auc}
-    print(f"\n{name}:")
-    print(f"  F1-Score: {f1:.3f}")
-    print(f"  ROC-AUC: {auc:.3f}")
+    from sklearn.metrics import f1_score
+    f1 = f1_score(y_test, y_pred_method)
+    results[name] = f1
+    print(f"{name:15s}: F1-Score = {f1:.3f}")
 ```
 
 ---
 
-## Probability Calibration
+## Feature Engineering for Classification
 
-### What is Calibration?
-
-Well-calibrated probabilities mean: if model predicts 80% probability, it should be correct 80% of the time.
-
-### Checking Calibration
+### Creating Interaction Features
 
 ```python
-from sklearn.calibration import calibration_curve
+from sklearn.preprocessing import PolynomialFeatures
+from sklearn.preprocessing import StandardScaler
 
-# Get predicted probabilities
-y_pred_proba = model.predict_proba(X_test)[:, 1]
+# Create polynomial features
+poly = PolynomialFeatures(degree=2, interaction_only=True, include_bias=False)
+X_poly = poly.fit_transform(X_train)
 
-# Calculate calibration curve
-fraction_of_positives, mean_predicted_value = calibration_curve(
-    y_test, y_pred_proba, n_bins=10
+print(f"Original features: {X_train.shape[1]}")
+print(f"Polynomial features: {X_poly.shape[1]}")
+```
+
+### Binning Continuous Features
+
+```python
+import pandas as pd
+
+# Create bins for continuous features
+df = pd.DataFrame(X_train, columns=[f'feature_{i}' for i in range(X_train.shape[1])])
+df['target'] = y_train
+
+# Bin a feature
+df['feature_0_binned'] = pd.cut(df['feature_0'], bins=5, labels=['Very Low', 'Low', 'Medium', 'High', 'Very High'])
+
+# One-hot encode bins
+df_encoded = pd.get_dummies(df, columns=['feature_0_binned'])
+```
+
+### Feature Selection
+
+```python
+from sklearn.feature_selection import SelectKBest, f_classif, chi2
+from sklearn.feature_selection import RFE
+from sklearn.ensemble import RandomForestClassifier
+
+# Method 1: Univariate feature selection
+selector = SelectKBest(score_func=f_classif, k=5)
+X_selected = selector.fit_transform(X_train, y_train)
+
+# Method 2: Recursive Feature Elimination
+rf = RandomForestClassifier(n_estimators=100, random_state=42)
+rfe = RFE(estimator=rf, n_features_to_select=5)
+X_rfe = rfe.fit_transform(X_train, y_train)
+
+# Method 3: Feature importance from Random Forest
+rf.fit(X_train, y_train)
+feature_importance = pd.DataFrame({
+    'feature': range(X_train.shape[1]),
+    'importance': rf.feature_importances_
+}).sort_values('importance', ascending=False)
+
+print("Top 5 features:")
+print(feature_importance.head())
+```
+
+---
+
+## Hyperparameter Tuning
+
+### Grid Search
+
+```python
+from sklearn.model_selection import GridSearchCV
+from sklearn.ensemble import RandomForestClassifier
+
+# Define parameter grid
+param_grid = {
+    'n_estimators': [50, 100, 200],
+    'max_depth': [5, 10, 20, None],
+    'min_samples_split': [2, 5, 10],
+    'min_samples_leaf': [1, 2, 4]
+}
+
+# Create model
+rf = RandomForestClassifier(random_state=42)
+
+# Grid search with cross-validation
+grid_search = GridSearchCV(
+    rf, 
+    param_grid, 
+    cv=5, 
+    scoring='f1',  # Use F1 for imbalanced data
+    n_jobs=-1,
+    verbose=1
 )
 
-# Plot
-plt.figure(figsize=(10, 6))
-plt.plot(mean_predicted_value, fraction_of_positives, 's-', label='Model')
-plt.plot([0, 1], [0, 1], 'k--', label='Perfectly Calibrated')
-plt.xlabel('Mean Predicted Probability')
-plt.ylabel('Fraction of Positives')
-plt.title('Calibration Curve')
-plt.legend()
-plt.grid(True)
-plt.show()
+grid_search.fit(X_train, y_train)
+
+print(f"Best parameters: {grid_search.best_params_}")
+print(f"Best score: {grid_search.best_score_:.3f}")
+
+# Use best model
+best_model = grid_search.best_estimator_
+y_pred = best_model.predict(X_test)
 ```
 
-### Calibrating Probabilities
+### Random Search
 
 ```python
-from sklearn.calibration import CalibratedClassifierCV
+from sklearn.model_selection import RandomizedSearchCV
+from scipy.stats import randint, uniform
 
-# Platt Scaling (sigmoid calibration)
-calibrated_model = CalibratedClassifierCV(model, method='sigmoid', cv=3)
-calibrated_model.fit(X_train, y_train)
-
-# Isotonic Regression (non-parametric)
-calibrated_model_iso = CalibratedClassifierCV(model, method='isotonic', cv=3)
-calibrated_model_iso.fit(X_train, y_train)
-
-# Compare
-models_to_compare = {
-    'Original': model,
-    'Platt Scaling': calibrated_model,
-    'Isotonic': calibrated_model_iso
+# Define parameter distributions
+param_dist = {
+    'n_estimators': randint(50, 300),
+    'max_depth': randint(5, 30),
+    'min_samples_split': randint(2, 20),
+    'min_samples_leaf': randint(1, 10)
 }
 
-for name, mod in models_to_compare.items():
-    y_proba = mod.predict_proba(X_test)[:, 1]
-    fraction_pos, mean_pred = calibration_curve(y_test, y_proba, n_bins=10)
-    
-    # Calculate Brier score (lower is better)
-    from sklearn.metrics import brier_score_loss
-    brier = brier_score_loss(y_test, y_proba)
-    print(f"{name}: Brier Score = {brier:.4f}")
+# Random search
+random_search = RandomizedSearchCV(
+    rf,
+    param_distributions=param_dist,
+    n_iter=50,  # Number of iterations
+    cv=5,
+    scoring='f1',
+    n_jobs=-1,
+    random_state=42
+)
+
+random_search.fit(X_train, y_train)
+print(f"Best parameters: {random_search.best_params_}")
 ```
 
----
-
-## Threshold Tuning
-
-### Why Tune Threshold?
-
-Default 0.5 threshold may not be optimal for your problem.
-
-### Finding Optimal Threshold
+### Bayesian Optimization
 
 ```python
-from sklearn.metrics import precision_recall_curve, f1_score
+# Using scikit-optimize (install: pip install scikit-optimize)
+from skopt import gp_minimize
+from skopt.space import Integer, Real
+from skopt.utils import use_named_args
 
-# Get probabilities
-y_pred_proba = model.predict_proba(X_test)[:, 1]
+# Define search space
+space = [
+    Integer(50, 300, name='n_estimators'),
+    Integer(5, 30, name='max_depth'),
+    Integer(2, 20, name='min_samples_split'),
+    Integer(1, 10, name='min_samples_leaf')
+]
 
-# Calculate precision, recall at different thresholds
-precision, recall, thresholds = precision_recall_curve(y_test, y_pred_proba)
+# Objective function
+@use_named_args(space=space)
+def objective(**params):
+    rf = RandomForestClassifier(**params, random_state=42)
+    scores = cross_val_score(rf, X_train, y_train, cv=5, scoring='f1')
+    return -scores.mean()  # Minimize negative F1
 
-# Calculate F1 at each threshold
-f1_scores = 2 * (precision * recall) / (precision + recall)
-f1_scores = f1_scores[:-1]  # Remove last (undefined)
-
-# Find threshold with best F1
-best_threshold_idx = np.argmax(f1_scores)
-best_threshold = thresholds[best_threshold_idx]
-best_f1 = f1_scores[best_threshold_idx]
-
-print(f"Best Threshold: {best_threshold:.3f}")
-print(f"Best F1-Score: {best_f1:.3f}")
-
-# Plot
-plt.figure(figsize=(12, 5))
-
-plt.subplot(1, 2, 1)
-plt.plot(thresholds, precision[:-1], label='Precision')
-plt.plot(thresholds, recall[:-1], label='Recall')
-plt.plot(thresholds, f1_scores, label='F1-Score')
-plt.axvline(x=best_threshold, color='r', linestyle='--', label=f'Best Threshold')
-plt.xlabel('Threshold')
-plt.ylabel('Score')
-plt.title('Precision, Recall, F1 vs Threshold')
-plt.legend()
-plt.grid(True)
-
-plt.subplot(1, 2, 2)
-plt.plot(recall[:-1], precision[:-1])
-plt.xlabel('Recall')
-plt.ylabel('Precision')
-plt.title('Precision-Recall Curve')
-plt.grid(True)
-
-plt.tight_layout()
-plt.show()
-```
-
-### Business-Cost Based Threshold
-
-```python
-# If false negatives cost more than false positives
-# Example: Medical diagnosis - missing disease is worse than false alarm
-
-cost_fp = 1.0  # Cost of false positive
-cost_fn = 10.0  # Cost of false negative (10x more expensive)
-
-# Calculate cost at each threshold
-costs = []
-for threshold in thresholds:
-    y_pred_thresh = (y_pred_proba >= threshold).astype(int)
-    
-    # Confusion matrix
-    tn = np.sum((y_test == 0) & (y_pred_thresh == 0))
-    fp = np.sum((y_test == 0) & (y_pred_thresh == 1))
-    fn = np.sum((y_test == 1) & (y_pred_thresh == 0))
-    tp = np.sum((y_test == 1) & (y_pred_thresh == 1))
-    
-    total_cost = fp * cost_fp + fn * cost_fn
-    costs.append(total_cost)
-
-# Find threshold with minimum cost
-best_cost_threshold = thresholds[np.argmin(costs)]
-print(f"Optimal threshold (cost-based): {best_cost_threshold:.3f}")
-print(f"Minimum cost: {min(costs):.2f}")
-```
-
----
-
-## Precision-Recall Curves
-
-### When to Use PR Curve vs ROC Curve
-
-- **ROC Curve**: Use when classes are balanced
-- **PR Curve**: Use when classes are imbalanced (more informative)
-
-### PR Curve
-
-```python
-from sklearn.metrics import precision_recall_curve, average_precision_score
-
-# Calculate PR curve
-precision, recall, thresholds = precision_recall_curve(y_test, y_pred_proba)
-average_precision = average_precision_score(y_test, y_pred_proba)
-
-# Plot
-plt.figure(figsize=(8, 6))
-plt.plot(recall, precision, label=f'PR Curve (AP = {average_precision:.3f})')
-plt.xlabel('Recall')
-plt.ylabel('Precision')
-plt.title('Precision-Recall Curve')
-plt.legend()
-plt.grid(True)
-plt.show()
-
-print(f"Average Precision: {average_precision:.3f}")
-
-# Interpretation:
-# - AP = 1.0: Perfect classifier
-# - AP = 0.5: Random classifier
-# - Higher is better
-```
-
-### Comparing Multiple Models
-
-```python
-models = {
-    'Logistic Regression': LogisticRegression(),
-    'Random Forest': RandomForestClassifier(n_estimators=100),
-    'SVM': SVC(probability=True)
-}
-
-plt.figure(figsize=(10, 6))
-
-for name, mod in models.items():
-    mod.fit(X_train, y_train)
-    y_proba = mod.predict_proba(X_test)[:, 1]
-    
-    precision, recall, _ = precision_recall_curve(y_test, y_proba)
-    ap = average_precision_score(y_test, y_proba)
-    
-    plt.plot(recall, precision, label=f'{name} (AP = {ap:.3f})')
-
-plt.xlabel('Recall')
-plt.ylabel('Precision')
-plt.title('Precision-Recall Curves Comparison')
-plt.legend()
-plt.grid(True)
-plt.show()
+# Optimize
+result = gp_minimize(objective, space, n_calls=50, random_state=42)
+print(f"Best parameters: {result.x}")
 ```
 
 ---
 
 ## Model Interpretation
 
-### Feature Importance (Tree-based)
+### Feature Importance
 
 ```python
+import matplotlib.pyplot as plt
+
 # Random Forest feature importance
 rf = RandomForestClassifier(n_estimators=100, random_state=42)
 rf.fit(X_train, y_train)
 
 feature_importance = pd.DataFrame({
-    'Feature': feature_names,
-    'Importance': rf.feature_importances_
-}).sort_values('Importance', ascending=False)
-
-print("Feature Importance:")
-print(feature_importance)
+    'feature': [f'Feature {i}' for i in range(X_train.shape[1])],
+    'importance': rf.feature_importances_
+}).sort_values('importance', ascending=False)
 
 # Visualize
 plt.figure(figsize=(10, 6))
-plt.barh(feature_importance['Feature'], feature_importance['Importance'])
+plt.barh(feature_importance['feature'], feature_importance['importance'])
 plt.xlabel('Importance')
-plt.title('Feature Importance (Random Forest)')
+plt.title('Feature Importance')
+plt.gca().invert_yaxis()
 plt.tight_layout()
 plt.show()
 ```
 
-### Coefficient Interpretation (Logistic Regression)
-
-```python
-# Logistic regression coefficients
-lr = LogisticRegression()
-lr.fit(X_train_scaled, y_train)
-
-coefficients = pd.DataFrame({
-    'Feature': feature_names,
-    'Coefficient': lr.coef_[0],
-    'Odds Ratio': np.exp(lr.coef_[0])
-}).sort_values('Coefficient', ascending=False)
-
-print("Logistic Regression Coefficients:")
-print(coefficients)
-
-# Interpretation:
-# - Positive coefficient: Feature increases probability of positive class
-# - Negative coefficient: Feature decreases probability
-# - Odds Ratio > 1: Increases odds
-# - Odds Ratio < 1: Decreases odds
-```
-
-### SHAP Values (Advanced)
+### SHAP Values
 
 ```python
 # Install: pip install shap
-try:
-    import shap
-    
-    # Tree explainer for Random Forest
-    explainer = shap.TreeExplainer(rf)
-    shap_values = explainer.shap_values(X_test)
-    
-    # Summary plot
-    shap.summary_plot(shap_values, X_test, feature_names=feature_names)
-    
-    # Waterfall plot for single prediction
-    shap.waterfall_plot(explainer.expected_value[1], shap_values[1][0], X_test.iloc[0])
-except ImportError:
-    print("SHAP not installed. Install with: pip install shap")
+import shap
+
+# Train model
+rf = RandomForestClassifier(n_estimators=100, random_state=42)
+rf.fit(X_train, y_train)
+
+# Create SHAP explainer
+explainer = shap.TreeExplainer(rf)
+shap_values = explainer.shap_values(X_test[:100])  # Use subset for speed
+
+# Summary plot
+shap.summary_plot(shap_values, X_test[:100], plot_type="bar")
+```
+
+### Permutation Importance
+
+```python
+from sklearn.inspection import permutation_importance
+
+# Calculate permutation importance
+perm_importance = permutation_importance(
+    rf, X_test, y_test, 
+    n_repeats=10, 
+    random_state=42,
+    scoring='f1'
+)
+
+# Visualize
+sorted_idx = perm_importance.importances_mean.argsort()
+plt.figure(figsize=(10, 6))
+plt.barh(range(len(sorted_idx)), perm_importance.importances_mean[sorted_idx])
+plt.yticks(range(len(sorted_idx)), [f'Feature {i}' for i in sorted_idx])
+plt.xlabel('Permutation Importance')
+plt.title('Permutation Feature Importance')
+plt.tight_layout()
+plt.show()
 ```
 
 ---
 
-## Multiclass Classification Strategies
+## Ensemble Methods for Classification
 
-### One-vs-Rest (OvR)
+### Voting Classifier
 
 ```python
-# Automatically used by most sklearn classifiers
-model = LogisticRegression(multi_class='ovr')  # One-vs-Rest
-model.fit(X_train, y_train)
+from sklearn.ensemble import VotingClassifier
 
-# Creates one binary classifier per class
-# Each classifier: one class vs all others
+# Combine multiple models
+voting_clf = VotingClassifier(
+    estimators=[
+        ('lr', LogisticRegression(random_state=42)),
+        ('rf', RandomForestClassifier(n_estimators=100, random_state=42)),
+        ('svm', SVC(probability=True, random_state=42))
+    ],
+    voting='soft'  # Use probabilities
+)
+
+voting_clf.fit(X_train, y_train)
+y_pred_voting = voting_clf.predict(X_test)
+
+print("Voting Classifier:")
+print(classification_report(y_test, y_pred_voting))
 ```
 
-### One-vs-One (OvO)
+### Stacking
 
 ```python
-from sklearn.multiclass import OneVsOneClassifier
+from sklearn.ensemble import StackingClassifier
 
-# One-vs-One strategy
-ovo = OneVsOneClassifier(LogisticRegression())
-ovo.fit(X_train, y_train)
+# Stacking with meta-learner
+stacking_clf = StackingClassifier(
+    estimators=[
+        ('lr', LogisticRegression(random_state=42)),
+        ('rf', RandomForestClassifier(n_estimators=100, random_state=42)),
+        ('svm', SVC(probability=True, random_state=42))
+    ],
+    final_estimator=LogisticRegression(random_state=42),
+    cv=5
+)
 
-# Creates binary classifier for each pair of classes
-# More classifiers but potentially more accurate
+stacking_clf.fit(X_train, y_train)
+y_pred_stacking = stacking_clf.predict(X_test)
+
+print("Stacking Classifier:")
+print(classification_report(y_test, y_pred_stacking))
 ```
 
-### Multinomial (Softmax)
+### Boosting (XGBoost, LightGBM)
 
 ```python
-# Direct multiclass (for Logistic Regression)
-model = LogisticRegression(multi_class='multinomial', solver='lbfgs')
-model.fit(X_train, y_train)
+# XGBoost
+try:
+    import xgboost as xgb
+    
+    xgb_clf = xgb.XGBClassifier(
+        n_estimators=100,
+        max_depth=5,
+        learning_rate=0.1,
+        random_state=42
+    )
+    xgb_clf.fit(X_train, y_train)
+    y_pred_xgb = xgb_clf.predict(X_test)
+    print("XGBoost:")
+    print(classification_report(y_test, y_pred_xgb))
+except ImportError:
+    print("Install XGBoost: pip install xgboost")
 
-# Uses softmax function
-# Directly models all classes together
+# LightGBM
+try:
+    import lightgbm as lgb
+    
+    lgb_clf = lgb.LGBMClassifier(
+        n_estimators=100,
+        max_depth=5,
+        learning_rate=0.1,
+        random_state=42
+    )
+    lgb_clf.fit(X_train, y_train)
+    y_pred_lgb = lgb_clf.predict(X_test)
+    print("LightGBM:")
+    print(classification_report(y_test, y_pred_lgb))
+except ImportError:
+    print("Install LightGBM: pip install lightgbm")
 ```
 
-### Comparison
+---
+
+## Handling Missing Values
+
+### Strategies
 
 ```python
-strategies = {
-    'One-vs-Rest': LogisticRegression(multi_class='ovr'),
-    'One-vs-One': OneVsOneClassifier(LogisticRegression()),
-    'Multinomial': LogisticRegression(multi_class='multinomial', solver='lbfgs')
-}
+from sklearn.impute import SimpleImputer, KNNImputer
 
-for name, model in strategies.items():
-    model.fit(X_train, y_train)
-    y_pred = model.predict(X_test)
-    accuracy = accuracy_score(y_test, y_pred)
-    print(f"{name}: Accuracy = {accuracy:.3f}")
+# Strategy 1: Mean/Median/Mode imputation
+imputer_mean = SimpleImputer(strategy='mean')
+X_train_imputed = imputer_mean.fit_transform(X_train)
+X_test_imputed = imputer_mean.transform(X_test)
+
+# Strategy 2: KNN imputation
+knn_imputer = KNNImputer(n_neighbors=5)
+X_train_knn = knn_imputer.fit_transform(X_train)
+X_test_knn = knn_imputer.transform(X_test)
+
+# Strategy 3: Indicator variable
+from sklearn.compose import ColumnTransformer
+from sklearn.pipeline import Pipeline
+
+# Create indicator for missing values
+imputer = SimpleImputer(strategy='mean', add_indicator=True)
+X_train_with_indicator = imputer.fit_transform(X_train)
 ```
 
 ---
@@ -538,55 +525,77 @@ for name, model in strategies.items():
 
 ### Pitfall 1: Using Accuracy for Imbalanced Data
 
-**Problem**: 99% accuracy on 99:1 imbalanced data is misleading.
+```python
+# Bad: Using accuracy
+accuracy = accuracy_score(y_test, y_pred)
+print(f"Accuracy: {accuracy:.3f}")  # Misleading!
 
-**Solution**: Use Precision, Recall, F1, ROC-AUC, or PR-AUC.
+# Good: Use F1, Precision, Recall
+f1 = f1_score(y_test, y_pred)
+precision = precision_score(y_test, y_pred)
+recall = recall_score(y_test, y_pred)
+print(f"F1: {f1:.3f}, Precision: {precision:.3f}, Recall: {recall:.3f}")
+```
 
-### Pitfall 2: Not Tuning Threshold
+### Pitfall 2: Data Leakage
 
-**Problem**: Default 0.5 threshold may not be optimal.
+```python
+# Bad: Scaling before train-test split
+scaler = StandardScaler()
+X_scaled = scaler.fit_transform(X)  # Uses test data!
+X_train, X_test, y_train, y_test = train_test_split(X_scaled, y)
 
-**Solution**: Tune threshold based on business costs or F1-score.
+# Good: Scale after split
+X_train, X_test, y_train, y_test = train_test_split(X, y)
+scaler = StandardScaler()
+X_train_scaled = scaler.fit_transform(X_train)
+X_test_scaled = scaler.transform(X_test)  # Only transform, don't fit!
+```
 
-### Pitfall 3: Ignoring Probability Calibration
+### Pitfall 3: Not Using Cross-Validation
 
-**Problem**: Probabilities may not be well-calibrated.
+```python
+# Bad: Single train-test split
+model.fit(X_train, y_train)
+score = model.score(X_test, y_test)
 
-**Solution**: Use CalibratedClassifierCV.
+# Good: Cross-validation
+scores = cross_val_score(model, X_train, y_train, cv=5)
+print(f"Mean CV score: {scores.mean():.3f} (+/- {scores.std():.3f})")
+```
 
-### Pitfall 4: Overfitting on Minority Class
+### Pitfall 4: Ignoring Class Imbalance
 
-**Problem**: SMOTE can create overfitting if used incorrectly.
+```python
+# Bad: Default model on imbalanced data
+model = LogisticRegression()
+model.fit(X_train, y_train)
 
-**Solution**: Apply SMOTE only on training set, not validation/test.
-
-### Pitfall 5: Wrong Evaluation Metric
-
-**Problem**: Using wrong metric for problem type.
-
-**Solution**:
-- Medical diagnosis: High Recall (don't miss cases)
-- Spam detection: High Precision (don't mark real emails as spam)
-- General: F1-Score or ROC-AUC
-
-### Pitfall 6: Data Leakage in Resampling
-
-**Problem**: Resampling before train/test split.
-
-**Solution**: Always split first, then resample only training data.
+# Good: Handle imbalance
+model = LogisticRegression(class_weight='balanced')
+# OR use resampling
+# OR use appropriate metrics
+```
 
 ---
 
 ## Key Takeaways
 
-1. **Imbalanced Data**: Use appropriate metrics, resampling, or class weights
-2. **Threshold Tuning**: Find optimal threshold for your problem
-3. **Probability Calibration**: Ensure probabilities are meaningful
-4. **PR Curves**: Better than ROC for imbalanced data
-5. **Model Interpretation**: Understand what features matter
-6. **Multiclass Strategies**: Choose appropriate strategy
+1. **Imbalanced Data**: Use class weights, resampling, or threshold tuning
+2. **Feature Engineering**: Create meaningful features, select important ones
+3. **Hyperparameter Tuning**: Use grid search, random search, or Bayesian optimization
+4. **Model Interpretation**: Understand feature importance and predictions
+5. **Ensemble Methods**: Combine models for better performance
+6. **Avoid Pitfalls**: Don't use accuracy for imbalanced data, avoid data leakage
 
 ---
 
-**Remember**: Classification requires careful handling of class imbalance and appropriate evaluation metrics!
+## Next Steps
+
+- Practice with real imbalanced datasets
+- Experiment with different resampling techniques
+- Learn about model interpretability tools (SHAP, LIME)
+- Move to ensemble methods module
+
+**Remember**: Classification is more than just accuracy - understand your data and use appropriate metrics!
 

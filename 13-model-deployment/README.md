@@ -48,7 +48,7 @@ Learn to deploy machine learning models to production.
 ### 5. Model Serving
 - **Batch Inference**: Process in batches
 - **Real-time Inference**: Low latency
-- **A/B Testing**: Compare model versions
+- **A/B Testing**: Compare model versions (statistical significance, multi-armed bandits, sequential testing)
 - **Canary Deployments**: Gradual rollout
 
 ### 6. Model Monitoring
@@ -125,6 +125,11 @@ By the end of this module, you should be able to:
 - [ML Deployment (Sentdex)](https://www.youtube.com/playlist?list=PLQVvvaa0QuDfKTOs3Keq_kaG2P55YRn5v)
 
 **[Complete Detailed Guide →](deployment.md)**
+
+**Additional Resources:**
+- [Advanced Topics →](deployment-advanced-topics.md) - Advanced deployment patterns, Kubernetes, edge deployment
+- [Project Tutorial →](deployment-project-tutorial.md) - Step-by-step model deployment project
+- [Quick Reference →](deployment-quick-reference.md) - Quick lookup guide for model deployment
 
 ---
 

@@ -99,6 +99,11 @@ By the end of this module, you should be able to:
 
 **[Complete Detailed Guide →](neural-networks.md)**
 
+**Additional Resources:**
+- [Advanced Topics →](neural-networks-advanced-topics.md) - Advanced architectures, optimization, regularization
+- [Project Tutorial →](neural-networks-project-tutorial.md) - Step-by-step neural network from scratch
+- [Quick Reference →](neural-networks-quick-reference.md) - Quick lookup guide for neural networks
+
 ---
 
 **Previous Phase:** [08-unsupervised-learning](../08-unsupervised-learning/README.md)  

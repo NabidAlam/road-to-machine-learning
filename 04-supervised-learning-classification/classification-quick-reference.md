@@ -7,7 +7,6 @@ Quick reference for classification algorithms, metrics, and best practices.
 - [Algorithm Selection](#algorithm-selection)
 - [Code Snippets](#code-snippets)
 - [Evaluation Metrics](#evaluation-metrics)
-- [Handling Imbalanced Data](#handling-imbalanced-data)
 - [Common Issues & Solutions](#common-issues--solutions)
 - [Best Practices Checklist](#best-practices-checklist)
 
@@ -20,57 +19,57 @@ Quick reference for classification algorithms, metrics, and best practices.
 ```
 Need to classify into categories?
 │
-├─ Binary or Multi-class?
-│  ├─ Binary → Continue
-│  └─ Multi-class → Continue (most algorithms handle both)
-│
 ├─ Need interpretability?
 │  ├─ YES → Logistic Regression or Decision Tree
 │  └─ NO → Continue
 │
-├─ Linear decision boundary?
-│  ├─ YES → Logistic Regression or Linear SVM
-│  └─ NO → Continue
-│
-├─ Need best performance?
-│  ├─ YES → Random Forest or XGBoost
-│  └─ NO → Continue
-│
-├─ Small dataset?
+├─ Small dataset (< 10K samples)?
 │  ├─ YES → SVM or KNN
-│  └─ NO → Random Forest
+│  └─ NO → Random Forest or XGBoost
 │
-└─ Text data?
-   └─ YES → Naive Bayes or Neural Networks
+├─ Need probabilities?
+│  ├─ YES → Logistic Regression or Random Forest
+│  └─ NO → SVM or Decision Tree
+│
+├─ Imbalanced data?
+│  ├─ YES → Use class weights or resampling
+│  └─ NO → Continue
+│
+└─ Non-linear relationships?
+   ├─ YES → Random Forest, SVM, or KNN
+   └─ NO → Logistic Regression
 ```
 
 ### Algorithm Comparison
 
 | Algorithm | When to Use | Pros | Cons | Code |
 |-----------|-------------|------|------|------|
-| **Logistic Regression** | Baseline, interpretable | Simple, fast, interpretable | Assumes linearity | `LogisticRegression()` |
-| **Decision Tree** | Need interpretability | Very interpretable, handles non-linearity | Prone to overfitting | `DecisionTreeClassifier()` |
-| **Random Forest** | General purpose | Good performance, robust | Less interpretable | `RandomForestClassifier()` |
-| **SVM** | Small-medium datasets | Effective, handles non-linearity | Slow on large data | `SVC(kernel='rbf')` |
-| **KNN** | Local patterns | Simple, no training | Slow prediction | `KNeighborsClassifier()` |
-| **Naive Bayes** | Text classification | Fast, many features | Assumes independence | `MultinomialNB()` |
+| **Logistic Regression** | Linear relationships, interpretability | Fast, interpretable, probabilities | Assumes linearity | `LogisticRegression()` |
+| **Decision Trees** | Non-linear, interpretability needed | Interpretable, no scaling needed | Prone to overfitting | `DecisionTreeClassifier()` |
+| **Random Forests** | General purpose, robust | Handles overfitting, feature importance | Less interpretable, slower | `RandomForestClassifier()` |
+| **SVM** | Complex boundaries, small datasets | Effective for non-linear, good generalization | Slow for large datasets, memory intensive | `SVC()` |
+| **KNN** | Non-linear, small datasets | Simple, no assumptions | Slow for large datasets, sensitive to scale | `KNeighborsClassifier()` |
+| **XGBoost** | Large datasets, high performance | Very accurate, handles missing values | Complex, many hyperparameters | `XGBClassifier()` |
+| **Naive Bayes** | Text classification, small datasets | Fast, works well with few samples | Assumes feature independence | `GaussianNB()`, `MultinomialNB()`, `BernoulliNB()` |
 
 ---
 
 ## Code Snippets
 
-### Basic Classification
+### Basic Classification Pipeline
 
 ```python
-from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
+from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score, classification_report
 
 # Split data
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, stratify=y)
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.2, random_state=42, stratify=y
+)
 
-# Scale (for logistic regression, SVM)
+# Scale features (for Logistic Regression, SVM, KNN)
 scaler = StandardScaler()
 X_train_scaled = scaler.fit_transform(X_train)
 X_test_scaled = scaler.transform(X_test)
@@ -81,10 +80,10 @@ model.fit(X_train_scaled, y_train)
 
 # Predict
 y_pred = model.predict(X_test_scaled)
-y_pred_proba = model.predict_proba(X_test_scaled)
 
 # Evaluate
 accuracy = accuracy_score(y_test, y_pred)
+print(f"Accuracy: {accuracy:.3f}")
 print(classification_report(y_test, y_pred))
 ```
 
@@ -93,57 +92,76 @@ print(classification_report(y_test, y_pred))
 ```python
 from sklearn.linear_model import LogisticRegression
 
-# Binary classification
+# Basic
 model = LogisticRegression(random_state=42, max_iter=1000)
 model.fit(X_train_scaled, y_train)
 
-# Multiclass
-model = LogisticRegression(multi_class='multinomial', solver='lbfgs', max_iter=1000)
-model.fit(X_train_scaled, y_train)
-
 # With class weights (for imbalanced data)
-model = LogisticRegression(class_weight='balanced', random_state=42)
-model.fit(X_train_scaled, y_train)
-```
+model = LogisticRegression(
+    class_weight='balanced',
+    random_state=42,
+    max_iter=1000
+)
 
-### Decision Tree
-
-```python
-from sklearn.tree import DecisionTreeClassifier, plot_tree
-
-# Create tree
-tree = DecisionTreeClassifier(
-    max_depth=5,              # Control depth
-    min_samples_split=10,     # Minimum samples to split
-    min_samples_leaf=5,      # Minimum samples in leaf
+# Multiclass
+model = LogisticRegression(
+    multi_class='multinomial',
+    solver='lbfgs',
     random_state=42
 )
-tree.fit(X_train, y_train)
-
-# Visualize tree
-plot_tree(tree, filled=True, feature_names=feature_names)
 ```
 
-### Random Forest
+### Decision Trees
+
+```python
+from sklearn.tree import DecisionTreeClassifier
+
+# Basic
+tree = DecisionTreeClassifier(random_state=42)
+tree.fit(X_train, y_train)
+
+# With hyperparameters
+tree = DecisionTreeClassifier(
+    max_depth=5,
+    min_samples_split=10,
+    min_samples_leaf=5,
+    criterion='gini',  # or 'entropy'
+    random_state=42
+)
+
+# Visualize tree
+from sklearn.tree import plot_tree
+import matplotlib.pyplot as plt
+plt.figure(figsize=(20, 10))
+plot_tree(tree, filled=True, feature_names=feature_names)
+plt.show()
+```
+
+### Random Forests
 
 ```python
 from sklearn.ensemble import RandomForestClassifier
 
-# Create Random Forest
-rf = RandomForestClassifier(
-    n_estimators=100,        # Number of trees
-    max_depth=10,
-    min_samples_split=5,
-    random_state=42,
-    n_jobs=-1               # Use all CPUs
-)
+# Basic
+rf = RandomForestClassifier(n_estimators=100, random_state=42)
 rf.fit(X_train, y_train)
 
+# With hyperparameters
+rf = RandomForestClassifier(
+    n_estimators=200,
+    max_depth=10,
+    min_samples_split=5,
+    min_samples_leaf=2,
+    max_features='sqrt',
+    class_weight='balanced',  # For imbalanced data
+    random_state=42
+)
+
 # Feature importance
-importance = pd.DataFrame({
-    'Feature': feature_names,
-    'Importance': rf.feature_importances_
-}).sort_values('Importance', ascending=False)
+feature_importance = pd.DataFrame({
+    'feature': feature_names,
+    'importance': rf.feature_importances_
+}).sort_values('importance', ascending=False)
 ```
 
 ### SVM
@@ -152,16 +170,20 @@ importance = pd.DataFrame({
 from sklearn.svm import SVC
 
 # Linear SVM
-svm_linear = SVC(kernel='linear', random_state=42)
-svm_linear.fit(X_train_scaled, y_train)
+svm = SVC(kernel='linear', random_state=42)
+svm.fit(X_train_scaled, y_train)
 
 # RBF kernel (most common)
-svm_rbf = SVC(kernel='rbf', gamma='scale', random_state=42)
-svm_rbf.fit(X_train_scaled, y_train)
+svm = SVC(
+    kernel='rbf',
+    C=1.0,
+    gamma='scale',
+    probability=True,  # Enable predict_proba
+    random_state=42
+)
 
 # Polynomial kernel
-svm_poly = SVC(kernel='poly', degree=3, random_state=42)
-svm_poly.fit(X_train_scaled, y_train)
+svm = SVC(kernel='poly', degree=3, random_state=42)
 ```
 
 ### KNN
@@ -169,353 +191,353 @@ svm_poly.fit(X_train_scaled, y_train)
 ```python
 from sklearn.neighbors import KNeighborsClassifier
 
-# Create KNN
-knn = KNeighborsClassifier(n_neighbors=5)  # k=5
+# Basic
+knn = KNeighborsClassifier(n_neighbors=5)
 knn.fit(X_train_scaled, y_train)
 
-# Find optimal k
-from sklearn.model_selection import cross_val_score
-
-k_range = range(1, 21)
-k_scores = []
-for k in k_range:
-    knn = KNeighborsClassifier(n_neighbors=k)
-    scores = cross_val_score(knn, X_train_scaled, y_train, cv=5)
-    k_scores.append(scores.mean())
-
-best_k = k_range[np.argmax(k_scores)]
+# With hyperparameters
+knn = KNeighborsClassifier(
+    n_neighbors=5,
+    weights='distance',  # or 'uniform'
+    metric='euclidean',  # or 'manhattan', 'minkowski'
+    algorithm='auto'
+)
 ```
 
-### Handling Imbalanced Data
+### XGBoost
 
 ```python
-from imblearn.over_sampling import SMOTE
-from imblearn.under_sampling import RandomUnderSampler
+import xgboost as xgb
 
-# SMOTE (oversampling)
-smote = SMOTE(random_state=42)
-X_resampled, y_resampled = smote.fit_resample(X_train, y_train)
+# Basic
+xgb_clf = xgb.XGBClassifier(random_state=42)
+xgb_clf.fit(X_train, y_train)
 
-# Undersampling
-undersampler = RandomUnderSampler(random_state=42)
-X_resampled, y_resampled = undersampler.fit_resample(X_train, y_train)
-
-# Class weights
-model = LogisticRegression(class_weight='balanced')
-model.fit(X_train, y_train)
+# With hyperparameters
+xgb_clf = xgb.XGBClassifier(
+    n_estimators=100,
+    max_depth=5,
+    learning_rate=0.1,
+    subsample=0.8,
+    colsample_bytree=0.8,
+    random_state=42
+)
 ```
 
-### Threshold Tuning
+### Naive Bayes
 
 ```python
-from sklearn.metrics import f1_score, precision_recall_curve
+from sklearn.naive_bayes import GaussianNB, MultinomialNB, BernoulliNB
 
-# Get probabilities
-y_pred_proba = model.predict_proba(X_test)[:, 1]
+# Gaussian (continuous data)
+gnb = GaussianNB()
+gnb.fit(X_train, y_train)
 
-# Find optimal threshold
-precision, recall, thresholds = precision_recall_curve(y_test, y_pred_proba)
-f1_scores = 2 * (precision * recall) / (precision + recall)
-f1_scores = f1_scores[:-1]
+# Multinomial (discrete counts, text)
+mnb = MultinomialNB()
+mnb.fit(X_train_counts, y_train)  # Use CountVectorizer/TF-IDF
 
-best_threshold = thresholds[np.argmax(f1_scores)]
+# Bernoulli (binary features)
+bnb = BernoulliNB()
+bnb.fit(X_binary, y_train)
+```
 
-# Use optimal threshold
-y_pred_optimal = (y_pred_proba >= best_threshold).astype(int)
+### Multi-Class Classification Strategies
+
+```python
+from sklearn.multiclass import OneVsRestClassifier, OneVsOneClassifier
+
+# One-vs-Rest (OvR): Train N binary classifiers
+ovr = OneVsRestClassifier(LogisticRegression())
+ovr.fit(X_train, y_train)
+
+# One-vs-One (OvO): Train N(N-1)/2 binary classifiers
+ovo = OneVsOneClassifier(SVC())
+ovo.fit(X_train, y_train)
+
+# Most algorithms handle multi-class automatically
+# LogisticRegression: multi_class='multinomial' or 'ovr'
+# SVC: decision_function_shape='ovr' or 'ovo'
 ```
 
 ---
 
 ## Evaluation Metrics
 
-### Quick Reference
-
-| Metric | Formula | When to Use | Interpretation |
-|--------|---------|-------------|----------------|
-| **Accuracy** | `(TP + TN) / (TP + TN + FP + FN)` | Balanced data | Overall correctness |
-| **Precision** | `TP / (TP + FP)` | False positives costly | Of positive predictions, how many correct |
-| **Recall** | `TP / (TP + FN)` | False negatives costly | Of actual positives, how many found |
-| **F1-Score** | `2 * (P * R) / (P + R)` | Balance needed | Harmonic mean of precision and recall |
-| **ROC-AUC** | Area under ROC curve | Balanced data | Probability of ranking positive higher |
-| **PR-AUC** | Area under PR curve | Imbalanced data | Average precision |
-
-### Code
+### Confusion Matrix
 
 ```python
-from sklearn.metrics import (
-    accuracy_score, precision_score, recall_score, f1_score,
-    roc_auc_score, confusion_matrix, classification_report
-)
+from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay
 
-# Calculate metrics
+cm = confusion_matrix(y_test, y_pred)
+print(cm)
+
+# Visualize
+disp = ConfusionMatrixDisplay(confusion_matrix=cm)
+disp.plot()
+plt.show()
+```
+
+### Accuracy
+
+```python
+from sklearn.metrics import accuracy_score
+
 accuracy = accuracy_score(y_test, y_pred)
+print(f"Accuracy: {accuracy:.3f}")
+
+# Warning: Misleading for imbalanced data!
+```
+
+### Precision, Recall, F1-Score
+
+```python
+from sklearn.metrics import precision_score, recall_score, f1_score
+
+# Binary classification
 precision = precision_score(y_test, y_pred)
 recall = recall_score(y_test, y_pred)
 f1 = f1_score(y_test, y_pred)
-roc_auc = roc_auc_score(y_test, y_pred_proba)
 
-print(f"Accuracy: {accuracy:.3f}")
-print(f"Precision: {precision:.3f}")
-print(f"Recall: {recall:.3f}")
-print(f"F1-Score: {f1:.3f}")
-print(f"ROC-AUC: {roc_auc:.3f}")
-
-# Confusion matrix
-cm = confusion_matrix(y_test, y_pred)
-print("\nConfusion Matrix:")
-print(cm)
-
-# Classification report
-print("\nClassification Report:")
-print(classification_report(y_test, y_pred))
+# Multiclass (weighted average)
+precision = precision_score(y_test, y_pred, average='weighted')
+recall = recall_score(y_test, y_pred, average='weighted')
+f1 = f1_score(y_test, y_pred, average='weighted')
 ```
 
-### ROC Curve
+### ROC-AUC (Binary Only)
 
 ```python
-from sklearn.metrics import roc_curve, auc
-import matplotlib.pyplot as plt
+from sklearn.metrics import roc_auc_score, roc_curve
 
-# Calculate ROC curve
-fpr, tpr, thresholds = roc_curve(y_test, y_pred_proba)
-roc_auc = auc(fpr, tpr)
+# Get probabilities
+y_pred_proba = model.predict_proba(X_test)[:, 1]
 
-# Plot
-plt.plot(fpr, tpr, label=f'ROC (AUC = {roc_auc:.3f})')
-plt.plot([0, 1], [0, 1], 'k--', label='Random')
+# Calculate AUC
+auc = roc_auc_score(y_test, y_pred_proba)
+print(f"AUC: {auc:.3f}")
+
+# Plot ROC curve
+fpr, tpr, _ = roc_curve(y_test, y_pred_proba)
+plt.plot(fpr, tpr, label=f'AUC = {auc:.3f}')
+plt.plot([0, 1], [0, 1], 'k--')
 plt.xlabel('False Positive Rate')
 plt.ylabel('True Positive Rate')
-plt.title('ROC Curve')
 plt.legend()
 plt.show()
 ```
 
-### Precision-Recall Curve
+### Classification Report
 
 ```python
-from sklearn.metrics import precision_recall_curve, average_precision_score
+from sklearn.metrics import classification_report
 
-# Calculate PR curve
-precision, recall, thresholds = precision_recall_curve(y_test, y_pred_proba)
-ap = average_precision_score(y_test, y_pred_proba)
-
-# Plot
-plt.plot(recall, precision, label=f'PR (AP = {ap:.3f})')
-plt.xlabel('Recall')
-plt.ylabel('Precision')
-plt.title('Precision-Recall Curve')
-plt.legend()
-plt.show()
+print(classification_report(y_test, y_pred))
+print(classification_report(y_test, y_pred, target_names=class_names))
 ```
 
----
-
-## Handling Imbalanced Data
-
-### Detection
+### Complete Evaluation Function
 
 ```python
-from collections import Counter
-
-# Check class distribution
-class_counts = Counter(y_train)
-for class_label, count in class_counts.items():
-    percentage = count / len(y_train) * 100
-    print(f"Class {class_label}: {count} ({percentage:.1f}%)")
-
-# Calculate imbalance ratio
-minority = min(class_counts.values())
-majority = max(class_counts.values())
-ratio = majority / minority
-print(f"Imbalance Ratio: {ratio:.1f}:1")
+def evaluate_classification(y_true, y_pred, y_pred_proba=None):
+    """Comprehensive classification evaluation"""
+    from sklearn.metrics import (accuracy_score, precision_score, 
+                                recall_score, f1_score, roc_auc_score)
+    
+    metrics = {
+        'accuracy': accuracy_score(y_true, y_pred),
+        'precision': precision_score(y_true, y_pred, average='weighted'),
+        'recall': recall_score(y_true, y_pred, average='weighted'),
+        'f1': f1_score(y_true, y_pred, average='weighted')
+    }
+    
+    if y_pred_proba is not None and len(np.unique(y_true)) == 2:
+        metrics['roc_auc'] = roc_auc_score(y_true, y_pred_proba)
+    
+    return metrics
 ```
-
-### Strategies
-
-| Strategy | When to Use | Code |
-|----------|-------------|------|
-| **Class Weights** | Quick fix, tree-based models | `class_weight='balanced'` |
-| **SMOTE** | Need more minority samples | `SMOTE().fit_resample(X, y)` |
-| **Undersampling** | Large dataset, can afford to lose data | `RandomUnderSampler().fit_resample(X, y)` |
-| **Threshold Tuning** | Model probabilities are good | Find optimal threshold |
-| **Ensemble** | Need robust solution | `BalancedRandomForestClassifier()` |
 
 ---
 
 ## Common Issues & Solutions
 
-### Issue 1: Low Accuracy on Imbalanced Data
+### Issue 1: Imbalanced Data
 
-**Symptoms:**
-- High accuracy but poor performance on minority class
-- Model always predicts majority class
+**Problem**: Model always predicts majority class
 
-**Solutions:**
-- Use appropriate metrics (F1, ROC-AUC, PR-AUC)
-- Apply resampling (SMOTE) or class weights
-- Tune threshold
+**Solutions**:
+```python
+# Solution 1: Class weights
+model = LogisticRegression(class_weight='balanced')
 
-### Issue 2: Overfitting
+# Solution 2: SMOTE oversampling
+from imblearn.over_sampling import SMOTE
+smote = SMOTE(random_state=42)
+X_resampled, y_resampled = smote.fit_resample(X_train, y_train)
 
-**Symptoms:**
-- High training accuracy, low test accuracy
-- Large gap between train and test performance
+# Solution 3: Use appropriate metrics
+# Don't use accuracy! Use F1-score or AUC
+f1 = f1_score(y_test, y_pred)
+auc = roc_auc_score(y_test, y_pred_proba)
+```
 
-**Solutions:**
-- Reduce model complexity (max_depth, min_samples_split)
-- Use regularization
-- Get more training data
-- Use ensemble methods (Random Forest)
+### Issue 2: Low Accuracy
 
-### Issue 3: Poor Performance on Minority Class
+**Problem**: Model performs poorly
 
-**Symptoms:**
-- Low recall for minority class
-- High precision but low recall
+**Solutions**:
+```python
+# Solution 1: Try different algorithms
+models = [LogisticRegression(), RandomForestClassifier(), SVC()]
 
-**Solutions:**
-- Use class weights
-- Apply SMOTE
-- Lower classification threshold
-- Use cost-sensitive learning
+# Solution 2: Feature engineering
+from sklearn.preprocessing import PolynomialFeatures
+poly = PolynomialFeatures(degree=2)
+X_poly = poly.fit_transform(X)
 
-### Issue 4: Slow Training/Prediction
+# Solution 3: Hyperparameter tuning
+from sklearn.model_selection import GridSearchCV
+param_grid = {'C': [0.1, 1, 10]}
+grid_search = GridSearchCV(model, param_grid, cv=5)
+grid_search.fit(X_train, y_train)
+```
 
-**Symptoms:**
-- Model takes too long to train or predict
+### Issue 3: Overfitting
 
-**Solutions:**
-- Use faster algorithms (Logistic Regression, Random Forest)
-- Reduce features
-- Use smaller dataset for training
-- For KNN: Use approximate nearest neighbors
+**Problem**: High training accuracy, low test accuracy
 
-### Issue 5: Uncalibrated Probabilities
+**Solutions**:
+```python
+# Solution 1: Regularization
+model = LogisticRegression(C=0.1)  # Lower C = more regularization
 
-**Symptoms:**
-- Probabilities don't match actual frequencies
-- 80% probability doesn't mean 80% correct
+# Solution 2: Reduce model complexity
+tree = DecisionTreeClassifier(max_depth=5, min_samples_split=10)
 
-**Solutions:**
-- Use CalibratedClassifierCV
-- Apply Platt scaling or isotonic regression
+# Solution 3: Use ensemble methods
+rf = RandomForestClassifier(n_estimators=100, max_depth=10)
+
+# Solution 4: Cross-validation
+from sklearn.model_selection import cross_val_score
+scores = cross_val_score(model, X_train, y_train, cv=5)
+```
+
+### Issue 4: Slow Training
+
+**Problem**: Model takes too long to train
+
+**Solutions**:
+```python
+# Solution 1: Reduce dataset size
+X_train_small = X_train[:10000]
+y_train_small = y_train[:10000]
+
+# Solution 2: Use faster algorithms
+# Logistic Regression > Random Forest > SVM
+
+# Solution 3: Reduce features
+from sklearn.feature_selection import SelectKBest
+selector = SelectKBest(k=50)
+X_selected = selector.fit_transform(X_train, y_train)
+
+# Solution 4: Parallel processing
+model = RandomForestClassifier(n_jobs=-1)  # Use all CPUs
+```
+
+### Issue 5: Memory Error
+
+**Problem**: Out of memory when training
+
+**Solutions**:
+```python
+# Solution 1: Use batch processing
+# Process data in chunks
+
+# Solution 2: Use memory-efficient algorithms
+# Logistic Regression uses less memory than Random Forest
+
+# Solution 3: Reduce data size
+# Sample data or use feature selection
+```
 
 ---
 
 ## Best Practices Checklist
 
-### Before Training
-
-- [ ] Data is clean (no missing values, outliers handled)
-- [ ] Categorical variables encoded
-- [ ] Features scaled (for logistic regression, SVM)
-- [ ] Data is split (train/test or train/val/test)
-- [ ] Class distribution checked
-- [ ] Stratified split used (for imbalanced data)
-
-### During Training
-
-- [ ] Start with simple model (Logistic Regression)
-- [ ] Use cross-validation
-- [ ] Handle class imbalance appropriately
-- [ ] Monitor training and validation performance
-- [ ] Check for overfitting
-
-### After Training
-
-- [ ] Evaluate on test set (only once!)
-- [ ] Calculate multiple metrics (not just accuracy)
-- [ ] Use appropriate metrics for problem type
-- [ ] Check confusion matrix
-- [ ] Plot ROC and PR curves
-- [ ] Tune threshold if needed
-- [ ] Interpret feature importance
+### Data Preparation
+- [ ] Check for missing values
+- [ ] Handle missing values appropriately
+- [ ] Encode categorical variables
+- [ ] Scale features (for Logistic Regression, SVM, KNN)
+- [ ] Check class distribution (imbalanced data?)
+- [ ] Use stratified train-test split
 
 ### Model Selection
+- [ ] Start with simple baseline (Logistic Regression)
+- [ ] Try multiple algorithms
+- [ ] Compare models using cross-validation
+- [ ] Choose model based on problem requirements
 
-- [ ] Compare multiple algorithms
-- [ ] Use appropriate metric for comparison
-- [ ] Consider interpretability needs
-- [ ] Balance complexity and performance
-- [ ] Consider deployment constraints
+### Evaluation
+- [ ] Use appropriate metrics (F1, AUC for imbalanced data)
+- [ ] Don't rely only on accuracy
+- [ ] Check confusion matrix
+- [ ] Use cross-validation for robust evaluation
+- [ ] Plot ROC curve for binary classification
 
----
+### Improvement
+- [ ] Handle class imbalance if present
+- [ ] Perform feature engineering
+- [ ] Tune hyperparameters
+- [ ] Try ensemble methods
+- [ ] Regularize to prevent overfitting
 
-## Metric Selection Guide
-
-### When to Use Which Metric
-
-| Problem Type | Primary Metric | Why |
-|--------------|----------------|-----|
-| **Medical Diagnosis** | Recall | Don't miss cases |
-| **Spam Detection** | Precision | Don't mark real emails as spam |
-| **Fraud Detection** | F1-Score or PR-AUC | Need balance, imbalanced data |
-| **General Classification** | ROC-AUC | Balanced data, overall performance |
-| **Imbalanced Data** | PR-AUC or F1-Score | Accuracy misleading |
-
----
-
-## Algorithm-Specific Tips
-
-### Logistic Regression
-
-- Scale features (StandardScaler)
-- Use `max_iter=1000` if convergence warning
-- `class_weight='balanced'` for imbalanced data
-- `multi_class='multinomial'` for multiclass
-
-### Decision Tree
-
-- Control `max_depth` to prevent overfitting
-- Use `min_samples_split` and `min_samples_leaf`
-- Prone to overfitting - use Random Forest instead
-
-### Random Forest
-
-- `n_estimators=100` is good starting point
-- `max_depth=None` often works well
-- Use `n_jobs=-1` for parallel processing
-- Feature importance available
-
-### SVM
-
-- Always scale features
-- RBF kernel works well for most problems
-- `gamma='scale'` is good default
-- Slow on large datasets (>10K samples)
-
-### KNN
-
-- Scale features (distance-based)
-- Find optimal k using cross-validation
-- Slow for large datasets
-- Use approximate methods for speed
+### Deployment
+- [ ] Save model and preprocessing steps
+- [ ] Document model performance
+- [ ] Create prediction function
+- [ ] Test on new data
+- [ ] Monitor model performance
 
 ---
 
-## Quick Troubleshooting
+## Quick Tips
 
-| Problem | Quick Fix |
-|---------|-----------|
-| Low accuracy | Check class imbalance, use appropriate metrics |
-| Overfitting | Reduce complexity, use regularization |
-| Poor minority class performance | Use class weights or SMOTE |
-| Slow training | Use faster algorithm, reduce features |
-| Convergence warning | Increase max_iter, check data scaling |
-| Low precision | Increase threshold, use class weights |
-| Low recall | Decrease threshold, use SMOTE |
+1. **Always use stratified split** for imbalanced data
+2. **Scale features** for distance-based algorithms (SVM, KNN, Logistic Regression)
+3. **Use F1-score or AUC** instead of accuracy for imbalanced data
+4. **Start simple** - Logistic Regression is a great baseline
+5. **Cross-validate** for robust evaluation
+6. **Visualize** - Confusion matrix, ROC curve, feature importance
+7. **Handle imbalance** - Class weights, SMOTE, or threshold tuning
+8. **Tune hyperparameters** - Grid search or random search
+9. **Try ensembles** - Random Forest, XGBoost often perform better
+10. **Save everything** - Model, scaler, feature selector
+
+---
+
+## Common Mistakes to Avoid
+
+1. Using accuracy for imbalanced data
+2. Not scaling features for SVM/KNN
+3. Data leakage (scaling before split)
+4. Overfitting (too complex model)
+5. Not using cross-validation
+6. Ignoring class imbalance
+7. Not trying multiple algorithms
+8. Using test set for hyperparameter tuning
+9. Not saving preprocessing steps
+10. Not checking confusion matrix
 
 ---
 
 ## Resources
 
-- [Main Classification Guide](classification.md)
-- [Advanced Topics](classification-advanced-topics.md)
-- [Project Tutorial](classification-project-tutorial.md)
-- [Scikit-learn Classification](https://scikit-learn.org/stable/supervised_learning.html#classification)
+- [Scikit-learn Classification Guide](https://scikit-learn.org/stable/supervised_learning.html#classification)
+- [Classification Metrics](https://scikit-learn.org/stable/modules/model_evaluation.html#classification-metrics)
+- [Handling Imbalanced Data](https://imbalanced-learn.org/stable/)
 
 ---
 
-**Remember**: For classification, always use appropriate metrics and handle class imbalance!
-
+**Remember**: Classification is about more than accuracy - understand your data, use appropriate metrics, and always validate your results!
 
