@@ -670,11 +670,39 @@ result = app.invoke({"data_path": "data.csv"})
 
 ### What is MCP?
 
-**Model Context Protocol (MCP)** is a standardized protocol for sharing context and state between AI models and agents. It enables:
-- **Context Sharing**: Share information between models
+**Model Context Protocol (MCP)** is an open protocol that standardizes how LLM applications can access context in terms of tools and data resources. It uses a client-server architecture to enable:
+- **Context Sharing**: Share information between models and agents
 - **State Management**: Maintain conversation state across agents
 - **Tool Integration**: Standardize tool/function calling
 - **Interoperability**: Work across different AI frameworks
+- **Resource Access**: Expose data resources and prompt templates
+
+### MCP Architecture
+
+**Client-Server Model:**
+```
+MCP Client (LLM Application)
+    ↕
+MCP Server (Tools & Resources)
+```
+
+**Key Components:**
+1. **MCP Client**: Hosted inside your LLM application
+2. **MCP Server**: Exposes tools, data resources, and prompt templates
+3. **Protocol**: Standardized communication format
+
+### Why MCP?
+
+**Before MCP:**
+- Each application needed custom integrations
+- Duplicate code for common tools
+- Difficult to share tools across applications
+
+**With MCP:**
+- Reusable MCP servers for common tasks
+- Standardized protocol
+- Easy integration with multiple applications
+- Community-built servers available
 
 ### Key Concepts
 
