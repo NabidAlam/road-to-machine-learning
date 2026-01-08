@@ -41,6 +41,40 @@ Comprehensive guide to deploying machine learning models to production.
 4. **Serverless**: AWS Lambda, Cloud Functions
 5. **Containerized**: Docker, Kubernetes
 
+### Model Serving Architectures
+
+**Online/Real-time Serving (REST APIs):**
+- Immediate predictions
+- Low latency requirements
+- Interactive applications
+- Example: User-facing applications, chatbots
+
+**Batch Serving:**
+- Process multiple predictions at once
+- Scheduled or on-demand
+- Higher throughput
+- Example: Daily reports, bulk processing
+
+**Deployment Patterns:**
+
+**1. Shadow Deployment:**
+- Deploy new model alongside production
+- Route traffic to both models
+- Compare performance
+- No impact on users
+
+**2. Canary Rollouts:**
+- Gradually increase traffic to new model
+- Start with small percentage (e.g., 5%)
+- Monitor performance
+- Increase if successful
+
+**3. A/B Testing:**
+- Split traffic between models
+- Compare performance metrics
+- Statistical significance testing
+- Choose best performing model
+
 ---
 
 ## Model Serialization
@@ -659,6 +693,316 @@ gcloud run deploy ml-api --image gcr.io/PROJECT_ID/ml-api --platform managed
 az acr build --registry myregistry --image ml-api:latest .
 az container create --resource-group mygroup --name ml-api --image myregistry.azurecr.io/ml-api:latest
 ```
+
+---
+
+## Orchestration and Scaling with Kubernetes
+
+### Kubernetes (k8s) Basics
+
+**What is Kubernetes?**
+Container orchestration platform for managing containerized applications.
+
+**Key Concepts:**
+
+**1. Pods:**
+Smallest deployable unit - contains one or more containers.
+
+```yaml
+# pod.yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: ml-api-pod
+spec:
+  containers:
+  - name: ml-api
+    image: ml-api:latest
+    ports:
+    - containerPort: 8000
+```
+
+**2. Deployments:**
+Manages Pods and provides updates, rollbacks, scaling.
+
+```yaml
+# deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ml-api-deployment
+spec:
+  replicas: 3  # Number of pods
+  selector:
+    matchLabels:
+      app: ml-api
+  template:
+    metadata:
+      labels:
+        app: ml-api
+    spec:
+      containers:
+      - name: ml-api
+        image: ml-api:latest
+        ports:
+        - containerPort: 8000
+        resources:
+          requests:
+            memory: "512Mi"
+            cpu: "500m"
+          limits:
+            memory: "1Gi"
+            cpu: "1000m"
+```
+
+**3. Services:**
+Exposes Pods to network traffic (load balancing).
+
+```yaml
+# service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: ml-api-service
+spec:
+  selector:
+    app: ml-api
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 8000
+  type: LoadBalancer  # Or ClusterIP, NodePort
+```
+
+**Deploying to Kubernetes:**
+```bash
+# Apply configurations
+kubectl apply -f deployment.yaml
+kubectl apply -f service.yaml
+
+# Check status
+kubectl get pods
+kubectl get deployments
+kubectl get services
+
+# Scale deployment
+kubectl scale deployment ml-api-deployment --replicas=5
+
+# View logs
+kubectl logs -l app=ml-api
+
+# Delete
+kubectl delete -f deployment.yaml -f service.yaml
+```
+
+### Cloud Services for ML Deployment
+
+**AWS SageMaker:**
+Managed ML platform.
+
+```python
+import sagemaker
+from sagemaker.sklearn import SKLearn
+
+# Create estimator
+sklearn_estimator = SKLearn(
+    entry_point='train.py',
+    role=sagemaker.get_execution_role(),
+    instance_type='ml.m5.large',
+    framework_version='0.24-1',
+    py_version='py3'
+)
+
+# Train
+sklearn_estimator.fit({'training': 's3://bucket/data'})
+
+# Deploy
+predictor = sklearn_estimator.deploy(
+    initial_instance_count=1,
+    instance_type='ml.m5.large'
+)
+
+# Predict
+result = predictor.predict(data)
+```
+
+**Azure ML:**
+Microsoft's ML platform.
+
+```python
+from azureml.core import Workspace, Model
+from azureml.core.webservice import AciWebservice, Webservice
+
+# Load workspace
+ws = Workspace.from_config()
+
+# Register model
+model = Model.register(
+    workspace=ws,
+    model_path='model.pkl',
+    model_name='MyModel'
+)
+
+# Deploy
+aci_config = AciWebservice.deploy_configuration(
+    cpu_cores=1,
+    memory_gb=1
+)
+
+service = Model.deploy(
+    workspace=ws,
+    name='ml-api',
+    models=[model],
+    inference_config=inference_config,
+    deployment_config=aci_config
+)
+
+service.wait_for_deployment(show_output=True)
+```
+
+**GCP Vertex AI:**
+Google's ML platform.
+
+```python
+from google.cloud import aiplatform
+
+# Initialize
+aiplatform.init(project='my-project', location='us-central1')
+
+# Deploy model
+endpoint = aiplatform.Endpoint.create(display_name='ml-api')
+
+# Upload model
+model = aiplatform.Model.upload(
+    display_name='MyModel',
+    artifact_uri='gs://bucket/model',
+    serving_container_image_uri='gcr.io/cloud-aiplatform/prediction/sklearn-cpu.0-24:latest'
+)
+
+# Deploy to endpoint
+endpoint.deploy(
+    model=model,
+    deployed_model_display_name='ml-api',
+    machine_type='n1-standard-2',
+    min_replica_count=1,
+    max_replica_count=3
+)
+
+# Predict
+predictions = endpoint.predict(instances=data)
+```
+
+---
+
+## Continuous Deployment (CD) Pipeline
+
+### Automating Deployment
+
+**GitHub Actions CD Pipeline:**
+```yaml
+# .github/workflows/deploy.yml
+name: Deploy ML Model
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+      
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+      
+      - name: Run tests
+        run: pytest tests/
+      
+      - name: Build Docker image
+        run: |
+          docker build -t ml-api:${{ github.sha }} .
+          docker tag ml-api:${{ github.sha }} ml-api:latest
+      
+      - name: Push to registry
+        run: |
+          echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
+          docker push ml-api:${{ github.sha }}
+          docker push ml-api:latest
+      
+      - name: Deploy to Kubernetes
+        run: |
+          kubectl set image deployment/ml-api-deployment ml-api=ml-api:${{ github.sha }}
+          kubectl rollout status deployment/ml-api-deployment
+      
+      - name: Health check
+        run: |
+          sleep 10
+          curl -f http://ml-api-service/health || exit 1
+```
+
+### Health Check and Rollback Strategy
+
+**Health Check Implementation:**
+```python
+# health_check.py
+import requests
+import time
+import sys
+
+def health_check(url, max_retries=3, timeout=5):
+    """Check if service is healthy"""
+    for i in range(max_retries):
+        try:
+            response = requests.get(f"{url}/health", timeout=timeout)
+            if response.status_code == 200:
+                return True
+        except Exception as e:
+            print(f"Health check failed (attempt {i+1}): {e}")
+            time.sleep(2)
+    return False
+
+if __name__ == "__main__":
+    url = sys.argv[1] if len(sys.argv) > 1 else "http://localhost:8000"
+    if health_check(url):
+        print("Service is healthy")
+        sys.exit(0)
+    else:
+        print("Service is unhealthy")
+        sys.exit(1)
+```
+
+**Rollback Strategy:**
+```yaml
+# Rollback on failure
+- name: Deploy
+  run: kubectl set image deployment/ml-api-deployment ml-api=ml-api:new
+  continue-on-error: true
+
+- name: Health check
+  run: python health_check.py http://ml-api-service
+  continue-on-error: true
+
+- name: Rollback on failure
+  if: failure()
+  run: |
+    kubectl rollout undo deployment/ml-api-deployment
+    kubectl rollout status deployment/ml-api-deployment
+```
+
+**Triggering Deployment:**
+- On successful CI
+- On Model Registry approval
+- On manual trigger
+- On schedule
+
+---
 
 ## Model Monitoring
 
