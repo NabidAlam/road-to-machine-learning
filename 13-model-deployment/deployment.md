@@ -1636,10 +1636,6 @@ def detect_data_drift(new_features, training_features):
 - [SSL Certificate Setup with Let's Encrypt (DigitalOcean)](https://www.digitalocean.com/community/tutorials/how-to-secure-nginx-with-let-s-encrypt-on-ubuntu-20-04)
 - [Production FastAPI Deployment (TestDriven.io)](https://testdriven.io/blog/fastapi-deployment/)
 
-**Video Tutorials:**
-- [NGINX Tutorial (LearnLinuxTV)](https://www.youtube.com/watch?v=9JqVp7j2zdc)
-- [SSL/TLS Explained (PowerCert)](https://www.youtube.com/watch?v=jQVwXa5CQ2Q)
-
 ---
 
 ## Next Steps
