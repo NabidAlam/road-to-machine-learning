@@ -45,13 +45,21 @@ Learn to deploy machine learning models to production.
 - **Heroku**: Simple deployment
 - **Choosing Platform**: Based on needs
 
-### 5. Model Serving
+### 5. Production Server Setup
+- **NGINX Configuration**: Reverse proxy, load balancing, SSL termination
+- **SSL/TLS Setup**: Let's Encrypt certificates, auto-renewal
+- **Domain Configuration**: DNS setup, subdomain routing
+- **Security**: Rate limiting, API authentication, input validation
+- **Error Handling**: Structured error responses, logging
+- **AWS EC2 Setup**: Instance configuration, systemd services, firewall
+
+### 6. Model Serving
 - **Batch Inference**: Process in batches
 - **Real-time Inference**: Low latency
 - **A/B Testing**: Compare model versions (statistical significance, multi-armed bandits, sequential testing)
 - **Canary Deployments**: Gradual rollout
 
-### 6. Model Monitoring
+### 7. Model Monitoring
 - **Performance Metrics**: Track accuracy over time
 - **Data Drift**: Detect distribution changes
 - **Model Drift**: Performance degradation
@@ -65,6 +73,8 @@ By the end of this module, you should be able to:
 - Create REST APIs for models
 - Containerize ML applications
 - Deploy to cloud platforms
+- Configure production servers (NGINX, SSL, domain)
+- Implement security best practices (rate limiting, authentication)
 - Monitor deployed models
 
 ##  Projects

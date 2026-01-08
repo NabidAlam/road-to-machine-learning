@@ -9,6 +9,7 @@ Comprehensive guide to deploying machine learning models to production.
 - [REST APIs](#rest-apis)
 - [Docker](#docker)
 - [Cloud Deployment](#cloud-deployment)
+- [Production Server Setup](#production-server-setup)
 - [Model Monitoring](#model-monitoring)
 - [Best Practices](#best-practices)
 - [Practice Exercises](#practice-exercises)
@@ -1001,6 +1002,465 @@ if __name__ == "__main__":
 - On Model Registry approval
 - On manual trigger
 - On schedule
+
+---
+
+## Production Server Setup
+
+### NGINX Reverse Proxy Configuration
+
+NGINX acts as a reverse proxy, load balancer, and SSL terminator for ML APIs.
+
+**Basic NGINX Configuration:**
+
+```nginx
+# /etc/nginx/sites-available/ml-api
+upstream ml_backend {
+    # Load balancing with least connections
+    least_conn;
+    server 127.0.0.1:8000 weight=3;
+    server 127.0.0.1:8001 weight=2;
+    server 127.0.0.1:8002 weight=1 backup;
+    
+    # Keep connections alive
+    keepalive 32;
+}
+
+server {
+    listen 80;
+    server_name api.yourdomain.com;
+    
+    # Redirect HTTP to HTTPS
+    return 301 https://$server_name$request_uri;
+}
+
+server {
+    listen 443 ssl http2;
+    server_name api.yourdomain.com;
+    
+    # SSL Configuration
+    ssl_certificate /etc/letsencrypt/live/api.yourdomain.com/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/api.yourdomain.com/privkey.pem;
+    ssl_protocols TLSv1.2 TLSv1.3;
+    ssl_ciphers HIGH:!aNULL:!MD5;
+    ssl_prefer_server_ciphers on;
+    
+    # Security Headers
+    add_header X-Frame-Options "SAMEORIGIN" always;
+    add_header X-Content-Type-Options "nosniff" always;
+    add_header X-XSS-Protection "1; mode=block" always;
+    
+    # Rate Limiting
+    limit_req_zone $binary_remote_addr zone=ml_api_limit:10m rate=10r/s;
+    limit_req zone=ml_api_limit burst=20 nodelay;
+    
+    # Request size limit (for large feature vectors)
+    client_max_body_size 10M;
+    
+    # Timeouts (important for ML inference)
+    proxy_connect_timeout 300s;
+    proxy_send_timeout 300s;
+    proxy_read_timeout 300s;
+    send_timeout 300s;
+    
+    # Prediction endpoint
+    location /predict {
+        proxy_pass http://ml_backend;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        
+        # WebSocket support (if using streaming predictions)
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "upgrade";
+    }
+    
+    # Health check endpoint (bypass rate limiting)
+    location /health {
+        access_log off;
+        proxy_pass http://ml_backend;
+        proxy_set_header Host $host;
+    }
+    
+    # Metrics endpoint (internal only)
+    location /metrics {
+        allow 127.0.0.1;
+        deny all;
+        proxy_pass http://ml_backend;
+    }
+    
+    # Static files (if serving model documentation)
+    location /static/ {
+        alias /var/www/ml-api/static/;
+        expires 30d;
+        add_header Cache-Control "public, immutable";
+    }
+}
+```
+
+**Enable and Test Configuration:**
+
+```bash
+# Test NGINX configuration
+sudo nginx -t
+
+# Enable site
+sudo ln -s /etc/nginx/sites-available/ml-api /etc/nginx/sites-enabled/
+
+# Reload NGINX
+sudo systemctl reload nginx
+
+# Check status
+sudo systemctl status nginx
+```
+
+### SSL Certificate Setup with Let's Encrypt
+
+**Install Certbot:**
+
+```bash
+# Ubuntu/Debian
+sudo apt-get update
+sudo apt-get install certbot python3-certbot-nginx
+
+# CentOS/RHEL
+sudo yum install certbot python3-certbot-nginx
+```
+
+**Obtain SSL Certificate:**
+
+```bash
+# Automatic configuration with NGINX
+sudo certbot --nginx -d api.yourdomain.com
+
+# Manual certificate only
+sudo certbot certonly --nginx -d api.yourdomain.com
+
+# Auto-renewal setup (already configured by certbot)
+sudo certbot renew --dry-run
+```
+
+**Certificate Auto-Renewal:**
+
+```bash
+# Add to crontab (certbot usually does this automatically)
+sudo crontab -e
+# Add: 0 0,12 * * * certbot renew --quiet
+```
+
+### Domain Configuration
+
+**DNS Setup:**
+
+1. **A Record**: Point domain to server IP
+   ```
+   api.yourdomain.com  A  123.45.67.89
+   ```
+
+2. **CNAME Record** (if using subdomain):
+   ```
+   api  CNAME  yourdomain.com
+   ```
+
+**Verify DNS:**
+
+```bash
+# Check DNS propagation
+dig api.yourdomain.com
+nslookup api.yourdomain.com
+
+# Test from different locations
+curl -I https://api.yourdomain.com/health
+```
+
+### Enhanced Security for ML APIs
+
+**1. Rate Limiting in FastAPI:**
+
+```python
+from slowapi import Limiter, _rate_limit_exceeded_handler
+from slowapi.util import get_remote_address
+from slowapi.errors import RateLimitExceeded
+from fastapi import FastAPI, Request
+
+limiter = Limiter(key_func=get_remote_address)
+app = FastAPI()
+app.state.limiter = limiter
+app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
+
+@app.post("/predict")
+@limiter.limit("10/minute")  # 10 requests per minute per IP
+async def predict(request: Request, data: PredictionRequest):
+    # Prediction logic
+    pass
+```
+
+**2. API Key Authentication:**
+
+```python
+from fastapi import FastAPI, Depends, HTTPException, Security
+from fastapi.security import APIKeyHeader
+import os
+
+API_KEY = os.getenv("API_KEY", "your-secret-key")
+api_key_header = APIKeyHeader(name="X-API-Key")
+
+def verify_api_key(api_key: str = Security(api_key_header)):
+    if api_key != API_KEY:
+        raise HTTPException(status_code=403, detail="Invalid API Key")
+    return api_key
+
+@app.post("/predict")
+async def predict(
+    data: PredictionRequest,
+    api_key: str = Depends(verify_api_key)
+):
+    # Prediction logic
+    pass
+```
+
+**3. Input Validation and Sanitization:**
+
+```python
+from pydantic import BaseModel, validator
+import numpy as np
+
+class PredictionRequest(BaseModel):
+    features: List[float]
+    
+    @validator('features')
+    def validate_features(cls, v):
+        # Check length
+        if len(v) < 1 or len(v) > 1000:
+            raise ValueError('Features must be between 1 and 1000')
+        
+        # Check for NaN or Inf
+        features_array = np.array(v)
+        if np.any(np.isnan(features_array)) or np.any(np.isinf(features_array)):
+            raise ValueError('Features cannot contain NaN or Inf')
+        
+        # Check value ranges
+        if np.any(np.abs(features_array) > 1e10):
+            raise ValueError('Feature values out of acceptable range')
+        
+        return v
+```
+
+**4. Request Logging and Monitoring:**
+
+```python
+import logging
+import time
+from fastapi import Request
+from starlette.middleware.base import BaseHTTPMiddleware
+
+logger = logging.getLogger(__name__)
+
+class LoggingMiddleware(BaseHTTPMiddleware):
+    async def dispatch(self, request: Request, call_next):
+        start_time = time.time()
+        
+        # Log request
+        logger.info(f"Request: {request.method} {request.url.path}")
+        logger.info(f"Client: {request.client.host}")
+        
+        response = await call_next(request)
+        
+        # Log response
+        process_time = time.time() - start_time
+        logger.info(
+            f"Response: {response.status_code} | "
+            f"Time: {process_time:.3f}s"
+        )
+        
+        response.headers["X-Process-Time"] = str(process_time)
+        return response
+
+app.add_middleware(LoggingMiddleware)
+```
+
+### Production Error Handling
+
+**Structured Error Responses:**
+
+```python
+from fastapi import FastAPI, HTTPException
+from fastapi.responses import JSONResponse
+import logging
+
+logger = logging.getLogger(__name__)
+
+class MLAPIError(Exception):
+    def __init__(self, message: str, error_code: str, status_code: int = 500):
+        self.message = message
+        self.error_code = error_code
+        self.status_code = status_code
+
+@app.exception_handler(MLAPIError)
+async def ml_api_error_handler(request, exc: MLAPIError):
+    logger.error(f"ML API Error: {exc.error_code} - {exc.message}")
+    return JSONResponse(
+        status_code=exc.status_code,
+        content={
+            "error": {
+                "code": exc.error_code,
+                "message": exc.message,
+                "request_id": request.headers.get("X-Request-ID", "unknown")
+            }
+        }
+    )
+
+@app.exception_handler(Exception)
+async def general_exception_handler(request, exc: Exception):
+    logger.exception(f"Unhandled exception: {exc}")
+    return JSONResponse(
+        status_code=500,
+        content={
+            "error": {
+                "code": "INTERNAL_ERROR",
+                "message": "An internal error occurred",
+                "request_id": request.headers.get("X-Request-ID", "unknown")
+            }
+        }
+    )
+```
+
+### Production Logging Setup
+
+**Structured Logging Configuration:**
+
+```python
+import logging
+import json
+from datetime import datetime
+
+class JSONFormatter(logging.Formatter):
+    def format(self, record):
+        log_data = {
+            "timestamp": datetime.utcnow().isoformat(),
+            "level": record.levelname,
+            "message": record.getMessage(),
+            "module": record.module,
+            "function": record.funcName,
+            "line": record.lineno
+        }
+        
+        if hasattr(record, "request_id"):
+            log_data["request_id"] = record.request_id
+        
+        if record.exc_info:
+            log_data["exception"] = self.formatException(record.exc_info)
+        
+        return json.dumps(log_data)
+
+# Configure logging
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(message)s',
+    handlers=[
+        logging.FileHandler('ml-api.log'),
+        logging.StreamHandler()
+    ]
+)
+
+logger = logging.getLogger(__name__)
+for handler in logger.handlers:
+    handler.setFormatter(JSONFormatter())
+```
+
+### AWS EC2 Setup for ML Deployment
+
+**1. Launch EC2 Instance:**
+
+```bash
+# Connect via SSH
+ssh -i your-key.pem ubuntu@your-ec2-ip
+
+# Update system
+sudo apt-get update && sudo apt-get upgrade -y
+
+# Install Python and dependencies
+sudo apt-get install python3.9 python3-pip python3-venv -y
+sudo apt-get install nginx -y
+sudo apt-get install certbot python3-certbot-nginx -y
+```
+
+**2. Setup Application:**
+
+```bash
+# Create application directory
+mkdir -p /var/www/ml-api
+cd /var/www/ml-api
+
+# Create virtual environment
+python3 -m venv venv
+source venv/bin/activate
+
+# Install dependencies
+pip install fastapi uvicorn[standard] scikit-learn
+
+# Copy your application files
+# (use git, scp, or deployment pipeline)
+```
+
+**3. Setup Systemd Service:**
+
+```ini
+# /etc/systemd/system/ml-api.service
+[Unit]
+Description=ML API Service
+After=network.target
+
+[Service]
+Type=simple
+User=www-data
+WorkingDirectory=/var/www/ml-api
+Environment="PATH=/var/www/ml-api/venv/bin"
+ExecStart=/var/www/ml-api/venv/bin/uvicorn main:app --host 0.0.0.0 --port 8000
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target
+```
+
+**Enable and Start Service:**
+
+```bash
+sudo systemctl daemon-reload
+sudo systemctl enable ml-api
+sudo systemctl start ml-api
+sudo systemctl status ml-api
+```
+
+**4. Configure Firewall:**
+
+```bash
+# Allow HTTP, HTTPS, and SSH
+sudo ufw allow 22/tcp
+sudo ufw allow 80/tcp
+sudo ufw allow 443/tcp
+sudo ufw enable
+```
+
+### Production Checklist
+
+- [ ] NGINX configured as reverse proxy
+- [ ] SSL certificate installed and auto-renewal configured
+- [ ] Domain DNS properly configured
+- [ ] Rate limiting implemented
+- [ ] API authentication/authorization set up
+- [ ] Input validation and sanitization
+- [ ] Structured logging configured
+- [ ] Error handling with proper error codes
+- [ ] Health check endpoints implemented
+- [ ] Monitoring and alerting set up
+- [ ] Firewall rules configured
+- [ ] Systemd service for auto-restart
+- [ ] Backup strategy for models and data
+- [ ] Documentation for API endpoints
 
 ---
 
