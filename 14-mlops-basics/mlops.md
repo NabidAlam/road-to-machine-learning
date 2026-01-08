@@ -19,7 +19,13 @@ Comprehensive guide to managing the complete ML lifecycle.
 
 ### What is MLOps?
 
-MLOps (Machine Learning Operations) is the practice of managing the complete ML lifecycle from development to deployment and monitoring.
+**MLOps (Machine Learning Operations)** is the practice of managing the complete ML lifecycle from development to deployment and monitoring.
+
+**Definition and Importance:**
+- **Bridging the gap** between **Data Science** and **Operations**
+- Combines ML development with DevOps practices
+- Ensures ML models are production-ready, reliable, and maintainable
+- Enables collaboration between data scientists and engineers
 
 **Key Principles:**
 - **Reproducibility**: Same code + data = same results
@@ -39,11 +45,68 @@ MLOps (Machine Learning Operations) is the practice of managing the complete ML 
 - Experiment tracking
 - Model monitoring
 - Data drift detection
+- Model retraining pipelines
+
+### The MLOps Lifecycle
+
+**Four Key Phases:**
+
+1. **Experimentation**
+   - Model development
+   - Hyperparameter tuning
+   - Feature engineering
+   - Experiment tracking
+
+2. **Data & Model Management**
+   - Data versioning
+   - Model versioning
+   - Model registry
+   - Feature stores
+
+3. **CI/CD (Continuous Integration/Continuous Deployment)**
+   - Automated testing
+   - Automated deployment
+   - Pipeline automation
+   - Model validation
+
+4. **Monitoring**
+   - Model performance tracking
+   - Data drift detection
+   - Model drift detection
+   - System health monitoring
+
+### MLOps Maturity Levels
+
+**Level 0: Manual**
+- Manual processes
+- No automation
+- Ad-hoc deployments
+- Limited tracking
+
+**Level 1: Automated Pipeline**
+- Automated training pipeline
+- Basic CI/CD
+- Experiment tracking
+- Model versioning
+
+**Level 2: CI/CD**
+- Full CI/CD pipeline
+- Automated testing
+- Automated deployment
+- Model registry integration
+
+**Level 3: Continuous Training (CT)**
+- Automated retraining
+- Model monitoring
+- Drift detection
+- Auto-deployment on triggers
 
 ### MLOps Workflow
 
 ```
-Data → Feature Engineering → Training → Evaluation → Model Registry → Deployment → Monitoring → Retraining
+Data Ingestion → EDA → Feature Engineering → Model Training → 
+Hyperparameter Tuning → Evaluation → Model Registry → 
+Deployment → Monitoring → Retraining
 ```
 
 ---
@@ -57,6 +120,71 @@ Traditional Git tracks code, but ML needs:
 - **Model Versioning**: Track trained models
 - **Experiment Tracking**: Track hyperparameters and results
 - **Reproducibility**: Recreate exact experiments
+
+### Git and GitHub/GitLab Essentials
+
+**Git Basics for ML Projects:**
+```bash
+# Initialize repository
+git init
+
+# Add files
+git add .
+
+# Commit changes
+git commit -m "Add training script"
+
+# Create branch
+git checkout -b feature/new-model
+
+# Merge branch
+git checkout main
+git merge feature/new-model
+
+# Push to remote
+git push origin main
+```
+
+**GitHub/GitLab for Collaborative ML Projects:**
+- **Pull Requests**: Review code changes
+- **Issues**: Track bugs and features
+- **Actions/CI**: Automate testing and deployment
+- **Wiki**: Document projects
+- **Releases**: Tag model versions
+
+### Project Structure and Best Practices
+
+**Recommended ML Project Structure:**
+```
+project/
+├── data/
+│   ├── raw/           # Original data
+│   ├── processed/     # Processed data
+│   └── external/      # External data sources
+├── notebooks/         # Jupyter notebooks
+├── src/              # Source code
+│   ├── data/         # Data processing
+│   ├── features/     # Feature engineering
+│   ├── models/       # Model training
+│   └── visualization/ # Visualizations
+├── tests/            # Unit tests
+├── models/           # Trained models
+├── configs/         # Configuration files
+├── scripts/         # Utility scripts
+├── requirements.txt # Python dependencies
+├── environment.yml  # Conda environment
+├── Dockerfile       # Docker configuration
+├── .gitignore       # Git ignore rules
+└── README.md        # Project documentation
+```
+
+**Best Practices:**
+- Keep data out of Git (use DVC or Git LFS)
+- Version control all code
+- Document everything
+- Use meaningful commit messages
+- Tag releases
+- Maintain clean project structure
 
 ### DVC (Data Version Control)
 
@@ -322,6 +450,105 @@ except ImportError:
 
 ---
 
+## Data and Dependency Versioning
+
+### Data Version Control (DVC)
+
+**Introduction to DVC:**
+DVC extends Git to handle large files and data pipelines.
+
+**Basic DVC Usage:**
+```bash
+# Initialize DVC
+dvc init
+
+# Track data files
+dvc add data/train.csv data/test.csv
+
+# Commit DVC files (not data itself)
+git add data/train.csv.dvc data/test.csv.dvc .gitignore
+git commit -m "Add training data"
+
+# Push data to remote storage
+dvc remote add -d myremote s3://mybucket/dvc
+dvc push
+
+# Pull data
+dvc pull
+```
+
+**DVC Pipelines:**
+```bash
+# Define pipeline stages
+dvc run -n prepare \
+    -d data/raw \
+    -o data/prepared \
+    python prepare.py
+
+dvc run -n train \
+    -d data/prepared \
+    -d train.py \
+    -o models/model.pkl \
+    -M metrics/accuracy.json \
+    python train.py
+
+# Reproduce pipeline
+dvc repro
+```
+
+### Feature Store Concept
+
+**What is a Feature Store?**
+Centralized repository for storing and serving features.
+
+**Benefits:**
+- Reuse features across projects
+- Consistent feature definitions
+- Real-time feature serving
+- Feature versioning
+
+**Popular Feature Stores:**
+- **Feast**: Open-source feature store
+- **Tecton**: Managed feature store
+- **Hopsworks**: Open-source platform
+- **AWS SageMaker Feature Store**: Managed service
+
+### Managing Project Dependencies
+
+**requirements.txt:**
+```txt
+numpy==1.24.0
+pandas==2.0.0
+scikit-learn==1.3.0
+tensorflow==2.13.0
+mlflow==2.8.0
+```
+
+**environment.yml (Conda):**
+```yaml
+name: ml-env
+channels:
+  - defaults
+  - conda-forge
+dependencies:
+  - python=3.9
+  - numpy=1.24.0
+  - pandas=2.0.0
+  - pip
+  - pip:
+    - scikit-learn==1.3.0
+    - tensorflow==2.13.0
+    - mlflow==2.8.0
+```
+
+**Best Practices:**
+- Pin exact versions for reproducibility
+- Update dependencies carefully
+- Test after dependency updates
+- Document dependency changes
+
+---
+
 ## Model Registry
 
 ### Why Model Registry?
@@ -392,11 +619,326 @@ None → Staging → Production → Archived
 
 ---
 
+## Machine Learning Project Basics (Refresher)
+
+### Standard ML Workflow
+
+**1. Data Ingestion**
+- Load data from various sources
+- Handle different formats
+- Validate data quality
+
+**2. Exploratory Data Analysis (EDA)**
+- Understand data distribution
+- Identify patterns
+- Detect outliers
+- Visualize relationships
+
+**3. Feature Engineering**
+- Create new features
+- Transform features
+- Select important features
+- Handle missing values
+
+**4. Model Training**
+- Split data (train/validation/test)
+- Train multiple models
+- Compare performance
+- Select best model
+
+**5. Hyperparameter Tuning**
+- Grid search
+- Random search
+- Bayesian optimization
+- Find optimal hyperparameters
+
+**6. Evaluation Metrics**
+- **Classification**: Accuracy, Precision, Recall, F1-Score, AUC-ROC
+- **Regression**: MSE, RMSE, MAE, R² Score
+- **Cross-validation**: K-fold, Stratified
+
+### Serializing Models
+
+**Using Pickle:**
+```python
+import pickle
+
+# Save model
+with open('model.pkl', 'wb') as f:
+    pickle.dump(model, f)
+
+# Load model
+with open('model.pkl', 'rb') as f:
+    model = pickle.load(f)
+```
+
+**Using Joblib (Recommended for scikit-learn):**
+```python
+import joblib
+
+# Save model (faster for NumPy arrays)
+joblib.dump(model, 'model.joblib')
+
+# Load model
+model = joblib.load('model.joblib')
+```
+
+**Why Joblib over Pickle?**
+- Faster for NumPy arrays
+- Better compression
+- More efficient for scikit-learn models
+
+### Key Concept: Reproducibility in ML
+
+**Understanding Non-Determinism:**
+- Random seeds in algorithms
+- Data shuffling
+- Parallel processing
+- GPU operations
+
+**Version Control for Reproducibility:**
+- **Code**: Git versioning
+- **Data**: DVC or Git LFS
+- **Dependencies**: requirements.txt, environment.yml
+- **Configuration**: Config files, hyperparameters
+
+**Reproducibility Checklist:**
+```python
+# Set random seeds
+import numpy as np
+import random
+import tensorflow as tf
+
+def set_seed(seed=42):
+    np.random.seed(seed)
+    random.seed(seed)
+    tf.random.set_seed(seed)
+    os.environ['PYTHONHASHSEED'] = str(seed)
+
+# Version data
+# Use DVC or Git LFS
+
+# Version dependencies
+# requirements.txt with exact versions
+
+# Version configuration
+# config.yaml with all hyperparameters
+```
+
+---
+
 ## CI/CD for ML
 
-### Continuous Integration
+### DevOps Tools Foundation
 
-Automatically test code changes.
+**Introduction to CI/CD:**
+- **Continuous Integration (CI)**: Automatically test code changes
+- **Continuous Deployment (CD)**: Automatically deploy to production
+- **Pipelines**: Automated workflows
+
+**CI/CD Concepts:**
+```
+Code Commit → Build → Test → Deploy → Monitor
+```
+
+**CI/CD Tools:**
+- **GitHub Actions**: Integrated with GitHub
+- **GitLab CI**: Integrated with GitLab
+- **Jenkins**: Self-hosted, flexible
+- **CircleCI**: Cloud-based
+- **Travis CI**: Cloud-based
+
+### Code Testing for ML
+
+**Unit Testing:**
+Test individual functions and components.
+
+```python
+import pytest
+import numpy as np
+from src.features import preprocess_data, create_features
+
+def test_preprocess_data():
+    """Test data preprocessing function"""
+    input_data = np.array([1, 2, 3, None, 5])
+    result = preprocess_data(input_data)
+    assert result is not None
+    assert len(result) == 5
+    assert np.isnan(result[3]) == False  # Missing value handled
+
+def test_create_features():
+    """Test feature engineering function"""
+    data = np.array([[1, 2], [3, 4]])
+    features = create_features(data)
+    assert features.shape[0] == 2
+    assert features.shape[1] > 2  # More features created
+```
+
+**Integration Testing:**
+Test pipeline components work together.
+
+```python
+def test_training_pipeline():
+    """Test complete training pipeline"""
+    # Load data
+    X, y = load_data()
+    
+    # Preprocess
+    X_processed = preprocess_data(X)
+    
+    # Train
+    model = train_model(X_processed, y)
+    
+    # Evaluate
+    score = evaluate_model(model, X_processed, y)
+    
+    assert score > 0.8  # Minimum performance threshold
+```
+
+### Continuous Integration (CI) Implementation
+
+**GitHub Actions Example:**
+```yaml
+# .github/workflows/ml-pipeline.yml
+name: ML Pipeline CI
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+      
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install pytest pytest-cov
+      
+      - name: Code quality checks
+        run: |
+          # Linting
+          pip install flake8 black
+          flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+          black --check .
+      
+      - name: Format check
+        run: |
+          black --check .
+      
+      - name: Run unit tests
+        run: |
+          pytest tests/unit/ --cov=src --cov-report=xml
+      
+      - name: Run integration tests
+        run: |
+          pytest tests/integration/
+```
+
+**GitLab CI Example:**
+```yaml
+# .gitlab-ci.yml
+stages:
+  - test
+  - validate
+  - train
+
+test:
+  stage: test
+  script:
+    - pip install -r requirements.txt
+    - pytest tests/
+
+validate:
+  stage: validate
+  script:
+    - python scripts/validate_data.py
+    - python scripts/validate_model.py
+
+train:
+  stage: train
+  script:
+    - python train.py
+  only:
+    - main
+```
+
+### ML-Specific CI: Testing the Model and Data
+
+**Data Validation with Great Expectations:**
+```python
+import great_expectations as ge
+
+# Create expectation suite
+df = ge.read_csv('data/train.csv')
+
+# Define expectations
+df.expect_column_values_to_not_be_null('target')
+df.expect_column_mean_to_be_between('feature1', min_value=0, max_value=100)
+df.expect_column_values_to_be_in_set('category', ['A', 'B', 'C'])
+
+# Save suite
+df.save_expectation_suite('expectations.json')
+
+# Validate new data
+new_df = ge.read_csv('data/new_data.csv')
+results = new_df.validate(expectation_suite='expectations.json')
+
+if not results['success']:
+    raise ValueError("Data validation failed!")
+```
+
+**Model Validation/Drift Tests:**
+```python
+def validate_model_performance(new_model, baseline_model, test_data):
+    """Compare new model to baseline"""
+    # Evaluate new model
+    new_score = evaluate_model(new_model, test_data)
+    
+    # Evaluate baseline
+    baseline_score = evaluate_model(baseline_model, test_data)
+    
+    # Check if new model is better
+    if new_score < baseline_score * 0.95:  # 5% degradation threshold
+        raise ValueError(f"New model performance ({new_score:.3f}) "
+                        f"is worse than baseline ({baseline_score:.3f})")
+    
+    return new_score
+```
+
+**Using CML (Continuous Machine Learning):**
+```yaml
+# .github/workflows/cml.yml
+name: CML
+on: [push]
+jobs:
+  train:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: iterative/setup-cml@v1
+      
+      - name: Train model
+        run: |
+          pip install -r requirements.txt
+          python train.py
+      
+      - name: Create CML report
+        uses: iterative/action-cml@v0
+        with:
+          file: report.md
+          token: ${{ secrets.GITHUB_TOKEN }}
+```
 
 ### GitHub Actions
 
