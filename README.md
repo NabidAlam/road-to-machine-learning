@@ -64,7 +64,7 @@
 - [Getting Started](#getting-started)
 - [Repository Structure](#repository-structure)
 - [Resources](#resources)
-- [Career Roadmaps](#career-roadmaps)
+- [Career Paths](#career-paths)
 - [Contributing](#contributing)
 
 ## Overview
@@ -80,7 +80,7 @@ This repository provides a structured learning path for machine learning, organi
 
 **Note on Module Numbering**: Module numbers (00-24) don't strictly follow the learning path order. The phases below represent the recommended learning sequence. Some modules can be learned in parallel or in different orders based on your goals. See individual module READMEs for prerequisites and suggested learning order.
 
-**Time Estimates**: Realistic completion time is **14-20 months (full-time, 30-40 hrs/week)** or **28-35 months (part-time, 10-15 hrs/week)** for comprehensive coverage including all 25 modules and 23 projects. See [FAQ section](#common-questions--learning-guide) for detailed breakdown.
+**Time Estimates**: Realistic completion time is **14-20 months (full-time, 30-40 hrs/week)** or **28-35 months (part-time, 10-15 hrs/week)** for comprehensive coverage including all 25 modules and 23 projects. See [FAQ section](#common-questions-learning-guide) for detailed breakdown.
 
 ## Learning Path Overview
 
@@ -1107,7 +1107,7 @@ This repository does not collect, store, or process any personal data. It is a s
 
 *Remember: The journey of a thousand miles begins with a single step. Start with module 00 and keep going!*
 
-[Back to Top](#road-to-ml-from-zero-to-hero)
+[Back to Top](#)
 
 </div>
 
