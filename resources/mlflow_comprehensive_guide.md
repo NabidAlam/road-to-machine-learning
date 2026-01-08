@@ -110,6 +110,74 @@ Model Retraining
 
 ---
 
+## MLFlow Architecture and Components
+
+### MLFlow Architecture
+
+**Four Main Components:**
+
+**1. MLFlow Tracking:**
+- Log and query experiments
+- Track parameters, metrics, artifacts
+- Compare runs
+- Organize into experiments
+
+**2. MLFlow Projects:**
+- Package ML code for reproducibility
+- Define dependencies (Conda, Docker)
+- Run on different platforms
+- Version control for code
+
+**3. MLFlow Models:**
+- Standardized model format
+- Model Flavors (sklearn, tensorflow, pytorch, etc.)
+- Cross-platform deployment
+- Easy serving
+
+**4. MLFlow Model Registry:**
+- Centralized model repository
+- Model versioning
+- Staging workflow
+- Model lineage
+
+### Setting Up MLFlow Tracking Server
+
+**Local Server:**
+```bash
+# Start local tracking server
+mlflow ui
+
+# Access UI at http://localhost:5000
+```
+
+**Remote/Cloud Server:**
+```bash
+# Start server with backend store
+mlflow server \
+    --backend-store-uri sqlite:///mlflow.db \
+    --default-artifact-root ./mlruns \
+    --host 0.0.0.0 \
+    --port 5000
+
+# With S3 for artifacts
+mlflow server \
+    --backend-store-uri postgresql://user:pass@host:5432/mlflow \
+    --default-artifact-root s3://bucket/mlflow-artifacts \
+    --host 0.0.0.0 \
+    --port 5000
+```
+
+**Connect to Server:**
+```python
+import mlflow
+
+# Set tracking URI
+mlflow.set_tracking_uri("http://localhost:5000")
+
+# Or set environment variable
+# export MLFLOW_TRACKING_URI=http://localhost:5000
+```
+
 ## MLFlow in MLOps Lifecycle
 
 ### MLFlow Components in MLOps
@@ -118,18 +186,22 @@ Model Retraining
 - Log parameters, metrics, artifacts
 - Compare runs
 - Search and filter experiments
+- Organize runs into experiments
 
 **2. Model Packaging (MLFlow Projects)**
 - Package code for reproducibility
-- Define dependencies
+- Define dependencies (Conda, Docker)
 - Run on different platforms
+- Version control for code
 
 **3. Model Deployment (MLFlow Models)**
 - Deploy to various platforms
-- Standardized model format
+- Standardized model format (Model Flavors)
 - Easy serving
+- Cross-platform compatibility
 
 **4. Model Management (MLFlow Model Registry)**
+- Centralized model repository
 - Version control for models
 - Staging workflow (None → Staging → Production → Archived)
 - Model lineage tracking
@@ -488,6 +560,153 @@ mlflow ui --backend-store-uri postgresql://user:pass@host:5432/mlflowdb \
 4. Filter by tags: `tags.model_type = "RandomForest"`
 
 ---
+
+## MLFlow Models
+
+### Saving Models in MLFlow Format
+
+**Model Flavors:**
+MLFlow supports multiple model formats (flavors) for cross-platform deployment.
+
+**Supported Flavors:**
+- **sklearn**: Scikit-learn models
+- **tensorflow**: TensorFlow/Keras models
+- **pytorch**: PyTorch models
+- **xgboost**: XGBoost models
+- **lightgbm**: LightGBM models
+- **spark**: Spark ML models
+- **python_function**: Generic Python models (pyfunc)
+
+**Logging Models:**
+
+**sklearn Models:**
+```python
+import mlflow.sklearn
+
+# Log sklearn model
+mlflow.sklearn.log_model(
+    model,
+    "model",
+    registered_model_name="IrisClassifier"
+)
+```
+
+**TensorFlow/Keras Models:**
+```python
+import mlflow.keras
+
+# Log Keras model
+mlflow.keras.log_model(
+    model,
+    "model",
+    registered_model_name="ImageClassifier"
+)
+```
+
+**PyTorch Models:**
+```python
+import mlflow.pytorch
+
+# Log PyTorch model
+mlflow.pytorch.log_model(
+    model,
+    "model",
+    registered_model_name="NeuralNet"
+)
+```
+
+**Generic Python Function (pyfunc):**
+```python
+import mlflow.pyfunc
+
+# Custom model class
+class CustomModel(mlflow.pyfunc.PythonModel):
+    def load_context(self, context):
+        # Load dependencies
+        self.model = joblib.load(context.artifacts["model_path"])
+    
+    def predict(self, context, model_input):
+        # Custom prediction logic
+        return self.model.predict(model_input)
+
+# Log custom model
+mlflow.pyfunc.log_model(
+    "model",
+    python_model=CustomModel(),
+    artifacts={"model_path": "model.pkl"}
+)
+```
+
+### Creating Reproducible Environment
+
+**Using Conda:**
+```python
+# MLFlow automatically creates conda.yaml
+mlflow.sklearn.log_model(
+    model,
+    "model",
+    conda_env={
+        "channels": ["defaults", "conda-forge"],
+        "dependencies": [
+            "python=3.9",
+            "pip",
+            {
+                "pip": [
+                    "mlflow==2.8.0",
+                    "scikit-learn==1.3.0",
+                    "pandas==2.0.0",
+                    "numpy==1.24.0"
+                ]
+            }
+        ]
+    }
+)
+```
+
+**Using Docker:**
+```python
+# MLFlow Projects with Docker
+# MLproject file
+"""
+name: iris-classification
+docker_env:
+  image: mlflow-docker-env:latest
+entry_points:
+  main:
+    parameters:
+      n_estimators: {type: int, default: 100}
+    command: "python train.py --n-estimators {n_estimators}"
+"""
+
+# Dockerfile
+"""
+FROM python:3.9-slim
+RUN pip install mlflow scikit-learn pandas numpy
+COPY . /app
+WORKDIR /app
+"""
+
+# Run project
+# mlflow run . --docker-args "-v /path/to/data:/data"
+```
+
+**Using requirements.txt:**
+```python
+# MLFlow can use requirements.txt
+mlflow.sklearn.log_model(
+    model,
+    "model",
+    pip_requirements="requirements.txt"
+)
+
+# requirements.txt
+"""
+mlflow==2.8.0
+scikit-learn==1.3.0
+pandas==2.0.0
+numpy==1.24.0
+"""
+```
 
 ## Model Logging
 
