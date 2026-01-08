@@ -78,7 +78,7 @@ This repository provides a structured learning path for machine learning, organi
 
 ## Learning Path
 
-**Note on Module Numbering**: Module numbers (00-21) don't strictly follow the learning path order. The phases below represent the recommended learning sequence. Some modules can be learned in parallel or in different orders based on your goals. See individual module READMEs for prerequisites and suggested learning order.
+**Note on Module Numbering**: Module numbers (00-24) don't strictly follow the learning path order. The phases below represent the recommended learning sequence. Some modules can be learned in parallel or in different orders based on your goals. See individual module READMEs for prerequisites and suggested learning order.
 
 **Time Estimates**: Realistic completion time is **14-20 months (full-time, 30-40 hrs/week)** or **28-35 months (part-time, 10-15 hrs/week)** for comprehensive coverage including all 25 modules and 23 projects. See [FAQ section](#common-questions--learning-guide) for detailed breakdown.
 
