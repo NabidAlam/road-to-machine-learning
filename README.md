@@ -765,6 +765,13 @@ road-to-ml/
 | [LlamaIndex Guide](resources/llamaindex_guide.md) | Comprehensive LlamaIndex guide: data indexing, querying, retrieval, chat engines, and advanced generative AI projects |
 | [AI Agents Guide](resources/ai_agents_guide.md) | Complete guide to AI agents: CrewAI, AutoGen, Langgraph, AutoGPT, MCP (Model Context Protocol), and A2A (Agent-to-Agent) communication |
 | [GenAI Production Deployment Guide](resources/genai_production_deployment.md) | Comprehensive guide to deploying GenAI at scale: RAG architectures, multi-agent systems, hyperscaler deployment (AWS, GCP, Azure), scaling strategies, monitoring, and cost optimization |
+| [Generative AI Comprehensive Guide](resources/generative_ai_comprehensive_guide.md) | Complete overview of Generative AI: LLMs, LangChain, RAG, AI Agents, Vector Databases, Multi-Agent Systems, and building production-ready GenAI applications |
+
+#### System Design & Architecture
+
+| Guide | Description |
+|-------|-------------|
+| [ML System Design Guide](resources/ml_system_design_guide.md) | Comprehensive guide to designing scalable ML systems: requests/responses, latency, throughput, load balancing, caching, vertical/horizontal scaling, databases, replication, sharding, message queues, stateless/stateful architecture, high availability, and monitoring |
 
 #### Business & Communication
 
@@ -1069,7 +1076,7 @@ By completing this roadmap, you'll be able to:
 |--------|-------|---------|
 | **Learning Modules** | 25 | Modules 00-24 covering all ML topics from basics to advanced |
 | **Projects** | 23 | 6 beginner + 8 intermediate + 9 advanced with complete code and READMEs |
-| **Resource Guides** | 48 | Cheatsheets, tutorials, and career guides |
+| **Resource Guides** | 50 | Cheatsheets, tutorials, and career guides |
 | **Markdown Files** | 207+ | Comprehensive content, code examples, and exercises |
 | **Learning Time (Full-Time)** | 14-20 months | 30-40 hours/week for comprehensive coverage |
 | **Learning Time (Part-Time)** | 28-35 months | 10-15 hours/week for comprehensive coverage |
