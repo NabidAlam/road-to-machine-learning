@@ -122,9 +122,30 @@ By the end of this module, you should be able to:
 - [Deploying ML Models (Real Python)](https://realpython.com/flask-connexion-rest-api/)
 - [Docker for Data Scientists](https://towardsdatascience.com/docker-for-data-scientists-9c0ce73e826e)
 - [ML Model Deployment Guide](https://www.mlflow.org/docs/latest/models.html#deployment)
+- [Setting up NGINX as Reverse Proxy (DigitalOcean)](https://www.digitalocean.com/community/tutorials/how-to-set-up-a-node-js-application-for-production-on-ubuntu-20-04)
+- [SSL Certificate Setup with Let's Encrypt (DigitalOcean)](https://www.digitalocean.com/community/tutorials/how-to-secure-nginx-with-let-s-encrypt-on-ubuntu-20-04)
+- [Production FastAPI Deployment (TestDriven.io)](https://testdriven.io/blog/fastapi-deployment/)
+
+**NGINX:**
+- [NGINX Official Documentation](https://nginx.org/en/docs/)
+- [NGINX Beginner's Guide](https://nginx.org/en/docs/beginners_guide.html)
+- [NGINX Reverse Proxy Guide](https://docs.nginx.com/nginx/admin-guide/web-server/reverse-proxy/)
+- [NGINX Load Balancing](https://docs.nginx.com/nginx/admin-guide/load-balancer/http-load-balancer/)
+
+**SSL/TLS & Security:**
+- [Let's Encrypt Documentation](https://letsencrypt.org/docs/)
+- [Certbot User Guide](https://eff-certbot.readthedocs.io/)
+- [SSL/TLS Best Practices (Mozilla)](https://wiki.mozilla.org/Security/Server_Side_TLS)
+- [OWASP API Security Top 10](https://owasp.org/www-project-api-security/)
+
+**Domain & DNS:**
+- [DNS Basics (Cloudflare)](https://www.cloudflare.com/learning/dns/what-is-dns/)
+- [DNS Configuration Guide](https://www.cloudflare.com/learning/dns/dns-records/)
+- [Domain Name System (Wikipedia)](https://en.wikipedia.org/wiki/Domain_Name_System)
 
 **Cloud Platforms:**
 - [AWS SageMaker Documentation](https://docs.aws.amazon.com/sagemaker/)
+- [AWS EC2 Documentation](https://docs.aws.amazon.com/ec2/)
 - [Google Cloud AI Platform](https://cloud.google.com/ai-platform/docs)
 - [Azure ML Documentation](https://docs.microsoft.com/azure/machine-learning/)
 - [Heroku Deployment Guide](https://devcenter.heroku.com/articles/getting-started-with-python)
@@ -132,6 +153,8 @@ By the end of this module, you should be able to:
 **Video Tutorials:**
 - [FastAPI Tutorial (Corey Schafer)](https://www.youtube.com/watch?v=0sOvCWFmrtA)
 - [Docker Tutorial (TechWorld with Nana)](https://www.youtube.com/watch?v=3c-iBn73dDE)
+- [NGINX Tutorial (LearnLinuxTV)](https://www.youtube.com/watch?v=9JqVp7j2zdc)
+- [SSL/TLS Explained (PowerCert)](https://www.youtube.com/watch?v=jQVwXa5CQ2Q)
 - [ML Deployment (Sentdex)](https://www.youtube.com/playlist?list=PLQVvvaa0QuDfKTOs3Keq_kaG2P55YRn5v)
 
 **[Complete Detailed Guide →](deployment.md)**

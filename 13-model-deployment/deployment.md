@@ -1606,10 +1606,48 @@ def detect_data_drift(new_features, training_features):
 
 ---
 
+## Additional Resources
+
+### Production Server Setup
+
+**NGINX:**
+- [NGINX Official Documentation](https://nginx.org/en/docs/)
+- [NGINX Beginner's Guide](https://nginx.org/en/docs/beginners_guide.html)
+- [NGINX Reverse Proxy Guide](https://docs.nginx.com/nginx/admin-guide/web-server/reverse-proxy/)
+- [NGINX Load Balancing](https://docs.nginx.com/nginx/admin-guide/load-balancer/http-load-balancer/)
+
+**SSL/TLS & Security:**
+- [Let's Encrypt Documentation](https://letsencrypt.org/docs/)
+- [Certbot User Guide](https://eff-certbot.readthedocs.io/)
+- [SSL/TLS Best Practices (Mozilla)](https://wiki.mozilla.org/Security/Server_Side_TLS)
+- [OWASP API Security Top 10](https://owasp.org/www-project-api-security/)
+
+**Domain & DNS:**
+- [DNS Basics (Cloudflare)](https://www.cloudflare.com/learning/dns/what-is-dns/)
+- [DNS Configuration Guide](https://www.cloudflare.com/learning/dns/dns-records/)
+
+**AWS EC2:**
+- [AWS EC2 Documentation](https://docs.aws.amazon.com/ec2/)
+- [EC2 User Guide](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/)
+- [Setting up NGINX on EC2 (AWS)](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/install-nginx.html)
+
+**Tutorials:**
+- [Setting up NGINX as Reverse Proxy (DigitalOcean)](https://www.digitalocean.com/community/tutorials/how-to-set-up-a-node-js-application-for-production-on-ubuntu-20-04)
+- [SSL Certificate Setup with Let's Encrypt (DigitalOcean)](https://www.digitalocean.com/community/tutorials/how-to-secure-nginx-with-let-s-encrypt-on-ubuntu-20-04)
+- [Production FastAPI Deployment (TestDriven.io)](https://testdriven.io/blog/fastapi-deployment/)
+
+**Video Tutorials:**
+- [NGINX Tutorial (LearnLinuxTV)](https://www.youtube.com/watch?v=9JqVp7j2zdc)
+- [SSL/TLS Explained (PowerCert)](https://www.youtube.com/watch?v=jQVwXa5CQ2Q)
+
+---
+
 ## Next Steps
 
 - Practice deploying models to different platforms
 - Experiment with containerization
+- Set up production servers with NGINX and SSL
+- Configure domain and DNS for your ML APIs
 - Set up monitoring and logging
 - Learn about model versioning
 - Explore edge deployment
