@@ -1379,11 +1379,213 @@ def clean_data(df):
 
 ---
 
+## Handling Large Datasets: Polars and Dask
+
+### When Pandas Isn't Enough
+
+**Pandas Limitations:**
+- Single-threaded operations (uses one CPU core)
+- Memory-intensive (loads entire dataset into RAM)
+- Slower for large datasets (>1GB)
+- Limited parallel processing
+
+**When to Use Alternatives:**
+- Datasets larger than available RAM
+- Need for faster processing
+- Multi-core CPU available
+- Real-time data processing
+
+### Polars: Fast DataFrame Library
+
+**Polars** is a blazingly fast DataFrame library written in Rust, providing a Python API. It's designed to be a drop-in replacement for Pandas with better performance.
+
+**Key Features:**
+- 10-100x faster than Pandas for many operations
+- Lazy evaluation (optimizes queries before execution)
+- Multi-threaded by default
+- Memory efficient
+- Similar API to Pandas
+
+**Installation:**
+```bash
+pip install polars
+```
+
+**Basic Usage:**
+```python
+import polars as pl
+
+# Read CSV (much faster than Pandas for large files)
+df = pl.read_csv("large_file.csv")
+
+# Similar operations to Pandas
+df_filtered = df.filter(pl.col("age") > 30)
+df_grouped = df.group_by("category").agg([
+    pl.col("value").mean().alias("mean_value"),
+    pl.col("value").sum().alias("total_value")
+])
+
+# Lazy evaluation (optimizes before execution)
+df_lazy = pl.scan_csv("large_file.csv")
+result = (df_lazy
+    .filter(pl.col("age") > 30)
+    .group_by("category")
+    .agg([pl.col("value").mean()])
+    .collect()  # Execute the optimized plan
+)
+```
+
+**Performance Comparison:**
+```python
+import pandas as pd
+import polars as pl
+import time
+
+# Large dataset
+n_rows = 10_000_000
+data = {
+    'id': range(n_rows),
+    'value': np.random.randn(n_rows),
+    'category': np.random.choice(['A', 'B', 'C'], n_rows)
+}
+
+# Pandas
+start = time.time()
+df_pd = pd.DataFrame(data)
+result_pd = df_pd[df_pd['value'] > 0].groupby('category')['value'].mean()
+time_pandas = time.time() - start
+print(f"Pandas: {time_pandas:.2f} seconds")
+
+# Polars
+start = time.time()
+df_pl = pl.DataFrame(data)
+result_pl = df_pl.filter(pl.col('value') > 0).group_by('category').agg(pl.col('value').mean())
+time_polars = time.time() - start
+print(f"Polars: {time_polars:.2f} seconds")
+print(f"Speedup: {time_pandas/time_polars:.1f}x faster")
+```
+
+**When to Use Polars:**
+- Large datasets (millions of rows)
+- Need for speed
+- Complex aggregations
+- Data transformations
+
+### Dask: Parallel Pandas
+
+**Dask** provides parallel computing with a Pandas-like API. It breaks large datasets into smaller chunks and processes them in parallel.
+
+**Key Features:**
+- Process datasets larger than memory
+- Parallel processing across CPU cores
+- Distributed computing (multiple machines)
+- Lazy evaluation
+- Compatible with Pandas API
+
+**Installation:**
+```bash
+pip install dask[complete]
+```
+
+**Basic Usage:**
+```python
+import dask.dataframe as dd
+
+# Read large CSV (chunked automatically)
+df = dd.read_csv("huge_file_*.csv")  # Can read multiple files
+
+# Operations look like Pandas
+df_filtered = df[df['age'] > 30]
+df_grouped = df.groupby('category')['value'].mean()
+
+# Compute when ready (lazy evaluation)
+result = df_grouped.compute()  # Executes the computation
+```
+
+**Processing Larger-than-Memory Data:**
+```python
+# Process 50GB file that doesn't fit in 16GB RAM
+df = dd.read_csv("massive_file.csv", blocksize=100_000_000)  # 100MB chunks
+
+# Operations work on chunks
+result = (df
+    .query('value > 1000')
+    .groupby('category')
+    .agg({'value': 'mean', 'count': 'count'})
+    .compute()  # Processes in chunks, writes to disk if needed
+)
+```
+
+**Distributed Computing:**
+```python
+from dask.distributed import Client
+
+# Start distributed cluster
+client = Client('scheduler-address:8786')
+
+# Now Dask operations run across cluster
+df = dd.read_csv("huge_file.csv")
+result = df.groupby('category').value.mean().compute()
+```
+
+**When to Use Dask:**
+- Datasets larger than RAM
+- Need distributed computing
+- Complex ETL pipelines
+- Already using Pandas (easy migration)
+
+### Comparison: Pandas vs Polars vs Dask
+
+| Feature | Pandas | Polars | Dask |
+|---------|--------|--------|------|
+| **Speed** | Baseline | 10-100x faster | 2-10x faster (parallel) |
+| **Memory** | Loads all data | Efficient | Processes in chunks |
+| **API** | Standard | Similar to Pandas | Pandas-compatible |
+| **Best For** | Small-medium data | Large datasets, speed | Very large, distributed |
+| **Learning Curve** | Easy | Easy | Medium |
+
+### Migration Guide
+
+**From Pandas to Polars:**
+```python
+# Pandas
+df = pd.read_csv("data.csv")
+result = df[df['age'] > 30].groupby('category')['value'].mean()
+
+# Polars (very similar)
+df = pl.read_csv("data.csv")
+result = df.filter(pl.col('age') > 30).group_by('category').agg(pl.col('value').mean())
+```
+
+**From Pandas to Dask:**
+```python
+# Pandas
+df = pd.read_csv("data.csv")
+result = df.groupby('category')['value'].mean()
+
+# Dask (almost identical)
+df = dd.read_csv("data.csv")
+result = df.groupby('category')['value'].mean().compute()
+```
+
+### Best Practices
+
+1. **Start with Pandas**: Learn Pandas first, it's the standard
+2. **Switch when needed**: Use Polars/Dask when you hit performance limits
+3. **Profile first**: Measure before optimizing
+4. **Consider data size**: 
+   - < 1GB: Pandas is fine
+   - 1-10GB: Try Polars
+   - > 10GB: Consider Dask
+
+---
+
 ## Next Steps
 
 - Practice with real datasets (Kaggle, UCI Repository)
 - Work through the exercises
+- Try Polars or Dask on a large dataset
 - Move to [03-visualization.md](03-visualization.md) to learn data visualization
 
-**Remember**: Pandas is your primary tool for data manipulation - master it!
+**Remember**: Pandas is your primary tool for data manipulation - master it! But know when to use Polars or Dask for larger datasets.
 
