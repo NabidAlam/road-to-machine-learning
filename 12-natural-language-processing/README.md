@@ -127,5 +127,5 @@ By the end of this module, you should be able to:
 ---
 
 **Previous Phase:** [11-computer-vision](../11-computer-vision/README.md)  
-**Next Phase:** [13-model-deployment](../13-model-deployment/README.md)
+**Next Phase:** [25-generative-ai-llms](../25-generative-ai-llms/README.md)
 

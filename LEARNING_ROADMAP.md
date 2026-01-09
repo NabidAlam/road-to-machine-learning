@@ -29,16 +29,14 @@ PHASE 2: ML BASICS (2-3 months full-time, 4-6 months part-time)
 PHASE 3: ADVANCED ML (1-2 months full-time, 2-4 months part-time)
  Ensemble Methods
  Feature Engineering
- Unsupervised Learning
     ↓
-PHASE 4: UNSUPERVISED LEARNING (1-2 months full-time, 2-4 months part-time)
+PHASE 4: UNSUPERVISED LEARNING (1 month full-time, 2 months part-time)
  Clustering
  Dimensionality Reduction
- Anomaly Detection
     ↓
 PHASE 5: DEEP LEARNING FUNDAMENTALS (2 months full-time, 4 months part-time)
  Neural Networks Basics
- Deep Learning Frameworks (TensorFlow, PyTorch)
+ Deep Learning Frameworks (PyTorch/TensorFlow)
     ↓
 PHASE 6: SPECIALIZED DEEP LEARNING (3-4 months full-time, 6-8 months part-time)
  Computer Vision
@@ -47,30 +45,26 @@ PHASE 6: SPECIALIZED DEEP LEARNING (3-4 months full-time, 6-8 months part-time)
     ↓
 PHASE 7: GENERATIVE AI & MODERN LLMs (1-2 months full-time, 2-4 months part-time)
  Prompt Engineering
- Vector Databases (Pinecone, ChromaDB, Weaviate, FAISS)
- RAG (Retrieval-Augmented Generation)
- LLM Agents (LangChain, LangGraph)
- Multi-Agent Systems
+ RAG & Vector Databases
+ LLM Agents & Multi-Agent Systems
     ↓
 PHASE 7.5: ESSENTIAL SKILLS (1-2 months full-time, 2-4 months part-time)
- SQL & Database Fundamentals
- Handling Imbalanced Data
+ SQL & Databases
+ Imbalanced Data
  Model Explainability
     ↓
 PHASE 8: PRODUCTION & MLOPS (2-3 months full-time, 4-6 months part-time)
- Model Deployment (including Hugging Face Spaces)
- Model Optimization (Quantization, TensorRT, ONNX, GGML)
- MLOps Basics (MLflow, Weights & Biases)
+ Model Deployment (API, Docker, Cloud)
+ Model Optimization (Quantization, ONNX)
+ MLOps Basics (MLflow, W&B)
     ↓
-PHASE 9: PROJECTS (4-6 months full-time, 8-12 months part-time)
- Beginner Projects
- Intermediate Projects
- Advanced Projects
+PHASE 9: PROJECTS (Ongoing)
+ Beginner, Intermediate & Advanced Projects
     ↓
-PHASE 10: ADVANCED SPECIALIZED TOPICS (2-3 months full-time, 4-6 months part-time)
+PHASE 10: ADVANCED SPECIALIZATION (2-3 months full-time)
  Reinforcement Learning
  Graph Neural Networks
- Audio & Speech Processing
+ Audio Processing
 ```
 
 ##  Milestone Checklist
@@ -284,7 +278,7 @@ Use this to track where you are:
 - [ ] Phase 1: Data Fundamentals
 - [ ] Phase 2: ML Basics
 - [ ] Phase 3: Advanced ML
-- [ ] Phase 4: Deep Learning
+- [ ] Phase 4: Unsupervised Learning
 - [ ] Phase 5: Deep Learning Fundamentals
 - [ ] Phase 6: Specialized Deep Learning
 - [ ] Phase 7: Generative AI & Modern LLMs
