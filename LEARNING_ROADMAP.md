@@ -15,15 +15,14 @@ PHASE 0: FOUNDATION (2-3 months full-time, 4-6 months part-time)
  Environment Setup
     ↓
 PHASE 1: DATA FUNDAMENTALS (2-3 months full-time, 4-6 months part-time)
- NumPy
- Pandas
- Polars & Dask (Big Data)
- Visualization
+ NumPy, Pandas & Polars
+ Data Visualization
+ Exploratory Data Analysis
     ↓
 PHASE 2: ML BASICS (2-3 months full-time, 4-6 months part-time)
  Introduction to ML
- Regression
- Classification (with Bias Auditing)
+ Regression & Classification
+ Bias Auditing & Fairness
  Model Evaluation
     ↓
 PHASE 3: ADVANCED ML (1-2 months full-time, 2-4 months part-time)
