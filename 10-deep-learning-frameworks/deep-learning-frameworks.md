@@ -2222,6 +2222,778 @@ new_model.load_weights('weights.h5')
 
 ---
 
+## TensorFlow NLP Fundamentals
+
+### Introduction to NLP with TensorFlow
+
+**What is NLP?**
+Natural Language Processing enables machines to understand, interpret, and generate human language.
+
+**NLP Inputs and Outputs:**
+- **Input**: Text sequences (sentences, documents, tweets)
+- **Output**: Predictions (sentiment, classification, translation, generation)
+- **Sequence Problems**: Order matters (unlike images where spatial structure matters)
+
+**Typical NLP Architecture:**
+```
+Text → Tokenization → Embedding → RNN/LSTM/Transformer → Output
+```
+
+### Preparing Text Data with TensorFlow
+
+**TextVectorization Layer:**
+
+```python
+from tensorflow.keras.layers import TextVectorization
+import tensorflow as tf
+
+# Create TextVectorization layer
+text_vectorizer = TextVectorization(
+    max_tokens=10000,  # Maximum vocabulary size
+    output_sequence_length=250,  # Pad/truncate to this length
+    output_mode='int'  # Return integer sequences
+)
+
+# Adapt to training data
+text_vectorizer.adapt(train_texts)
+
+# Convert text to numbers
+text_vectorized = text_vectorizer(train_texts)
+print(f"Vocabulary size: {text_vectorizer.vocabulary_size()}")
+```
+
+**Creating Embeddings:**
+
+```python
+from tensorflow.keras.layers import Embedding
+
+# Embedding layer
+embedding = Embedding(
+    input_dim=10000,  # Vocabulary size
+    output_dim=128,   # Embedding dimension
+    input_length=250  # Sequence length
+)
+
+# Use in model
+model = keras.Sequential([
+    text_vectorizer,
+    embedding,
+    # ... rest of model
+])
+```
+
+### Building NLP Models with TensorFlow
+
+**Model 0: Baseline (Dense Layers Only):**
+
+```python
+# Simple baseline model
+model_0 = keras.Sequential([
+    text_vectorizer,
+    embedding,
+    layers.GlobalAveragePooling1D(),  # Average embeddings
+    layers.Dense(64, activation='relu'),
+    layers.Dense(1, activation='sigmoid')  # Binary classification
+])
+
+model_0.compile(
+    optimizer='adam',
+    loss='binary_crossentropy',
+    metrics=['accuracy']
+)
+```
+
+**Model 1: Deep Dense Model:**
+
+```python
+model_1 = keras.Sequential([
+    text_vectorizer,
+    embedding,
+    layers.GlobalAveragePooling1D(),
+    layers.Dense(128, activation='relu'),
+    layers.Dropout(0.5),
+    layers.Dense(64, activation='relu'),
+    layers.Dropout(0.5),
+    layers.Dense(1, activation='sigmoid')
+])
+```
+
+**Model 2: LSTM (Long Short-Term Memory):**
+
+```python
+model_2 = keras.Sequential([
+    text_vectorizer,
+    embedding,
+    layers.LSTM(64, return_sequences=True),  # Return sequences for stacking
+    layers.LSTM(32),
+    layers.Dense(1, activation='sigmoid')
+])
+```
+
+**Model 3: GRU (Gated Recurrent Unit):**
+
+```python
+model_3 = keras.Sequential([
+    text_vectorizer,
+    embedding,
+    layers.GRU(64, return_sequences=True),
+    layers.GRU(32),
+    layers.Dense(1, activation='sigmoid')
+])
+```
+
+**Model 4: Bidirectional RNN:**
+
+```python
+model_4 = keras.Sequential([
+    text_vectorizer,
+    embedding,
+    layers.Bidirectional(layers.LSTM(64)),
+    layers.Dense(1, activation='sigmoid')
+])
+```
+
+**Model 5: Conv1D for Text:**
+
+```python
+# 1D Convolution works well for text sequences
+model_5 = keras.Sequential([
+    text_vectorizer,
+    embedding,
+    layers.Conv1D(filters=64, kernel_size=5, activation='relu'),
+    layers.GlobalMaxPooling1D(),
+    layers.Dense(64, activation='relu'),
+    layers.Dense(1, activation='sigmoid')
+])
+```
+
+### Transfer Learning for NLP with TensorFlow Hub
+
+**Using Pre-trained Embeddings:**
+
+```python
+import tensorflow_hub as hub
+
+# Load pre-trained embedding from TensorFlow Hub
+embedding_layer = hub.KerasLayer(
+    "https://tfhub.dev/google/universal-sentence-encoder/4",
+    input_shape=[],  # Variable length text
+    dtype=tf.string,
+    trainable=False  # Freeze embeddings
+)
+
+# Model with pre-trained embeddings
+model_6 = keras.Sequential([
+    embedding_layer,
+    layers.Dense(64, activation='relu'),
+    layers.Dropout(0.5),
+    layers.Dense(1, activation='sigmoid')
+])
+```
+
+**Visualizing Word Embeddings:**
+
+```python
+# Get embedding weights
+embedding_weights = embedding.get_weights()[0]
+
+# Save for TensorFlow Projector
+import io
+out_v = io.open('vectors.tsv', 'w', encoding='utf-8')
+out_m = io.open('metadata.tsv', 'w', encoding='utf-8')
+
+vocab = text_vectorizer.get_vocabulary()
+for index, word in enumerate(vocab):
+    vec = embedding_weights[index]
+    out_v.write('\t'.join([str(x) for x in vec]) + "\n")
+    out_m.write(word + "\n")
+out_v.close()
+out_m.close()
+
+# Upload to: https://projector.tensorflow.org/
+```
+
+### Using tf.data API for Efficient Text Processing
+
+```python
+# Create tf.data.Dataset for efficient loading
+def create_text_dataset(texts, labels, batch_size=32, shuffle=True):
+    dataset = tf.data.Dataset.from_tensor_slices((texts, labels))
+    if shuffle:
+        dataset = dataset.shuffle(buffer_size=10000)
+    dataset = dataset.batch(batch_size)
+    dataset = dataset.prefetch(tf.data.AUTOTUNE)  # Prefetch for performance
+    return dataset
+
+train_dataset = create_text_dataset(train_texts, train_labels)
+val_dataset = create_text_dataset(val_texts, val_labels, shuffle=False)
+```
+
+### Evaluating NLP Models
+
+```python
+# Make predictions
+y_pred_probs = model.predict(test_texts)
+y_pred = tf.round(y_pred_probs)
+
+# Confusion matrix
+from sklearn.metrics import confusion_matrix, classification_report
+cm = confusion_matrix(test_labels, y_pred)
+print(classification_report(test_labels, y_pred))
+
+# Visualize most wrong predictions
+wrong_predictions = []
+for i, (text, true_label, pred_prob) in enumerate(zip(test_texts, test_labels, y_pred_probs)):
+    if (true_label == 1 and pred_prob < 0.5) or (true_label == 0 and pred_prob > 0.5):
+        wrong_predictions.append({
+            'text': text,
+            'true': true_label,
+            'pred': pred_prob[0]
+        })
+```
+
+---
+
+## TensorFlow Time Series Fundamentals
+
+### Introduction to Time Series with TensorFlow
+
+**What is Time Series?**
+Time series data is a sequence of data points collected over time intervals.
+
+**Time Series Inputs and Outputs:**
+- **Input**: Historical time series data (past values)
+- **Output**: Future predictions (forecasting)
+- **Windows**: Look back period (e.g., last 7 days)
+- **Horizon**: Prediction period (e.g., next 1 day)
+
+**Key Concepts:**
+- **Window Size**: How many past time steps to use
+- **Horizon**: How many future time steps to predict
+- **Univariate**: Single variable (e.g., stock price)
+- **Multivariate**: Multiple variables (e.g., price + volume)
+
+### Preparing Time Series Data
+
+**Creating Windows and Labels:**
+
+```python
+def create_windows_labels(time_series, window_size=7, horizon=1):
+    """
+    Create windows (features) and labels (targets) from time series
+    
+    Args:
+        time_series: 1D array of time series values
+        window_size: Number of past time steps to use
+        horizon: Number of future time steps to predict
+    
+    Returns:
+        windows: Array of shape (samples, window_size)
+        labels: Array of shape (samples, horizon)
+    """
+    windows = []
+    labels = []
+    
+    for i in range(len(time_series) - window_size - horizon + 1):
+        windows.append(time_series[i:i+window_size])
+        labels.append(time_series[i+window_size:i+window_size+horizon])
+    
+    return np.array(windows), np.array(labels)
+
+# Example usage
+windows, labels = create_windows_labels(bitcoin_prices, window_size=7, horizon=1)
+print(f"Windows shape: {windows.shape}")  # (samples, 7)
+print(f"Labels shape: {labels.shape}")     # (samples, 1)
+```
+
+**Time-Based Train/Test Split:**
+
+```python
+# CORRECT: Time-based split (preserve temporal order)
+split_date = '2023-01-01'
+train_data = data[data.index < split_date]
+test_data = data[data.index >= split_date]
+
+# Create windows for train and test
+train_windows, train_labels = create_windows_labels(train_data.values, window_size=7)
+test_windows, test_labels = create_windows_labels(test_data.values, window_size=7)
+```
+
+### Building Time Series Models
+
+**Model 0: Naive Forecast (Baseline):**
+
+```python
+# Naive forecast: predict last value
+def naive_forecast(data, horizon=1):
+    return data[-horizon:]
+
+naive_pred = naive_forecast(train_data.values, horizon=len(test_data))
+```
+
+**Model 1: Dense Model:**
+
+```python
+model_1 = keras.Sequential([
+    layers.Dense(128, activation='relu', input_shape=(7,)),  # window_size=7
+    layers.Dense(64, activation='relu'),
+    layers.Dense(1)  # Predict 1 step ahead
+])
+
+model_1.compile(
+    optimizer='adam',
+    loss='mae',
+    metrics=['mae', 'mse']
+)
+```
+
+**Model 2: LSTM for Time Series:**
+
+```python
+model_2 = keras.Sequential([
+    layers.LSTM(64, activation='relu', input_shape=(7, 1), return_sequences=True),
+    layers.LSTM(32, activation='relu'),
+    layers.Dense(1)
+])
+
+# Reshape data for LSTM (needs 3D: samples, timesteps, features)
+train_windows_lstm = train_windows.reshape(-1, 7, 1)
+test_windows_lstm = test_windows.reshape(-1, 7, 1)
+```
+
+**Model 3: Conv1D for Time Series:**
+
+```python
+model_3 = keras.Sequential([
+    layers.Conv1D(filters=64, kernel_size=3, activation='relu', input_shape=(7, 1)),
+    layers.Conv1D(filters=32, kernel_size=3, activation='relu'),
+    layers.GlobalMaxPooling1D(),
+    layers.Dense(1)
+])
+```
+
+**Model 4: Multivariate Time Series:**
+
+```python
+# Multiple features (e.g., price, volume, sentiment)
+multivariate_data = np.column_stack([price, volume, sentiment])
+
+# Create windows with multiple features
+def create_multivariate_windows(data, window_size=7, horizon=1):
+    windows = []
+    labels = []
+    for i in range(len(data) - window_size - horizon + 1):
+        windows.append(data[i:i+window_size])
+        labels.append(data[i+window_size:i+window_size+horizon, 0])  # Predict first feature
+    return np.array(windows), np.array(labels)
+
+multivariate_windows, multivariate_labels = create_multivariate_windows(
+    multivariate_data, window_size=7
+)
+
+# Model for multivariate input
+model_4 = keras.Sequential([
+    layers.LSTM(64, input_shape=(7, 3)),  # 3 features
+    layers.Dense(1)
+])
+```
+
+### Time Series Evaluation Metrics
+
+```python
+def evaluate_time_series_forecast(y_true, y_pred):
+    """Calculate multiple time series metrics"""
+    mae = tf.keras.metrics.mean_absolute_error(y_true, y_pred).numpy()
+    mse = tf.keras.metrics.mean_squared_error(y_true, y_pred).numpy()
+    rmse = np.sqrt(mse)
+    
+    # Mean Absolute Percentage Error (MAPE)
+    mape = tf.reduce_mean(tf.abs((y_true - y_pred) / y_true)) * 100
+    
+    # Mean Absolute Scaled Error (MASE)
+    # MASE = MAE / MAE of naive forecast
+    naive_mae = tf.reduce_mean(tf.abs(y_true[1:] - y_true[:-1]))
+    mase = mae / naive_mae
+    
+    return {
+        'MAE': mae,
+        'MSE': mse,
+        'RMSE': rmse,
+        'MAPE': mape,
+        'MASE': mase
+    }
+
+metrics = evaluate_time_series_forecast(test_labels, predictions)
+print(metrics)
+```
+
+### Advanced: N-BEATS Algorithm
+
+**N-BEATS (Neural Basis Expansion Analysis):**
+
+```python
+class NBeatsBlock(layers.Layer):
+    """N-BEATS basic block"""
+    def __init__(self, input_size, theta_size, horizon, n_neurons, n_layers, **kwargs):
+        super().__init__(**kwargs)
+        self.input_size = input_size
+        self.theta_size = theta_size
+        self.horizon = horizon
+        self.n_neurons = n_neurons
+        
+        # Stack of fully connected layers
+        self.hidden = [layers.Dense(n_neurons, activation='relu') 
+                      for _ in range(n_layers)]
+        self.theta_layer = layers.Dense(theta_size, activation='linear', name='theta')
+    
+    def call(self, inputs):
+        x = inputs
+        for layer in self.hidden:
+            x = layer(x)
+        theta = self.theta_layer(x)
+        
+        # Backcast and forecast
+        backcast, forecast = self.lambda_layer(theta)
+        return backcast, forecast
+    
+    def lambda_layer(self, theta):
+        # Basis expansion (simplified version)
+        backcast_basis = tf.ones([self.input_size, self.theta_size])
+        forecast_basis = tf.ones([self.horizon, self.theta_size])
+        
+        backcast = tf.einsum('bp,pt->bt', theta, backcast_basis)
+        forecast = tf.einsum('bp,pt->bt', theta, forecast_basis)
+        return backcast, forecast
+
+# Build N-BEATS model
+def build_nbeats_model(input_size, horizon, n_blocks=4):
+    inputs = layers.Input(shape=(input_size,))
+    residuals = inputs
+    forecasts = []
+    
+    for i in range(n_blocks):
+        block = NBeatsBlock(
+            input_size=input_size,
+            theta_size=input_size + horizon,
+            horizon=horizon,
+            n_neurons=512,
+            n_layers=4
+        )
+        backcast, forecast = block(residuals)
+        residuals = layers.Subtract()([residuals, backcast])
+        forecasts.append(forecast)
+    
+    # Combine forecasts
+    forecast = layers.Add()(forecasts)
+    model = keras.Model(inputs, forecast)
+    return model
+```
+
+### Ensemble Models for Time Series
+
+```python
+# Train multiple models
+models = [model_1, model_2, model_3]
+
+# Make predictions with each
+predictions = []
+for model in models:
+    pred = model.predict(test_windows)
+    predictions.append(pred)
+
+# Ensemble: Average predictions
+ensemble_pred = np.mean(predictions, axis=0)
+
+# Or weighted ensemble
+weights = [0.3, 0.4, 0.3]  # Give more weight to better models
+ensemble_pred = np.average(predictions, axis=0, weights=weights)
+```
+
+### Prediction Intervals
+
+```python
+def get_prediction_intervals(predictions, confidence=0.95):
+    """Calculate prediction intervals"""
+    alpha = 1 - confidence
+    lower_percentile = (alpha / 2) * 100
+    upper_percentile = (1 - alpha / 2) * 100
+    
+    lower_bound = np.percentile(predictions, lower_percentile, axis=0)
+    upper_bound = np.percentile(predictions, upper_percentile, axis=0)
+    
+    return lower_bound, upper_bound
+
+lower, upper = get_prediction_intervals(ensemble_predictions, confidence=0.95)
+```
+
+---
+
+## Advanced TensorFlow Features
+
+### tf.data API for Performance
+
+**Creating Efficient Data Pipelines:**
+
+```python
+# tf.data provides efficient data loading and preprocessing
+def create_tf_dataset(images, labels, batch_size=32, shuffle=True):
+    dataset = tf.data.Dataset.from_tensor_slices((images, labels))
+    
+    if shuffle:
+        dataset = dataset.shuffle(buffer_size=10000)
+    
+    dataset = dataset.batch(batch_size)
+    dataset = dataset.prefetch(tf.data.AUTOTUNE)  # Prefetch for GPU
+    
+    return dataset
+
+train_dataset = create_tf_dataset(x_train, y_train, batch_size=32)
+val_dataset = create_tf_dataset(x_val, y_val, batch_size=32, shuffle=False)
+
+# Train with dataset
+model.fit(train_dataset, validation_data=val_dataset, epochs=10)
+```
+
+**Data Augmentation with tf.data:**
+
+```python
+def augment_image(image, label):
+    """Apply random augmentations"""
+    image = tf.image.random_flip_left_right(image)
+    image = tf.image.random_brightness(image, max_delta=0.2)
+    image = tf.image.random_contrast(image, lower=0.8, upper=1.2)
+    return image, label
+
+# Apply augmentation to training data
+train_dataset = train_dataset.map(augment_image, num_parallel_calls=tf.data.AUTOTUNE)
+```
+
+### Mixed Precision Training
+
+**Enabling Mixed Precision:**
+
+```python
+# Enable mixed precision for faster training on modern GPUs
+from tensorflow.keras.mixed_precision import set_global_policy
+
+# Set mixed precision policy
+set_global_policy('mixed_float16')
+
+# Build model (will automatically use mixed precision)
+model = keras.Sequential([
+    layers.Dense(128, activation='relu'),
+    layers.Dense(64, activation='relu'),
+    layers.Dense(10, activation='softmax', dtype='float32')  # Output in float32
+])
+
+# Compile with loss scaling
+model.compile(
+    optimizer=keras.optimizers.Adam(),
+    loss='sparse_categorical_crossentropy',
+    metrics=['accuracy']
+)
+```
+
+### Functional API vs Sequential API
+
+**When to Use Each:**
+
+```python
+# Sequential API: Simple, linear models
+sequential_model = keras.Sequential([
+    layers.Dense(64, activation='relu', input_shape=(784,)),
+    layers.Dense(32, activation='relu'),
+    layers.Dense(10, activation='softmax')
+])
+
+# Functional API: Complex architectures (multi-input, multi-output, shared layers)
+inputs = layers.Input(shape=(784,))
+x = layers.Dense(64, activation='relu')(inputs)
+x = layers.Dense(32, activation='relu')(x)
+outputs = layers.Dense(10, activation='softmax')(x)
+
+functional_model = keras.Model(inputs=inputs, outputs=outputs)
+
+# Multi-input example
+input1 = layers.Input(shape=(784,), name='image')
+input2 = layers.Input(shape=(10,), name='metadata')
+x1 = layers.Dense(64, activation='relu')(input1)
+x2 = layers.Dense(64, activation='relu')(input2)
+merged = layers.concatenate([x1, x2])
+outputs = layers.Dense(10, activation='softmax')(merged)
+multi_input_model = keras.Model(inputs=[input1, input2], outputs=outputs)
+```
+
+### Advanced Transfer Learning: Fine-Tuning
+
+**Fine-Tuning Strategy:**
+
+```python
+# Step 1: Feature Extraction (freeze base)
+base_model = keras.applications.ResNet50(
+    weights='imagenet',
+    include_top=False,
+    input_shape=(224, 224, 3)
+)
+base_model.trainable = False
+
+model = keras.Sequential([
+    base_model,
+    layers.GlobalAveragePooling2D(),
+    layers.Dense(10, activation='softmax')
+])
+
+# Train feature extraction phase
+model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
+model.fit(train_data, epochs=10)
+
+# Step 2: Fine-Tuning (unfreeze some layers)
+base_model.trainable = True
+# Freeze early layers, fine-tune later layers
+for layer in base_model.layers[:-10]:
+    layer.trainable = False
+
+# Use lower learning rate for fine-tuning
+model.compile(
+    optimizer=keras.optimizers.Adam(learning_rate=1e-5),
+    loss='categorical_crossentropy',
+    metrics=['accuracy']
+)
+model.fit(train_data, epochs=5)
+```
+
+### TensorBoard Integration
+
+**Logging to TensorBoard:**
+
+```python
+# Create TensorBoard callback
+tensorboard_callback = keras.callbacks.TensorBoard(
+    log_dir='./logs',
+    histogram_freq=1,
+    write_graph=True,
+    write_images=True
+)
+
+# Train with TensorBoard
+model.fit(
+    x_train, y_train,
+    epochs=10,
+    validation_data=(x_val, y_val),
+    callbacks=[tensorboard_callback]
+)
+
+# View with: tensorboard --logdir=./logs
+```
+
+**Comparing Experiments:**
+
+```python
+# Log different experiments to different directories
+experiments = {
+    'baseline': {'lr': 0.001, 'batch_size': 32},
+    'higher_lr': {'lr': 0.01, 'batch_size': 32},
+    'larger_batch': {'lr': 0.001, 'batch_size': 64}
+}
+
+for exp_name, params in experiments.items():
+    model = create_model()
+    model.compile(
+        optimizer=keras.optimizers.Adam(learning_rate=params['lr']),
+        loss='categorical_crossentropy',
+        metrics=['accuracy']
+    )
+    
+    tensorboard = keras.callbacks.TensorBoard(
+        log_dir=f'./logs/{exp_name}'
+    )
+    
+    model.fit(
+        x_train, y_train,
+        batch_size=params['batch_size'],
+        epochs=10,
+        validation_data=(x_val, y_val),
+        callbacks=[tensorboard]
+    )
+```
+
+### Model Evaluation and Debugging
+
+**Visualizing Model Architecture:**
+
+```python
+# Plot model architecture
+keras.utils.plot_model(
+    model,
+    to_file='model.png',
+    show_shapes=True,
+    show_layer_names=True,
+    rankdir='TB'  # Top to bottom
+)
+
+# Get model summary
+model.summary()
+
+# Get layer information
+for layer in model.layers:
+    print(f"{layer.name}: {layer.output_shape}")
+```
+
+**Inspecting Model Predictions:**
+
+```python
+# Get intermediate layer outputs
+intermediate_model = keras.Model(
+    inputs=model.input,
+    outputs=model.get_layer('dense_1').output
+)
+intermediate_output = intermediate_model.predict(x_test[:10])
+
+# Visualize predictions
+import matplotlib.pyplot as plt
+
+def plot_predictions(y_true, y_pred, samples=10):
+    fig, axes = plt.subplots(2, 5, figsize=(15, 6))
+    axes = axes.flatten()
+    
+    for i in range(samples):
+        axes[i].imshow(x_test[i], cmap='gray')
+        axes[i].set_title(f'True: {y_true[i]}\nPred: {np.argmax(y_pred[i])}')
+        axes[i].axis('off')
+    plt.tight_layout()
+    plt.show()
+
+plot_predictions(y_test[:10], predictions[:10])
+```
+
+### TensorFlow Datasets (TFDS)
+
+**Using Pre-built Datasets:**
+
+```python
+import tensorflow_datasets as tfds
+
+# Load dataset
+(ds_train, ds_test), ds_info = tfds.load(
+    'food101',
+    split=['train', 'validation'],
+    shuffle_files=True,
+    as_supervised=True,
+    with_info=True
+)
+
+# Preprocess
+def preprocess(image, label):
+    image = tf.cast(image, tf.float32) / 255.0
+    image = tf.image.resize(image, (224, 224))
+    return image, label
+
+ds_train = ds_train.map(preprocess).batch(32).prefetch(tf.data.AUTOTUNE)
+ds_test = ds_test.map(preprocess).batch(32)
+```
+
+---
+
 ## Key Takeaways
 
 1. **Keras**: Easier to learn, great for beginners and production
