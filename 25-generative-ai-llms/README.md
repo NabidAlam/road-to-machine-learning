@@ -145,6 +145,9 @@ By the end of this module, you should be able to:
 **[Complete Detailed Guide →](generative-ai-llms.md)**
 
 **Additional Resources:**
+- [Advanced Topics →](generative-ai-llms-advanced-topics.md) - Advanced RAG, agent architectures, optimization
+- [Project Tutorial →](generative-ai-llms-project-tutorial.md) - Step-by-step RAG system project
+- [Quick Reference →](generative-ai-llms-quick-reference.md) - Quick lookup guide for GenAI
 - [Generative AI Comprehensive Guide](../resources/generative_ai_comprehensive_guide.md) - Complete overview with all concepts
 - [RAG Comprehensive Guide](../resources/rag_comprehensive_guide.md) - Deep dive into RAG implementation
 - [LangChain Guide](../resources/langchain_guide.md) - LangChain framework details
