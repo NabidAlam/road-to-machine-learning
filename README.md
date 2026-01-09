@@ -646,6 +646,13 @@ road-to-ml/
     audio-speech-processing-quick-reference.md
     README.md
 
+ 25-generative-ai-llms/
+    generative-ai-llms.md
+    generative-ai-llms-advanced-topics.md
+    generative-ai-llms-project-tutorial.md
+    generative-ai-llms-quick-reference.md
+    README.md
+
  16-projects-beginner/
     [6 project directories with code and READMEs]
     README.md
