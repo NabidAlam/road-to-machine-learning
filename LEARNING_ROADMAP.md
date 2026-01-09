@@ -269,7 +269,7 @@ Learn → Practice → Build → Review → Improve
 - **Review**: Reflect on what you learned
 - **Improve**: Fill gaps, go deeper
 
-##  Current Position Tracker
+## Current Position Tracker
 
 Use this to track where you are:
 
