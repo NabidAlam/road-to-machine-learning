@@ -14,7 +14,6 @@ Comprehensive guide to Microsoft Power BI for data visualization, analysis, and 
 - [Data Modeling and DAX Essentials](#data-modeling-and-dax-essentials)
 - [DAX (Data Analysis Expressions)](#dax-data-analysis-expressions)
 - [Advanced DAX and Data Modeling](#advanced-dax-and-data-modeling)
-- [Data Visualization & Advanced Analytics](#data-visualization-advanced-analytics)
 - [Power BI Visualizations](#power-bi-visualizations)
 - [Power BI Filtering and Interactivity](#power-bi-filtering-and-interactivity)
 - [Management, Security, and Microsoft Fabric](#management-security-and-microsoft-fabric)
