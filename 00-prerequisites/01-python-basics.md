@@ -1721,7 +1721,7 @@ root.mainloop()
 - Practice writing Python programs daily
 - Work through the exercises above
 - Try solving problems on [HackerRank](https://www.hackerrank.com/) or [LeetCode](https://leetcode.com/)
-- Move to [02-mathematics-basics.md](02-mathematics-basics.md) when comfortable
+- Move to [02-linear-algebra.md](02-linear-algebra.md) when comfortable
 
 **Remember**: Practice is key! Code along with examples and experiment with variations.
 
