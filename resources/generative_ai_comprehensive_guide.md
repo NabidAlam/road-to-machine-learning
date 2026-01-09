@@ -7,6 +7,7 @@ Complete guide to Generative AI, Large Language Models (LLMs), LangChain, RAG, A
 - [Introduction to Generative AI](#introduction-to-generative-ai)
 - [Large Language Models (LLMs)](#large-language-models-llms)
 - [Capabilities & Limitations](#capabilities-limitations)
+- [Prompt Engineering](#prompt-engineering)
 - [LangChain & LangGraph](#langchain-langgraph)
 - [AI Agents](#ai-agents)
 - [Vector Databases](#vector-databases)
@@ -280,6 +281,654 @@ Attention = softmax(Q × K^T / √d) × V
 - Fine-tune for specific domains
 - Implement fact-checking
 - Use human-in-the-loop validation
+
+---
+
+## Prompt Engineering
+
+### What is Prompt Engineering?
+
+**Prompt Engineering** is the art and science of crafting effective prompts (instructions) to get the best results from Large Language Models (LLMs).
+
+**Why It Matters:**
+- **Better Results**: Well-crafted prompts produce more accurate, relevant outputs
+- **Cost Efficiency**: Fewer API calls needed when prompts work well
+- **Consistency**: Reliable outputs for production applications
+- **Control**: Guide model behavior and style
+
+**Core Principle:** LLMs are instruction-following systems. The quality of your instructions directly impacts the quality of outputs.
+
+### Understanding Language Models
+
+**How LLMs Work:**
+- **Pattern Matching**: Trained on vast text data to predict next tokens
+- **Context Understanding**: Use surrounding text to understand meaning
+- **Statistical Generation**: Generate text based on learned patterns
+- **No True Understanding**: They don't "know" facts, they predict likely continuations
+
+**Implications for Prompting:**
+- Be explicit and clear
+- Provide context
+- Use examples when helpful
+- Structure prompts logically
+
+### Prompt Engineering Mindset
+
+**Key Principles:**
+
+1. **Clarity Over Cleverness**
+   - Clear, direct instructions work better than clever tricks
+   - Be explicit about what you want
+
+2. **Iterative Refinement**
+   - Start simple, then refine
+   - Test and improve based on results
+   - Document what works
+
+3. **Context is King**
+   - Provide relevant background
+   - Include necessary information
+   - Set the right tone and style
+
+4. **Think Like the Model**
+   - Consider how the model processes your prompt
+   - Structure information logically
+   - Use formatting that helps parsing
+
+### Best Practices
+
+**1. Be Specific and Clear**
+
+```python
+# Bad: Vague prompt
+prompt = "Write about AI"
+
+# Good: Specific prompt
+prompt = """
+Write a 300-word article about artificial intelligence for a general audience.
+Focus on:
+- What AI is in simple terms
+- Common applications people encounter daily
+- Future potential and concerns
+Use a friendly, accessible tone.
+"""
+```
+
+**2. Use Role-Playing**
+
+```python
+# Set a role for the model
+prompt = """
+You are an expert data scientist with 10 years of experience in machine learning.
+Explain gradient descent as if you're teaching a beginner, using simple analogies.
+Keep it under 200 words.
+"""
+```
+
+**3. Structure with Formatting**
+
+```python
+# Use clear structure
+prompt = """
+Task: Summarize the following article
+
+Article:
+{article_text}
+
+Requirements:
+- Length: 3-5 sentences
+- Include main points
+- Use professional tone
+- Avoid personal opinions
+
+Summary:
+"""
+```
+
+**4. Provide Examples (Few-Shot Learning)**
+
+```python
+# Zero-shot (no examples)
+prompt = "Classify this sentiment: 'I love this product!'"
+
+# Few-shot (with examples)
+prompt = """
+Classify the sentiment of these texts:
+
+Text: "This is amazing!"
+Sentiment: Positive
+
+Text: "I hate waiting."
+Sentiment: Negative
+
+Text: "It's okay, nothing special."
+Sentiment: Neutral
+
+Text: "I love this product!"
+Sentiment:
+"""
+```
+
+**5. Use Step-by-Step Instructions**
+
+```python
+prompt = """
+Analyze this code for potential bugs. Follow these steps:
+
+Step 1: Identify the function's purpose
+Step 2: Check for syntax errors
+Step 3: Look for logic errors
+Step 4: Check edge cases
+Step 5: Suggest improvements
+
+Code:
+{code}
+"""
+```
+
+**6. Set Constraints and Boundaries**
+
+```python
+prompt = """
+Write a product description for a smartphone.
+
+Constraints:
+- Maximum 150 words
+- Focus on key features only
+- Use professional marketing tone
+- Avoid technical jargon
+- Include: battery life, camera quality, display
+
+Product: {product_name}
+"""
+```
+
+**7. Use Delimiters for Clarity**
+
+```python
+prompt = """
+<context>
+You are a helpful coding assistant. You help developers write clean, efficient code.
+</context>
+
+<task>
+Explain the following Python concept: {concept}
+</task>
+
+<requirements>
+- Use code examples
+- Explain in simple terms
+- Include common use cases
+</requirements>
+
+<output_format>
+1. Definition
+2. Code Example
+3. Explanation
+4. Use Cases
+</output_format>
+"""
+```
+
+### Zero-Shot vs Few-Shot Prompting
+
+**Zero-Shot Prompting:**
+- No examples provided
+- Model relies on pre-training knowledge
+- Good for general tasks
+- Faster and simpler
+
+```python
+# Zero-shot
+prompt = "Translate this to French: Hello, how are you?"
+```
+
+**Few-Shot Prompting:**
+- Provide examples in the prompt
+- Helps model understand pattern
+- Better for specific formats or styles
+- More tokens used
+
+```python
+# Few-shot
+prompt = """
+Translate English to French:
+
+English: Hello
+French: Bonjour
+
+English: Good morning
+French: Bonjour
+
+English: How are you?
+French: Comment allez-vous?
+
+English: Thank you
+French:
+"""
+```
+
+**When to Use Each:**
+- **Zero-shot**: General tasks, simple instructions
+- **Few-shot**: Complex patterns, specific formats, style transfer
+
+### Handling AI Hallucinations
+
+**What are Hallucinations?**
+- Model generates plausible-sounding but incorrect information
+- Makes up facts, citations, or details
+- Can be very convincing
+
+**Why They Happen:**
+- Model predicts likely text, not verified facts
+- Training data may contain errors
+- No real-world knowledge verification
+
+**Mitigation Strategies:**
+
+**1. Request Citations**
+```python
+prompt = """
+Answer the question and cite your sources.
+
+Question: {question}
+
+Format:
+Answer: [your answer]
+Sources: [list sources or state if you're not certain]
+"""
+```
+
+**2. Ask for Confidence Levels**
+```python
+prompt = """
+Answer the question and indicate your confidence level.
+
+Question: {question}
+
+Format:
+Answer: [your answer]
+Confidence: High/Medium/Low
+Reason: [why you're confident or uncertain]
+"""
+```
+
+**3. Request Fact-Checking**
+```python
+prompt = """
+Answer the question, then fact-check your answer.
+
+Question: {question}
+
+Format:
+Initial Answer: [your answer]
+Fact-Check: [verify if information is accurate]
+Verified Answer: [corrected answer if needed]
+"""
+```
+
+**4. Use RAG for Grounded Responses**
+```python
+# Combine with RAG for fact-based answers
+prompt = """
+Use the following context to answer the question.
+If the context doesn't contain the answer, say "I don't have enough information."
+
+Context: {retrieved_context}
+
+Question: {question}
+
+Answer:
+"""
+```
+
+### Understanding Vectors and Text Embeddings
+
+**What are Embeddings?**
+- Dense vector representations of text
+- Capture semantic meaning
+- Similar texts have similar vectors
+- Enable semantic search
+
+**How They Work:**
+```python
+from openai import OpenAI
+import numpy as np
+
+client = OpenAI()
+
+# Generate embeddings
+text1 = "Machine learning is a subset of AI"
+text2 = "AI includes machine learning techniques"
+text3 = "The weather is sunny today"
+
+# Get embeddings
+embedding1 = client.embeddings.create(
+    input=text1,
+    model="text-embedding-3-small"
+).data[0].embedding
+
+embedding2 = client.embeddings.create(
+    input=text2,
+    model="text-embedding-3-small"
+).data[0].embedding
+
+embedding3 = client.embeddings.create(
+    input=text3,
+    model="text-embedding-3-small"
+).data[0].embedding
+
+# Calculate similarity (cosine similarity)
+def cosine_similarity(a, b):
+    return np.dot(a, b) / (np.linalg.norm(a) * np.linalg.norm(b))
+
+# Similar texts have high similarity
+similarity_1_2 = cosine_similarity(embedding1, embedding2)  # High (~0.8-0.9)
+similarity_1_3 = cosine_similarity(embedding1, embedding3)  # Low (~0.1-0.2)
+```
+
+**Applications:**
+- **Semantic Search**: Find similar documents
+- **Clustering**: Group similar texts
+- **Recommendations**: Find similar content
+- **RAG**: Retrieve relevant context
+
+### Advanced Prompting Techniques
+
+**1. Chain-of-Thought (CoT) Prompting**
+
+```python
+# Encourage step-by-step reasoning
+prompt = """
+Solve this math problem step by step.
+
+Problem: If a train travels 120 miles in 2 hours, how fast is it going?
+
+Let's think through this step by step:
+1. First, identify what we know
+2. Then, identify what we need to find
+3. Finally, apply the formula
+
+Solution:
+"""
+```
+
+**2. Self-Consistency**
+
+```python
+# Ask model to verify its own answer
+prompt = """
+Answer the question, then check if your answer makes sense.
+
+Question: {question}
+
+Format:
+Initial Answer: [your answer]
+Verification: [check if answer is logical]
+Final Answer: [verified answer]
+"""
+```
+
+**3. Iterative Refinement**
+
+```python
+# Refine based on feedback
+prompt_v1 = "Write a blog post about Python"
+# Get output, then refine:
+prompt_v2 = """
+Write a blog post about Python for beginners.
+The previous version was too technical. Make it more accessible.
+Focus on why Python is good for beginners, not advanced features.
+"""
+```
+
+**4. Template-Based Prompting**
+
+```python
+# Create reusable templates
+PROMPT_TEMPLATE = """
+You are a {role} helping with {task}.
+
+Context: {context}
+
+Task: {specific_task}
+
+Requirements:
+{requirements}
+
+Output Format: {format}
+"""
+
+# Use template
+prompt = PROMPT_TEMPLATE.format(
+    role="data analyst",
+    task="data analysis",
+    context="Sales data for Q4",
+    specific_task="Identify top 3 products by revenue",
+    requirements="- Use exact numbers\n- Include percentages\n- Provide insights",
+    format="Bullet points"
+)
+```
+
+**5. Prompt Chaining**
+
+```python
+# Break complex tasks into steps
+step1_prompt = "Extract key facts from this article: {article}"
+# Use step1 output in step2
+step2_prompt = "Based on these facts: {facts}, write a summary"
+# Use step2 output in step3
+step3_prompt = "Review this summary for accuracy: {summary}"
+```
+
+### Prompt Engineering for Different Tasks
+
+**1. Text Classification**
+
+```python
+prompt = """
+Classify the sentiment of this review as Positive, Negative, or Neutral.
+
+Review: "{review_text}"
+
+Consider:
+- Overall tone
+- Specific complaints or praises
+- Emotional language
+
+Sentiment:
+"""
+```
+
+**2. Text Summarization**
+
+```python
+prompt = """
+Summarize the following article in 3-5 bullet points.
+
+Article:
+{article}
+
+Requirements:
+- Capture main ideas
+- Use concise language
+- Maintain factual accuracy
+
+Summary:
+"""
+```
+
+**3. Code Generation**
+
+```python
+prompt = """
+Write a Python function that {task_description}.
+
+Requirements:
+- Use type hints
+- Include docstring
+- Handle edge cases
+- Add error handling
+- Follow PEP 8 style
+
+Function:
+"""
+```
+
+**4. Question Answering**
+
+```python
+prompt = """
+Answer the question based on the provided context.
+If the answer is not in the context, say "I don't have enough information."
+
+Context: {context}
+
+Question: {question}
+
+Answer:
+"""
+```
+
+**5. Data Extraction**
+
+```python
+prompt = """
+Extract the following information from the text and format as JSON:
+- Name
+- Email
+- Phone number
+- Company
+
+Text: {text}
+
+JSON:
+"""
+```
+
+### Using GPT-4 and Modern LLMs
+
+**GPT-4 Capabilities:**
+- **Multimodal**: Can process text and images
+- **Long Context**: Handles longer prompts (up to 128k tokens)
+- **Better Reasoning**: Improved logical reasoning
+- **Code Understanding**: Better at code tasks
+
+**Best Practices for GPT-4:**
+
+```python
+from openai import OpenAI
+
+client = OpenAI()
+
+# Use system message for role-setting
+response = client.chat.completions.create(
+    model="gpt-4",
+    messages=[
+        {
+            "role": "system",
+            "content": "You are a helpful data science tutor. Explain concepts clearly and provide examples."
+        },
+        {
+            "role": "user",
+            "content": "Explain gradient descent"
+        }
+    ],
+    temperature=0.7,  # Control randomness (0-2)
+    max_tokens=500    # Limit response length
+)
+```
+
+**Temperature Settings:**
+- **0.0-0.3**: Deterministic, factual (good for data extraction)
+- **0.4-0.7**: Balanced (good for most tasks)
+- **0.8-1.2**: Creative (good for writing, brainstorming)
+- **1.3-2.0**: Very creative (may be less coherent)
+
+**Top-p (Nucleus Sampling):**
+```python
+response = client.chat.completions.create(
+    model="gpt-4",
+    messages=[...],
+    temperature=0.7,
+    top_p=0.9  # Consider top 90% of probability mass
+)
+```
+
+### Prompt Engineering Checklist
+
+**Before Sending:**
+- [ ] Is the task clearly defined?
+- [ ] Are requirements specific?
+- [ ] Is the output format specified?
+- [ ] Is context provided if needed?
+- [ ] Are examples included (if helpful)?
+- [ ] Is the role/tone set appropriately?
+- [ ] Are constraints and boundaries clear?
+
+**After Getting Response:**
+- [ ] Does it meet requirements?
+- [ ] Is it accurate and relevant?
+- [ ] Can it be improved with refinement?
+- [ ] Should I add more context?
+- [ ] Should I adjust temperature/parameters?
+
+### Common Mistakes to Avoid
+
+**1. Being Too Vague**
+```python
+# Bad
+"Write something about data"
+
+# Good
+"Write a 200-word introduction to data science for beginners"
+```
+
+**2. Overloading with Information**
+```python
+# Bad: Too much at once
+"Analyze this data, create visualizations, write a report, and suggest improvements"
+
+# Good: Break into steps
+"Step 1: Analyze this data and identify key trends"
+```
+
+**3. Not Providing Context**
+```python
+# Bad
+"Summarize this"
+
+# Good
+"Summarize this research paper in 3 paragraphs for a general audience"
+```
+
+**4. Ignoring Output Format**
+```python
+# Bad
+"List the features"
+
+# Good
+"List the top 5 features as a numbered list with brief descriptions"
+```
+
+**5. Not Testing and Iterating**
+- Always test prompts with sample inputs
+- Refine based on results
+- Document what works
+
+### Prompt Engineering Resources
+
+**Practice Platforms:**
+- OpenAI Playground
+- Hugging Face Spaces
+- LangChain Playground
+- Anthropic Console
+
+**Learning Resources:**
+- OpenAI Prompt Engineering Guide
+- Anthropic Prompt Engineering Guide
+- LangChain Prompt Templates
+- Prompt Engineering GitHub Repositories
 
 ---
 
