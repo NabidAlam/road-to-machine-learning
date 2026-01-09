@@ -538,6 +538,239 @@ def train_linear_regression(X, y, learning_rate=0.01, iterations=1000):
 # - Training loop in PyTorch
 ```
 
+## Computational Calculus in Practice
+
+### Why Computational Calculus Matters
+
+Calculus formulas become intuitive when implemented in code. This section shows how derivatives, gradients, and optimization translate directly to Python code used in machine learning.
+
+### Example 1: Gradient Descent Visualization
+
+**Mathematical Concept**: Gradient points in direction of steepest ascent. Gradient descent: x_new = x_old - learning_rate × gradient
+
+**In Code**:
+```python
+import numpy as np
+import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
+
+# Function to minimize: f(x, y) = x² + 2y²
+def f(x, y):
+    return x**2 + 2*y**2
+
+def gradient(x, y):
+    """Compute gradient: [∂f/∂x, ∂f/∂y]"""
+    return np.array([2*x, 4*y])
+
+# Gradient descent
+x, y = 3.0, 4.0  # Starting point
+learning_rate = 0.1
+steps = 20
+
+path = [(x, y, f(x, y))]
+for i in range(steps):
+    grad = gradient(x, y)
+    x -= learning_rate * grad[0]
+    y -= learning_rate * grad[1]
+    path.append((x, y, f(x, y)))
+
+# Visualize
+x_path, y_path, z_path = zip(*path)
+x_grid = np.linspace(-4, 4, 50)
+y_grid = np.linspace(-4, 4, 50)
+X_grid, Y_grid = np.meshgrid(x_grid, y_grid)
+Z_grid = f(X_grid, Y_grid)
+
+fig = plt.figure(figsize=(12, 5))
+
+# 2D contour plot
+ax1 = fig.add_subplot(121)
+ax1.contour(X_grid, Y_grid, Z_grid, levels=20)
+ax1.plot(x_path, y_path, 'ro-', label='Gradient Descent Path', markersize=8)
+ax1.plot(0, 0, 'g*', markersize=20, label='Minimum (0, 0)')
+ax1.set_xlabel('x')
+ax1.set_ylabel('y')
+ax1.set_title('Gradient Descent: f(x,y) = x² + 2y²')
+ax1.legend()
+ax1.grid(True, alpha=0.3)
+
+# 3D surface plot
+ax2 = fig.add_subplot(122, projection='3d')
+ax2.plot_surface(X_grid, Y_grid, Z_grid, alpha=0.6, cmap='viridis')
+ax2.plot(x_path, y_path, z_path, 'r-o', label='Path', markersize=8)
+ax2.set_xlabel('x')
+ax2.set_ylabel('y')
+ax2.set_zlabel('f(x, y)')
+ax2.set_title('3D View')
+
+plt.tight_layout()
+plt.show()
+
+print(f"Final point: ({x:.4f}, {y:.4f})")
+print(f"Final value: {f(x, y):.4f}")
+print(f"Distance from minimum: {np.sqrt(x**2 + y**2):.4f}")
+```
+
+### Example 2: Learning Rate Impact
+
+**Mathematical Concept**: Learning rate controls step size in gradient descent. Too small = slow convergence, too large = overshooting.
+
+**In Code**:
+```python
+def gradient_descent_with_lr(lr, max_steps=50):
+    """Gradient descent with different learning rates"""
+    x, y = 3.0, 4.0
+    path = [(x, y)]
+    
+    for i in range(max_steps):
+        grad = gradient(x, y)
+        x -= lr * grad[0]
+        y -= lr * grad[1]
+        path.append((x, y))
+        
+        # Stop if converged
+        if np.sqrt(x**2 + y**2) < 0.01:
+            break
+    
+    return path, len(path)
+
+# Test different learning rates
+learning_rates = [0.01, 0.1, 0.5, 1.0]
+fig, axes = plt.subplots(2, 2, figsize=(12, 10))
+axes = axes.flatten()
+
+for idx, lr in enumerate(learning_rates):
+    path, steps = gradient_descent_with_lr(lr)
+    x_path, y_path = zip(*path)
+    
+    axes[idx].contour(X_grid, Y_grid, Z_grid, levels=20, alpha=0.3)
+    axes[idx].plot(x_path, y_path, 'ro-', markersize=6)
+    axes[idx].plot(0, 0, 'g*', markersize=15)
+    axes[idx].set_title(f'Learning Rate = {lr} ({steps} steps)')
+    axes[idx].set_xlabel('x')
+    axes[idx].set_ylabel('y')
+    axes[idx].grid(True, alpha=0.3)
+
+plt.tight_layout()
+plt.show()
+
+# Results show:
+# - lr=0.01: Converges slowly (many steps)
+# - lr=0.1: Converges well (optimal)
+# - lr=0.5: Oscillates but converges
+# - lr=1.0: Diverges (overshoots minimum)
+```
+
+### Example 3: Chain Rule in Backpropagation
+
+**Mathematical Concept**: Chain rule: ∂L/∂w = (∂L/∂y) × (∂y/∂z) × (∂z/∂w)
+
+**In Code**:
+```python
+# Simple neural network layer with chain rule
+def relu(x):
+    return np.maximum(0, x)
+
+def relu_derivative(x):
+    return (x > 0).astype(float)
+
+# Forward pass
+def forward(X, W, b):
+    z = X @ W + b
+    a = relu(z)
+    return z, a
+
+# Backward pass (chain rule)
+def backward(X, W, z, a, dL_da):
+    """
+    Compute gradients using chain rule:
+    dL/dW = dL/da × da/dz × dz/dW
+    """
+    # da/dz (derivative of ReLU)
+    da_dz = relu_derivative(z)
+    
+    # dL/dz = dL/da × da/dz (chain rule)
+    dL_dz = dL_da * da_dz
+    
+    # dz/dW = X (from z = X @ W + b)
+    # dL/dW = dL/dz × dz/dW = dL/dz × X
+    dL_dW = X.T @ dL_dz
+    
+    # dz/db = 1
+    # dL/db = dL/dz × dz/db = dL/dz
+    dL_db = np.sum(dL_dz, axis=0)
+    
+    return dL_dW, dL_db
+
+# Example usage
+X = np.array([[1, 2], [3, 4]])  # Input (2 samples, 2 features)
+W = np.array([[0.5, 0.3], [0.2, 0.8]])  # Weights (2 features -> 2 neurons)
+b = np.array([0.1, 0.2])  # Bias
+
+# Forward pass
+z, a = forward(X, W, b)
+
+# Loss gradient (from next layer, example)
+dL_da = np.array([[0.1, -0.2], [0.3, 0.1]])
+
+# Backward pass (chain rule)
+dL_dW, dL_db = backward(X, W, z, a, dL_da)
+
+print("Gradients computed using chain rule:")
+print(f"dL/dW:\n{dL_dW}")
+print(f"dL/db: {dL_db}")
+```
+
+### Example 4: Second Derivatives (Hessian) for Optimization
+
+**Mathematical Concept**: Second derivative (Hessian matrix) tells us about curvature. Helps choose better learning rates.
+
+**In Code**:
+```python
+from scipy.optimize import minimize
+import numpy as np
+
+# Function with known minimum
+def f(x):
+    return x[0]**2 + 2*x[1]**2 + x[0]*x[1]
+
+def gradient(x):
+    return np.array([2*x[0] + x[1], 4*x[1] + x[0]])
+
+def hessian(x):
+    """Hessian matrix (second derivatives)"""
+    return np.array([[2, 1], [1, 4]])
+
+# Newton's method (uses Hessian for better convergence)
+x0 = np.array([3.0, 4.0])
+result = minimize(f, x0, method='Newton-CG', jac=gradient, hess=hessian)
+
+print(f"Minimum found at: {result.x}")
+print(f"Function value: {result.fun}")
+print(f"Converged in {result.nit} iterations")
+
+# Compare with gradient descent (slower)
+x_gd = x0.copy()
+for i in range(100):
+    grad = gradient(x_gd)
+    x_gd -= 0.1 * grad
+    if np.linalg.norm(grad) < 1e-6:
+        break
+
+print(f"\nGradient descent: {x_gd} (in {i+1} iterations)")
+print(f"Newton's method is faster because it uses curvature information")
+```
+
+### Key Takeaway
+
+**Theory → Code → Intuition**:
+1. Understand the calculus concept (derivative, gradient)
+2. Implement it in Python
+3. Visualize the results
+4. See how it's used in ML algorithms
+
+This builds deeper understanding than formulas alone.
+
 ---
 
 ## Practice Exercises

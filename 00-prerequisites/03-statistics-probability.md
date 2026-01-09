@@ -1311,6 +1311,145 @@ print(f"Method 2 vs Method 3: {p23:.4f}")
 
 ---
 
+## Computational Statistics in Practice
+
+### Why Computational Statistics Matters
+
+Statistics concepts become intuitive when you see them in code. This section shows how statistical formulas translate directly to Python code used in machine learning.
+
+### Example 1: Confidence Intervals in Model Evaluation
+
+**Mathematical Concept**: 95% confidence interval = mean ± (t-critical × standard error)
+
+**In Code**:
+```python
+from sklearn.model_selection import cross_val_score
+from sklearn.ensemble import RandomForestClassifier
+from scipy.stats import t
+import numpy as np
+
+# Train model and get cross-validation scores
+X, y = make_classification(n_samples=1000, n_features=20, random_state=42)
+model = RandomForestClassifier(n_estimators=100, random_state=42)
+scores = cross_val_score(model, X, y, cv=10)
+
+# Calculate 95% confidence interval
+mean_score = np.mean(scores)
+std_score = np.std(scores, ddof=1)  # Sample standard deviation
+n = len(scores)
+t_critical = t.ppf(0.975, df=n-1)  # 95% confidence, two-tailed
+margin = t_critical * (std_score / np.sqrt(n))
+
+print(f"Mean Accuracy: {mean_score:.4f}")
+print(f"95% Confidence Interval: [{mean_score - margin:.4f}, {mean_score + margin:.4f}]")
+print(f"We are 95% confident the true accuracy is between {mean_score - margin:.4f} and {mean_score + margin:.4f}")
+```
+
+### Example 2: Hypothesis Testing for Model Comparison
+
+**Mathematical Concept**: t-test compares means of two groups to see if difference is statistically significant.
+
+**In Code**:
+```python
+from scipy.stats import ttest_ind
+
+# Compare two models
+model1_scores = cross_val_score(RandomForestClassifier(), X, y, cv=10)
+model2_scores = cross_val_score(LogisticRegression(), X, y, cv=10)
+
+# Perform t-test
+t_stat, p_value = ttest_ind(model1_scores, model2_scores)
+
+print(f"Model 1 Mean: {np.mean(model1_scores):.4f}")
+print(f"Model 2 Mean: {np.mean(model2_scores):.4f}")
+print(f"T-statistic: {t_stat:.4f}")
+print(f"P-value: {p_value:.4f}")
+
+if p_value < 0.05:
+    print("Statistically significant difference (p < 0.05)")
+    if np.mean(model1_scores) > np.mean(model2_scores):
+        print("Model 1 is significantly better")
+    else:
+        print("Model 2 is significantly better")
+else:
+    print("No statistically significant difference")
+```
+
+### Example 3: Bayes' Theorem in Practice
+
+**Mathematical Concept**: P(A|B) = P(B|A) × P(A) / P(B)
+
+**In Code**:
+```python
+# Spam detection example
+# P(Spam|Word) = P(Word|Spam) × P(Spam) / P(Word)
+
+# Prior probabilities (from training data)
+p_spam = 0.2  # 20% of emails are spam
+p_not_spam = 0.8
+
+# Likelihoods (from training data)
+p_word_given_spam = 0.8  # "free" appears in 80% of spam
+p_word_given_not_spam = 0.1  # "free" appears in 10% of non-spam
+
+# Evidence
+p_word = (p_word_given_spam * p_spam) + (p_word_given_not_spam * p_not_spam)
+
+# Posterior probability (Bayes' theorem)
+p_spam_given_word = (p_word_given_spam * p_spam) / p_word
+
+print(f"P(Spam|'free'): {p_spam_given_word:.4f}")
+print(f"Email is {p_spam_given_word*100:.1f}% likely to be spam given it contains 'free'")
+```
+
+### Example 4: Normal Distribution in Feature Scaling
+
+**Mathematical Concept**: Z-score = (X - μ) / σ standardizes data to mean=0, std=1
+
+**In Code**:
+```python
+from sklearn.preprocessing import StandardScaler
+import matplotlib.pyplot as plt
+
+# Original data (not normalized)
+data = np.random.normal(100, 15, 1000)  # Mean=100, Std=15
+
+# Manual z-score calculation
+mean = np.mean(data)
+std = np.std(data)
+z_scores = (data - mean) / std
+
+# Using sklearn (same result)
+scaler = StandardScaler()
+scaled_data = scaler.fit_transform(data.reshape(-1, 1)).flatten()
+
+# Verify: scaled data should have mean≈0, std≈1
+print(f"Original: mean={np.mean(data):.2f}, std={np.std(data):.2f}")
+print(f"Scaled: mean={np.mean(scaled_data):.2f}, std={np.std(scaled_data):.2f}")
+
+# Visualize
+fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 4))
+ax1.hist(data, bins=30, alpha=0.7)
+ax1.set_title('Original Data')
+ax1.axvline(mean, color='r', linestyle='--', label=f'Mean={mean:.1f}')
+ax2.hist(scaled_data, bins=30, alpha=0.7)
+ax2.set_title('Standardized Data (Z-scores)')
+ax2.axvline(0, color='r', linestyle='--', label='Mean=0')
+plt.show()
+```
+
+### Key Takeaway
+
+**Formula → Code → Understanding**:
+1. Learn the statistical formula
+2. Implement it in Python
+3. Visualize the results
+4. Apply to real ML problems
+
+This builds deeper intuition than theory alone.
+
+---
+
 ## Applications in ML
 
 ### Model Evaluation

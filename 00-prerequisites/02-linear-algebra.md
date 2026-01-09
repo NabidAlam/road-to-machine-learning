@@ -846,6 +846,195 @@ print(f"\nReconstructed A:\n{A_reconstructed}")
 
 ---
 
+## Computational Math in Practice
+
+### Why Computational Math Matters
+
+Understanding math concepts is important, but seeing them in code helps build intuition. This section shows how mathematical concepts translate directly to Python code used in machine learning.
+
+### Example 1: Matrix Multiplication in Neural Networks
+
+**Mathematical Concept**: Matrix multiplication `C = A @ B` where `C[i,j] = Σ A[i,k] * B[k,j]`
+
+**In Code**:
+```python
+import numpy as np
+
+# Input layer (3 features, batch of 4 samples)
+X = np.array([[1, 2, 3],
+              [4, 5, 6],
+              [7, 8, 9],
+              [10, 11, 12]])
+
+# Weight matrix (3 features -> 2 neurons)
+W = np.array([[0.5, 0.3],
+              [0.2, 0.8],
+              [0.1, 0.6]])
+
+# Forward pass: X @ W
+# Shape: (4, 3) @ (3, 2) = (4, 2)
+output = X @ W
+print(f"Neural network output:\n{output}")
+# Each row is one sample's output from the layer
+```
+
+**Visualization**:
+```python
+import matplotlib.pyplot as plt
+
+# Visualize the transformation
+fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 4))
+
+# Input space (3D projected to 2D)
+ax1.scatter(X[:, 0], X[:, 1], c=range(len(X)), cmap='viridis')
+ax1.set_title('Input Space (first 2 features)')
+ax1.set_xlabel('Feature 1')
+ax1.set_ylabel('Feature 2')
+
+# Output space (2D)
+ax2.scatter(output[:, 0], output[:, 1], c=range(len(output)), cmap='viridis')
+ax2.set_title('Output Space (after matrix multiplication)')
+ax2.set_xlabel('Neuron 1')
+ax2.set_ylabel('Neuron 2')
+
+plt.tight_layout()
+plt.show()
+```
+
+### Example 2: Gradient Descent Visualization
+
+**Mathematical Concept**: Gradient points in direction of steepest ascent. Gradient descent moves opposite to gradient.
+
+**In Code**:
+```python
+# Simple 2D function: f(x, y) = x^2 + y^2
+def f(x, y):
+    return x**2 + y**2
+
+def gradient(x, y):
+    return np.array([2*x, 2*y])
+
+# Gradient descent
+x, y = 3.0, 4.0  # Starting point
+learning_rate = 0.1
+steps = 20
+
+path = [(x, y)]
+for i in range(steps):
+    grad = gradient(x, y)
+    x -= learning_rate * grad[0]
+    y -= learning_rate * grad[1]
+    path.append((x, y))
+
+# Visualize
+x_path, y_path = zip(*path)
+x_grid = np.linspace(-4, 4, 100)
+y_grid = np.linspace(-4, 4, 100)
+X_grid, Y_grid = np.meshgrid(x_grid, y_grid)
+Z = f(X_grid, Y_grid)
+
+plt.contour(X_grid, Y_grid, Z, levels=20)
+plt.plot(x_path, y_path, 'ro-', label='Gradient Descent Path')
+plt.plot(0, 0, 'g*', markersize=20, label='Minimum')
+plt.legend()
+plt.title('Gradient Descent on f(x,y) = x² + y²')
+plt.xlabel('x')
+plt.ylabel('y')
+plt.show()
+```
+
+### Example 3: Eigenvalues in PCA
+
+**Mathematical Concept**: Eigenvalues represent variance explained by principal components.
+
+**In Code**:
+```python
+from sklearn.decomposition import PCA
+import matplotlib.pyplot as plt
+
+# Generate correlated data
+np.random.seed(42)
+n_samples = 100
+X = np.random.randn(n_samples, 2)
+# Create correlation
+X[:, 1] = 0.8 * X[:, 0] + 0.6 * X[:, 1]
+
+# Apply PCA
+pca = PCA()
+X_pca = pca.fit_transform(X)
+
+# Eigenvalues = explained variance
+eigenvalues = pca.explained_variance_
+explained_variance_ratio = pca.explained_variance_ratio_
+
+print(f"Eigenvalues: {eigenvalues}")
+print(f"Explained variance ratio: {explained_variance_ratio}")
+print(f"First component explains {explained_variance_ratio[0]*100:.1f}% of variance")
+
+# Visualize
+fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 4))
+
+# Original data
+ax1.scatter(X[:, 0], X[:, 1], alpha=0.6)
+ax1.set_title('Original Data')
+ax1.set_xlabel('Feature 1')
+ax1.set_ylabel('Feature 2')
+
+# After PCA
+ax2.scatter(X_pca[:, 0], X_pca[:, 1], alpha=0.6)
+ax2.set_title('After PCA (Principal Components)')
+ax2.set_xlabel(f'PC1 ({explained_variance_ratio[0]*100:.1f}% variance)')
+ax2.set_ylabel(f'PC2 ({explained_variance_ratio[1]*100:.1f}% variance)')
+
+plt.tight_layout()
+plt.show()
+```
+
+### Example 4: Dot Product for Similarity
+
+**Mathematical Concept**: Dot product measures similarity between vectors. Used in recommendation systems, embeddings.
+
+**In Code**:
+```python
+# Word embeddings (simplified)
+words = {
+    'king': np.array([1, 2, 3]),
+    'queen': np.array([1, 2, 2]),
+    'man': np.array([2, 1, 3]),
+    'woman': np.array([2, 1, 2]),
+    'apple': np.array([0, 0, 1])
+}
+
+def cosine_similarity(a, b):
+    """Compute cosine similarity between two vectors"""
+    return np.dot(a, b) / (np.linalg.norm(a) * np.linalg.norm(b))
+
+# Find most similar words to 'king'
+king = words['king']
+similarities = {}
+for word, embedding in words.items():
+    if word != 'king':
+        similarities[word] = cosine_similarity(king, embedding)
+
+# Sort by similarity
+sorted_words = sorted(similarities.items(), key=lambda x: x[1], reverse=True)
+print("Words most similar to 'king':")
+for word, sim in sorted_words:
+    print(f"  {word}: {sim:.3f}")
+```
+
+### Key Takeaway
+
+**Math → Code → Intuition**:
+1. Learn the mathematical concept
+2. See it in Python code
+3. Visualize it with plots
+4. Apply it in ML algorithms
+
+This approach builds deeper understanding than theory alone.
+
+---
+
 ## Applications in ML
 
 ### 1. Neural Networks
