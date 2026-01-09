@@ -93,11 +93,12 @@ This repository provides a structured learning path for machine learning, organi
 | **Phase 4** | 08 | Unsupervised Learning | 1 month | 2 months |
 | **Phase 5** | 09-10 | Deep Learning Fundamentals | 2 months | 4 months |
 | **Phase 6** | 11-12, 15 | Specialized Deep Learning | 3-4 months | 6-8 months |
-| **Phase 6.5** | 19-21 | Essential Skills (SQL, Imbalanced Data, Explainability) | 1-2 months | 2-4 months |
+| **Phase 6.5** | - | Generative AI & Modern LLMs | 1-2 months | 2-4 months |
+| **Phase 6.6** | 19-21 | Essential Skills (SQL, Imbalanced Data, Explainability) | 1-2 months | 2-4 months |
 | **Phase 7** | 13-14 | Production & MLOps | 2-3 months | 4-6 months |
 | **Phase 8** | 16-18 | Projects (23 total) | 4-6 months | 8-12 months |
 | **Phase 9** | 22-24 | Advanced Specialized Topics (RL, GNNs, Audio) | 2-3 months | 4-6 months |
-| **Total** | 25 modules | Complete Path | **14-20 months** | **28-35 months** |
+| **Total** | 25 modules + GenAI | Complete Path | **15-22 months** | **30-39 months** |
 
 ### Phase 0: Foundation (Prerequisites)
 **Goal**: Build the mathematical and programming foundation needed for ML
@@ -108,6 +109,7 @@ This repository provides a structured learning path for machine learning, organi
   - Iterators & Generators (Memory-efficient data processing)
   - GUI Development with tkinter
   - Essential Mathematics (Linear Algebra including Tensors, Statistics, Calculus basics)
+  - Computational Math: Python code examples alongside theory for better intuition
   - Environment Setup (Python, Jupyter, Virtual Environments)
 
 ### Phase 1: Data Fundamentals
@@ -116,6 +118,7 @@ This repository provides a structured learning path for machine learning, organi
 - **01-python-for-data-science**
   - NumPy: Arrays, operations, broadcasting
   - Pandas: DataFrames, data manipulation, cleaning
+  - Polars & Dask: Handling large datasets (big data alternatives to Pandas)
   - Matplotlib & Seaborn: Data visualization
   - Plotly & Dash: Interactive visualizations and web applications
   - Streamlit: Building interactive dashboards and ML applications
@@ -149,6 +152,7 @@ This repository provides a structured learning path for machine learning, organi
   - Naive Bayes (Gaussian, Multinomial, Bernoulli)
   - Multi-Class Classification Strategies (One-vs-Rest, One-vs-One)
   - Evaluation Metrics (Accuracy, Precision, Recall, F1, ROC-AUC)
+  - Bias Auditing and Fairness (Fairlearn, demographic parity, equalized odds)
 
 - **05-model-evaluation-optimization**
   - Train/Validation/Test Split
@@ -203,6 +207,7 @@ This repository provides a structured learning path for machine learning, organi
   - PyTorch Basics
   - Building and Training Neural Networks
   - Model Saving and Loading
+  - Model Optimization (Quantization, TensorRT, ONNX, GGML/GGUF for edge deployment)
 
 ### Phase 6: Specialized Deep Learning
 **Goal**: Master domain-specific deep learning applications
@@ -235,6 +240,31 @@ This repository provides a structured learning path for machine learning, organi
   - Fine-tuning Transformers (T5, BERT, GPT with Hugging Face)
   - RAG (Retrieval Augmented Generation)
   - Sentiment Analysis
+
+### Phase 6.5: Generative AI & Modern LLM Applications
+**Goal**: Master modern LLM applications and GenAI engineering
+
+**Note**: This phase bridges traditional NLP with modern LLM application development, which is the current industry standard. Learn this after Phase 6 (Specialized Deep Learning) or in parallel with Module 12.
+
+**Key Topics:**
+- **Prompt Engineering**: Comprehensive techniques for effective LLM interaction
+- **Vector Databases**: Pinecone, ChromaDB, Weaviate, FAISS for semantic search
+- **RAG (Retrieval-Augmented Generation)**: End-to-end implementation
+- **LLM Agents**: LangChain, LangGraph, AutoGPT for autonomous agents
+- **Multi-Agent Systems**: Coordinated agent workflows
+- **Building Production GenAI Apps**: Real-world deployment
+
+**Resources:**
+- See [Generative AI Comprehensive Guide](resources/generative_ai_comprehensive_guide.md) for complete coverage
+- [RAG Comprehensive Guide](resources/rag_comprehensive_guide.md)
+- [LangChain Guide](resources/langchain_guide.md)
+- [AI Agents Guide](resources/ai_agents_guide.md)
+
+**Why This Phase is Important:**
+- Modern industry standard: Most NLP work now uses pre-trained LLMs
+- High demand: LLM Engineer and GenAI roles are rapidly growing
+- Practical skills: Build real applications, not just train models
+- Portfolio building: GenAI projects stand out in job applications
 
 - **15-time-series-analysis**
   - Time Series Fundamentals (Trend, Seasonality, Stationarity)
@@ -274,7 +304,7 @@ This repository provides a structured learning path for machine learning, organi
   - Music Generation
   - Voice Processing (VAD, Speaker ID, Enhancement)
 
-### Phase 6.5: Essential Data Science Skills
+### Phase 6.6: Essential Data Science Skills
 **Goal**: Master critical skills for real-world ML applications
 
 **Note**: These modules can be learned in parallel with other phases or integrated earlier in your learning journey:
@@ -319,7 +349,8 @@ This repository provides a structured learning path for machine learning, organi
   - Model Serialization
   - REST APIs with Flask/FastAPI
   - Docker for ML
-  - Cloud Deployment (AWS, GCP, Azure)
+  - Cloud Deployment (AWS, GCP, Azure, Hugging Face Spaces)
+  - Hugging Face Spaces: Free model hosting for portfolio projects
   - Production Server Setup (NGINX, SSL/TLS, Domain Configuration)
   - Security Best Practices (Rate Limiting, Authentication, Input Validation)
   - AWS SageMaker Comprehensive Guide
@@ -329,8 +360,9 @@ This repository provides a structured learning path for machine learning, organi
 - **14-mlops-basics**
   - Version Control for ML (DVC, MLflow)
   - CI/CD for ML
-  - Experiment Tracking
+  - Experiment Tracking (MLflow, Weights & Biases with advanced features)
   - Model Registry
+  - Weights & Biases: Hyperparameter sweeps, model artifacts, team collaboration
   - Cookiecutter for Data Science
   - Apache Kafka for Data Streaming
   - Apache Spark for Big Data Processing
