@@ -64,8 +64,7 @@ By the end of this module, you should be able to:
 
 Before starting this module, you should have completed:
 - Phase 1: Python for Data Science (NumPy, Pandas)
-- Phase 9: Neural Networks Basics
-- Phase 10: Deep Learning Frameworks (for deep learning methods)
+- Phase 5: Deep Learning Fundamentals (Neural Networks Basics, Deep Learning Frameworks)
 
 ## Time Estimate
 
