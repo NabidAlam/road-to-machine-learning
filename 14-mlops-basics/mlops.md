@@ -406,47 +406,222 @@ with mlflow.start_run():
     mlflow.pytorch.log_model(model, "model")
 ```
 
-### Weights & Biases
+### Weights & Biases (W&B)
 
-Beautiful UI for experiment tracking.
+**Weights & Biases** is an industry-standard experiment tracking and visualization platform, especially popular for deep learning projects. It provides beautiful dashboards, hyperparameter sweeps, and team collaboration features.
+
+**Why W&B?**
+- Industry standard for deep learning teams
+- Beautiful, interactive visualizations
+- Hyperparameter optimization (sweeps)
+- Model versioning and artifacts
+- Team collaboration and sharing
+- Free for personal use
+
+**Installation:**
+```bash
+pip install wandb
+wandb login  # First time setup
+```
+
+**Basic Usage:**
+```python
+import wandb
+
+# Initialize project
+wandb.init(
+    project="my-ml-project",
+    name="experiment-1",
+    config={
+        "learning_rate": 0.001,
+        "epochs": 10,
+        "batch_size": 32,
+        "optimizer": "adam",
+        "model_architecture": "ResNet50"
+    }
+)
+
+# Log metrics during training
+for epoch in range(10):
+    train_loss = train_one_epoch()
+    val_loss = validate()
+    accuracy = evaluate()
+    
+    wandb.log({
+        "epoch": epoch,
+        "train_loss": train_loss,
+        "val_loss": val_loss,
+        "accuracy": accuracy
+    })
+
+# Log model
+wandb.log_model(model, "model")
+
+# Log plots
+import matplotlib.pyplot as plt
+fig, ax = plt.subplots()
+ax.plot(history['loss'])
+wandb.log({"loss_plot": wandb.Image(fig)})
+
+wandb.finish()
+```
+
+**Advanced Features:**
+
+**1. Hyperparameter Sweeps (Automated Search)**
 
 ```python
-try:
-    import wandb
-    
-    # Initialize
-    wandb.init(
-        project="my-project",
-        config={
-            "learning_rate": 0.001,
-            "epochs": 10,
-            "batch_size": 32
+# Define sweep configuration
+sweep_config = {
+    "method": "bayes",  # or "grid", "random"
+    "metric": {
+        "name": "val_accuracy",
+        "goal": "maximize"
+    },
+    "parameters": {
+        "learning_rate": {
+            "min": 0.0001,
+            "max": 0.1,
+            "distribution": "log_uniform"
+        },
+        "batch_size": {
+            "values": [16, 32, 64, 128]
+        },
+        "optimizer": {
+            "values": ["adam", "sgd", "rmsprop"]
+        },
+        "dropout": {
+            "min": 0.0,
+            "max": 0.5
         }
+    }
+}
+
+# Initialize sweep
+sweep_id = wandb.sweep(sweep_config, project="my-project")
+
+# Run sweep
+def train():
+    wandb.init()
+    config = wandb.config
+    
+    # Use config parameters
+    model = create_model(
+        learning_rate=config.learning_rate,
+        batch_size=config.batch_size,
+        optimizer=config.optimizer,
+        dropout=config.dropout
     )
     
-    # Log metrics during training
-    for epoch in range(10):
-        train_loss = train_one_epoch()
-        val_loss = validate()
-        wandb.log({
-            "epoch": epoch,
-            "train_loss": train_loss,
-            "val_loss": val_loss
-        })
-    
-    # Log model
-    wandb.log_model(model, "model")
-    
-    # Log plots
-    import matplotlib.pyplot as plt
-    fig, ax = plt.subplots()
-    ax.plot(history['loss'])
-    wandb.log({"loss_plot": wandb.Image(fig)})
-    
-    wandb.finish()
-except ImportError:
-    print("Install wandb: pip install wandb")
+    # Train and log
+    train_model(model)
+
+# Run multiple experiments
+wandb.agent(sweep_id, train, count=20)  # Run 20 experiments
 ```
+
+**2. Model Artifacts (Versioning)**
+
+```python
+# Create artifact
+artifact = wandb.Artifact("trained-model", type="model")
+artifact.add_file("model.pkl")
+artifact.add_dir("checkpoints/")
+wandb.log_artifact(artifact)
+
+# Use artifact in another run
+run = wandb.init(project="inference")
+artifact = run.use_artifact("trained-model:latest")
+artifact_dir = artifact.download()
+
+# Load model
+import joblib
+model = joblib.load(f"{artifact_dir}/model.pkl")
+```
+
+**3. Tables (Data Logging)**
+
+```python
+# Log predictions table
+table = wandb.Table(columns=["image", "prediction", "ground_truth"])
+for img, pred, gt in zip(images, predictions, ground_truths):
+    table.add_data(wandb.Image(img), pred, gt)
+wandb.log({"predictions": table})
+```
+
+**4. Media Logging**
+
+```python
+# Log images
+wandb.log({"examples": [wandb.Image(img) for img in sample_images]})
+
+# Log audio
+wandb.log({"audio": wandb.Audio(audio_data, sample_rate=16000)})
+
+# Log video
+wandb.log({"video": wandb.Video(video_array, fps=30)})
+```
+
+**5. Team Collaboration**
+
+```python
+# Share runs with team
+wandb.init(
+    project="team-project",
+    entity="your-team-name",  # Team workspace
+    tags=["experiment", "baseline"]
+)
+
+# Compare runs
+# Use W&B UI to compare metrics across experiments
+# Filter by tags, config values, etc.
+```
+
+**6. Integration with PyTorch/TensorFlow**
+
+```python
+# PyTorch Lightning integration
+from pytorch_lightning.loggers import WandbLogger
+
+wandb_logger = WandbLogger(project="my-project")
+trainer = Trainer(logger=wandb_logger)
+
+# TensorFlow/Keras integration
+import tensorflow as tf
+from wandb.keras import WandbCallback
+
+model.fit(
+    X_train, y_train,
+    callbacks=[WandbCallback()],
+    validation_data=(X_val, y_val)
+)
+```
+
+**Best Practices:**
+
+1. **Organize Projects**: Use separate projects for different experiments
+2. **Use Tags**: Tag runs for easy filtering (e.g., "baseline", "experiment", "production")
+3. **Log Everything**: Log configs, metrics, models, visualizations
+4. **Compare Runs**: Use W&B UI to compare different experiments
+5. **Document**: Add notes to runs explaining what you tried
+
+**W&B vs MLflow:**
+
+| Feature | W&B | MLflow |
+|---------|-----|--------|
+| UI | Beautiful, modern | Functional |
+| Sweeps | Excellent | Basic |
+| Deep Learning | Industry standard | Good |
+| Model Registry | Artifacts | Model Registry |
+| Team Features | Strong | Good |
+| Self-hosted | Limited | Yes |
+
+**When to Use W&B:**
+- Deep learning projects
+- Need hyperparameter sweeps
+- Team collaboration
+- Beautiful visualizations
+- Industry-standard tooling
 
 ---
 
