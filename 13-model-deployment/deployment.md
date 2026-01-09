@@ -9,6 +9,12 @@ Comprehensive guide to deploying machine learning models to production.
 - [REST APIs](#rest-apis)
 - [Docker](#docker)
 - [Cloud Deployment](#cloud-deployment)
+  - [AWS ECS Fargate for ML Model Serving](#aws-ecs-fargate-for-ml-model-serving)
+  - [AWS Infrastructure as Code for ML](#aws-infrastructure-as-code-for-ml)
+  - [AWS Observability for ML Systems](#aws-observability-for-ml-systems)
+  - [AWS Security Best Practices for ML](#aws-security-best-practices-for-ml)
+  - [AWS Cost Management for ML Workloads](#aws-cost-management-for-ml-workloads)
+- [Orchestration and Scaling with Kubernetes](#orchestration-and-scaling-with-kubernetes)
 - [Production Server Setup](#production-server-setup)
 - [Model Monitoring](#model-monitoring)
 - [Best Practices](#best-practices)
@@ -693,6 +699,697 @@ gcloud run deploy ml-api --image gcr.io/PROJECT_ID/ml-api --platform managed
 # Build and deploy
 az acr build --registry myregistry --image ml-api:latest .
 az container create --resource-group mygroup --name ml-api --image myregistry.azurecr.io/ml-api:latest
+```
+
+### AWS ECS Fargate for ML Model Serving
+
+**What is ECS Fargate?**
+AWS Elastic Container Service (ECS) Fargate is a serverless container platform that eliminates the need to manage servers. Perfect for ML model serving with automatic scaling.
+
+**Why ECS Fargate for ML?**
+- **No Server Management**: Focus on your models, not infrastructure
+- **Automatic Scaling**: Handles traffic spikes automatically
+- **Cost Effective**: Pay only for running containers
+- **Security**: Built-in IAM integration and VPC support
+- **Container Insights**: Built-in monitoring and logging
+
+**Setting Up ECS Fargate for ML API:**
+
+```python
+# Dockerfile (same as before)
+FROM python:3.9-slim
+WORKDIR /app
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+COPY . .
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
+```
+
+**1. Create ECR Repository (Container Registry):**
+
+```bash
+# Create repository
+aws ecr create-repository --repository-name ml-api
+
+# Get login token
+aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin <account-id>.dkr.ecr.us-east-1.amazonaws.com
+
+# Build and push image
+docker build -t ml-api .
+docker tag ml-api:latest <account-id>.dkr.ecr.us-east-1.amazonaws.com/ml-api:latest
+docker push <account-id>.dkr.ecr.us-east-1.amazonaws.com/ml-api:latest
+```
+
+**2. Create Task Definition:**
+
+```json
+{
+  "family": "ml-api-task",
+  "networkMode": "awsvpc",
+  "requiresCompatibilities": ["FARGATE"],
+  "cpu": "512",
+  "memory": "1024",
+  "containerDefinitions": [
+    {
+      "name": "ml-api",
+      "image": "<account-id>.dkr.ecr.us-east-1.amazonaws.com/ml-api:latest",
+      "portMappings": [
+        {
+          "containerPort": 8000,
+          "protocol": "tcp"
+        }
+      ],
+      "environment": [
+        {
+          "name": "MODEL_PATH",
+          "value": "s3://my-ml-bucket/models/model.pkl"
+        }
+      ],
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+          "awslogs-group": "/ecs/ml-api",
+          "awslogs-region": "us-east-1",
+          "awslogs-stream-prefix": "ecs"
+        }
+      },
+      "healthCheck": {
+        "command": ["CMD-SHELL", "curl -f http://localhost:8000/health || exit 1"],
+        "interval": 30,
+        "timeout": 5,
+        "retries": 3
+      }
+    }
+  ]
+}
+```
+
+**3. Create ECS Service:**
+
+```bash
+# Create service
+aws ecs create-service \
+  --cluster ml-api-cluster \
+  --service-name ml-api-service \
+  --task-definition ml-api-task \
+  --desired-count 2 \
+  --launch-type FARGATE \
+  --network-configuration "awsvpcConfiguration={subnets=[subnet-xxx],securityGroups=[sg-xxx],assignPublicIp=ENABLED}" \
+  --load-balancers "targetGroupArn=arn:aws:elasticloadbalancing:us-east-1:xxx:targetgroup/ml-api-tg/xxx,containerName=ml-api,containerPort=8000"
+```
+
+**4. Enable Container Insights:**
+
+```bash
+# Enable Container Insights for monitoring
+aws ecs update-cluster \
+  --cluster ml-api-cluster \
+  --settings name=containerInsights,value=enabled
+```
+
+**Benefits for ML:**
+- **Auto-scaling**: Automatically scale based on CPU/memory usage
+- **Blue/Green Deployments**: Zero-downtime model updates
+- **Health Checks**: Automatic container replacement on failures
+- **Integration**: Works seamlessly with ALB, CloudWatch, X-Ray
+
+---
+
+### AWS Infrastructure as Code for ML
+
+**Why Infrastructure as Code (IaC)?**
+- **Reproducibility**: Deploy identical infrastructure across environments
+- **Version Control**: Track infrastructure changes in Git
+- **Collaboration**: Team members can review and approve changes
+- **Disaster Recovery**: Quickly recreate infrastructure
+- **Cost Management**: Track and optimize infrastructure costs
+
+**AWS CloudFormation for ML Infrastructure:**
+
+```yaml
+# ml-infrastructure.yaml
+AWSTemplateFormatVersion: '2010-09-09'
+Description: 'ML Model Serving Infrastructure'
+
+Parameters:
+  ModelBucket:
+    Type: String
+    Description: S3 bucket for model artifacts
+  
+Resources:
+  # VPC for ML services
+  MLVPC:
+    Type: AWS::EC2::VPC
+    Properties:
+      CidrBlock: 10.0.0.0/16
+      EnableDnsHostnames: true
+      EnableDnsSupport: true
+      Tags:
+        - Key: Name
+          Value: ML-VPC
+
+  # ECS Cluster
+  MLCluster:
+    Type: AWS::ECS::Cluster
+    Properties:
+      ClusterName: ml-api-cluster
+      ClusterSettings:
+        - Name: containerInsights
+          Value: enabled
+
+  # Application Load Balancer
+  MLALB:
+    Type: AWS::ElasticLoadBalancingV2::LoadBalancer
+    Properties:
+      Name: ml-api-alb
+      Type: application
+      Scheme: internet-facing
+      Subnets:
+        - !Ref PublicSubnet1
+        - !Ref PublicSubnet2
+      SecurityGroups:
+        - !Ref ALBSecurityGroup
+
+  # ECS Service
+  MLService:
+    Type: AWS::ECS::Service
+    Properties:
+      ServiceName: ml-api-service
+      Cluster: !Ref MLCluster
+      TaskDefinition: !Ref MLTaskDefinition
+      DesiredCount: 2
+      LaunchType: FARGATE
+      NetworkConfiguration:
+        AwsvpcConfiguration:
+          AssignPublicIp: ENABLED
+          Subnets:
+            - !Ref PublicSubnet1
+            - !Ref PublicSubnet2
+          SecurityGroups:
+            - !Ref ECSSecurityGroup
+      LoadBalancers:
+        - ContainerName: ml-api
+          ContainerPort: 8000
+          TargetGroupArn: !Ref MLTargetGroup
+
+  # S3 Bucket for Models
+  ModelBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Ref ModelBucket
+      VersioningConfiguration:
+        Status: Enabled
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: true
+        BlockPublicPolicy: true
+        IgnorePublicAcls: true
+        RestrictPublicBuckets: true
+
+Outputs:
+  LoadBalancerDNS:
+    Description: DNS name of the load balancer
+    Value: !GetAtt MLALB.DNSName
+    Export:
+      Name: ML-API-DNS
+```
+
+**Deploy with CloudFormation:**
+
+```bash
+# Create stack
+aws cloudformation create-stack \
+  --stack-name ml-infrastructure \
+  --template-body file://ml-infrastructure.yaml \
+  --parameters ParameterKey=ModelBucket,ParameterValue=my-ml-models-bucket
+
+# Update stack
+aws cloudformation update-stack \
+  --stack-name ml-infrastructure \
+  --template-body file://ml-infrastructure.yaml
+
+# Delete stack
+aws cloudformation delete-stack --stack-name ml-infrastructure
+```
+
+**AWS SAM (Serverless Application Model) for ML APIs:**
+
+SAM simplifies serverless ML deployments.
+
+```yaml
+# template.yaml
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+
+Parameters:
+  ModelBucket:
+    Type: String
+    Default: my-ml-models
+
+Resources:
+  # Lambda function for ML inference
+  MLInferenceFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: ml-inference-api
+      Runtime: python3.9
+      Handler: lambda_handler.handler
+      CodeUri: inference/
+      Timeout: 30
+      MemorySize: 3008  # For larger models
+      Environment:
+        Variables:
+          MODEL_BUCKET: !Ref ModelBucket
+          MODEL_KEY: models/model.pkl
+      Events:
+        ApiEvent:
+          Type: Api
+          Properties:
+            Path: /predict
+            Method: post
+      Policies:
+        - S3ReadPolicy:
+            BucketName: !Ref ModelBucket
+        - CloudWatchLogsFullAccess
+
+  # API Gateway
+  MLAPI:
+    Type: AWS::Serverless::Api
+    Properties:
+      StageName: prod
+      Cors:
+        AllowMethods: "'POST,OPTIONS'"
+        AllowHeaders: "'Content-Type,X-Amz-Date,Authorization'"
+        AllowOrigin: "'*'"
+
+Outputs:
+  MLAPIEndpoint:
+    Description: API Gateway endpoint URL
+    Value: !Sub https://${MLAPI}.execute-api.${AWS::Region}.amazonaws.com/prod/predict
+```
+
+**Deploy with SAM:**
+
+```bash
+# Build
+sam build
+
+# Deploy
+sam deploy --guided
+
+# Test
+curl -X POST https://<api-id>.execute-api.us-east-1.amazonaws.com/prod/predict \
+  -H "Content-Type: application/json" \
+  -d '{"features": [1.0, 2.0, 3.0]}'
+```
+
+---
+
+### AWS Observability for ML Systems
+
+**Observability vs Monitoring:**
+
+**Monitoring**: Collecting metrics and logs (what happened)
+**Observability**: Understanding system behavior through metrics, logs, and traces (why it happened)
+
+**Three Pillars of Observability:**
+1. **Metrics**: Numerical measurements over time (latency, error rate)
+2. **Logs**: Discrete events with timestamps
+3. **Traces**: Request flow through distributed systems
+
+**AWS X-Ray for Distributed Tracing:**
+
+X-Ray helps trace requests through your ML pipeline.
+
+```python
+# Install
+# pip install aws-xray-sdk
+
+from aws_xray_sdk.core import xray_recorder
+from aws_xray_sdk.core import patch_all
+import boto3
+
+# Patch all AWS SDK clients
+patch_all()
+
+@xray_recorder.capture('predict')
+def predict(features):
+    """ML prediction with X-Ray tracing"""
+    # This segment will appear in X-Ray
+    subsegment = xray_recorder.begin_subsegment('model_loading')
+    model = load_model()
+    xray_recorder.end_subsegment()
+    
+    subsegment = xray_recorder.begin_subsegment('prediction')
+    result = model.predict(features)
+    xray_recorder.end_subsegment()
+    
+    return result
+
+# Add metadata
+xray_recorder.put_metadata('model_version', 'v1.2.3')
+xray_recorder.put_metadata('features_count', len(features))
+```
+
+**X-Ray Configuration for ECS:**
+
+```json
+{
+  "containerDefinitions": [
+    {
+      "name": "ml-api",
+      "image": "ml-api:latest",
+      "environment": [
+        {
+          "name": "_X_AMZN_TRACE_ID",
+          "value": ""
+        }
+      ],
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+          "awslogs-group": "/ecs/ml-api",
+          "awslogs-region": "us-east-1"
+        }
+      }
+    },
+    {
+      "name": "xray-daemon",
+      "image": "amazon/aws-xray-daemon:latest",
+      "cpu": 32,
+      "memoryReservation": 256,
+      "command": ["-o"]
+    }
+  ]
+}
+```
+
+**CloudWatch for ML Monitoring:**
+
+```python
+import boto3
+import time
+from datetime import datetime
+
+cloudwatch = boto3.client('cloudwatch')
+
+def log_prediction_metric(prediction_time, model_version):
+    """Log custom metrics to CloudWatch"""
+    cloudwatch.put_metric_data(
+        Namespace='ML/API',
+        MetricData=[
+            {
+                'MetricName': 'PredictionLatency',
+                'Value': prediction_time,
+                'Unit': 'Milliseconds',
+                'Timestamp': datetime.utcnow(),
+                'Dimensions': [
+                    {
+                        'Name': 'ModelVersion',
+                        'Value': model_version
+                    }
+                ]
+            },
+            {
+                'MetricName': 'PredictionCount',
+                'Value': 1,
+                'Unit': 'Count',
+                'Timestamp': datetime.utcnow()
+            }
+        ]
+    )
+
+# Create CloudWatch alarms
+def create_latency_alarm():
+    cloudwatch.put_metric_alarm(
+        AlarmName='ML-API-High-Latency',
+        ComparisonOperator='GreaterThanThreshold',
+        EvaluationPeriods=2,
+        MetricName='PredictionLatency',
+        Namespace='ML/API',
+        Period=60,
+        Statistic='Average',
+        Threshold=1000.0,  # 1 second
+        ActionsEnabled=True,
+        AlarmActions=['arn:aws:sns:us-east-1:xxx:ml-alerts']
+    )
+```
+
+**CloudWatch Logs Insights for ML:**
+
+```python
+# Query logs
+# Example: Find slow predictions
+query = """
+fields @timestamp, @message, @logStream
+| filter @message like /prediction/
+| parse @message "Prediction took * ms" as latency
+| stats avg(latency) as avg_latency, max(latency) as max_latency by bin(5m)
+| sort @timestamp desc
+"""
+
+# Use CloudWatch Logs Insights API
+logs = boto3.client('logs')
+response = logs.start_query(
+    logGroupName='/ecs/ml-api',
+    startTime=int((datetime.now() - timedelta(hours=1)).timestamp()),
+    endTime=int(datetime.now().timestamp()),
+    queryString=query
+)
+```
+
+**Structured Logging for ML:**
+
+```python
+import json
+import logging
+from pythonjsonlogger import jsonlogger
+
+# Configure JSON logger
+logHandler = logging.StreamHandler()
+formatter = jsonlogger.JsonFormatter()
+logHandler.setFormatter(formatter)
+logger = logging.getLogger()
+logger.addHandler(logHandler)
+logger.setLevel(logging.INFO)
+
+# Log with context
+def log_prediction(request_id, features, prediction, latency):
+    logger.info("Prediction completed", extra={
+        "request_id": request_id,
+        "features_count": len(features),
+        "prediction": prediction,
+        "latency_ms": latency,
+        "model_version": "v1.2.3"
+    })
+```
+
+---
+
+### AWS Security Best Practices for ML
+
+**1. IAM Roles and Policies:**
+
+```json
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "s3:GetObject"
+      ],
+      "Resource": "arn:aws:s3:::my-ml-models/*"
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "logs:CreateLogGroup",
+        "logs:CreateLogStream",
+        "logs:PutLogEvents"
+      ],
+      "Resource": "arn:aws:logs:*:*:*"
+    }
+  ]
+}
+```
+
+**2. VPC Configuration:**
+
+```yaml
+# Private subnets for ECS tasks
+PrivateSubnet:
+  Type: AWS::EC2::Subnet
+  Properties:
+    VpcId: !Ref MLVPC
+    CidrBlock: 10.0.1.0/24
+    AvailabilityZone: us-east-1a
+
+# Security Group - Only allow ALB traffic
+ECSSecurityGroup:
+  Type: AWS::EC2::SecurityGroup
+  Properties:
+    GroupDescription: Security group for ECS tasks
+    VpcId: !Ref MLVPC
+    SecurityGroupIngress:
+      - IpProtocol: tcp
+        FromPort: 8000
+        ToPort: 8000
+        SourceSecurityGroupId: !Ref ALBSecurityGroup
+```
+
+**3. Secrets Management:**
+
+```python
+import boto3
+import json
+import base64
+
+# Use AWS Secrets Manager
+secrets_client = boto3.client('secretsmanager', region_name='us-east-1')
+
+def get_secret(secret_name):
+    """Retrieve secret from AWS Secrets Manager"""
+    try:
+        response = secrets_client.get_secret_value(SecretId=secret_name)
+        secret = json.loads(response['SecretString'])
+        return secret
+    except Exception as e:
+        print(f"Error retrieving secret: {e}")
+        raise
+
+# Store API keys, database credentials, etc.
+# secrets_client.create_secret(
+#     Name='ml-api-keys',
+#     SecretString=json.dumps({
+#         'api_key': 'your-api-key',
+#         'db_password': 'your-password'
+#     })
+# )
+```
+
+**4. Encryption at Rest and in Transit:**
+
+```yaml
+# S3 bucket with encryption
+ModelBucket:
+  Type: AWS::S3::Bucket
+  Properties:
+    BucketEncryption:
+      ServerSideEncryptionConfiguration:
+        - ServerSideEncryptionByDefault:
+            SSEAlgorithm: AES256
+    PublicAccessBlockConfiguration:
+      BlockPublicAcls: true
+      BlockPublicPolicy: true
+```
+
+**5. API Authentication with AWS Cognito:**
+
+```python
+from fastapi import FastAPI, Depends, HTTPException
+from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
+import boto3
+import jwt
+
+cognito = boto3.client('cognito-idp')
+security = HTTPBearer()
+
+async def verify_token(credentials: HTTPAuthorizationCredentials = Depends(security)):
+    """Verify JWT token from Cognito"""
+    try:
+        token = credentials.credentials
+        # Verify token with Cognito
+        response = cognito.get_user(AccessToken=token)
+        return response
+    except Exception as e:
+        raise HTTPException(status_code=401, detail="Invalid token")
+
+@app.post("/predict")
+async def predict(data: PredictionRequest, user=Depends(verify_token)):
+    # Authenticated prediction
+    return {"prediction": model.predict(data.features)}
+```
+
+---
+
+### AWS Cost Management for ML Workloads
+
+**1. Budgets and Billing Alarms:**
+
+```bash
+# Create billing alarm
+aws cloudwatch put-metric-alarm \
+  --alarm-name ML-Monthly-Billing-Alarm \
+  --alarm-description "Alert when monthly costs exceed $500" \
+  --metric-name EstimatedCharges \
+  --namespace AWS/Billing \
+  --statistic Maximum \
+  --period 86400 \
+  --evaluation-periods 1 \
+  --threshold 500 \
+  --comparison-operator GreaterThanThreshold \
+  --dimensions Name=Currency,Value=USD
+
+# Create budget
+aws budgets create-budget \
+  --account-id <account-id> \
+  --budget file://budget.json
+```
+
+**budget.json:**
+```json
+{
+  "BudgetName": "ML-Monthly-Budget",
+  "BudgetLimit": {
+    "Amount": "500",
+    "Unit": "USD"
+  },
+  "TimeUnit": "MONTHLY",
+  "BudgetType": "COST",
+  "CostFilters": {
+    "Service": ["Amazon ECS", "Amazon S3", "AWS Lambda"]
+  }
+}
+```
+
+**2. Cost Optimization Strategies:**
+
+- **Use Spot Instances** for training (with checkpointing)
+- **Right-size ECS tasks** (match CPU/memory to actual usage)
+- **S3 Lifecycle Policies** (move old models to Glacier)
+- **Reserved Capacity** for predictable workloads
+- **Auto-scaling** to scale down during low traffic
+
+**3. Cost Monitoring:**
+
+```python
+import boto3
+from datetime import datetime, timedelta
+
+ce = boto3.client('ce')  # Cost Explorer
+
+def get_ml_costs(start_date, end_date):
+    """Get ML-related costs"""
+    response = ce.get_cost_and_usage(
+        TimePeriod={
+            'Start': start_date,
+            'End': end_date
+        },
+        Granularity='DAILY',
+        Metrics=['UnblendedCost'],
+        Filter={
+            'Or': [
+                {'Dimensions': {'Key': 'SERVICE', 'Values': ['Amazon ECS']}},
+                {'Dimensions': {'Key': 'SERVICE', 'Values': ['Amazon S3']}},
+                {'Dimensions': {'Key': 'SERVICE', 'Values': ['AWS Lambda']}}
+            ]
+        },
+        GroupBy=[
+            {'Type': 'DIMENSION', 'Key': 'SERVICE'},
+            {'Type': 'DIMENSION', 'Key': 'USAGE_TYPE'}
+        ]
+    )
+    return response
 ```
 
 ---

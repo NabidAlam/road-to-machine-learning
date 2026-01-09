@@ -873,6 +873,237 @@ train:
     - main
 ```
 
+**AWS CodeBuild and CodePipeline for ML:**
+
+AWS CodeBuild and CodePipeline provide fully managed CI/CD services for ML workloads.
+
+**AWS CodeBuild for ML:**
+
+```yaml
+# buildspec.yml
+version: 0.2
+
+phases:
+  pre_build:
+    commands:
+      - echo Logging in to Amazon ECR...
+      - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com
+      - echo Installing dependencies...
+      - pip install -r requirements.txt
+      - pip install pytest pytest-cov black flake8
+  
+  build:
+    commands:
+      - echo Running code quality checks...
+      - black --check .
+      - flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+      - echo Running unit tests...
+      - pytest tests/unit/ --cov=src --cov-report=xml --cov-report=term
+      - echo Running integration tests...
+      - pytest tests/integration/
+      - echo Validating data...
+      - python scripts/validate_data.py
+      - echo Training model...
+      - python train.py
+      - echo Evaluating model...
+      - python evaluate.py
+      - echo Building Docker image...
+      - docker build -t $IMAGE_REPO_NAME:$IMAGE_TAG .
+      - docker tag $IMAGE_REPO_NAME:$IMAGE_TAG $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$IMAGE_TAG
+  
+  post_build:
+    commands:
+      - echo Pushing Docker image to ECR...
+      - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$IMAGE_TAG
+      - echo Writing image definitions file...
+      - printf '[{"name":"ml-api","imageUri":"%s"}]' $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$IMAGE_TAG > imagedefinitions.json
+
+artifacts:
+  files:
+    - imagedefinitions.json
+    - model.pkl
+    - metrics.json
+```
+
+**Create CodeBuild Project:**
+
+```bash
+# Create build project
+aws codebuild create-project \
+  --name ml-api-build \
+  --source type=GITHUB,location=https://github.com/user/repo.git \
+  --artifacts type=S3,location=my-build-artifacts \
+  --environment type=LINUX_CONTAINER,image=aws/codebuild/standard:5.0,computeType=BUILD_GENERAL1_MEDIUM \
+  --service-role arn:aws:iam::account-id:role/codebuild-role
+```
+
+**AWS CodePipeline for ML:**
+
+```json
+{
+  "pipeline": {
+    "name": "ml-api-pipeline",
+    "roleArn": "arn:aws:iam::account-id:role/codepipeline-role",
+    "artifactStore": {
+      "type": "S3",
+      "location": "my-pipeline-artifacts"
+    },
+    "stages": [
+      {
+        "name": "Source",
+        "actions": [
+          {
+            "name": "SourceAction",
+            "actionTypeId": {
+              "category": "Source",
+              "owner": "AWS",
+              "provider": "CodeCommit",
+              "version": "1"
+            },
+            "outputArtifacts": [
+              {
+                "name": "SourceOutput"
+              }
+            ],
+            "configuration": {
+              "RepositoryName": "ml-api-repo",
+              "BranchName": "main"
+            }
+          }
+        ]
+      },
+      {
+        "name": "Build",
+        "actions": [
+          {
+            "name": "BuildAction",
+            "actionTypeId": {
+              "category": "Build",
+              "owner": "AWS",
+              "provider": "CodeBuild",
+              "version": "1"
+            },
+            "inputArtifacts": [
+              {
+                "name": "SourceOutput"
+              }
+            ],
+            "outputArtifacts": [
+              {
+                "name": "BuildOutput"
+              }
+            ],
+            "configuration": {
+              "ProjectName": "ml-api-build"
+            }
+          }
+        ]
+      },
+      {
+        "name": "Test",
+        "actions": [
+          {
+            "name": "ModelValidation",
+            "actionTypeId": {
+              "category": "Test",
+              "owner": "AWS",
+              "provider": "CodeBuild",
+              "version": "1"
+            },
+            "inputArtifacts": [
+              {
+                "name": "BuildOutput"
+              }
+            ],
+            "configuration": {
+              "ProjectName": "ml-model-validation"
+            }
+          }
+        ]
+      },
+      {
+        "name": "Deploy",
+        "actions": [
+          {
+            "name": "DeployAction",
+            "actionTypeId": {
+              "category": "Deploy",
+              "owner": "AWS",
+              "provider": "ECS",
+              "version": "1"
+            },
+            "inputArtifacts": [
+              {
+                "name": "BuildOutput"
+              }
+            ],
+            "configuration": {
+              "ClusterName": "ml-api-cluster",
+              "ServiceName": "ml-api-service",
+              "FileName": "imagedefinitions.json"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+**CodePipeline with Manual Approval:**
+
+```json
+{
+  "name": "ManualApproval",
+  "actions": [
+    {
+      "name": "ApproveDeployment",
+      "actionTypeId": {
+        "category": "Approval",
+        "owner": "AWS",
+        "provider": "Manual",
+        "version": "1"
+      },
+      "configuration": {
+        "CustomData": "Review model metrics before deploying to production"
+      }
+    }
+  ]
+}
+```
+
+**Security Best Practices for CI/CD:**
+
+```yaml
+# Use IAM roles, not access keys
+# Store secrets in AWS Secrets Manager
+# Enable encryption at rest
+# Use VPC endpoints for private builds
+# Enable CloudTrail for audit logging
+
+# Example: Secure buildspec.yml
+version: 0.2
+
+env:
+  secrets-manager:
+    API_KEY: ml-api:api-key
+    DB_PASSWORD: ml-api:db-password
+
+phases:
+  build:
+    commands:
+      - echo Using secure credentials from Secrets Manager
+      - python train.py --api-key $API_KEY
+```
+
+**Cost Optimization for CI/CD:**
+
+- **Use CodeBuild compute types** based on workload (smaller for tests, larger for training)
+- **Enable build caching** to speed up builds
+- **Use spot instances** for non-critical builds
+- **Set build timeouts** to prevent runaway costs
+- **Clean up old artifacts** automatically
+
 ### ML-Specific CI: Testing the Model and Data
 
 **Data Validation with Great Expectations:**
