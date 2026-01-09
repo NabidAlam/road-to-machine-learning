@@ -470,18 +470,37 @@ def train_distributed(model, train_loader):
 
 **1. Quantization**
 
+Quantization reduces model size and speeds up inference by using lower precision (e.g., int8 instead of float32).
+
+**PyTorch Quantization:**
+
 ```python
-# Dynamic quantization
+# Dynamic quantization (easiest, good for RNNs/LSTMs)
 quantized_model = torch.quantization.quantize_dynamic(
     model, {torch.nn.Linear}, dtype=torch.qint8
 )
 
-# Static quantization (better performance)
+# Static quantization (better performance, for CNNs)
 model.qconfig = torch.quantization.get_default_qconfig('fbgemm')
 torch.quantization.prepare(model, inplace=True)
 # Calibrate with sample data
+for data in calibration_dataset:
+    model(data)
+torch.quantization.convert(model, inplace=True)
+
+# Quantization-Aware Training (QAT) - best accuracy
+model.qconfig = torch.quantization.get_default_qat_qconfig('fbgemm')
+torch.quantization.prepare_qat(model, inplace=True)
+# Train normally, quantization is simulated
+train_model(model)
 torch.quantization.convert(model, inplace=True)
 ```
+
+**Benefits:**
+- 4x smaller model size (float32 → int8)
+- 2-4x faster inference
+- Lower memory usage
+- Better for mobile/edge deployment
 
 **2. Model Pruning**
 
@@ -495,7 +514,9 @@ for module in model.modules():
         prune.remove(module, 'weight')  # Make permanent
 ```
 
-**3. ONNX Export for Faster Inference**
+**3. ONNX Export and Optimization**
+
+**ONNX (Open Neural Network Exchange)** is a format for exporting models to run on different platforms.
 
 ```python
 import torch.onnx
@@ -508,9 +529,162 @@ torch.onnx.export(
     "model.onnx",
     input_names=['input_ids'],
     output_names=['logits'],
-    dynamic_axes={'input_ids': {0: 'batch_size'}}
+    dynamic_axes={'input_ids': {0: 'batch_size'}},
+    opset_version=11
+)
+
+# Optimize ONNX model
+import onnx
+from onnxruntime.quantization import quantize_dynamic, QuantType
+
+# Load and optimize
+onnx_model = onnx.load("model.onnx")
+onnx.checker.check_model(onnx_model)
+
+# Quantize ONNX model
+quantize_dynamic(
+    "model.onnx",
+    "model_quantized.onnx",
+    weight_type=QuantType.QUInt8
 )
 ```
+
+**ONNX Runtime (Cross-Platform Inference):**
+
+```python
+import onnxruntime as ort
+
+# Load optimized ONNX model
+session = ort.InferenceSession("model_quantized.onnx")
+
+# Faster inference than PyTorch
+inputs = {"input_ids": input_data.numpy()}
+outputs = session.run(None, inputs)
+
+# Benefits:
+# - Runs on CPU, GPU, mobile
+# - Optimized inference engine
+# - 2-5x faster than PyTorch
+```
+
+**4. TensorRT (NVIDIA GPU Optimization)**
+
+**TensorRT** optimizes models for NVIDIA GPUs with extreme performance gains.
+
+```python
+# First export to ONNX
+torch.onnx.export(model, dummy_input, "model.onnx")
+
+# Then convert to TensorRT (requires TensorRT SDK)
+import tensorrt as trt
+
+# Build TensorRT engine
+logger = trt.Logger(trt.Logger.WARNING)
+builder = trt.Builder(logger)
+network = builder.create_network(1 << int(trt.NetworkDefinitionCreationFlag.EXPLICIT_BATCH))
+parser = trt.OnnxParser(network, logger)
+
+with open("model.onnx", "rb") as model_file:
+    parser.parse(model_file.read())
+
+# Configure builder
+config = builder.create_builder_config()
+config.max_workspace_size = 1 << 30  # 1GB
+config.set_flag(trt.BuilderFlag.FP16)  # Use FP16 for speed
+
+# Build engine
+engine = builder.build_engine(network, config)
+
+# Save engine
+with open("model.trt", "wb") as f:
+    f.write(engine.serialize())
+
+# Benefits:
+# - 5-10x faster inference on NVIDIA GPUs
+# - Automatic kernel fusion
+# - Mixed precision (FP16/INT8)
+```
+
+**5. GGML/GGUF (LLM Quantization)**
+
+**GGML/GGUF** formats are optimized for running large language models efficiently on CPU and edge devices.
+
+```python
+# For LLMs like Llama, Mistral, etc.
+# Quantization levels: Q4_0, Q4_1, Q5_0, Q5_1, Q8_0
+
+# Using llama.cpp (command line)
+# Convert model to GGUF format
+# python convert.py model.pt --outtype f16  # FP16
+# python convert.py model.pt --outtype q4_0  # 4-bit quantization
+
+# Using Python (if available)
+from llama_cpp import Llama
+
+# Load quantized model
+llm = Llama(
+    model_path="llama-7b-q4_0.gguf",
+    n_ctx=2048,
+    n_threads=4
+)
+
+# Inference
+output = llm("Your prompt here", max_tokens=100)
+
+# Benefits:
+# - 4-8x smaller model size
+# - Runs on CPU efficiently
+# - Fast inference on edge devices
+# - Used by Ollama, llama.cpp
+```
+
+**6. Edge Deployment Formats**
+
+**TensorFlow Lite (Mobile/Edge):**
+```python
+import tensorflow as tf
+
+# Convert to TFLite
+converter = tf.lite.TFLiteConverter.from_saved_model("saved_model")
+converter.optimizations = [tf.lite.Optimize.DEFAULT]
+tflite_model = converter.convert()
+
+# Save
+with open("model.tflite", "wb") as f:
+    f.write(tflite_model)
+
+# Benefits: Runs on Android, iOS, Raspberry Pi
+```
+
+**CoreML (iOS):**
+```python
+import coremltools as ct
+
+# Convert PyTorch to CoreML
+model = ct.convert(
+    torch_model,
+    inputs=[ct.TensorType(name="input", shape=(1, 3, 224, 224))]
+)
+
+# Quantize
+quantized_model = ct.models.neural_network.quantization_utils.quantize_weights(
+    model, nbits=8
+)
+
+model.save("model.mlmodel")
+# Benefits: Native iOS deployment, optimized for Apple Silicon
+```
+
+**Quantization Comparison:**
+
+| Method | Speedup | Size Reduction | Platform | Best For |
+|--------|---------|----------------|----------|----------|
+| PyTorch Dynamic | 2x | 4x | CPU | RNNs, quick deployment |
+| PyTorch Static | 3-4x | 4x | CPU | CNNs, production |
+| ONNX Runtime | 2-5x | 4x | CPU/GPU | Cross-platform |
+| TensorRT | 5-10x | 4x | NVIDIA GPU | Production GPU inference |
+| GGML/GGUF | 2-4x | 4-8x | CPU/Edge | LLMs, edge devices |
+| TFLite | 2-3x | 4x | Mobile | Android/iOS apps |
 
 ---
 
