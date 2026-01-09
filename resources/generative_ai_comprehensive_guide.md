@@ -855,6 +855,96 @@ response = client.chat.completions.create(
 )
 ```
 
+**Top-k Sampling:**
+```python
+response = client.chat.completions.create(
+    model="gpt-4",
+    messages=[...],
+    temperature=0.7,
+    top_k=50  # Consider only top 50 most likely tokens
+)
+```
+
+**Repetition Penalty:**
+```python
+response = client.chat.completions.create(
+    model="gpt-4",
+    messages=[...],
+    temperature=0.7,
+    frequency_penalty=0.5,  # Reduce repetition (0.0 to 2.0)
+    presence_penalty=0.3     # Encourage new topics (0.0 to 2.0)
+)
+```
+
+### Generative Configuration Parameters
+
+**Understanding Generation Parameters:**
+
+1. **Temperature** (0.0 to 2.0)
+   - Controls randomness in token selection
+   - Lower = more deterministic, higher = more creative
+   - **Scientific Insight**: Temperature scales the logits before softmax: `P(token) = softmax(logits / temperature)`
+   - **Use Cases**:
+     - 0.0-0.3: Factual tasks, data extraction, code generation
+     - 0.4-0.7: Balanced tasks, general Q&A, summarization
+     - 0.8-1.2: Creative writing, brainstorming, ideation
+     - 1.3-2.0: Experimental, may produce less coherent outputs
+
+2. **Top-p (Nucleus Sampling)** (0.0 to 1.0)
+   - Considers tokens whose cumulative probability mass reaches the threshold
+   - More dynamic than top-k: adapts to probability distribution
+   - **Scientific Insight**: Filters tokens until cumulative probability ≥ top_p
+   - **Example**: If top_p=0.9, includes tokens until their cumulative probability reaches 90%
+   - **Use Cases**: Better for diverse outputs while maintaining quality
+
+3. **Top-k Sampling** (integer)
+   - Considers only the k most likely tokens
+   - Fixed number regardless of probability distribution
+   - **Scientific Insight**: Filters to top k tokens by probability, then samples
+   - **Use Cases**: When you want to limit to most probable tokens
+
+4. **Repetition Penalty** (frequency_penalty, presence_penalty)
+   - **Frequency Penalty**: Reduces probability of tokens that have appeared frequently
+   - **Presence Penalty**: Reduces probability of tokens that have appeared at all
+   - **Scientific Insight**: Modifies logits: `logits[token] -= penalty * count(token)`
+   - **Use Cases**: Preventing repetitive outputs, encouraging diversity
+
+5. **Max Tokens**
+   - Limits the maximum number of tokens in the response
+   - Important for cost control and response length
+   - **Use Cases**: Budget management, ensuring concise responses
+
+**Parameter Interaction:**
+- Temperature and top-p/top-k work together
+- Lower temperature + lower top-p = more focused, deterministic outputs
+- Higher temperature + higher top-p = more diverse, creative outputs
+- Repetition penalties help maintain quality in longer generations
+
+**Best Practices:**
+```python
+# Factual, deterministic (code, data extraction)
+config = {
+    "temperature": 0.0,
+    "top_p": 0.1,
+    "max_tokens": 500
+}
+
+# Balanced (general Q&A, summarization)
+config = {
+    "temperature": 0.7,
+    "top_p": 0.9,
+    "max_tokens": 1000
+}
+
+# Creative (writing, brainstorming)
+config = {
+    "temperature": 1.0,
+    "top_p": 0.95,
+    "frequency_penalty": 0.5,
+    "max_tokens": 2000
+}
+```
+
 ### Prompt Engineering Checklist
 
 **Before Sending:**
@@ -1546,6 +1636,155 @@ print(result)
 - Easy to add/remove agents
 - Adapt to different tasks
 - Modular architecture
+
+---
+
+## Generative AI Project Lifecycle
+
+### Overview
+
+The Generative AI project lifecycle is a systematic approach to building, deploying, and maintaining GenAI applications. Understanding this lifecycle is crucial for successful project delivery.
+
+### Lifecycle Stages
+
+**1. Problem Definition & Use Case Selection**
+- **Identify Problem**: What problem does GenAI solve?
+- **Define Success Metrics**: How will you measure success?
+- **Assess Feasibility**: Is GenAI the right solution?
+- **Resource Planning**: Budget, timeline, team
+
+**2. Data Preparation**
+- **Data Collection**: Gather relevant datasets
+- **Data Quality**: Ensure high-quality, representative data
+- **Data Preprocessing**: Clean, format, structure data
+- **Data Validation**: Verify data quality and completeness
+
+**3. Model Selection**
+- **Pre-trained vs Fine-tuned**: Choose base model
+- **Model Size**: Balance performance vs cost
+- **API vs Self-hosted**: Consider deployment constraints
+- **Cost Analysis**: Evaluate API costs vs infrastructure
+
+**4. Development & Testing**
+- **Prompt Engineering**: Develop effective prompts
+- **RAG Implementation**: If using retrieval-augmented generation
+- **Agent Development**: If building agent systems
+- **Testing**: Unit tests, integration tests, evaluation
+
+**5. Evaluation & Optimization**
+- **Performance Metrics**: Accuracy, latency, cost
+- **Safety Testing**: Bias, toxicity, hallucinations
+- **User Testing**: Gather feedback from real users
+- **Iteration**: Refine based on results
+
+**6. Deployment**
+- **Infrastructure**: Choose deployment platform
+- **Monitoring**: Set up logging and monitoring
+- **Scaling**: Plan for traffic and growth
+- **Security**: Implement access controls and safeguards
+
+**7. Monitoring & Maintenance**
+- **Performance Monitoring**: Track metrics continuously
+- **Model Drift**: Monitor for degradation
+- **User Feedback**: Collect and act on feedback
+- **Updates**: Regular model and system updates
+
+### Lifecycle Cheat Sheet
+
+```
+┌─────────────────────────────────────────────────────────┐
+│ 1. Problem Definition                                   │
+│    - Define use case and success metrics                │
+│    - Assess feasibility and resources                   │
+└─────────────────────────────────────────────────────────┘
+                    ↓
+┌─────────────────────────────────────────────────────────┐
+│ 2. Data Preparation                                     │
+│    - Collect and validate data                          │
+│    - Preprocess and structure                           │
+└─────────────────────────────────────────────────────────┘
+                    ↓
+┌─────────────────────────────────────────────────────────┐
+│ 3. Model Selection                                      │
+│    - Choose base model (GPT-4, Llama, etc.)             │
+│    - Decide: API vs self-hosted                         │
+└─────────────────────────────────────────────────────────┘
+                    ↓
+┌─────────────────────────────────────────────────────────┐
+│ 4. Development & Testing                                │
+│    - Prompt engineering                                 │
+│    - RAG/Agent implementation                           │
+│    - Testing and evaluation                             │
+└─────────────────────────────────────────────────────────┘
+                    ↓
+┌─────────────────────────────────────────────────────────┐
+│ 5. Evaluation & Optimization                            │
+│    - Performance metrics                                │
+│    - Safety testing                                     │
+│    - User feedback and iteration                        │
+└─────────────────────────────────────────────────────────┘
+                    ↓
+┌─────────────────────────────────────────────────────────┐
+│ 6. Deployment                                           │
+│    - Infrastructure setup                               │
+│    - Monitoring and scaling                             │
+│    - Security implementation                            │
+└─────────────────────────────────────────────────────────┘
+                    ↓
+┌─────────────────────────────────────────────────────────┐
+│ 7. Monitoring & Maintenance                             │
+│    - Continuous monitoring                              │
+│    - Model updates and improvements                     │
+│    - User feedback integration                          │
+└─────────────────────────────────────────────────────────┘
+```
+
+### Key Considerations at Each Stage
+
+**Problem Definition:**
+- Is GenAI the right solution? (vs traditional ML, rule-based)
+- What are the success criteria?
+- What are the constraints? (latency, cost, privacy)
+
+**Data Preparation:**
+- Quality over quantity
+- Representative of production data
+- Privacy and compliance considerations
+
+**Model Selection:**
+- Performance vs cost trade-off
+- Latency requirements
+- Data privacy (API vs self-hosted)
+
+**Development:**
+- Start simple, iterate
+- Test early and often
+- Consider edge cases and failures
+
+**Evaluation:**
+- Multiple metrics (not just accuracy)
+- Safety and bias testing
+- Real-world user testing
+
+**Deployment:**
+- Start with MVP
+- Plan for scaling
+- Implement monitoring from day one
+
+**Monitoring:**
+- Track key metrics continuously
+- Set up alerts for anomalies
+- Regular model and system updates
+
+### Best Practices
+
+1. **Start Small**: Begin with MVP, expand gradually
+2. **Iterate Quickly**: Fast feedback loops
+3. **Measure Everything**: Track metrics from the start
+4. **Safety First**: Build safety and bias checks early
+5. **User-Centric**: Involve users throughout the process
+6. **Document Everything**: Code, decisions, experiments
+7. **Plan for Scale**: Design for growth from the start
 
 ---
 

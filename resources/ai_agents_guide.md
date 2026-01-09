@@ -538,6 +538,150 @@ agent.start_interaction_loop(
 
 ---
 
+## Advanced Agent Architectures
+
+### ReAct: Reasoning and Acting
+
+**ReAct** (Reasoning + Acting) is a framework that combines reasoning and acting in language models, allowing them to interact with external tools while maintaining a reasoning trace.
+
+**Key Concept:**
+- **Reasoning**: LLM thinks step-by-step about the problem
+- **Acting**: LLM uses tools to gather information or perform actions
+- **Iterative**: Alternates between reasoning and acting
+
+**Architecture:**
+```
+Thought → Action → Observation → Thought → Action → ...
+```
+
+**Implementation:**
+```python
+from langchain.agents import initialize_agent, Tool
+from langchain.llms import OpenAI
+
+llm = OpenAI(temperature=0)
+
+# Define tools
+tools = [
+    Tool(
+        name="Search",
+        func=search_function,
+        description="Search the web for information"
+    ),
+    Tool(
+        name="Calculator",
+        func=calculator,
+        description="Perform mathematical calculations"
+    )
+]
+
+# Create ReAct agent
+agent = initialize_agent(
+    tools,
+    llm,
+    agent="react-docstore",  # ReAct agent type
+    verbose=True
+)
+
+# Use agent
+result = agent.run(
+    "What is the population of Berlin? Multiply it by 2 and tell me the result."
+)
+```
+
+**ReAct Prompt Structure:**
+```
+Question: What is the capital of France?
+
+Thought: I need to find the capital of France. I can use a search tool.
+Action: Search[capital of France]
+Observation: Paris is the capital of France.
+Thought: I have the answer.
+Action: Finish[Paris]
+```
+
+**Benefits:**
+- **Transparency**: Reasoning trace is visible
+- **Tool Integration**: Seamlessly uses external tools
+- **Error Recovery**: Can reason about failures and retry
+- **Interpretability**: Easy to understand agent decisions
+
+### Program-Aided Language Models (PAL)
+
+**PAL** is an approach where LLMs generate code (Python) to solve problems, then execute the code to get answers.
+
+**Key Concept:**
+- LLM generates Python code to solve the problem
+- Code is executed in a sandboxed environment
+- Results are returned to the LLM
+
+**Why PAL?**
+- **Precision**: Code execution is exact, not approximate
+- **Complex Reasoning**: Handles multi-step calculations
+- **Verification**: Code can be inspected and verified
+- **Reproducibility**: Same code produces same results
+
+**Implementation:**
+```python
+from langchain.agents import create_python_agent
+from langchain.tools.python.tool import PythonREPLTool
+from langchain.llms import OpenAI
+
+llm = OpenAI(temperature=0)
+
+# Create PAL agent
+agent = create_python_agent(
+    llm=llm,
+    tool=PythonREPLTool(),
+    verbose=True
+)
+
+# Use agent for mathematical reasoning
+result = agent.run(
+    """
+    A store has 100 apples. They sell 30% on Monday, 
+    25% of remaining on Tuesday. How many are left?
+    Write Python code to solve this.
+    """
+)
+```
+
+**PAL Prompt Structure:**
+```
+Question: If a train travels 120 km in 2 hours, what's its average speed?
+
+# solution using Python:
+def solution():
+    distance = 120  # km
+    time = 2  # hours
+    speed = distance / time
+    return speed
+
+print(solution())
+```
+
+**Use Cases:**
+- **Mathematical Problems**: Complex calculations, algebra
+- **Data Analysis**: Process and analyze data
+- **Algorithmic Problems**: Implement algorithms
+- **Scientific Computing**: Physics, chemistry calculations
+
+**Safety Considerations:**
+- **Sandboxing**: Execute code in isolated environment
+- **Resource Limits**: Limit execution time and memory
+- **Input Validation**: Validate code before execution
+- **Error Handling**: Catch and handle execution errors
+
+**Comparison:**
+
+| Approach | Strengths | Weaknesses | Best For |
+|----------|-----------|------------|----------|
+| **Direct Generation** | Fast, simple | May be inaccurate | Simple Q&A |
+| **ReAct** | Transparent, tool use | Can be verbose | Complex multi-step tasks |
+| **PAL** | Precise, verifiable | Requires code execution | Mathematical, algorithmic problems |
+
+---
+
 ## Real-World Projects
 
 ### Project 1: Research and Writing Crew

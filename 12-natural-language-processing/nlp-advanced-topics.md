@@ -67,6 +67,166 @@ generated_text = tokenizer.decode(output[0], skip_special_tokens=True)
 - **Hyperparameter Tuning**: Many parameters to optimize
 - **Training Stability**: Requires careful initialization and learning rate scheduling
 
+### Computational Challenges of Training LLMs
+
+**The Scale Problem:**
+Training modern LLMs requires enormous computational resources. Understanding these challenges is crucial for planning and optimization.
+
+**1. Memory Constraints:**
+- **Model Size**: A 7B parameter model requires ~14GB in FP32, ~7GB in FP16
+- **Activation Memory**: Forward pass activations can exceed model size
+- **Gradient Memory**: Backward pass stores gradients for all parameters
+- **Total Memory**: Often 3-4x model size during training
+
+**2. Compute Requirements:**
+- **Training Time**: Weeks to months on hundreds of GPUs
+- **FLOPS**: Trillions of floating-point operations per second
+- **Cost**: Millions of dollars in compute for large models
+
+**3. Data Pipeline Bottlenecks:**
+- **Data Loading**: Must keep GPUs fed with data
+- **Preprocessing**: Tokenization, batching, shuffling
+- **Storage**: Terabytes of training data
+
+**4. Distributed Training Complexity:**
+- **Synchronization**: Gradient synchronization across GPUs
+- **Communication Overhead**: Network bandwidth limitations
+- **Fault Tolerance**: Handling GPU/node failures
+
+**Solutions:**
+- **Gradient Checkpointing**: Trade compute for memory
+- **Mixed Precision**: FP16/BF16 to reduce memory
+- **Model Parallelism**: Split model across GPUs
+- **Data Parallelism**: Replicate model, split data
+- **Pipeline Parallelism**: Split layers across GPUs
+- **ZeRO Optimization**: Partition optimizer states
+
+### Scaling Laws for LLMs
+
+**Empirical Scaling Laws:**
+Research (Kaplan et al., 2020; Hoffmann et al., 2022) has revealed predictable relationships between model size, data, and compute.
+
+**Key Findings:**
+
+1. **Power Law Scaling:**
+   - Loss decreases as a power law with model size, data, and compute
+   - Formula: `L(N, D) = (N_c / N)^α_N + (D_c / D)^α_D`
+   - Where N = parameters, D = data tokens, α ≈ 0.076
+
+2. **Chinchilla Scaling (Compute-Optimal):**
+   - Optimal data-to-parameter ratio: ~20 tokens per parameter
+   - Example: 7B model needs ~140B tokens
+   - Many models are "undertrained" (too few tokens)
+
+3. **Emergent Abilities:**
+   - Capabilities emerge at certain scales
+   - Examples: Few-shot learning, reasoning, code generation
+   - Not predictable from smaller models
+
+**Practical Implications:**
+```python
+# Estimate compute requirements
+def estimate_training_compute(model_params, data_tokens, flops_per_token=6):
+    """
+    Estimate training compute in FLOPs
+    
+    Args:
+        model_params: Number of model parameters
+        data_tokens: Number of training tokens
+        flops_per_token: FLOPs per token (typically 6 for attention)
+    
+    Returns:
+        Total FLOPs required
+    """
+    # Forward pass: 2 * params * tokens
+    forward_flops = 2 * model_params * data_tokens
+    
+    # Backward pass: ~2x forward (gradients + activations)
+    backward_flops = 2 * forward_flops
+    
+    # Total
+    total_flops = forward_flops + backward_flops
+    
+    return total_flops
+
+# Example: 7B model, 140B tokens
+compute = estimate_training_compute(7e9, 140e9)
+print(f"Total FLOPs: {compute:.2e}")
+print(f"GPU-days (A100): {compute / (312e15 * 86400):.0f}")  # A100: 312 TFLOPS
+```
+
+**Scaling Strategy:**
+- **Start Small**: Validate approach on small models
+- **Scale Data**: Ensure sufficient training tokens
+- **Scale Model**: Increase parameters for capacity
+- **Monitor**: Track loss curves, emergent abilities
+- **Budget**: Balance model size, data, and compute
+
+### Domain Adaptation for Pre-training
+
+**Domain-Specific Pre-training:**
+Adapting pre-trained models to specific domains (e.g., finance, medicine, code) through continued pre-training.
+
+**Why Domain Adaptation?**
+- **Vocabulary**: Domain-specific terminology
+- **Style**: Different writing conventions
+- **Knowledge**: Domain-specific facts and relationships
+- **Performance**: Better downstream task performance
+
+**Approach:**
+```python
+# Continue pre-training on domain data
+from transformers import AutoTokenizer, AutoModelForCausalLM, Trainer, TrainingArguments
+
+# Load base model
+model = AutoModelForCausalLM.from_pretrained("gpt2")
+tokenizer = AutoTokenizer.from_pretrained("gpt2")
+
+# Prepare domain-specific corpus
+domain_texts = load_domain_corpus()  # e.g., medical papers, financial reports
+
+# Tokenize
+def tokenize_function(examples):
+    return tokenizer(
+        examples["text"],
+        truncation=True,
+        max_length=512,
+        padding="max_length"
+    )
+
+tokenized_dataset = domain_texts.map(tokenize_function, batched=True)
+
+# Training arguments
+training_args = TrainingArguments(
+    output_dir="./domain_model",
+    num_train_epochs=3,
+    per_device_train_batch_size=4,
+    gradient_accumulation_steps=8,
+    learning_rate=5e-5,  # Lower than initial pre-training
+    warmup_steps=1000,
+    logging_steps=100,
+    save_steps=5000,
+    fp16=True,  # Use mixed precision
+    dataloader_num_workers=4
+)
+
+# Train
+trainer = Trainer(
+    model=model,
+    args=training_args,
+    train_dataset=tokenized_dataset
+)
+
+trainer.train()
+```
+
+**Best Practices:**
+- **Learning Rate**: 5-10x lower than initial pre-training
+- **Data Quality**: High-quality, domain-specific corpus
+- **Data Size**: Typically 10-100GB of domain text
+- **Monitoring**: Watch for catastrophic forgetting
+- **Evaluation**: Test on domain-specific benchmarks
+
 ### Building a Tiny LLM
 
 **Step 1: Define Model Architecture**
@@ -840,6 +1000,68 @@ total_loss = model_loss + 0.01 * load_balancing_loss(probs, indices, num_experts
 - **Safety**: Improve model safety and helpfulness
 - **Domain Expertise**: Specialize in specific domains
 
+### Single-Task vs Multi-Task Instruction Fine-Tuning
+
+**Single-Task Fine-Tuning:**
+Fine-tune on one specific task (e.g., summarization, Q&A, classification).
+
+```python
+# Single-task dataset
+single_task_data = [
+    {"instruction": "Summarize this text", "input": "Long text...", "output": "Summary..."}
+]
+```
+
+**Multi-Task Instruction Fine-Tuning:**
+Train on diverse tasks simultaneously to create a generalist model that can follow instructions across many tasks.
+
+**Benefits:**
+- **Generalization**: Better performance on unseen tasks
+- **Instruction Following**: Learns to follow diverse instructions
+- **Few-Shot Learning**: Better at in-context learning
+- **Efficiency**: One model for many tasks
+
+**Implementation:**
+```python
+# Multi-task dataset format
+multi_task_data = [
+    # Task 1: Summarization
+    {"instruction": "Summarize the following text", "input": "Article...", "output": "Summary"},
+    # Task 2: Question Answering
+    {"instruction": "Answer the question", "input": "Q: What is ML? A:", "output": "Machine learning is..."},
+    # Task 3: Classification
+    {"instruction": "Classify the sentiment", "input": "I love this product", "output": "Positive"},
+    # Task 4: Code Generation
+    {"instruction": "Write a function to", "input": "calculate factorial", "output": "def factorial(n):..."},
+    # Task 5: Translation
+    {"instruction": "Translate to French", "input": "Hello", "output": "Bonjour"},
+]
+
+# Format for training
+def format_instruction(example):
+    if example["input"]:
+        text = f"### Instruction:\n{example['instruction']}\n\n### Input:\n{example['input']}\n\n### Response:\n{example['output']}"
+    else:
+        text = f"### Instruction:\n{example['instruction']}\n\n### Response:\n{example['output']}"
+    return {"text": text}
+
+formatted_data = multi_task_data.map(format_instruction)
+
+# Train on diverse tasks
+trainer = Trainer(
+    model=model,
+    train_dataset=formatted_data,
+    args=training_args
+)
+trainer.train()
+```
+
+**Best Practices:**
+- **Task Diversity**: Include 10-100+ different task types
+- **Data Balance**: Balance examples across tasks
+- **Instruction Quality**: Clear, consistent instruction format
+- **Evaluation**: Test on held-out tasks to measure generalization
+
 ### SFT Dataset Format
 
 ```python
@@ -972,6 +1194,97 @@ train_data = [
 model, tokenizer = train_sft("gpt2", train_data)
 ```
 
+### Parameter Efficient Fine-Tuning (PEFT)
+
+**Why PEFT?**
+Full fine-tuning requires updating all model parameters, which is:
+- **Memory Intensive**: Need to store gradients for all parameters
+- **Slow**: Many parameters to update
+- **Expensive**: High compute costs
+- **Storage**: Need full model copy per task
+
+**PEFT Techniques:**
+Update only a small subset of parameters while keeping the base model frozen.
+
+#### 1. LoRA (Low-Rank Adaptation)
+
+**Concept**: Decompose weight updates into low-rank matrices.
+
+```python
+from peft import LoraConfig, get_peft_model, TaskType
+
+# Configure LoRA
+lora_config = LoraConfig(
+    task_type=TaskType.CAUSAL_LM,
+    r=8,  # Rank (low-rank dimension)
+    lora_alpha=32,  # Scaling factor
+    lora_dropout=0.1,
+    target_modules=["q_proj", "v_proj"]  # Which layers to apply LoRA
+)
+
+# Apply LoRA to model
+model = AutoModelForCausalLM.from_pretrained("gpt2")
+model = get_peft_model(model, lora_config)
+
+# Now only LoRA parameters are trainable
+print(f"Trainable parameters: {model.num_parameters(trainable=True):,}")
+print(f"Total parameters: {model.num_parameters():,}")
+
+# Train normally
+trainer = Trainer(model=model, ...)
+trainer.train()
+
+# Save only LoRA weights (much smaller)
+model.save_pretrained("./lora_model")  # Saves only ~10MB instead of GBs
+```
+
+**Benefits:**
+- **Memory**: 10-100x less memory than full fine-tuning
+- **Speed**: Faster training (fewer parameters)
+- **Storage**: Only save adapter weights (~10MB vs GBs)
+- **Modularity**: Multiple LoRA adapters for different tasks
+
+**LoRA Mathematics:**
+Original weight update: `W' = W + ΔW`
+LoRA approximation: `ΔW ≈ BA` where `B ∈ R^(d×r)`, `A ∈ R^(r×k)`, `r << min(d,k)`
+
+#### 2. Soft Prompts (Prompt Tuning)
+
+**Concept**: Learn continuous prompt embeddings instead of discrete tokens.
+
+```python
+from peft import PromptTuningConfig, get_peft_model
+
+# Configure soft prompts
+prompt_config = PromptTuningConfig(
+    task_type=TaskType.CAUSAL_LM,
+    num_virtual_tokens=20,  # Number of learnable prompt tokens
+    prompt_tuning_init="TEXT",  # Initialize from text
+    prompt_tuning_init_text="Classify the sentiment of this text:",
+)
+
+# Apply to model
+model = AutoModelForCausalLM.from_pretrained("gpt2")
+model = get_peft_model(model, prompt_config)
+
+# Train - only prompt embeddings are updated
+trainer = Trainer(model=model, ...)
+trainer.train()
+```
+
+**Benefits:**
+- **Extremely Efficient**: Only train prompt embeddings
+- **Task-Specific**: Different prompts for different tasks
+- **No Model Changes**: Keep base model completely frozen
+
+**Comparison:**
+
+| Method | Trainable Params | Memory | Speed | Best For |
+|--------|------------------|--------|-------|----------|
+| Full Fine-tuning | 100% | High | Slow | Maximum performance |
+| LoRA | 0.1-1% | Low | Fast | General purpose |
+| Soft Prompts | <0.01% | Very Low | Very Fast | Simple tasks |
+
 ### SFT Best Practices
 
 **1. Data Quality**
@@ -987,9 +1300,158 @@ model, tokenizer = train_sft("gpt2", train_data)
 - Usually 1-3 epochs (avoid overfitting)
 - Monitor validation loss
 
+**4. PEFT Selection**
+- **LoRA**: Best balance of performance and efficiency
+- **Soft Prompts**: For simple tasks, maximum efficiency
+- **Full Fine-tuning**: When maximum performance is needed
+
 **4. Prompt Formatting**
 - Consistent instruction format
 - Clear separation between instruction and response
+
+---
+
+## Model Evaluation and Benchmarks
+
+### Why Evaluation Matters
+
+Evaluating LLMs is crucial for:
+- **Performance Assessment**: Measure model capabilities
+- **Comparison**: Compare different models and approaches
+- **Progress Tracking**: Monitor improvements during training
+- **Deployment Decisions**: Determine if model is production-ready
+
+### Evaluation Metrics
+
+**1. Perplexity**
+- Measures how well model predicts test data
+- Lower is better
+- Formula: `PPL = exp(cross_entropy_loss)`
+
+```python
+from transformers import AutoModelForCausalLM, AutoTokenizer
+import torch
+
+model = AutoModelForCausalLM.from_pretrained("gpt2")
+tokenizer = AutoTokenizer.from_pretrained("gpt2")
+
+def calculate_perplexity(model, tokenizer, text):
+    """Calculate perplexity for a text"""
+    encodings = tokenizer(text, return_tensors='pt')
+    max_length = model.config.n_positions
+    stride = 512
+    
+    nlls = []
+    for i in range(0, encodings.input_ids.size(1), stride):
+        begin_loc = max(i + stride - max_length, 0)
+        end_loc = min(i + stride, encodings.input_ids.size(1))
+        trg_len = end_loc - i
+        
+        input_ids = encodings.input_ids[:, begin_loc:end_loc]
+        target_ids = input_ids.clone()
+        target_ids[:, :-trg_len] = -100
+        
+        with torch.no_grad():
+            outputs = model(input_ids, labels=target_ids)
+            neg_log_likelihood = outputs.loss * trg_len
+        
+        nlls.append(neg_log_likelihood)
+    
+    ppl = torch.exp(torch.stack(nlls).sum() / end_loc)
+    return ppl.item()
+```
+
+**2. Task-Specific Metrics**
+- **Classification**: Accuracy, F1-score, Precision, Recall
+- **Generation**: BLEU, ROUGE, METEOR
+- **Question Answering**: Exact Match, F1-score
+- **Summarization**: ROUGE-L, BLEU
+
+**3. Human Evaluation**
+- **Quality**: Fluency, coherence, relevance
+- **Safety**: Harmful content, bias
+- **Helpfulness**: Task completion, correctness
+
+### Standard Benchmarks
+
+**1. GLUE (General Language Understanding Evaluation)**
+- 9 tasks: sentiment, paraphrase, inference, etc.
+- Measures general language understanding
+
+**2. SuperGLUE**
+- More challenging version of GLUE
+- Includes reading comprehension, reasoning
+
+**3. MMLU (Massive Multitask Language Understanding)**
+- 57 tasks across STEM, humanities, social sciences
+- Measures broad knowledge and reasoning
+
+**4. HELM (Holistic Evaluation of Language Models)**
+- Comprehensive evaluation across many scenarios
+- Includes accuracy, calibration, robustness, fairness
+
+**5. BIG-bench (Beyond the Imitation Game)**
+- 200+ diverse tasks
+- Tests reasoning, knowledge, creativity
+
+**6. HumanEval**
+- Code generation benchmark
+- Measures functional correctness
+
+**7. TruthfulQA**
+- Measures truthfulness and avoiding falsehoods
+- Important for safety evaluation
+
+### Evaluation Best Practices
+
+```python
+from datasets import load_dataset
+from transformers import AutoModelForCausalLM, AutoTokenizer, pipeline
+
+# Load benchmark
+mmlu = load_dataset("cais/mmlu", "all", split="test")
+
+# Evaluate model
+model = AutoModelForCausalLM.from_pretrained("gpt2")
+tokenizer = AutoTokenizer.from_pretrained("gpt2")
+
+def evaluate_mmlu(model, tokenizer, dataset, subject="all"):
+    """Evaluate on MMLU benchmark"""
+    correct = 0
+    total = 0
+    
+    for example in dataset:
+        if subject != "all" and example["subject"] != subject:
+            continue
+        
+        # Format question
+        prompt = f"{example['question']}\nA. {example['choices'][0]}\nB. {example['choices'][1]}\nC. {example['choices'][2]}\nD. {example['choices'][3]}\nAnswer:"
+        
+        # Generate answer
+        inputs = tokenizer(prompt, return_tensors="pt")
+        outputs = model.generate(**inputs, max_new_tokens=1)
+        answer = tokenizer.decode(outputs[0][-1])
+        
+        # Check correctness
+        correct_answer = example['choices'][example['answer']]
+        if answer.strip().upper() == correct_answer[0]:
+            correct += 1
+        total += 1
+    
+    accuracy = correct / total if total > 0 else 0
+    return accuracy
+
+# Evaluate
+accuracy = evaluate_mmlu(model, tokenizer, mmlu, subject="all")
+print(f"MMLU Accuracy: {accuracy:.2%}")
+```
+
+**Key Principles:**
+- **Multiple Metrics**: Don't rely on a single metric
+- **Diverse Tasks**: Evaluate across different capabilities
+- **Human Evaluation**: Complement automated metrics
+- **Robustness**: Test on out-of-distribution data
+- **Bias Testing**: Evaluate fairness across groups
 
 ---
 
