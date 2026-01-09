@@ -10,7 +10,7 @@
 
 **A comprehensive, step-by-step guide to learning Machine Learning from absolute basics to advanced topics**
 
-*Perfect for beginners • 25 Learning Modules • 23 Real-World Projects • Production-Ready Skills*
+*Perfect for beginners • 26 Learning Modules • 23 Real-World Projects • Production-Ready Skills*
 
 [Get Started](#getting-started) • [Learning Path](#learning-path) • [Projects](#phase-8-projects) • [Contribute](#contributing)
 
@@ -78,9 +78,9 @@ This repository provides a structured learning path for machine learning, organi
 
 ## Learning Path
 
-**Note on Module Numbering**: Module numbers (00-24) don't strictly follow the learning path order. The phases below represent the recommended learning sequence. Some modules can be learned in parallel or in different orders based on your goals. See individual module READMEs for prerequisites and suggested learning order.
+**Note on Module Numbering**: Module numbers (00-24, 25) don't strictly follow the learning path order. The phases below represent the recommended learning sequence. Some modules can be learned in parallel or in different orders based on your goals. See individual module READMEs for prerequisites and suggested learning order.
 
-**Time Estimates**: Realistic completion time is **14-20 months (full-time, 30-40 hrs/week)** or **28-35 months (part-time, 10-15 hrs/week)** for comprehensive coverage including all 25 modules and 23 projects. See [FAQ section](#common-questions-learning-guide) for detailed breakdown.
+**Time Estimates**: Realistic completion time is **15-22 months (full-time, 30-40 hrs/week)** or **30-39 months (part-time, 10-15 hrs/week)** for comprehensive coverage including all 26 modules and 23 projects. See [FAQ section](#common-questions-learning-guide) for detailed breakdown.
 
 ## Learning Path Overview
 
@@ -1121,12 +1121,12 @@ By completing this roadmap, you'll be able to:
 
 | Metric | Count | Details |
 |--------|-------|---------|
-| **Learning Modules** | 25 | Modules 00-24 covering all ML topics from basics to advanced |
+| **Learning Modules** | 26 | Modules 00-24, 25 covering all ML topics from basics to advanced including Generative AI |
 | **Projects** | 23 | 6 beginner + 8 intermediate + 9 advanced with complete code and READMEs |
 | **Resource Guides** | 50 | Cheatsheets, tutorials, and career guides |
 | **Markdown Files** | 207+ | Comprehensive content, code examples, and exercises |
-| **Learning Time (Full-Time)** | 14-20 months | 30-40 hours/week for comprehensive coverage |
-| **Learning Time (Part-Time)** | 28-35 months | 10-15 hours/week for comprehensive coverage |
+| **Learning Time (Full-Time)** | 15-22 months | 30-40 hours/week for comprehensive coverage |
+| **Learning Time (Part-Time)** | 30-39 months | 10-15 hours/week for comprehensive coverage |
 | **Prerequisites** | Zero | Start from scratch - no prior experience needed! |
 
 ## Disclaimer
