@@ -14,8 +14,8 @@ Comprehensive guide to Matplotlib and Seaborn for creating beautiful and informa
 - [Seaborn Relational Plots](#seaborn-relational-plots)
 - [Seaborn Categorical Plots](#seaborn-categorical-plots)
 - [Seaborn Distribution Plots](#seaborn-distribution-plots)
-- [Seaborn Regression & Mixed Plots](#seaborn-regression--mixed-plots)
-- [Seaborn Matrix & Styling Plots](#seaborn-matrix--styling-plots)
+- [Seaborn Regression & Mixed Plots](#seaborn-regression-mixed-plots)
+- [Seaborn Matrix & Styling Plots](#seaborn-matrix-styling-plots)
 - [Saving Figures](#saving-figures)
 - [Practice Exercises](#practice-exercises)
 
