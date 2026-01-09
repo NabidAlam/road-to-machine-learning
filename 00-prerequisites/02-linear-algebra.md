@@ -9,9 +9,48 @@ Comprehensive guide to linear algebra concepts essential for understanding machi
 - [Vectors](#vectors)
 - [Matrices](#matrices)
 - [Matrix Operations](#matrix-operations)
+- [Solving Systems of Linear Equations](#solving-systems-of-linear-equations)
+  - [Gaussian Elimination (Row Reduction)](#gaussian-elimination-row-reduction)
+  - [Solving Ax = 0 (Homogeneous System)](#solving-ax--0-homogeneous-system)
+  - [Solving Ax = b (Non-homogeneous System)](#solving-ax--b-non-homogeneous-system)
+- [Column Space and Nullspace](#column-space-and-nullspace)
+  - [Column Space (Range)](#column-space-range)
+  - [Nullspace (Kernel)](#nullspace-kernel)
+- [The Four Fundamental Subspaces](#the-four-fundamental-subspaces)
 - [Linear Transformations](#linear-transformations)
 - [Eigenvalues and Eigenvectors](#eigenvalues-and-eigenvectors)
+- [Determinants](#determinants)
+  - [What is a Determinant?](#what-is-a-determinant)
+  - [Computing Determinants](#computing-determinants)
+  - [Properties of Determinants](#properties-of-determinants)
+  - [Cofactor Expansion](#cofactor-expansion)
+  - [Cramer's Rule](#cramers-rule)
+- [Diagonalization](#diagonalization)
+  - [What is Diagonalization?](#what-is-diagonalization)
+  - [Diagonalization Process](#diagonalization-process)
+  - [Powers of A](#powers-of-a)
+- [Matrix Exponentials](#matrix-exponentials)
+  - [What is exp(At)?](#what-is-expat)
+  - [Computing Matrix Exponential](#computing-matrix-exponential)
+  - [Solving Differential Equations](#solving-differential-equations)
 - [Matrix Decompositions](#matrix-decompositions)
+  - [Eigendecomposition](#1-eigendecomposition)
+  - [Singular Value Decomposition (SVD)](#2-singular-value-decomposition-svd)
+  - [QR Decomposition](#3-qr-decomposition)
+- [Pseudoinverse (Moore-Penrose Inverse)](#pseudoinverse-moore-penrose-inverse)
+  - [What is a Pseudoinverse?](#what-is-a-pseudoinverse)
+  - [Computing Pseudoinverse](#computing-pseudoinverse)
+  - [Left and Right Inverses](#left-and-right-inverses)
+- [Positive Definite Matrices](#positive-definite-matrices)
+  - [What are Positive Definite Matrices?](#what-are-positive-definite-matrices)
+  - [Properties and Applications](#properties-and-applications)
+  - [Positive Semidefinite Matrices](#positive-semidefinite-matrices)
+  - [Cholesky Decomposition](#cholesky-decomposition)
+- [Complex Matrices and Fast Fourier Transform](#complex-matrices-and-fast-fourier-transform)
+  - [Complex Matrices](#complex-matrices)
+  - [Fast Fourier Transform (FFT)](#fast-fourier-transform-fft)
+  - [FFT in Machine Learning](#fft-in-machine-learning)
+- [Computational Math in Practice](#computational-math-in-practice)
 - [Applications in ML](#applications-in-ml)
 - [Practice Exercises](#practice-exercises)
 
@@ -598,6 +637,302 @@ print(f"A @ A^(-1) =\n{I}")
 
 ---
 
+## Solving Systems of Linear Equations
+
+### Gaussian Elimination (Row Reduction)
+
+**Gaussian elimination** is the fundamental algorithm for solving systems of linear equations. It transforms a matrix into **row echelon form (REF)** or **reduced row echelon form (RREF)**.
+
+```python
+import numpy as np
+from scipy.linalg import lu
+
+# Example system: Ax = b
+A = np.array([[2, 1, -1],
+              [-3, -1, 2],
+              [-2, 1, 2]])
+b = np.array([[8],
+              [-11],
+              [-3]])
+
+# Augmented matrix [A | b]
+augmented = np.hstack([A, b])
+print("Augmented matrix [A | b]:")
+print(augmented)
+
+# Row reduction using NumPy
+# P: permutation matrix, L: lower triangular, U: upper triangular
+P, L, U = lu(A)
+
+print("\nUpper triangular (U) - row echelon form:")
+print(U)
+
+# Solve using back substitution
+from scipy.linalg import solve
+x = solve(A, b)
+print(f"\nSolution x:\n{x}")
+```
+
+**Row Echelon Form (REF):**
+- All zero rows at the bottom
+- First nonzero entry (pivot) in each row is 1
+- Each pivot is to the right of the pivot above it
+
+**Reduced Row Echelon Form (RREF):**
+- REF + each pivot is the only nonzero entry in its column
+
+```python
+# Manual row reduction example
+def row_reduce(A):
+    """Convert matrix to row echelon form"""
+    A = A.copy().astype(float)
+    m, n = A.shape
+    
+    pivot_row = 0
+    for col in range(n):
+        # Find pivot
+        pivot_idx = None
+        for row in range(pivot_row, m):
+            if abs(A[row, col]) > 1e-10:
+                pivot_idx = row
+                break
+        
+        if pivot_idx is None:
+            continue
+        
+        # Swap rows
+        A[[pivot_row, pivot_idx]] = A[[pivot_idx, pivot_row]]
+        
+        # Normalize pivot
+        pivot_val = A[pivot_row, col]
+        A[pivot_row] /= pivot_val
+        
+        # Eliminate below
+        for row in range(pivot_row + 1, m):
+            factor = A[row, col]
+            A[row] -= factor * A[pivot_row]
+        
+        pivot_row += 1
+        if pivot_row >= m:
+            break
+    
+    return A
+
+# Example
+A = np.array([[2, 1, -1],
+              [-3, -1, 2],
+              [-2, 1, 2]])
+A_ref = row_reduce(A)
+print("Row echelon form:")
+print(A_ref)
+```
+
+### Solving Ax = 0 (Homogeneous System)
+
+When solving **Ax = 0**, we find the **nullspace** (kernel) of A.
+
+```python
+# Example: Find nullspace of A
+A = np.array([[1, 2, 3],
+              [2, 4, 6],
+              [1, 1, 1]])
+
+# Find nullspace using SVD
+U, S, Vt = np.linalg.svd(A)
+
+# Nullspace vectors are columns of Vt corresponding to zero singular values
+# In practice, we look for very small singular values
+tolerance = 1e-10
+nullspace_basis = Vt[S < tolerance]
+
+print("Singular values:", S)
+print("Nullspace basis vectors:")
+print(nullspace_basis)
+
+# Verify: A @ nullspace_vector ≈ 0
+if len(nullspace_basis) > 0:
+    null_vec = nullspace_basis[0]
+    result = A @ null_vec
+    print(f"\nVerification: A @ nullspace_vector = {result}")
+    print(f"Is it approximately zero? {np.allclose(result, 0)}")
+```
+
+**Pivot Variables vs Free Variables:**
+- **Pivot variables**: Correspond to pivot columns (determined by the system)
+- **Free variables**: Correspond to non-pivot columns (can be set arbitrarily)
+
+### Solving Ax = b (Non-homogeneous System)
+
+```python
+# Example: Solve Ax = b
+A = np.array([[1, 2, 3],
+              [4, 5, 6],
+              [7, 8, 9]])
+b = np.array([1, 2, 3])
+
+# Check if system has a solution
+rank_A = np.linalg.matrix_rank(A)
+augmented = np.hstack([A, b.reshape(-1, 1)])
+rank_aug = np.linalg.matrix_rank(augmented)
+
+print(f"Rank of A: {rank_A}")
+print(f"Rank of [A|b]: {rank_aug}")
+
+if rank_A == rank_aug:
+    if rank_A == A.shape[1]:
+        # Unique solution
+        x = np.linalg.solve(A, b)
+        print(f"Unique solution: {x}")
+    else:
+        # Infinite solutions
+        print("Infinite solutions (underdetermined)")
+        # Use least squares for one solution
+        x = np.linalg.lstsq(A, b, rcond=None)[0]
+        print(f"One solution (least squares): {x}")
+else:
+    print("No solution (inconsistent system)")
+    # Use least squares for best approximation
+    x = np.linalg.lstsq(A, b, rcond=None)[0]
+    print(f"Best approximation (least squares): {x}")
+```
+
+**In ML:**
+- Linear regression: Solving normal equations
+- Neural networks: Backpropagation involves solving systems
+- Optimization: Constraint satisfaction
+
+---
+
+## Column Space and Nullspace
+
+### Column Space (Range)
+
+The **column space** C(A) is the span of all columns of A. It contains all possible outputs of the transformation Ax.
+
+```python
+# Find column space
+A = np.array([[1, 2, 3],
+              [4, 5, 6],
+              [7, 8, 9]])
+
+# Column space = span of pivot columns
+# Use QR decomposition to find basis
+Q, R = np.linalg.qr(A)
+
+# Pivot columns correspond to nonzero diagonal entries of R
+pivot_cols = np.abs(np.diag(R)) > 1e-10
+column_space_basis = Q[:, pivot_cols]
+
+print("Column space basis (orthonormal):")
+print(column_space_basis)
+print(f"\nDimension of column space (rank): {np.sum(pivot_cols)}")
+```
+
+### Nullspace (Kernel)
+
+The **nullspace** N(A) contains all vectors x such that Ax = 0.
+
+```python
+# Find nullspace
+A = np.array([[1, 2, 3],
+              [2, 4, 6]])
+
+# Nullspace using SVD
+U, S, Vt = np.linalg.svd(A)
+
+# Columns of Vt corresponding to zero singular values form nullspace basis
+tolerance = 1e-10
+nullspace_basis = Vt[S < tolerance].T
+
+print("Nullspace basis:")
+print(nullspace_basis)
+print(f"\nDimension of nullspace (nullity): {nullspace_basis.shape[1]}")
+print(f"Rank + Nullity = {np.linalg.matrix_rank(A)} + {nullspace_basis.shape[1]} = {A.shape[1]}")
+```
+
+**Fundamental Theorem:**
+- **Rank-Nullity Theorem**: rank(A) + nullity(A) = n (number of columns)
+
+---
+
+## The Four Fundamental Subspaces
+
+For any matrix A (m × n), there are **four fundamental subspaces**:
+
+1. **Column Space** C(A): Subspace of R^m spanned by columns
+2. **Row Space** C(A^T): Subspace of R^n spanned by rows
+3. **Nullspace** N(A): Subspace of R^n of solutions to Ax = 0
+4. **Left Nullspace** N(A^T): Subspace of R^m of solutions to A^T y = 0
+
+```python
+def fundamental_subspaces(A):
+    """Analyze the four fundamental subspaces of matrix A"""
+    m, n = A.shape
+    rank = np.linalg.matrix_rank(A)
+    
+    # 1. Column Space C(A) - dimension = rank
+    U, S, Vt = np.linalg.svd(A)
+    col_space_basis = U[:, :rank]
+    
+    # 2. Row Space C(A^T) - dimension = rank
+    row_space_basis = Vt[:rank, :].T
+    
+    # 3. Nullspace N(A) - dimension = n - rank
+    nullity = n - rank
+    if nullity > 0:
+        nullspace_basis = Vt[rank:, :].T
+    else:
+        nullspace_basis = np.zeros((n, 0))
+    
+    # 4. Left Nullspace N(A^T) - dimension = m - rank
+    left_nullity = m - rank
+    if left_nullity > 0:
+        left_nullspace_basis = U[:, rank:].T
+    else:
+        left_nullspace_basis = np.zeros((0, m))
+    
+    return {
+        'column_space': col_space_basis,
+        'row_space': row_space_basis,
+        'nullspace': nullspace_basis,
+        'left_nullspace': left_nullspace_basis,
+        'rank': rank,
+        'nullity': nullity,
+        'left_nullity': left_nullity
+    }
+
+# Example
+A = np.array([[1, 2, 3],
+              [4, 5, 6],
+              [7, 8, 9]])
+
+subspaces = fundamental_subspaces(A)
+print("Four Fundamental Subspaces:")
+print(f"Rank: {subspaces['rank']}")
+print(f"Column space dimension: {subspaces['rank']}")
+print(f"Row space dimension: {subspaces['rank']}")
+print(f"Nullspace dimension: {subspaces['nullity']}")
+print(f"Left nullspace dimension: {subspaces['left_nullity']}")
+
+# Orthogonality relationships
+print("\nOrthogonality:")
+print("Column space ⟂ Left nullspace")
+print("Row space ⟂ Nullspace")
+```
+
+**Key Relationships:**
+- Column space ⟂ Left nullspace
+- Row space ⟂ Nullspace
+- C(A) ⊕ N(A^T) = R^m
+- C(A^T) ⊕ N(A) = R^n
+
+**In ML:**
+- Understanding model capacity and constraints
+- Analyzing data dependencies
+- Dimensionality reduction
+
+---
+
 ## Linear Transformations
 
 ### What are Linear Transformations?
@@ -744,6 +1079,338 @@ Uses eigenvectors of the graph Laplacian.
 
 ---
 
+## Determinants
+
+### What is a Determinant?
+
+The **determinant** det(A) is a scalar value that encodes important properties of a square matrix:
+- **Volume scaling factor**: How much the transformation scales volumes
+- **Invertibility**: det(A) ≠ 0 ⟺ A is invertible
+- **Orientation**: Sign indicates if transformation preserves or reverses orientation
+
+### Computing Determinants
+
+```python
+# Determinant of a 2×2 matrix
+A_2x2 = np.array([[a, b],
+                  [c, d]])
+# det(A) = ad - bc
+
+# Determinant of a 3×3 matrix
+A_3x3 = np.array([[a, b, c],
+                  [d, e, f],
+                  [g, h, i]])
+# det(A) = a(ei - fh) - b(di - fg) + c(dh - eg)
+
+# Using NumPy
+A = np.array([[1, 2, 3],
+              [4, 5, 6],
+              [7, 8, 9]])
+
+det_A = np.linalg.det(A)
+print(f"det(A) = {det_A}")
+
+# Check if matrix is invertible
+is_invertible = abs(det_A) > 1e-10
+print(f"Is A invertible? {is_invertible}")
+```
+
+### Properties of Determinants
+
+```python
+A = np.array([[1, 2],
+              [3, 4]])
+B = np.array([[5, 6],
+              [7, 8]])
+
+# 1. det(AB) = det(A) * det(B)
+det_AB = np.linalg.det(A @ B)
+det_A_times_det_B = np.linalg.det(A) * np.linalg.det(B)
+print(f"det(AB) = {det_AB}")
+print(f"det(A) * det(B) = {det_A_times_det_B}")
+print(f"Are they equal? {np.isclose(det_AB, det_A_times_det_B)}")
+
+# 2. det(A^T) = det(A)
+det_AT = np.linalg.det(A.T)
+print(f"\ndet(A^T) = {det_AT}")
+print(f"det(A) = {np.linalg.det(A)}")
+
+# 3. det(A^(-1)) = 1 / det(A)
+A_inv = np.linalg.inv(A)
+det_A_inv = np.linalg.det(A_inv)
+print(f"\ndet(A^(-1)) = {det_A_inv}")
+print(f"1 / det(A) = {1 / np.linalg.det(A)}")
+
+# 4. det(cA) = c^n * det(A) for n×n matrix
+c = 2
+det_cA = np.linalg.det(c * A)
+c_to_n = c ** A.shape[0]
+print(f"\ndet({c}A) = {det_cA}")
+print(f"{c}^n * det(A) = {c_to_n * np.linalg.det(A)}")
+```
+
+### Cofactor Expansion
+
+```python
+def cofactor_expansion(A):
+    """Compute determinant using cofactor expansion"""
+    n = A.shape[0]
+    
+    if n == 1:
+        return A[0, 0]
+    if n == 2:
+        return A[0, 0] * A[1, 1] - A[0, 1] * A[1, 0]
+    
+    det = 0
+    for j in range(n):
+        # Minor: matrix without row 0 and column j
+        minor = np.delete(np.delete(A, 0, axis=0), j, axis=1)
+        cofactor = (-1) ** (0 + j) * cofactor_expansion(minor)
+        det += A[0, j] * cofactor
+    
+    return det
+
+# Example
+A = np.array([[1, 2, 3],
+              [4, 5, 6],
+              [7, 8, 10]])
+
+det_cofactor = cofactor_expansion(A)
+det_numpy = np.linalg.det(A)
+print(f"Determinant (cofactor): {det_cofactor}")
+print(f"Determinant (NumPy): {det_numpy}")
+print(f"Are they equal? {np.isclose(det_cofactor, det_numpy)}")
+```
+
+### Cramer's Rule
+
+**Cramer's Rule** solves Ax = b using determinants:
+
+```python
+def cramers_rule(A, b):
+    """Solve Ax = b using Cramer's rule"""
+    det_A = np.linalg.det(A)
+    
+    if abs(det_A) < 1e-10:
+        raise ValueError("Matrix is singular, Cramer's rule cannot be applied")
+    
+    n = A.shape[0]
+    x = np.zeros(n)
+    
+    for i in range(n):
+        # Replace column i with b
+        A_i = A.copy()
+        A_i[:, i] = b
+        det_A_i = np.linalg.det(A_i)
+        x[i] = det_A_i / det_A
+    
+    return x
+
+# Example
+A = np.array([[2, 1, -1],
+              [-3, -1, 2],
+              [-2, 1, 2]])
+b = np.array([8, -11, -3])
+
+x_cramer = cramers_rule(A, b)
+x_solve = np.linalg.solve(A, b)
+
+print(f"Solution (Cramer's rule): {x_cramer}")
+print(f"Solution (np.linalg.solve): {x_solve}")
+print(f"Are they equal? {np.allclose(x_cramer, x_solve)}")
+```
+
+**Note**: Cramer's rule is computationally expensive (O(n!) for n×n matrix) and mainly of theoretical interest. Use Gaussian elimination or `np.linalg.solve` in practice.
+
+**In ML:**
+- Checking matrix invertibility
+- Volume calculations in probability distributions
+- Change of variables in integrals
+
+---
+
+## Diagonalization
+
+### What is Diagonalization?
+
+A matrix A is **diagonalizable** if it can be written as:
+```
+A = P @ D @ P^(-1)
+```
+where D is a diagonal matrix and P contains the eigenvectors.
+
+**Conditions for Diagonalization:**
+- A has n linearly independent eigenvectors (n×n matrix)
+- A is symmetric (always diagonalizable)
+- All eigenvalues are distinct (sufficient but not necessary)
+
+### Diagonalization Process
+
+```python
+def diagonalize(A):
+    """Diagonalize matrix A = P @ D @ P^(-1)"""
+    eigenvalues, eigenvectors = np.linalg.eig(A)
+    
+    # Check if diagonalizable (all eigenvalues are distinct or matrix is symmetric)
+    if len(eigenvalues) != len(set(eigenvalues)) and not np.allclose(A, A.T):
+        print("Warning: Matrix may not be diagonalizable")
+    
+    # D: diagonal matrix of eigenvalues
+    D = np.diag(eigenvalues)
+    
+    # P: matrix of eigenvectors (columns)
+    P = eigenvectors
+    
+    # Verify: A = P @ D @ P^(-1)
+    P_inv = np.linalg.inv(P)
+    A_reconstructed = P @ D @ P_inv
+    
+    return P, D, P_inv, A_reconstructed
+
+# Example: Diagonalizable matrix
+A = np.array([[4, 1],
+              [2, 3]])
+
+P, D, P_inv, A_reconstructed = diagonalize(A)
+
+print("Original A:")
+print(A)
+print("\nEigenvalues (diagonal of D):")
+print(np.diag(D))
+print("\nEigenvectors (columns of P):")
+print(P)
+print("\nReconstructed A = P @ D @ P^(-1):")
+print(A_reconstructed)
+print(f"\nIs reconstruction accurate? {np.allclose(A, A_reconstructed)}")
+```
+
+### Powers of A
+
+Diagonalization makes computing powers of A easy:
+
+```python
+# Computing A^k using diagonalization
+A = np.array([[4, 1],
+              [2, 3]])
+
+eigenvalues, eigenvectors = np.linalg.eig(A)
+P = eigenvectors
+D = np.diag(eigenvalues)
+P_inv = np.linalg.inv(P)
+
+# A^k = P @ D^k @ P^(-1)
+# Since D is diagonal, D^k is just raising each diagonal element to k
+k = 5
+D_k = np.diag(eigenvalues ** k)
+A_k = P @ D_k @ P_inv
+
+# Verify with direct computation
+A_k_direct = np.linalg.matrix_power(A, k)
+
+print(f"A^{k} (using diagonalization):")
+print(A_k)
+print(f"\nA^{k} (direct computation):")
+print(A_k_direct)
+print(f"\nAre they equal? {np.allclose(A_k, A_k_direct)}")
+```
+
+**In ML:**
+- Markov chains: Computing state probabilities after k steps
+- Graph algorithms: Computing paths of length k
+- Recurrent neural networks: Analyzing long-term dependencies
+
+---
+
+## Matrix Exponentials
+
+### What is exp(At)?
+
+The **matrix exponential** exp(At) is defined as:
+```
+exp(At) = I + At + (At)²/2! + (At)³/3! + ...
+```
+
+It's crucial for solving systems of linear differential equations.
+
+### Computing Matrix Exponential
+
+```python
+from scipy.linalg import expm
+
+# Example: exp(At) for solving dx/dt = Ax
+A = np.array([[-2, 1],
+              [1, -2]])
+
+t = 1.0
+exp_At = expm(A * t)
+
+print(f"exp(A * {t}):")
+print(exp_At)
+
+# Using diagonalization: exp(At) = P @ exp(Dt) @ P^(-1)
+eigenvalues, eigenvectors = np.linalg.eig(A)
+P = eigenvectors
+D = np.diag(eigenvalues)
+P_inv = np.linalg.inv(P)
+
+# exp(Dt) is diagonal with exp(λᵢt) on diagonal
+exp_Dt = np.diag(np.exp(eigenvalues * t))
+exp_At_diag = P @ exp_Dt @ P_inv
+
+print(f"\nexp(At) using diagonalization:")
+print(exp_At_diag)
+print(f"\nAre they equal? {np.allclose(exp_At, exp_At_diag)}")
+```
+
+### Solving Differential Equations
+
+```python
+# System: dx/dt = Ax, x(0) = x0
+# Solution: x(t) = exp(At) @ x0
+
+A = np.array([[-1, 2],
+              [0, -3]])
+x0 = np.array([1, 1])
+
+# Solution at time t
+t = 2.0
+exp_At = expm(A * t)
+x_t = exp_At @ x0
+
+print(f"Initial condition x(0) = {x0}")
+print(f"Solution at t = {t}: x({t}) = {x_t}")
+
+# Visualize solution over time
+import matplotlib.pyplot as plt
+
+times = np.linspace(0, 5, 100)
+solutions = []
+
+for t in times:
+    exp_At = expm(A * t)
+    x_t = exp_At @ x0
+    solutions.append(x_t)
+
+solutions = np.array(solutions)
+
+plt.figure(figsize=(10, 6))
+plt.plot(times, solutions[:, 0], label='x₁(t)')
+plt.plot(times, solutions[:, 1], label='x₂(t)')
+plt.xlabel('Time t')
+plt.ylabel('x(t)')
+plt.title('Solution of dx/dt = Ax')
+plt.legend()
+plt.grid(True)
+plt.show()
+```
+
+**In ML:**
+- Continuous-time neural networks
+- Dynamical systems modeling
+- Control theory applications
+
+---
+
 ## Matrix Decompositions
 
 ### 1. Eigendecomposition
@@ -843,6 +1510,306 @@ print(f"\nReconstructed A:\n{A_reconstructed}")
 **Applications:**
 - Solving least squares problems
 - Gram-Schmidt orthogonalization
+
+---
+
+## Pseudoinverse (Moore-Penrose Inverse)
+
+### What is a Pseudoinverse?
+
+The **pseudoinverse** A⁺ generalizes the matrix inverse to non-square or singular matrices. It's the unique matrix satisfying:
+- A A⁺ A = A
+- A⁺ A A⁺ = A⁺
+- (A A⁺)^T = A A⁺
+- (A⁺ A)^T = A⁺ A
+
+### Computing Pseudoinverse
+
+```python
+# Using SVD: A⁺ = V @ Σ⁺ @ U^T
+# where Σ⁺ is the pseudoinverse of Σ (reciprocal of nonzero singular values)
+
+def pseudoinverse_svd(A):
+    """Compute pseudoinverse using SVD"""
+    U, S, Vt = np.linalg.svd(A)
+    
+    # Pseudoinverse of Σ: reciprocal of nonzero singular values
+    S_plus = np.zeros((A.shape[1], A.shape[0]))
+    tolerance = 1e-10
+    for i in range(min(A.shape[0], A.shape[1])):
+        if S[i] > tolerance:
+            S_plus[i, i] = 1.0 / S[i]
+    
+    # A⁺ = V @ Σ⁺ @ U^T
+    A_plus = Vt.T @ S_plus @ U.T
+    return A_plus
+
+# Example: Overdetermined system (more equations than unknowns)
+A = np.array([[1, 2],
+              [3, 4],
+              [5, 6]])
+b = np.array([1, 2, 3])
+
+# Using NumPy
+A_plus_numpy = np.linalg.pinv(A)
+
+# Using our SVD implementation
+A_plus_svd = pseudoinverse_svd(A)
+
+print("Pseudoinverse (NumPy):")
+print(A_plus_numpy)
+print("\nPseudoinverse (SVD):")
+print(A_plus_svd)
+print(f"\nAre they equal? {np.allclose(A_plus_numpy, A_plus_svd)}")
+
+# Solve overdetermined system: x = A⁺ @ b
+x = A_plus_numpy @ b
+print(f"\nSolution x = A⁺ @ b: {x}")
+
+# Verify: A @ x should be close to b (least squares solution)
+print(f"A @ x = {A @ x}")
+print(f"b = {b}")
+print(f"Error: {np.linalg.norm(A @ x - b)}")
+```
+
+### Left and Right Inverses
+
+```python
+# Left inverse: A_left^(-1) @ A = I (for tall matrices, m > n)
+# Right inverse: A @ A_right^(-1) = I (for wide matrices, m < n)
+
+# Tall matrix (more rows than columns)
+A_tall = np.array([[1, 2],
+                   [3, 4],
+                   [5, 6]])
+
+# Left inverse: (A^T @ A)^(-1) @ A^T
+A_left_inv = np.linalg.inv(A_tall.T @ A_tall) @ A_tall.T
+print("Left inverse:")
+print(A_left_inv)
+print(f"A_left^(-1) @ A = I? {np.allclose(A_left_inv @ A_tall, np.eye(2))}")
+
+# Wide matrix (more columns than rows)
+A_wide = A_tall.T
+
+# Right inverse: A^T @ (A @ A^T)^(-1)
+A_right_inv = A_wide.T @ np.linalg.inv(A_wide @ A_wide.T)
+print("\nRight inverse:")
+print(A_right_inv)
+print(f"A @ A_right^(-1) = I? {np.allclose(A_wide @ A_right_inv, np.eye(2))}")
+```
+
+**In ML:**
+- **Least squares**: Solving overdetermined systems
+- **Ridge regression**: Regularized least squares
+- **Neural networks**: Backpropagation with non-square weight matrices
+- **Dimensionality reduction**: Projecting onto subspaces
+
+---
+
+## Positive Definite Matrices
+
+### What are Positive Definite Matrices?
+
+A symmetric matrix A is **positive definite** if:
+- x^T A x > 0 for all nonzero vectors x
+- All eigenvalues are positive
+- All leading principal minors are positive
+
+### Properties and Applications
+
+```python
+def is_positive_definite(A):
+    """Check if matrix is positive definite"""
+    # Must be symmetric
+    if not np.allclose(A, A.T):
+        return False
+    
+    # All eigenvalues must be positive
+    eigenvalues = np.linalg.eigvals(A)
+    return np.all(eigenvalues > 0)
+
+# Example: Covariance matrix (always positive semidefinite, often positive definite)
+np.random.seed(42)
+data = np.random.randn(100, 3)
+cov_matrix = np.cov(data.T)
+
+print("Covariance matrix:")
+print(cov_matrix)
+print(f"\nIs positive definite? {is_positive_definite(cov_matrix)}")
+
+# Eigenvalues
+eigenvalues = np.linalg.eigvals(cov_matrix)
+print(f"Eigenvalues: {eigenvalues}")
+print(f"All positive? {np.all(eigenvalues > 0)}")
+```
+
+### Positive Semidefinite Matrices
+
+A matrix is **positive semidefinite** if x^T A x ≥ 0 for all x (eigenvalues ≥ 0).
+
+```python
+# Example: Gram matrix (always positive semidefinite)
+X = np.array([[1, 2, 3],
+              [4, 5, 6],
+              [7, 8, 9]])
+
+# Gram matrix: G = X @ X^T
+G = X @ X.T
+
+print("Gram matrix G = X @ X^T:")
+print(G)
+print(f"\nIs symmetric? {np.allclose(G, G.T)}")
+
+eigenvalues = np.linalg.eigvals(G)
+print(f"Eigenvalues: {eigenvalues}")
+print(f"Is positive semidefinite? {np.all(eigenvalues >= 0)}")
+```
+
+### Cholesky Decomposition
+
+For positive definite matrices, we can use **Cholesky decomposition**: A = L @ L^T
+
+```python
+# Cholesky decomposition: A = L @ L^T
+# Only works for positive definite matrices
+
+# Create positive definite matrix
+A = np.array([[4, 2, 1],
+              [2, 5, 3],
+              [1, 3, 6]])
+
+# Make it symmetric and positive definite
+A = (A + A.T) / 2
+A = A + 2 * np.eye(3)  # Ensure positive definiteness
+
+try:
+    L = np.linalg.cholesky(A)
+    print("Cholesky factor L:")
+    print(L)
+    print("\nVerification: L @ L^T = A?")
+    print(L @ L.T)
+    print(f"Is it equal to A? {np.allclose(L @ L.T, A)}")
+except np.linalg.LinAlgError:
+    print("Matrix is not positive definite")
+```
+
+**In ML:**
+- **Covariance matrices**: Always positive semidefinite
+- **Kernel matrices**: In kernel methods (SVM, Gaussian processes)
+- **Hessian matrices**: In optimization (Newton's method)
+- **Regularization**: Ensuring numerical stability
+
+---
+
+## Complex Matrices and Fast Fourier Transform
+
+### Complex Matrices
+
+Complex matrices have complex entries. Many properties extend from real matrices.
+
+```python
+# Complex matrix
+A_complex = np.array([[1+2j, 3-1j],
+                      [2+1j, 4+3j]])
+
+print("Complex matrix A:")
+print(A_complex)
+
+# Conjugate transpose (Hermitian transpose)
+A_H = A_complex.conj().T
+print("\nConjugate transpose A^H:")
+print(A_H)
+
+# Hermitian matrix: A^H = A
+A_hermitian = np.array([[2, 1+1j],
+                        [1-1j, 3]])
+print("\nHermitian matrix (A^H = A):")
+print(A_hermitian)
+print(f"Is Hermitian? {np.allclose(A_hermitian, A_hermitian.conj().T)}")
+
+# Unitary matrix: U^H @ U = I
+U = np.array([[1/np.sqrt(2), 1/np.sqrt(2)],
+              [1j/np.sqrt(2), -1j/np.sqrt(2)]])
+print("\nUnitary matrix (U^H @ U = I):")
+print(U)
+print(f"U^H @ U = I? {np.allclose(U.conj().T @ U, np.eye(2))}")
+```
+
+### Fast Fourier Transform (FFT)
+
+The **FFT** is an efficient algorithm for computing the Discrete Fourier Transform (DFT).
+
+```python
+from scipy.fft import fft, ifft, fftfreq
+import matplotlib.pyplot as plt
+
+# Example: Signal processing
+# Create a signal with multiple frequencies
+t = np.linspace(0, 1, 1000, endpoint=False)
+signal = (np.sin(2 * np.pi * 5 * t) + 
+          0.5 * np.sin(2 * np.pi * 10 * t) + 
+          0.3 * np.sin(2 * np.pi * 20 * t))
+
+# FFT
+fft_signal = fft(signal)
+frequencies = fftfreq(len(signal), t[1] - t[0])
+
+# Plot
+fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(10, 8))
+
+# Time domain
+ax1.plot(t, signal)
+ax1.set_xlabel('Time')
+ax1.set_ylabel('Amplitude')
+ax1.set_title('Signal in Time Domain')
+ax1.grid(True)
+
+# Frequency domain
+ax2.plot(frequencies[:len(frequencies)//2], 
+         np.abs(fft_signal[:len(fft_signal)//2]))
+ax2.set_xlabel('Frequency (Hz)')
+ax2.set_ylabel('Magnitude')
+ax2.set_title('Signal in Frequency Domain (FFT)')
+ax2.grid(True)
+
+plt.tight_layout()
+plt.show()
+
+# Inverse FFT
+signal_reconstructed = ifft(fft_signal)
+print(f"Reconstruction error: {np.max(np.abs(signal - signal_reconstructed.real))}")
+```
+
+### FFT in Machine Learning
+
+```python
+# Example: Convolution using FFT (much faster for large kernels)
+# Convolution in time domain = multiplication in frequency domain
+
+# Signal
+x = np.random.randn(1000)
+
+# Kernel
+kernel = np.array([0.25, 0.5, 0.25])
+
+# Convolution (time domain)
+conv_time = np.convolve(x, kernel, mode='same')
+
+# Convolution (frequency domain using FFT)
+X = fft(x, n=len(x) + len(kernel) - 1)
+K = fft(kernel, n=len(x) + len(kernel) - 1)
+conv_freq = ifft(X * K).real
+conv_freq = conv_freq[:len(x)]  # Trim to same length
+
+print(f"Time domain convolution error: {np.max(np.abs(conv_time - conv_freq))}")
+```
+
+**In ML:**
+- **Signal processing**: Audio, image processing
+- **Convolutional Neural Networks**: FFT-based convolution
+- **Time series analysis**: Frequency domain features
+- **Data compression**: JPEG, MP3 use FFT variants
 
 ---
 
