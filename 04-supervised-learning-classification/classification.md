@@ -1205,6 +1205,253 @@ else:  # Multiclass
 
 ---
 
+## Bias Auditing and Fairness in Classification
+
+### Why Check for Bias?
+
+Real-world classification models can inadvertently discriminate against certain groups, leading to:
+- **Unfair hiring decisions** (biased against demographics)
+- **Discriminatory lending** (race/gender bias)
+- **Unequal healthcare** (treatment recommendations)
+- **Legal and ethical issues**
+
+**Bias auditing is not optional** - it's a critical skill for responsible ML.
+
+### Types of Bias
+
+1. **Demographic Parity**: Equal positive prediction rates across groups
+2. **Equalized Odds**: Equal true positive and false positive rates
+3. **Calibration**: Equal prediction accuracy across groups
+
+### Practical Bias Auditing with Fairlearn
+
+**Installation:**
+```bash
+pip install fairlearn
+```
+
+**Example: Auditing a Classification Model**
+
+```python
+import pandas as pd
+import numpy as np
+from sklearn.model_selection import train_test_split
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import accuracy_score, classification_report
+from fairlearn.metrics import (
+    demographic_parity_difference,
+    equalized_odds_difference,
+    MetricFrame
+)
+from fairlearn.postprocessing import ThresholdOptimizer
+
+# Load data (example: hiring dataset)
+# Assume we have: features, target (hired/not), sensitive_feature (gender)
+data = pd.read_csv("hiring_data.csv")
+X = data.drop(['hired', 'gender'], axis=1)
+y = data['hired']
+sensitive_features = data['gender']  # Protected attribute
+
+# Split data
+X_train, X_test, y_train, y_test, sens_train, sens_test = train_test_split(
+    X, y, sensitive_features, test_size=0.2, random_state=42
+)
+
+# Train model
+model = RandomForestClassifier(n_estimators=100, random_state=42)
+model.fit(X_train, y_train)
+
+# Predictions
+y_pred = model.predict(X_test)
+y_pred_proba = model.predict_proba(X_test)[:, 1]
+
+# 1. Check Demographic Parity
+# Measures: Are positive predictions distributed equally?
+dp_diff = demographic_parity_difference(
+    y_true=y_test,
+    y_pred=y_pred,
+    sensitive_features=sens_test
+)
+print(f"Demographic Parity Difference: {dp_diff:.3f}")
+# 0.0 = perfect fairness, 1.0 = maximum bias
+# Should be < 0.1 for fairness
+
+# 2. Check Equalized Odds
+# Measures: Are TPR and FPR equal across groups?
+eo_diff = equalized_odds_difference(
+    y_true=y_test,
+    y_pred=y_pred,
+    sensitive_features=sens_test
+)
+print(f"Equalized Odds Difference: {eo_diff:.3f}")
+# Should be < 0.1 for fairness
+
+# 3. Detailed Metrics by Group
+metrics = {
+    'accuracy': accuracy_score,
+    'selection_rate': lambda y_true, y_pred: y_pred.mean()
+}
+
+metric_frame = MetricFrame(
+    metrics=metrics,
+    y_true=y_test,
+    y_pred=y_pred,
+    sensitive_features=sens_test
+)
+
+print("\nMetrics by Group:")
+print(metric_frame.by_group)
+
+# Check for disparities
+print("\nDisparities:")
+print(metric_frame.difference())
+```
+
+### Mitigating Bias
+
+**1. Post-Processing: Threshold Optimization**
+
+```python
+# Adjust decision thresholds to achieve fairness
+mitigator = ThresholdOptimizer(
+    estimator=model,
+    constraints="demographic_parity",  # or "equalized_odds"
+    preprocessor=None
+)
+
+# Fit on training data
+mitigator.fit(X_train, y_train, sensitive_features=sens_train)
+
+# Predict with fairness constraints
+fair_predictions = mitigator.predict(
+    X_test, 
+    sensitive_features=sens_test
+)
+
+# Check improved fairness
+dp_diff_fair = demographic_parity_difference(
+    y_true=y_test,
+    y_pred=fair_predictions,
+    sensitive_features=sens_test
+)
+print(f"Demographic Parity (after mitigation): {dp_diff_fair:.3f}")
+```
+
+**2. In-Processing: Fairness-Aware Training**
+
+```python
+from fairlearn.reductions import ExponentiatedGradient, DemographicParity
+
+# Use exponentiated gradient for fairness-aware training
+constraint = DemographicParity()
+mitigator = ExponentiatedGradient(
+    estimator=RandomForestClassifier(n_estimators=100),
+    constraints=constraint
+)
+
+mitigator.fit(X_train, y_train, sensitive_features=sens_train)
+fair_predictions = mitigator.predict(X_test)
+
+# Verify fairness
+dp_diff = demographic_parity_difference(
+    y_test, fair_predictions, sens_test
+)
+print(f"Demographic Parity: {dp_diff:.3f}")
+```
+
+### Project: Audit Titanic Survival Model
+
+**Task**: Check if the Titanic survival model is biased by gender or class.
+
+```python
+import pandas as pd
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.model_selection import train_test_split
+from fairlearn.metrics import demographic_parity_difference
+
+# Load Titanic data
+df = pd.read_csv("titanic.csv")
+
+# Prepare features
+X = df[['Pclass', 'Age', 'SibSp', 'Parch', 'Fare']].fillna(df.mean())
+y = df['Survived']
+sensitive_feature = df['Sex']  # Check gender bias
+
+# Split
+X_train, X_test, y_train, y_test, sens_train, sens_test = train_test_split(
+    X, y, sensitive_feature, test_size=0.2, random_state=42
+)
+
+# Train model
+model = RandomForestClassifier(n_estimators=100, random_state=42)
+model.fit(X_train, y_train)
+y_pred = model.predict(X_test)
+
+# Audit for gender bias
+dp_diff = demographic_parity_difference(
+    y_test, y_pred, sens_test
+)
+
+print(f"Gender Bias (Demographic Parity): {dp_diff:.3f}")
+if dp_diff > 0.1:
+    print("WARNING: Model shows significant gender bias!")
+    print("Consider using ThresholdOptimizer to mitigate bias.")
+
+# Check by passenger class
+sensitive_feature_class = df.loc[y_test.index, 'Pclass']
+dp_diff_class = demographic_parity_difference(
+    y_test, y_pred, sensitive_feature_class
+)
+print(f"\nClass Bias (Demographic Parity): {dp_diff_class:.3f}")
+```
+
+### Best Practices for Bias Auditing
+
+1. **Always Audit**: Check for bias in every classification model
+2. **Multiple Metrics**: Use both demographic parity and equalized odds
+3. **Multiple Attributes**: Check bias across all sensitive features
+4. **Document Findings**: Record bias metrics in model documentation
+5. **Mitigate When Needed**: Use post-processing or in-processing methods
+6. **Monitor in Production**: Bias can change over time (concept drift)
+
+### Additional Tools
+
+**AIF360 (IBM):**
+```python
+from aif360.datasets import BinaryLabelDataset
+from aif360.metrics import BinaryLabelDatasetMetric
+from aif360.algorithms.preprocessing import Reweighing
+
+# Convert to AIF360 format
+dataset = BinaryLabelDataset(
+    df=df,
+    label_names=['Survived'],
+    protected_attribute_names=['Sex'],
+    favorable_label=1,
+    unfavorable_label=0
+)
+
+# Check bias
+metric = BinaryLabelDatasetMetric(
+    dataset,
+    unprivileged_groups=[{'Sex': 0}],
+    privileged_groups=[{'Sex': 1}]
+)
+
+print(f"Disparate Impact: {metric.disparate_impact()}")
+# Should be close to 1.0 for fairness
+```
+
+### Key Takeaways
+
+- **Bias auditing is essential** for responsible ML
+- **Check multiple fairness metrics** (demographic parity, equalized odds)
+- **Mitigate bias** using post-processing or in-processing methods
+- **Document your findings** and mitigation strategies
+- **Fairness is a technical skill**, not just an ethical consideration
+
+---
+
 ## Practice Exercises
 
 ### Exercise 1: Compare Classification Algorithms
