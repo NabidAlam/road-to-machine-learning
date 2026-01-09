@@ -6,11 +6,15 @@ Comprehensive guide to NumPy - the foundation of numerical computing in Python a
 
 - [Introduction](#introduction)
 - [Creating Arrays](#creating-arrays)
+- [Array Attributes and Methods](#array-attributes-and-methods)
+- [Reshaping and Resizing](#reshaping-and-resizing)
 - [Array Operations](#array-operations)
 - [Indexing and Slicing](#indexing-and-slicing)
+- [Deep and Shallow Copy](#deep-and-shallow-copy)
 - [Broadcasting](#broadcasting)
 - [Mathematical Operations](#mathematical-operations)
 - [Linear Algebra Operations](#linear-algebra-operations)
+- [Advanced Array Manipulation](#advanced-array-manipulation)
 - [Practice Exercises](#practice-exercises)
 
 ---
@@ -121,16 +125,199 @@ normal = np.random.normal(0, 1, (3, 3))  # Mean=0, Std=1
 print(normal)
 ```
 
-### Array Properties
+---
+
+## Array Attributes and Methods
+
+### Array Attributes
+
+Properties that describe an array's structure:
 
 ```python
 arr = np.array([[1, 2, 3], [4, 5, 6]])
 
-print(arr.shape)      # Output: (2, 3) - dimensions
-print(arr.size)       # Output: 6 - total elements
-print(arr.ndim)       # Output: 2 - number of dimensions
-print(arr.dtype)      # Output: int64 - data type
-print(arr.itemsize)   # Output: 8 - bytes per element
+# Shape - dimensions of the array
+print(arr.shape)      # Output: (2, 3) - 2 rows, 3 columns
+
+# Size - total number of elements
+print(arr.size)       # Output: 6
+
+# Number of dimensions
+print(arr.ndim)       # Output: 2
+
+# Data type
+print(arr.dtype)      # Output: int64
+
+# Bytes per element
+print(arr.itemsize)   # Output: 8 (for int64)
+
+# Total bytes
+print(arr.nbytes)    # Output: 48 (6 elements × 8 bytes)
+```
+
+### Array Methods
+
+Quick mathematical operations on arrays:
+
+```python
+arr = np.array([1, 2, 3, 4, 5])
+
+# Sum of all elements
+print(arr.sum())      # Output: 15
+
+# Mean (average)
+print(arr.mean())     # Output: 3.0
+
+# Standard deviation
+print(arr.std())      # Output: 1.414...
+
+# Variance
+print(arr.var())      # Output: 2.0
+
+# Minimum value
+print(arr.min())      # Output: 1
+
+# Maximum value
+print(arr.max())      # Output: 5
+
+# Index of minimum
+print(arr.argmin())   # Output: 0
+
+# Index of maximum
+print(arr.argmax())   # Output: 4
+
+# For 2D arrays - specify axis
+arr2d = np.array([[1, 2, 3], [4, 5, 6]])
+
+# Sum along columns (axis=0)
+print(arr2d.sum(axis=0))  # Output: [5 7 9]
+
+# Sum along rows (axis=1)
+print(arr2d.sum(axis=1))  # Output: [6 15]
+
+# Mean along columns
+print(arr2d.mean(axis=0))  # Output: [2.5 3.5 4.5]
+```
+
+**Key Concept:** NumPy arrays vs Python lists
+- **NumPy arrays**: Homogeneous (same data type), faster, less memory
+- **Python lists**: Heterogeneous (different types), more flexible, slower
+
+```python
+# Python list
+python_list = [1, 2, 3, "hello", 5.5]  # Can mix types
+
+# NumPy array
+numpy_array = np.array([1, 2, 3, 4, 5])  # All same type
+# numpy_array = np.array([1, 2, 3, "hello"])  # Converts all to strings!
+```
+
+---
+
+## Reshaping and Resizing
+
+Understanding how to change array structure without altering data. Essential for data preprocessing and model input preparation.
+
+### Reshape
+
+Change array dimensions without changing data:
+
+```python
+# Create 1D array
+arr = np.arange(12)  # [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+print(f"Original shape: {arr.shape}")  # (12,)
+
+# Reshape to 2D
+arr_2d = arr.reshape(3, 4)
+print(arr_2d)
+# Output:
+# [[ 0  1  2  3]
+#  [ 4  5  6  7]
+#  [ 8  9 10 11]]
+print(f"Reshaped to: {arr_2d.shape}")  # (3, 4)
+
+# Reshape to 3D
+arr_3d = arr.reshape(2, 2, 3)
+print(f"Reshaped to 3D: {arr_3d.shape}")  # (2, 2, 3)
+
+# Use -1 for automatic dimension
+arr_auto = arr.reshape(3, -1)  # -1 means "calculate automatically"
+print(f"Auto reshape: {arr_auto.shape}")  # (3, 4)
+```
+
+**Important:** Total elements must remain the same!
+```python
+# This will work: 12 elements = 3 × 4
+arr.reshape(3, 4)  # ✓
+
+# This will fail: 12 elements ≠ 3 × 5
+# arr.reshape(3, 5)  # ❌ Error!
+```
+
+### Flatten and Ravel
+
+Convert multi-dimensional array to 1D:
+
+```python
+arr_2d = np.array([[1, 2, 3], [4, 5, 6]])
+
+# Flatten - creates a copy
+flattened = arr_2d.flatten()
+print(flattened)  # Output: [1 2 3 4 5 6]
+
+# Ravel - creates a view (if possible)
+raveled = arr_2d.ravel()
+print(raveled)  # Output: [1 2 3 4 5 6]
+
+# Modify raveled (may affect original)
+raveled[0] = 99
+print(arr_2d)  # May or may not change depending on memory layout
+```
+
+### Resize
+
+Change array size (can add/remove elements):
+
+```python
+arr = np.array([1, 2, 3, 4])
+
+# Resize to larger (pads with zeros or repeats)
+arr_resized = np.resize(arr, (2, 3))
+print(arr_resized)
+# Output:
+# [[1 2 3]
+#  [4 1 2]]  # Repeats elements if needed
+
+# Resize to smaller (truncates)
+arr_small = np.resize(arr, (2,))
+print(arr_small)  # Output: [1 2]
+```
+
+**Difference:**
+- **Reshape**: Same number of elements, different shape
+- **Resize**: Can change number of elements
+
+### Transpose
+
+Swap rows and columns:
+
+```python
+arr = np.array([[1, 2, 3], [4, 5, 6]])
+print("Original:")
+print(arr)
+# [[1 2 3]
+#  [4 5 6]]
+
+# Transpose
+arr_T = arr.T
+print("\nTransposed:")
+print(arr_T)
+# [[1 4]
+#  [2 5]
+#  [3 6]]
+
+# Or use transpose() method
+arr_T2 = arr.transpose()
 ```
 
 ---
@@ -139,21 +326,41 @@ print(arr.itemsize)   # Output: 8 - bytes per element
 
 ### Arithmetic Operations
 
+Perform element-wise mathematical operations between arrays for fast numerical computation.
+
 ```python
 a = np.array([1, 2, 3, 4])
 b = np.array([5, 6, 7, 8])
 
-# Element-wise operations
+# Addition (+)
 print(a + b)   # Output: [ 6  8 10 12]
-print(a - b)   # Output: [-4 -4 -4 -4]
-print(a * b)   # Output: [ 5 12 21 32]
-print(a / b)   # Output: [0.2 0.333... 0.428... 0.5]
-print(a ** 2)  # Output: [ 1  4  9 16] - squared
 
-# Scalar operations
+# Subtraction (-)
+print(a - b)   # Output: [-4 -4 -4 -4]
+
+# Multiplication (*) - element-wise, NOT matrix multiplication
+print(a * b)   # Output: [ 5 12 21 32]
+
+# Division (/)
+print(a / b)   # Output: [0.2 0.333... 0.428... 0.5]
+
+# Floor Division (//) - integer division
+print(b // a)  # Output: [5 3 2 2]
+
+# Power (**)
+print(a ** 2)  # Output: [ 1  4  9 16] - squared
+print(a ** b)  # Output: [1 64 2187 65536] - element-wise power
+
+# Modulo (%)
+print(b % a)   # Output: [0 0 1 0]
+
+# Scalar operations (broadcasting)
 print(a + 10)  # Output: [11 12 13 14]
 print(a * 2)   # Output: [2 4 6 8]
+print(a ** 2)  # Output: [ 1  4  9 16]
 ```
+
+**Key Concept:** All operations are element-wise by default. For matrix multiplication, use `np.dot()` or `@` operator.
 
 ### Comparison Operations
 
@@ -243,6 +450,94 @@ print(arr[mask])     # Output: [ 6  7  8  9 10]
 mask = (arr > 3) & (arr < 8)
 print(arr[mask])     # Output: [4 5 6 7]
 ```
+
+---
+
+## Deep and Shallow Copy
+
+Understanding the difference between views (shallow copies) that share data and deep copies that create independent arrays. Essential for safe data manipulation.
+
+### Views (Shallow Copy)
+
+A view shares the same data as the original array. Changes to a view affect the original.
+
+```python
+arr = np.array([1, 2, 3, 4, 5])
+
+# Slicing creates a view
+view = arr[1:4]
+print(view)  # Output: [2 3 4]
+
+# Modify the view
+view[0] = 99
+print(view)  # Output: [99 3 4]
+print(arr)   # Output: [1 99 3 4 5] - Original changed!
+
+# Check if it's a view
+print(view.base is arr)  # Output: True (shares memory)
+```
+
+### Deep Copy
+
+A deep copy creates an independent array. Changes don't affect the original.
+
+```python
+arr = np.array([1, 2, 3, 4, 5])
+
+# Create a deep copy
+copy = arr.copy()  # or np.copy(arr)
+print(copy)  # Output: [1 2 3 4 5]
+
+# Modify the copy
+copy[0] = 99
+print(copy)  # Output: [99 2 3 4 5]
+print(arr)   # Output: [1 2 3 4 5] - Original unchanged!
+
+# Check if it's independent
+print(copy.base is None)  # Output: True (independent)
+```
+
+### When Views vs Copies
+
+```python
+arr = np.array([[1, 2, 3], [4, 5, 6]])
+
+# These create VIEWS (shallow copy)
+view1 = arr[:]           # Slice
+view2 = arr[1:, :]        # Slice
+view3 = arr.ravel()       # Ravel (usually)
+view4 = arr.T             # Transpose
+
+# These create COPIES (deep copy)
+copy1 = arr.copy()        # Explicit copy
+copy2 = arr.reshape(3, 2)  # Reshape (usually)
+copy3 = arr.flatten()      # Flatten
+
+# Check with base attribute
+print(view1.base is arr)   # True (view)
+print(copy1.base is None)  # True (copy)
+```
+
+### Practical Example
+
+```python
+# Scenario: You want to modify data without affecting original
+
+# WRONG - Creates view
+original = np.array([1, 2, 3, 4, 5])
+modified = original[1:4]  # View!
+modified[0] = 99
+print(original)  # [1 99 3 4 5] - Oops! Original changed
+
+# CORRECT - Create copy
+original = np.array([1, 2, 3, 4, 5])
+modified = original[1:4].copy()  # Copy!
+modified[0] = 99
+print(original)  # [1 2 3 4 5] - Original safe
+print(modified)   # [99 3 4]
+```
+
+**Key Rule:** When in doubt, use `.copy()` to ensure data safety!
 
 ---
 
@@ -406,6 +701,215 @@ print(cross_product)  # Output: [-3  6 -3]
 # Vector norm
 norm = np.linalg.norm(a)
 print(norm)  # Output: 3.741... (√(1² + 2² + 3²))
+```
+
+---
+
+## Advanced Array Manipulation
+
+### Stacking Arrays
+
+Combine multiple arrays vertically or horizontally for structured data organization.
+
+#### Vertical Stacking (vstack)
+
+Stack arrays row-wise (on top of each other):
+
+```python
+arr1 = np.array([[1, 2, 3]])
+arr2 = np.array([[4, 5, 6]])
+
+# Vertical stack
+stacked = np.vstack([arr1, arr2])
+print(stacked)
+# Output:
+# [[1 2 3]
+#  [4 5 6]]
+
+# Multiple arrays
+arr3 = np.array([[7, 8, 9]])
+stacked_all = np.vstack([arr1, arr2, arr3])
+print(stacked_all)
+# Output:
+# [[1 2 3]
+#  [4 5 6]
+#  [7 8 9]]
+```
+
+#### Horizontal Stacking (hstack)
+
+Stack arrays column-wise (side by side):
+
+```python
+arr1 = np.array([[1], [2], [3]])
+arr2 = np.array([[4], [5], [6]])
+
+# Horizontal stack
+stacked = np.hstack([arr1, arr2])
+print(stacked)
+# Output:
+# [[1 4]
+#  [2 5]
+#  [3 6]]
+
+# Multiple arrays
+arr3 = np.array([[7], [8], [9]])
+stacked_all = np.hstack([arr1, arr2, arr3])
+print(stacked_all)
+# Output:
+# [[1 4 7]
+#  [2 5 8]
+#  [3 6 9]]
+```
+
+#### Column Stack (column_stack)
+
+Stack 1D arrays as columns:
+
+```python
+a = np.array([1, 2, 3])
+b = np.array([4, 5, 6])
+c = np.array([7, 8, 9])
+
+# Column stack
+stacked = np.column_stack([a, b, c])
+print(stacked)
+# Output:
+# [[1 4 7]
+#  [2 5 8]
+#  [3 6 9]]
+```
+
+#### Concatenate
+
+General function for stacking along any axis:
+
+```python
+arr1 = np.array([[1, 2], [3, 4]])
+arr2 = np.array([[5, 6], [7, 8]])
+
+# Concatenate along axis 0 (vertical)
+vertical = np.concatenate([arr1, arr2], axis=0)
+print(vertical)
+# Output:
+# [[1 2]
+#  [3 4]
+#  [5 6]
+#  [7 8]]
+
+# Concatenate along axis 1 (horizontal)
+horizontal = np.concatenate([arr1, arr2], axis=1)
+print(horizontal)
+# Output:
+# [[1 2 5 6]
+#  [3 4 7 8]]
+```
+
+### Splitting Arrays
+
+Divide large arrays into smaller sections for easier data segmentation and analysis.
+
+#### Vertical Split (vsplit)
+
+Split array vertically (row-wise):
+
+```python
+arr = np.array([[1, 2, 3],
+                [4, 5, 6],
+                [7, 8, 9],
+                [10, 11, 12]])
+
+# Split into 2 equal parts
+split = np.vsplit(arr, 2)
+print("Split 1:")
+print(split[0])
+# Output:
+# [[1 2 3]
+#  [4 5 6]]
+print("\nSplit 2:")
+print(split[1])
+# Output:
+# [[ 7  8  9]
+#  [10 11 12]]
+
+# Split at specific indices
+split_custom = np.vsplit(arr, [1, 3])  # Split after row 1 and 3
+print(f"\nNumber of splits: {len(split_custom)}")  # 3 parts
+```
+
+#### Horizontal Split (hsplit)
+
+Split array horizontally (column-wise):
+
+```python
+arr = np.array([[1, 2, 3, 4, 5, 6],
+                [7, 8, 9, 10, 11, 12]])
+
+# Split into 3 equal parts
+split = np.hsplit(arr, 3)
+print("Split 1:")
+print(split[0])
+# Output:
+# [[1 2]
+#  [7 8]]
+print("\nSplit 2:")
+print(split[1])
+# Output:
+# [[ 3  4]
+#  [ 9 10]]
+print("\nSplit 3:")
+print(split[2])
+# Output:
+# [[ 5  6]
+#  [11 12]]
+
+# Split at specific indices
+split_custom = np.hsplit(arr, [2, 4])  # Split after column 2 and 4
+print(f"\nNumber of splits: {len(split_custom)}")  # 3 parts
+```
+
+#### Split (General)
+
+General function for splitting along any axis:
+
+```python
+arr = np.array([[1, 2, 3, 4],
+                [5, 6, 7, 8],
+                [9, 10, 11, 12]])
+
+# Split along axis 0 (vertical)
+split_vertical = np.split(arr, 3, axis=0)  # Split into 3 parts
+print(f"Vertical splits: {len(split_vertical)}")
+
+# Split along axis 1 (horizontal)
+split_horizontal = np.split(arr, 2, axis=1)  # Split into 2 parts
+print(f"Horizontal splits: {len(split_horizontal)}")
+```
+
+### Practical Use Cases
+
+**Data Preprocessing:**
+```python
+# Combine features from different sources
+feature1 = np.random.rand(100, 5)
+feature2 = np.random.rand(100, 3)
+X = np.hstack([feature1, feature2])  # Combine horizontally
+print(f"Combined features shape: {X.shape}")  # (100, 8)
+
+# Split into train/test
+train_size = int(0.8 * len(X))
+X_train, X_test = np.vsplit(X, [train_size])
+print(f"Train shape: {X_train.shape}, Test shape: {X_test.shape}")
+```
+
+**Batch Processing:**
+```python
+# Split large dataset into batches
+data = np.random.rand(1000, 10)
+batch_size = 100
+batches = np.vsplit(data, range(batch_size, len(data), batch_size))
+print(f"Number of batches: {len(batches)}")
+print(f"Each batch shape: {batches[0].shape}")  # (100, 10)
 ```
 
 ---

@@ -6,8 +6,8 @@ Complete guide to Generative AI, Large Language Models (LLMs), LangChain, RAG, A
 
 - [Introduction to Generative AI](#introduction-to-generative-ai)
 - [Large Language Models (LLMs)](#large-language-models-llms)
-- [Capabilities & Limitations](#capabilities--limitations)
-- [LangChain & LangGraph](#langchain--langgraph)
+- [Capabilities & Limitations](#capabilities-limitations)
+- [LangChain & LangGraph](#langchain-langgraph)
 - [AI Agents](#ai-agents)
 - [Vector Databases](#vector-databases)
 - [RAG (Retrieval-Augmented Generation)](#rag-retrieval-augmented-generation)

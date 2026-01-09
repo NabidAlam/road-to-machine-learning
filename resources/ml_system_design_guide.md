@@ -9,8 +9,8 @@ Complete guide to designing scalable, production-ready machine learning systems.
 - [Scalability Patterns](#scalability-patterns)
 - [Data Infrastructure](#data-infrastructure)
 - [Model Serving Architecture](#model-serving-architecture)
-- [High Availability & Reliability](#high-availability--reliability)
-- [Monitoring & Observability](#monitoring--observability)
+- [High Availability & Reliability](#high-availability-reliability)
+- [Monitoring & Observability](#monitoring-observability)
 - [Best Practices](#best-practices)
 - [Resources](#resources)
 

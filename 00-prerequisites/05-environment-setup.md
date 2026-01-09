@@ -9,7 +9,7 @@ Complete guide to setting up your development environment for machine learning a
 - [Installing Essential Libraries](#installing-essential-libraries)
 - [Jupyter Notebook Setup](#jupyter-notebook-setup)
 - [IDE Setup](#ide-setup)
-- [Git & GitHub Setup](#git--github-setup)
+- [Git & GitHub Setup](#git-github-setup)
 - [Verification](#verification)
 - [Troubleshooting](#troubleshooting)
 

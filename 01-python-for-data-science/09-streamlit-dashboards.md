@@ -12,7 +12,7 @@ Complete guide to building interactive web applications and dashboards with Stre
 - [Building ML Dashboards](#building-ml-dashboards)
 - [Deployment](#deployment)
 - [Best Practices](#best-practices)
-- [Complete Example](#complete-example)
+- [Complete Example: ML Model Dashboard](#complete-example-ml-model-dashboard)
 
 ---
 

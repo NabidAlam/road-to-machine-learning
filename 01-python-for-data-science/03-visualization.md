@@ -6,10 +6,16 @@ Comprehensive guide to Matplotlib and Seaborn for creating beautiful and informa
 
 - [Introduction](#introduction)
 - [Matplotlib Basics](#matplotlib-basics)
+- [Figure and Axes Structure](#figure-and-axes-structure)
 - [Common Plot Types](#common-plot-types)
 - [Customizing Plots](#customizing-plots)
 - [Subplots and Multiple Plots](#subplots-and-multiple-plots)
-- [Seaborn Statistical Visualizations](#seaborn-statistical-visualizations)
+- [Seaborn Introduction](#seaborn-introduction)
+- [Seaborn Relational Plots](#seaborn-relational-plots)
+- [Seaborn Categorical Plots](#seaborn-categorical-plots)
+- [Seaborn Distribution Plots](#seaborn-distribution-plots)
+- [Seaborn Regression & Mixed Plots](#seaborn-regression-mixed-plots)
+- [Seaborn Matrix & Styling Plots](#seaborn-matrix-styling-plots)
 - [Saving Figures](#saving-figures)
 - [Practice Exercises](#practice-exercises)
 
@@ -98,6 +104,66 @@ ax.set_ylabel('Y axis')
 ax.set_title('Using Axes Object')
 ax.grid(True)
 plt.show()
+```
+
+---
+
+## Figure and Axes Structure
+
+Understanding the structure of a Matplotlib figure is crucial for creating professional visualizations.
+
+### Components
+
+**Figure (Canvas):**
+- The entire window or page that everything is drawn on
+- Can contain multiple Axes (subplots)
+- Controls overall size, DPI, and background
+
+**Axes (Plot Area):**
+- The actual plot area where data is visualized
+- Contains the plot, labels, legend, etc.
+- A Figure can contain multiple Axes
+
+**Axis (x/y scales):**
+- The number-line-like objects that provide ticks and labels
+- X-axis and Y-axis define the coordinate system
+
+```python
+# Create figure and axes explicitly
+fig = plt.figure(figsize=(10, 6))  # Figure (canvas)
+ax = fig.add_subplot(111)          # Axes (plot area)
+
+# Or use the convenient method
+fig, ax = plt.subplots(figsize=(10, 6))
+
+# Access axes
+ax.plot(x, y)
+ax.set_xlabel('X Axis')            # X-axis label
+ax.set_ylabel('Y Axis')            # Y-axis label
+ax.set_title('Title')              # Title on axes
+
+# Multiple axes in one figure
+fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 5))
+ax1.plot(x, y1)
+ax2.plot(x, y2)
+```
+
+### Understanding the Hierarchy
+
+```python
+# Figure level
+fig = plt.figure(figsize=(10, 6), dpi=100)  # DPI = dots per inch
+fig.suptitle('Figure Title', fontsize=16)    # Title for entire figure
+
+# Axes level
+ax = fig.add_subplot(111)
+ax.set_title('Axes Title')                   # Title for this plot
+ax.set_xlabel('X Label')                     # X-axis label
+ax.set_ylabel('Y Label')                     # Y-axis label
+
+# Axis level (access through axes)
+ax.xaxis.set_major_locator(plt.MaxNLocator(10))  # Control x-axis ticks
+ax.yaxis.set_major_formatter(plt.FuncFormatter(lambda x, p: f'${x:.0f}'))  # Format y-axis
 ```
 
 ---
@@ -320,6 +386,610 @@ ax3.bar(['A', 'B', 'C'], [10, 20, 30])
 plt.tight_layout()
 plt.show()
 ```
+
+---
+
+## Seaborn Introduction
+
+### What is Seaborn?
+
+Seaborn is a high-level visualization library built on top of Matplotlib, designed for quick, attractive, and informative statistical plots with minimal code.
+
+**Key Features:**
+- **Statistical plots**: Built-in statistical visualizations
+- **Beautiful defaults**: Attractive styling out of the box
+- **Easy to use**: Less code for common plots
+- **Integration**: Works seamlessly with Pandas DataFrames
+
+### Installation and Setup
+
+```python
+import seaborn as sns
+import matplotlib.pyplot as plt
+import pandas as pd
+import numpy as np
+
+# Set style globally
+sns.set_style("whitegrid")  # Options: darkgrid, whitegrid, dark, white, ticks
+sns.set_palette("husl")     # Set color palette
+```
+
+---
+
+## Seaborn Relational Plots
+
+Relational plots visualize relationships between two variables, helping identify trends, correlations, and distributions.
+
+### scatterplot()
+
+Displays individual data points to show correlation:
+
+```python
+# Load sample data
+tips = sns.load_dataset('tips')
+
+# Basic scatter plot
+plt.figure(figsize=(10, 6))
+sns.scatterplot(data=tips, x='total_bill', y='tip')
+plt.title('Total Bill vs Tip')
+plt.show()
+
+# With hue (color by category)
+sns.scatterplot(data=tips, x='total_bill', y='tip', hue='sex')
+plt.show()
+
+# With size
+sns.scatterplot(data=tips, x='total_bill', y='tip', 
+                hue='sex', size='size', sizes=(50, 200))
+plt.show()
+
+# With style
+sns.scatterplot(data=tips, x='total_bill', y='tip', 
+                hue='sex', style='time')
+plt.show()
+```
+
+**Use Cases:**
+- Visualize relationships between numeric variables (price vs. sales)
+- Discover patterns in data
+- Identify correlations
+
+### lineplot()
+
+Shows continuous trends or summary lines over time or categories:
+
+```python
+# Basic line plot
+sns.lineplot(data=tips, x='total_bill', y='tip')
+plt.show()
+
+# With hue
+sns.lineplot(data=tips, x='total_bill', y='tip', hue='sex')
+plt.show()
+
+# With markers
+sns.lineplot(data=tips, x='total_bill', y='tip', 
+             hue='sex', marker='o', markersize=8)
+plt.show()
+
+# Time series example
+dates = pd.date_range('2024-01-01', periods=100, freq='D')
+ts_data = pd.DataFrame({
+    'date': dates,
+    'value': np.cumsum(np.random.randn(100))
+})
+sns.lineplot(data=ts_data, x='date', y='value')
+plt.show()
+```
+
+**Use Cases:**
+- Show trends over time
+- Compare trends across categories
+- Visualize continuous relationships
+
+### Styling & Palettes
+
+Customize visual appeal with themes and color palettes:
+
+```python
+# Set style
+sns.set_style("darkgrid")    # Dark background with grid
+sns.set_style("whitegrid")   # White background with grid
+sns.set_style("dark")         # Dark background, no grid
+sns.set_style("white")        # White background, no grid
+sns.set_style("ticks")        # Minimal style with ticks
+
+# Set color palette
+sns.set_palette("pastel")     # Soft, muted colors
+sns.set_palette("deep")       # Deep, rich colors
+sns.set_palette("muted")       # Muted, balanced colors
+sns.set_palette("bright")      # Bright, vibrant colors
+sns.set_palette("dark")        # Dark colors
+sns.set_palette("colorblind")  # Colorblind-friendly
+
+# Custom palette
+custom_palette = ["#FF6B6B", "#4ECDC4", "#45B7D1", "#FFA07A"]
+sns.set_palette(custom_palette)
+
+# Reset to default
+sns.reset_orig()  # Reset to matplotlib defaults
+```
+
+---
+
+## Seaborn Categorical Plots
+
+Categorical plots are used when one variable is categorical (like gender, day, or class). They help compare counts, averages, and spread across different groups.
+
+### barplot()
+
+Displays the average of a numeric variable for each category:
+
+```python
+# Basic bar plot
+sns.barplot(data=tips, x='day', y='total_bill')
+plt.title('Average Bill by Day')
+plt.show()
+
+# With hue (grouping)
+sns.barplot(data=tips, x='day', y='total_bill', hue='sex')
+plt.show()
+
+# Horizontal bar plot
+sns.barplot(data=tips, x='total_bill', y='day', orient='h')
+plt.show()
+
+# Custom estimator (e.g., median instead of mean)
+sns.barplot(data=tips, x='day', y='total_bill', estimator=np.median)
+plt.show()
+```
+
+### countplot()
+
+Shows the frequency of observations per category:
+
+```python
+# Basic count plot
+sns.countplot(data=tips, x='day')
+plt.title('Frequency by Day')
+plt.show()
+
+# With hue
+sns.countplot(data=tips, x='day', hue='sex')
+plt.show()
+
+# Horizontal
+sns.countplot(data=tips, y='day')
+plt.show()
+
+# Order categories
+sns.countplot(data=tips, x='day', order=['Thur', 'Fri', 'Sat', 'Sun'])
+plt.show()
+```
+
+### boxplot()
+
+Visualizes median, quartiles, and outliers:
+
+```python
+# Basic box plot
+sns.boxplot(data=tips, x='day', y='total_bill')
+plt.title('Bill Distribution by Day')
+plt.show()
+
+# With hue
+sns.boxplot(data=tips, x='day', y='total_bill', hue='sex')
+plt.show()
+
+# Horizontal
+sns.boxplot(data=tips, x='total_bill', y='day', orient='h')
+plt.show()
+
+# Customize
+sns.boxplot(data=tips, x='day', y='total_bill', 
+            palette='Set2', linewidth=2)
+plt.show()
+```
+
+### violinplot()
+
+Combines boxplot with distribution shape for deeper insight:
+
+```python
+# Basic violin plot
+sns.violinplot(data=tips, x='day', y='total_bill')
+plt.title('Distribution Shape by Day')
+plt.show()
+
+# With hue
+sns.violinplot(data=tips, x='day', y='total_bill', hue='sex')
+plt.show()
+
+# Split violins
+sns.violinplot(data=tips, x='day', y='total_bill', 
+               hue='sex', split=True)
+plt.show()
+
+# Inner plot type
+sns.violinplot(data=tips, x='day', y='total_bill', 
+               inner='box')  # or 'quart', 'point', 'stick'
+plt.show()
+```
+
+### stripplot()
+
+Displays all data points, even if they overlap:
+
+```python
+# Basic strip plot
+sns.stripplot(data=tips, x='day', y='total_bill')
+plt.title('All Data Points by Day')
+plt.show()
+
+# With jitter (reduce overlap)
+sns.stripplot(data=tips, x='day', y='total_bill', jitter=True)
+plt.show()
+
+# With hue
+sns.stripplot(data=tips, x='day', y='total_bill', hue='sex')
+plt.show()
+
+# Customize
+sns.stripplot(data=tips, x='day', y='total_bill', 
+              size=4, alpha=0.5, palette='Set2')
+plt.show()
+```
+
+### swarmplot()
+
+Similar to stripplot but prevents overlap of points:
+
+```python
+# Basic swarm plot
+sns.swarmplot(data=tips, x='day', y='total_bill')
+plt.title('Non-Overlapping Points by Day')
+plt.show()
+
+# With hue
+sns.swarmplot(data=tips, x='day', y='total_bill', hue='sex')
+plt.show()
+
+# Combined with violin plot
+sns.violinplot(data=tips, x='day', y='total_bill', inner=None)
+sns.swarmplot(data=tips, x='day', y='total_bill', 
+              color='white', edgecolor='gray')
+plt.show()
+```
+
+**Practical Use Cases:**
+- Compare customer spending by weekday
+- Analyze score distributions by gender
+- Visualize category frequencies in survey or sales data
+
+---
+
+## Seaborn Distribution Plots
+
+Distribution plots visualize how data values are spread, concentrated, or distributed across a range.
+
+### histplot()
+
+Modern histogram with options for bins and KDE overlay:
+
+```python
+# Basic histogram
+sns.histplot(data=tips, x='total_bill', bins=30)
+plt.title('Distribution of Total Bill')
+plt.show()
+
+# With KDE overlay
+sns.histplot(data=tips, x='total_bill', bins=30, kde=True)
+plt.show()
+
+# With hue (compare multiple groups)
+sns.histplot(data=tips, x='total_bill', hue='sex', bins=30, kde=True)
+plt.show()
+
+# Stacked histogram
+sns.histplot(data=tips, x='total_bill', hue='sex', 
+             bins=30, multiple='stack')
+plt.show()
+
+# Step histogram
+sns.histplot(data=tips, x='total_bill', bins=30, 
+             element='step', fill=False)
+plt.show()
+```
+
+### kdeplot()
+
+Displays a smooth density curve representing data distribution:
+
+```python
+# Basic KDE plot
+sns.kdeplot(data=tips, x='total_bill')
+plt.title('Density Curve of Total Bill')
+plt.show()
+
+# With shade
+sns.kdeplot(data=tips, x='total_bill', shade=True)
+plt.show()
+
+# With hue
+sns.kdeplot(data=tips, x='total_bill', hue='sex', shade=True)
+plt.show()
+
+# 2D KDE plot
+sns.kdeplot(data=tips, x='total_bill', y='tip', shade=True)
+plt.show()
+
+# Cumulative distribution
+sns.kdeplot(data=tips, x='total_bill', cumulative=True)
+plt.show()
+```
+
+### rugplot()
+
+Adds small tick marks for individual observations:
+
+```python
+# Basic rug plot
+sns.rugplot(data=tips, x='total_bill')
+plt.show()
+
+# Combined with histogram and KDE
+sns.histplot(data=tips, x='total_bill', bins=30, kde=True)
+sns.rugplot(data=tips, x='total_bill', height=0.05, alpha=0.5)
+plt.show()
+```
+
+### Note on distplot()
+
+**`distplot()` is deprecated** - replaced by `histplot()` and `kdeplot()`:
+
+```python
+# OLD (deprecated):
+# sns.distplot(tips['total_bill'])
+
+# NEW (use instead):
+sns.histplot(data=tips, x='total_bill', kde=True)  # Histogram with KDE
+# or
+sns.kdeplot(data=tips, x='total_bill')  # Just KDE
+```
+
+**Advanced Use with hue:**
+
+```python
+# Compare multiple groups
+sns.histplot(data=tips, x='total_bill', hue='sex', 
+             bins=30, kde=True, alpha=0.6)
+plt.title('Distribution Comparison: Male vs Female Spending')
+plt.show()
+```
+
+**Practical Use Cases:**
+- Analyze distribution of prices, customer tips, or sales amounts
+- Compare value distributions across categories for insights
+- Identify data patterns and outliers
+
+---
+
+## Seaborn Regression & Mixed Plots
+
+Regression and mixed plots visualize relationships between variables along with trend lines or combined plot types.
+
+### regplot()
+
+Displays a scatterplot with a fitted regression line:
+
+```python
+# Basic regression plot
+sns.regplot(data=tips, x='total_bill', y='tip')
+plt.title('Total Bill vs Tip with Regression Line')
+plt.show()
+
+# With confidence interval
+sns.regplot(data=tips, x='total_bill', y='tip', ci=95)
+plt.show()
+
+# Without confidence interval
+sns.regplot(data=tips, x='total_bill', y='tip', ci=None)
+plt.show()
+
+# Customize markers
+sns.regplot(data=tips, x='total_bill', y='tip', 
+            marker='+', scatter_kws={'s': 50, 'alpha': 0.5})
+plt.show()
+
+# Polynomial regression
+sns.regplot(data=tips, x='total_bill', y='tip', order=2)
+plt.show()
+```
+
+### lmplot()
+
+Similar to regplot but supports grouping (hue) and faceting:
+
+```python
+# Basic lmplot
+sns.lmplot(data=tips, x='total_bill', y='tip')
+plt.show()
+
+# With hue (grouping)
+sns.lmplot(data=tips, x='total_bill', y='tip', hue='sex')
+plt.show()
+
+# With faceting (separate plots)
+sns.lmplot(data=tips, x='total_bill', y='tip', 
+           col='day', col_wrap=2)
+plt.show()
+
+# Multiple facets
+sns.lmplot(data=tips, x='total_bill', y='tip', 
+           row='sex', col='day')
+plt.show()
+
+# Customize
+sns.lmplot(data=tips, x='total_bill', y='tip', 
+           hue='sex', markers=['o', 's'], palette='Set1')
+plt.show()
+```
+
+### jointplot()
+
+Combines scatter and histogram/KDE for joint and marginal distributions:
+
+```python
+# Basic joint plot (scatter + histograms)
+sns.jointplot(data=tips, x='total_bill', y='tip')
+plt.show()
+
+# With KDE
+sns.jointplot(data=tips, x='total_bill', y='tip', kind='kde')
+plt.show()
+
+# With regression
+sns.jointplot(data=tips, x='total_bill', y='tip', kind='reg')
+plt.show()
+
+# With hex bins
+sns.jointplot(data=tips, x='total_bill', y='tip', kind='hex')
+plt.show()
+
+# With scatter and KDE
+sns.jointplot(data=tips, x='total_bill', y='tip', 
+              kind='scatter', marginal_kws=dict(bins=30, kde=True))
+plt.show()
+```
+
+### pairplot()
+
+Shows pairwise relationships among multiple variables in a dataset:
+
+```python
+# Basic pair plot
+iris = sns.load_dataset('iris')
+sns.pairplot(iris)
+plt.show()
+
+# With hue (grouping)
+sns.pairplot(iris, hue='species')
+plt.show()
+
+# Customize diagonal
+sns.pairplot(iris, hue='species', diag_kind='kde')
+plt.show()
+
+# Select specific variables
+sns.pairplot(iris, vars=['sepal_length', 'sepal_width', 'petal_length'], 
+             hue='species')
+plt.show()
+
+# Customize markers
+sns.pairplot(iris, hue='species', markers=['o', 's', 'D'])
+plt.show()
+```
+
+**Practical Use Cases:**
+- Analyze correlations (e.g., total bill vs tip)
+- Visualize gender-based trends
+- Explore relationships among multiple numeric features in datasets like Iris
+
+---
+
+## Seaborn Matrix & Styling Plots
+
+Matrix or grid plots are great for exploring correlations, patterns, and relationships within datasets.
+
+### heatmap()
+
+Displays correlations or pivot tables as colored grids:
+
+```python
+# Correlation heatmap
+correlation = tips.select_dtypes(include=[np.number]).corr()
+plt.figure(figsize=(10, 8))
+sns.heatmap(correlation, annot=True, cmap='coolwarm', center=0)
+plt.title('Correlation Heatmap')
+plt.show()
+
+# Pivot table heatmap
+pivot = tips.pivot_table(values='total_bill', index='day', columns='time')
+sns.heatmap(pivot, annot=True, fmt='.2f', cmap='YlOrRd')
+plt.title('Total Bill Heatmap')
+plt.show()
+
+# Customize
+sns.heatmap(correlation, annot=True, fmt='.2f', 
+            cmap='coolwarm', center=0,
+            square=True, linewidths=1, cbar_kws={'label': 'Correlation'})
+plt.show()
+
+# Without annotations
+sns.heatmap(correlation, annot=False, cmap='viridis')
+plt.show()
+```
+
+### clustermap()
+
+Adds clustering to heatmaps for grouping similar variables or patterns:
+
+```python
+# Basic clustermap
+sns.clustermap(correlation, annot=True, cmap='coolwarm', center=0)
+plt.show()
+
+# With different metric
+sns.clustermap(correlation, metric='euclidean', method='ward')
+plt.show()
+
+# Customize
+sns.clustermap(correlation, annot=True, fmt='.2f',
+               cmap='coolwarm', figsize=(10, 8),
+               row_cluster=True, col_cluster=True)
+plt.show()
+```
+
+### Styling Options
+
+Control global styling for all plots:
+
+```python
+# Set style
+sns.set_style("white")        # White background
+sns.set_style("dark")         # Dark background
+sns.set_style("whitegrid")    # White with grid (default)
+sns.set_style("darkgrid")     # Dark with grid
+sns.set_style("ticks")        # Minimal with ticks
+
+# Set palette
+sns.set_palette("Set2")       # Qualitative palette
+sns.set_palette("pastel")     # Soft colors
+sns.set_palette("deep")       # Deep colors
+sns.set_palette("muted")      # Muted colors
+sns.set_palette("bright")     # Bright colors
+sns.set_palette("dark")       # Dark colors
+sns.set_palette("colorblind") # Colorblind-friendly
+
+# Set context (affects scale)
+sns.set_context("paper")      # Smallest (for papers)
+sns.set_context("notebook")   # Default
+sns.set_context("talk")       # Larger (for presentations)
+sns.set_context("poster")     # Largest (for posters)
+
+# Combine settings
+sns.set_style("whitegrid")
+sns.set_palette("Set2")
+sns.set_context("notebook")
+
+# Reset to defaults
+sns.reset_orig()
+```
+
+**Use Cases:**
+- Analyze correlations between variables
+- Highlight variable groupings
+- Create visually consistent plots with global themes
 
 ---
 

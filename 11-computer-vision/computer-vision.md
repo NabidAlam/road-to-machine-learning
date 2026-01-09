@@ -16,8 +16,6 @@ Comprehensive guide to Convolutional Neural Networks (CNNs) and image processing
 - [ImageNet and Large-Scale Recognition](#imagenet-and-large-scale-recognition)
 - [Transfer Learning](#transfer-learning)
 - [Data Augmentation](#data-augmentation)
-- [Image Preprocessing](#image-preprocessing)
-- [Object Detection Basics](#object-detection-basics)
 - [Practice Exercises](#practice-exercises)
 
 ---

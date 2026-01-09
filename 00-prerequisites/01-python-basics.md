@@ -4,7 +4,12 @@ Complete guide to Python fundamentals needed for machine learning and data scien
 
 ## Table of Contents
 
+- [Comments](#comments)
 - [Variables and Data Types](#variables-and-data-types)
+- [In-Depth Strings](#in-depth-strings)
+- [Print Statements](#print-statements)
+- [Type Conversion and Truthy/Falsy Values](#type-conversion-and-truthyfalsy-values)
+- [Input Statements](#input-statements)
 - [Control Flow](#control-flow)
 - [Functions](#functions)
 - [Data Structures](#data-structures)
@@ -15,11 +20,132 @@ Complete guide to Python fundamentals needed for machine learning and data scien
 
 ---
 
+## Comments
+
+Comments are notes in your code that Python ignores. They help explain what your code does.
+
+### Single-Line Comments
+
+Use `#` for single-line comments:
+
+```python
+# This is a comment
+name = "Alice"  # This is also a comment
+
+# Comments can be on their own line
+age = 25
+```
+
+### Multi-Line Comments
+
+Use triple quotes `"""` or `'''` for multi-line comments:
+
+```python
+"""
+This is a multi-line comment.
+It can span multiple lines.
+Useful for documentation.
+"""
+
+'''
+This is also a multi-line comment.
+Both triple single and double quotes work.
+'''
+```
+
+### Best Practices
+
+- Write clear, concise comments
+- Explain "why" not "what" (code should be self-explanatory)
+- Update comments when code changes
+- Don't over-comment obvious code
+
+---
+
 ## Variables and Data Types
 
 ### Variables
 
 Variables store data values. In Python, you don't need to declare variable types.
+
+```python
+# Assigning values
+name = "Alice"
+age = 25
+height = 5.6
+is_student = True
+
+print(name)    # Output: Alice
+print(age)     # Output: 25
+print(height)  # Output: 5.6
+print(is_student)  # Output: True
+```
+
+### Variable Naming Conventions
+
+Python has several naming conventions:
+
+**1. Snake Case (Recommended for Python)**
+```python
+# Use lowercase with underscores
+my_variable = 10
+user_name = "Alice"
+total_count = 100
+```
+
+**2. Camel Case**
+```python
+# First word lowercase, subsequent words capitalized
+myVariable = 10
+userName = "Alice"
+totalCount = 100
+```
+
+**3. Pascal Case (Used for Classes)**
+```python
+# All words capitalized
+MyVariable = 10
+UserName = "Alice"
+TotalCount = 100
+```
+
+### Variable Naming Rules
+
+1. **Must start with a letter or underscore** - Cannot start with a number
+   ```python
+   valid_name = "OK"
+   _valid = "OK"
+   # 2invalid = "Error!"  # This will cause an error
+   ```
+
+2. **Can contain letters, numbers, and underscores** - No spaces or special characters (except `_`)
+   ```python
+   user_name = "OK"
+   user_name_2 = "OK"
+   # user name = "Error!"  # Spaces not allowed
+   # user-name = "Error!"  # Hyphens not allowed
+   ```
+
+3. **Case-sensitive** - `name` and `Name` are different variables
+   ```python
+   name = "Alice"
+   Name = "Bob"
+   print(name)  # Output: Alice
+   print(Name)  # Output: Bob
+   ```
+
+4. **Cannot use Python keywords** - Don't use words like `if`, `for`, `def`, `class`, etc.
+   ```python
+   # if = 10  # Error! 'if' is a keyword
+   # def = "test"  # Error! 'def' is a keyword
+   ```
+
+### Common Python Keywords
+
+```python
+# These are reserved words in Python
+# False, None, True, and, as, assert, async, await, break, class, continue, def, del, elif, else, except, finally, for, from, global, if, import, in, is, lambda, nonlocal, not, or, pass, raise, return, try, while, with, yield
+```
 
 ```python
 # Assigning values
@@ -90,6 +216,323 @@ x = "123"
 y = int(x)      # Convert to integer: 123
 z = float(x)    # Convert to float: 123.0
 w = str(123)    # Convert to string: "123"
+```
+
+---
+
+## In-Depth Strings
+
+### String Indexing
+
+Strings are sequences of characters. Each character has an index (position).
+
+**Positive Indexing (Left to Right):**
+```python
+text = "hello"
+# Index:  0  1  2  3  4
+# Value:  h  e  l  l  o
+
+print(text[0])  # Output: h
+print(text[1])  # Output: e
+print(text[4])  # Output: o
+```
+
+**Negative Indexing (Right to Left):**
+```python
+text = "hello"
+# Index:  -5 -4 -3 -2 -1
+# Value:   h  e  l  l  o
+
+print(text[-1])  # Output: o (last character)
+print(text[-2])  # Output: l (second to last)
+print(text[-5])  # Output: h (first character)
+```
+
+### String Slicing
+
+Extract portions of strings using `[start:stop:step]`:
+
+```python
+text = "yoo brother"
+
+# Basic slicing
+print(text[0:3])    # Output: yoo (indices 0, 1, 2)
+print(text[4:11])   # Output: brother (indices 4 to 10)
+print(text[:3])     # Output: yoo (from start to index 2)
+print(text[4:])     # Output: brother (from index 4 to end)
+print(text[:])      # Output: yoo brother (entire string)
+
+# With step
+print(text[0:11:2])  # Output: yo rte (every 2nd character)
+print(text[::2])     # Output: yo rte (every 2nd character from start to end)
+print(text[::-1])    # Output: rehtorb ooy (reverse string)
+```
+
+### String Immutability
+
+Strings are **immutable** - they cannot be changed after creation:
+
+```python
+text = "hello"
+# text[0] = "H"  # Error! Cannot modify string
+
+# Instead, create a new string
+text = "H" + text[1:]  # Creates new string: "Hello"
+print(text)  # Output: Hello
+```
+
+**Why Immutability Matters:**
+- Strings are safe to pass around (can't be accidentally modified)
+- More memory efficient (can be shared between variables)
+- Required for dictionary keys (keys must be immutable)
+
+---
+
+## Print Statements
+
+### Basic Print
+
+```python
+print("Hello, World!")
+print(42)
+print(3.14)
+```
+
+### Print Multiple Items
+
+```python
+name = "Alice"
+age = 25
+print("Name:", name, "Age:", age)  # Output: Name: Alice Age: 25
+```
+
+### String Concatenation
+
+```python
+first_name = "Alice"
+last_name = "Smith"
+full_name = first_name + " " + last_name
+print(full_name)  # Output: Alice Smith
+
+# Note: Can only concatenate strings with strings
+# print("Age: " + 25)  # Error! Need to convert to string
+print("Age: " + str(25))  # Output: Age: 25
+```
+
+### Formatted Strings (f-strings)
+
+f-strings (formatted string literals) are the modern way to embed variables:
+
+```python
+name = "Alice"
+age = 25
+city = "New York"
+
+# f-string syntax
+message = f"Hello, {name}! You are {age} years old and live in {city}."
+print(message)  # Output: Hello, Alice! You are 25 years old and live in New York.
+
+# Can include expressions
+print(f"Next year you'll be {age + 1}")  # Output: Next year you'll be 26
+
+# Formatting numbers
+pi = 3.14159
+print(f"Pi is approximately {pi:.2f}")  # Output: Pi is approximately 3.14
+```
+
+### Escape Sequences
+
+Special characters in strings:
+
+```python
+# Newline: \n
+print("Line 1\nLine 2")
+# Output:
+# Line 1
+# Line 2
+
+# Tab: \t
+print("Name:\tAlice")
+# Output: Name:    Alice
+
+# Backspace: \b
+print("Hello\bWorld")  # Output: HellWorld (removes 'o')
+
+# Backslash: \\
+print("Path: C:\\Users\\Alice")  # Output: Path: C:\Users\Alice
+
+# Single quote: \'
+print('It\'s a beautiful day')  # Output: It's a beautiful day
+
+# Double quote: \"
+print("She said \"Hello\"")  # Output: She said "Hello"
+```
+
+### Raw Strings
+
+Raw strings ignore escape sequences (useful for file paths, regex):
+
+```python
+# Regular string
+path1 = "C:\\Users\\Alice\\Documents"  # Need double backslashes
+print(path1)  # Output: C:\Users\Alice\Documents
+
+# Raw string (prefix with 'r')
+path2 = r"C:\Users\Alice\Documents"  # No need to escape
+print(path2)  # Output: C:\Users\Alice\Documents
+
+# Useful for regex patterns
+import re
+pattern = r"\d+"  # Matches one or more digits
+```
+
+---
+
+## Type Conversion and Truthy/Falsy Values
+
+### Type Conversion Functions
+
+```python
+# Convert to integer
+x = int("123")      # 123
+x = int(3.14)       # 3 (truncates decimal)
+# x = int("abc")    # Error! Cannot convert
+
+# Convert to float
+y = float("3.14")   # 3.14
+y = float(5)        # 5.0
+
+# Convert to string
+z = str(123)        # "123"
+z = str(3.14)       # "3.14"
+z = str(True)       # "True"
+
+# Convert to boolean
+w = bool(1)         # True
+w = bool(0)         # False
+w = bool("hello")   # True
+w = bool("")        # False
+```
+
+### Truthy and Falsy Values
+
+In Python, values are evaluated as `True` or `False` in boolean contexts.
+
+**Falsy Values (evaluate to `False`):**
+```python
+# All of these are falsy
+bool(False)      # False
+bool(None)       # False
+bool(0)          # False
+bool(0.0)        # False
+bool(0j)         # False (complex zero)
+bool("")         # False (empty string)
+bool([])         # False (empty list)
+bool({})         # False (empty dictionary)
+bool(())         # False (empty tuple)
+bool(set())      # False (empty set)
+```
+
+**Truthy Values (evaluate to `True`):**
+```python
+# Everything else is truthy
+bool(True)       # True
+bool(1)          # True
+bool(-1)         # True
+bool(3.14)       # True
+bool("hello")    # True
+bool([1, 2, 3])  # True
+bool({"a": 1})   # True
+```
+
+**Practical Examples:**
+```python
+# Check if list is not empty
+my_list = []
+if my_list:  # Falsy, so this won't execute
+    print("List has items")
+else:
+    print("List is empty")  # This executes
+
+# Check if string is not empty
+name = input("Enter name: ")
+if name:  # Truthy if name has characters
+    print(f"Hello, {name}!")
+else:
+    print("No name provided")
+
+# Default value pattern
+value = None
+result = value or "default"  # Uses "default" if value is falsy
+print(result)  # Output: default
+```
+
+---
+
+## Input Statements
+
+The `input()` function gets user input from the keyboard.
+
+### Basic Input
+
+```python
+# input() always returns a string
+name = input("What's your name? ")
+print(f"Hello, {name}!")
+```
+
+### Type Conversion with Input
+
+Since `input()` returns a string, convert it for numeric operations:
+
+```python
+# Get age as integer
+age = int(input("Tell your age: "))
+print(f"Next year you'll be {age + 1}")
+
+# Get price as float
+price = float(input("Enter price: "))
+print(f"Price with tax: ${price * 1.1:.2f}")
+
+# Get boolean (yes/no)
+response = input("Do you like Python? (yes/no): ")
+likes_python = response.lower() == "yes"
+print(f"Likes Python: {likes_python}")
+```
+
+### Handling Input Errors
+
+```python
+# Safe input with error handling
+while True:
+    try:
+        age = int(input("Enter your age: "))
+        if age > 0:
+            break
+        else:
+            print("Age must be positive!")
+    except ValueError:
+        print("Please enter a valid number!")
+
+print(f"You entered: {age}")
+```
+
+### Multiple Inputs
+
+```python
+# Get multiple values
+name = input("Enter name: ")
+age = int(input("Enter age: "))
+city = input("Enter city: ")
+
+print(f"{name} is {age} years old and lives in {city}")
+
+# Get multiple values on one line (comma-separated)
+data = input("Enter name, age, city (comma-separated): ")
+name, age, city = data.split(",")
+age = int(age.strip())
+city = city.strip()
+print(f"{name} is {age} years old and lives in {city}")
 ```
 
 ---

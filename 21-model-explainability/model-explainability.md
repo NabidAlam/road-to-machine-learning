@@ -10,7 +10,7 @@ Comprehensive guide to understanding and explaining machine learning models. Lea
 - [SHAP (SHapley Additive exPlanations)](#shap-shapley-additive-explanations)
 - [LIME (Local Interpretable Model-agnostic Explanations)](#lime-local-interpretable-model-agnostic-explanations)
 - [Partial Dependence Plots](#partial-dependence-plots)
-- [ICE Plots](#ice-plots)
+- [ICE Plots](#ice-plots-individual-conditional-expectation)
 - [Complete Workflow Example](#complete-workflow-example)
 - [Best Practices](#best-practices)
 - [Common Pitfalls](#common-pitfalls)

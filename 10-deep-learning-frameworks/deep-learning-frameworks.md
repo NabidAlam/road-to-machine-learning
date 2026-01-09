@@ -16,7 +16,7 @@ Comprehensive guide to TensorFlow/Keras and PyTorch for building deep learning m
   - [Installation](#installation-1)
   - [Tensors](#tensors)
   - [Building Models](#building-models)
-  - [Training Loop](#training-loop-1)
+  - [Training Loop](#training-loop)
 - [Framework Comparison](#framework-comparison)
 - [Callbacks and Monitoring](#callbacks-and-monitoring)
 - [Model Saving and Loading](#model-saving-and-loading)

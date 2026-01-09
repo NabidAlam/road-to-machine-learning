@@ -32,6 +32,125 @@ A database is an organized collection of data stored and accessed electronically
 - **Database**: Like a collection of related spreadsheets (tables) with connections between them
 - **DBMS**: The software that manages the database (like Excel manages spreadsheets)
 
+### What is RDBMS?
+
+**RDBMS (Relational Database Management System)** is software that manages relational databases. It stores data in tables (relations) and uses SQL to manage and query data.
+
+**Key Features:**
+- **Tables**: Data organized in rows and columns
+- **Relationships**: Tables connected by keys
+- **ACID Properties**: Atomicity, Consistency, Isolation, Durability
+- **SQL**: Standard language for querying
+
+**Popular RDBMS:**
+- **MySQL**: Open-source, widely used
+- **PostgreSQL**: Advanced open-source
+- **SQL Server**: Microsoft's enterprise solution
+- **Oracle**: Enterprise-grade
+- **SQLite**: Lightweight, embedded
+
+### What is SQL?
+
+**SQL (Structured Query Language)** is the standard language for managing relational databases.
+
+**SQL Categories:**
+- **DDL (Data Definition Language)**: CREATE, ALTER, DROP
+- **DML (Data Manipulation Language)**: SELECT, INSERT, UPDATE, DELETE
+- **DCL (Data Control Language)**: GRANT, REVOKE
+- **TCL (Transaction Control Language)**: COMMIT, ROLLBACK
+
+**SQL Standards:**
+- ANSI SQL (standard)
+- Each RDBMS has extensions (MySQL, PostgreSQL, etc.)
+
+### Installation & Setup
+
+**MySQL Installation:**
+
+**Windows:**
+1. Download MySQL Installer from [mysql.com](https://dev.mysql.com/downloads/installer/)
+2. Run installer
+3. Choose "Developer Default" or "Server only"
+4. Configure root password
+5. Complete installation
+
+**macOS:**
+```bash
+# Using Homebrew
+brew install mysql
+brew services start mysql
+```
+
+**Linux (Ubuntu/Debian):**
+```bash
+sudo apt update
+sudo apt install mysql-server
+sudo mysql_secure_installation
+```
+
+**PostgreSQL Installation:**
+
+**Windows:**
+1. Download from [postgresql.org](https://www.postgresql.org/download/windows/)
+2. Run installer
+3. Set postgres user password
+4. Complete installation
+
+**macOS:**
+```bash
+# Using Homebrew
+brew install postgresql
+brew services start postgresql
+```
+
+**Linux (Ubuntu/Debian):**
+```bash
+sudo apt update
+sudo apt install postgresql postgresql-contrib
+sudo systemctl start postgresql
+```
+
+**SQL Server Installation:**
+
+**Windows:**
+1. Download SQL Server Express (free) from [microsoft.com](https://www.microsoft.com/en-us/sql-server/sql-server-downloads)
+2. Run installer
+3. Choose installation type
+4. Configure instance
+5. Complete installation
+
+**Basic Client UI Overview:**
+
+**MySQL Workbench:**
+- Visual database design
+- SQL query editor
+- Server administration
+- Data modeling
+
+**pgAdmin (PostgreSQL):**
+- Database management
+- Query tool
+- Server administration
+- Backup/restore
+
+**SQL Server Management Studio (SSMS):**
+- Database management
+- Query editor
+- Server administration
+- Performance monitoring
+
+**Command Line:**
+```bash
+# MySQL
+mysql -u root -p
+
+# PostgreSQL
+psql -U postgres
+
+# SQL Server
+sqlcmd -S localhost -U sa -P password
+```
+
 **Why Databases?**
 - **Data Persistence**: Store data permanently (unlike variables in memory)
 - **Data Integrity**: Ensure data consistency and prevent errors
@@ -410,6 +529,16 @@ USE company_db;
 
 ### CREATE TABLE
 
+**Basic Syntax:**
+```sql
+CREATE TABLE table_name (
+    column1 datatype constraint,
+    column2 datatype constraint,
+    ...
+);
+```
+
+**Example:**
 ```sql
 -- Create a table
 CREATE TABLE employees (
@@ -424,27 +553,151 @@ CREATE TABLE employees (
 );
 ```
 
+**Defining Columns:**
+```sql
+CREATE TABLE products (
+    product_id INT,
+    product_name VARCHAR(100),
+    price DECIMAL(10, 2),
+    quantity INT
+);
+```
+
+### Constraints
+
+**PRIMARY KEY:**
+Uniquely identifies each row.
+
+```sql
+-- Single column primary key
+CREATE TABLE employees (
+    employee_id INT PRIMARY KEY,
+    ...
+);
+
+-- Composite primary key
+CREATE TABLE order_items (
+    order_id INT,
+    product_id INT,
+    quantity INT,
+    PRIMARY KEY (order_id, product_id)
+);
+```
+
+**FOREIGN KEY:**
+References another table's primary key.
+
+```sql
+CREATE TABLE orders (
+    order_id INT PRIMARY KEY,
+    customer_id INT,
+    order_date DATE,
+    FOREIGN KEY (customer_id) REFERENCES customers(customer_id)
+);
+
+-- With options
+FOREIGN KEY (customer_id) 
+REFERENCES customers(customer_id)
+ON DELETE CASCADE      -- Delete related rows
+ON UPDATE CASCADE;     -- Update related rows
+```
+
+**NOT NULL:**
+Column cannot contain NULL values.
+
+```sql
+CREATE TABLE employees (
+    employee_id INT PRIMARY KEY,
+    first_name VARCHAR(50) NOT NULL,
+    last_name VARCHAR(50) NOT NULL,
+    email VARCHAR(100)  -- Can be NULL
+);
+```
+
+**UNIQUE:**
+Column values must be unique.
+
+```sql
+-- Single column
+CREATE TABLE employees (
+    employee_id INT PRIMARY KEY,
+    email VARCHAR(100) UNIQUE,
+    ...
+);
+
+-- Multiple columns (composite unique)
+CREATE TABLE user_logins (
+    user_id INT,
+    login_date DATE,
+    UNIQUE(user_id, login_date)
+);
+```
+
+**DEFAULT:**
+Sets default value for column.
+
+```sql
+CREATE TABLE orders (
+    order_id INT PRIMARY KEY,
+    order_date DATE DEFAULT CURRENT_DATE,
+    status VARCHAR(20) DEFAULT 'Pending',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+```
+
+**CHECK:**
+Validates column values.
+
+```sql
+CREATE TABLE employees (
+    employee_id INT PRIMARY KEY,
+    salary DECIMAL(10, 2) CHECK (salary > 0),
+    age INT CHECK (age >= 18 AND age <= 65)
+);
+```
+
 ### Data Types
 
 **Numeric:**
-- `INT`: Integer
-- `DECIMAL(p, s)`: Fixed-point number
+- `INT` or `INTEGER`: Integer (-2,147,483,648 to 2,147,483,647)
+- `BIGINT`: Large integer
+- `SMALLINT`: Small integer
+- `TINYINT`: Very small integer
+- `DECIMAL(p, s)`: Fixed-point number (precision, scale)
+  - Example: `DECIMAL(10, 2)` = 12345678.90
+- `NUMERIC(p, s)`: Same as DECIMAL
 - `FLOAT`: Floating-point number
+- `DOUBLE`: Double precision floating-point
+- `REAL`: Single precision floating-point
 
 **String:**
-- `VARCHAR(n)`: Variable-length string
-- `CHAR(n)`: Fixed-length string
-- `TEXT`: Long text
+- `VARCHAR(n)`: Variable-length string (max n characters)
+  - Example: `VARCHAR(50)` for names
+- `CHAR(n)`: Fixed-length string (always n characters)
+  - Example: `CHAR(2)` for state codes
+- `TEXT`: Long text (unlimited length)
+- `LONGTEXT`: Very long text (MySQL)
 
 **Date/Time:**
 - `DATE`: Date (YYYY-MM-DD)
+  - Example: '2024-01-15'
 - `TIME`: Time (HH:MM:SS)
+  - Example: '14:30:00'
 - `DATETIME`: Date and time
+  - Example: '2024-01-15 14:30:00'
 - `TIMESTAMP`: Auto-updating timestamp
+- `YEAR`: Year value (MySQL)
 
 **Other:**
-- `BOOLEAN`: True/False
+- `BOOLEAN` or `BOOL`: True/False (stored as TINYINT in MySQL)
 - `BLOB`: Binary large object
+- `JSON`: JSON data type (MySQL 5.7+, PostgreSQL 9.4+)
+
+**Choosing Data Types:**
+- Use smallest appropriate type (saves space)
+- Use VARCHAR for variable-length text
+- Use DECIMAL for money/precise calculations
+- Use DATE/DATETIME for dates (not strings)
 
 ### ALTER TABLE
 
@@ -478,25 +731,65 @@ DROP TABLE IF EXISTS employees;
 
 DML (Data Manipulation Language) - Manipulate data.
 
-### INSERT
+### INSERT - Create (C)
 
+**Insert Single Row:**
 ```sql
--- Insert single row
+-- Specify columns
 INSERT INTO employees (first_name, last_name, email, hire_date, salary)
 VALUES ('John', 'Doe', 'john.doe@example.com', '2024-01-15', 75000.00);
 
--- Insert multiple rows
+-- All columns (in order)
+INSERT INTO employees
+VALUES (1, 'John', 'Doe', 'john.doe@example.com', '2024-01-15', 75000.00, 1);
+```
+
+**Insert Multiple Rows:**
+```sql
 INSERT INTO employees (first_name, last_name, email, hire_date, salary)
 VALUES 
     ('Jane', 'Smith', 'jane.smith@example.com', '2024-02-01', 80000.00),
-    ('Bob', 'Johnson', 'bob.johnson@example.com', '2024-02-15', 70000.00);
-
--- Insert from another table
-INSERT INTO employees_backup
-SELECT * FROM employees WHERE hire_date < '2020-01-01';
+    ('Bob', 'Johnson', 'bob.johnson@example.com', '2024-02-15', 70000.00),
+    ('Alice', 'Williams', 'alice.williams@example.com', '2024-03-01', 75000.00);
 ```
 
-### SELECT
+**Insert from Another Table:**
+```sql
+-- Copy all columns
+INSERT INTO employees_backup
+SELECT * FROM employees WHERE hire_date < '2020-01-01';
+
+-- Copy specific columns
+INSERT INTO employees_backup (first_name, last_name, email)
+SELECT first_name, last_name, email 
+FROM employees 
+WHERE department_id = 1;
+```
+
+**Insert with Default Values:**
+```sql
+-- Use DEFAULT keyword
+INSERT INTO orders (customer_id, order_date, status)
+VALUES (1, DEFAULT, DEFAULT);
+
+-- Omit columns with defaults
+INSERT INTO orders (customer_id)
+VALUES (1);
+```
+
+### SELECT - Basic Queries
+
+**SELECT Statement:**
+The SELECT statement retrieves data from tables.
+
+**Basic Syntax:**
+```sql
+SELECT column1, column2, ...
+FROM table_name;
+```
+
+**FROM Clause:**
+Specifies the table(s) to query.
 
 ```sql
 -- Select all columns
@@ -514,73 +807,313 @@ FROM employees;
 
 -- Select distinct values
 SELECT DISTINCT department_id FROM employees;
+```
 
--- Select with WHERE clause
+### Filtering Data - WHERE Clause
+
+**WHERE Clause:**
+Filters rows based on conditions.
+
+**Comparison Operators:**
+```sql
+-- Equal to
+SELECT * FROM employees WHERE salary = 70000;
+
+-- Greater than
 SELECT * FROM employees WHERE salary > 70000;
 
--- Select with multiple conditions
+-- Less than
+SELECT * FROM employees WHERE salary < 70000;
+
+-- Not equal to (!= or <>)
+SELECT * FROM employees WHERE salary != 70000;
+SELECT * FROM employees WHERE salary <> 70000;
+
+-- Greater than or equal
+SELECT * FROM employees WHERE salary >= 70000;
+
+-- Less than or equal
+SELECT * FROM employees WHERE salary <= 70000;
+```
+
+**Logical Operators:**
+```sql
+-- AND: Both conditions must be true
 SELECT * FROM employees 
 WHERE salary > 70000 AND department_id = 1;
 
--- Select with IN
+-- OR: Either condition can be true
 SELECT * FROM employees 
-WHERE department_id IN (1, 2, 3);
+WHERE salary > 70000 OR department_id = 1;
 
--- Select with LIKE (pattern matching)
+-- NOT: Negates condition
 SELECT * FROM employees 
-WHERE email LIKE '%@example.com';
+WHERE NOT salary > 70000;
 
--- Select with BETWEEN
+-- Combining operators
+SELECT * FROM employees 
+WHERE (salary > 70000 OR salary < 50000) 
+AND department_id IN (1, 2);
+```
+
+**Special Operators:**
+
+**BETWEEN:**
+```sql
+-- Inclusive range
 SELECT * FROM employees 
 WHERE salary BETWEEN 60000 AND 80000;
 
--- Select with IS NULL
+-- Equivalent to
+SELECT * FROM employees 
+WHERE salary >= 60000 AND salary <= 80000;
+```
+
+**IN:**
+```sql
+-- Match any value in list
+SELECT * FROM employees 
+WHERE department_id IN (1, 2, 3);
+
+-- Equivalent to
+SELECT * FROM employees 
+WHERE department_id = 1 
+   OR department_id = 2 
+   OR department_id = 3;
+```
+
+**LIKE (Pattern Matching):**
+```sql
+-- % matches any sequence of characters
+SELECT * FROM employees 
+WHERE email LIKE '%@example.com';  -- Ends with @example.com
+
+SELECT * FROM employees 
+WHERE first_name LIKE 'John%';     -- Starts with John
+
+SELECT * FROM employees 
+WHERE email LIKE '%@%.%';          -- Contains @ and .
+
+-- _ matches single character
+SELECT * FROM employees 
+WHERE first_name LIKE 'J_n';       -- J, any char, n (e.g., Jan, Jon)
+
+-- Escape special characters
+SELECT * FROM employees 
+WHERE email LIKE '%\_%' ESCAPE '\'; -- Contains underscore
+```
+
+**IS NULL / IS NOT NULL:**
+```sql
+-- Check for NULL values
 SELECT * FROM employees WHERE email IS NULL;
 
--- Select with ORDER BY
+-- Check for non-NULL values
+SELECT * FROM employees WHERE email IS NOT NULL;
+
+-- Important: NULL != NULL in SQL
+-- Wrong:
+WHERE email = NULL;  -- Always false!
+
+-- Correct:
+WHERE email IS NULL;
+```
+
+### Sorting Results - ORDER BY
+
+**ORDER BY Clause:**
+Sorts result set.
+
+```sql
+-- Ascending (default)
+SELECT * FROM employees 
+ORDER BY salary ASC;
+
+-- Descending
 SELECT * FROM employees 
 ORDER BY salary DESC;
 
--- Select with LIMIT
+-- Multiple columns
+SELECT * FROM employees 
+ORDER BY department_id ASC, salary DESC;
+
+-- Using column position
+SELECT first_name, last_name, salary 
+FROM employees 
+ORDER BY 3 DESC;  -- Sort by 3rd column (salary)
+```
+
+### Limiting Results
+
+**LIMIT (MySQL/PostgreSQL):**
+```sql
+-- Limit number of rows
 SELECT * FROM employees 
 ORDER BY salary DESC 
 LIMIT 10;
+
+-- Limit with offset
+SELECT * FROM employees 
+ORDER BY salary DESC 
+LIMIT 10 OFFSET 20;  -- Skip 20, return 10
+
+-- Shorthand (MySQL)
+SELECT * FROM employees 
+ORDER BY salary DESC 
+LIMIT 20, 10;  -- Offset 20, limit 10
 ```
 
-### UPDATE
-
+**TOP (SQL Server):**
 ```sql
--- Update single row
+-- Top N rows
+SELECT TOP 10 * FROM employees 
+ORDER BY salary DESC;
+
+-- Top N percent
+SELECT TOP 10 PERCENT * FROM employees 
+ORDER BY salary DESC;
+
+-- With ties
+SELECT TOP 10 WITH TIES * FROM employees 
+ORDER BY salary DESC;
+```
+
+**FETCH (SQL Standard):**
+```sql
+-- PostgreSQL, SQL Server 2012+
+SELECT * FROM employees 
+ORDER BY salary DESC 
+OFFSET 20 ROWS 
+FETCH NEXT 10 ROWS ONLY;
+```
+
+### UPDATE - Update (U)
+
+**Update Single Row:**
+```sql
 UPDATE employees 
 SET salary = 80000 
 WHERE employee_id = 1;
+```
 
--- Update multiple columns
+**Update Multiple Columns:**
+```sql
 UPDATE employees 
-SET salary = 85000, email = 'new.email@example.com'
+SET salary = 85000, 
+    email = 'new.email@example.com',
+    hire_date = '2024-01-20'
 WHERE employee_id = 1;
+```
 
--- Update multiple rows
+**Update Multiple Rows:**
+```sql
+-- Update all employees in department 1
 UPDATE employees 
 SET salary = salary * 1.1 
 WHERE department_id = 1;
+
+-- Update based on condition
+UPDATE employees 
+SET salary = CASE 
+    WHEN salary < 50000 THEN salary * 1.15
+    WHEN salary < 70000 THEN salary * 1.10
+    ELSE salary * 1.05
+END
+WHERE department_id = 1;
 ```
 
-### DELETE
-
+**Update with Subquery:**
 ```sql
--- Delete specific rows
+-- Update based on another table
+UPDATE employees e
+SET salary = (
+    SELECT AVG(salary) 
+    FROM employees 
+    WHERE department_id = e.department_id
+)
+WHERE department_id = 1;
+```
+
+**Important:** Always use WHERE clause! Without it, all rows are updated.
+
+### DELETE - Delete (D)
+
+**Delete Specific Rows:**
+```sql
+-- Delete single row
 DELETE FROM employees WHERE employee_id = 1;
 
 -- Delete with condition
 DELETE FROM employees WHERE salary < 50000;
 
+-- Delete with multiple conditions
+DELETE FROM employees 
+WHERE department_id = 1 AND salary < 50000;
+```
+
+**Delete All Rows:**
+```sql
 -- Delete all rows (be careful!)
 DELETE FROM employees;
 
--- Truncate (faster, resets auto-increment)
+-- Truncate (faster, resets auto-increment, cannot rollback)
 TRUNCATE TABLE employees;
 ```
+
+**Delete with Subquery:**
+```sql
+-- Delete employees in departments with no active projects
+DELETE FROM employees
+WHERE department_id IN (
+    SELECT department_id 
+    FROM departments 
+    WHERE active_projects = 0
+);
+```
+
+**Important:** Always use WHERE clause! Without it, all rows are deleted.
+
+### Transaction Control
+
+**COMMIT:**
+Saves all changes made in the current transaction.
+
+```sql
+START TRANSACTION;
+INSERT INTO employees (first_name, last_name) VALUES ('John', 'Doe');
+UPDATE employees SET salary = 80000 WHERE employee_id = 1;
+COMMIT;  -- Save changes
+```
+
+**ROLLBACK:**
+Undoes all changes made in the current transaction.
+
+```sql
+START TRANSACTION;
+INSERT INTO employees (first_name, last_name) VALUES ('John', 'Doe');
+UPDATE employees SET salary = 80000 WHERE employee_id = 1;
+ROLLBACK;  -- Undo changes
+```
+
+**Example:**
+```sql
+-- Transfer money between accounts
+START TRANSACTION;
+
+UPDATE accounts SET balance = balance - 100 WHERE account_id = 1;
+UPDATE accounts SET balance = balance + 100 WHERE account_id = 2;
+
+-- Check for errors
+-- If successful:
+COMMIT;
+-- If error:
+ROLLBACK;
+```
+
+**Auto-commit:**
+- Most databases auto-commit each statement
+- Use transactions for multiple related operations
+- Ensures data consistency
 
 ---
 
@@ -617,38 +1150,196 @@ HAVING AVG(salary) > 70000;
 
 ### String Functions
 
+**CONCAT:**
+Concatenate strings.
+
 ```sql
--- CONCAT
+-- MySQL
 SELECT CONCAT(first_name, ' ', last_name) AS full_name FROM employees;
 
--- UPPER and LOWER
-SELECT UPPER(first_name) FROM employees;
-SELECT LOWER(email) FROM employees;
+-- SQL Server, PostgreSQL
+SELECT first_name || ' ' || last_name AS full_name FROM employees;
 
--- SUBSTRING
-SELECT SUBSTRING(email, 1, 5) FROM employees;
-
--- LENGTH
-SELECT LENGTH(first_name) FROM employees;
-
--- TRIM
-SELECT TRIM('  hello  ') AS trimmed;
+-- Multiple strings
+SELECT CONCAT(first_name, ' ', last_name, ' - ', email) AS info FROM employees;
 ```
 
-### Date Functions
+**LENGTH:**
+Get string length.
 
 ```sql
--- Current date/time
-SELECT NOW();
-SELECT CURDATE();
-SELECT CURTIME();
+-- MySQL
+SELECT LENGTH(first_name) FROM employees;
 
--- Date arithmetic
+-- SQL Server
+SELECT LEN(first_name) FROM employees;
+
+-- PostgreSQL
+SELECT LENGTH(first_name) FROM employees;
+```
+
+**UPPER and LOWER:**
+Change case.
+
+```sql
+SELECT UPPER(first_name) FROM employees;
+SELECT LOWER(email) FROM employees;
+```
+
+**SUBSTRING:**
+Extract substring.
+
+```sql
+-- MySQL, PostgreSQL
+SELECT SUBSTRING(email, 1, 5) FROM employees;
+SELECT SUBSTRING(email FROM 1 FOR 5) FROM employees;  -- Standard SQL
+
+-- SQL Server
+SELECT SUBSTRING(email, 1, 5) FROM employees;
+
+-- Extract domain from email
+SELECT SUBSTRING(email, LOCATE('@', email) + 1) AS domain FROM employees;
+```
+
+**Other String Functions:**
+```sql
+-- TRIM: Remove leading/trailing spaces
+SELECT TRIM('  hello  ') AS trimmed;
+SELECT LTRIM('  hello') AS left_trimmed;
+SELECT RTRIM('hello  ') AS right_trimmed;
+
+-- REPLACE: Replace substring
+SELECT REPLACE(email, '@example.com', '@company.com') FROM employees;
+
+-- REVERSE: Reverse string
+SELECT REVERSE(first_name) FROM employees;
+
+-- LEFT and RIGHT: Extract from sides
+SELECT LEFT(email, 5) FROM employees;
+SELECT RIGHT(email, 10) FROM employees;
+```
+
+### Date/Time Functions
+
+**Current Date/Time:**
+```sql
+-- MySQL
+SELECT NOW();        -- Current date and time
+SELECT CURDATE();    -- Current date
+SELECT CURTIME();    -- Current time
+
+-- PostgreSQL, SQL Server
+SELECT CURRENT_TIMESTAMP;  -- Current date and time
+SELECT CURRENT_DATE;       -- Current date
+SELECT CURRENT_TIME;       -- Current time
+```
+
+**Date Arithmetic:**
+```sql
+-- MySQL
 SELECT DATE_ADD(hire_date, INTERVAL 1 YEAR) FROM employees;
+SELECT DATE_SUB(hire_date, INTERVAL 1 MONTH) FROM employees;
 SELECT DATEDIFF(CURDATE(), hire_date) AS days_employed FROM employees;
 
--- Extract date parts
+-- PostgreSQL
+SELECT hire_date + INTERVAL '1 year' FROM employees;
+SELECT hire_date - INTERVAL '1 month' FROM employees;
+SELECT CURRENT_DATE - hire_date AS days_employed FROM employees;
+
+-- SQL Server
+SELECT DATEADD(YEAR, 1, hire_date) FROM employees;
+SELECT DATEDIFF(DAY, hire_date, GETDATE()) AS days_employed FROM employees;
+```
+
+**Extract Date Parts:**
+```sql
+-- MySQL, PostgreSQL
 SELECT YEAR(hire_date), MONTH(hire_date), DAY(hire_date) FROM employees;
+SELECT DAYOFWEEK(hire_date) FROM employees;  -- MySQL
+SELECT EXTRACT(YEAR FROM hire_date) FROM employees;  -- Standard SQL
+
+-- SQL Server
+SELECT YEAR(hire_date), MONTH(hire_date), DAY(hire_date) FROM employees;
+SELECT DATEPART(YEAR, hire_date) FROM employees;
+```
+
+**DATE_FORMAT (MySQL):**
+```sql
+-- Format dates
+SELECT DATE_FORMAT(hire_date, '%Y-%m-%d') AS formatted_date FROM employees;
+SELECT DATE_FORMAT(hire_date, '%M %d, %Y') AS formatted_date FROM employees;
+SELECT DATE_FORMAT(hire_date, '%W, %M %d') AS formatted_date FROM employees;
+
+-- Common formats
+-- %Y: 4-digit year
+-- %y: 2-digit year
+-- %m: Month (01-12)
+-- %M: Month name (January-December)
+-- %d: Day (01-31)
+-- %W: Weekday name (Sunday-Saturday)
+-- %H: Hour (00-23)
+-- %i: Minutes (00-59)
+-- %s: Seconds (00-59)
+```
+
+**TO_CHAR (PostgreSQL):**
+```sql
+SELECT TO_CHAR(hire_date, 'YYYY-MM-DD') AS formatted_date FROM employees;
+SELECT TO_CHAR(hire_date, 'Month DD, YYYY') AS formatted_date FROM employees;
+```
+
+**FORMAT (SQL Server):**
+```sql
+SELECT FORMAT(hire_date, 'yyyy-MM-dd') AS formatted_date FROM employees;
+SELECT FORMAT(hire_date, 'MMMM dd, yyyy') AS formatted_date FROM employees;
+```
+
+### Numeric Functions
+
+**ROUND:**
+Round to specified decimal places.
+
+```sql
+-- Round to 2 decimal places
+SELECT ROUND(salary, 2) FROM employees;
+
+-- Round to nearest integer
+SELECT ROUND(salary) FROM employees;
+
+-- Round to nearest 100
+SELECT ROUND(salary, -2) FROM employees;
+```
+
+**MOD:**
+Modulo (remainder after division).
+
+```sql
+-- MySQL
+SELECT MOD(10, 3);  -- Returns 1
+
+-- PostgreSQL, SQL Server
+SELECT 10 % 3;  -- Returns 1
+
+-- Example: Find even employee IDs
+SELECT * FROM employees WHERE MOD(employee_id, 2) = 0;
+```
+
+**Other Numeric Functions:**
+```sql
+-- ABS: Absolute value
+SELECT ABS(-10);  -- Returns 10
+
+-- CEIL/CEILING: Round up
+SELECT CEIL(10.1);  -- Returns 11
+
+-- FLOOR: Round down
+SELECT FLOOR(10.9);  -- Returns 10
+
+-- POWER: Raise to power
+SELECT POWER(2, 3);  -- Returns 8
+
+-- SQRT: Square root
+SELECT SQRT(16);  -- Returns 4
 ```
 
 ---
@@ -714,7 +1405,7 @@ CROSS JOIN departments d;
 
 ### SELF JOIN
 
-Join a table with itself.
+Join a table with itself (useful for hierarchical data).
 
 ```sql
 -- Find employees and their managers
@@ -723,7 +1414,40 @@ SELECT
     e2.first_name AS manager
 FROM employees e1
 LEFT JOIN employees e2 ON e1.manager_id = e2.employee_id;
+
+-- Find employees in same department
+SELECT 
+    e1.first_name AS employee1,
+    e2.first_name AS employee2,
+    e1.department_id
+FROM employees e1
+INNER JOIN employees e2 
+    ON e1.department_id = e2.department_id 
+    AND e1.employee_id < e2.employee_id;  -- Avoid duplicates
 ```
+
+### CROSS JOIN
+
+Cartesian product of both tables (every row from first table paired with every row from second table).
+
+```sql
+-- Explicit CROSS JOIN
+SELECT e.first_name, d.department_name
+FROM employees e
+CROSS JOIN departments d;
+
+-- Implicit CROSS JOIN (comma)
+SELECT e.first_name, d.department_name
+FROM employees e, departments d;
+
+-- Use case: Generate all combinations
+-- Example: All employees × All products
+SELECT e.first_name, p.product_name
+FROM employees e
+CROSS JOIN products p;
+```
+
+**Warning:** CROSS JOIN can produce very large result sets. Use with caution!
 
 ---
 
@@ -758,8 +1482,11 @@ WHERE (salary, department_id) = (
 
 ### Column Subquery
 
-Returns single column.
+Returns single column (used with IN, ANY, ALL).
 
+**Subqueries in WHERE Clause:**
+
+**Using IN:**
 ```sql
 -- Employees in departments with more than 5 employees
 SELECT * FROM employees
@@ -769,6 +1496,72 @@ WHERE department_id IN (
     GROUP BY department_id 
     HAVING COUNT(*) > 5
 );
+```
+
+**Using ANY:**
+```sql
+-- Employees with salary greater than any salary in department 1
+SELECT * FROM employees
+WHERE salary > ANY (
+    SELECT salary 
+    FROM employees 
+    WHERE department_id = 1
+);
+
+-- Equivalent to
+SELECT * FROM employees
+WHERE salary > (
+    SELECT MIN(salary) 
+    FROM employees 
+    WHERE department_id = 1
+);
+```
+
+**Using ALL:**
+```sql
+-- Employees with salary greater than all salaries in department 1
+SELECT * FROM employees
+WHERE salary > ALL (
+    SELECT salary 
+    FROM employees 
+    WHERE department_id = 1
+);
+
+-- Equivalent to
+SELECT * FROM employees
+WHERE salary > (
+    SELECT MAX(salary) 
+    FROM employees 
+    WHERE department_id = 1
+);
+```
+
+**Subqueries in FROM Clause (Derived Tables):**
+```sql
+-- Use subquery as table
+SELECT 
+    dept_stats.department_id,
+    dept_stats.avg_salary,
+    d.department_name
+FROM (
+    SELECT 
+        department_id,
+        AVG(salary) AS avg_salary
+    FROM employees
+    GROUP BY department_id
+) AS dept_stats
+INNER JOIN departments d ON dept_stats.department_id = d.department_id;
+```
+
+**Subqueries in SELECT Clause (Scalar Subqueries):**
+```sql
+-- Single value subquery
+SELECT 
+    first_name,
+    salary,
+    (SELECT AVG(salary) FROM employees) AS company_avg,
+    salary - (SELECT AVG(salary) FROM employees) AS difference
+FROM employees;
 ```
 
 ### Correlated Subquery
@@ -877,16 +1670,40 @@ FROM employees;
 
 ## Advanced SQL Topics
 
-### Common Table Expressions (CTE)
+### Common Table Expressions (CTE) - WITH Clause
 
-Temporary named result set.
+Temporary named result set (simplifies complex queries).
 
+**Basic CTE:**
 ```sql
 WITH high_earners AS (
     SELECT * FROM employees WHERE salary > 80000
 )
 SELECT * FROM high_earners;
+
+-- Multiple CTEs
+WITH 
+    high_earners AS (
+        SELECT * FROM employees WHERE salary > 80000
+    ),
+    dept_stats AS (
+        SELECT department_id, AVG(salary) AS avg_salary
+        FROM employees
+        GROUP BY department_id
+    )
+SELECT 
+    h.first_name,
+    h.salary,
+    d.avg_salary
+FROM high_earners h
+INNER JOIN dept_stats d ON h.department_id = d.department_id;
 ```
+
+**Use Cases:**
+- Simplify complex queries
+- Reuse subqueries
+- Improve readability
+- Replace derived tables
 
 ### Recursive CTE
 
@@ -925,11 +1742,90 @@ GROUP BY department_id;
 SELECT * FROM employee_summary;
 ```
 
-### Stored Procedures
+### Set Operators
 
-Reusable SQL code.
+**UNION:**
+Combines result sets (removes duplicates).
 
 ```sql
+-- Combine employees from two tables
+SELECT first_name, last_name FROM employees_2023
+UNION
+SELECT first_name, last_name FROM employees_2024;
+
+-- All columns must match in order and type
+SELECT employee_id, first_name FROM employees
+UNION
+SELECT customer_id, first_name FROM customers;
+```
+
+**UNION ALL:**
+Combines result sets (keeps duplicates).
+
+```sql
+-- Faster than UNION (no duplicate removal)
+SELECT first_name, last_name FROM employees_2023
+UNION ALL
+SELECT first_name, last_name FROM employees_2024;
+```
+
+**INTERSECT:**
+Returns common rows (PostgreSQL, SQL Server).
+
+```sql
+-- Employees in both tables
+SELECT employee_id FROM employees_2023
+INTERSECT
+SELECT employee_id FROM employees_2024;
+```
+
+**EXCEPT (MINUS in Oracle):**
+Returns rows in first query but not in second.
+
+```sql
+-- Employees only in 2023
+SELECT employee_id FROM employees_2023
+EXCEPT
+SELECT employee_id FROM employees_2024;
+```
+
+### Views - CREATE VIEW
+
+Virtual tables based on query results.
+
+```sql
+-- Create view
+CREATE VIEW employee_summary AS
+SELECT 
+    department_id,
+    COUNT(*) AS employee_count,
+    AVG(salary) AS avg_salary
+FROM employees
+GROUP BY department_id;
+
+-- Use view
+SELECT * FROM employee_summary;
+
+-- Update view (if updatable)
+UPDATE employee_summary SET avg_salary = 75000 WHERE department_id = 1;
+
+-- Drop view
+DROP VIEW employee_summary;
+```
+
+**Benefits:**
+- Simplify complex queries
+- Security (hide sensitive columns)
+- Reusability
+- Consistency
+
+### Stored Procedures
+
+Reusable SQL code with parameters.
+
+**CREATE PROCEDURE:**
+```sql
+-- MySQL
 DELIMITER //
 CREATE PROCEDURE GetEmployeeByDepartment(IN dept_id INT)
 BEGIN
@@ -939,6 +1835,352 @@ DELIMITER ;
 
 -- Call procedure
 CALL GetEmployeeByDepartment(1);
+```
+
+**Parameters:**
+- **IN**: Input parameter (default)
+- **OUT**: Output parameter
+- **INOUT**: Both input and output
+
+```sql
+-- MySQL example with OUT parameter
+DELIMITER //
+CREATE PROCEDURE GetDepartmentStats(
+    IN dept_id INT,
+    OUT emp_count INT,
+    OUT avg_salary DECIMAL(10,2)
+)
+BEGIN
+    SELECT COUNT(*), AVG(salary)
+    INTO emp_count, avg_salary
+    FROM employees
+    WHERE department_id = dept_id;
+END //
+DELIMITER ;
+
+-- Call
+CALL GetDepartmentStats(1, @count, @avg);
+SELECT @count, @avg;
+```
+
+**Control Flow:**
+```sql
+-- IF/ELSE
+DELIMITER //
+CREATE PROCEDURE UpdateSalary(IN emp_id INT, IN new_salary DECIMAL)
+BEGIN
+    IF new_salary > 0 THEN
+        UPDATE employees SET salary = new_salary WHERE employee_id = emp_id;
+    ELSE
+        SELECT 'Salary must be positive' AS error;
+    END IF;
+END //
+DELIMITER ;
+
+-- CASE
+DELIMITER //
+CREATE PROCEDURE GetEmployeeStatus(IN emp_id INT)
+BEGIN
+    SELECT 
+        first_name,
+        CASE 
+            WHEN salary > 80000 THEN 'High'
+            WHEN salary > 50000 THEN 'Medium'
+            ELSE 'Low'
+        END AS salary_status
+    FROM employees
+    WHERE employee_id = emp_id;
+END //
+DELIMITER ;
+
+-- Looping (MySQL)
+DELIMITER //
+CREATE PROCEDURE InsertTestEmployees(IN num INT)
+BEGIN
+    DECLARE i INT DEFAULT 1;
+    WHILE i <= num DO
+        INSERT INTO employees (first_name, last_name)
+        VALUES (CONCAT('Test', i), CONCAT('User', i));
+        SET i = i + 1;
+    END WHILE;
+END //
+DELIMITER ;
+```
+
+**PostgreSQL Example:**
+```sql
+CREATE OR REPLACE PROCEDURE get_employee_by_department(dept_id INT)
+LANGUAGE plpgsql
+AS $$
+BEGIN
+    SELECT * FROM employees WHERE department_id = dept_id;
+END;
+$$;
+
+-- Call
+CALL get_employee_by_department(1);
+```
+
+**SQL Server Example:**
+```sql
+CREATE PROCEDURE GetEmployeeByDepartment
+    @dept_id INT
+AS
+BEGIN
+    SELECT * FROM employees WHERE department_id = @dept_id;
+END;
+
+-- Call
+EXEC GetEmployeeByDepartment @dept_id = 1;
+```
+
+### User-Defined Functions (UDFs)
+
+**Scalar Functions:**
+Return single value.
+
+```sql
+-- MySQL
+DELIMITER //
+CREATE FUNCTION CalculateBonus(salary DECIMAL(10,2))
+RETURNS DECIMAL(10,2)
+DETERMINISTIC
+BEGIN
+    RETURN salary * 0.1;
+END //
+DELIMITER ;
+
+-- Use
+SELECT first_name, salary, CalculateBonus(salary) AS bonus FROM employees;
+```
+
+**Table-Valued Functions (SQL Server, PostgreSQL):**
+Return table.
+
+```sql
+-- SQL Server
+CREATE FUNCTION GetEmployeesByDepartment(@dept_id INT)
+RETURNS TABLE
+AS
+RETURN
+    SELECT * FROM employees WHERE department_id = @dept_id;
+
+-- Use
+SELECT * FROM GetEmployeesByDepartment(1);
+```
+
+**PostgreSQL:**
+```sql
+CREATE FUNCTION get_employees_by_department(dept_id INT)
+RETURNS TABLE (
+    employee_id INT,
+    first_name VARCHAR(50),
+    salary DECIMAL(10,2)
+)
+AS $$
+BEGIN
+    RETURN QUERY
+    SELECT e.employee_id, e.first_name, e.salary
+    FROM employees e
+    WHERE e.department_id = dept_id;
+END;
+$$ LANGUAGE plpgsql;
+
+-- Use
+SELECT * FROM get_employees_by_department(1);
+```
+
+### Indexes
+
+**Purpose and Importance:**
+- Speed up queries
+- Improve performance
+- Essential for large tables
+- Automatically created for PRIMARY KEY and UNIQUE
+
+**CREATE INDEX:**
+```sql
+-- Single column index
+CREATE INDEX idx_department_id ON employees(department_id);
+
+-- Composite index
+CREATE INDEX idx_dept_salary ON employees(department_id, salary);
+
+-- Unique index
+CREATE UNIQUE INDEX idx_email ON employees(email);
+```
+
+**DROP INDEX:**
+```sql
+-- MySQL
+DROP INDEX idx_department_id ON employees;
+
+-- PostgreSQL, SQL Server
+DROP INDEX idx_department_id;
+```
+
+**Clustered vs Non-Clustered:**
+
+**Clustered Index:**
+- Physical order of rows matches index order
+- Only one per table (usually PRIMARY KEY)
+- Faster for range queries
+
+**Non-Clustered Index:**
+- Separate structure pointing to data
+- Multiple per table
+- Faster for lookups
+
+```sql
+-- SQL Server: Clustered index
+CREATE CLUSTERED INDEX idx_employee_id ON employees(employee_id);
+
+-- Non-clustered index (default)
+CREATE NONCLUSTERED INDEX idx_department_id ON employees(department_id);
+```
+
+**When to Create Indexes:**
+- Foreign keys (always)
+- Frequently queried columns
+- Columns in WHERE clauses
+- Columns in JOIN conditions
+- Columns in ORDER BY
+
+**When NOT to Create Indexes:**
+- Small tables
+- Frequently updated columns
+- Columns with few unique values
+- Too many indexes (slows INSERT/UPDATE)
+
+### Triggers
+
+**Concept:**
+Automated actions executed when specific events occur.
+
+**CREATE TRIGGER:**
+```sql
+-- MySQL: BEFORE INSERT
+DELIMITER //
+CREATE TRIGGER before_employee_insert
+BEFORE INSERT ON employees
+FOR EACH ROW
+BEGIN
+    IF NEW.salary < 0 THEN
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Salary cannot be negative';
+    END IF;
+END //
+DELIMITER ;
+
+-- MySQL: AFTER UPDATE
+DELIMITER //
+CREATE TRIGGER after_employee_update
+AFTER UPDATE ON employees
+FOR EACH ROW
+BEGIN
+    INSERT INTO employee_audit (employee_id, old_salary, new_salary, change_date)
+    VALUES (NEW.employee_id, OLD.salary, NEW.salary, NOW());
+END //
+DELIMITER ;
+```
+
+**Event Types:**
+- **BEFORE INSERT**: Before row is inserted
+- **AFTER INSERT**: After row is inserted
+- **BEFORE UPDATE**: Before row is updated
+- **AFTER UPDATE**: After row is updated
+- **BEFORE DELETE**: Before row is deleted
+- **AFTER DELETE**: After row is deleted
+
+**PostgreSQL Example:**
+```sql
+CREATE OR REPLACE FUNCTION log_employee_changes()
+RETURNS TRIGGER AS $$
+BEGIN
+    INSERT INTO employee_audit (employee_id, old_salary, new_salary, change_date)
+    VALUES (NEW.employee_id, OLD.salary, NEW.salary, NOW());
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER after_employee_update
+AFTER UPDATE ON employees
+FOR EACH ROW
+EXECUTE FUNCTION log_employee_changes();
+```
+
+**SQL Server Example:**
+```sql
+CREATE TRIGGER after_employee_update
+ON employees
+AFTER UPDATE
+AS
+BEGIN
+    INSERT INTO employee_audit (employee_id, old_salary, new_salary, change_date)
+    SELECT 
+        i.employee_id,
+        d.salary AS old_salary,
+        i.salary AS new_salary,
+        GETDATE()
+    FROM inserted i
+    INNER JOIN deleted d ON i.employee_id = d.employee_id;
+END;
+```
+
+**Example Use Cases:**
+
+**1. Auditing:**
+```sql
+-- Track all changes to employee table
+CREATE TRIGGER audit_employee_changes
+AFTER UPDATE ON employees
+FOR EACH ROW
+BEGIN
+    INSERT INTO audit_log (table_name, action, old_data, new_data, timestamp)
+    VALUES ('employees', 'UPDATE', OLD.employee_id, NEW.employee_id, NOW());
+END;
+```
+
+**2. Enforcing Business Rules:**
+```sql
+-- Prevent salary decrease
+CREATE TRIGGER prevent_salary_decrease
+BEFORE UPDATE ON employees
+FOR EACH ROW
+BEGIN
+    IF NEW.salary < OLD.salary THEN
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Cannot decrease salary';
+    END IF;
+END;
+```
+
+**3. Auto-calculations:**
+```sql
+-- Update total when order items change
+CREATE TRIGGER update_order_total
+AFTER INSERT ON order_items
+FOR EACH ROW
+BEGIN
+    UPDATE orders
+    SET total = (
+        SELECT SUM(quantity * price)
+        FROM order_items
+        WHERE order_id = NEW.order_id
+    )
+    WHERE order_id = NEW.order_id;
+END;
+```
+
+**4. Data Validation:**
+```sql
+-- Validate email format
+CREATE TRIGGER validate_email
+BEFORE INSERT ON employees
+FOR EACH ROW
+BEGIN
+    IF NEW.email NOT LIKE '%@%.%' THEN
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Invalid email format';
+    END IF;
+END;
 ```
 
 ---
