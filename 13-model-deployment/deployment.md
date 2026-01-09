@@ -626,6 +626,277 @@ docker-compose down
 
 ## Cloud Deployment
 
+### Hugging Face Spaces (Free Model Hosting)
+
+**What are Hugging Face Spaces?**
+
+Hugging Face Spaces provides free hosting for ML model demos and applications. It's perfect for:
+- **Portfolio projects**: Showcase your models
+- **Quick demos**: Share models with others
+- **Learning**: Practice deployment without costs
+- **Community**: Share with the ML community
+
+**Key Features:**
+- **Free**: No credit card required
+- **Easy**: Git push to deploy
+- **Automatic**: Auto-deploys on push
+- **Built-in UI**: Gradio or Streamlit interfaces
+- **Public**: Share with anyone via URL
+
+**Why Use Hugging Face Spaces?**
+- Fastest way to deploy ML models
+- Great for building portfolio
+- Free hosting (no costs)
+- Easy sharing and collaboration
+- Industry-recognized platform
+
+**Step 1: Install Hugging Face Hub**
+
+```bash
+pip install huggingface_hub
+```
+
+**Step 2: Create a Space**
+
+```bash
+# Login to Hugging Face
+huggingface-cli login
+
+# Create a new Space
+huggingface-cli repo create my-sentiment-model --type space --space-sdk gradio
+```
+
+Or create via web interface:
+1. Go to https://huggingface.co/spaces
+2. Click "Create new Space"
+3. Choose SDK: Gradio or Streamlit
+4. Set visibility: Public or Private
+
+**Step 3: Create Your App**
+
+**Option A: Gradio (Recommended for beginners)**
+
+```python
+# app.py
+import gradio as gr
+import joblib
+import numpy as np
+
+# Load your model
+model = joblib.load("model.pkl")
+
+def predict(text):
+    """Make prediction"""
+    # Preprocess text (example)
+    features = preprocess_text(text)
+    
+    # Predict
+    prediction = model.predict([features])[0]
+    probability = model.predict_proba([features])[0]
+    
+    # Format output
+    labels = ["Negative", "Positive"]
+    result = {
+        labels[i]: float(prob) 
+        for i, prob in enumerate(probability)
+    }
+    
+    return result
+
+# Create Gradio interface
+iface = gr.Interface(
+    fn=predict,
+    inputs=gr.Textbox(label="Enter text", placeholder="Type your text here..."),
+    outputs=gr.Label(label="Sentiment"),
+    title="Sentiment Analysis Model",
+    description="Classify text as positive or negative sentiment",
+    examples=[
+        ["I love this product!"],
+        ["This is terrible."],
+        ["It's okay, not great."]
+    ]
+)
+
+iface.launch()
+```
+
+**Option B: Streamlit**
+
+```python
+# app.py
+import streamlit as st
+import joblib
+import numpy as np
+
+# Load model
+@st.cache_resource
+def load_model():
+    return joblib.load("model.pkl")
+
+model = load_model()
+
+st.title("Sentiment Analysis Model")
+st.write("Enter text to classify sentiment")
+
+# Input
+text = st.text_area("Text input", height=100)
+
+if st.button("Predict"):
+    if text:
+        # Preprocess and predict
+        features = preprocess_text(text)
+        prediction = model.predict([features])[0]
+        probability = model.predict_proba([features])[0]
+        
+        # Display results
+        st.success(f"Prediction: {prediction}")
+        st.bar_chart({
+            "Negative": probability[0],
+            "Positive": probability[1]
+        })
+    else:
+        st.warning("Please enter some text")
+```
+
+**Step 4: Add Requirements**
+
+```txt
+# requirements.txt
+gradio>=4.0.0
+scikit-learn>=1.0.0
+numpy>=1.21.0
+pandas>=1.3.0
+```
+
+**Step 5: Deploy**
+
+```bash
+# Clone your space
+git clone https://huggingface.co/spaces/your-username/my-sentiment-model
+cd my-sentiment-model
+
+# Add files
+# - app.py
+# - requirements.txt
+# - model.pkl (or load from Hugging Face Hub)
+
+# Commit and push
+git add .
+git commit -m "Add sentiment analysis model"
+git push
+
+# Auto-deploys in 2-3 minutes!
+# Your app will be live at:
+# https://your-username-my-sentiment-model.hf.space
+```
+
+**Advanced: Loading Models from Hugging Face Hub**
+
+```python
+# app.py
+from transformers import pipeline
+import gradio as gr
+
+# Load model from Hugging Face Hub
+classifier = pipeline("sentiment-analysis", 
+                     model="cardiffnlp/twitter-roberta-base-sentiment-latest")
+
+def predict(text):
+    result = classifier(text)[0]
+    return {
+        result['label']: result['score']
+    }
+
+iface = gr.Interface(
+    fn=predict,
+    inputs="text",
+    outputs="label",
+    title="Sentiment Analysis"
+)
+
+iface.launch()
+```
+
+**Advanced: Multi-Model Space**
+
+```python
+# app.py
+import gradio as gr
+import joblib
+
+# Load multiple models
+sentiment_model = joblib.load("sentiment_model.pkl")
+topic_model = joblib.load("topic_model.pkl")
+
+def sentiment_analysis(text):
+    pred = sentiment_model.predict([text])[0]
+    return pred
+
+def topic_classification(text):
+    topic = topic_model.predict([text])[0]
+    return topic
+
+# Create tabbed interface
+with gr.Blocks() as demo:
+    gr.Markdown("# NLP Models Demo")
+    
+    with gr.Tabs():
+        with gr.TabItem("Sentiment Analysis"):
+            text1 = gr.Textbox(label="Text")
+            output1 = gr.Label(label="Sentiment")
+            btn1 = gr.Button("Analyze")
+            btn1.click(sentiment_analysis, text1, output1)
+        
+        with gr.TabItem("Topic Classification"):
+            text2 = gr.Textbox(label="Text")
+            output2 = gr.Label(label="Topic")
+            btn2 = gr.Button("Classify")
+            btn2.click(topic_classification, text2, output2)
+
+demo.launch()
+```
+
+**Best Practices:**
+
+1. **Keep models small**: Use quantized models (< 1GB recommended)
+2. **Add examples**: Help users understand how to use your model
+3. **Error handling**: Handle edge cases gracefully
+4. **Documentation**: Add README.md explaining your model
+5. **Version control**: Use Git to track changes
+
+**Benefits for Portfolio:**
+
+- **Live demos**: Show working models to employers
+- **Easy sharing**: Share via URL
+- **Professional**: Industry-recognized platform
+- **Free**: No hosting costs
+- **Community**: Get feedback and stars
+
+**Limitations:**
+
+- **Free tier**: Limited resources (CPU, memory)
+- **Public by default**: Models are publicly accessible
+- **File size**: Limited storage for large models
+- **No custom domains**: Must use hf.space domain
+
+**When to Use Hugging Face Spaces:**
+
+- Portfolio projects
+- Model demos and prototypes
+- Sharing with community
+- Learning deployment
+- Quick proof-of-concepts
+
+**When NOT to Use:**
+
+- Production applications (use AWS/GCP/Azure)
+- Large models (> 5GB)
+- High-traffic applications
+- Private/internal tools
+- Custom domain requirements
+
+---
+
 ### Heroku
 
 Simple deployment platform.
