@@ -222,9 +222,10 @@ This guide provides clear, role-specific learning paths for different careers in
 | **Advanced ML** | 06-07 | Ensembles, Feature Engineering | 1-2 months |
 | **Deep Learning** | 09-10 | Neural Networks, PyTorch, TensorFlow | 2-3 months |
 | **NLP** | 12 | NLP, Transformers, Fine-tuning, RAG | 4-5 months |
+| **Generative AI** | 25 | Modern LLMs, Prompt Engineering, RAG Systems, AI Agents | 1-2 months |
 | **Production** | 13-14 | Model Deployment, MLOps | 2-3 months |
 | **Essential Skills** | 19, 21 | SQL, Explainability | 1-2 months |
-| **Total** | **11 modules** | **Complete Path** | **17-24 months** |
+| **Total** | **12 modules** | **Complete Path** | **17-24 months** |
 
 ### Essential Modules
 
@@ -241,6 +242,7 @@ This guide provides clear, role-specific learning paths for different careers in
 | **09-neural-networks-basics** | Neural Networks, Backpropagation | ⭐⭐⭐ Critical |
 | **10-deep-learning-frameworks** | PyTorch, TensorFlow | ⭐⭐⭐ Critical |
 | **12-natural-language-processing** | Text Preprocessing, Word Embeddings, RNNs, LSTMs, Transformers, Fine-tuning, RAG | ⭐⭐⭐ Critical |
+| **25-generative-ai-llms** | Prompt Engineering, Vector Databases, RAG Systems, LLM Agents, Multi-Agent Systems, LangChain, LangGraph | ⭐⭐⭐ Critical |
 | **13-model-deployment** | REST APIs, Docker, Cloud Deployment | ⭐⭐⭐ Critical |
 | **14-mlops-basics** | MLflow, Version Control, CI/CD | ⭐⭐ Important |
 | **19-sql-database-fundamentals** | SQL, Vector Databases | ⭐⭐ Important |
@@ -251,7 +253,7 @@ This guide provides clear, role-specific learning paths for different careers in
 | Level | Projects | Skills Practiced |
 |-------|----------|------------------|
 | **Intermediate** | Sentiment Analysis on Reviews | NLP, Text Classification |
-| **Advanced** | Chatbot Development, End-to-End ML Pipeline | Sequence-to-Sequence, Transformers, RAG, Deployment |
+| **Advanced** | LLM Chatbot & RAG System, End-to-End ML Pipeline | Modern LLMs, RAG, Vector Databases, LangChain, Deployment |
 
 ### Essential Resources
 
@@ -270,11 +272,14 @@ This guide provides clear, role-specific learning paths for different careers in
 - Fine-tuning transformers (Hugging Face)
 - RAG (Retrieval Augmented Generation)
 - Langchain and LlamaIndex frameworks
-- Vector databases and embeddings
+- Vector databases and embeddings (Pinecone, ChromaDB, Weaviate, FAISS)
 - Model deployment and serving
-- Prompt engineering
+- Prompt engineering (zero-shot, few-shot, chain-of-thought)
+- Generative configuration (temperature, top-p, top-k)
 - LLM evaluation and benchmarking
 - AI agents (CrewAI, AutoGen, Langgraph)
+- Multi-agent systems and coordination
+- LLM fine-tuning and RLHF
 
 ---
 
@@ -289,10 +294,10 @@ This guide provides clear, role-specific learning paths for different careers in
 | **Foundation** | 00-01 | Python, Data Fundamentals | 2-3 months |
 | **ML Basics** | 02-05 | ML Concepts, Evaluation, Optimization | 3-4 months |
 | **Deep Learning** | 09-10 | Neural Networks, Frameworks | 2-3 months |
-| **NLP & GenAI** | 12 | NLP, Transformers, Fine-tuning, RAG | 4-5 months |
+| **NLP & GenAI** | 12, 25 | NLP, Transformers, Fine-tuning, RAG, Modern LLMs, AI Agents, Multi-Agent Systems | 5-6 months |
 | **Production** | 13-14 | Model Deployment, MLOps | 3-4 months |
 | **Essential Skills** | 19 | SQL, Databases | 1-2 months |
-| **Total** | **9 modules** | **Complete Path** | **15-21 months** |
+| **Total** | **10 modules** | **Complete Path** | **15-21 months** |
 
 ### Essential Modules
 
@@ -305,6 +310,7 @@ This guide provides clear, role-specific learning paths for different careers in
 | **09-neural-networks-basics** | Neural Networks, Backpropagation | ⭐⭐⭐ Critical |
 | **10-deep-learning-frameworks** | PyTorch, TensorFlow | ⭐⭐⭐ Critical |
 | **12-natural-language-processing** | NLP, Transformers, Fine-tuning, RAG | ⭐⭐⭐ Critical |
+| **25-generative-ai-llms** | Prompt Engineering, Vector Databases, RAG Systems, LLM Agents, Multi-Agent Systems, LangChain, LangGraph, MCP, A2A | ⭐⭐⭐ Critical |
 | **13-model-deployment** | Deployment, APIs, Cloud, Hyperscalers | ⭐⭐⭐ Critical |
 | **14-mlops-basics** | MLOps, CI/CD, Experiment Tracking | ⭐⭐⭐ Critical |
 | **19-sql-database-fundamentals** | SQL, Databases, Vector Stores | ⭐⭐ Important |
@@ -326,7 +332,7 @@ This guide provides clear, role-specific learning paths for different careers in
 | Level | Projects | Skills Practiced |
 |-------|----------|------------------|
 | **Intermediate** | Chatbot Development, Sentiment Analysis | NLP, Transformers, RAG |
-| **Advanced** | End-to-End ML Pipeline, Model Deployment & Serving | Full Stack GenAI, Production Deployment |
+| **Advanced** | LLM Chatbot & RAG System, End-to-End ML Pipeline, Model Deployment & Serving | RAG Systems, Multi-Agent Systems, Full Stack GenAI, Production Deployment |
 
 ### Essential Resources
 
@@ -441,10 +447,11 @@ This guide provides clear, role-specific learning paths for different careers in
 | **Unsupervised Learning** | 08 | Clustering, Dimensionality Reduction | 1-2 months |
 | **Deep Learning** | 09-10 | Neural Networks, PyTorch, TensorFlow | 2-3 months |
 | **Specialized DL** | 11-12, 15 | Computer Vision, NLP, Time Series | 6-8 months |
+| **Generative AI** | 25 | Modern LLMs, RAG, AI Agents, Multi-Agent Systems | 1-2 months |
 | **Advanced Specialized** | 22-24 | Reinforcement Learning, Graph Neural Networks, Audio/Speech | 2-3 months |
 | **Production** | 13-14 | Model Deployment, MLOps | 3-4 months |
 | **Essential Skills** | 19-21 | SQL, Imbalanced Data, Explainability | 2-3 months |
-| **Total** | **19 modules** | **Complete Path** | **25-38 months** |
+| **Total** | **20 modules** | **Complete Path** | **25-38 months** |
 
 ### Essential Modules
 
@@ -463,6 +470,7 @@ This guide provides clear, role-specific learning paths for different careers in
 | **10-deep-learning-frameworks** | PyTorch, TensorFlow | ⭐⭐⭐ Critical |
 | **11-computer-vision** | CNNs, Object Detection, Segmentation, GANs, Diffusion | ⭐⭐⭐ Critical |
 | **12-natural-language-processing** | NLP, Transformers, Fine-tuning, RAG | ⭐⭐⭐ Critical |
+| **25-generative-ai-llms** | Modern LLMs, Prompt Engineering, RAG Systems, AI Agents, Multi-Agent Systems | ⭐⭐⭐ Critical |
 | **15-time-series-analysis** | Time Series, Forecasting | ⭐⭐ Important |
 | **22-reinforcement-learning** | RL, Q-Learning, DQN, Policy Gradients, Multi-Agent RL | ⭐⭐ Important |
 | **23-graph-neural-networks** | GNNs, GCNs, GATs, Graph Applications | ⭐⭐ Important |
@@ -479,7 +487,7 @@ This guide provides clear, role-specific learning paths for different careers in
 |-------|----------|------------------|
 | **Beginner** | House Price Prediction, Titanic Survival | Regression, Classification |
 | **Intermediate** | Handwritten Digit Recognition, Sentiment Analysis, Time Series Forecasting | CNNs, NLP, Time Series |
-| **Advanced** | Image Classification, Chatbot Development, Object Detection, End-to-End ML Pipeline, Generative Model (GAN/VAE), Model Deployment | Full Stack AI, Multiple Domains |
+| **Advanced** | Image Classification, LLM Chatbot & RAG System, Object Detection, End-to-End ML Pipeline, Generative Model (GAN/VAE), Model Deployment | Full Stack AI, Multiple Domains, GenAI |
 
 ### Essential Resources
 
@@ -496,6 +504,7 @@ This guide provides clear, role-specific learning paths for different careers in
 - Deep learning (CNNs, RNNs, Transformers)
 - Computer vision (Object Detection, Segmentation)
 - Natural language processing (NLP, Transformers, RAG)
+- Generative AI and modern LLMs (Prompt Engineering, RAG, AI Agents, Multi-Agent Systems)
 - Reinforcement learning (Q-Learning, DQN, Policy Gradients)
 - Graph neural networks (GCNs, GATs, Graph Applications)
 - Audio and speech processing (ASR, TTS, Audio Classification)
@@ -580,9 +589,10 @@ This guide provides clear, role-specific learning paths for different careers in
 | **ML Basics** | 02-05 | ML Concepts, Models | 3-4 months |
 | **Advanced ML** | 06-07 | Ensembles, Feature Engineering | 1-2 months |
 | **Deep Learning** | 09-10 | Neural Networks, Frameworks | 2-3 months |
+| **NLP & GenAI** | 12, 25 | NLP, Transformers, Modern LLMs, RAG, AI Agents | 2-3 months |
 | **Production** | 13-14 | Deployment, MLOps, CI/CD, Kafka, Spark | 4-5 months |
 | **Essential Skills** | 19-21 | SQL, Testing, Explainability | 2-3 months |
-| **Total** | **12 modules** | **Complete Path** | **16-24 months** |
+| **Total** | **14 modules** | **Complete Path** | **16-24 months** |
 
 ### Essential Modules
 
@@ -593,6 +603,8 @@ This guide provides clear, role-specific learning paths for different careers in
 | **02-introduction-to-ml** | ML Concepts | ⭐⭐ Important |
 | **03-05** | ML Models, Evaluation | ⭐⭐ Important |
 | **09-10** | Deep Learning Basics | ⭐⭐ Important |
+| **12-natural-language-processing** | NLP, Transformers | ⭐⭐ Important |
+| **25-generative-ai-llms** | Modern LLMs, RAG, AI Agents, GenAI Deployment | ⭐⭐⭐ Critical |
 | **13-model-deployment** | REST APIs, Docker, Cloud, AWS SageMaker, A/B Testing | ⭐⭐⭐ Critical |
 | **14-mlops-basics** | DVC, MLflow, CI/CD, Kafka, Spark, Feature Stores | ⭐⭐⭐ Critical |
 | **19-sql-database-fundamentals** | SQL, Databases | ⭐⭐ Important |
@@ -626,6 +638,8 @@ This guide provides clear, role-specific learning paths for different careers in
 - Infrastructure as Code (Terraform, CloudFormation)
 - Model serving and APIs
 - A/B testing and experimentation
+- GenAI deployment and operations (RAG systems, LLM serving, vector databases)
+- LLM monitoring and cost optimization
 
 ---
 
@@ -644,9 +658,10 @@ This guide provides clear, role-specific learning paths for different careers in
 | **Unsupervised Learning** | 08 | Advanced Clustering, Dimensionality Reduction | 2-3 months |
 | **Deep Learning** | 09-10 | Neural Networks, Frameworks | 3-4 months |
 | **Specialized DL** | 11-12, 15 | Computer Vision, NLP, Time Series | 6-8 months |
+| **Generative AI** | 25 | Modern LLMs, RAG, AI Agents, Multi-Agent Systems | 1-2 months |
 | **Advanced Specialized** | 22-24 | Reinforcement Learning, Graph Neural Networks, Audio/Speech | 2-3 months |
 | **Essential Skills** | 19-21 | SQL, Explainability | 1-2 months |
-| **Total** | **16 modules** | **Complete Path** | **24-34 months** |
+| **Total** | **17 modules** | **Complete Path** | **24-34 months** |
 
 ### Essential Modules
 
@@ -665,6 +680,7 @@ This guide provides clear, role-specific learning paths for different careers in
 | **10-deep-learning-frameworks** | PyTorch, TensorFlow | ⭐⭐⭐ Critical |
 | **11-computer-vision** | CV Theory, Architectures, Research | ⭐⭐⭐ Critical |
 | **12-natural-language-processing** | NLP Theory, Transformers, Research | ⭐⭐⭐ Critical |
+| **25-generative-ai-llms** | Modern LLMs, Prompt Engineering, RAG, AI Agents, Multi-Agent Systems, RLHF | ⭐⭐⭐ Critical |
 | **15-time-series-analysis** | Time Series Theory | ⭐⭐ Important |
 | **22-reinforcement-learning** | RL Theory, MDPs, Deep RL, Multi-Agent RL | ⭐⭐⭐ Critical |
 | **23-graph-neural-networks** | GNN Theory, Graph Algorithms, Research | ⭐⭐⭐ Critical |
@@ -696,6 +712,8 @@ This guide provides clear, role-specific learning paths for different careers in
 - Reinforcement learning theory and applications
 - Graph neural networks and graph algorithms
 - Audio and speech processing
+- Generative AI and modern LLMs (prompt engineering, RAG, AI agents)
+- LLM training, fine-tuning, and RLHF
 - Ability to read and implement research papers
 - Publication and writing skills
 - Programming (Python, PyTorch, TensorFlow)
