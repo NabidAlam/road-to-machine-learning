@@ -87,28 +87,49 @@ Build advanced forecasting models for complex time series data.
 
 ---
 
-### Project 4: Chatbot Development
+### Project 4: LLM Chatbot & RAG System
 **Difficulty**:   
 **Time**: 2-3 weeks  
-**Skills**: NLP, Sequence-to-Sequence, Transformers, Dialog Systems
+**Skills**: Modern LLMs, RAG, Vector Databases, LangChain, Prompt Engineering
 
-Build an intelligent chatbot using modern NLP techniques.
+Build a production-ready RAG (Retrieval-Augmented Generation) system that ingests documents, stores embeddings in vector databases, and answers questions using GPT-4/Llama 3 or other LLMs.
 
 **What you'll learn:**
-- Sequence-to-sequence models
-- Attention mechanisms
-- Transformer architectures
-- Dialog management
-- Evaluation of conversational AI
+- Prompt engineering techniques
+- Vector database integration (Pinecone, ChromaDB, or Weaviate)
+- Document ingestion and chunking
+- Embedding generation and storage
+- RAG pipeline implementation
+- LangChain/LangGraph for orchestration
+- Evaluation of RAG systems
+- Production deployment
 
-**Dataset**: Custom dataset or [Cornell Movie Dialog](https://www.cs.cornell.edu/~cristian/Cornell_Movie-Dialogs_Corpus.html)
+**Core Components:**
+1. **Document Processing**: PDF/document parsing and chunking
+2. **Embedding Generation**: Convert text to vectors using embedding models
+3. **Vector Database**: Store and retrieve relevant document chunks
+4. **LLM Integration**: Use GPT-4, Llama 3, or open-source LLMs
+5. **RAG Pipeline**: Combine retrieval with generation
+6. **Evaluation**: Measure answer quality and relevance
+
+**Dataset**: 
+- Custom PDFs/documents (technical docs, research papers, company knowledge base)
+- Or use public datasets like [Natural Questions](https://ai.google.com/research/NaturalQuestions)
+
+**Tech Stack:**
+- LLM: OpenAI GPT-4, Anthropic Claude, or Llama 3 (via Hugging Face)
+- Vector DB: Pinecone, ChromaDB, Weaviate, or FAISS
+- Framework: LangChain or LangGraph
+- Embeddings: OpenAI embeddings, sentence-transformers, or BGE models
 
 **Extensions:**
-- Multi-turn conversations
-- Context awareness
-- Personality and style
-- Deploy as web service
-- Integration with messaging platforms
+- Multi-document RAG
+- Citation and source tracking
+- Streaming responses
+- Chat history and context management
+- Deploy to Hugging Face Spaces or AWS
+- Add evaluation metrics (BLEU, ROUGE, semantic similarity)
+- Implement query rewriting and query expansion
 
 ---
 

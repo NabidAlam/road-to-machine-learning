@@ -37,14 +37,14 @@ PHASE 4: DEEP LEARNING (2 months full-time, 4 months part-time)
  Computer Vision
  Natural Language Processing
     ↓
-PHASE 4.5: GENERATIVE AI & MODERN LLMs (1-2 months full-time, 2-4 months part-time)
+PHASE 5: GENERATIVE AI & MODERN LLMs (1-2 months full-time, 2-4 months part-time)
  Prompt Engineering
  Vector Databases (Pinecone, ChromaDB, Weaviate, FAISS)
  RAG (Retrieval-Augmented Generation)
  LLM Agents (LangChain, LangGraph)
  Multi-Agent Systems
     ↓
-PHASE 5: PRODUCTION (2-3 months full-time, 4-6 months part-time)
+PHASE 6: PRODUCTION (2-3 months full-time, 4-6 months part-time)
  Model Deployment (including Hugging Face Spaces)
  Model Optimization (Quantization, TensorRT, ONNX, GGML)
  MLOps Basics (MLflow, Weights & Biases)
@@ -267,10 +267,13 @@ Use this to track where you are:
 - [ ] Phase 2: ML Basics
 - [ ] Phase 3: Advanced ML
 - [ ] Phase 4: Deep Learning
-- [ ] Phase 5: Production
-- [ ] Phase 6: Projects (Beginner)
-- [ ] Phase 6: Projects (Intermediate)
-- [ ] Phase 6: Projects (Advanced)
+- [ ] Phase 5: Deep Learning Fundamentals
+- [ ] Phase 6: Specialized Deep Learning
+- [ ] Phase 7: Generative AI & Modern LLMs
+- [ ] Phase 7.5: Essential Skills
+- [ ] Phase 8: Production & MLOps
+- [ ] Phase 9: Projects
+- [ ] Phase 10: Advanced Specialized Topics
 
 ##  Next Steps
 
