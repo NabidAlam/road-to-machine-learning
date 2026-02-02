@@ -6,7 +6,7 @@ Quick reference for Python, Mathematics, and Statistics fundamentals needed for 
 
 - [Python Basics](#python-basics)
 - [Linear Algebra](#linear-algebra)
-- [Statistics & Probability](#statistics--probability)
+- [Statistics & Probability](#statistics-probability)
 - [Calculus](#calculus)
 - [Time Complexity](#time-complexity)
 

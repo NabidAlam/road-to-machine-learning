@@ -323,6 +323,15 @@ Comprehensive glossary of machine learning terms and concepts for beginners and 
 
 ---
 
+## J
+
+**Jaccard Similarity**
+- Measures similarity between two sets
+- Formula: \(|A ∩ B| / |A ∪ B|\)
+- Common use: evaluating overlap in recommendations, clustering, and NLP set-based features
+
+---
+
 ## K
 
 **K-Fold Cross-Validation**
@@ -461,6 +470,15 @@ Comprehensive glossary of machine learning terms and concepts for beginners and 
 
 ---
 
+## Q
+
+**Quantization**
+- Compressing model weights/activations to lower precision (e.g., FP16, INT8)
+- Benefits: Faster inference and lower memory usage
+- Common in production deployment and edge/CPU serving
+
+---
+
 ## R
 
 **Recall**
@@ -595,6 +613,24 @@ Comprehensive glossary of machine learning terms and concepts for beginners and 
 - Powerful gradient boosting library
 - Excellent performance on structured data
 - Used in many Kaggle competitions
+
+---
+
+## Y
+
+**YOLO (You Only Look Once)**
+- Real-time object detection model family
+- Predicts bounding boxes and class probabilities in one forward pass
+- Common use: computer vision deployment where latency matters
+
+---
+
+## Z
+
+**Z-score (Standard Score)**
+- Number of standard deviations a value is from the mean
+- Formula: \((x - μ) / σ\)
+- Common use: outlier detection and feature standardization
 
 ---
 

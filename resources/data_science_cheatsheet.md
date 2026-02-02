@@ -6,17 +6,17 @@ Quick reference for common syntax and operations used in everyday data science a
 
 - [NumPy](#numpy)
 - [Pandas](#pandas)
-- [Matplotlib & Seaborn](#matplotlib--seaborn)
+- [Matplotlib & Seaborn](#matplotlib-seaborn)
 - [Scikit-learn](#scikit-learn)
 - [PyTorch](#pytorch)
 - [TensorFlow/Keras](#tensorflowkeras)
 - [OpenCV](#opencv)
-- [Hyperparameter Tuning & Model Optimization](#hyperparameter-tuning--model-optimization)
-- [FastAPI & Web Development](#fastapi--web-development)
+- [Hyperparameter Tuning & Model Optimization](#hyperparameter-tuning-model-optimization)
+- [FastAPI & Web Development](#fastapi-web-development)
 - [File Operations](#file-operations)
-- [List & Dictionary Operations](#list--dictionary-operations)
+- [List & Dictionary Operations](#list-dictionary-operations)
 - [String Operations](#string-operations)
-- [Date & Time](#date--time)
+- [Date & Time](#date-time)
 - [Useful Functions](#useful-functions)
 
 ---

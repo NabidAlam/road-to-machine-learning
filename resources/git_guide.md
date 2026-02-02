@@ -8,13 +8,13 @@ A comprehensive guide to Git and GitHub with commands, explanations, outputs, lo
 - [Getting Started](#getting-started)
 - [Basic Git Commands](#basic-git-commands)
 - [Working with Branches](#working-with-branches)
-- [Remote Repositories & GitHub](#remote-repositories--github)
+- [Remote Repositories & GitHub](#remote-repositories-github)
 - [Advanced Git Operations](#advanced-git-operations)
 - [Git Workflows](#git-workflows)
 - [Practice Exercises](#practice-exercises)
 - [Common Scenarios](#common-scenarios)
 - [GitHub-Specific Features](#github-specific-features)
-- [Resources & Documentation](#resources--documentation)
+- [Resources & Documentation](#resources-documentation)
 
 ---
 

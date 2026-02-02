@@ -1927,9 +1927,9 @@ if prompt := st.chat_input("Ask a question..."):
 ### Learning Resources
 
 - [LangChain Tutorials](https://python.langchain.com/docs/get_started/introduction)
-- [RAG Guide](resources/rag_comprehensive_guide.md)
-- [AI Agents Guide](resources/ai_agents_guide.md)
-- [GenAI Production Deployment](resources/genai_production_deployment.md)
+- [RAG Guide](rag_comprehensive_guide.md)
+- [AI Agents Guide](ai_agents_guide.md)
+- [GenAI Production Deployment](genai_production_deployment.md)
 
 ### Vector Database Resources
 

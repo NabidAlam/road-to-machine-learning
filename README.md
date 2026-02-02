@@ -12,7 +12,7 @@
 
 *Perfect for beginners • 26 Learning Modules • 23 Real-World Projects • Production-Ready Skills*
 
-[Get Started](#getting-started) • [Learning Path](#learning-path) • [Projects](#phase-8-projects) • [Contribute](#contributing)
+[Get Started](#getting-started) • [Learning Path](#learning-path) • [Projects](#phase-9-projects) • [Contribute](#contributing)
 
 </div>
 
@@ -314,6 +314,7 @@ The industry has rapidly shifted from training models from scratch to using pre-
 **Goal**: Master critical skills for real-world ML applications
 
 **Note**: These modules can be learned in parallel with other phases or integrated earlier in your learning journey:
+- **DSA (recommended for interviews)**: Follow the [DSA Course (Python)](resources/dsa_course_python.md) alongside these modules to build strong coding + problem-solving fundamentals
 - **SQL** can be learned after Phase 1 (Data Fundamentals) for better data access skills
 - **Imbalanced Data** is most useful after Phase 2 (Classification) when you encounter real-world datasets
 - **Model Explainability** is valuable after Phase 3 (Advanced ML) when working with complex models

@@ -72,6 +72,8 @@ For each topic:
 - [Appendix B: Practice Plan (6-8 Weeks)](#appendix-b-practice-plan-6-8-weeks)
 - [Appendix C: Curated Problem Set](#appendix-c-curated-problem-set)
 
+**Quick navigation:** [Start](#1-introduction-to-dsa-python-for-problem-solving) • [Patterns](#11-patterns-problem-solving) • [Trees](#12-trees) • [Graphs](#13-graphs) • [Heaps](#14-heaps-and-priority-queues) • [DP](#15-dynamic-programming) • [Practice Plan](#appendix-b-practice-plan-6-8-weeks) • [Problem Set](#appendix-c-curated-problem-set)
+
 ---
 
 ## 1. Introduction to DSA & Python for Problem Solving
@@ -1843,15 +1845,81 @@ Suggested pacing:
 
 See also: `resources/practice_platforms.md`.
 
-- Arrays: two-sum, best time to buy/sell stock, product except self
-- Strings: valid anagram, longest substring without repeating
-- Linked list: reverse list, detect cycle, merge two sorted lists
-- Stack: valid parentheses, daily temperatures, next greater element
-- Queue/deque: sliding window maximum
-- Binary search: first/last position, search insert, rotated array
-- Hashing: subarray sum equals k, top k frequent
-- Heaps: kth largest element, merge k sorted lists, meeting rooms II
-- DP: climbing stairs, house robber, coin change, LIS, unique paths, LCS
-- Trees: level order, max depth, validate BST, LCA
-- Graphs: number of islands, course schedule, shortest path in grid
+**How to use this list (book-style):**
+
+- Pick **one topic/week**, solve **8–15 problems**
+- Start with **Easy**, then do **Medium**
+- For each problem: write brute force → optimize → explain complexity
+
+**Note**: Problem difficulties are based on the platform’s labels.
+
+### Arrays
+
+- [Two Sum](https://leetcode.com/problems/two-sum/) — Easy
+- [Best Time to Buy and Sell Stock](https://leetcode.com/problems/best-time-to-buy-and-sell-stock/) — Easy
+- [Product of Array Except Self](https://leetcode.com/problems/product-of-array-except-self/) — Medium
+- [Maximum Subarray](https://leetcode.com/problems/maximum-subarray/) — Medium
+
+### Strings
+
+- [Valid Anagram](https://leetcode.com/problems/valid-anagram/) — Easy
+- [Longest Substring Without Repeating Characters](https://leetcode.com/problems/longest-substring-without-repeating-characters/) — Medium
+- [Group Anagrams](https://leetcode.com/problems/group-anagrams/) — Medium
+
+### Linked List
+
+- [Reverse Linked List](https://leetcode.com/problems/reverse-linked-list/) — Easy
+- [Linked List Cycle](https://leetcode.com/problems/linked-list-cycle/) — Easy
+- [Merge Two Sorted Lists](https://leetcode.com/problems/merge-two-sorted-lists/) — Easy
+
+### Stack
+
+- [Valid Parentheses](https://leetcode.com/problems/valid-parentheses/) — Easy
+- [Daily Temperatures](https://leetcode.com/problems/daily-temperatures/) — Medium
+- [Next Greater Element I](https://leetcode.com/problems/next-greater-element-i/) — Easy
+
+### Queue / Deque
+
+- [Sliding Window Maximum](https://leetcode.com/problems/sliding-window-maximum/) — Hard
+
+### Binary Search
+
+- [First and Last Position of Element in Sorted Array](https://leetcode.com/problems/find-first-and-last-position-of-element-in-sorted-array/) — Medium
+- [Search Insert Position](https://leetcode.com/problems/search-insert-position/) — Easy
+- [Search in Rotated Sorted Array](https://leetcode.com/problems/search-in-rotated-sorted-array/) — Medium
+
+### Hashing
+
+- [Subarray Sum Equals K](https://leetcode.com/problems/subarray-sum-equals-k/) — Medium
+- [Top K Frequent Elements](https://leetcode.com/problems/top-k-frequent-elements/) — Medium
+
+### Heaps / Priority Queue
+
+- [Kth Largest Element in an Array](https://leetcode.com/problems/kth-largest-element-in-an-array/) — Medium
+- [Minimum Cost to Connect Sticks](https://leetcode.com/problems/minimum-cost-to-connect-sticks/) — Medium
+- [Merge k Sorted Lists](https://leetcode.com/problems/merge-k-sorted-lists/) — Hard
+- [Find Median from Data Stream](https://leetcode.com/problems/find-median-from-data-stream/) — Hard
+
+### Dynamic Programming (DP)
+
+- [Climbing Stairs](https://leetcode.com/problems/climbing-stairs/) — Easy
+- [House Robber](https://leetcode.com/problems/house-robber/) — Medium
+- [Coin Change](https://leetcode.com/problems/coin-change/) — Medium
+- [Unique Paths](https://leetcode.com/problems/unique-paths/) — Medium
+- [Longest Increasing Subsequence](https://leetcode.com/problems/longest-increasing-subsequence/) — Medium
+- [Longest Common Subsequence](https://leetcode.com/problems/longest-common-subsequence/) — Medium
+
+### Trees
+
+- [Binary Tree Level Order Traversal](https://leetcode.com/problems/binary-tree-level-order-traversal/) — Medium
+- [Maximum Depth of Binary Tree](https://leetcode.com/problems/maximum-depth-of-binary-tree/) — Easy
+- [Validate Binary Search Tree](https://leetcode.com/problems/validate-binary-search-tree/) — Medium
+- [Lowest Common Ancestor of a Binary Tree](https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree/) — Medium
+
+### Graphs
+
+- [Number of Islands](https://leetcode.com/problems/number-of-islands/) — Medium
+- [Course Schedule](https://leetcode.com/problems/course-schedule/) — Medium
+- [Shortest Path in Binary Matrix](https://leetcode.com/problems/shortest-path-in-binary-matrix/) — Medium
+- [Clone Graph](https://leetcode.com/problems/clone-graph/) — Medium
 

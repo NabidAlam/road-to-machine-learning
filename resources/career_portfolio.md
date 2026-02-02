@@ -193,8 +193,8 @@ ML Engineer passionate about building production-ready ML systems.
 - **Tools**: Docker, Kubernetes, AWS, Git
 
 ## Projects
-- [Project 1](link) - Description
-- [Project 2](link) - Description
+- **Project 1** - Description (add your GitHub repo link)
+- **Project 2** - Description (add your GitHub repo link)
 
 ## Connect
 - LinkedIn: [link]

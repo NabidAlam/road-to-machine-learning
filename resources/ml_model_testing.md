@@ -8,7 +8,7 @@ Comprehensive guide to testing machine learning models, pipelines, and APIs for 
 - [Unit Testing for ML](#unit-testing-for-ml)
 - [Integration Testing](#integration-testing)
 - [Model Testing Strategies](#model-testing-strategies)
-- [Testing Data Preprocessing](#testing-data-preprocessing)
+- [Testing Data Preprocessing](#testing-data-preprocessing-functions)
 - [Testing Model Training](#testing-model-training)
 - [Testing Predictions](#testing-predictions)
 - [Testing APIs](#testing-apis)

@@ -8,7 +8,7 @@ Comprehensive guide to preparing for machine learning and data science interview
 - [ML Concepts Questions](#ml-concepts-questions)
 - [Coding Challenges](#coding-challenges)
 - [System Design Questions](#system-design-questions)
-- [Statistics & Probability](#statistics--probability)
+- [Statistics & Probability](#statistics-probability)
 - [Behavioral Questions](#behavioral-questions)
 - [Project Walkthrough](#project-walkthrough)
 - [Preparation Strategy](#preparation-strategy)
