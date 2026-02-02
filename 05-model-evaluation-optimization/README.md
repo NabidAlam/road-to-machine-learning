@@ -107,6 +107,6 @@ By the end of this module, you should be able to:
 
 ---
 
-**Previous Phase:** [04-supervised-learning-classification](../04-supervised-learning-classification/README.md)  
-**Next Phase:** [06-ensemble-methods](../06-ensemble-methods/README.md)
+**Previous Module:** [04-supervised-learning-classification](../04-supervised-learning-classification/README.md)  
+**Next Module:** [06-ensemble-methods](../06-ensemble-methods/README.md)
 

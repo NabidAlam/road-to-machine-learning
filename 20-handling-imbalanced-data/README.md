@@ -74,6 +74,6 @@ By the end of this module, you should be able to:
 
 ---
 
-**Previous Phase:** [19-sql-database-fundamentals](../19-sql-database-fundamentals/README.md)  
-**Next Phase:** [21-model-explainability](../21-model-explainability/README.md)
+**Previous Module:** [19-sql-database-fundamentals](../19-sql-database-fundamentals/README.md)  
+**Next Module:** [21-model-explainability](../21-model-explainability/README.md)
 

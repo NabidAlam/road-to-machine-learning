@@ -105,6 +105,6 @@ By the end of this module, you should be able to:
 
 ---
 
-**Previous Phase:** [06-ensemble-methods](../06-ensemble-methods/README.md)  
-**Next Phase:** [08-unsupervised-learning](../08-unsupervised-learning/README.md)
+**Previous Module:** [06-ensemble-methods](../06-ensemble-methods/README.md)  
+**Next Module:** [08-unsupervised-learning](../08-unsupervised-learning/README.md)
 

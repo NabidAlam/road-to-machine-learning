@@ -166,6 +166,6 @@ By the end of this module, you should be able to:
 
 ---
 
-**Previous Phase:** [12-natural-language-processing](../12-natural-language-processing/README.md)  
-**Next Phase:** [14-mlops-basics](../14-mlops-basics/README.md)
+**Previous Module:** [12-natural-language-processing](../12-natural-language-processing/README.md)  
+**Next Module:** [14-mlops-basics](../14-mlops-basics/README.md)
 

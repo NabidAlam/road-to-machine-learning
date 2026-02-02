@@ -104,6 +104,6 @@ By the end of this module, you should be able to:
 
 ---
 
-**Previous Phase:** [07-feature-engineering](../07-feature-engineering/README.md)  
-**Next Phase:** [09-neural-networks-basics](../09-neural-networks-basics/README.md)
+**Previous Module:** [07-feature-engineering](../07-feature-engineering/README.md)  
+**Next Module:** [09-neural-networks-basics](../09-neural-networks-basics/README.md)
 

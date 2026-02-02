@@ -119,6 +119,6 @@ By the end of this module, you should be able to:
 
 ---
 
-**Previous Phase:** [03-supervised-learning-regression](../03-supervised-learning-regression/README.md)  
-**Next Phase:** [05-model-evaluation-optimization](../05-model-evaluation-optimization/README.md)
+**Previous Module:** [03-supervised-learning-regression](../03-supervised-learning-regression/README.md)  
+**Next Module:** [05-model-evaluation-optimization](../05-model-evaluation-optimization/README.md)
 

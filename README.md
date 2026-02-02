@@ -430,6 +430,9 @@ The industry has rapidly shifted from training models from scratch to using pre-
 | 8 | Model Explainability & Interpretability | SHAP, LIME, Model Interpretation | 1-2 weeks | ✓ Available |
 | 9 | Model Deployment & Serving | Model Deployment, APIs, Cloud | 1-2 weeks | ✓ Available |
 
+**Optional Capstones (Portfolio-Grade, GDPR-Safe):**
+- [Capstone Blueprints →](18-projects-advanced/capstones/README.md) (ML Engineer, LLM/RAG, Data/Analytics)
+
 **Prerequisites**: Complete Phases 0-7 recommended for full benefit
 
 ## Prerequisites
