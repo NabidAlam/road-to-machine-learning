@@ -609,12 +609,12 @@ def merge(a, b):
 
 | Algorithm | Best | Average | Worst | Stable | Notes |
 |----------|------|---------|-------|--------|------|
-| Bubble | \(O(n)\) | \(O(n^2)\) | \(O(n^2)\) | Yes | Mostly for learning |
-| Selection | \(O(n^2)\) | \(O(n^2)\) | \(O(n^2)\) | No | Few swaps, still slow |
-| Insertion | \(O(n)\) | \(O(n^2)\) | \(O(n^2)\) | Yes | Great when nearly sorted |
-| Merge | \(O(n \log n)\) | \(O(n \log n)\) | \(O(n \log n)\) | Yes | Extra memory |
-| Quick | \(O(n \log n)\) | \(O(n \log n)\) | \(O(n^2)\) | No | Fast in practice |
-| Counting | \(O(n + k)\) | \(O(n + k)\) | \(O(n + k)\) | Yes | Only for small integer ranges |
+| Bubble | O(n) | O(n^2) | O(n^2) | Yes | Mostly for learning |
+| Selection | O(n^2) | O(n^2) | O(n^2) | No | Few swaps, still slow |
+| Insertion | O(n) | O(n^2) | O(n^2) | Yes | Great when nearly sorted |
+| Merge | O(n log n) | O(n log n) | O(n log n) | Yes | Extra memory |
+| Quick | O(n log n) | O(n log n) | O(n^2) | No | Fast in practice |
+| Counting | O(n + k) | O(n + k) | O(n + k) | Yes | Only for small integer ranges (`k` = value range) |
 
 ### Insertion sort (good for nearly-sorted)
 
