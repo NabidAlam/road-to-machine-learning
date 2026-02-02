@@ -303,6 +303,10 @@ Activation functions introduce non-linearity to neural networks.
 
 ## Coding Challenges
 
+If you want a structured, beginner-friendly path for DSA (arrays → graphs + patterns + practice plan), see:
+
+- [DSA Course (Python)](dsa_course_python.md)
+
 ### Common Coding Tasks
 
 **1. Implement Linear Regression from Scratch**

@@ -2,6 +2,10 @@
 
 Comprehensive guide to essential data structures and algorithms specifically required for machine learning and data science.
 
+If you want a **full beginner-to-interview DSA course in Python** (arrays → graphs + problem-solving patterns + practice plan), see:
+
+- [DSA Course (Python)](dsa_course_python.md)
+
 ## Table of Contents
 
 - [Introduction](#introduction)

@@ -48,6 +48,7 @@ PHASE 7: GENERATIVE AI & MODERN LLMs (1-2 months full-time, 2-4 months part-time
  LLM Agents & Multi-Agent Systems
     ↓
 PHASE 7.5: ESSENTIAL SKILLS (1-2 months full-time, 2-4 months part-time)
+ DSA in Python (Interview Patterns)
  SQL & Databases
  Imbalanced Data
  Model Explainability

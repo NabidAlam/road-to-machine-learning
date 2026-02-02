@@ -777,6 +777,7 @@ road-to-ml/
 | [ML Glossary](resources/ml_glossary.md) | Comprehensive glossary of ML terms and concepts for beginners |
 | [Common Errors & Debugging Guide](resources/common_errors.md) | Troubleshooting guide for common ML errors and debugging strategies |
 | [DSA for ML Guide](resources/dsa_for_ml_guide.md) | Essential data structures and algorithms for machine learning |
+| [DSA Course (Python)](resources/dsa_course_python.md) | Full beginner-to-interview DSA course in Python (patterns, trees, graphs, practice plan) |
 
 #### Development & Tools
 
