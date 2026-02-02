@@ -131,6 +131,48 @@ def extract_links(md_text: str) -> Iterator[str]:
         yield raw
 
 
+def strip_fenced_code_blocks(md_text: str) -> str:
+    """
+    Remove fenced code blocks (```...```) to avoid false positives like:
+      self.features[name](data)
+    being interpreted as a markdown link due to the pattern [name](data).
+    """
+    out_lines: list[str] = []
+    in_fence = False
+    fence_marker = ""
+
+    for line in md_text.splitlines(keepends=True):
+        stripped = line.lstrip()
+        if stripped.startswith("```"):
+            marker = stripped[:3]
+            if not in_fence:
+                in_fence = True
+                fence_marker = marker
+            else:
+                # close fence
+                in_fence = False
+                fence_marker = ""
+            continue
+
+        if in_fence:
+            continue
+
+        out_lines.append(line)
+
+    return "".join(out_lines)
+
+
+INLINE_CODE_RE = re.compile(r"`[^`]*`")
+
+
+def strip_inline_code(md_text: str) -> str:
+    """
+    Remove inline code spans to avoid false positives in snippets like:
+      `self.experts[expert_idx](expert_input)`
+    """
+    return INLINE_CODE_RE.sub("", md_text)
+
+
 def check_file(md_file: Path) -> list[LinkIssue]:
     issues: list[LinkIssue] = []
     try:
@@ -143,7 +185,9 @@ def check_file(md_file: Path) -> list[LinkIssue]:
     # Slugs for same-file anchor checks
     self_slugs = collect_heading_slugs(text)
 
-    for link in extract_links(text):
+    scan_text = strip_inline_code(strip_fenced_code_blocks(text))
+
+    for link in extract_links(scan_text):
         if is_external(link):
             continue
 

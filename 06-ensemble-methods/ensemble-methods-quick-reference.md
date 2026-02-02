@@ -7,7 +7,7 @@ Quick reference for ensemble methods, code snippets, and best practices.
 - [Method Selection](#method-selection)
 - [Code Snippets](#code-snippets)
 - [Hyperparameter Tuning](#hyperparameter-tuning)
-- [Common Issues & Solutions](#common-issues--solutions)
+- [Common Issues & Solutions](#common-issues-solutions)
 - [Best Practices Checklist](#best-practices-checklist)
 
 ---

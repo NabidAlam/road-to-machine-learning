@@ -143,5 +143,5 @@ By completing this project, you will learn to:
 After completing this project:
 - Try advanced feature engineering
 - Experiment with ensemble methods
-- Move to [Intermediate Projects](../16-projects-intermediate/README.md)
+- Move to [Intermediate Projects](../../17-projects-intermediate/README.md)
 

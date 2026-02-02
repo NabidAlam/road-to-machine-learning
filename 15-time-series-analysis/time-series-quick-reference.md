@@ -7,7 +7,7 @@ Quick reference for time series analysis techniques.
 - [Key Concepts](#key-concepts)
 - [Code Snippets](#code-snippets)
 - [Model Selection](#model-selection)
-- [Common Issues & Solutions](#common-issues--solutions)
+- [Common Issues & Solutions](#common-issues-solutions)
 - [Best Practices Checklist](#best-practices-checklist)
 
 ---

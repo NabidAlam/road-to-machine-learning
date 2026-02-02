@@ -269,6 +269,98 @@ pip install neo4j
 
 ---
 
+## Transactions
+
+Transactions ensure your database stays consistent when multiple operations must succeed or fail together.
+
+### ACID (what to remember)
+
+- **Atomicity**: all operations succeed or none do
+- **Consistency**: constraints remain valid
+- **Isolation**: concurrent transactions don’t corrupt each other
+- **Durability**: once committed, data survives crashes
+
+### Basic transaction pattern
+
+```sql
+BEGIN;
+
+UPDATE accounts
+SET balance = balance - 100
+WHERE account_id = 1;
+
+UPDATE accounts
+SET balance = balance + 100
+WHERE account_id = 2;
+
+COMMIT;
+```
+
+If something fails in the middle:
+
+```sql
+ROLLBACK;
+```
+
+### Isolation levels (intuition)
+
+Different isolation levels trade off correctness vs performance.
+
+- **READ COMMITTED**: prevents dirty reads (common default)
+- **REPEATABLE READ**: stable reads within a transaction
+- **SERIALIZABLE**: strongest (can be slower, may retry)
+
+### Practical tips
+
+- Keep transactions **short** (avoid long locks)
+- Index the columns you use in `WHERE` / `JOIN` for write-heavy systems
+- If you hit deadlocks, retry the transaction (application-level retry)
+
+---
+
+## Common Pitfalls
+
+### 1) Using `SELECT *` in analytics pipelines
+
+- Pulls unnecessary columns → slower and brittle when schemas change
+- Prefer selecting only needed columns
+
+### 2) Non-sargable filters (indexes can’t help)
+
+Bad (often prevents index usage):
+
+```sql
+WHERE DATE(created_at) = '2026-01-01'
+```
+
+Better:
+
+```sql
+WHERE created_at >= '2026-01-01'
+  AND created_at <  '2026-01-02'
+```
+
+### 3) Accidental cross joins
+
+Always use explicit join conditions:
+
+```sql
+SELECT *
+FROM a
+JOIN b ON a.id = b.a_id;
+```
+
+### 4) Misunderstanding NULL
+
+- `NULL` is “unknown”, so comparisons behave differently
+- Use `IS NULL` / `IS NOT NULL`
+
+### 5) Overusing `DISTINCT`
+
+`DISTINCT` can hide data issues and be expensive. Prefer fixing joins/keys.
+
+---
+
 ## Key Takeaways
 
 1. **Optimize Queries**: Use indexes and EXPLAIN

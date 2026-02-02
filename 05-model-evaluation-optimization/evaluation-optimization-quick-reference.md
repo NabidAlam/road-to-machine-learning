@@ -8,7 +8,7 @@ Quick reference for evaluation techniques, optimization methods, and best practi
 - [Cross-Validation](#cross-validation)
 - [Hyperparameter Tuning](#hyperparameter-tuning)
 - [Evaluation Metrics](#evaluation-metrics)
-- [Common Issues & Solutions](#common-issues--solutions)
+- [Common Issues & Solutions](#common-issues-solutions)
 - [Best Practices Checklist](#best-practices-checklist)
 
 ---

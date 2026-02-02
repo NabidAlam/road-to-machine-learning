@@ -9,7 +9,7 @@ Quick reference for TensorFlow/Keras and PyTorch code snippets and best practice
 - [PyTorch Code Snippets](#pytorch-code-snippets)
 - [Common Patterns](#common-patterns)
 - [Framework Comparison](#framework-comparison)
-- [Common Issues & Solutions](#common-issues--solutions)
+- [Common Issues & Solutions](#common-issues-solutions)
 - [Best Practices Checklist](#best-practices-checklist)
 
 ---

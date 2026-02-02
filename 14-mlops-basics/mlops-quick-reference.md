@@ -8,7 +8,7 @@ Quick reference for MLOps tools and practices.
 - [Experiment Tracking](#experiment-tracking)
 - [Model Registry](#model-registry)
 - [CI/CD](#cicd)
-- [Common Issues & Solutions](#common-issues--solutions)
+- [Common Issues & Solutions](#common-issues-solutions)
 - [Best Practices Checklist](#best-practices-checklist)
 
 ---

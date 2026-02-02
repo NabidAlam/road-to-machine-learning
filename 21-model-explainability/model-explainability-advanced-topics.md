@@ -42,6 +42,52 @@ explanation = explainer.explain_instance(text, model.predict_proba)
 
 ---
 
+## Model-Specific Explanations
+
+Whenever possible, use model-specific explanations first. They’re usually faster and easier to interpret.
+
+### Linear models (coefficients)
+
+For standardized features, coefficients show direction and strength:
+
+```python
+import numpy as np
+
+coef = model.coef_.ravel()
+top = np.argsort(np.abs(coef))[::-1][:10]
+top_features = [(feature_names[i], coef[i]) for i in top]
+```
+
+### Tree-based models (feature importance)
+
+```python
+import numpy as np
+
+imp = model.feature_importances_
+top = np.argsort(imp)[::-1][:10]
+top_features = [(feature_names[i], imp[i]) for i in top]
+```
+
+### Permutation importance (model-agnostic, strong baseline)
+
+```python
+from sklearn.inspection import permutation_importance
+
+result = permutation_importance(model, X_val, y_val, n_repeats=5, random_state=42)
+```
+
+---
+
+## Common Pitfalls
+
+- **Explaining leakage**: if your model leaks future information, explanations are meaningless
+- **Correlation confusion**: SHAP/importance can split credit across correlated features unpredictably
+- **Causality mistake**: explanations describe the model, not the real world cause-effect
+- **Over-trusting local explanations**: LIME/SHAP for one row can be unstable
+- **Not validating explanations**: sanity-check with ablation (remove a feature and re-evaluate)
+
+---
+
 ## Key Takeaways
 
 1. **Advanced SHAP**: Interaction values, global explanations

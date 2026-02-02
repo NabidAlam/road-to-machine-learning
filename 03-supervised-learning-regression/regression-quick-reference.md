@@ -7,7 +7,7 @@ Quick reference for regression algorithms, metrics, and best practices.
 - [Algorithm Selection](#algorithm-selection)
 - [Code Snippets](#code-snippets)
 - [Evaluation Metrics](#evaluation-metrics)
-- [Common Issues & Solutions](#common-issues--solutions)
+- [Common Issues & Solutions](#common-issues-solutions)
 - [Best Practices Checklist](#best-practices-checklist)
 
 ---

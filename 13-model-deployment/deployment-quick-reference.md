@@ -8,7 +8,7 @@ Quick reference for deploying ML models.
 - [API Frameworks](#api-frameworks)
 - [Docker Commands](#docker-commands)
 - [Cloud Platforms](#cloud-platforms)
-- [Common Issues & Solutions](#common-issues--solutions)
+- [Common Issues & Solutions](#common-issues-solutions)
 - [Best Practices Checklist](#best-practices-checklist)
 
 ---

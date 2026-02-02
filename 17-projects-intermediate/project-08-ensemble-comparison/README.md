@@ -333,7 +333,7 @@ Your comparison should:
 
 ## Resources
 
-- [Ensemble Methods Guide](../06-ensemble-methods/ensemble-methods.md)
+- [Ensemble Methods Guide](../../06-ensemble-methods/ensemble-methods.md)
 - [XGBoost Documentation](https://xgboost.readthedocs.io/)
 - [LightGBM Documentation](https://lightgbm.readthedocs.io/)
 - [CatBoost Documentation](https://catboost.ai/docs/)

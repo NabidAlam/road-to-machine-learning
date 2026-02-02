@@ -387,10 +387,10 @@ gcloud run deploy ml-api --source .
 
 ## Resources
 
-- [Model Deployment Guide](../13-model-deployment/deployment.md)
+- [Model Deployment Guide](../../13-model-deployment/deployment.md)
 - [FastAPI Documentation](https://fastapi.tiangolo.com/)
 - [Docker Documentation](https://docs.docker.com/)
-- [Docker Tutorial](../resources/docker_tutorial.md)
+- [Docker Tutorial](../../resources/docker_tutorial.md)
 
 ## Tips for Success
 

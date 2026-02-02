@@ -10,7 +10,7 @@ Quick reference for feature engineering techniques, code snippets, and best prac
 - [Transformation Methods](#transformation-methods)
 - [Encoding Methods](#encoding-methods)
 - [Scaling Methods](#scaling-methods)
-- [Common Issues & Solutions](#common-issues--solutions)
+- [Common Issues & Solutions](#common-issues-solutions)
 - [Best Practices Checklist](#best-practices-checklist)
 
 ---

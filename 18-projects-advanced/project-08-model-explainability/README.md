@@ -327,7 +327,7 @@ Your explainability project should:
 
 ## Resources
 
-- [Model Explainability Guide](../21-model-explainability/model-explainability.md)
+- [Model Explainability Guide](../../21-model-explainability/model-explainability.md)
 - [SHAP Documentation](https://shap.readthedocs.io/)
 - [LIME Documentation](https://github.com/marcotcr/lime)
 - [Interpretable ML Book](https://christophm.github.io/interpretable-ml-book/)

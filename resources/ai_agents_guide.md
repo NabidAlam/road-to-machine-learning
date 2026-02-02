@@ -218,6 +218,14 @@ user_proxy.initiate_chat(
 )
 ```
 
+## Multi-Agent Systems
+
+Multi-agent systems use **multiple specialized agents** (e.g., planner, coder, reviewer) that collaborate to solve a task. This is useful when:
+
+- the task is complex and benefits from role separation
+- you want automatic review/verification steps
+- you want tool-using agents coordinating workflows (RAG, browsing, code execution)
+
 ### Multi-Agent Conversation
 
 ```python

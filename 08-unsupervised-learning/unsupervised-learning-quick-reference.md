@@ -10,7 +10,7 @@ Quick reference for unsupervised learning algorithms, metrics, and best practice
 - [Dimensionality Reduction](#dimensionality-reduction)
 - [Anomaly Detection](#anomaly-detection)
 - [Evaluation Metrics](#evaluation-metrics)
-- [Common Issues & Solutions](#common-issues--solutions)
+- [Common Issues & Solutions](#common-issues-solutions)
 - [Best Practices Checklist](#best-practices-checklist)
 
 ---

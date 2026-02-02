@@ -13,7 +13,7 @@ Quick reference for CNN architectures, code snippets, and best practices.
 - [Segmentation](#segmentation)
 - [Transfer Learning](#transfer-learning)
 - [Training Optimization](#training-optimization)
-- [Common Issues & Solutions](#common-issues--solutions)
+- [Common Issues & Solutions](#common-issues-solutions)
 - [Best Practices Checklist](#best-practices-checklist)
 
 ---

@@ -9,7 +9,7 @@ Quick reference for neural network concepts, code snippets, and best practices.
 - [Activation Functions](#activation-functions)
 - [Loss Functions](#loss-functions)
 - [Optimization](#optimization)
-- [Common Issues & Solutions](#common-issues--solutions)
+- [Common Issues & Solutions](#common-issues-solutions)
 - [Best Practices Checklist](#best-practices-checklist)
 
 ---

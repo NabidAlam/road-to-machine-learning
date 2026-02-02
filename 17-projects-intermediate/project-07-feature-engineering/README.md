@@ -256,7 +256,7 @@ Your feature engineering should:
 
 ## Resources
 
-- [Feature Engineering Guide](../07-feature-engineering/feature-engineering.md)
+- [Feature Engineering Guide](../../07-feature-engineering/feature-engineering.md)
 - [sklearn Pipeline Documentation](https://scikit-learn.org/stable/modules/compose.html)
 - [Feature Engineering for Machine Learning](https://www.oreilly.com/library/view/feature-engineering-for/9781491953235/)
 - [Kaggle Feature Engineering Course](https://www.kaggle.com/learn/feature-engineering)

@@ -123,5 +123,5 @@ By completing this project, you will learn to:
 After completing this project:
 - Try more complex time series
 - Experiment with advanced techniques
-- Move to [Advanced Projects](../18-projects-advanced/README.md)
+- Move to [Advanced Projects](../../18-projects-advanced/README.md)
 

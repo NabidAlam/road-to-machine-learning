@@ -8,7 +8,7 @@ Quick reference for NLP techniques, code snippets, and best practices.
 - [Word Embeddings](#word-embeddings)
 - [Model Architectures](#model-architectures)
 - [Transformers](#transformers)
-- [Common Issues & Solutions](#common-issues--solutions)
+- [Common Issues & Solutions](#common-issues-solutions)
 - [Best Practices Checklist](#best-practices-checklist)
 
 ---
