@@ -43,7 +43,7 @@ For each topic:
 
 ### A Simple Problem-Solving Checklist
 
-- **Step 1**: What is the input size? What’s the time limit? (choose \(O(n)\) vs \(O(n \log n)\))
+- **Step 1**: What is the input size? What’s the time limit? (choose `O(n)` vs `O(n log n)`)
 - **Step 2**: Can you restate the task as a pattern? (two pointers, sliding window, BFS…)
 - **Step 3**: What data structure makes the “key operation” fast?
 - **Step 4**: Write a first correct solution, then optimize
@@ -88,13 +88,13 @@ In interviews, most problems are testing:
 
 ### Time Complexity (Big-O) — the 80/20
 
-- \(O(1)\): constant (hash lookup average)
-- \(O(\log n)\): binary search
-- \(O(n)\): one pass
-- \(O(n \log n)\): sorting, many divide-and-conquer
-- \(O(n^2)\): nested loops (often too slow when \(n\) is big)
+- `O(1)`: constant (hash lookup average)
+- `O(log n)`: binary search
+- `O(n)`: one pass
+- `O(n log n)`: sorting, many divide-and-conquer
+- `O(n^2)`: nested loops (often too slow when `n` is big)
 
-### Example: “Is this \(O(n)\) or \(O(n^2)\)?”
+### Example: “Is this `O(n)` or `O(n^2)`?”
 
 ```python
 def has_duplicate(nums):
@@ -106,8 +106,8 @@ def has_duplicate(nums):
     return False
 ```
 
-- **Time**: \(O(n)\) average
-- **Space**: \(O(n)\)
+- **Time**: `O(n)` average
+- **Space**: `O(n)`
 
 ### Python essentials for coding interviews
 
@@ -124,10 +124,10 @@ Arrays/lists are the most common interview input form.
 
 ### Core operations (list)
 
-- **Index access**: \(O(1)\)
-- **Append**: \(O(1)\) amortized
-- **Insert/Delete in middle**: \(O(n)\)
-- **Membership test (`x in list`)**: \(O(n)\)
+- **Index access**: `O(1)`
+- **Append**: `O(1)` amortized
+- **Insert/Delete in middle**: `O(n)`
+- **Membership test (`x in list`)**: `O(n)`
 
 ### Prefix sums (pattern)
 
@@ -865,7 +865,7 @@ def remove_duplicates(nums):
 ### 11.3 Prefix sum (range queries and subarray counting)
 
 - Range sum: use a prefix array
-- Counting subarrays with sum \(k\): prefix sum + hash map (Section 10)
+- Counting subarrays with sum `k`: prefix sum + hash map (Section 10)
 
 ### 11.4 Fast & slow pointers (cycle / middle)
 
@@ -1091,9 +1091,9 @@ def bfs(start, graph):
 ### Adjacency matrix vs adjacency list
 
 - **Adjacency matrix**: `matrix[u][v] = 1/weight`  
-  - Fast edge check \(O(1)\), high memory \(O(V^2)\)
+  - Fast edge check `O(1)`, high memory `O(V^2)`
 - **Adjacency list**: `graph[u] = [v1, v2, ...]` or `[(v,w), ...]`  
-  - Memory \(O(V+E)\), best for sparse graphs (most interview problems)
+  - Memory `O(V+E)`, best for sparse graphs (most interview problems)
 
 ### Shortest path in an unweighted grid (state space graph)
 
@@ -1173,7 +1173,7 @@ def dijkstra(start, graph):
 
 - **0-1 BFS**: when edge weights are only 0 or 1 (faster than Dijkstra)
 - **Bellman-Ford**: when negative edge weights exist (can detect negative cycles)
-- **Floyd-Warshall**: all-pairs shortest paths for small graphs (\(O(V^3)\))
+- **Floyd-Warshall**: all-pairs shortest paths for small graphs (`O(V^3)`)
 
 ### DSU (Union-Find): connectivity / components
 
@@ -1239,10 +1239,10 @@ heapq.heappush(heap, 8)
 smallest = heapq.heappop(heap)   # 2
 ```
 
-- `heappush`: \(O(\log n)\)
-- `heappop`: \(O(\log n)\)
-- `heap[0]` (peek min): \(O(1)\)
-- `heapify(list)`: \(O(n)\)
+- `heappush`: `O(log n)`
+- `heappop`: `O(log n)`
+- `heap[0]` (peek min): `O(1)`
+- `heapify(list)`: `O(n)`
 
 ### Min-heap vs max-heap
 
@@ -1258,7 +1258,7 @@ heapq.heapify(max_heap)
 largest = -heapq.heappop(max_heap)   # 4
 ```
 
-### Pattern 1: Top K largest elements (\(O(n \log k)\))
+### Pattern 1: Top K largest elements (`O(n log k)`)
 
 This is one of the most common heap interview patterns.
 
@@ -1561,7 +1561,7 @@ def knapsack_01(weights, values, capacity):
 
 Two common solutions:
 
-#### \(O(n^2)\) DP (easy to explain)
+#### `O(n^2)` DP (easy to explain)
 
 ```python
 def lis_n2(nums):
@@ -1575,7 +1575,7 @@ def lis_n2(nums):
     return max(dp)
 ```
 
-#### \(O(n \log n)\) (binary search / patience sorting idea)
+#### `O(n log n)` (binary search / patience sorting idea)
 
 Maintain `tails[k]` = smallest possible tail of an increasing subsequence of length `k+1`.
 
