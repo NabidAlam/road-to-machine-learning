@@ -109,6 +109,6 @@ By the end of this module, you should be able to:
 
 ---
 
-**Previous Phase:** [18-projects-advanced](../18-projects-advanced/README.md)  
-**Next Phase:** Continue with projects or advanced topics
+**Previous Module:** [18-projects-advanced](../18-projects-advanced/README.md)  
+**Next Module:** Continue with projects or advanced topics
 

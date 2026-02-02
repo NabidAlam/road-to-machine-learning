@@ -134,6 +134,6 @@ By the end of this module, you should be able to:
 
 ---
 
-**Previous Phase:** [01-python-for-data-science](../01-python-for-data-science/README.md)  
-**Next Phase:** [03-supervised-learning-regression](../03-supervised-learning-regression/README.md)
+**Previous Module:** [01-python-for-data-science](../01-python-for-data-science/README.md)  
+**Next Module:** [03-supervised-learning-regression](../03-supervised-learning-regression/README.md)
 

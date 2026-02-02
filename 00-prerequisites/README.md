@@ -199,7 +199,7 @@ Each module includes:
 
 ---
 
-**Next Phase:** [01-python-for-data-science](../01-python-for-data-science/README.md)
+**Next Module:** [01-python-for-data-science](../01-python-for-data-science/README.md)
 
 ---
 

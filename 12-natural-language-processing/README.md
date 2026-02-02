@@ -126,6 +126,6 @@ By the end of this module, you should be able to:
 
 ---
 
-**Previous Phase:** [11-computer-vision](../11-computer-vision/README.md)  
-**Next Phase:** [25-generative-ai-llms](../25-generative-ai-llms/README.md)
+**Previous Module:** [11-computer-vision](../11-computer-vision/README.md)  
+**Next Module:** [25-generative-ai-llms](../25-generative-ai-llms/README.md)
 

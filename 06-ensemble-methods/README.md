@@ -93,6 +93,6 @@ By the end of this module, you should be able to:
 
 ---
 
-**Previous Phase:** [05-model-evaluation-optimization](../05-model-evaluation-optimization/README.md)  
-**Next Phase:** [07-feature-engineering](../07-feature-engineering/README.md)
+**Previous Module:** [05-model-evaluation-optimization](../05-model-evaluation-optimization/README.md)  
+**Next Module:** [07-feature-engineering](../07-feature-engineering/README.md)
 

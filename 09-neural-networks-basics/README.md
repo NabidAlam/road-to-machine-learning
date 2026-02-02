@@ -106,6 +106,6 @@ By the end of this module, you should be able to:
 
 ---
 
-**Previous Phase:** [08-unsupervised-learning](../08-unsupervised-learning/README.md)  
-**Next Phase:** [10-deep-learning-frameworks](../10-deep-learning-frameworks/README.md)
+**Previous Module:** [08-unsupervised-learning](../08-unsupervised-learning/README.md)  
+**Next Module:** [10-deep-learning-frameworks](../10-deep-learning-frameworks/README.md)
 

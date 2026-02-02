@@ -98,6 +98,6 @@ By the end of this module, you should be able to:
 
 ---
 
-**Previous Phase:** [02-introduction-to-ml](../02-introduction-to-ml/README.md)  
-**Next Phase:** [04-supervised-learning-classification](../04-supervised-learning-classification/README.md)
+**Previous Module:** [02-introduction-to-ml](../02-introduction-to-ml/README.md)  
+**Next Module:** [04-supervised-learning-classification](../04-supervised-learning-classification/README.md)
 

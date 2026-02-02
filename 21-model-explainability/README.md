@@ -76,6 +76,6 @@ By the end of this module, you should be able to:
 
 ---
 
-**Previous Phase:** [20-handling-imbalanced-data](../20-handling-imbalanced-data/README.md)  
-**Next Phase:** Continue with projects or advanced topics
+**Previous Module:** [20-handling-imbalanced-data](../20-handling-imbalanced-data/README.md)  
+**Next Module:** Continue with projects or advanced topics
 

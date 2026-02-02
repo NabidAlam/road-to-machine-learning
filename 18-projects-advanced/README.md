@@ -263,6 +263,15 @@ Deploy a machine learning model as a production-ready API service with Docker, m
 
 ---
 
+## Capstone Blueprints (Optional, Portfolio-Grade)
+
+These are **industry-style capstone blueprints** that are designed to be **safe for a public repo** (no PII, no committed datasets).
+
+- [Capstones Index →](capstones/README.md)
+- [ML Engineer Capstone →](capstones/capstone-ml-engineer.md)
+- [LLM/RAG Capstone →](capstones/capstone-llm-rag-engineer.md)
+- [Data/Analytics (SQL → ML) Capstone →](capstones/capstone-data-analytics-sql-ml.md)
+
 ##  Project Structure
 
 Each project should include:

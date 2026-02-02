@@ -156,5 +156,5 @@ By the end of this module, you should be able to:
 
 ---
 
-**Previous Phase:** [12-natural-language-processing](../12-natural-language-processing/README.md)  
-**Next Phase:** [19-sql-database-fundamentals](../19-sql-database-fundamentals/README.md)
+**Previous Module:** [12-natural-language-processing](../12-natural-language-processing/README.md)  
+**Next Module:** [19-sql-database-fundamentals](../19-sql-database-fundamentals/README.md)

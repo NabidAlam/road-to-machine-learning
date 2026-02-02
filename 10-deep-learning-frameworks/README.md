@@ -109,6 +109,6 @@ By the end of this module, you should be able to:
 
 ---
 
-**Previous Phase:** [09-neural-networks-basics](../09-neural-networks-basics/README.md)  
-**Next Phase:** [11-computer-vision](../11-computer-vision/README.md)
+**Previous Module:** [09-neural-networks-basics](../09-neural-networks-basics/README.md)  
+**Next Module:** [11-computer-vision](../11-computer-vision/README.md)
 

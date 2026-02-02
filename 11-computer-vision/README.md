@@ -139,6 +139,6 @@ By the end of this module, you should be able to:
 
 ---
 
-**Previous Phase:** [10-deep-learning-frameworks](../10-deep-learning-frameworks/README.md)  
-**Next Phase:** [12-natural-language-processing](../12-natural-language-processing/README.md)
+**Previous Module:** [10-deep-learning-frameworks](../10-deep-learning-frameworks/README.md)  
+**Next Module:** [12-natural-language-processing](../12-natural-language-processing/README.md)
 
