@@ -7,6 +7,7 @@
 [![GitHub issues](https://img.shields.io/github/issues/NabidAlam/road-to-machine-learning)](https://github.com/NabidAlam/road-to-machine-learning/issues)
 [![GitHub license](https://img.shields.io/github/license/NabidAlam/road-to-machine-learning)](https://github.com/NabidAlam/road-to-machine-learning/blob/main/LICENSE)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com)
+[![Subscribe on YouTube](https://img.shields.io/badge/YouTube-Subscribe-red?logo=youtube&logoColor=white)](https://www.youtube.com/@NabidInMotion?sub_confirmation=1)
 
 **A comprehensive, step-by-step guide to learning Machine Learning from absolute basics to advanced topics**
 
@@ -64,6 +65,7 @@
 - [Getting Started](#getting-started)
 - [Repository Structure](#repository-structure)
 - [Resources](#resources)
+- [YouTube Playlist](#youtube-playlist)
 - [Career Paths](#career-paths)
 - [Contributing](#contributing)
 
@@ -843,6 +845,12 @@ road-to-ml/
 |-------|-------------|
 | [Power BI Guide](resources/powerbi_guide.md) | Complete Power BI guide: visualizations, DAX, Power Query, data modeling, dashboards, and AI integration |
 | [Excel Data Analysis Guide](resources/excel_data_analysis_guide.md) | Comprehensive Excel guide: functions, pivot tables, charts, dashboards, Power Query, and advanced techniques |
+
+## YouTube Playlist
+
+Follow my curated ML playlist for guided video walkthroughs:
+
+- [Road to Machine Learning Playlist](https://www.youtube.com/watch?v=WHFYUA7F9jk&list=PLCAuWzdnX8zJZhdnHPYMTE5g-CRtgD44X)
 
 ### Career & Interview Resources
 - [Career Roadmap Guide](resources/career_roadmap_guide.md) - **Role-specific learning paths**: Data Analyst, Data Scientist, ML Engineer, LLM Engineer, Computer Vision Engineer, AI Engineer, Data Engineer, MLOps Engineer, Research Scientist, BI Analyst
