@@ -19,6 +19,14 @@
 
 ---
 
+<div align="center">
+
+[![Road to Machine Learning Playlist](https://img.youtube.com/vi/WHFYUA7F9jk/maxresdefault.jpg)](https://www.youtube.com/watch?v=WHFYUA7F9jk&list=PLCAuWzdnX8zJZhdnHPYMTE5g-CRtgD44X)
+
+**Watch the full playlist on YouTube**
+
+</div>
+
 ## Why This Repository?
 
 - **Zero to Hero Path**: Complete learning journey from basics to advanced ML
