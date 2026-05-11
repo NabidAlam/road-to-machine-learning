@@ -1,4 +1,4 @@
-#  Recommended Online Courses
+# Recommended Online Courses
 
 ## Free Courses
 

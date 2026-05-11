@@ -1,4 +1,4 @@
-#  Recommended Books for Machine Learning
+# Recommended Books for Machine Learning
 
 ## Beginner-Friendly Books
 

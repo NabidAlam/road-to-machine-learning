@@ -1,4 +1,4 @@
-#  Recommended Datasets for Practice
+# Recommended Datasets for Practice
 
 ## Beginner-Friendly Datasets
 

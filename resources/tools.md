@@ -1,4 +1,4 @@
-#  Essential Tools for Machine Learning
+# Essential Tools for Machine Learning
 
 ## Development Environments
 
