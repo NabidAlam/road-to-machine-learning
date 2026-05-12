@@ -55,6 +55,7 @@
 | **MLOps Engineer** | ML Operations | 16-24 months | 00-01, 05, 09-10, 12, 25, 13-14, 19 | [View Guide →](resources/career_roadmap_guide.md#mlops-engineer) |
 | **Research Scientist** | Novel methods, careful experiments, clear write-ups | 24-34 months | 00-12, 15, 19, 21, 22-24, 25 | [View Guide →](resources/career_roadmap_guide.md#research-scientist) |
 | **BI Analyst** | Business Intelligence | 10-15 months | 00-01, 19-21 | [View Guide →](resources/career_roadmap_guide.md#business-intelligence-analyst) |
+| **Full-Stack AI Engineer** | End-to-end AI products | 12-24 months | 00-01, 19, 25 + [Blueprint Phases A-H](resources/full_stack_ai_engineer_roadmap.md#phase-a-typescript-foundations) | [View Guide →](resources/full_stack_ai_engineer_roadmap.md) |
 
 **Each role-specific guide includes:**
 - Detailed module recommendations with priorities
