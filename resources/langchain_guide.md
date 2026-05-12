@@ -1,5 +1,7 @@
 # Langchain Comprehensive Guide
 
+> **JavaScript / TypeScript:** If you build APIs or Next.js apps with LangChain, use the official [LangChain.js / TypeScript docs](https://docs.langchain.com/oss/javascript/langchain/overview). This guide’s examples are mostly **Python**; concepts (chains, tools, RAG) transfer across runtimes.
+
 Complete guide to Langchain for building Generative AI applications and projects.
 
 ## Table of Contents

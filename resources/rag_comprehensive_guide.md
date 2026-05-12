@@ -2,6 +2,8 @@
 
 Complete guide to building, deploying, and optimizing RAG systems for production.
 
+> **TypeScript / Node stacks:** If you implement RAG behind a Node or Next.js service, pair this guide’s architecture sections with LangChain’s [JavaScript / TypeScript documentation](https://docs.langchain.com/oss/javascript/langchain/overview). Code snippets in this file are mostly **Python**.
+
 ## Table of Contents
 
 - [Introduction](#introduction)

@@ -55,15 +55,27 @@
 | **MLOps Engineer** | ML Operations | 16-24 months | 00-01, 05, 09-10, 12, 25, 13-14, 19 | [View Guide →](resources/career_roadmap_guide.md#mlops-engineer) |
 | **Research Scientist** | Novel methods, careful experiments, clear write-ups | 24-34 months | 00-12, 15, 19, 21, 22-24, 25 | [View Guide →](resources/career_roadmap_guide.md#research-scientist) |
 | **BI Analyst** | Business Intelligence | 10-15 months | 00-01, 19-21 | [View Guide →](resources/career_roadmap_guide.md#business-intelligence-analyst) |
-| **Full-Stack AI Engineer** | End-to-end AI products | 12-24 months (15-25 hrs/week, parallel with blueprint) | 00-01, 19, 25 + [Blueprint Phases A-H](resources/full_stack_ai_engineer_roadmap.md#phase-a-typescript-foundations) | [View Guide →](resources/career_roadmap_guide.md#full-stack-ai-engineer) |
+| **Full-Stack AI Engineer** | End-to-end AI products | 12-24 months (15-25 hrs/week, parallel with blueprint) | 00-01, 19, 25 + [In-repo lessons](resources/full_stack_track/README.md) + [Blueprint A–H](resources/full_stack_ai_engineer_roadmap.md#phase-a-typescript-foundations) | [View Guide →](resources/career_roadmap_guide.md#full-stack-ai-engineer) |
+
+**Time assumptions:** Ranges in the **Est. Time** column assume about **10–15 hours/week** for a steady part-time pace and **30–40 hours/week** for an intensive full-time pace, unless a row states otherwise (for example, Full-Stack AI Engineer calls out parallel blueprint hours).
 
 **What each path includes:**
 - **[Career Roadmap Guide](resources/career_roadmap_guide.md)** roles: module priorities, suggested projects, essential resources, skills checklists, and time guidance grounded in this repo’s **00–25** folders.
-- **Full-Stack AI Engineer**: same style of overview inside the Career Roadmap Guide, plus the companion **[Full-Stack AI Engineer Blueprint](resources/full_stack_ai_engineer_roadmap.md)** for TypeScript through deployment and AI integration. Most of that track is **outside** the numbered module folders; use the blueprint’s phases and free links for day-to-day study.
+- **Full-Stack AI Engineer**: same style of overview inside the Career Roadmap Guide, plus **[in-repo lesson chapters](resources/full_stack_track/README.md)** and the companion **[Full-Stack AI Engineer Blueprint](resources/full_stack_ai_engineer_roadmap.md)** for TypeScript through deployment and AI integration. Most hands-on engineering work is **outside** the numbered module folders; use the lessons + blueprint phases and free links for day-to-day study.
 
 The [full roadmap guide](resources/career_roadmap_guide.md) follows the same **module numbering and Phase 6 vs. module 15 (time series) branch** as the [Learning Path Overview](#learning-path-overview) above.
 
 [**View Complete Career Roadmap Guide →**](resources/career_roadmap_guide.md)
+
+## Full-stack AI quick start
+
+If you want **ML plus product engineering** (TypeScript, APIs, databases, Next.js, containers, and AI features in production), use this sequence:
+
+1. Skim the role overview: [Full-Stack AI Engineer](resources/career_roadmap_guide.md#full-stack-ai-engineer)
+2. Work through [in-repo lesson chapters](resources/full_stack_track/README.md) (Phases A–H)
+3. Follow the [Full-Stack AI Engineer Blueprint](resources/full_stack_ai_engineer_roadmap.md) for deliverables, external free links, and portfolio milestones
+
+Keep progressing through the numbered **00–25** modules for core ML depth in parallel when you can.
 
 ## Table of Contents
 
@@ -75,6 +87,7 @@ The [full roadmap guide](resources/career_roadmap_guide.md) follows the same **m
 - [Resources](#resources)
 - [YouTube Playlist](#youtube-playlist)
 - [Career Paths](#career-paths)
+- [Full-stack AI quick start](#full-stack-ai-quick-start)
 - [Contributing](#contributing)
 
 ## Overview
@@ -814,6 +827,7 @@ road-to-machine-learning/
 | [Complete Git & GitHub Guide](resources/git_guide.md) | Comprehensive Git tutorial with commands, outputs, practice exercises, and solutions |
 | [Docker Complete Tutorial](resources/docker_tutorial.md) | Comprehensive Docker guide for ML: containerization, Dockerfile, docker-compose, best practices, and deployment |
 | [Web Scraping Guide](resources/web_scraping_guide.md) | Complete web scraping guide from basics to advanced: Requests, Beautiful Soup, Selenium, Scrapy, CAPTCHA handling |
+| [Full-Stack Track (in-repo lessons)](resources/full_stack_track/README.md) | TypeScript through AI integration: chapter lessons paired with the [Full-Stack AI Blueprint](resources/full_stack_ai_engineer_roadmap.md) |
 
 #### Advanced ML Topics
 
@@ -837,7 +851,7 @@ road-to-machine-learning/
 | Guide | Description |
 |-------|-------------|
 | [RAG Comprehensive Guide](resources/rag_comprehensive_guide.md) | Complete guide to Retrieval Augmented Generation: architecture, components, vector databases, advanced techniques, evaluation, and production deployment |
-| [Langchain Guide](resources/langchain_guide.md) | Complete Langchain guide: building Gen AI projects, chains, agents, memory, RAG, document loaders, and vector stores |
+| [Langchain Guide](resources/langchain_guide.md) | Complete Langchain guide (Python-first examples; JavaScript / TypeScript docs linked at the top for Node and Next.js stacks): chains, agents, memory, RAG, document loaders, and vector stores |
 | [LlamaIndex Guide](resources/llamaindex_guide.md) | Comprehensive LlamaIndex guide: data indexing, querying, retrieval, chat engines, and advanced generative AI projects |
 | [AI Agents Guide](resources/ai_agents_guide.md) | Complete guide to AI agents: CrewAI, AutoGen, Langgraph, AutoGPT, MCP (Model Context Protocol), and A2A (Agent-to-Agent) communication |
 | [GenAI Production Deployment Guide](resources/genai_production_deployment.md) | Comprehensive guide to deploying GenAI at scale: RAG architectures, multi-agent systems, hyperscaler deployment (AWS, GCP, Azure), scaling strategies, monitoring, and cost optimization |
@@ -876,7 +890,7 @@ Follow my curated ML playlist for guided video walkthroughs:
 
 ### Career & Interview Resources
 - [Career Roadmap Guide](resources/career_roadmap_guide.md) - **Role-specific learning paths**: Data Analyst, Data Scientist, ML Engineer, LLM Engineer, GenAI Solution Architect, Computer Vision Engineer, AI Engineer, Data Engineer, MLOps Engineer, Research Scientist, BI Analyst
-- [Full-Stack AI Engineer](resources/career_roadmap_guide.md#full-stack-ai-engineer) (overview) · [Blueprint + free resources](resources/full_stack_ai_engineer_roadmap.md) - TypeScript through deployment and AI product integration
+- [Full-Stack AI Engineer](resources/career_roadmap_guide.md#full-stack-ai-engineer) (overview) · [In-repo lessons](resources/full_stack_track/README.md) · [Blueprint + free resources](resources/full_stack_ai_engineer_roadmap.md) - TypeScript through deployment and AI product integration
 - [Career & Portfolio Guide](resources/career_portfolio.md) - Build your portfolio, prepare for interviews, and launch your ML career
 - [Interview Preparation Guide](resources/interview_prep.md) - ML interview questions, coding challenges, system design, and preparation strategies
 - [Open Source Contribution Guide](resources/open_source_contribution.md) - How to contribute to open source projects in data science and ML

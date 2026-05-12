@@ -1024,6 +1024,8 @@ config = {
 
 ## LangChain & LangGraph
 
+> **JavaScript / TypeScript:** Application examples for Node and Next.js live in the [LangChain.js / TypeScript docs](https://docs.langchain.com/oss/javascript/langchain/overview). The sections below focus on **Python** patterns.
+
 ### LangChain
 
 **LangChain** is a framework for building **LLM-powered applications**.

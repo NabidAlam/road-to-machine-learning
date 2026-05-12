@@ -796,7 +796,7 @@ This guide provides clear, role-specific learning paths for different careers in
 | Track | What to use | Focus | Time (indicative) |
 |-------|-------------|-------|-------------------|
 | **ML & data core (in-repo)** | 00, 01, 19, 25 (and 13–14 as you advance) | Python stack, SQL, production/MLOps touchpoints, LLMs and GenAI | Overlap with main roadmap; treat as parallel or prerequisite slices |
-| **Product engineering (companion)** | [Full-Stack AI Engineer Blueprint](full_stack_ai_engineer_roadmap.md) Phases **A–H** | TypeScript, Node/Express, Postgres/Prisma, Next.js, Docker/Nginx, AI integration | **12–24 months** at ~15–25 hrs/week alongside ML study |
+| **Product engineering (companion)** | [Full-Stack AI Engineer Blueprint](full_stack_ai_engineer_roadmap.md) Phases **A–H** and [in-repo lesson chapters](full_stack_track/README.md) | TypeScript, Node/Express, Postgres/Prisma, Next.js, Docker/Nginx, AI integration | **12–24 months** at ~15–25 hrs/week alongside ML study |
 
 ### Essential modules (this repository)
 
@@ -822,6 +822,7 @@ This guide provides clear, role-specific learning paths for different careers in
 |------|-------|
 | **Shipping & ops** | [Git Guide](git_guide.md), [Docker Tutorial](docker_tutorial.md), [Model Deployment Cheatsheet](model_deployment_cheatsheet.md), [MLOps Cheatsheet](mlops_cheatsheet.md) |
 | **GenAI & RAG** | [Generative AI Comprehensive Guide](generative_ai_comprehensive_guide.md), [RAG Comprehensive Guide](rag_comprehensive_guide.md), [Langchain Guide](langchain_guide.md) |
+| **Full-stack lessons (in-repo)** | [Full-stack track index](full_stack_track/README.md) |
 | **System design** | [ML System Design Guide](ml_system_design_guide.md), [GenAI Production Deployment Guide](genai_production_deployment.md) |
 
 **Full phase-by-phase plan and free external links**: [Full-Stack AI Engineer Blueprint →](full_stack_ai_engineer_roadmap.md)

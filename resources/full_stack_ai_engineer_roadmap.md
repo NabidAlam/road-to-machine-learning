@@ -6,6 +6,8 @@ Think of it as a practical "build and deploy" companion to the core ML roadmap.
 
 **Naming note:** Topic labels such as **Module 01** in this blueprint are **steps inside this guide only**. They are **not** the same as this repository’s numbered folders (**`00-prerequisites` … `25-generative-ai-llms`**). When this file says “pair with core ML modules,” it always means those **repo** folders.
 
+**In-repo lesson chapters:** Step-by-step chapters live under [`resources/full_stack_track/`](full_stack_track/README.md). Read the matching chapter for each phase, then return here for deliverables and external free links.
+
 ---
 
 ## Why This Blueprint
@@ -28,6 +30,8 @@ Think of it as a practical "build and deploy" companion to the core ML roadmap.
 
 ## Phase A: TypeScript Foundations
 
+**In-repo lesson:** [Phase A — TypeScript foundations](full_stack_track/phase-a-typescript-foundations.md)
+
 ### Outcome
 Write clean, type-safe TypeScript and reason confidently about types.
 
@@ -43,6 +47,8 @@ Build and publish a small TypeScript utility library with tests and examples.
 ---
 
 ## Phase B: Node.js, Express, and API Core
+
+**In-repo lesson:** [Phase B — Node and APIs](full_stack_track/phase-b-node-apis.md)
 
 ### Outcome
 Understand server fundamentals and build secure REST APIs.
@@ -62,6 +68,8 @@ Ship a user-management backend with role-based access and refresh-token authenti
 
 ## Phase C: Database and SQL Mastery
 
+**In-repo lesson:** [Phase C — SQL and databases](full_stack_track/phase-c-sql-databases.md)
+
 ### Outcome
 Design scalable relational schemas and write reliable SQL for real applications.
 
@@ -79,6 +87,8 @@ Create an ERD-backed SQL project with migration scripts and documented query exa
 ---
 
 ## Phase D: Prisma + Next.js Full-Stack Build
+
+**In-repo lesson:** [Phase D — Prisma and Next.js](full_stack_track/phase-d-prisma-nextjs.md)
 
 ### Outcome
 Build production-style applications with clean backend architecture and modern frontend patterns.
@@ -106,6 +116,8 @@ Build a full-stack content platform with authentication, moderation flow, and an
 
 ## Phase E: Advanced Backend Engineering
 
+**In-repo lesson:** [Phase E — Advanced backend](full_stack_track/phase-e-backend-advanced.md)
+
 ### Outcome
 Move from "feature-complete" to "production-reliable."
 
@@ -125,6 +137,8 @@ Develop a domain backend (for example healthcare booking) with payments and auto
 ---
 
 ## Phase F: Advanced Frontend Engineering
+
+**In-repo lesson:** [Phase F — Advanced frontend](full_stack_track/phase-f-frontend-advanced.md)
 
 ### Outcome
 Build complex, maintainable frontends with role-aware dashboards and data-heavy UIs.
@@ -146,6 +160,8 @@ Create a multi-role admin dashboard with analytics cards/charts and advanced tab
 
 ## Phase G: Cloud, Containers, and Delivery
 
+**In-repo lesson:** [Phase G — Containers and delivery](full_stack_track/phase-g-containers-cloud.md)
+
 ### Outcome
 Containerize services and run multi-service systems with confidence.
 
@@ -164,6 +180,8 @@ Run a composed stack (frontend + API + database + reverse proxy) with reproducib
 ---
 
 ## Phase H: AI Integration for Full-Stack Products
+
+**In-repo lesson:** [Phase H — AI integration](full_stack_track/phase-h-ai-integration.md)
 
 ### Outcome
 Design AI features that are useful, grounded, and production-aware.
