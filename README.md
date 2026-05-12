@@ -55,14 +55,11 @@
 | **MLOps Engineer** | ML Operations | 16-24 months | 00-01, 05, 09-10, 12, 25, 13-14, 19 | [View Guide →](resources/career_roadmap_guide.md#mlops-engineer) |
 | **Research Scientist** | Novel methods, careful experiments, clear write-ups | 24-34 months | 00-12, 15, 19, 21, 22-24, 25 | [View Guide →](resources/career_roadmap_guide.md#research-scientist) |
 | **BI Analyst** | Business Intelligence | 10-15 months | 00-01, 19-21 | [View Guide →](resources/career_roadmap_guide.md#business-intelligence-analyst) |
-| **Full-Stack AI Engineer** | End-to-end AI products | 12-24 months | 00-01, 19, 25 + [Blueprint Phases A-H](resources/full_stack_ai_engineer_roadmap.md#phase-a-typescript-foundations) | [View Guide →](resources/full_stack_ai_engineer_roadmap.md) |
+| **Full-Stack AI Engineer** | End-to-end AI products | 12-24 months (15-25 hrs/week, parallel with blueprint) | 00-01, 19, 25 + [Blueprint Phases A-H](resources/full_stack_ai_engineer_roadmap.md#phase-a-typescript-foundations) | [View Guide →](resources/career_roadmap_guide.md#full-stack-ai-engineer) |
 
-**Each role-specific guide includes:**
-- Detailed module recommendations with priorities
-- Role-specific projects to build
-- Essential resources and tools
-- Skills checklist for each role
-- Time estimates and learning path
+**What each path includes:**
+- **[Career Roadmap Guide](resources/career_roadmap_guide.md)** roles: module priorities, suggested projects, essential resources, skills checklists, and time guidance grounded in this repo’s **00–25** folders.
+- **Full-Stack AI Engineer**: same style of overview inside the Career Roadmap Guide, plus the companion **[Full-Stack AI Engineer Blueprint](resources/full_stack_ai_engineer_roadmap.md)** for TypeScript through deployment and AI integration. Most of that track is **outside** the numbered module folders; use the blueprint’s phases and free links for day-to-day study.
 
 The [full roadmap guide](resources/career_roadmap_guide.md) follows the same **module numbering and Phase 6 vs. module 15 (time series) branch** as the [Learning Path Overview](#learning-path-overview) above.
 
@@ -879,7 +876,7 @@ Follow my curated ML playlist for guided video walkthroughs:
 
 ### Career & Interview Resources
 - [Career Roadmap Guide](resources/career_roadmap_guide.md) - **Role-specific learning paths**: Data Analyst, Data Scientist, ML Engineer, LLM Engineer, GenAI Solution Architect, Computer Vision Engineer, AI Engineer, Data Engineer, MLOps Engineer, Research Scientist, BI Analyst
-- [Full-Stack AI Engineer Roadmap](resources/full_stack_ai_engineer_roadmap.md) - End-to-end roadmap for TypeScript, backend, databases, Next.js, cloud, and AI product integration
+- [Full-Stack AI Engineer](resources/career_roadmap_guide.md#full-stack-ai-engineer) (overview) · [Blueprint + free resources](resources/full_stack_ai_engineer_roadmap.md) - TypeScript through deployment and AI product integration
 - [Career & Portfolio Guide](resources/career_portfolio.md) - Build your portfolio, prepare for interviews, and launch your ML career
 - [Interview Preparation Guide](resources/interview_prep.md) - ML interview questions, coding challenges, system design, and preparation strategies
 - [Open Source Contribution Guide](resources/open_source_contribution.md) - How to contribute to open source projects in data science and ML

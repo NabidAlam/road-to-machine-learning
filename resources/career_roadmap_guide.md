@@ -17,6 +17,7 @@ This guide provides clear, role-specific learning paths for different careers in
 - [MLOps Engineer](#mlops-engineer)
 - [Research Scientist](#research-scientist)
 - [Business Intelligence Analyst](#business-intelligence-analyst)
+- [Full-Stack AI Engineer](#full-stack-ai-engineer)
 
 ---
 
@@ -784,6 +785,58 @@ This guide provides clear, role-specific learning paths for different careers in
 
 ---
 
+## Full-Stack AI Engineer
+
+**Role Focus**: Ship AI-enabled products end to end: typed application code, APIs, databases, frontend, containers, and safe LLM features (RAG, streaming, evaluation). You still lean on this repo for **ML literacy** and **GenAI fundamentals**; the rest is a structured companion path with external learning and portfolio builds.
+
+**Important naming note**: In the [Full-Stack AI Engineer Blueprint](full_stack_ai_engineer_roadmap.md), labels like **Module 01** are **topic blocks inside that guide**, not the same thing as this repository’s folder **`01-python-for-data-science`**. Repo modules stay **00–25**; the blueprint’s phases **A–H** describe software and product skills around them.
+
+### Core learning path (this repo + companion blueprint)
+
+| Track | What to use | Focus | Time (indicative) |
+|-------|-------------|-------|-------------------|
+| **ML & data core (in-repo)** | 00, 01, 19, 25 (and 13–14 as you advance) | Python stack, SQL, production/MLOps touchpoints, LLMs and GenAI | Overlap with main roadmap; treat as parallel or prerequisite slices |
+| **Product engineering (companion)** | [Full-Stack AI Engineer Blueprint](full_stack_ai_engineer_roadmap.md) Phases **A–H** | TypeScript, Node/Express, Postgres/Prisma, Next.js, Docker/Nginx, AI integration | **12–24 months** at ~15–25 hrs/week alongside ML study |
+
+### Essential modules (this repository)
+
+| Module | Topics | Priority |
+|--------|--------|----------|
+| **00-prerequisites** | Python, math, stats | ⭐⭐⭐ Critical |
+| **01-python-for-data-science** | Data stack, EDA, APIs where relevant | ⭐⭐⭐ Critical |
+| **19-sql-database-fundamentals** | SQL, relational design | ⭐⭐⭐ Critical |
+| **25-generative-ai-llms** | LLMs, prompting, app-facing GenAI | ⭐⭐⭐ Critical |
+| **13-14** | Deployment, MLOps, APIs | ⭐⭐ Important (as you ship) |
+
+### Recommended portfolio builds
+
+| Level | Build | Why it matters |
+|-------|--------|----------------|
+| **Starter** | Typed CLI or small API + Postgres | Proves fundamentals before frameworks |
+| **Intermediate** | Auth + RBAC + CRUD + migrations | Mirrors real product backends |
+| **Advanced** | Full-stack app + RAG or streaming assistant + observability | Matches hiring bar for “AI in production” |
+
+### Essential resources (in this repo)
+
+| Area | Files |
+|------|-------|
+| **Shipping & ops** | [Git Guide](git_guide.md), [Docker Tutorial](docker_tutorial.md), [Model Deployment Cheatsheet](model_deployment_cheatsheet.md), [MLOps Cheatsheet](mlops_cheatsheet.md) |
+| **GenAI & RAG** | [Generative AI Comprehensive Guide](generative_ai_comprehensive_guide.md), [RAG Comprehensive Guide](rag_comprehensive_guide.md), [Langchain Guide](langchain_guide.md) |
+| **System design** | [ML System Design Guide](ml_system_design_guide.md), [GenAI Production Deployment Guide](genai_production_deployment.md) |
+
+**Full phase-by-phase plan and free external links**: [Full-Stack AI Engineer Blueprint →](full_stack_ai_engineer_roadmap.md)
+
+### Skills checklist
+
+- TypeScript for application and API layers
+- REST design, validation, auth (sessions/JWT), and error handling
+- Relational modeling, SQL, migrations, and ORM basics
+- Frontend architecture (e.g. Next.js) and secure client/server boundaries
+- Containers, reverse proxy, and environment/config hygiene
+- LLM integration: prompts, structured output, streaming, RAG, basic evaluation and cost awareness
+
+---
+
 ## Quick Reference: Role Comparison
 
 | Role | Primary Focus | Key Skills | Typical Projects |
@@ -799,6 +852,7 @@ This guide provides clear, role-specific learning paths for different careers in
 | **MLOps Engineer** | ML Operations | CI/CD, Monitoring, Infrastructure | ML Infrastructure, CI/CD |
 | **Research Scientist** | Novel methods, experiments, write-ups | Theory, Math, Research | Research Projects, Papers |
 | **BI Analyst** | Business Intelligence | Visualization, Reporting | Dashboards, Business Reports |
+| **Full-Stack AI Engineer** | End-to-end AI products | TypeScript, APIs, SQL, Next.js, LLM/RAG | Auth + data app + AI feature in production |
 
 ---
 

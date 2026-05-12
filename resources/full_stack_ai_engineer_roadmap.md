@@ -4,6 +4,8 @@ This guide extends the ML journey in this repository with software engineering d
 
 Think of it as a practical "build and deploy" companion to the core ML roadmap.
 
+**Naming note:** Topic labels such as **Module 01** in this blueprint are **steps inside this guide only**. They are **not** the same as this repository’s numbered folders (**`00-prerequisites` … `25-generative-ai-llms`**). When this file says “pair with core ML modules,” it always means those **repo** folders.
+
 ---
 
 ## Why This Blueprint
