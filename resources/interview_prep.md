@@ -397,6 +397,8 @@ df[['feature1', 'feature2']] = scaler.fit_transform(df[['feature1', 'feature2']]
 
 ## System Design Questions
 
+> **Before you drill questions:** make sure you can talk fluently about load balancers, caching, SQL vs NoSQL, sharding, replication, CAP, and message queues. If those terms feel fuzzy, walk through [System Design for Beginners](../system-design/README.md) (21 short lessons) and then come back. For the ML-specific layer (serving, latency, drift, MLOps), use the [ML System Design Guide](ml_system_design_guide.md).
+
 ### Design a Recommendation System
 
 **Approach:**
@@ -565,6 +567,8 @@ As sample size increases, distribution of sample means approaches normal distrib
 - [Data Science Interview Questions](https://www.interviewquery.com/)
 
 ### System Design
+- [System Design for Beginners](../system-design/README.md) (in this repo) — 21 lessons on backend foundations
+- [ML System Design Guide](ml_system_design_guide.md) (in this repo) — ML-specific application of those foundations
 - [System Design Primer](https://github.com/donnemartin/system-design-primer)
 - [ML System Design](https://github.com/eugeneyan/applied-ml)
 

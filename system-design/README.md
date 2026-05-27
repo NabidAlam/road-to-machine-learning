@@ -6,6 +6,16 @@ The goal is not to memorize buzzwords. By the end you should be able to look at 
 
 Reading style is borrowed from Alex Xu's books: short sentences, real numbers, concrete examples, trade-offs spelled out.
 
+## Where this fits in the repo
+
+This folder is a **foundational side track** that pairs with the main [Road to Machine Learning](../README.md) curriculum. It teaches the general backend vocabulary the ML guides assume you know.
+
+- **Start here** if you're heading toward ML Engineer, MLOps, Data Engineer, AI Engineer, or Full-Stack AI Engineer.
+- **Then** read the [ML System Design Guide](../resources/ml_system_design_guide.md) for how these ideas apply to serving models, drift, and MLOps.
+- **For interviews,** see the [Interview Preparation Guide](../resources/interview_prep.md#system-design-questions).
+
+You can read this in parallel with the numbered modules. It pairs especially well with module 13 (deployment) and 14 (MLOps).
+
 ## How to read this
 
 Go in order if you're new. The first few chapters set up the vocabulary the later ones lean on.

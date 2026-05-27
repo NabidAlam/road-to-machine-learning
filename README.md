@@ -57,6 +57,8 @@
 | **BI Analyst** | Business Intelligence | 10-15 months | 00-01, 19-21 | [View Guide →](resources/career_roadmap_guide.md#business-intelligence-analyst) |
 | **Full-Stack AI Engineer** | End-to-end AI products | 12-24 months (15-25 hrs/week, parallel with blueprint) | 00-01, 19, 25 + [In-repo lessons](resources/full_stack_track/README.md) + [Blueprint A–H](resources/full_stack_ai_engineer_roadmap.md#phase-a-typescript-foundations) | [View Guide →](resources/career_roadmap_guide.md#full-stack-ai-engineer) |
 
+**Foundational side track:** [System Design for Beginners](system-design/README.md) — 21 short lessons on backend fundamentals (HTTP, TCP, DNS, caching, load balancing, CAP, sharding, message queues). Useful for ML Engineer, MLOps, Data Engineer, AI Engineer, and Full-Stack AI Engineer paths. Pairs with the [ML System Design Guide](resources/ml_system_design_guide.md), which applies these foundations to ML services.
+
 **Time assumptions:** Ranges in the **Est. Time** column assume about **10–15 hours/week** for a steady part-time pace and **30–40 hours/week** for an intensive full-time pace, unless a row states otherwise (for example, Full-Stack AI Engineer calls out parallel blueprint hours).
 
 **What each path includes:**
@@ -77,6 +79,16 @@ If you want **ML plus product engineering** (TypeScript, APIs, databases, Next.j
 
 Keep progressing through the numbered **00–25** modules for core ML depth in parallel when you can.
 
+## System design foundations
+
+If you're heading toward ML Engineer, MLOps, Data Engineer, AI Engineer, or Full-Stack AI Engineer, you'll need backend system design vocabulary (HTTP, TCP, caching, load balancing, CAP, sharding, message queues). Read these in order:
+
+1. [System Design for Beginners](system-design/README.md) — 21 short lessons on the fundamentals (~5 hours).
+2. [ML System Design Guide](resources/ml_system_design_guide.md) — how those fundamentals apply to ML services (latency, serving, drift, MLOps).
+3. [Interview Preparation Guide](resources/interview_prep.md#system-design-questions) — practice questions in the System Design section.
+
+You don't need to finish all 26 ML modules first. The system design track is **parallel** and pairs well with module 13 (deployment), 14 (MLOps), and any project phase (16–18).
+
 ## Table of Contents
 
 - [Overview](#overview)
@@ -88,6 +100,7 @@ Keep progressing through the numbered **00–25** modules for core ML depth in p
 - [YouTube Playlist](#youtube-playlist)
 - [Career Paths](#career-paths)
 - [Full-stack AI quick start](#full-stack-ai-quick-start)
+- [System design foundations](#system-design-foundations)
 - [Contributing](#contributing)
 
 ## Overview
@@ -712,6 +725,34 @@ road-to-machine-learning/
     generative-ai-llms-quick-reference.md
     README.md
 
+ system-design/
+    00-computer-architecture.md
+    01-application-architecture.md
+    02-design-requirements.md
+    03-networking-basics.md
+    04-tcp-and-udp.md
+    05-dns.md
+    06-http.md
+    07-websockets.md
+    08-api-paradigms.md
+    09-api-design.md
+    10-caching.md
+    11-cdns.md
+    12-proxies-and-load-balancing.md
+    13-consistent-hashing.md
+    14-sql.md
+    15-nosql.md
+    16-replication-and-sharding.md
+    17-cap-theorem.md
+    18-object-storage.md
+    19-message-queues.md
+    20-mapreduce.md
+    README.md
+
+ examples/
+    full_stack_track/
+        README.md            (learner scratch space for the Full-Stack AI track)
+
  tools/
     check_links.py
     README.md
@@ -861,7 +902,8 @@ road-to-machine-learning/
 
 | Guide | Description |
 |-------|-------------|
-| [ML System Design Guide](resources/ml_system_design_guide.md) | Comprehensive guide to designing scalable ML systems: requests/responses, latency, throughput, load balancing, caching, vertical/horizontal scaling, databases, replication, sharding, message queues, stateless/stateful architecture, high availability, and monitoring |
+| [System Design for Beginners](system-design/README.md) | 21 short lessons on backend foundations: computer architecture, networking (TCP/UDP/DNS), HTTP, WebSockets, API design, caching, CDNs, proxies, load balancing, consistent hashing, SQL/NoSQL, replication, sharding, CAP, object storage, message queues, and MapReduce. Read this before the ML guide below |
+| [ML System Design Guide](resources/ml_system_design_guide.md) | Applies system design fundamentals to ML services: requests/responses, latency, throughput, load balancing, caching, vertical/horizontal scaling, databases, replication, sharding, message queues, stateless/stateful architecture, high availability, monitoring, drift, MLOps |
 
 #### Business & Communication
 
