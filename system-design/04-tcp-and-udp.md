@@ -17,7 +17,7 @@ To do this, TCP starts every conversation with a handshake.
 ```
 Client                                Server
   |                                     |
-  | ----- SYN (let's talk) ----------->|
+  | ----- SYN (let's talk) -----------> |
   |                                     |
   | <---- SYN-ACK (sure, ok) ---------- |
   |                                     |
