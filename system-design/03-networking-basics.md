@@ -133,11 +133,11 @@ Same idea as your home WiFi, but at company scale.
         +-----------------+-----------------+
                           |
                   +----------------+
-                  |   App servers   |  <- private subnet, no public IP
+                  |   App servers  |  <- private subnet, no public IP
                   +----------------+
                           |
                   +----------------+
-                  |    Database     |  <- private subnet
+                  |    Database    |  <- private subnet
                   +----------------+
 ```
 
