@@ -21,7 +21,7 @@
 
 <div align="center">
 
-[![Road to Machine Learning Playlist](https://img.youtube.com/vi/WHFYUA7F9jk/maxresdefault.jpg)](https://www.youtube.com/watch?v=WHFYUA7F9jk&list=PLCAuWzdnX8zJZhdnHPYMTE5g-CRtgD44X)
+[![Advanced AI Engineering & Architecture Masterclass (Concept Over Code)](https://img.youtube.com/vi/0f4M5SIfugw/maxresdefault.jpg)](https://www.youtube.com/playlist?list=PLCAuWzdnX8zIhdfVRWfUc8FUhTWKROb4p)
 
 **Watch the full playlist on YouTube**
 
@@ -938,7 +938,7 @@ road-to-machine-learning/
 
 Follow my curated ML playlist for guided video walkthroughs:
 
-- [Road to Machine Learning Playlist](https://www.youtube.com/watch?v=WHFYUA7F9jk&list=PLCAuWzdnX8zJZhdnHPYMTE5g-CRtgD44X)
+- [Advanced AI Engineering & Architecture Masterclass (Concept Over Code)](https://www.youtube.com/playlist?list=PLCAuWzdnX8zIhdfVRWfUc8FUhTWKROb4p)
 
 ### Career & Interview Resources
 - [Career Roadmap Guide](resources/career_roadmap_guide.md) - **Role-specific learning paths**: Data Analyst, Data Scientist, ML Engineer, LLM Engineer, GenAI Solution Architect, Computer Vision Engineer, AI Engineer, Data Engineer, MLOps Engineer, Research Scientist, BI Analyst
