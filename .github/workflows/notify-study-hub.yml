@@ -3,7 +3,7 @@
 # Setup (one time):
 # 1. Create a fine-grained PAT with Contents read/write on the study hub repo.
 # 2. Settings → Secrets → Actions: STUDY_HUB_DISPATCH_TOKEN = <PAT>
-# 3. Settings → Variables → Actions: STUDY_HUB_REPO = NabidAlam/banner-generator
+# 3. Settings → Variables → Actions: STUDY_HUB_REPO = NabidAlam/nabidinmotion
 # 4. Commit and push this file to main.
 
 name: Notify study hub
