@@ -9,7 +9,7 @@ This guide covers Convolutional Neural Networks (CNNs) and image processing.
 - **CNN foundation** (conv, pool, channels) → [Convolution and edge detection](#convolution-and-edge-detection-techniques), [Convolutional layers](#understanding-and-building-convolutional-layers)
 - **Activation functions** (Sigmoid, tanh, ReLU, Leaky ReLU, ELU, SELU) → [Activation functions for CNNs](#activation-functions-for-cnns)
 - **CNN architectures and math** (receptive field, parameter count) → [CNN architectures](#cnn-architectures)
-- **CNN in PyTorch** (`nn.Conv2d`, training loops) → [Deep learning frameworks — PyTorch CV](../10-deep-learning-frameworks/deep-learning-frameworks.md#pytorch-computer-vision)
+- **CNN in PyTorch** (`nn.Conv2d`, training loops) → [Deep learning frameworks. PyTorch CV](../10-deep-learning-frameworks/deep-learning-frameworks.md#pytorch-computer-vision)
 - **Data augmentation and pre-trained CNNs** → [Data augmentation](#data-augmentation), [Transfer learning](#transfer-learning)
 - **Transformers in vision (ViT etc.)** → [Computer vision advanced topics](computer-vision-advanced-topics.md)
 

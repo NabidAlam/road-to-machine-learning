@@ -18,7 +18,7 @@ Before starting these projects, you should have completed:
 | Project idea | Modality | Notes / datasets |
 |--------------|------------|-------------------|
 | **Hate speech detection** (BERT / mBERT / Bangla BERT) | NLP Transformer | Fine-tune multilingual checkpoints (e.g. `bert-base-multilingual-cased`, community **Bangla-BERT** weights) on [HateXplain](https://github.com/hate-alert/HateXplain) or similar; follow [NLP Transformers section](../12-natural-language-processing/nlp.md#transformers) |
-| **Skin lesion classification** | CNN | [ISIC Archive](https://www.isic-archive.com/) — transfer learning from ImageNet CNNs; see [Computer vision](../11-computer-vision/computer-vision.md#transfer-learning) |
+| **Skin lesion classification** | CNN | [ISIC Archive](https://www.isic-archive.com/): transfer learning from ImageNet CNNs; see [Computer vision](../11-computer-vision/computer-vision.md#transfer-learning) |
 | **Sentiment analysis of tweets** | RNN or Transformer | Public Twitter sentiment corpora; compare **LSTM** vs **BERT** as in [NLP guide](../12-natural-language-processing/nlp.md#rnns-and-lstms) |
 | **Text generation** | Decoder / LM | Fine-tune small GPT-style or causal LM with Hugging Face `generate()`; see [Transformers inference](../12-natural-language-processing/nlp.md#transformer-encoder-decoder-and-inference) and [GenAI phase](../25-generative-ai-llms/README.md) |
 

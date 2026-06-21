@@ -8,11 +8,11 @@
 
 ## Table of Contents
 
-- [Lesson 1 — Layering routes, controllers, services](#lesson-1-layering-routes-controllers-services)
-- [Lesson 2 — Idempotency and webhooks](#lesson-2-idempotency-and-webhooks)
-- [Lesson 3 — File uploads and async processing](#lesson-3-file-uploads-and-async-processing)
-- [Lesson 4 — Query patterns at scale](#lesson-4-query-patterns-at-scale)
-- [Lesson 5 — Observability for backends](#lesson-5-observability-for-backends)
+- [Lesson 1: Layering routes, controllers, services](#lesson-1-layering-routes-controllers-services)
+- [Lesson 2: Idempotency and webhooks](#lesson-2-idempotency-and-webhooks)
+- [Lesson 3: File uploads and async processing](#lesson-3-file-uploads-and-async-processing)
+- [Lesson 4: Query patterns at scale](#lesson-4-query-patterns-at-scale)
+- [Lesson 5: Observability for backends](#lesson-5-observability-for-backends)
 - [Exercises](#exercises)
 - [Next step](#next-step)
 
@@ -76,4 +76,4 @@ Minimum viable production awareness:
 
 ## Next step
 
-[Phase F — Advanced frontend](phase-f-frontend-advanced.md)
+[Phase F: Advanced frontend](phase-f-frontend-advanced.md)

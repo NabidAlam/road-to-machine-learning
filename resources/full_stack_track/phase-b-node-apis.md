@@ -8,11 +8,11 @@
 
 ## Table of Contents
 
-- [Lesson 1 — How the web talks](#lesson-1-how-the-web-talks)
-- [Lesson 2 — Node mental model](#lesson-2-node-mental-model)
-- [Lesson 3 — Raw HTTP in Node (why it matters)](#lesson-3-raw-http-in-node-why-it-matters)
-- [Lesson 4 — Express routing and middleware](#lesson-4-express-routing-and-middleware)
-- [Lesson 5 — Auth basics you will reuse everywhere](#lesson-5-auth-basics-you-will-reuse-everywhere)
+- [Lesson 1: How the web talks](#lesson-1-how-the-web-talks)
+- [Lesson 2: Node mental model](#lesson-2-node-mental-model)
+- [Lesson 3: Raw HTTP in Node (why it matters)](#lesson-3-raw-http-in-node-why-it-matters)
+- [Lesson 4: Express routing and middleware](#lesson-4-express-routing-and-middleware)
+- [Lesson 5: Auth basics you will reuse everywhere](#lesson-5-auth-basics-you-will-reuse-everywhere)
 - [Exercises](#exercises)
 - [Next step](#next-step)
 
@@ -93,4 +93,4 @@ Passwords must be **hashed** (for example bcrypt). **JWTs** are signed tokens; t
 
 ## Next step
 
-[Phase C — SQL & databases](phase-c-sql-databases.md)
+[Phase C: SQL & databases](phase-c-sql-databases.md)

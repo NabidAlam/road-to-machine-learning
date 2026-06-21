@@ -8,11 +8,11 @@
 
 ## Table of Contents
 
-- [Lesson 1 — Typed API contracts](#lesson-1-typed-api-contracts)
-- [Lesson 2 — Auth in the browser vs server](#lesson-2-auth-in-the-browser-vs-server)
-- [Lesson 3 — Data fetching patterns](#lesson-3-data-fetching-patterns)
-- [Lesson 4 — Tables, filters, and URL state](#lesson-4-tables-filters-and-url-state)
-- [Lesson 5 — Performance and UX guardrails](#lesson-5-performance-and-ux-guardrails)
+- [Lesson 1: Typed API contracts](#lesson-1-typed-api-contracts)
+- [Lesson 2: Auth in the browser vs server](#lesson-2-auth-in-the-browser-vs-server)
+- [Lesson 3: Data fetching patterns](#lesson-3-data-fetching-patterns)
+- [Lesson 4: Tables, filters, and URL state](#lesson-4-tables-filters-and-url-state)
+- [Lesson 5: Performance and UX guardrails](#lesson-5-performance-and-ux-guardrails)
 - [Exercises](#exercises)
 - [Next step](#next-step)
 
@@ -75,4 +75,4 @@ Debounce search inputs; cancel in-flight requests when parameters change.
 
 ## Next step
 
-[Phase G — Containers & delivery](phase-g-containers-cloud.md)
+[Phase G: Containers & delivery](phase-g-containers-cloud.md)

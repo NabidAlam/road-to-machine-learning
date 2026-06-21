@@ -8,11 +8,11 @@
 
 ## Table of Contents
 
-- [Lesson 1 — Schema-first data with Prisma](#lesson-1-schema-first-data-with-prisma)
-- [Lesson 2 — Migrations and environments](#lesson-2-migrations-and-environments)
-- [Lesson 3 — Next.js App Router mental model](#lesson-3-nextjs-app-router-mental-model)
-- [Lesson 4 — Server vs client boundaries](#lesson-4-server-vs-client-boundaries)
-- [Lesson 5 — Forms, validation, and errors](#lesson-5-forms-validation-and-errors)
+- [Lesson 1: Schema-first data with Prisma](#lesson-1-schema-first-data-with-prisma)
+- [Lesson 2: Migrations and environments](#lesson-2-migrations-and-environments)
+- [Lesson 3: Next.js App Router mental model](#lesson-3-nextjs-app-router-mental-model)
+- [Lesson 4: Server vs client boundaries](#lesson-4-server-vs-client-boundaries)
+- [Lesson 5: Forms, validation, and errors](#lesson-5-forms-validation-and-errors)
 - [Exercises](#exercises)
 - [Next step](#next-step)
 
@@ -82,4 +82,4 @@ Return actionable errors (`fieldErrors`) instead of generic “bad request” wh
 
 ## Next step
 
-[Phase E — Advanced backend](phase-e-backend-advanced.md)
+[Phase E: Advanced backend](phase-e-backend-advanced.md)

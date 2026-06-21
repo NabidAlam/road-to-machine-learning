@@ -18,7 +18,7 @@ Theory and activations: [Neural networks basics](../09-neural-networks-basics/ne
 
 - **CNN in PyTorch** (`nn.Conv2d`, pooling, training loop on batches) → [PyTorch computer vision](#pytorch-computer-vision)
 - **Image augmentation and pretrained CNNs** → [TorchVision / transfer in CV module](../11-computer-vision/computer-vision.md#data-augmentation), [Transfer learning](../11-computer-vision/computer-vision.md#transfer-learning)
-- **Sequence `Dataset` / `DataLoader` and padding** → [NLP — Sequence data and PyTorch](../12-natural-language-processing/nlp.md#sequence-data-and-pytorch)
+- **Sequence `Dataset` / `DataLoader` and padding** → [NLP. Sequence data and PyTorch](../12-natural-language-processing/nlp.md#sequence-data-and-pytorch)
 
 ## Table of Contents
 

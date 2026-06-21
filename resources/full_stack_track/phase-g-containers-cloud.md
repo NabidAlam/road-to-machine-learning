@@ -8,11 +8,11 @@
 
 ## Table of Contents
 
-- [Lesson 1 — Images vs containers](#lesson-1-images-vs-containers)
-- [Lesson 2 — Volumes and configuration](#lesson-2-volumes-and-configuration)
-- [Lesson 3 — Multi-service Compose](#lesson-3-multi-service-compose)
-- [Lesson 4 — Nginx as reverse proxy](#lesson-4-nginx-as-reverse-proxy)
-- [Lesson 5 — Makefiles and developer ergonomics](#lesson-5-makefiles-and-developer-ergonomics)
+- [Lesson 1: Images vs containers](#lesson-1-images-vs-containers)
+- [Lesson 2: Volumes and configuration](#lesson-2-volumes-and-configuration)
+- [Lesson 3: Multi-service Compose](#lesson-3-multi-service-compose)
+- [Lesson 4: Nginx as reverse proxy](#lesson-4-nginx-as-reverse-proxy)
+- [Lesson 5: Makefiles and developer ergonomics](#lesson-5-makefiles-and-developer-ergonomics)
 - [Exercises](#exercises)
 - [Next step](#next-step)
 
@@ -67,4 +67,4 @@ Short commands (`make dev`, `make test`) reduce onboarding friction and match CI
 
 ## Next step
 
-[Phase H — AI integration](phase-h-ai-integration.md)
+[Phase H: AI integration](phase-h-ai-integration.md)

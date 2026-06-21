@@ -100,7 +100,7 @@ Reads pull the latest page. Older history can move to cheaper storage after 30 d
 
 ## Deep dive 3: Presence and typing
 
-Presence is "who is online" — not durable. Living in memory is fine.
+Presence is "who is online". Not durable. Living in memory is fine.
 
 ```
 presence:user:42  ->  "online", TTL 30s
@@ -134,7 +134,7 @@ You don't need full Paxos here. Order within a room is what matters, and a singl
 
 - **By room.** Shard rooms across DB and pub/sub backbone.
 - **By gateway.** Add gateways behind a load balancer with sticky sessions (Chapter 12). Use a consistent hash (Chapter 13) to assign users to gateways.
-- **By region.** Pin large rooms to a "home" region; replicate read-only copies elsewhere. Cross-region writes pay a latency tax — accept it.
+- **By region.** Pin large rooms to a "home" region; replicate read-only copies elsewhere. Cross-region writes pay a latency tax. Accept it.
 
 ## Things to remember
 
@@ -143,7 +143,7 @@ You don't need full Paxos here. Order within a room is what matters, and a singl
 - Wide-column storage with `(room_id, created_at)` keys fits chat reads perfectly.
 - Presence and typing live in memory with TTLs. Don't store them.
 - Shard by room; very large rooms are special cases worth their own routing.
-- Order matters per room, not globally — design accordingly.
+- Order matters per room, not globally. Design accordingly.
 
 ## Going deeper
 

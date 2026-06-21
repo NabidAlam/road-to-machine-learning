@@ -57,7 +57,7 @@
 | **BI Analyst** | Business Intelligence | 10-15 months | 00-01, 19-21 | [View Guide →](resources/career_roadmap_guide.md#business-intelligence-analyst) |
 | **Full-Stack AI Engineer** | End-to-end AI products | 12-24 months (15-25 hrs/week, parallel with blueprint) | 00-01, 19, 25 + [In-repo lessons](resources/full_stack_track/README.md) + [Blueprint A–H](resources/full_stack_ai_engineer_roadmap.md#phase-a-typescript-foundations) | [View Guide →](resources/career_roadmap_guide.md#full-stack-ai-engineer) |
 
-**Foundational side track:** [System Design for Beginners](system-design/README.md) — 31 lessons covering HTTP, TCP, DNS, caching, load balancing, CAP, sharding, and message queues, plus a capstone and 9 interview-style design problems (rate limiter, social feed, chat, video, file storage, maps, KV store, message queue, and a real-time ML feature store). Useful for ML Engineer, MLOps, Data Engineer, AI Engineer, and Full-Stack AI Engineer paths. Pairs with the [ML System Design Guide](resources/ml_system_design_guide.md), which applies these foundations to ML services.
+**Foundational side track:** [System Design for Beginners](system-design/README.md): 31 lessons covering HTTP, TCP, DNS, caching, load balancing, CAP, sharding, and message queues, plus a capstone and 9 interview-style design problems (rate limiter, social feed, chat, video, file storage, maps, KV store, message queue, and a real-time ML feature store). Useful for ML Engineer, MLOps, Data Engineer, AI Engineer, and Full-Stack AI Engineer paths. Pairs with the [ML System Design Guide](resources/ml_system_design_guide.md), which applies these foundations to ML services.
 
 **Time assumptions:** Ranges in the **Est. Time** column assume about **10–15 hours/week** for a steady part-time pace and **30–40 hours/week** for an intensive full-time pace, unless a row states otherwise (for example, Full-Stack AI Engineer calls out parallel blueprint hours).
 
@@ -83,9 +83,9 @@ Keep progressing through the numbered **00–25** modules for core ML depth in p
 
 If you're heading toward ML Engineer, MLOps, Data Engineer, AI Engineer, or Full-Stack AI Engineer, you'll need backend system design vocabulary (HTTP, TCP, caching, load balancing, CAP, sharding, message queues). Read these in order:
 
-1. [System Design for Beginners](system-design/README.md) — 22 foundation lessons + 9 interview-style designs (~8 hours total).
-2. [ML System Design Guide](resources/ml_system_design_guide.md) — how those fundamentals apply to ML services (latency, serving, drift, MLOps).
-3. [Interview Preparation Guide](resources/interview_prep.md#system-design-questions) — practice questions in the System Design section.
+1. [System Design for Beginners](system-design/README.md): 22 foundation lessons + 9 interview-style designs (~8 hours total).
+2. [ML System Design Guide](resources/ml_system_design_guide.md): how those fundamentals apply to ML services (latency, serving, drift, MLOps).
+3. [Interview Preparation Guide](resources/interview_prep.md#system-design-questions): practice questions in the System Design section.
 
 You don't need to finish all 26 ML modules first. The system design track is **parallel** and pairs well with module 13 (deployment), 14 (MLOps), and any project phase (16–18).
 
@@ -239,16 +239,16 @@ Structured courses usually stack Python, then math and stats, then tabular ML, t
 
 Module **08** is where you work without a target column. You cluster, reduce dimensions, spot outliers, and explain why a grouping is plausible. These skills carry into EDA, modeling, and research writing. Follow the unsupervised walkthrough when you want structure beyond trying k=3. [Unsupervised learning map](08-unsupervised-learning/unsupervised-learning.md#advanced-machine-learning-curriculum-map-this-guide).
 
-- **08-unsupervised-learning** — K-Means, hierarchical and density-based clustering, validation and plots, PCA / t-SNE / SVD, **LDA (supervised dimensionality reduction)** beside PCA, anomaly detection, **association rules (e.g. Apriori / market-basket style)**.
+- **08-unsupervised-learning**. K-Means, hierarchical and density-based clustering, validation and plots, PCA / t-SNE / SVD, **LDA (supervised dimensionality reduction)** beside PCA, anomaly detection, **association rules (e.g. Apriori / market-basket style)**.
 
 ### Stage 5: Deep Learning Fundamentals
 **Goal**: Build intuition that survives new architectures.
 
 Most breakthroughs are still “layers + nonlinearity + data + optimization.” Here you learn to **read training curves**, **sanity-check gradients**, and see why a linear model fails before frameworks hide the details. If you aim toward a research-scientist path, treat this stage as lab notebook habits. Run small experiments, change one thing at a time, and keep runs reproducible.
 
-- **09-neural-networks-basics** — From linear limits to MLPs: activations, losses, backpropagation as chain rule, optimizers (SGD family through Adam), regularization, initialization, and what actually breaks training. [Study map →](09-neural-networks-basics/neural-networks.md#deep-learning-curriculum-map-this-guide)
+- **09-neural-networks-basics**. From linear limits to MLPs: activations, losses, backpropagation as chain rule, optimizers (SGD family through Adam), regularization, initialization, and what actually breaks training. [Study map →](09-neural-networks-basics/neural-networks.md#deep-learning-curriculum-map-this-guide)
 
-- **10-deep-learning-frameworks** — Turn math into working code: PyTorch tensors and autograd, real training loops, Keras ergonomics, saving models, and shipping-friendly formats when you need them. [Study map →](10-deep-learning-frameworks/deep-learning-frameworks.md#deep-learning-curriculum-map-this-guide) · [Practice builds →](17-projects-intermediate/README.md#deep-learning-curriculum-map-projects) (MNIST, churn, tabular regression)
+- **10-deep-learning-frameworks**. Turn math into working code: PyTorch tensors and autograd, real training loops, Keras ergonomics, saving models, and shipping-friendly formats when you need them. [Study map →](10-deep-learning-frameworks/deep-learning-frameworks.md#deep-learning-curriculum-map-this-guide) · [Practice builds →](17-projects-intermediate/README.md#deep-learning-curriculum-map-projects) (MNIST, churn, tabular regression)
 
 ### Stage 6: Specialized Deep Learning
 **Goal**: See the world as tensors. Pixels and tokens.
@@ -257,16 +257,16 @@ Vision and language split into specialist toolkits here, but the mindset stays t
 
 **Where to dive:** [Vision roadmap](11-computer-vision/computer-vision.md#cnn-and-modern-vision-curriculum-map-this-guide) · [Language roadmap](12-natural-language-processing/nlp.md#cnn-and-rnn-curriculum-map-this-guide) · [PyTorch bridge for CV + NLP](10-deep-learning-frameworks/deep-learning-frameworks.md#cnn-and-rnn-curriculum-map-pytorch) · [Open-ended projects](18-projects-advanced/README.md#cnn-and-rnn-curriculum-map-projects)
 
-- **11-computer-vision** — Convolutions, CNN families, augmentation, transfer learning, detection, segmentation, and ViT-style ideas.
+- **11-computer-vision**. Convolutions, CNN families, augmentation, transfer learning, detection, segmentation, and ViT-style ideas.
 
-- **12-natural-language-processing** — RNN to LSTM/GRU, attention, transformers, Hugging Face workflows, retrieval, and sentiment on messy text.
+- **12-natural-language-processing**. RNN to LSTM/GRU, attention, transformers, Hugging Face workflows, retrieval, and sentiment on messy text.
 
 ### Stage 7: Generative AI & Modern LLM Applications
 **Goal**: Work with foundation models, not against them.
 
 You rarely train a frontier LLM from scratch. You compose prompts, retrieval, tools, evaluation harnesses, and guardrails. This stage is about shipping ideas quickly while keeping rigor. Trace failures, measure hallucinations, version prompts like code, and know when a vector DB is the right memory.
 
-- **25-generative-ai-llms** — Prompt patterns, embeddings, vector search, RAG pipelines, agents, and production patterns. Deeper reads in [GenAI overview](resources/generative_ai_comprehensive_guide.md), [RAG guide](resources/rag_comprehensive_guide.md), [LangChain](resources/langchain_guide.md), [Agents](resources/ai_agents_guide.md).
+- **25-generative-ai-llms**. Prompt patterns, embeddings, vector search, RAG pipelines, agents, and production patterns. Deeper reads in [GenAI overview](resources/generative_ai_comprehensive_guide.md), [RAG guide](resources/rag_comprehensive_guide.md), [LangChain](resources/langchain_guide.md), [Agents](resources/ai_agents_guide.md).
 
 **Pacing:** Roughly 1–2 months full-time (2–4 part-time), often best after Stage 6 or alongside NLP if you learn by building products early.
 
@@ -274,7 +274,7 @@ You rarely train a frontier LLM from scratch. You compose prompts, retrieval, to
 
 Forecasting and monitoring problems break the usual “shuffle and split” story. Treat **15** as a side quest you can start after you are comfortable with regression *or* after RNNs—many research and product teams touch time series even if it is not their main title.
 
-- **15-time-series-analysis** — Trend and seasonality, classical models (ARIMA family), deep sequence models, feature design for temporal data, and evaluation that respects time ordering. *Numbering note:* module 15 sits after 13–14 in the repo but fits logically here or alongside Stages 5–6.
+- **15-time-series-analysis**. Trend and seasonality, classical models (ARIMA family), deep sequence models, feature design for temporal data, and evaluation that respects time ordering. *Numbering note:* module 15 sits after 13–14 in the repo but fits logically here or alongside Stages 5–6.
 
 ### Stage 7.5: Essential Data Science Skills
 **Goal**: Master critical skills for real-world ML applications
@@ -354,7 +354,7 @@ Forecasting and monitoring problems break the usual “shuffle and split” stor
 | **Beginner** | 6 | Stages 0–2 | 2–3 weeks | Code included |
 | **Intermediate** | 8 | Stages 0–4 | 4–6 weeks | README brief |
 | **Advanced** | 9 | Stages 0–7 | 8–12 weeks | README brief |
-| **Total** | **23** | — | **4–6 months** | Mixed |
+| **Total** | **23** |, | **4–6 months** | Mixed |
 
 #### Beginner Projects (6 projects)
 

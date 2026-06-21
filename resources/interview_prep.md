@@ -567,8 +567,8 @@ As sample size increases, distribution of sample means approaches normal distrib
 - [Data Science Interview Questions](https://www.interviewquery.com/)
 
 ### System Design
-- [System Design for Beginners](../system-design/README.md) (in this repo) — 21 lessons on backend foundations
-- [ML System Design Guide](ml_system_design_guide.md) (in this repo) — ML-specific application of those foundations
+- [System Design for Beginners](../system-design/README.md) (in this repo). 21 lessons on backend foundations
+- [ML System Design Guide](ml_system_design_guide.md) (in this repo). ML-specific application of those foundations
 - [System Design Primer](https://github.com/donnemartin/system-design-primer)
 - [ML System Design](https://github.com/eugeneyan/applied-ml)
 

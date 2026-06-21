@@ -50,7 +50,7 @@ URL pattern:  /tiles/{z}/{x}/{y}.png
              x, y = tile coordinates
 ```
 
-There are about 4^20 ≈ a trillion tiles at max zoom. You don't pre-render all of them — most are ocean or empty desert. Pre-render the popular ones; generate the rest on demand and cache.
+There are about 4^20 ≈ a trillion tiles at max zoom. You don't pre-render all of them. Most are ocean or empty desert. Pre-render the popular ones; generate the rest on demand and cache.
 
 Tiles are static-ish (regenerated when map data changes). Perfect for the CDN. Versioned URLs (`/tiles/v17/{z}/{x}/{y}.png`) make invalidation trivial (Chapter 11).
 
@@ -107,7 +107,7 @@ client phone --GPS samples--> [ Ingestion ] --> Kafka
 
 The aggregator buckets GPS samples by road segment and time window (e.g., last 5 minutes). The routing service multiplies edge weights by the live ratio (`current_speed / free_flow_speed`) before searching.
 
-Predictive traffic (what the speed *will* be in 20 minutes) is an ML problem with the same data pipeline — see Chapter 30.
+Predictive traffic (what the speed *will* be in 20 minutes) is an ML problem with the same data pipeline. See Chapter 30.
 
 ## Deep dive 5: Turn-by-turn navigation
 
@@ -118,7 +118,7 @@ Once the user starts driving:
 - Server checks: are you on the planned route? If not, **reroute** (cheap with CH).
 - Push ETA updates and next-turn instructions back.
 
-The same pipeline produces anonymized traffic data — your trip improves everyone else's ETA.
+The same pipeline produces anonymized traffic data. Your trip improves everyone else's ETA.
 
 ## Deep dive 6: Map updates
 
@@ -140,7 +140,7 @@ Map data changes daily: new roads, new businesses, road closures. The pipeline:
 
 ## Going deeper
 
-- OSRM and GraphHopper open-source projects — read their docs.
+- OSRM and GraphHopper open-source projects. Read their docs.
 - Google's "Customizable Route Planning" paper.
 - PostGIS tutorials and the S2 geometry library (https://s2geometry.io).
 - "How Maps Work" by Mapbox engineering blog.

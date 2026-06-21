@@ -6,7 +6,7 @@ Kafka, AWS SQS, Pulsar, Google Pub/Sub. Chapter 19 covered queues from a user's 
 
 | Question                  | Example answer                             |
 | ------------------------- | ------------------------------------------ |
-| Queue or pub/sub or both? | Both — topics with one or many subscribers |
+| Queue or pub/sub or both? | Both. Topics with one or many subscribers |
 | Order guarantees?         | Per partition, not globally                |
 | Delivery guarantee?       | At-least-once; exactly-once optional       |
 | Durability?               | Survive disk and node loss                 |
@@ -61,7 +61,7 @@ topic-orders-3/
   ...
 ```
 
-Writes are **append-only**. The OS page cache buffers writes; periodic `fsync` flushes to disk. Reads use `sendfile()` to push bytes from disk to socket without copying through user space — that's the "zero-copy" that lets Kafka push gigabits per node.
+Writes are **append-only**. The OS page cache buffers writes; periodic `fsync` flushes to disk. Reads use `sendfile()` to push bytes from disk to socket without copying through user space. That's the "zero-copy" that lets Kafka push gigabits per node.
 
 Retention is per-segment. To drop old messages, delete the oldest segment file. No "delete row" exists.
 
@@ -83,7 +83,7 @@ def partition_for(message, num_partitions):
     return hash(message.key) % num_partitions
 ```
 
-Repartitioning (changing the count) is painful — keys move. Pick a partition count larger than you currently need.
+Repartitioning (changing the count) is painful. Keys move. Pick a partition count larger than you currently need.
 
 ## Deep dive 3: Replication
 
@@ -95,7 +95,7 @@ partition orders-3:
    followers = broker-04, broker-29
 ```
 
-Followers continuously fetch from the leader, like a Postgres async replica. The leader maintains an **ISR (In-Sync Replicas)** set — followers caught up within a small lag.
+Followers continuously fetch from the leader, like a Postgres async replica. The leader maintains an **ISR (In-Sync Replicas)** set. Followers caught up within a small lag.
 
 Producer setting `acks`:
 - `acks=0`: fire and forget. Fast, lossy.
@@ -130,7 +130,7 @@ In practice: at-least-once + idempotent consumers covers 95% of systems.
 
 ## Deep dive 6: Dead-letter queues and back-pressure
 
-Some messages are poison — a bug in the consumer crashes on them forever. After N retries, move them to a **dead-letter topic** (Chapter 19). A human investigates.
+Some messages are poison. A bug in the consumer crashes on them forever. After N retries, move them to a **dead-letter topic** (Chapter 19). A human investigates.
 
 Back-pressure: if consumers fall behind, the queue grows. Monitor **consumer lag** (latest offset – committed offset). Alert before disks fill.
 
@@ -138,7 +138,7 @@ Back-pressure: if consumers fall behind, the queue grows. Monitor **consumer lag
 
 You need a coordinator: who is the leader of partition 3? Which brokers are alive? Where are offsets stored?
 
-Older Kafka used ZooKeeper. Modern Kafka uses an internal Raft (KRaft). Pulsar uses BookKeeper for storage and ZooKeeper for metadata. The exact tech changes; the role does not — somebody has to track cluster state with strong consistency.
+Older Kafka used ZooKeeper. Modern Kafka uses an internal Raft (KRaft). Pulsar uses BookKeeper for storage and ZooKeeper for metadata. The exact tech changes; the role does not. Somebody has to track cluster state with strong consistency.
 
 ## Things to remember
 

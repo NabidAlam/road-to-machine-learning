@@ -1,6 +1,6 @@
 # 06. HTTP
 
-HTTP is the language web servers speak. Browsers, mobile apps, microservices, scrapers, IoT devices — all of them speak some flavor of HTTP. If you know one protocol cold, this is the one.
+HTTP is the language web servers speak. Browsers, mobile apps, microservices, scrapers, IoT devices. All of them speak some flavor of HTTP. If you know one protocol cold, this is the one.
 
 ## A request is just text
 
@@ -185,7 +185,7 @@ A method is **idempotent** if doing it twice has the same effect as doing it onc
 - GET, PUT, DELETE: idempotent.
 - POST: not idempotent.
 
-This matters because networks are unreliable. If your client sends a POST and times out, you can't safely retry — you might charge the card twice. But a PUT? Safe to retry.
+This matters because networks are unreliable. If your client sends a POST and times out, you can't safely retry. You might charge the card twice. But a PUT? Safe to retry.
 
 In production you handle this with **idempotency keys**: the client sends a unique ID with the request, the server stores it, and if it sees the same key twice, it ignores the second one. Stripe's API is built on this.
 

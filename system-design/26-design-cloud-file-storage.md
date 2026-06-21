@@ -114,7 +114,7 @@ Strategies:
 | Operational transform | Edits merged op by op                         | Live collaborative docs |
 | CRDTs                 | Conflict-free merge by design                 | Modern collab tools     |
 
-For file sync, **keep-both** is the safest default. The user can compare and pick. Live collaborative editing (Google Docs–style) needs OT/CRDTs and is a different beast — out of scope here.
+For file sync, **keep-both** is the safest default. The user can compare and pick. Live collaborative editing (Google Docs–style) needs OT/CRDTs and is a different beast. Out of scope here.
 
 ## Deep dive 4: Sharing and permissions
 
@@ -150,7 +150,7 @@ Object storage is global. Metadata is the hard part.
 
 - Pin a user to a home region for writes.
 - Read replicas in other regions for fast reads.
-- Cross-region writes for shared files are eventual (Chapter 17 — AP).
+- Cross-region writes for shared files are eventual (Chapter 17. AP).
 
 Users barely notice if a file shared by a friend in another region takes 2 seconds to appear.
 

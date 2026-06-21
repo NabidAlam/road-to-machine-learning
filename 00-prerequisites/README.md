@@ -29,7 +29,7 @@ Learn Python from scratch—structured as **AI programming with Python**: core s
 - Time complexity and algorithm efficiency (Big O notation)
 
 **Capstone project:**
-- **Movie script generator** — apply files, strings, control flow, and optional OOP to build a small script-generation tool end to end. **Full runnable code** (CSV, `tell`/`seek`, `try`/`except`/`else`/`finally`) lives in [`01-python-basics.md` → Capstone: Movie script generator](01-python-basics.md#capstone-movie-script-generator).
+- **Movie script generator**. Apply files, strings, control flow, and optional OOP to build a small script-generation tool end to end. **Full runnable code** (CSV, `tell`/`seek`, `try`/`except`/`else`/`finally`) lives in [`01-python-basics.md` → Capstone: Movie script generator](01-python-basics.md#capstone-movie-script-generator).
 
 **Time Estimate:** 2-3 weeks
 

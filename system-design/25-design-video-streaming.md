@@ -95,7 +95,7 @@ The player downloads a manifest:
 ...
 ```
 
-It picks a rendition based on current bandwidth, fetches chunks, switches up or down as the network changes. This is **adaptive bitrate streaming (ABR)** — the magic that makes the video keep playing even when wifi gets bad.
+It picks a rendition based on current bandwidth, fetches chunks, switches up or down as the network changes. This is **adaptive bitrate streaming (ABR)**. The magic that makes the video keep playing even when wifi gets bad.
 
 Every chunk is a static file on the CDN. Versioned URLs (`/v/abc/720p/00012.ts`) so caching is trivial.
 
@@ -114,7 +114,7 @@ Promote back to hot if traffic spikes (someone tweets an old video).
 
 ## Deep dive 5: Metadata
 
-Posts, titles, views, comments, likes — none of this is in object storage. It's a relational store.
+Posts, titles, views, comments, likes. None of this is in object storage. It's a relational store.
 
 ```sql
 CREATE TABLE videos (

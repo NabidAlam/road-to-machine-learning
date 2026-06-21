@@ -9,12 +9,12 @@
 ## Table of Contents
 
 - [Prerequisites](#prerequisites)
-- [Lesson 1 — Tooling and your first types](#lesson-1-tooling-and-your-first-types)
-- [Lesson 2 — Functions and narrowing](#lesson-2-functions-and-narrowing)
-- [Lesson 3 — Objects, arrays, and immutability patterns](#lesson-3-objects-arrays-and-immutability-patterns)
-- [Lesson 4 — Unions, intersections, and literals](#lesson-4-unions-intersections-and-literals)
-- [Lesson 5 — Generics (the practical slice)](#lesson-5-generics-the-practical-slice)
-- [Lesson 6 — Classes, interfaces, and guards](#lesson-6-classes-interfaces-and-guards)
+- [Lesson 1: Tooling and your first types](#lesson-1-tooling-and-your-first-types)
+- [Lesson 2: Functions and narrowing](#lesson-2-functions-and-narrowing)
+- [Lesson 3: Objects, arrays, and immutability patterns](#lesson-3-objects-arrays-and-immutability-patterns)
+- [Lesson 4: Unions, intersections, and literals](#lesson-4-unions-intersections-and-literals)
+- [Lesson 5: Generics (the practical slice)](#lesson-5-generics-the-practical-slice)
+- [Lesson 6: Classes, interfaces, and guards](#lesson-6-classes-interfaces-and-guards)
 - [Self-check exercises](#self-check-exercises)
 - [Next step](#next-step)
 
@@ -220,4 +220,4 @@ function isString(x: unknown): x is string {
 
 ## Next step
 
-Continue to [Phase B — Node & APIs](phase-b-node-apis.md) after you can comfortably pass the exercises above without guessing types.
+Continue to [Phase B: Node & APIs](phase-b-node-apis.md) after you can comfortably pass the exercises above without guessing types.

@@ -335,7 +335,7 @@ Same catalog as in CNNs: **Sigmoid / tanh / ReLU / LeakyReLU / ELU / SELU**. RNN
 Typical knobs: **embedding dimension**, **hidden size**, **number of RNN layers**, **dropout** / recurrent dropout, **learning rate** and scheduler, **batch size**, **max sequence length**, **early stopping** on validation loss or task metric. Use **Keras callbacks** (`EarlyStopping`, `ReduceLROnPlateau`) or PyTorch manual loops with the same idea.
 
 ```text
-Keras / TensorFlow: pass callbacks into model.fit(..., callbacks=[...]) — see the LSTM
+Keras / TensorFlow: pass callbacks into model.fit(..., callbacks=[...]). See the LSTM
 sentiment example below for EarlyStopping and ReduceLROnPlateau wired end-to-end.
 ```
 

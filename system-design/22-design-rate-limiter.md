@@ -9,7 +9,7 @@ We covered the algorithms in Chapter 09. This chapter is about turning those alg
 | Question                      | Example answer                                                |
 | ----------------------------- | ------------------------------------------------------------- |
 | Per user, IP, or API key?     | API key (paid plan) and IP (anonymous), with different limits |
-| Same limit for all endpoints? | No — `POST /login` is stricter than `GET /products`           |
+| Same limit for all endpoints? | No, `POST /login` is stricter than `GET /products`           |
 | What happens when limited?    | Return HTTP 429 with `Retry-After` header                     |
 | Soft or hard limit?           | Hard. No grace overage                                        |
 | Where does it run?            | Edge (API gateway) and per-service for sensitive endpoints    |
@@ -98,7 +98,7 @@ What if Redis is down?
 
 Best practice: **fail open at the edge, fail closed for sensitive endpoints** (login, password reset, payment). Log every fail-open event loudly so you know it happened.
 
-What if Redis returns stale numbers across regions? Token bucket tolerates this well — you're slightly more permissive across regions but never wildly off.
+What if Redis returns stale numbers across regions? Token bucket tolerates this well. You're slightly more permissive across regions but never wildly off.
 
 ## Response shape
 

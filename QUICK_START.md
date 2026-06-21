@@ -65,8 +65,8 @@ Then continue with deep learning (modules 09–12), Stage 7 GenAI (module 25), a
 
 ## Need Help?
 
-- [START-HERE.md](START-HERE.md) — pick your path
-- [README.md](README.md) — full curriculum hub
-- [LEARNING_ROADMAP.md](LEARNING_ROADMAP.md) — visual stage map
+- [START-HERE.md](START-HERE.md): pick your path
+- [README.md](README.md): full curriculum hub
+- [LEARNING_ROADMAP.md](LEARNING_ROADMAP.md): visual stage map
 
 **Ready?** Open [GETTING_STARTED.md](GETTING_STARTED.md) or `00-prerequisites/README.md`.

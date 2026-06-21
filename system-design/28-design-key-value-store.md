@@ -1,6 +1,6 @@
 # 28. Design a Distributed Key-Value Store
 
-DynamoDB, Cassandra, ScyllaDB, Riak. Single-node Redis is easy. Once you need 100 TB across hundreds of machines, with no downtime even when a rack dies — that's a different problem.
+DynamoDB, Cassandra, ScyllaDB, Riak. Single-node Redis is easy. Once you need 100 TB across hundreds of machines, with no downtime even when a rack dies. That's a different problem.
 
 This is the chapter where most of the earlier chapters lock into place: consistent hashing, replication, CAP, sharding, quorum reads.
 
@@ -96,7 +96,7 @@ Two clients write key `X` at the same time, with different values, to different 
 
 Options:
 
-- **Last-writer-wins (LWW).** Use a timestamp. Risky — clocks drift.
+- **Last-writer-wins (LWW).** Use a timestamp. Risky. Clocks drift.
 - **Vector clocks.** Each replica keeps a counter per writer. Conflicts are detected (you get back both values; app resolves). Used in Dynamo, Riak.
 - **CRDTs.** Mathematical structures that merge cleanly. Great for counters, sets, growing lists.
 

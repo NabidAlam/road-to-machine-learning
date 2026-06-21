@@ -2,7 +2,7 @@
 
 This chapter is the one you won't see in most system design courses. Since the rest of this repo is about machine learning, it deserves a closing problem that ties system design directly to ML.
 
-A **feature store** is the central place where machine learning features live. A "feature" is a number (or vector) that describes some entity at some moment — `user.avg_purchase_last_7d`, `merchant.fraud_rate_today`, `product.click_count_last_minute`. Models read these at training time and at serving time, and the values **must match**. If they don't, you get *training-serving skew* — the classic "great in the notebook, terrible in prod" bug.
+A **feature store** is the central place where machine learning features live. A "feature" is a number (or vector) that describes some entity at some moment, `user.avg_purchase_last_7d`, `merchant.fraud_rate_today`, `product.click_count_last_minute`. Models read these at training time and at serving time, and the values **must match**. If they don't, you get *training-serving skew*. The classic "great in the notebook, terrible in prod" bug.
 
 Real systems: Feast, Tecton, Vertex AI Feature Store, Databricks Feature Store, Pinterest's "Galaxy."
 
@@ -15,7 +15,7 @@ Real systems: Feast, Tecton, Vertex AI Feature Store, Databricks Feature Store, 
 | How fresh must features be?   | Streaming features within 1 second; batch daily |
 | Serving latency target?       | p99 under 10 ms per request                     |
 | Backfill historical features? | Yes, for training datasets                      |
-| Point-in-time correctness?    | Yes — critical for training                     |
+| Point-in-time correctness?    | Yes. Critical for training                     |
 
 ## Estimate
 
@@ -63,7 +63,7 @@ Two stores, **one feature definition**. Both are populated from the same source 
 
 **Online store** answers "give me the current features for user 42."
 
-- Storage: Redis, DynamoDB, Aerospike, Cassandra — anything with sub-10-ms reads.
+- Storage: Redis, DynamoDB, Aerospike, Cassandra. Anything with sub-10-ms reads.
 - Layout: `key = (entity_id, feature_view)`, value = serialized struct.
 - Eviction: rarely; you keep recent features warm forever.
 
@@ -95,7 +95,7 @@ The same Flink/Spark job writes to **both stores**. Same value, same timestamp. 
 
 ## Deep dive 3: Batch features
 
-Batch features run on a schedule — nightly, hourly.
+Batch features run on a schedule. Nightly, hourly.
 
 ```
 00:00 UTC nightly:
@@ -133,7 +133,7 @@ LEFT JOIN LATERAL (
 ) f ON TRUE;
 ```
 
-This is the **point-in-time join**. Feast and Tecton give it to you as a one-liner. If you build your own, you must implement it correctly from day one — it's the single technical reason feature stores exist.
+This is the **point-in-time join**. Feast and Tecton give it to you as a one-liner. If you build your own, you must implement it correctly from day one. It's the single technical reason feature stores exist.
 
 ## Deep dive 5: Feature definitions as code
 
@@ -172,9 +172,9 @@ POST /score
 ```
 
 Flow:
-1. Look up features for `user:42` and `merchant:998` in the online store. One Redis pipeline call — under 5 ms.
+1. Look up features for `user:42` and `merchant:998` in the online store. One Redis pipeline call. Under 5 ms.
 2. Concatenate features in the order the model expects.
-3. Run inference (separate model server — Triton, BentoML, vLLM, whatever).
+3. Run inference (separate model server. Triton, BentoML, vLLM, whatever).
 4. Return prediction + the feature snapshot used (for debugging, drift detection, and audit).
 
 Step 4 is underrated. When the model regresses, you want to know *which feature went weird*.
@@ -201,9 +201,9 @@ If parity breaks, **stop training new models** until it's fixed. Bad parity = ba
 
 ## Going deeper
 
-- [Feast](https://feast.dev) — open-source feature store, great place to read code.
+- [Feast](https://feast.dev): open-source feature store, great place to read code.
 - Tecton's blog: clear writing on point-in-time correctness and orchestration.
 - "Feature stores: the missing data layer for ML" by various authors.
-- [ML System Design Guide](../resources/ml_system_design_guide.md) — broader treatment of serving and monitoring.
-- [Designing Machine Learning Systems](https://www.oreilly.com/library/view/designing-machine-learning/9781098107956/) by Chip Huyen — Chapter on feature engineering.
+- [ML System Design Guide](../resources/ml_system_design_guide.md): broader treatment of serving and monitoring.
+- [Designing Machine Learning Systems](https://www.oreilly.com/library/view/designing-machine-learning/9781098107956/) by Chip Huyen. Chapter on feature engineering.
 - Pinterest's "Galaxy" engineering blog posts.

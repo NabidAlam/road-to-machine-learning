@@ -10,14 +10,14 @@ These chapters are **in-repository lessons** for the [Full-Stack AI Engineer Blu
 
 | Phase | Topic | In-repo chapter | Blueprint section |
 |-------|--------|-----------------|---------------------|
-| **A** | TypeScript foundations | [Phase A — TypeScript](phase-a-typescript-foundations.md) | [Phase A](../full_stack_ai_engineer_roadmap.md#phase-a-typescript-foundations) |
-| **B** | Node.js, HTTP, Express, APIs | [Phase B — Node & APIs](phase-b-node-apis.md) | [Phase B](../full_stack_ai_engineer_roadmap.md#phase-b-nodejs-express-and-api-core) |
-| **C** | SQL & relational design | [Phase C — SQL & databases](phase-c-sql-databases.md) | [Phase C](../full_stack_ai_engineer_roadmap.md#phase-c-database-and-sql-mastery) |
-| **D** | Prisma & Next.js | [Phase D — Prisma & Next.js](phase-d-prisma-nextjs.md) | [Phase D](../full_stack_ai_engineer_roadmap.md#phase-d-prisma-nextjs-full-stack-build) |
-| **E** | Advanced backend | [Phase E — Advanced backend](phase-e-backend-advanced.md) | [Phase E](../full_stack_ai_engineer_roadmap.md#phase-e-advanced-backend-engineering) |
-| **F** | Advanced frontend | [Phase F — Advanced frontend](phase-f-frontend-advanced.md) | [Phase F](../full_stack_ai_engineer_roadmap.md#phase-f-advanced-frontend-engineering) |
-| **G** | Docker, Nginx, delivery | [Phase G — Containers & delivery](phase-g-containers-cloud.md) | [Phase G](../full_stack_ai_engineer_roadmap.md#phase-g-cloud-containers-and-delivery) |
-| **H** | AI in production apps | [Phase H — AI integration](phase-h-ai-integration.md) | [Phase H](../full_stack_ai_engineer_roadmap.md#phase-h-ai-integration-for-full-stack-products) |
+| **A** | TypeScript foundations | [Phase A: TypeScript](phase-a-typescript-foundations.md) | [Phase A](../full_stack_ai_engineer_roadmap.md#phase-a-typescript-foundations) |
+| **B** | Node.js, HTTP, Express, APIs | [Phase B: Node & APIs](phase-b-node-apis.md) | [Phase B](../full_stack_ai_engineer_roadmap.md#phase-b-nodejs-express-and-api-core) |
+| **C** | SQL & relational design | [Phase C: SQL & databases](phase-c-sql-databases.md) | [Phase C](../full_stack_ai_engineer_roadmap.md#phase-c-database-and-sql-mastery) |
+| **D** | Prisma & Next.js | [Phase D: Prisma & Next.js](phase-d-prisma-nextjs.md) | [Phase D](../full_stack_ai_engineer_roadmap.md#phase-d-prisma-nextjs-full-stack-build) |
+| **E** | Advanced backend | [Phase E: Advanced backend](phase-e-backend-advanced.md) | [Phase E](../full_stack_ai_engineer_roadmap.md#phase-e-advanced-backend-engineering) |
+| **F** | Advanced frontend | [Phase F: Advanced frontend](phase-f-frontend-advanced.md) | [Phase F](../full_stack_ai_engineer_roadmap.md#phase-f-advanced-frontend-engineering) |
+| **G** | Docker, Nginx, delivery | [Phase G: Containers & delivery](phase-g-containers-cloud.md) | [Phase G](../full_stack_ai_engineer_roadmap.md#phase-g-cloud-containers-and-delivery) |
+| **H** | AI in production apps | [Phase H: AI integration](phase-h-ai-integration.md) | [Phase H](../full_stack_ai_engineer_roadmap.md#phase-h-ai-integration-for-full-stack-products) |
 
 ---
 

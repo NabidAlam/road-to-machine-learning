@@ -8,11 +8,11 @@
 
 ## Table of Contents
 
-- [Lesson 1 — Where models live in your architecture](#lesson-1-where-models-live-in-your-architecture)
-- [Lesson 2 — Prompting and structured outputs](#lesson-2-prompting-and-structured-outputs)
-- [Lesson 3 — Streaming and latency UX](#lesson-3-streaming-and-latency-ux)
-- [Lesson 4 — RAG and evaluation](#lesson-4-rag-and-evaluation)
-- [Lesson 5 — Safety, abuse, and cost controls](#lesson-5-safety-abuse-and-cost-controls)
+- [Lesson 1: Where models live in your architecture](#lesson-1-where-models-live-in-your-architecture)
+- [Lesson 2: Prompting and structured outputs](#lesson-2-prompting-and-structured-outputs)
+- [Lesson 3: Streaming and latency UX](#lesson-3-streaming-and-latency-ux)
+- [Lesson 4: RAG and evaluation](#lesson-4-rag-and-evaluation)
+- [Lesson 5: Safety, abuse, and cost controls](#lesson-5-safety-abuse-and-cost-controls)
 - [Pair with ML modules in this repo](#pair-with-ml-modules-in-this-repo)
 - [Exercises](#exercises)
 

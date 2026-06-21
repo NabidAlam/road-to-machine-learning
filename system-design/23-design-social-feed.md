@@ -55,7 +55,7 @@ This is the classic feed trade-off.
 | Fanout on write | Insert into each follower's feed cache | Read your own feed cache directly                           |
 | Fanout on read  | Just save the post                     | At read time, fetch follows, then their recent posts, merge |
 
-**Fanout on write** is great for normal users — reads are instant. But for a user with 200M followers, posting once does 200M Redis writes. Bad.
+**Fanout on write** is great for normal users. Reads are instant. But for a user with 200M followers, posting once does 200M Redis writes. Bad.
 
 **Fanout on read** is cheap on write, but a user following 5,000 people pays at every refresh. Also bad.
 
@@ -143,5 +143,5 @@ Out of scope for the feed itself. They are a separate index (Elasticsearch or si
 
 - "The Architecture of Twitter's Timeline" (older but still useful).
 - LinkedIn's "Follow Feed Architecture" engineering posts.
-- Mastodon source — same problem, smaller scale, readable code.
+- Mastodon source. Same problem, smaller scale, readable code.
 - Chapter 30 here for the ML ranking side.

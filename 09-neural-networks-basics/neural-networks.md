@@ -933,7 +933,7 @@ for step in range(20):
     grad = X.T @ (pred - y) / len(X)
     gn = np.linalg.norm(grad)
     if gn > 50:
-        print(f"step {step}: large gradient norm {gn:.1f} — consider lower lr or clipping")
+        print(f"step {step}: large gradient norm {gn:.1f}. Consider lower lr or clipping")
     w -= lr * grad
 ```
 

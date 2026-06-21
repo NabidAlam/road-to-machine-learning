@@ -8,11 +8,11 @@
 
 ## Table of Contents
 
-- [Lesson 1 — Tables, keys, and relationships](#lesson-1-tables-keys-and-relationships)
-- [Lesson 2 — Normalization in practice](#lesson-2-normalization-in-practice)
-- [Lesson 3 — Query building blocks](#lesson-3-query-building-blocks)
-- [Lesson 4 — Joins and aggregation](#lesson-4-joins-and-aggregation)
-- [Lesson 5 — Transactions (when they matter)](#lesson-5-transactions-when-they-matter)
+- [Lesson 1: Tables, keys, and relationships](#lesson-1-tables-keys-and-relationships)
+- [Lesson 2: Normalization in practice](#lesson-2-normalization-in-practice)
+- [Lesson 3: Query building blocks](#lesson-3-query-building-blocks)
+- [Lesson 4: Joins and aggregation](#lesson-4-joins-and-aggregation)
+- [Lesson 5: Transactions (when they matter)](#lesson-5-transactions-when-they-matter)
 - [Exercises](#exercises)
 - [Next step](#next-step)
 
@@ -85,4 +85,4 @@ Conceptual pattern: `BEGIN` → statements → `COMMIT` or `ROLLBACK` on error.
 
 ## Next step
 
-[Phase D — Prisma & Next.js](phase-d-prisma-nextjs.md)
+[Phase D: Prisma & Next.js](phase-d-prisma-nextjs.md)

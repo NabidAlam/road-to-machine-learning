@@ -4,7 +4,7 @@ Curated resources to deepen your time series skills.
 
 ## Books
 
-- **Forecasting: Principles and Practice** (Hyndman & Athanasopoulos) — the most practical reference
+- **Forecasting: Principles and Practice** (Hyndman & Athanasopoulos). The most practical reference
 
 ## Courses / Lectures
 

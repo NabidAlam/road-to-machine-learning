@@ -19,7 +19,7 @@ These three builds extend the intermediate map. They are optional extras, not co
 |---------|--------|-----------------|
 | **Student performance indicator** | Regression or classification on grades; EDA, feature encoding | [Students performance in exams (Kaggle)](https://www.kaggle.com/datasets/spscientist/students-performance-in-exams) |
 | **Credit card fraud detection** | Imbalanced classification, anomaly-style metrics | [Project 4 write-up](project-04-fraud-detection/README.md), [Kaggle Credit Card Fraud](https://www.kaggle.com/datasets/mlg-ulb/creditcardfraud) |
-| **Phishing classifier** | URL / text features, Naive Bayes or linear models | [Phishing URL (example collection)](https://www.kaggle.com/datasets/shirani112/phishing-url-dataset) — mirror the spam pipeline in [spam detection](../16-projects-beginner/project-04-spam-detection/README.md) |
+| **Phishing classifier** | URL / text features, Naive Bayes or linear models | [Phishing URL (example collection)](https://www.kaggle.com/datasets/shirani112/phishing-url-dataset): mirror the spam pipeline in [spam detection](../16-projects-beginner/project-04-spam-detection/README.md) |
 
 ## Deep learning curriculum map (projects)
 

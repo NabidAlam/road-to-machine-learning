@@ -1411,7 +1411,7 @@ You do not need jargon; you need **stories**. Pick a few that fit the prompt: tr
 
 Structured ML system design (whether for interviews or architecture reviews) rewards the same muscle as classic distributed systems work: **tradeoffs, boundaries, and explicit failure handling**. Combine ML specific material with general backend and data engineering depth so latency, consistency, and cost arguments feel natural, not bolted on.
 
-- [System Design for Beginners](../system-design/README.md) (in this repo) — backend foundations this guide builds on
+- [System Design for Beginners](../system-design/README.md) (in this repo). Backend foundations this guide builds on
 - [Designing Machine Learning Systems](https://www.oreilly.com/library/view/designing-machine-learning/9781098107956/)
 - [Building Machine Learning Powered Applications](https://www.oreilly.com/library/view/building-machine-learning/9781492045106/)
 - [System Design Primer](https://github.com/donnemartin/system-design-primer)

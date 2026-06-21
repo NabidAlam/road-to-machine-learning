@@ -11,7 +11,7 @@ Beginner-friendly checklist; each line links to **code** below or to the intro f
 - **Data distribution analysis** (percentiles, histogram, boxplot) → [Data distribution analysis](#data-distribution-analysis)
 - **Feature relationships** (scatter, covariance, correlation) → [Feature relationship analysis](#feature-relationship-analysis)
 - **End-to-end persistence** (save and load model) → [End-to-end train, evaluate, and persist](#end-to-end-train-evaluate-and-persist)
-- **Statistics foundations** → [Introduction to ML — descriptive stats](../02-introduction-to-ml/introduction-to-ml.md#descriptive-statistics-and-sampling-foundations)
+- **Statistics foundations** → [Introduction to ML. Descriptive stats](../02-introduction-to-ml/introduction-to-ml.md#descriptive-statistics-and-sampling-foundations)
 
 ## Table of Contents
 

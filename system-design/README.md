@@ -60,7 +60,7 @@ If you already work in software, jump around. The CAP, sharding, and message que
 - [20. MapReduce](./20-mapreduce.md)
 
 ### Capstone
-- [21. Designing Systems](./21-designing-systems.md) — how to run a design from requirements to boxes to deep dives; URL shortener walkthrough
+- [21. Designing Systems](./21-designing-systems.md): how to run a design from requirements to boxes to deep dives; URL shortener walkthrough
 
 ### Interview-style designs
 Practice problems using the four-step process from Chapter 21. Each one is original, written from scratch, with the same structure: clarify, estimate, high-level, deep dives.
@@ -73,7 +73,7 @@ Practice problems using the four-step process from Chapter 21. Each one is origi
 - [27. Design a Maps and Navigation Service](./27-design-maps-and-navigation.md)
 - [28. Design a Distributed Key-Value Store](./28-design-key-value-store.md)
 - [29. Design a Distributed Message Queue](./29-design-distributed-message-queue.md)
-- [30. Design a Real-Time ML Feature Store](./30-design-realtime-feature-store.md) — the ML-flavored one you won't find in most courses
+- [30. Design a Real-Time ML Feature Store](./30-design-realtime-feature-store.md): the ML-flavored one you won't find in most courses
 
 ## Books and resources I keep coming back to
 

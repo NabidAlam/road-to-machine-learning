@@ -19,14 +19,14 @@ Use this order every time. Skipping step 1 is the most common mistake.
 
 Ask questions. Write answers on the board (or say them out loud).
 
-**Functional** — what does it do?
+**Functional**. What does it do?
 - Create a short link from a long URL?
 - Redirect short → long?
 - Custom aliases (`go.company.com/promo`)?
 - Analytics (click counts)?
 - Expiration?
 
-**Non-functional** — how well?
+**Non-functional**. How well?
 - Read-heavy or write-heavy?
 - Latency target for redirects?
 - Availability (can we lose a redirect for a minute)?
@@ -101,7 +101,7 @@ Creates:
 
 Redirects:
   200 × 10 = 2,000 redirects/sec peak
-  (round to ~2K reads/sec — modest for a cache-heavy service)
+  (round to ~2K reads/sec. Modest for a cache-heavy service)
 
 Storage (5 years, rough):
   100M × 12 × 5 = 6B links
@@ -134,8 +134,8 @@ Storage (5 years, rough):
 
 **Two APIs:**
 
-1. `POST /v1/links` — body: `{ "url": "https://...", "custom_code": "promo" }` → `{ "short_url": "https://short.io/promo" }`
-2. `GET /{code}` — 302 redirect to long URL (this is the hot path)
+1. `POST /v1/links`. Body: `{ "url": "https://...", "custom_code": "promo" }` → `{ "short_url": "https://short.io/promo" }`
+2. `GET /{code}`, 302 redirect to long URL (this is the hot path)
 
 For analytics, don't block the redirect. Emit an event (Chapter 19):
 
@@ -205,7 +205,7 @@ If users are global:
 - **Writes:** still low (200/sec). Single primary Postgres is OK for a long time.
 - **Custom domains:** DNS (Chapter 5) points `short.io` to your load balancer.
 
-CAP reminder (Chapter 17): redirects are **AP** — stale cache might 302 to an old URL for seconds after an update. Acceptable for most shorteners. Use cache invalidation on update/delete.
+CAP reminder (Chapter 17): redirects are **AP**. Stale cache might 302 to an old URL for seconds after an update. Acceptable for most shorteners. Use cache invalidation on update/delete.
 
 ### What to mention if time allows
 
@@ -259,8 +259,8 @@ Run through this mentally:
 
 ## Going deeper
 
-- Alex Xu, *System Design Interview* Vol 1 — URL shortener, rate limiter, Twitter feed chapters.
-- [System Design Primer](https://github.com/donnemartin/system-design-primer) — many worked examples.
-- [ML System Design Guide](../resources/ml_system_design_guide.md) — same process applied to recommendation and model serving.
-- [Interview Preparation Guide](../resources/interview_prep.md#system-design-questions) — ML-flavored design prompts.
+- Alex Xu, *System Design Interview* Vol 1. URL shortener, rate limiter, Twitter feed chapters.
+- [System Design Primer](https://github.com/donnemartin/system-design-primer): many worked examples.
+- [ML System Design Guide](../resources/ml_system_design_guide.md): same process applied to recommendation and model serving.
+- [Interview Preparation Guide](../resources/interview_prep.md#system-design-questions): ML-flavored design prompts.
 - Excalidraw or a whiteboard: practice drawing in 10 minutes without a template.
