@@ -2,6 +2,8 @@
 
 Build a neural network to classify handwritten digits (0-9).
 
+**Starter code:** Run `starter.py` in this folder (MNIST loads via Keras when implemented).
+
 ## Difficulty
 Intermediate
 

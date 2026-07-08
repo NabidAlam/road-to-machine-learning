@@ -299,7 +299,7 @@ Use this to track where you are:
 - [ ] STAGE 5: Deep Learning Fundamentals
 - [ ] STAGE 6: Specialized Deep Learning
 - [ ] STAGE 7: Generative AI & Modern LLMs
-- [ ] STAGE 7.5: Essential Skills
+- [ ] STAGE 7.5: Essential Skills (modules 20–21; SQL is Stage 1.5)
 - [ ] STAGE 8: Production & MLOps
 - [ ] STAGE 9: Projects
 - [ ] STAGE 10: Advanced Specialized Topics

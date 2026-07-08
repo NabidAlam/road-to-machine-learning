@@ -74,6 +74,8 @@ By the end of this module, you should be able to:
 
 ---
 
-**Previous Module:** [19-sql-database-fundamentals](../19-sql-database-fundamentals/README.md)  
+**Previous (folder order):** [19-sql-database-fundamentals](../19-sql-database-fundamentals/README.md)  
 **Next Module:** [21-model-explainability](../21-model-explainability/README.md)
+
+**Recommended stage order:** After **Module 25** (GenAI) or after **Module 04** (classification) when you hit imbalanced data — not necessarily after SQL on disk.
 

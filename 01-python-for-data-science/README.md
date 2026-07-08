@@ -347,3 +347,5 @@ By the end of this phase, you should be able to:
 **Previous Module:** [00-prerequisites](../00-prerequisites/README.md)  
 **Next Module:** [02-introduction-to-ml](../02-introduction-to-ml/README.md)
 
+**Parallel (Stage 1.5):** [19-sql-database-fundamentals](../19-sql-database-fundamentals/README.md) after NumPy/Pandas lessons — for analyst and data scientist tracks.
+

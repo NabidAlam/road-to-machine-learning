@@ -2,6 +2,8 @@
 
 Detect fraudulent credit card transactions.
 
+**Starter code:** Run `starter.py` after placing `creditcard.csv` in `data/`.
+
 ## Difficulty
 Intermediate
 

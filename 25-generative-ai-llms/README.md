@@ -161,4 +161,6 @@ By the end of this module, you should be able to:
 ---
 
 **Previous Module:** [12-natural-language-processing](../12-natural-language-processing/README.md)  
-**Next Module:** [19-sql-database-fundamentals](../19-sql-database-fundamentals/README.md)
+**Next (recommended stage order):** [20-handling-imbalanced-data](../20-handling-imbalanced-data/README.md) (Stage 7.5) → then [13-model-deployment](../13-model-deployment/README.md) (Stage 8)
+
+**Folder order note:** Module 19 (SQL) is **Stage 1.5** — study it in parallel with Modules 01–02, not after this module. See [FOUNDATION_AND_JOB_READINESS.md](../FOUNDATION_AND_JOB_READINESS.md).

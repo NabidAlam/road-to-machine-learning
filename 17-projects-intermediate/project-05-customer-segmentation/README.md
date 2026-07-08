@@ -2,6 +2,8 @@
 
 Segment customers into groups based on behavior and demographics.
 
+**Starter code:** Run `starter.py` after placing the segmentation CSV in `data/`.
+
 ## Difficulty
 Intermediate
 

@@ -2,6 +2,8 @@
 
 Build a recommendation system to suggest movies to users.
 
+**Starter code:** Run `starter.py` after downloading MovieLens data to `data/`.
+
 ## Difficulty
 Intermediate
 

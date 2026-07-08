@@ -2,6 +2,8 @@
 
 Welcome! This guide will help you complete your first machine learning project in about 30 minutes.
 
+For the full curriculum map, stage order, and exit gates, read [START-HERE.md](START-HERE.md) and [FOUNDATION_AND_JOB_READINESS.md](FOUNDATION_AND_JOB_READINESS.md).
+
 ## Quick Start: Iris Classification
 
 The Iris Flower Classification project is the perfect first ML project. Follow these steps:

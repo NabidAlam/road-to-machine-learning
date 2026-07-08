@@ -1,6 +1,6 @@
 # Quick Start Guide
 
-Get the environment running in about 5 minutes. For full navigation, read [START-HERE.md](START-HERE.md) first.
+Get the environment running in about 5 minutes. For full navigation, read [START-HERE.md](START-HERE.md) first — **follow stages, not folder numbers 00→25**.
 
 > **Note:** The week-by-week schedule below is an **accelerated path** for learners who already study full-time. The main [README](README.md) estimates **15–22 months** full-time for the complete curriculum.
 
@@ -56,12 +56,12 @@ pip install jupyter notebook
 
 | Weeks | Focus |
 |-------|--------|
-| 1–2 | Modules 00–01 |
+| 1–2 | Modules 00–01; start **Module 19 SQL** in parallel (Stage 1.5) |
 | 3–4 | Modules 02–04 |
 | 5–6 | Modules 05–07 |
 | 7–8 | 2–3 beginner projects |
 
-Then continue with deep learning (modules 09–12), Stage 7 GenAI (module 25), and deployment (modules 13–14).
+Then continue with deep learning (modules 09–12), GenAI (module 25), essential skills (20–21), and deployment (modules 13–14). See [LEARNING_ROADMAP.md](LEARNING_ROADMAP.md).
 
 ## Need Help?
 

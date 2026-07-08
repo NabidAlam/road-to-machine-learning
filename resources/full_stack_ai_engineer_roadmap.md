@@ -261,7 +261,7 @@ Use these free resources alongside each phase. They are practical, well-maintain
 
 For balanced growth, run both tracks:
 
-- **ML depth**: Continue core modules in this repo (`00-15`, `19-21`, `25`)
+- **ML depth**: Continue core modules in this repo (`00-15`, `19` as Stage 1.5, `20-21`, `25`)
 - **Engineering depth**: Complete Phases A-H in this blueprint
 - **Portfolio target**:
   - 2 ML-focused projects

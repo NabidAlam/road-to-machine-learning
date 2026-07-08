@@ -13,7 +13,7 @@
 
 *Perfect for beginners • 26 Learning Modules • 23 Real-World Projects • Production-Ready Skills*
 
-[Start Here](START-HERE.md) • [Foundation & job readiness](FOUNDATION_AND_JOB_READINESS.md) • [Get Started](#getting-started) • [Learning Path](#learning-path) • [Projects](#stage-9-projects) • [System Design](system-design/README.md) • [Full-stack AI](resources/career_roadmap_guide.md#full-stack-ai-engineer) • [Contribute](#contributing)
+[Start Here](START-HERE.md) • [How to Use the Study Hub](HOW_TO_USE_THE_STUDY_HUB.md) • [Foundation & job readiness](FOUNDATION_AND_JOB_READINESS.md) • [Get Started](#getting-started) • [Learning Path](#learning-path) • [Projects](#stage-9-projects) • [System Design](system-design/README.md) • [Full-stack AI](resources/career_roadmap_guide.md#full-stack-ai-engineer) • [Contribute](#contributing)
 
 </div>
 
@@ -60,6 +60,8 @@
 **Foundational side track:** [System Design for Beginners](system-design/README.md): 31 lessons covering HTTP, TCP, DNS, caching, load balancing, CAP, sharding, and message queues, plus a capstone and 9 interview-style design problems (rate limiter, social feed, chat, video, file storage, maps, KV store, message queue, and a real-time ML feature store). Useful for ML Engineer, MLOps, Data Engineer, AI Engineer, and Full-Stack AI Engineer paths. Pairs with the [ML System Design Guide](resources/ml_system_design_guide.md), which applies these foundations to ML services.
 
 **Time assumptions:** Ranges in the **Est. Time** column assume about **10–15 hours/week** for a steady part-time pace and **30–40 hours/week** for an intensive full-time pace, unless a row states otherwise (for example, Full-Stack AI Engineer calls out parallel blueprint hours).
+
+**SQL timing:** Module **19** is **Stage 1.5** (parallel with Modules 01–02) for most roles — not after GenAI. Module lists like `19-21` mean you need all three modules, not that SQL comes last.
 
 **What each path includes:**
 - **[Career Roadmap Guide](resources/career_roadmap_guide.md)** roles: module priorities, suggested projects, essential resources, skills checklists, and time guidance grounded in this repo’s **00–25** folders.
@@ -181,6 +183,15 @@ Structured courses usually stack Python, then math and stats, then tabular ML, t
 
 - **Project:** Build a first model end-to-end (see `02-introduction-to-ml/first-ml-project-tutorial.md` and beginner projects in module 16)
 
+### Stage 1.5: SQL & Databases (parallel with Stages 1–2)
+**Goal**: Query and integrate relational data — required for most analyst and data scientist roles
+
+- **19-sql-database-fundamentals**
+  - Database fundamentals, DDL/DML, joins, subqueries, window functions
+  - CTEs, data cleaning in SQL, Python integration (SQLAlchemy/pandas)
+  - NoSQL overview (MongoDB, Redis, etc.)
+  - **Suggested timing:** Start after Module 01 lessons 2–3; do **not** wait until after GenAI (Module 25)
+
 ### Stage 2: Machine Learning Basics
 **Goal**: Understand core ML concepts and algorithms
 
@@ -279,24 +290,14 @@ Forecasting and monitoring problems break the usual “shuffle and split” stor
 
 - **15-time-series-analysis**. Trend and seasonality, classical models (ARIMA family), deep sequence models, feature design for temporal data, and evaluation that respects time ordering. *Numbering note:* module 15 sits after 13–14 in the repo but fits logically here or alongside Stages 5–6.
 
-### Stage 7.5: Essential Data Science Skills
+### Stage 7.5: Essential Data Science Skills (Modules 20–21)
 **Goal**: Master critical skills for real-world ML applications
 
 **Note**: These modules can be learned in parallel with other phases or integrated earlier in your learning journey:
 - **DSA (recommended for interviews)**: Follow the [DSA Course (Python)](resources/dsa_course_python.md) alongside these modules to build strong coding + problem-solving fundamentals
-- **SQL** can be learned after Stage 1 (Data Fundamentals) for better data access skills
+- **SQL** is **Stage 1.5 (Module 19)** — not part of this stage; see above
 - **Imbalanced Data** is most useful after Stage 2 (Classification) when you encounter real-world datasets
 - **Model Explainability** is valuable after Stage 3 (Advanced ML) when working with complex models
-
-- **19-sql-database-fundamentals**
-  - Database Fundamentals and SQL Basics
-  - SQL DDL and DML Commands
-  - SQL Joins, Subqueries, and Window Functions
-  - Advanced SQL Topics (CTEs, Window Functions, Stored Procedures)
-  - Data Cleaning with SQL
-  - SQL with Python Integration
-  - NoSQL Databases (MongoDB, Redis, Cassandra, Neo4j)
-  - **Suggested Timing**: Can be learned after Stage 1 or in parallel with Stage 2
 
 - **20-handling-imbalanced-data**
   - Understanding Imbalanced Data Problems
@@ -385,7 +386,9 @@ Forecasting and monitoring problems break the usual “shuffle and split” stor
 | 7 | Feature Engineering Mastery | Feature Engineering, Advanced Techniques | 4-5 days | ✓ Available |
 | 8 | Ensemble Methods Comparison | Ensemble Methods, Model Comparison | 3-4 days | ✓ Available |
 
-**Prerequisites**: Complete Stages 0-4 and some Stage 7.5 topics recommended
+**Prerequisites**: Complete Stages 0–4; modules **20–21** (Stage 7.5) help for churn, fraud, and ensemble projects
+
+**Delivery**: Each project includes `starter.py` — see [intermediate projects README](17-projects-intermediate/README.md).
 
 #### Advanced Projects (9 projects)
 

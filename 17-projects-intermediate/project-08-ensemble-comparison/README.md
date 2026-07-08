@@ -2,6 +2,8 @@
 
 Comprehensive comparison of ensemble methods: Bagging, Boosting, Stacking, and Voting.
 
+**Starter code:** Run `starter.py` after placing a labeled CSV in `data/`.
+
 ## Difficulty
 Intermediate
 

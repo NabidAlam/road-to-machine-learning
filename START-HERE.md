@@ -2,6 +2,7 @@
 
 Not sure where to begin? Pick the path that matches your time and goal.
 
+> **Using the subscriber study hub?** Read [HOW_TO_USE_THE_STUDY_HUB.md](HOW_TO_USE_THE_STUDY_HUB.md) first (10-min setup + learning loop).  
 > **Do not follow folder numbers 00→25 in order.** Module folders are for organization; **stages** are the teaching sequence. Read [FOUNDATION_AND_JOB_READINESS.md](FOUNDATION_AND_JOB_READINESS.md) for exit gates, role paths, and job-market timing (especially **SQL early** for analyst/data scientist roles).
 
 ## If you have 30 minutes
@@ -94,6 +95,7 @@ Install dependencies from the **repository root**. Individual project folders ma
 ## Where to go next
 
 - Main hub: [README.md](README.md)
+- **Study hub users:** [HOW_TO_USE_THE_STUDY_HUB.md](HOW_TO_USE_THE_STUDY_HUB.md)
 - First project walkthrough: [GETTING_STARTED.md](GETTING_STARTED.md)
 - Visual roadmap: [LEARNING_ROADMAP.md](LEARNING_ROADMAP.md)
 - Foundation gates & job market: [FOUNDATION_AND_JOB_READINESS.md](FOUNDATION_AND_JOB_READINESS.md)

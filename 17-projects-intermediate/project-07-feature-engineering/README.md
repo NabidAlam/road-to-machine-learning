@@ -2,6 +2,8 @@
 
 Master comprehensive feature engineering techniques on a complex real-world dataset.
 
+**Starter code:** Run `starter.py` after placing your training CSV in `data/`.
+
 ## Difficulty
 Intermediate
 

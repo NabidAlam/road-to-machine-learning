@@ -111,6 +111,8 @@ By the end of this module, you should be able to:
 
 ---
 
-**Previous Module:** [18-projects-advanced](../18-projects-advanced/README.md)  
-**Next Module:** Continue with projects or advanced topics
+**Previous (folder order):** [18-projects-advanced](../18-projects-advanced/README.md)  
+**Next (folder order):** [20-handling-imbalanced-data](../20-handling-imbalanced-data/README.md)
+
+**Recommended stage order:** Start after **Module 01** (lessons 2–3) in parallel with Stages 1–2 — this is **Stage 1.5**, not a capstone after projects or GenAI.
 

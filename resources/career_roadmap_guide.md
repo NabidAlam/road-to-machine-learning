@@ -83,12 +83,13 @@ This guide provides clear, role-specific learning paths for different careers in
 |-------|---------|-------------|---------------|
 | **Foundation** | 00 | Python, Math, Statistics | 2-3 months |
 | **Data Fundamentals** | 01 | Data Manipulation, Visualization, EDA | 2-3 months |
+| **SQL & Databases** | 19 | Queries, joins, window functions *(Stage 1.5 — parallel with 01–02)* | 1-2 months |
 | **ML Basics** | 02-05 | ML Concepts, Regression, Classification, Evaluation | 3-4 months |
 | **Advanced ML** | 06-07 | Ensemble Methods, Feature Engineering | 2-3 months |
 | **Unsupervised Learning** | 08 | Clustering, Dimensionality Reduction | 1-2 months |
-| **Time Series** | 15 | Time Series Analysis, Forecasting | 1-2 months |
-| **Essential Skills** | 19-21 | SQL, Imbalanced Data, Explainability | 2-3 months |
-| **Total** | **11 modules** | **Complete Path** | **13-20 months** |
+| **Time Series** | 15 | Time Series Analysis, Forecasting *(optional — [pick one path](../TIME_SERIES_LEARNING_PATH.md))* | 1-2 months |
+| **Essential Skills** | 20-21 | Imbalanced Data, Explainability | 1-2 months |
+| **Total** | **12 modules** | **Complete Path** | **13-20 months** |
 
 ### Essential Modules
 
@@ -150,12 +151,13 @@ This guide provides clear, role-specific learning paths for different careers in
 |-------|---------|-------------|---------------|
 | **Foundation** | 00 | Python, Math, Algorithms | 2-3 months |
 | **Data Fundamentals** | 01 | Data Manipulation, APIs, Web Development | 2-3 months |
+| **SQL & Databases** | 19 | SQL, databases *(Stage 1.5)* | 1-2 months |
 | **ML Basics** | 02-05 | ML Concepts, Models, Evaluation | 3-4 months |
 | **Advanced ML** | 06-07 | Ensembles, Feature Engineering | 2-3 months |
 | **Unsupervised Learning** | 08 | Clustering, Dimensionality Reduction | 1 month |
 | **Deep Learning** | 09-10 | Neural Networks, TensorFlow, PyTorch | 2-3 months |
 | **Production** | 13-14 | Model Deployment, MLOps, CI/CD | 3-4 months |
-| **Essential Skills** | 19-21 | SQL, Testing, Explainability | 2-3 months |
+| **Essential Skills** | 20-21 | Imbalanced Data, Explainability | 1-2 months |
 | **Total** | **14 modules** | **Complete Path** | **17-26 months** |
 
 ### Essential Modules
@@ -222,13 +224,14 @@ This guide provides clear, role-specific learning paths for different careers in
 |-------|---------|-------------|---------------|
 | **Foundation** | 00 | Python, Math, Algorithms | 2-3 months |
 | **Data Fundamentals** | 01 | Data Manipulation, APIs | 2 months |
+| **SQL & Databases** | 19 | SQL *(Stage 1.5)* | 1-2 months |
 | **ML Basics** | 02-05 | ML Concepts, Models, Evaluation | 3-4 months |
 | **Advanced ML** | 06-07 | Ensembles, Feature Engineering | 1-2 months |
 | **Deep Learning** | 09-10 | Neural Networks, PyTorch, TensorFlow | 2-3 months |
 | **NLP** | 12 | NLP, Transformers, Fine-tuning, RAG | 4-5 months |
 | **Generative AI** | 25 | Modern LLMs, Prompt Engineering, RAG Systems, AI Agents | 1-2 months |
 | **Production** | 13-14 | Model Deployment, MLOps | 2-3 months |
-| **Essential Skills** | 19, 21 | SQL, Explainability | 1-2 months |
+| **Essential Skills** | 21 | Explainability | 0.5-1 month |
 | **Total** | **12 modules** | **Complete Path** | **17-24 months** |
 
 ### Essential Modules
@@ -296,11 +299,11 @@ This guide provides clear, role-specific learning paths for different careers in
 | Phase | Modules | Focus Areas | Time Estimate |
 |-------|---------|-------------|---------------|
 | **Foundation** | 00-01 | Python, Data Fundamentals | 2-3 months |
+| **SQL & Databases** | 19 | SQL, databases *(Stage 1.5)* | 1-2 months |
 | **ML Basics** | 02-05 | ML Concepts, Evaluation, Optimization | 3-4 months |
 | **Deep Learning** | 09-10 | Neural Networks, Frameworks | 2-3 months |
 | **NLP & GenAI** | 12, 25 | NLP, Transformers, Fine-tuning, RAG, Modern LLMs, AI Agents, Multi-Agent Systems | 5-6 months |
 | **Production** | 13-14 | Model Deployment, MLOps | 3-4 months |
-| **Essential Skills** | 19 | SQL, Databases | 1-2 months |
 | **Total** | **10 modules** | **Complete Path** | **15-21 months** |
 
 ### Essential Modules
@@ -377,12 +380,13 @@ This guide provides clear, role-specific learning paths for different careers in
 |-------|---------|-------------|---------------|
 | **Foundation** | 00 | Python, Math, Linear Algebra | 2-3 months |
 | **Data Fundamentals** | 01 | NumPy, Data Manipulation | 1-2 months |
+| **SQL & Databases** | 19 | SQL *(Stage 1.5, optional)* | 0.5-1 month |
 | **ML Basics** | 02-05 | ML Concepts, Models, Evaluation | 3-4 months |
 | **Advanced ML** | 06-07 | Ensembles, Feature Engineering | 1-2 months |
 | **Deep Learning** | 09-10 | Neural Networks, PyTorch, TensorFlow | 2-3 months |
 | **Computer Vision** | 11 | CNNs, Object Detection, Segmentation, GANs, Diffusion | 4-6 months |
 | **Production** | 13-14 | Model Deployment, MLOps | 2-3 months |
-| **Essential Skills** | 19, 21 | SQL, Explainability | 1-2 months |
+| **Essential Skills** | 21 | Explainability | 0.5-1 month |
 | **Total** | **11 modules** | **Complete Path** | **16-25 months** |
 
 ### Essential Modules
@@ -447,6 +451,7 @@ This guide provides clear, role-specific learning paths for different careers in
 |-------|---------|-------------|---------------|
 | **Foundation** | 00 | Python, Math, Algorithms | 2-3 months |
 | **Data Fundamentals** | 01 | Data Manipulation, APIs, Web Development | 2-3 months |
+| **SQL & Databases** | 19 | SQL, databases *(Stage 1.5)* | 1-2 months |
 | **ML Basics** | 02-05 | ML Concepts, Models, Evaluation | 3-4 months |
 | **Advanced ML** | 06-07 | Ensembles, Feature Engineering | 2-3 months |
 | **Unsupervised Learning** | 08 | Clustering, Dimensionality Reduction | 1-2 months |
@@ -456,7 +461,7 @@ This guide provides clear, role-specific learning paths for different careers in
 | **Generative AI** | 25 | Modern LLMs, RAG, AI Agents, Multi-Agent Systems | 1-2 months |
 | **Advanced Specialized** | 22-24 | Reinforcement Learning, Graph Neural Networks, Audio/Speech | 2-3 months |
 | **Production** | 13-14 | Model Deployment, MLOps | 3-4 months |
-| **Essential Skills** | 19-21 | SQL, Imbalanced Data, Explainability | 2-3 months |
+| **Essential Skills** | 20-21 | Imbalanced Data, Explainability | 1-2 months |
 | **Total** | **23 modules** | **Complete Path** | **25-38 months** |
 
 ### Essential Modules
@@ -594,12 +599,13 @@ This guide provides clear, role-specific learning paths for different careers in
 |-------|---------|-------------|---------------|
 | **Foundation** | 00 | Python, Algorithms | 2-3 months |
 | **Data Fundamentals** | 01 | Data Manipulation, APIs | 2 months |
+| **SQL & Databases** | 19 | SQL *(Stage 1.5)* | 1-2 months |
 | **ML Basics** | 02-05 | ML Concepts, Models | 3-4 months |
 | **Advanced ML** | 06-07 | Ensembles, Feature Engineering | 1-2 months |
 | **Deep Learning** | 09-10 | Neural Networks, Frameworks | 2-3 months |
 | **NLP & GenAI** | 12, 25 | NLP, Transformers, Modern LLMs, RAG, AI Agents | 2-3 months |
 | **Production** | 13-14 | Deployment, MLOps, CI/CD, Kafka, Spark | 4-5 months |
-| **Essential Skills** | 19-21 | SQL, Testing, Explainability | 2-3 months |
+| **Essential Skills** | 20-21 | Imbalanced Data, Explainability | 1-2 months |
 | **Total** | **14 modules** | **Complete Path** | **16-24 months** |
 
 ### Essential Modules
@@ -662,6 +668,7 @@ This guide provides clear, role-specific learning paths for different careers in
 |-------|---------|-------------|---------------|
 | **Foundation** | 00 | Python, Advanced Math, Algorithms | 3-4 months |
 | **Data Fundamentals** | 01 | Data Manipulation | 1-2 months |
+| **SQL & Databases** | 19 | SQL basics *(Stage 1.5, optional)* | 0.5-1 month |
 | **ML Basics** | 02-05 | ML Theory, Algorithms, Evaluation | 4-5 months |
 | **Advanced ML** | 06-07 | Advanced Algorithms, Theory | 2-3 months |
 | **Unsupervised Learning** | 08 | Advanced Clustering, Dimensionality Reduction | 2-3 months |
@@ -670,7 +677,7 @@ This guide provides clear, role-specific learning paths for different careers in
 | **Time series (branch)** | 15 | Forecasting, temporal evaluation (optional but common in applied research) | 0.5-1 month |
 | **Generative AI** | 25 | Modern LLMs, RAG, AI Agents, Multi-Agent Systems | 1-2 months |
 | **Advanced Specialized** | 22-24 | Reinforcement Learning, Graph Neural Networks, Audio/Speech | 2-3 months |
-| **Essential Skills** | 19-21 | SQL, Explainability | 1-2 months |
+| **Essential Skills** | 21 | Explainability | 0.5-1 month |
 | **Total** | **20 modules** | **Complete Path** | **24-34 months** |
 
 ### Essential Modules

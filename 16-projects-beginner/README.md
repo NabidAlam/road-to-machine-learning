@@ -2,6 +2,8 @@
 
 Hands-on projects to apply what you've learned in the foundational modules. **All six projects include runnable code or notebooks in the repo.**
 
+> **Timing:** Start the first beginner project after **Stage 2** (modules 02–05) while continuing later modules — you do not need to wait for Stage 9. See [START-HERE.md](../START-HERE.md#projects-run-in-parallel-not-only-at-the-end).
+
 ## Prerequisites
 
 Before starting these projects, you should have completed:

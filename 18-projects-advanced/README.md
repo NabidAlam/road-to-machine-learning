@@ -2,6 +2,8 @@
 
 Complex, production-ready projects that demonstrate mastery of ML concepts. **These nine projects ship as detailed README briefs and capstone-style specs.** You design and implement the full pipeline.
 
+> **Time series:** Project 3 overlaps with [Module 15](../15-time-series-analysis/README.md) and [intermediate project 6](../17-projects-intermediate/project-06-time-series-forecasting/README.md) — pick one path: [TIME_SERIES_LEARNING_PATH.md](../TIME_SERIES_LEARNING_PATH.md).
+
 ## Prerequisites
 
 Before starting these projects, you should have completed:
