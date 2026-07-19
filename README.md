@@ -808,6 +808,7 @@ road-to-machine-learning/
     math_formulas.md
     ml_glossary.md
     ai_engineering_glossary.md
+    ai_myths_busted.md
     ml_model_testing.md
     ml_system_design_guide.md
     mlflow_comprehensive_guide.md
@@ -878,6 +879,7 @@ road-to-machine-learning/
 | [Math Formulas Reference](resources/math_formulas.md) | Essential mathematical formulas for ML (Statistics, Linear Algebra, Calculus, ML metrics) |
 | [ML Glossary](resources/ml_glossary.md) | Comprehensive glossary of ML terms and concepts for beginners |
 | [AI Engineering Glossary](resources/ai_engineering_glossary.md) | Practical LLM / agent / RAG / serving jargon: what people say vs what it means |
+| [AI Myths Busted](resources/ai_myths_busted.md) | Expert myth-busting for AI/ML/DL: what people believe, what is actually going on, and one line to remember |
 | [Common Errors & Debugging Guide](resources/common_errors.md) | Troubleshooting guide for common ML errors and debugging strategies |
 | [DSA for ML Guide](resources/dsa_for_ml_guide.md) | Essential data structures and algorithms for machine learning |
 | [DSA Course (Python)](resources/dsa_course_python.md) | Full beginner-to-interview DSA course in Python (patterns, trees, graphs, practice plan) |
@@ -919,6 +921,7 @@ road-to-machine-learning/
 | [GenAI Production Deployment Guide](resources/genai_production_deployment.md) | Comprehensive guide to deploying GenAI at scale: RAG architectures, multi-agent systems, hyperscaler deployment (AWS, GCP, Azure), scaling strategies, monitoring, and cost optimization |
 | [Generative AI Comprehensive Guide](resources/generative_ai_comprehensive_guide.md) | Complete overview of Generative AI: LLMs, LangChain, RAG, AI Agents, Vector Databases, Multi-Agent Systems, and building production-ready GenAI applications |
 | [AI Engineering Glossary](resources/ai_engineering_glossary.md) | Fast definitions for production GenAI terms (agents, RAG, KV cache, LoRA, evals, guardrails) |
+| [AI Myths Busted](resources/ai_myths_busted.md) | Busts fluency, scale, RAG, agents, eval, and career myths with sticky one-liners |
 
 #### System Design & Architecture
 

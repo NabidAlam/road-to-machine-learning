@@ -7,7 +7,7 @@ Each entry includes:
 - **What people say:** the casual shorthand you hear in meetings and Discord
 - **What it actually means:** the precise technical meaning
 
-Pairs with the classic [ML Glossary](ml_glossary.md). Prefer this page for LLM, agent, and GenAI product work.
+Pairs with the classic [ML Glossary](ml_glossary.md). Prefer this page for LLM, agent, and GenAI product work. When a term tempts you into a wrong story (understanding, autonomy, creativity), read [AI Myths Busted](ai_myths_busted.md).
 
 ## Table of Contents
 
@@ -848,4 +848,5 @@ Pairs with the classic [ML Glossary](ml_glossary.md). Prefer this page for LLM, 
    - [Generative AI Comprehensive Guide](generative_ai_comprehensive_guide.md)
    - [Transformer Fine-Tuning Guide](transformer_fine_tuning_guide.md)
    - [ML Glossary](ml_glossary.md) for classic ML vocabulary
+   - [AI Myths Busted](ai_myths_busted.md) when a definition fights a popular misconception
 3. For Study Hub readers: open this guide on site, mark confidence as you go, and link terms back to module lessons when you meet them in projects.

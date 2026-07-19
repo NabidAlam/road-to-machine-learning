@@ -2,7 +2,7 @@
 
 A plain-language glossary of core ML terms for beginners and practitioners. Use it when a module drops jargon and you need a clear meaning fast.
 
-For LLM, agents, RAG, and serving terms, see the [AI Engineering Glossary](ai_engineering_glossary.md).
+For LLM, agents, RAG, and serving terms, see the [AI Engineering Glossary](ai_engineering_glossary.md). For common wrong mental models, see [AI Myths Busted](ai_myths_busted.md).
 
 ## Table of Contents
 
