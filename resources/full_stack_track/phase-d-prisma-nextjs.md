@@ -1,4 +1,4 @@
-# Phase D — Prisma and Next.js (In-Repo Lessons)
+# Phase D: Prisma and Next.js (In-Repo Lessons)
 
 **Maps to:** [Blueprint Phase D](../full_stack_ai_engineer_roadmap.md#phase-d-prisma-nextjs-full-stack-build)
 
@@ -18,7 +18,7 @@
 
 ---
 
-## Lesson 1 — Schema-first data with Prisma
+## Lesson 1: Schema-first data with Prisma
 
 Prisma models live in `schema.prisma`. You generate a type-safe client and use it from route handlers or services.
 
@@ -32,7 +32,7 @@ Design checklist:
 
 ---
 
-## Lesson 2 — Migrations and environments
+## Lesson 2: Migrations and environments
 
 Treat migrations like code review items: they change production data shapes.
 
@@ -43,7 +43,7 @@ Keep **`.env.example`** updated with required variables (`DATABASE_URL`, etc.).
 
 ---
 
-## Lesson 3 — Next.js App Router mental model
+## Lesson 3: Next.js App Router mental model
 
 Routes map to folders under `app/`. Layouts nest. Loading and error UI improve perceived quality.
 
@@ -54,7 +54,7 @@ You will repeatedly decide:
 
 ---
 
-## Lesson 4 — Server vs client boundaries
+## Lesson 4: Server vs client boundaries
 
 **Rule of thumb:** fetch sensitive data on the server; pass only what the client needs to render.
 
@@ -64,7 +64,7 @@ Avoid leaking service role keys to the browser. If you need user context in a se
 
 ---
 
-## Lesson 5 — Forms, validation, and errors
+## Lesson 5: Forms, validation, and errors
 
 Use a schema validator (for example **Zod**) to share validation rules between client and server where practical.
 

@@ -513,7 +513,7 @@ print(out.shape)  # (batch, seq, d)
 
 - **Encoder:** stack of self-attention + feed-forward blocks; used in **BERT** (encoder-only) for classification and representation.
 - **Decoder:** masked self-attention so position `t` cannot attend to future tokens; cross-attention to encoder outputs in **seq2seq** (e.g., original translation Transformer).
-- **Inference (generation):** autoregressive decoding—feed previously generated tokens, sample or argmax next token, stop at `<eos>` or max length. Libraries like **Hugging Face** `generate()` wrap this loop.
+- **Inference (generation):** autoregressive decoding: feed previously generated tokens, sample or argmax next token, stop at `<eos>` or max length. Libraries like **Hugging Face** `generate()` wrap this loop.
 
 ### Using Hugging Face
 

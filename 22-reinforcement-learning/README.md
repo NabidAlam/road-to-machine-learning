@@ -1,6 +1,6 @@
 # Module 22: Reinforcement Learning
 
-Master Reinforcement Learning (RL) - the third paradigm of machine learning where agents learn through interaction.
+Master Reinforcement Learning (RL): the third paradigm of machine learning where agents learn through interaction.
 
 ## What You'll Learn
 
@@ -103,13 +103,13 @@ Before starting this module, you should have completed:
 - [Ray RLlib](https://docs.ray.io/en/latest/rllib/index.html)
 
 **Free Courses:**
-- [Reinforcement Learning Specialization](https://www.coursera.org/specializations/reinforcement-learning) - Coursera (University of Alberta)
-- [Deep Reinforcement Learning](http://rail.eecs.berkeley.edu/deeprlcourse/) - UC Berkeley CS285
+- [Reinforcement Learning Specialization](https://www.coursera.org/specializations/reinforcement-learning): Coursera (University of Alberta)
+- [Deep Reinforcement Learning](http://rail.eecs.berkeley.edu/deeprlcourse/): UC Berkeley CS285
 
 **[Complete Detailed Guide →](reinforcement-learning.md)**
 
 **Additional Resources:**
-- [Advanced Topics →](reinforcement-learning-advanced-topics.md) - Multi-agent RL, Hierarchical RL, Meta-Learning
-- [Project Tutorial →](reinforcement-learning-project-tutorial.md) - Step-by-step DQN implementation
-- [Quick Reference →](reinforcement-learning-quick-reference.md) - Algorithms, formulas, and code snippets
+- [Advanced Topics →](reinforcement-learning-advanced-topics.md): Multi-agent RL, Hierarchical RL, Meta-Learning
+- [Project Tutorial →](reinforcement-learning-project-tutorial.md): Step-by-step DQN implementation
+- [Quick Reference →](reinforcement-learning-quick-reference.md): Algorithms, formulas, and code snippets
 

@@ -96,7 +96,7 @@ plt.show()
 
 ### Mel Spectrogram
 
-**Mel Spectrogram** uses mel scale, which is perceptually more relevant to human hearing.
+**Mel Spectrogram** uses mel scale. Which is perceptually more relevant to human hearing.
 
 ```python
 # Compute mel spectrogram

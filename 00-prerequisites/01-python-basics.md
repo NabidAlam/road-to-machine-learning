@@ -1,6 +1,6 @@
 # Python Basics for Machine Learning
 
-Complete guide to Python fundamentals needed for machine learning and data science—**AI programming with Python**: syntax, functional patterns, OOP, files, and exceptions.
+Complete guide to Python fundamentals needed for machine learning and data science. **AI programming with Python**: syntax, functional patterns, OOP, files, and exceptions.
 
 ## Table of Contents
 
@@ -968,7 +968,7 @@ print(dog.speak())  # Output: Buddy says Woof
 
 ### Polymorphism
 
-The same interface (e.g., method name `speak`) behaves differently per type—shown above where `Cat` and `Dog` override `speak`. You can write functions that accept any `Animal` without knowing the concrete class.
+The same interface (e.g., method name `speak`) behaves differently per type: shown above where `Cat` and `Dog` override `speak`. You can write functions that accept any `Animal` without knowing the concrete class.
 
 ### Encapsulation and abstraction
 
@@ -1233,7 +1233,7 @@ Big O notation describes the worst-case scenario for how long an algorithm takes
 
 **Common Time Complexities:**
 
-1. **O(1) - Constant Time**
+1. **O(1): Constant Time**
    - Accessing an element in a list by index
    - Operations that take the same time regardless of input size
 
@@ -1247,7 +1247,7 @@ my_dict = {'a': 1, 'b': 2, 'c': 3}
 value = my_dict['a']  # O(1)
 ```
 
-2. **O(log n) - Logarithmic Time**
+2. **O(log n): Logarithmic Time**
    - Binary search
    - Operations that divide the problem in half each time
 
@@ -1266,7 +1266,7 @@ def binary_search(arr, target):
     return -1
 ```
 
-3. **O(n) - Linear Time**
+3. **O(n): Linear Time**
    - Iterating through a list
    - Operations that process each element once
 
@@ -1280,7 +1280,7 @@ def find_max(lst):
     return max_val
 ```
 
-4. **O(n log n) - Linearithmic Time**
+4. **O(n log n): Linearithmic Time**
    - Efficient sorting algorithms (merge sort, quick sort)
    - Common in data science operations
 
@@ -1289,7 +1289,7 @@ def find_max(lst):
 sorted_list = sorted([3, 1, 4, 1, 5, 9, 2, 6])
 ```
 
-5. **O(n²) - Quadratic Time**
+5. **O(n²): Quadratic Time**
    - Nested loops
    - Comparing all pairs
 
@@ -1304,7 +1304,7 @@ def find_duplicates(lst):
     return duplicates
 ```
 
-6. **O(2ⁿ) - Exponential Time**
+6. **O(2ⁿ): Exponential Time**
    - Recursive algorithms without memoization
    - Very slow, avoid if possible
 
@@ -1416,7 +1416,7 @@ for idx, row in df.iterrows():  # Very slow for large DataFrames
 
 ## Iterators and Generators
 
-Iterators and generators are powerful Python features that enable memory-efficient processing of large datasets, which is crucial in data science.
+Iterators and generators are powerful Python features that enable memory-efficient processing of large datasets. Which is crucial in data science.
 
 ### What are Iterables?
 

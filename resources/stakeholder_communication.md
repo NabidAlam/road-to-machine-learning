@@ -113,7 +113,7 @@ Effective communication is crucial for ML projects because:
 
 **Analogy:**
 > "Imagine a student who memorizes answers to practice tests but fails 
-> the real exam. That's overfitting - the model memorizes training data 
+> the real exam. That's overfitting. The model memorizes training data 
 > but doesn't generalize. We prevent this by testing on new data."
 
 ### Avoiding Jargon
@@ -243,7 +243,7 @@ ML model that predicts churn 30 days in advance
 | 90% accuracy | "Correctly identifies 9 out of 10 cases" |
 | 85% precision | "When we flag something, we're right 85% of the time" |
 | 80% recall | "We catch 80% of all actual cases" |
-| F1-score 0.82 | "Balanced performance - good at both finding cases and being accurate" |
+| F1-score 0.82 | "Balanced performance. Good at both finding cases and being accurate" |
 
 **Example: Fraud Detection**
 ```
@@ -443,7 +443,7 @@ ROI = (Gains - Costs) / Costs × 100%
 **Example:**
 > "We've updated the model with 6 months of new data. Accuracy improved 
 > from 85% to 88%. This means we'll catch 3% more at-risk customers. 
-> No action needed from your team - the model updates automatically."
+> No action needed from your team. The model updates automatically."
 
 ---
 

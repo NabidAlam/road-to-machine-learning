@@ -18,7 +18,7 @@ Theory and activations: [Neural networks basics](../09-neural-networks-basics/ne
 
 - **CNN in PyTorch** (`nn.Conv2d`, pooling, training loop on batches) → [PyTorch computer vision](#pytorch-computer-vision)
 - **Image augmentation and pretrained CNNs** → [TorchVision / transfer in CV module](../11-computer-vision/computer-vision.md#data-augmentation), [Transfer learning](../11-computer-vision/computer-vision.md#transfer-learning)
-- **Sequence `Dataset` / `DataLoader` and padding** → [NLP. Sequence data and PyTorch](../12-natural-language-processing/nlp.md#sequence-data-and-pytorch)
+- **Sequence `Dataset` / `DataLoader` and padding** → [NLP: Sequence data and PyTorch](../12-natural-language-processing/nlp.md#sequence-data-and-pytorch)
 
 ## Table of Contents
 
@@ -167,7 +167,7 @@ print(f"GPU available: {tf.config.list_physical_devices('GPU')}")
 
 ### Sequential API
 
-Simple linear stack of layers - easiest way to build models.
+Simple linear stack of layers. Easiest way to build models.
 
 ```python
 import tensorflow as tf
@@ -200,7 +200,7 @@ keras.utils.plot_model(model, to_file='model.png', show_shapes=True)
 
 ### Functional API
 
-More flexible - supports complex architectures (multi-input, multi-output, shared layers).
+More flexible. Supports complex architectures (multi-input, multi-output, shared layers).
 
 ```python
 # Functional API (more flexible)
@@ -226,7 +226,7 @@ multi_input_model = keras.Model(inputs=[input1, input2], outputs=outputs)
 
 ### Model Subclassing
 
-Maximum flexibility - define custom models by subclassing.
+Maximum flexibility. Define custom models by subclassing.
 
 ```python
 class MLP(keras.Model):
@@ -369,7 +369,7 @@ if torch.cuda.is_available():
 
 ### Tensors
 
-PyTorch's fundamental data structure - similar to NumPy arrays but with GPU support.
+PyTorch's fundamental data structure. Similar to NumPy arrays but with GPU support.
 
 ```python
 import torch
@@ -934,7 +934,7 @@ print("dL/dW:", W.grad, "dL/db:", b.grad)
 ### PyTorch Tensors: The Foundation
 
 **What are Tensors?**
-Tensors are multi-dimensional arrays - the fundamental data structure in PyTorch.
+Tensors are multi-dimensional arrays. The fundamental data structure in PyTorch.
 
 ```python
 import torch
@@ -3193,33 +3193,33 @@ ds_test = ds_test.map(preprocess).batch(32)
 ### Free Online Courses
 
 **Comprehensive Deep Learning Courses:**
-- [Fast.ai Practical Deep Learning](https://www.fast.ai/) - Completely free, top-down approach, uses PyTorch
-- [Deep Learning Specialization (Coursera)](https://www.coursera.org/specializations/deep-learning) - Free audit available, uses TensorFlow/Keras
-- [CS231n: Convolutional Neural Networks for Visual Recognition (Stanford)](http://cs231n.stanford.edu/) - Free, comprehensive computer vision course
-- [CS224n: Natural Language Processing with Deep Learning (Stanford)](https://web.stanford.edu/class/cs224n/) - Free NLP course
+- [Fast.ai Practical Deep Learning](https://www.fast.ai/): Completely free, top-down approach, uses PyTorch
+- [Deep Learning Specialization (Coursera)](https://www.coursera.org/specializations/deep-learning): Free audit available, uses TensorFlow/Keras
+- [CS231n: Convolutional Neural Networks for Visual Recognition (Stanford)](http://cs231n.stanford.edu/): Free, comprehensive computer vision course
+- [CS224n: Natural Language Processing with Deep Learning (Stanford)](https://web.stanford.edu/class/cs224n/): Free NLP course
 
 **TensorFlow-Specific:**
-- [TensorFlow Developer Certificate Course (Coursera)](https://www.coursera.org/professional-certificates/tensorflow-in-practice) - Free audit available
-- [TensorFlow 2.0 Complete Course (YouTube - Daniel Bourke)](https://www.youtube.com/watch?v=tpCFfeUEGs8) - Free comprehensive course
+- [TensorFlow Developer Certificate Course (Coursera)](https://www.coursera.org/professional-certificates/tensorflow-in-practice): Free audit available
+- [TensorFlow 2.0 Complete Course (YouTube - Daniel Bourke)](https://www.youtube.com/watch?v=tpCFfeUEGs8): Free comprehensive course
 - [TensorFlow Tutorials (YouTube - Sentdex)](https://www.youtube.com/playlist?list=PLQVvvaa0QuDfhTox0AjmQ6tvTgMBZBEFN)
 
 **PyTorch-Specific:**
-- [PyTorch for Deep Learning (YouTube - Daniel Bourke)](https://www.youtube.com/watch?v=V_xro1bcAuA) - Free comprehensive course
+- [PyTorch for Deep Learning (YouTube - Daniel Bourke)](https://www.youtube.com/watch?v=V_xro1bcAuA): Free comprehensive course
 - [PyTorch Tutorial (YouTube - Sentdex)](https://www.youtube.com/playlist?list=PLQVvvaa0QuDdeMyHEYc0gxFpYwHY2Qfdh)
-- [Deep Learning with PyTorch (Udacity)](https://www.udacity.com/course/deep-learning-pytorch--ud188) - Free course
+- [Deep Learning with PyTorch (Udacity)](https://www.udacity.com/course/deep-learning-pytorch--ud188): Free course
 
 ### Video Tutorials and YouTube Channels
 
 **Educational Channels:**
-- [3Blue1Brown - Neural Networks](https://www.youtube.com/playlist?list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi) - Visual explanations of neural networks
-- [StatQuest with Josh Starmer](https://www.youtube.com/user/joshstarmer) - Clear explanations of ML/DL concepts
-- [Sentdex](https://www.youtube.com/user/sentdex) - Practical Python and deep learning tutorials
-- [Daniel Bourke](https://www.youtube.com/c/mrdbourke) - PyTorch and TensorFlow tutorials
-- [Aladdin Persson](https://www.youtube.com/c/AladdinPersson) - PyTorch implementation tutorials
+- [3Blue1Brown - Neural Networks](https://www.youtube.com/playlist?list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi): Visual explanations of neural networks
+- [StatQuest with Josh Starmer](https://www.youtube.com/user/joshstarmer): Clear explanations of ML/DL concepts
+- [Sentdex](https://www.youtube.com/user/sentdex): Practical Python and deep learning tutorials
+- [Daniel Bourke](https://www.youtube.com/c/mrdbourke): PyTorch and TensorFlow tutorials
+- [Aladdin Persson](https://www.youtube.com/c/AladdinPersson): PyTorch implementation tutorials
 
 **Conference Talks:**
-- [PyTorch Developer Conference](https://pytorch.org/events/) - Annual conference with talks and tutorials
-- [TensorFlow Dev Summit](https://www.tensorflow.org/dev-summit) - Annual TensorFlow conference
+- [PyTorch Developer Conference](https://pytorch.org/events/): Annual conference with talks and tutorials
+- [TensorFlow Dev Summit](https://www.tensorflow.org/dev-summit): Annual TensorFlow conference
 
 ### Books
 
@@ -3247,66 +3247,66 @@ ds_test = ds_test.map(preprocess).batch(32)
 ### Practice Platforms
 
 **Kaggle:**
-- [Kaggle Learn - Deep Learning](https://www.kaggle.com/learn/deep-learning) - Free micro-courses
-- [Kaggle Competitions](https://www.kaggle.com/competitions) - Practice on real datasets
-- [Kaggle Notebooks](https://www.kaggle.com/code) - Explore community notebooks
+- [Kaggle Learn - Deep Learning](https://www.kaggle.com/learn/deep-learning): Free micro-courses
+- [Kaggle Competitions](https://www.kaggle.com/competitions): Practice on real datasets
+- [Kaggle Notebooks](https://www.kaggle.com/code): Explore community notebooks
 
 **Other Platforms:**
-- [Papers With Code](https://paperswithcode.com/) - Latest research with implementations
-- [Hugging Face](https://huggingface.co/) - Pre-trained models and datasets
-- [Google Colab](https://colab.research.google.com/) - Free GPU access for practice
-- [Weights & Biases](https://wandb.ai/) - Experiment tracking and visualization
+- [Papers With Code](https://paperswithcode.com/): Latest research with implementations
+- [Hugging Face](https://huggingface.co/): Pre-trained models and datasets
+- [Google Colab](https://colab.research.google.com/): Free GPU access for practice
+- [Weights & Biases](https://wandb.ai/): Experiment tracking and visualization
 
 ### Community and Forums
 
 **Discussion Forums:**
-- [PyTorch Forums](https://discuss.pytorch.org/) - Official PyTorch community
-- [TensorFlow Forums](https://discuss.tensorflow.org/) - Official TensorFlow community
-- [Stack Overflow](https://stackoverflow.com/questions/tagged/pytorch) - Tag: pytorch, tensorflow
-- [Reddit r/MachineLearning](https://www.reddit.com/r/MachineLearning/) - ML research and discussions
-- [Reddit r/learnmachinelearning](https://www.reddit.com/r/learnmachinelearning/) - Learning-focused community
+- [PyTorch Forums](https://discuss.pytorch.org/): Official PyTorch community
+- [TensorFlow Forums](https://discuss.tensorflow.org/): Official TensorFlow community
+- [Stack Overflow](https://stackoverflow.com/questions/tagged/pytorch): Tag: pytorch, tensorflow
+- [Reddit r/MachineLearning](https://www.reddit.com/r/MachineLearning/): ML research and discussions
+- [Reddit r/learnmachinelearning](https://www.reddit.com/r/learnmachinelearning/): Learning-focused community
 
 **GitHub Resources:**
-- [Awesome PyTorch](https://github.com/bharathgs/Awesome-pytorch-list) - Curated PyTorch resources
-- [Awesome TensorFlow](https://github.com/jtoy/awesome-tensorflow) - Curated TensorFlow resources
-- [PyTorch Examples](https://github.com/pytorch/examples) - Official examples
-- [TensorFlow Examples](https://github.com/tensorflow/examples) - Official examples
+- [Awesome PyTorch](https://github.com/bharathgs/Awesome-pytorch-list): Curated PyTorch resources
+- [Awesome TensorFlow](https://github.com/jtoy/awesome-tensorflow): Curated TensorFlow resources
+- [PyTorch Examples](https://github.com/pytorch/examples): Official examples
+- [TensorFlow Examples](https://github.com/tensorflow/examples): Official examples
 
 ### Datasets for Practice
 
 **Image Classification:**
-- [MNIST](http://yann.lecun.com/exdb/mnist/) - Handwritten digits
-- [CIFAR-10/100](https://www.cs.toronto.edu/~kriz/cifar.html) - Natural images
-- [Fashion-MNIST](https://github.com/zalandoresearch/fashion-mnist) - Clothing items
-- [ImageNet](https://www.image-net.org/) - Large-scale image database
+- [MNIST](http://yann.lecun.com/exdb/mnist/): Handwritten digits
+- [CIFAR-10/100](https://www.cs.toronto.edu/~kriz/cifar.html): Natural images
+- [Fashion-MNIST](https://github.com/zalandoresearch/fashion-mnist): Clothing items
+- [ImageNet](https://www.image-net.org/): Large-scale image database
 
 **Computer Vision:**
-- [COCO](https://cocodataset.org/) - Object detection and segmentation
-- [PASCAL VOC](http://host.robots.ox.ac.uk/pascal/VOC/) - Object detection
-- [Open Images](https://storage.googleapis.com/openimages/web/index.html) - Large-scale dataset
+- [COCO](https://cocodataset.org/): Object detection and segmentation
+- [PASCAL VOC](http://host.robots.ox.ac.uk/pascal/VOC/): Object detection
+- [Open Images](https://storage.googleapis.com/openimages/web/index.html): Large-scale dataset
 
 **Text/NLP:**
-- [IMDB Reviews](https://ai.stanford.edu/~amaas/data/sentiment/) - Sentiment analysis
-- [AG News](https://www.di.unipi.it/~gulli/AG_corpus_of_news_articles.html) - News classification
-- [GLUE Benchmark](https://gluebenchmark.com/) - NLP tasks
+- [IMDB Reviews](https://ai.stanford.edu/~amaas/data/sentiment/): Sentiment analysis
+- [AG News](https://www.di.unipi.it/~gulli/AG_corpus_of_news_articles.html): News classification
+- [GLUE Benchmark](https://gluebenchmark.com/): NLP tasks
 
 ### Tools and Libraries
 
 **Development Tools:**
-- [Jupyter Notebook](https://jupyter.org/) - Interactive development
-- [VS Code](https://code.visualstudio.com/) - Popular IDE with ML extensions
-- [PyCharm](https://www.jetbrains.com/pycharm/) - Python IDE
+- [Jupyter Notebook](https://jupyter.org/): Interactive development
+- [VS Code](https://code.visualstudio.com/): Popular IDE with ML extensions
+- [PyCharm](https://www.jetbrains.com/pycharm/): Python IDE
 
 **Experiment Tracking:**
-- [TensorBoard](https://www.tensorflow.org/tensorboard) - Built-in visualization
-- [Weights & Biases](https://wandb.ai/) - Experiment tracking
-- [MLflow](https://mlflow.org/) - ML lifecycle management
+- [TensorBoard](https://www.tensorflow.org/tensorboard): Built-in visualization
+- [Weights & Biases](https://wandb.ai/): Experiment tracking
+- [MLflow](https://mlflow.org/): ML lifecycle management
 
 **Model Deployment:**
-- [TensorFlow Serving](https://www.tensorflow.org/tfx/guide/serving) - Model serving
-- [TensorFlow Lite](https://www.tensorflow.org/lite) - Mobile/edge deployment
-- [TorchServe](https://pytorch.org/serve/) - PyTorch model serving
-- [ONNX](https://onnx.ai/) - Model interoperability
+- [TensorFlow Serving](https://www.tensorflow.org/tfx/guide/serving): Model serving
+- [TensorFlow Lite](https://www.tensorflow.org/lite): Mobile/edge deployment
+- [TorchServe](https://pytorch.org/serve/): PyTorch model serving
+- [ONNX](https://onnx.ai/): Model interoperability
 
 ### Cheat Sheets and Quick References
 
@@ -3350,4 +3350,4 @@ ds_test = ds_test.map(preprocess).batch(32)
 
 ---
 
-**Try next:** The best way to learn is by doing! Start with simple projects and gradually increase complexity. Both frameworks are powerful - mastering both gives you maximum flexibility in your ML career.
+**Try next:** The best way to learn is by doing! Start with simple projects and gradually increase complexity. Both frameworks are powerful. Mastering both gives you maximum flexibility in your ML career.

@@ -117,13 +117,13 @@ nc -u 127.0.0.1 9000
 
 ## TCP's congestion control (briefly)
 
-When the internet gets crowded, TCP backs off. It uses an algorithm called congestion control to slow down sending until things clear up. UDP doesn't do this, which is why a poorly written UDP app can swamp a network.
+When the internet gets crowded, TCP backs off. It uses an algorithm called congestion control to slow down sending until things clear up. UDP doesn't do this. Which is why a poorly written UDP app can swamp a network.
 
-You probably don't need to know the specific algorithms (Tahoe, Reno, Cubic, BBR), but it's good to know they exist. When someone says "TCP is fair to other traffic", this is what they mean.
+You probably don't need to know the specific algorithms (Tahoe, Reno, Cubic, BBR), but it's good to know they exist. When someone says "TCP is fair to other traffic". This is what they mean.
 
 ## HTTP and the move to HTTP/3
 
-For most of the web's life, HTTP ran on TCP. HTTP/2 still does. But HTTP/3, the newest version, runs on **QUIC**, which is built on UDP.
+For most of the web's life, HTTP ran on TCP. HTTP/2 still does. But HTTP/3, the newest version, runs on **QUIC**. Which is built on UDP.
 
 Why the change? TCP's head-of-line blocking and slow handshake hurt the modern web, where pages have hundreds of small requests. QUIC keeps the reliability ideas TCP had, but builds them on top of UDP so it can do parallel streams without one slow packet stopping everything else.
 

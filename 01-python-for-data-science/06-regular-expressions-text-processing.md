@@ -1,4 +1,4 @@
-# Regular Expressions and Text Processing - Complete Guide
+# Regular Expressions and Text Processing. Complete Guide
 
 This guide covers regular expressions and text processing techniques essential for cleaning and analyzing text data.
 
@@ -719,7 +719,7 @@ def clean_messy_text(text):
 
 - [Python re module](https://docs.python.org/3/library/re.html)
 - [Pandas String Methods](https://pandas.pydata.org/docs/user_guide/text.html)
-- [Regex101](https://regex101.com/) - Test regex patterns online
+- [Regex101](https://regex101.com/): Test regex patterns online
 
 ### Tools
 

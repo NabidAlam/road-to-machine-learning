@@ -33,7 +33,7 @@ Expert review guide for learners, instructors, and career switchers. This docume
 
 ## Foundation exit gates (do not skip)
 
-### Gate A — After Module 00 (Stage 0)
+### Gate A, after Module 00 (Stage 0)
 
 You are ready for **Module 01** when you can **without copying from a tutorial**:
 
@@ -49,7 +49,7 @@ You are ready for **Module 01** when you can **without copying from a tutorial**
 
 ---
 
-### Gate B — After Module 01 (Stage 1)
+### Gate B, after Module 01 (Stage 1)
 
 You are ready for **Module 02 (ML)** when you can:
 
@@ -64,7 +64,7 @@ You are ready for **Module 02 (ML)** when you can:
 
 ---
 
-### Gate C — After Modules 02–05 (Stage 2)
+### Gate C, after Modules 02–05 (Stage 2)
 
 You are **job-market foundation-ready** for entry-level ML/tabular roles when you can:
 
@@ -79,7 +79,7 @@ You are **job-market foundation-ready** for entry-level ML/tabular roles when yo
 
 ---
 
-### Gate D — Production-ready (Stages 7–8 + projects)
+### Gate D: Production-ready (Stages 7–8 + projects)
 
 Target **ML Engineer / MLOps** when you can:
 

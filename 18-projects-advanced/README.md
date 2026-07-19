@@ -2,7 +2,7 @@
 
 Complex, production-ready projects that demonstrate mastery of ML concepts. **These nine projects ship as detailed README briefs and capstone-style specs.** You design and implement the full pipeline.
 
-> **Time series:** Project 3 overlaps with [Module 15](../15-time-series-analysis/README.md) and [intermediate project 6](../17-projects-intermediate/project-06-time-series-forecasting/README.md) — pick one path: [TIME_SERIES_LEARNING_PATH.md](../TIME_SERIES_LEARNING_PATH.md).
+> **Time series:** Project 3 overlaps with [Module 15](../15-time-series-analysis/README.md) and [intermediate project 6](../17-projects-intermediate/project-06-time-series-forecasting/README.md), pick one path: [TIME_SERIES_LEARNING_PATH.md](../TIME_SERIES_LEARNING_PATH.md).
 
 ## Prerequisites
 
@@ -333,10 +333,10 @@ After completing these projects, you should be able to:
 
 ##  Additional Resources
 
-- [Papers with Code](https://paperswithcode.com/) - Latest research
-- [arXiv](https://arxiv.org/) - Research papers
-- [GitHub Awesome Lists](https://github.com/sindresorhus/awesome) - Curated resources
-- [Kaggle Competitions](https://www.kaggle.com/competitions) - Advanced challenges
+- [Papers with Code](https://paperswithcode.com/): Latest research
+- [arXiv](https://arxiv.org/): Research papers
+- [GitHub Awesome Lists](https://github.com/sindresorhus/awesome): Curated resources
+- [Kaggle Competitions](https://www.kaggle.com/competitions): Advanced challenges
 
 ##  Portfolio Building
 

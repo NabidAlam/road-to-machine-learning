@@ -1,4 +1,4 @@
-# Exploratory Data Analysis (EDA) - Complete Guide
+# Exploratory Data Analysis (EDA): Complete Guide
 
 This guide covers performing systematic exploratory data analysis to understand your data before modeling.
 
@@ -47,7 +47,7 @@ EDA and **data cleaning** sit between loading data and training models. Use this
 
 ### EDA Philosophy
 
-> "The purpose of computing is insight, not numbers." - Richard Hamming
+> "The purpose of computing is insight, not numbers.": Richard Hamming
 
 EDA is about asking questions and finding answers in your data.
 

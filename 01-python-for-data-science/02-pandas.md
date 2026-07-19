@@ -1,6 +1,6 @@
 # Pandas Complete Guide
 
-This guide covers Pandas - the most important library for data manipulation and analysis in Python.
+This guide covers Pandas. The most important library for data manipulation and analysis in Python.
 
 ## ML toolbox curriculum map (this guide)
 
@@ -1602,5 +1602,5 @@ result = df.groupby('category')['value'].mean().compute()
 - Try Polars or Dask on a large dataset
 - Move to [03-visualization.md](03-visualization.md) to learn data visualization
 
-**Try next:** Pandas is your primary tool for data manipulation - master it! But know when to use Polars or Dask for larger datasets.
+**Try next:** Pandas is your primary tool for data manipulation. Master it! But know when to use Polars or Dask for larger datasets.
 

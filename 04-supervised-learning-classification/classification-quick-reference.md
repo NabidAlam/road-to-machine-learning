@@ -539,5 +539,5 @@ model = RandomForestClassifier(n_jobs=-1)  # Use all CPUs
 
 ---
 
-**Try next:** Classification is about more than accuracy - understand your data, use appropriate metrics, and always validate your results!
+**Try next:** Classification is about more than accuracy. Understand your data, use appropriate metrics, and always validate your results!
 

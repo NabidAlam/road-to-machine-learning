@@ -437,11 +437,11 @@ encoder = OneHotEncoder(
 
 ## Common Pitfalls and Solutions
 
-### Pitfall 1: Not Versioning Data
+### Pitfall 1, not Versioning Data
 
 **Solution**: Use DVC or similar tool
 
-### Pitfall 2: Not Tracking Experiments
+### Pitfall 2, not Tracking Experiments
 
 **Solution**: Use MLflow or W&B from the start
 

@@ -2,7 +2,7 @@
 
 Understand what machine learning is, how it works, and the different types of ML problems.
 
-> **Before Module 04 (classification):** Skim [Ethics in ML](../resources/ethics_in_ml.md) (30–45 min). Module 04 introduces fairness tooling — ethical framing helps you use it well.
+> **Before Module 04 (classification):** Skim [Ethics in ML](../resources/ethics_in_ml.md) (30–45 min). Module 04 introduces fairness tooling, ethical framing helps you use it well.
 
 ##  What You'll Learn
 
@@ -128,34 +128,34 @@ By the end of this module, you should be able to:
 - [Scikit-learn API Reference](https://scikit-learn.org/stable/modules/classes.html)
 
 **Free Courses:**
-- [Machine Learning Crash Course - Google](https://developers.google.com/machine-learning/crash-course) - Free comprehensive course
-- [Introduction to Machine Learning - MIT](https://ocw.mit.edu/courses/6-036-introduction-to-machine-learning-fall-2020/) - Free MIT course
-- [Machine Learning (Coursera - Andrew Ng)](https://www.coursera.org/learn/machine-learning) - Free audit available
-- [Machine Learning with Python (IBM Coursera)](https://www.coursera.org/learn/machine-learning-with-python) - Free audit available
+- [Machine Learning Crash Course - Google](https://developers.google.com/machine-learning/crash-course): Free comprehensive course
+- [Introduction to Machine Learning - MIT](https://ocw.mit.edu/courses/6-036-introduction-to-machine-learning-fall-2020/): Free MIT course
+- [Machine Learning (Coursera - Andrew Ng)](https://www.coursera.org/learn/machine-learning): Free audit available
+- [Machine Learning with Python (IBM Coursera)](https://www.coursera.org/learn/machine-learning-with-python): Free audit available
 
 **Tutorials:**
 - [Scikit-learn Tutorial](https://scikit-learn.org/stable/tutorial/index.html)
 - [Machine Learning Tutorial (W3Schools)](https://www.w3schools.com/python/python_ml_getting_started.asp)
-- [ML Basics (Kaggle Learn)](https://www.kaggle.com/learn/intro-to-machine-learning) - Free micro-course
+- [ML Basics (Kaggle Learn)](https://www.kaggle.com/learn/intro-to-machine-learning): Free micro-course
 
 **Video Tutorials:**
 - [Machine Learning Course (StatQuest)](https://www.youtube.com/playlist?list=PLblh5JKOoLUICTaGLRoHQDuF_7q2GfuJF)
 - [Machine Learning Explained (3Blue1Brown)](https://www.youtube.com/playlist?list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi)
 
 **Books (Free):**
-- [Introduction to Statistical Learning (Free PDF)](https://www.statlearning.com/) - Free comprehensive textbook
-- [Hands-On Machine Learning (O'Reilly)](https://www.oreilly.com/library/view/hands-on-machine-learning/9781492032632/) - Check library access
-- [Pattern Recognition and Machine Learning (Bishop)](https://www.microsoft.com/en-us/research/uploads/prod/2006/01/Bishop-Pattern-Recognition-and-Machine-Learning-2006.pdf) - Advanced but comprehensive
+- [Introduction to Statistical Learning (Free PDF)](https://www.statlearning.com/): Free comprehensive textbook
+- [Hands-On Machine Learning (O'Reilly)](https://www.oreilly.com/library/view/hands-on-machine-learning/9781492032632/): Check library access
+- [Pattern Recognition and Machine Learning (Bishop)](https://www.microsoft.com/en-us/research/uploads/prod/2006/01/Bishop-Pattern-Recognition-and-Machine-Learning-2006.pdf): Advanced but comprehensive
 
 **Interactive Learning:**
-- [Kaggle Learn - Intro to Machine Learning](https://www.kaggle.com/learn/intro-to-machine-learning) - Free hands-on course
-- [Google's Machine Learning Crash Course](https://developers.google.com/machine-learning/crash-course) - Free with exercises
-- [Fast.ai Practical Deep Learning](https://www.fast.ai/) - Free practical ML course
+- [Kaggle Learn - Intro to Machine Learning](https://www.kaggle.com/learn/intro-to-machine-learning): Free hands-on course
+- [Google's Machine Learning Crash Course](https://developers.google.com/machine-learning/crash-course): Free with exercises
+- [Fast.ai Practical Deep Learning](https://www.fast.ai/): Free practical ML course
 
 **Tools and Platforms:**
-- [Scikit-learn Algorithm Cheat Sheet](https://scikit-learn.org/stable/tutorial/machine_learning_map/index.html) - Visual algorithm selection guide
-- [Google Colab](https://colab.research.google.com/) - Free Jupyter notebooks in the cloud
-- [Kaggle Notebooks](https://www.kaggle.com/code) - Free ML environment with datasets
+- [Scikit-learn Algorithm Cheat Sheet](https://scikit-learn.org/stable/tutorial/machine_learning_map/index.html): Visual algorithm selection guide
+- [Google Colab](https://colab.research.google.com/): Free Jupyter notebooks in the cloud
+- [Kaggle Notebooks](https://www.kaggle.com/code): Free ML environment with datasets
 
 ---
 

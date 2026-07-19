@@ -140,7 +140,7 @@ class ResidualBlock:
 
 ### Adam Optimizer
 
-Adaptive Moment Estimation - combines momentum and RMSprop.
+Adaptive Moment Estimation. Combines momentum and RMSprop.
 
 ```python
 class AdamOptimizer:

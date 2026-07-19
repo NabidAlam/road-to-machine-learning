@@ -1,4 +1,4 @@
-# Phase B — Node.js, HTTP, and API Core (In-Repo Lessons)
+# Phase B: Node.js, HTTP, and API Core (In-Repo Lessons)
 
 **Maps to:** [Blueprint Phase B](../full_stack_ai_engineer_roadmap.md#phase-b-nodejs-express-and-api-core)
 
@@ -18,7 +18,7 @@
 
 ---
 
-## Lesson 1 — How the web talks
+## Lesson 1: How the web talks
 
 A browser or client sends an **HTTP request**: method (`GET`, `POST`, …), path (`/users`), headers, optional body. The server returns a **response**: status (`200`, `404`, `500`), headers, body.
 
@@ -33,7 +33,7 @@ A browser or client sends an **HTTP request**: method (`GET`, `POST`, …), path
 
 ---
 
-## Lesson 2 — Node mental model
+## Lesson 2: Node mental model
 
 Node is **event-driven** and **non-blocking** for I/O. Heavy CPU work still blocks the event loop, so you offload CPU jobs or split work.
 
@@ -43,7 +43,7 @@ Node is **event-driven** and **non-blocking** for I/O. Heavy CPU work still bloc
 
 ---
 
-## Lesson 3 — Raw HTTP in Node (why it matters)
+## Lesson 3: Raw HTTP in Node (why it matters)
 
 Frameworks hide details; building once with `http` teaches routing, status codes, and body parsing.
 
@@ -58,7 +58,7 @@ Conceptual flow:
 
 ---
 
-## Lesson 4 — Express routing and middleware
+## Lesson 4: Express routing and middleware
 
 **Middleware** is a pipeline: each function can end the response or call `next()`.
 
@@ -72,7 +72,7 @@ Patterns you want early:
 
 ---
 
-## Lesson 5 — Auth basics you will reuse everywhere
+## Lesson 5: Auth basics you will reuse everywhere
 
 - **Authentication:** who are you? (login)
 - **Authorization:** what may you do? (roles, scopes)

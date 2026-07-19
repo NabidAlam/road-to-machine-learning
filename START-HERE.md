@@ -70,8 +70,8 @@ Install dependencies from the **repository root**. Individual project folders ma
 |-------|---------|--------|
 | Stage 0 | 00 | Python, math, environment |
 | Stage 1 | 01 | NumPy, Pandas, visualization, EDA ([essential vs optional](01-python-for-data-science/README.md#essential-path-vs-optional-depth)) |
-| **Stage 1.5** | **19** | **SQL & databases** — parallel with Stage 1–2 for analyst, DS, and ML engineer tracks |
-| Stage 2 | 02–05 | Classical ML basics — read [ethics primer](resources/ethics_in_ml.md) before Module 04 |
+| **Stage 1.5** | **19** | **SQL & databases**, parallel with Stage 1–2 for analyst, DS, and ML engineer tracks |
+| Stage 2 | 02–05 | Classical ML basics, read [ethics primer](resources/ethics_in_ml.md) before Module 04 |
 | Stage 3 | 06–07 | Ensembles, feature engineering |
 | Stage 4 | 08 | Unsupervised learning |
 | Stage 5 | 09–10 | Neural networks, PyTorch/TensorFlow |
@@ -82,7 +82,7 @@ Install dependencies from the **repository root**. Individual project folders ma
 | Stage 9 | 16–18 | Projects (start beginner projects after Stage 2) |
 | Stage 10 | 22–24 | RL, graphs, audio (electives) |
 
-**Time series:** Module **15**, intermediate project 6, and advanced project 3 overlap — pick **one** path: [TIME_SERIES_LEARNING_PATH.md](TIME_SERIES_LEARNING_PATH.md).
+**Time series:** Module **15**, intermediate project 6, and advanced project 3 overlap, pick **one** path: [TIME_SERIES_LEARNING_PATH.md](TIME_SERIES_LEARNING_PATH.md).
 
 ## Projects: what to expect
 

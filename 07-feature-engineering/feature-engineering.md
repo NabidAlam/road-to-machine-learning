@@ -1508,7 +1508,7 @@ for name, encoder in encodings.items():
 1. **Feature selection**: Remove irrelevant features using filter, wrapper, or embedded methods
 2. **Transformation**: Handle skewed data with log, power, or other transformations
 3. **Encoding**: Convert categorical to numeric (one-hot, label, target encoding)
-4. **Scaling**: Required for distance-based algorithms (standardization, normalization, robust)
+4. **Scaling**, required for distance-based algorithms (standardization, normalization, robust)
 5. **Dimensionality reduction**: Use PCA for high-dimensional data
 6. **Feature creation**: Domain knowledge is most valuable for creating features
 7. **Pipeline**: Use pipelines to automate feature engineering

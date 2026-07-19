@@ -437,7 +437,7 @@ val_score = grid_search.score(X_val, y_val)  # Tune on validation
 final_score = grid_search.best_estimator_.score(X_test, y_test)
 ```
 
-### Pitfall 3: Not Stratifying
+### Pitfall 3, not Stratifying
 
 ```python
 # WRONG: For imbalanced data

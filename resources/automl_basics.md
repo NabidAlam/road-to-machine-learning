@@ -1,6 +1,6 @@
 # AutoML Basics Guide
 
-Comprehensive introduction to Automated Machine Learning (AutoML) - when to use it, popular tools, and integration with manual ML workflows.
+Comprehensive introduction to Automated Machine Learning (AutoML): when to use it, popular tools, and integration with manual ML workflows.
 
 ## Table of Contents
 

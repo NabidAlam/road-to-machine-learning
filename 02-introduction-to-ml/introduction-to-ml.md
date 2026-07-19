@@ -1,4 +1,4 @@
-# Introduction to Machine Learning - Complete Guide
+# Introduction to Machine Learning. Complete Guide
 
 This guide covers understanding machine learning fundamentals, types, workflow, and applications.
 
@@ -112,7 +112,7 @@ Problem → Data → EDA → Features → Model → Evaluate → Improve
 **Detailed Steps:**
 1. **Problem**: Define the problem and success criteria
 2. **Data**: Collect and prepare data
-3. **EDA**: Exploratory Data Analysis - understand data patterns
+3. **EDA**: Exploratory Data Analysis. Understand data patterns
 4. **Features**: Feature engineering and selection
 5. **Model**: Train machine learning model
 6. **Evaluate**: Assess model performance
@@ -267,7 +267,7 @@ X_reduced = pca.fit_transform(X)
 - Agent takes actions in an environment
 - Receives rewards or penalties
 - Learns optimal strategy to maximize rewards
-- No labeled data - learns from experience
+- No labeled data. Learns from experience
 
 **Example:**
 ```python
@@ -311,7 +311,7 @@ These labels show up in courses and papers; they are **orthogonal** to supervise
 **Batch vs online (incremental) learning**
 
 - **Batch / offline**: The model sees a large (or full) dataset each update, or you train on fixed snapshots. Most sklearn examples are batch: `fit(X, y)` on a matrix you already hold.
-- **Online / streaming / incremental**: New labeled rows arrive over time; you update the model in small steps without reloading everything. Useful for feeds, sensors, and fraud—often paired with careful drift monitoring (later: MLOps modules).
+- **Online / streaming / incremental**: New labeled rows arrive over time; you update the model in small steps without reloading everything. Useful for feeds, sensors, and fraud: often paired with careful drift monitoring (later: MLOps modules).
 
 **Instance-based vs model-based**
 
@@ -773,11 +773,11 @@ accuracy = accuracy_score(y_test, y_pred)
 5. Predicting if patient has disease
 
 **Solution:**
-1. Supervised - Regression (continuous output: price)
-2. Unsupervised - Clustering (no labels, finding groups)
+1. Supervised. Regression (continuous output: price)
+2. Unsupervised. Clustering (no labels, finding groups)
 3. Supervised - Classification (categories: spam/not spam)
-4. Unsupervised - Dimensionality Reduction (no labels)
-5. Supervised - Classification (categories: has disease/doesn't)
+4. Unsupervised. Dimensionality Reduction (no labels)
+5. Supervised. Classification (categories: has disease/doesn't)
 
 ### Exercise 2: Design ML Workflow
 

@@ -515,7 +515,7 @@ These operations form the foundation of all database interactions.
 
 ## SQL DDL Commands
 
-DDL (Data Definition Language) - Define database structure.
+DDL (Data Definition Language): Define database structure.
 
 ### CREATE DATABASE
 
@@ -729,9 +729,9 @@ DROP TABLE IF EXISTS employees;
 
 ## SQL DML Commands
 
-DML (Data Manipulation Language) - Manipulate data.
+DML (Data Manipulation Language): Manipulate data.
 
-### INSERT - Create (C)
+### INSERT. Create (C)
 
 **Insert Single Row:**
 ```sql
@@ -777,7 +777,7 @@ INSERT INTO orders (customer_id)
 VALUES (1);
 ```
 
-### SELECT - Basic Queries
+### SELECT. Basic Queries
 
 **SELECT Statement:**
 The SELECT statement retrieves data from tables.
@@ -809,7 +809,7 @@ FROM employees;
 SELECT DISTINCT department_id FROM employees;
 ```
 
-### Filtering Data - WHERE Clause
+### Filtering Data. WHERE Clause
 
 **WHERE Clause:**
 Filters rows based on conditions.
@@ -919,7 +919,7 @@ WHERE email = NULL;  -- Always false!
 WHERE email IS NULL;
 ```
 
-### Sorting Results - ORDER BY
+### Sorting Results. ORDER BY
 
 **ORDER BY Clause:**
 Sorts result set.
@@ -987,7 +987,7 @@ OFFSET 20 ROWS
 FETCH NEXT 10 ROWS ONLY;
 ```
 
-### UPDATE - Update (U)
+### UPDATE. Update (U)
 
 **Update Single Row:**
 ```sql
@@ -1036,7 +1036,7 @@ WHERE department_id = 1;
 
 **Important:** Always use WHERE clause! Without it, all rows are updated.
 
-### DELETE - Delete (D)
+### DELETE. Delete (D)
 
 **Delete Specific Rows:**
 ```sql
@@ -1670,7 +1670,7 @@ FROM employees;
 
 ## Advanced SQL Topics
 
-### Common Table Expressions (CTE) - WITH Clause
+### Common Table Expressions (CTE): WITH Clause
 
 Temporary named result set (simplifies complex queries).
 
@@ -1789,7 +1789,7 @@ EXCEPT
 SELECT employee_id FROM employees_2024;
 ```
 
-### Views - CREATE VIEW
+### Views. CREATE VIEW
 
 Virtual tables based on query results.
 
@@ -2085,11 +2085,11 @@ DELIMITER ;
 
 **Event Types:**
 - **BEFORE INSERT**: Before row is inserted
-- **AFTER INSERT**: After row is inserted
+- **AFTER INSERT**, after row is inserted
 - **BEFORE UPDATE**: Before row is updated
-- **AFTER UPDATE**: After row is updated
+- **AFTER UPDATE**, after row is updated
 - **BEFORE DELETE**: Before row is deleted
-- **AFTER DELETE**: After row is deleted
+- **AFTER DELETE**, after row is deleted
 
 **PostgreSQL Example:**
 ```sql
@@ -2568,17 +2568,17 @@ ORDER BY difference DESC;
 
 ### Online Learning Platforms
 
-1. **SQLBolt** (https://sqlbolt.com/) - Interactive SQL tutorials
-2. **Mode Analytics SQL Tutorial** (https://mode.com/sql-tutorial/) - Comprehensive SQL guide
-3. **W3Schools SQL** (https://www.w3schools.com/sql/) - SQL reference and examples
-4. **SQLZoo** (https://sqlzoo.net/) - Practice SQL with real datasets
-5. **LeetCode Database Problems** (https://leetcode.com/problemset/database/) - SQL interview practice
+1. **SQLBolt** (https://sqlbolt.com/): Interactive SQL tutorials
+2. **Mode Analytics SQL Tutorial** (https://mode.com/sql-tutorial/): Comprehensive SQL guide
+3. **W3Schools SQL** (https://www.w3schools.com/sql/): SQL reference and examples
+4. **SQLZoo** (https://sqlzoo.net/): Practice SQL with real datasets
+5. **LeetCode Database Problems** (https://leetcode.com/problemset/database/): SQL interview practice
 
 ### Documentation
 
-1. **MySQL Documentation** (https://dev.mysql.com/doc/) - Official MySQL reference
-2. **PostgreSQL Documentation** (https://www.postgresql.org/docs/) - PostgreSQL reference
-3. **SQLite Documentation** (https://www.sqlite.org/docs.html) - SQLite reference
+1. **MySQL Documentation** (https://dev.mysql.com/doc/): Official MySQL reference
+2. **PostgreSQL Documentation** (https://www.postgresql.org/docs/): PostgreSQL reference
+3. **SQLite Documentation** (https://www.sqlite.org/docs.html): SQLite reference
 
 ### Practice Datasets
 
@@ -2588,9 +2588,9 @@ ORDER BY difference DESC;
 
 ### Books
 
-1. "SQL in 10 Minutes" by Ben Forta - Quick reference guide
-2. "Learning SQL" by Alan Beaulieu - Comprehensive SQL learning
-3. "SQL Cookbook" by Anthony Molinaro - Advanced SQL techniques
+1. "SQL in 10 Minutes" by Ben Forta. Quick reference guide
+2. "Learning SQL" by Alan Beaulieu. Comprehensive SQL learning
+3. "SQL Cookbook" by Anthony Molinaro. Advanced SQL techniques
 
 ---
 
@@ -2598,7 +2598,7 @@ ORDER BY difference DESC;
 
 1. **SQL is Essential**: Critical skill for data science and analytics
 2. **Practice Regularly**: Write queries frequently to build muscle memory
-3. **Understand Joins**: Master different join types - they're fundamental
+3. **Understand Joins**: Master different join types. They're fundamental
 4. **Window Functions**: Powerful for analytics and ranking operations
 5. **Optimize Queries**: Use indexes, avoid SELECT *, understand query execution
 6. **Data Cleaning**: SQL is excellent for data preparation and cleaning

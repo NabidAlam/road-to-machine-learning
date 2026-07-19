@@ -1,4 +1,4 @@
-# Capstone: Data/Analytics — SQL → Metrics → Dashboard → ML (GDPR-Safe)
+# Capstone: Data/Analytics: SQL → Metrics → Dashboard → ML (GDPR-Safe)
 
 Build a **realistic analytics workflow** (tables, SQL, metrics, dashboard) and then add a production-style ML model (e.g., churn or purchase propensity).
 

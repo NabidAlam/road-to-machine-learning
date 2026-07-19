@@ -83,8 +83,8 @@ By the end of this module, you should be able to:
 - [Anomaly Detection - Scikit-learn](https://scikit-learn.org/stable/modules/outlier_detection.html)
 
 **Free Courses:**
-- [Unsupervised Learning (Coursera)](https://www.coursera.org/learn/machine-learning) - Week 8 of Andrew Ng's course
-- [Clustering (Kaggle Learn)](https://www.kaggle.com/learn/clustering) - Free micro-course
+- [Unsupervised Learning (Coursera)](https://www.coursera.org/learn/machine-learning): Week 8 of Andrew Ng's course
+- [Clustering (Kaggle Learn)](https://www.kaggle.com/learn/clustering): Free micro-course
 
 **Tutorials:**
 - [K-Means Clustering Tutorial](https://scikit-learn.org/stable/modules/clustering.html#k-means)
@@ -105,9 +105,9 @@ By the end of this module, you should be able to:
 **[Complete Detailed Guide →](unsupervised-learning.md)**
 
 **Additional Resources:**
-- [Advanced Topics →](unsupervised-learning-advanced-topics.md) - Advanced clustering, anomaly detection, association rules
-- [Project Tutorial →](unsupervised-learning-project-tutorial.md) - Step-by-step unsupervised learning project
-- [Quick Reference →](unsupervised-learning-quick-reference.md) - Quick lookup guide for unsupervised learning
+- [Advanced Topics →](unsupervised-learning-advanced-topics.md): Advanced clustering, anomaly detection, association rules
+- [Project Tutorial →](unsupervised-learning-project-tutorial.md): Step-by-step unsupervised learning project
+- [Quick Reference →](unsupervised-learning-quick-reference.md): Quick lookup guide for unsupervised learning
 
 ---
 

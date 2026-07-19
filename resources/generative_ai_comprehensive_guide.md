@@ -35,13 +35,13 @@ Complete guide to Generative AI, Large Language Models (LLMs), LangChain, RAG, A
 ### Examples of Generative AI
 
 **Text Generation:**
-- **ChatGPT** (OpenAI) - Conversational AI
-- **Gemini** (Google) - Multimodal AI
-- **Claude** (Anthropic) - Helpful AI assistant
+- **ChatGPT** (OpenAI): Conversational AI
+- **Gemini** (Google): Multimodal AI
+- **Claude** (Anthropic): Helpful AI assistant
 - **Mistral** - Open-source LLM
 
 **Image Generation:**
-- **DALL·E** (OpenAI) - Text-to-image
+- **DALL·E** (OpenAI): Text-to-image
 - **Midjourney** - Artistic image generation
 - **Stable Diffusion** - Open-source image generation
 
@@ -89,16 +89,16 @@ Massive Dataset → Neural Network Training → Learned Patterns → Generate Ne
 ### Popular LLMs
 
 **Open-Source:**
-- **Llama 2/3** (Meta) - Open-source, powerful
+- **Llama 2/3** (Meta): Open-source, powerful
 - **Mistral** - Efficient, open-source
 - **Falcon** - High-performance open model
 - **MosaicML** - Training infrastructure
 
 **Commercial:**
-- **GPT-4** (OpenAI) - Most capable, multimodal
-- **Gemini** (Google) - Multimodal, large context
-- **Claude** (Anthropic) - Helpful, safe AI
-- **GPT-3.5** (OpenAI) - Fast, cost-effective
+- **GPT-4** (OpenAI): Most capable, multimodal
+- **Gemini** (Google): Multimodal, large context
+- **Claude** (Anthropic): Helpful, safe AI
+- **GPT-3.5** (OpenAI): Fast, cost-effective
 
 ### Key Concepts
 
@@ -144,7 +144,7 @@ print(decoded)  # "Hello, how are you?"
 
 #### Embeddings
 
-Vector representation of meaning - captures semantic relationships.
+Vector representation of meaning. Captures semantic relationships.
 
 **What Embeddings Do:**
 - Convert text to numerical vectors

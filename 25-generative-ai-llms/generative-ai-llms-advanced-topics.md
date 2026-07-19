@@ -458,4 +458,4 @@ async def async_generate(prompts):
 
 ---
 
-**Next**: See [Project Tutorial →](generative-ai-llms-project-tutorial.md) for hands-on implementation.
+**Next**, see [Project Tutorial →](generative-ai-llms-project-tutorial.md) for hands-on implementation.

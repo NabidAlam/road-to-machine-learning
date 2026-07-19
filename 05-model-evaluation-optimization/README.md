@@ -79,8 +79,8 @@ By the end of this module, you should be able to:
 - [Hyperparameter Tuning - Scikit-learn](https://scikit-learn.org/stable/modules/grid_search.html)
 
 **Free Courses:**
-- [Model Evaluation (Coursera)](https://www.coursera.org/learn/machine-learning) - Week 6 of Andrew Ng's course
-- [Hyperparameter Tuning (Kaggle Learn)](https://www.kaggle.com/learn/intro-to-machine-learning) - Free micro-course
+- [Model Evaluation (Coursera)](https://www.coursera.org/learn/machine-learning): Week 6 of Andrew Ng's course
+- [Hyperparameter Tuning (Kaggle Learn)](https://www.kaggle.com/learn/intro-to-machine-learning): Free micro-course
 
 **Tutorials:**
 - [Cross-Validation Explained](https://scikit-learn.org/stable/modules/cross_validation.html)
@@ -94,8 +94,8 @@ By the end of this module, you should be able to:
 - [Overfitting (StatQuest)](https://www.youtube.com/watch?v=Anq4Pgd5el8)
 
 **Tools:**
-- [Optuna Documentation](https://optuna.org/) - Advanced hyperparameter optimization
-- [Hyperopt Documentation](http://hyperopt.github.io/hyperopt/) - Bayesian optimization
+- [Optuna Documentation](https://optuna.org/): Advanced hyperparameter optimization
+- [Hyperopt Documentation](http://hyperopt.github.io/hyperopt/): Bayesian optimization
 
 **[Complete Detailed Guide →](evaluation-optimization.md)**
 

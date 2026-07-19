@@ -2,7 +2,7 @@
 
 This guide provides clear, role-specific learning paths for different careers in data science and machine learning. Each path includes recommended modules, projects, and resources tailored to the specific role.
 
-**Canonical stage order and the module 15 (time series) branch** match the root [README](../README.md#learning-path-overview). Stage 6 is vision and language (modules **11–12**). Module **15** is an optional parallel track — see [TIME_SERIES_LEARNING_PATH.md](../TIME_SERIES_LEARNING_PATH.md). **SQL is Stage 1.5 (module 19)**, not Stage 7.5.
+**Canonical stage order and the module 15 (time series) branch** match the root [README](../README.md#learning-path-overview). Stage 6 is vision and language (modules **11–12**). Module **15** is an optional parallel track, see [TIME_SERIES_LEARNING_PATH.md](../TIME_SERIES_LEARNING_PATH.md). **SQL is Stage 1.5 (module 19)**, not Stage 7.5.
 
 ## Table of Contents
 
@@ -83,11 +83,11 @@ This guide provides clear, role-specific learning paths for different careers in
 |-------|---------|-------------|---------------|
 | **Foundation** | 00 | Python, Math, Statistics | 2-3 months |
 | **Data Fundamentals** | 01 | Data Manipulation, Visualization, EDA | 2-3 months |
-| **SQL & Databases** | 19 | Queries, joins, window functions *(Stage 1.5 — parallel with 01–02)* | 1-2 months |
+| **SQL & Databases** | 19 | Queries, joins, window functions *(Stage 1.5, parallel with 01–02)* | 1-2 months |
 | **ML Basics** | 02-05 | ML Concepts, Regression, Classification, Evaluation | 3-4 months |
 | **Advanced ML** | 06-07 | Ensemble Methods, Feature Engineering | 2-3 months |
 | **Unsupervised Learning** | 08 | Clustering, Dimensionality Reduction | 1-2 months |
-| **Time Series** | 15 | Time Series Analysis, Forecasting *(optional — [pick one path](../TIME_SERIES_LEARNING_PATH.md))* | 1-2 months |
+| **Time Series** | 15 | Time Series Analysis, Forecasting *(optional, [pick one path](../TIME_SERIES_LEARNING_PATH.md))* | 1-2 months |
 | **Essential Skills** | 20-21 | Imbalanced Data, Explainability | 1-2 months |
 | **Total** | **12 modules** | **Complete Path** | **13-20 months** |
 
@@ -660,7 +660,7 @@ This guide provides clear, role-specific learning paths for different careers in
 
 ## Research Scientist
 
-**Role Focus**: Novel methods, careful experiments, and clear write-ups—plus the depth to read papers, reproduce results, and contribute new ideas. Conduct research, develop algorithms, and push boundaries of ML/AI; strong theory and coding both matter.
+**Role Focus**: Novel methods, careful experiments, and clear write-ups, plus the depth to read papers, reproduce results, and contribute new ideas. Conduct research, develop algorithms, and push boundaries of ML/AI; strong theory and coding both matter.
 
 ### Core Learning Path
 

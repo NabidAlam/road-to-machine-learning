@@ -44,7 +44,7 @@ Comprehensive guide to causal inference in machine learning and data science.
 
 - **Y(1)**: Outcome if treated
 - **Y(0)**: Outcome if not treated
-- **Causal Effect**: Y(1) - Y(0)
+- **Causal Effect**: Y(1): Y(0)
 
 **Fundamental Problem**: We can only observe one potential outcome per unit.
 

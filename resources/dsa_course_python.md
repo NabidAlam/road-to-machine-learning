@@ -1,4 +1,4 @@
-# Data Structures and Algorithms (DSA) in Python — Beginner to Interview-Ready
+# Data Structures and Algorithms (DSA) in Python: Beginner to Interview-Ready
 
 This is a **complete DSA course in Python** designed for absolute beginners and interview prep. It focuses on:
 
@@ -88,7 +88,7 @@ In interviews, most problems are testing:
 - Can you write correct code?
 - Can you hit the required complexity?
 
-### Time Complexity (Big-O) — the 80/20
+### Time Complexity (Big-O): the 80/20
 
 - `O(1)`: constant (hash lookup average)
 - `O(log n)`: binary search
@@ -825,7 +825,7 @@ This section consolidates the “big patterns” you’ll reuse constantly:
 
 Each pattern becomes a **template** + **practice set**.
 
-### 11.1 Sliding window (variable) — example: longest substring without repeating
+### 11.1 Sliding window (variable): example: longest substring without repeating
 
 ```python
 def longest_unique_substring(s):
@@ -850,7 +850,7 @@ def longest_unique_substring(s):
 - r=2 'b' already in seen → remove s[l]='a' (l=1), still 'b' in seen → remove s[l]='b' (l=2), now add 'b' → seen={b}, best=2
 - r=3 'a' add → seen={b,a} best=2
 
-### 11.2 Two pointers (same direction) — remove duplicates in sorted array
+### 11.2 Two pointers (same direction): remove duplicates in sorted array
 
 ```python
 def remove_duplicates(nums):

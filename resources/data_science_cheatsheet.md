@@ -1314,7 +1314,7 @@ random_search = RandomizedSearchCV(
 random_search.fit(X_train, y_train)
 ```
 
-### Optuna - Advanced Hyperparameter Optimization
+### Optuna. Advanced Hyperparameter Optimization
 
 ```python
 import optuna
@@ -1370,7 +1370,7 @@ def objective_with_pruning(trial):
 study = optuna.create_study(pruner=optuna.pruners.MedianPruner())
 ```
 
-### Hyperopt - Bayesian Optimization
+### Hyperopt. Bayesian Optimization
 
 ```python
 from hyperopt import hp, fmin, tpe, Trials, STATUS_OK
@@ -1400,7 +1400,7 @@ best = fmin(
 )
 ```
 
-### Ray Tune - Distributed Hyperparameter Tuning
+### Ray Tune. Distributed Hyperparameter Tuning
 
 ```python
 from ray import tune

@@ -552,7 +552,7 @@ X_train_scaled = scaler.fit_transform(X_train)
 X_test_scaled = scaler.transform(X_test)  # Only transform, don't fit!
 ```
 
-### Pitfall 3: Not Using Cross-Validation
+### Pitfall 3, not Using Cross-Validation
 
 ```python
 # Bad: Single train-test split
@@ -597,5 +597,5 @@ model = LogisticRegression(class_weight='balanced')
 - Learn about model interpretability tools (SHAP, LIME)
 - Move to ensemble methods module
 
-**Try next:** Classification is more than just accuracy - understand your data and use appropriate metrics!
+**Try next:** Classification is more than just accuracy. Understand your data and use appropriate metrics!
 

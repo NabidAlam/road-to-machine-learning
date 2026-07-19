@@ -288,10 +288,10 @@ for i in range(10):
 2. **Overfitting**: Model too complex, memorizes training data
 3. **Underfitting**: Model too simple, can't learn patterns
 4. **Wrong Metrics**: Using accuracy for imbalanced data
-5. **No Validation**: Not using validation set
+5. **No Validation**, not using validation set
 6. **Test Set Contamination**: Using test set multiple times
-7. **Ignoring Baseline**: Not comparing with simple baseline
-8. **No Documentation**: Not documenting experiments
+7. **Ignoring Baseline**, not comparing with simple baseline
+8. **No Documentation**, not documenting experiments
 
 ---
 

@@ -2113,7 +2113,7 @@ RETURN
 
 ## Automation, AI, and Integration
 
-### Macros – Record, Edit, and Run
+### Macros: Record, Edit, and Run
 
 **Recording Macros:**
 1. Developer → Record Macro
@@ -2172,7 +2172,7 @@ End Sub
 - VBA editor: Alt + F11
 - Object Browser: F2 in VBA editor
 
-### Office Scripts – Excel Web Automation
+### Office Scripts: Excel Web Automation
 
 **What are Office Scripts?**
 JavaScript-based automation for Excel Online.
@@ -2196,7 +2196,7 @@ function main(workbook: ExcelScript.Workbook) {
 - Cloud workflows
 - Power Automate integration
 
-### Copilot in Excel – AI-Powered Formula Suggestions and Insights
+### Copilot in Excel: AI-Powered Formula Suggestions and Insights
 
 **What is Copilot?**
 AI assistant in Excel (Microsoft 365).
@@ -2403,7 +2403,7 @@ result
 
 - [Excel Training (Microsoft)](https://support.microsoft.com/en-us/training)
 - [Excel Basics (Khan Academy)](https://www.khanacademy.org/computing/computer-science)
-- [Excel for Data Analysis (Coursera)](https://www.coursera.org/learn/excel-data-analysis) - Free audit available
+- [Excel for Data Analysis (Coursera)](https://www.coursera.org/learn/excel-data-analysis): Free audit available
 
 ### YouTube Channels
 
@@ -2420,8 +2420,8 @@ result
 ### Practice Resources
 
 - [Excel Practice Online](https://excel-practice-online.com/)
-- [Chandoo.org](https://chandoo.org/) - Excel tips and tutorials
-- [Contextures](https://www.contextures.com/) - Excel examples and tutorials
+- [Chandoo.org](https://chandoo.org/): Excel tips and tutorials
+- [Contextures](https://www.contextures.com/): Excel examples and tutorials
 
 ---
 

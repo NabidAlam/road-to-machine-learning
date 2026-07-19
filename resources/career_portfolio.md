@@ -481,5 +481,5 @@ ML Engineer passionate about building production-ready ML systems.
 
 ---
 
-**Try next:** Building a career in ML takes time and persistence. Focus on continuous learning, building projects, and networking. Your portfolio is your best asset - make it shine!
+**Try next:** Building a career in ML takes time and persistence. Focus on continuous learning, building projects, and networking. Your portfolio is your best asset. Make it shine!
 

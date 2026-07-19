@@ -234,4 +234,4 @@ for question in test_questions:
 
 ---
 
-**Next**: See [Quick Reference →](generative-ai-llms-quick-reference.md) for code snippets.
+**Next**, see [Quick Reference →](generative-ai-llms-quick-reference.md) for code snippets.

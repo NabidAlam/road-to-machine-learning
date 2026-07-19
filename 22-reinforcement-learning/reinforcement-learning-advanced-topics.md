@@ -704,7 +704,7 @@ class C51DQN(nn.Module):
 2. **Hierarchical RL**: Handles long-horizon tasks effectively (Options, HER)
 3. **Imitation Learning**: Useful when rewards are hard to define (BC, DAgger, GAIL)
 4. **Transfer Learning**: Accelerate learning on new tasks
-5. **Continuous Actions**: Required for robotics and control (DDPG, TD3)
+5. **Continuous Actions**, required for robotics and control (DDPG, TD3)
 6. **Safe RL**: Critical for real-world deployment (CPO, Risk-Sensitive, Shielded)
 7. **Meta-Learning**: Learn to learn quickly (MAML, Reptile)
 8. **Distributional RL**: Model full return distribution (C51)

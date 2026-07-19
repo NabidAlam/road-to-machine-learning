@@ -81,7 +81,7 @@ Before starting, you should have completed:
 - Visualize feature importance
 - Identify top contributing features
 
-### Step 3: SHAP Implementation - Tree SHAP
+### Step 3: SHAP Implementation. Tree SHAP
 - Install SHAP: `pip install shap`
 - Implement TreeExplainer for tree-based models
 - Calculate SHAP values
@@ -92,13 +92,13 @@ Before starting, you should have completed:
   - Dependence plots
 - Analyze global and local explanations
 
-### Step 4: SHAP Implementation - Kernel SHAP
+### Step 4: SHAP Implementation. Kernel SHAP
 - Implement KernelExplainer for model-agnostic explanations
 - Compare with Tree SHAP
 - Use for linear models and neural networks
 - Handle different model types
 
-### Step 5: SHAP Implementation - Deep SHAP (Optional)
+### Step 5: SHAP Implementation. Deep SHAP (Optional)
 - Implement DeepExplainer for neural networks
 - Compare with other SHAP explainers
 - Analyze deep learning model decisions

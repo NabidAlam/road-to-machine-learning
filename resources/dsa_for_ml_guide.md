@@ -514,7 +514,7 @@ def linear_search(arr, target):
 ```
 
 **Time Complexity**:
-- Binary Search: O(log n) - requires sorted array
+- Binary Search: O(log n): requires sorted array
 - Linear Search: O(n)
 
 **When to Use**:
@@ -925,39 +925,39 @@ def brute_force_nn(X_train, query, k=5):
 
 ### Books
 
-- **"Introduction to Algorithms"** by Cormen, Leiserson, Rivest, Stein - Comprehensive reference
+- **"Introduction to Algorithms"** by Cormen, Leiserson, Rivest, Stein. Comprehensive reference
 - **"Algorithm Design Manual"** by Steven Skiena - Practical approach
 - **"Grokking Algorithms"** by Aditya Bhargava - Visual, beginner-friendly
 
 ### Online Courses
 
-- [Algorithms Specialization (Coursera)](https://www.coursera.org/specializations/algorithms) - Stanford course, free audit
-- [Data Structures and Algorithms (Udacity)](https://www.udacity.com/course/data-structures-and-algorithms-nanodegree) - Comprehensive course
-- [Algorithms (Khan Academy)](https://www.khanacademy.org/computing/computer-science/algorithms) - Free course
+- [Algorithms Specialization (Coursera)](https://www.coursera.org/specializations/algorithms): Stanford course, free audit
+- [Data Structures and Algorithms (Udacity)](https://www.udacity.com/course/data-structures-and-algorithms-nanodegree): Comprehensive course
+- [Algorithms (Khan Academy)](https://www.khanacademy.org/computing/computer-science/algorithms): Free course
 
 ### Practice Platforms
 
-- [LeetCode](https://leetcode.com/) - Coding challenges, ML-specific problems
-- [HackerRank](https://www.hackerrank.com/) - Algorithm practice
-- [CodeSignal](https://codesignal.com/) - Interview preparation
-- [NeetCode](https://neetcode.io/) - Curated problem lists
+- [LeetCode](https://leetcode.com/): Coding challenges, ML-specific problems
+- [HackerRank](https://www.hackerrank.com/): Algorithm practice
+- [CodeSignal](https://codesignal.com/): Interview preparation
+- [NeetCode](https://neetcode.io/): Curated problem lists
 
 ### Python-Specific Resources
 
-- [Python Data Structures](https://docs.python.org/3/tutorial/datastructures.html) - Official documentation
-- [Real Python - Data Structures](https://realpython.com/python-data-structures/) - Practical guide
-- [Python Algorithms](https://runestone.academy/ns/books/published/pythonds/index.html) - Interactive book
+- [Python Data Structures](https://docs.python.org/3/tutorial/datastructures.html): Official documentation
+- [Real Python - Data Structures](https://realpython.com/python-data-structures/): Practical guide
+- [Python Algorithms](https://runestone.academy/ns/books/published/pythonds/index.html): Interactive book
 
 ### ML-Specific DSA
 
-- [NumPy Arrays](https://numpy.org/doc/stable/user/basics.html) - Array operations
-- [Pandas DataFrames](https://pandas.pydata.org/docs/user_guide/dsintro.html) - DataFrame internals
-- [Scikit-learn Algorithms](https://scikit-learn.org/stable/modules/classes.html) - ML algorithm implementations
+- [NumPy Arrays](https://numpy.org/doc/stable/user/basics.html): Array operations
+- [Pandas DataFrames](https://pandas.pydata.org/docs/user_guide/dsintro.html): DataFrame internals
+- [Scikit-learn Algorithms](https://scikit-learn.org/stable/modules/classes.html): ML algorithm implementations
 
 ### Video Tutorials
 
-- [MIT 6.006 Introduction to Algorithms](https://www.youtube.com/playlist?list=PLUl4u3cNGP61Oq3tWYp6V_F-5jb5L2iHb) - Free MIT course
-- [Data Structures and Algorithms (freeCodeCamp)](https://www.youtube.com/watch?v=8hly31xKli0) - Comprehensive tutorial
+- [MIT 6.006 Introduction to Algorithms](https://www.youtube.com/playlist?list=PLUl4u3cNGP61Oq3tWYp6V_F-5jb5L2iHb): Free MIT course
+- [Data Structures and Algorithms (freeCodeCamp)](https://www.youtube.com/watch?v=8hly31xKli0): Comprehensive tutorial
 
 ---
 

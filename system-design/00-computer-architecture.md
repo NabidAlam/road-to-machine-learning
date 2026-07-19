@@ -42,7 +42,7 @@ When you hear "this query is slow", nine times out of ten it's because the datab
 
 RAM is volatile. Pull the plug, it's gone. It's fast because there are no moving parts and it's wired close to the CPU.
 
-Disk is persistent. Even if the machine reboots, the data is still there. But traditional disks have a physical arm that needs to swing to the right spot. SSDs got rid of the arm, which is why they're ~100x faster than HDDs.
+Disk is persistent. Even if the machine reboots, the data is still there. But traditional disks have a physical arm that needs to swing to the right spot. SSDs got rid of the arm. Which is why they're ~100x faster than HDDs.
 
 Most databases (Postgres, MySQL, MongoDB) keep frequently-accessed data in RAM and write to disk for safety. It's the best of both worlds.
 
@@ -64,7 +64,7 @@ A modern server CPU has somewhere between 4 and 128 cores. A core is essentially
 
 More cores means you can do more things in parallel. But not everything benefits from parallelism. If task B needs the result of task A, you can't speed it up by adding cores.
 
-This is also why Node.js, which is single-threaded by default, sometimes feels limiting. One core does the work, the other 7 sit idle. You fix this with multiple processes (PM2 cluster mode, Kubernetes replicas, etc.).
+This is also why Node.js. Which is single-threaded by default, sometimes feels limiting. One core does the work, the other 7 sit idle. You fix this with multiple processes (PM2 cluster mode, Kubernetes replicas, etc.).
 
 ## Moore's Law (and why we stopped caring)
 

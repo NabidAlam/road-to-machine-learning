@@ -1084,7 +1084,7 @@ model = complete_regression_analysis(X_train, y_train, feature_names)
 
 **Solution**: Always check assumptions with diagnostic plots.
 
-### Pitfall 2: Not Handling Outliers
+### Pitfall 2, not Handling Outliers
 
 **Problem**: Outliers can heavily influence linear regression.
 
@@ -1108,7 +1108,7 @@ model = complete_regression_analysis(X_train, y_train, feature_names)
 
 **Solution**: Use multiple metrics (RMSE, MAE, R²) and residual analysis.
 
-### Pitfall 6: Not Scaling Features
+### Pitfall 6, not Scaling Features
 
 **Problem**: Regularization requires scaled features.
 

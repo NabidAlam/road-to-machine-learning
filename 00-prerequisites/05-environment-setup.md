@@ -529,5 +529,5 @@ print(sys.executable)
 - [VS Code Python Guide](https://code.visualstudio.com/docs/python/python-tutorial)
 - [Git Guide](../resources/git_guide.md)
 
-**Try next:** If you encounter issues, Google the error message - someone has likely solved it before!
+**Try next:** If you encounter issues, Google the error message. Someone has likely solved it before!
 

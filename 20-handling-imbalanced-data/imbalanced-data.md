@@ -39,7 +39,7 @@ Imbalanced data occurs when classes in a classification problem are not represen
 Most machine learning algorithms are designed assuming balanced classes. When classes are imbalanced, these algorithms tend to:
 1. Predict the majority class most of the time
 2. Achieve high accuracy by simply predicting the majority class
-3. Ignore the minority class, which is often the most important
+3. Ignore the minority class. Which is often the most important
 
 **Example:**
 ```python
@@ -614,18 +614,18 @@ cost_matrix = {
 
 ### Online Resources
 
-1. **Imbalanced-Learn Documentation** (https://imbalanced-learn.org/) - Comprehensive library for handling imbalanced data
-2. **SMOTE Paper** (Chawla et al., 2002) - Original SMOTE algorithm paper
-3. **Learning from Imbalanced Data** (He & Garcia, 2009) - Survey paper on techniques
+1. **Imbalanced-Learn Documentation** (https://imbalanced-learn.org/): Comprehensive library for handling imbalanced data
+2. **SMOTE Paper** (Chawla et al., 2002): Original SMOTE algorithm paper
+3. **Learning from Imbalanced Data** (He & Garcia, 2009): Survey paper on techniques
 
 ### Books
 
 1. "Learning from Imbalanced Data Sets" by Alberto Fernández et al. - Comprehensive book on the topic
-2. "Applied Predictive Modeling" by Max Kuhn - Chapter on class imbalance
+2. "Applied Predictive Modeling" by Max Kuhn. Chapter on class imbalance
 
 ### Datasets for Practice
 
-1. **Credit Card Fraud Detection** (Kaggle) - Highly imbalanced fraud dataset
+1. **Credit Card Fraud Detection** (Kaggle): Highly imbalanced fraud dataset
 2. **Churn Prediction** - Customer churn datasets
 3. **Medical Diagnosis** - Rare disease detection datasets
 

@@ -684,7 +684,7 @@ print(f"  - Dimensionality reduction (PCA)")
 2. **Handle missing values**: Impute appropriately
 3. **Transform skewed features**: Log, power transformations
 4. **Encode categoricals**: Choose method based on cardinality and model
-5. **Scale features**: Required for distance-based algorithms
+5. **Scale features**, required for distance-based algorithms
 6. **Create features**: Domain knowledge is valuable
 7. **Select features**: Remove irrelevant features
 8. **Use pipelines**: Automate and prevent data leakage

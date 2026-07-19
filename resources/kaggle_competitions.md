@@ -34,7 +34,7 @@ Kaggle is a platform for data science competitions where you can:
 
 **Benefits:**
 1. **Real-World Experience**: Work with real datasets and problems
-2. **Learn from Experts**: See top solutions and approaches
+2. **Learn from Experts**, see top solutions and approaches
 3. **Build Portfolio**: Showcase your skills
 4. **Network**: Connect with data scientists
 5. **Career Growth**: Kaggle competitions are valued by employers
@@ -489,10 +489,10 @@ print(f"Submission shape: {submission.shape}")
 
 ### Kaggle Resources
 
-- [Kaggle Learn](https://www.kaggle.com/learn) - Free courses
-- [Kaggle Discussions](https://www.kaggle.com/discussions) - Community help
-- [Kaggle Notebooks](https://www.kaggle.com/code) - Share code
-- [Kaggle Datasets](https://www.kaggle.com/datasets) - Practice datasets
+- [Kaggle Learn](https://www.kaggle.com/learn): Free courses
+- [Kaggle Discussions](https://www.kaggle.com/discussions): Community help
+- [Kaggle Notebooks](https://www.kaggle.com/code): Share code
+- [Kaggle Datasets](https://www.kaggle.com/datasets): Practice datasets
 
 ### Getting Started Competitions
 
@@ -505,7 +505,7 @@ print(f"Submission shape: {submission.shape}")
 
 - [Kaggle Courses](https://www.kaggle.com/learn)
 - [Competition Tutorials](https://www.kaggle.com/docs/competitions)
-- [Winning Solutions](https://www.kaggle.com/competitions) - Check past competitions
+- [Winning Solutions](https://www.kaggle.com/competitions): Check past competitions
 
 ---
 

@@ -943,10 +943,10 @@ print(f"  Calibrated: {roc_auc_score(y_test, rf_calibrated_proba):.4f}")
 
 ## Key Takeaways
 
-1. **Three sets**: Train, Validation, Test - never touch test set until final evaluation
+1. **Three sets**: Train, Validation, Test. Never touch test set until final evaluation
 2. **Cross-validation**: More reliable performance estimate, reduces variance
 3. **Hyperparameter tuning**: Grid search (exhaustive), Random search (faster), Bayesian optimization (smart)
-4. **Bias-Variance**: Balance model complexity - high bias (underfitting) vs high variance (overfitting)
+4. **Bias-Variance**: Balance model complexity. High bias (underfitting) vs high variance (overfitting)
 5. **Learning curves**: Diagnose overfitting/underfitting, determine if more data helps
 6. **Evaluation metrics**: Choose appropriate metrics based on problem type and data characteristics
 7. **Model calibration**: Ensure predicted probabilities match actual frequencies (critical for production)

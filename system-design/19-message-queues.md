@@ -141,7 +141,7 @@ The risk: the worker might have actually completed but crashed before the ack. T
 
 What if a message keeps failing? Maybe it's malformed. Maybe a bug in your code. You don't want it bouncing forever.
 
-The pattern: after N retries, the queue moves the message to a "dead-letter queue". A human (or alert) looks at the DLQ to figure out what's wrong.
+The pattern, after N retries, the queue moves the message to a "dead-letter queue". A human (or alert) looks at the DLQ to figure out what's wrong.
 
 ```
             attempt 1 -> fails

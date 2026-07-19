@@ -85,7 +85,7 @@ Complete these **in order** after reading the main guide. Each should produce a 
 | 4 | GitHub Actions: run `pytest` on PR (even one trivial test) | Green CI badge or workflow log | CI/CD section |
 | 5 | Dockerize a training script from Module 13 | `Dockerfile` + `docker build` success | [deployment.md](../13-model-deployment/deployment.md) + [docker_tutorial.md](../resources/docker_tutorial.md) |
 
-**Stretch:** Wire W&B or Great Expectations on the same project — links in [mlops-advanced-topics.md](mlops-advanced-topics.md).
+**Stretch:** Wire W&B or Great Expectations on the same project, links in [mlops-advanced-topics.md](mlops-advanced-topics.md).
 
 ##  Key Concepts
 
@@ -104,16 +104,16 @@ Complete these **in order** after reading the main guide. Each should produce a 
 - [Kubeflow Documentation](https://www.kubeflow.org/docs/)
 
 **Free Courses:**
-- [MLOps Specialization (Coursera)](https://www.coursera.org/specializations/machine-learning-engineering-for-production-mlops) - Free audit available
-- [Full Stack Deep Learning](https://fullstackdeeplearning.com/) - Free course on production ML
-- [MLOps Course (YouTube)](https://www.youtube.com/playlist?list=PL3N9eeOlFerPYKDqX8mB5d7X_8u4pYJ4U) - Free course
+- [MLOps Specialization (Coursera)](https://www.coursera.org/specializations/machine-learning-engineering-for-production-mlops): Free audit available
+- [Full Stack Deep Learning](https://fullstackdeeplearning.com/): Free course on production ML
+- [MLOps Course (YouTube)](https://www.youtube.com/playlist?list=PL3N9eeOlFerPYKDqX8mB5d7X_8u4pYJ4U): Free course
 
 **Tutorials:**
 - [MLflow Tutorial](https://mlflow.org/docs/latest/tutorials-and-examples/tutorial.html)
 - [DVC Tutorial](https://dvc.org/doc/start)
-- [MLOps Guide](https://ml-ops.org/) - Comprehensive guide
+- [MLOps Guide](https://ml-ops.org/): Comprehensive guide
 - [Experiment Tracking Guide](https://www.mlflow.org/docs/latest/tracking.html)
-- [MLFlow Comprehensive Guide](../resources/mlflow_comprehensive_guide.md) - Complete MLFlow guide with hyperparameter tuning, model registry, and deployment
+- [MLFlow Comprehensive Guide](../resources/mlflow_comprehensive_guide.md): Complete MLFlow guide with hyperparameter tuning, model registry, and deployment
 
 **Video Tutorials:**
 - [MLflow Tutorial (Sentdex)](https://www.youtube.com/watch?v=1ykg4YmbFVA)
@@ -121,11 +121,11 @@ Complete these **in order** after reading the main guide. Each should produce a 
 - [MLOps Explained](https://www.youtube.com/watch?v=86nE7st3c2k)
 
 **Tools & Platforms:**
-- [MLflow](https://mlflow.org/) - Open-source ML lifecycle platform
-- [DVC](https://dvc.org/) - Data version control
-- [Weights & Biases](https://wandb.ai/) - Experiment tracking
-- [Neptune.ai](https://neptune.ai/) - ML experiment management
-- [Kubeflow](https://www.kubeflow.org/) - ML toolkit for Kubernetes
+- [MLflow](https://mlflow.org/): Open-source ML lifecycle platform
+- [DVC](https://dvc.org/): Data version control
+- [Weights & Biases](https://wandb.ai/): Experiment tracking
+- [Neptune.ai](https://neptune.ai/): ML experiment management
+- [Kubeflow](https://www.kubeflow.org/): ML toolkit for Kubernetes
 
 **Best Practices:**
 - [MLOps Best Practices](https://ml-ops.org/content/mlops-principles)
@@ -134,9 +134,9 @@ Complete these **in order** after reading the main guide. Each should produce a 
 **[Complete Detailed Guide →](mlops.md)**
 
 **Additional Resources:**
-- [Advanced Topics →](mlops-advanced-topics.md) - Advanced tracking, feature stores, monitoring, automation
-- [Project Tutorial →](mlops-project-tutorial.md) - Step-by-step MLOps pipeline setup
-- [Quick Reference →](mlops-quick-reference.md) - Quick lookup guide for MLOps
+- [Advanced Topics →](mlops-advanced-topics.md): Advanced tracking, feature stores, monitoring, automation
+- [Project Tutorial →](mlops-project-tutorial.md): Step-by-step MLOps pipeline setup
+- [Quick Reference →](mlops-quick-reference.md): Quick lookup guide for MLOps
 
 ---
 

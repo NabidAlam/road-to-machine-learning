@@ -1,4 +1,4 @@
-# Module 04: Supervised Learning - Classification
+# Module 04: Supervised Learning. Classification
 
 Learn to classify data into categories using various classification algorithms.
 
@@ -111,8 +111,8 @@ By the end of this module, you should be able to:
 - [Random Forest Documentation](https://scikit-learn.org/stable/modules/ensemble.html#forest)
 
 **Free Courses:**
-- [Classification Algorithms (Coursera)](https://www.coursera.org/learn/machine-learning) - Week 3-4 of Andrew Ng's course
-- [Classification (Kaggle Learn)](https://www.kaggle.com/learn/intro-to-machine-learning) - Free micro-course
+- [Classification Algorithms (Coursera)](https://www.coursera.org/learn/machine-learning): Week 3-4 of Andrew Ng's course
+- [Classification (Kaggle Learn)](https://www.kaggle.com/learn/intro-to-machine-learning): Free micro-course
 
 **Tutorials:**
 - [Logistic Regression Tutorial (Real Python)](https://realpython.com/logistic-regression-python/)
@@ -128,7 +128,7 @@ By the end of this module, you should be able to:
 - [KNN (StatQuest)](https://www.youtube.com/watch?v=HVXime0nQeI)
 
 **Practice:**
-- [Titanic Competition (Kaggle)](https://www.kaggle.com/c/titanic) - Classic classification problem
+- [Titanic Competition (Kaggle)](https://www.kaggle.com/c/titanic): Classic classification problem
 - [Classification Exercises](https://www.kaggle.com/learn/machine-learning)
 
 **[Complete Detailed Guide →](classification.md)**

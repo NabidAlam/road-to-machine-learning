@@ -88,14 +88,13 @@ By completing this project, you will learn to:
 ## Evaluation Metrics
 
 - **Accuracy**: Primary metric (aim for >99%)
-- **Confusion Matrix**: See which digits are confused
+- **Confusion Matrix**, see which digits are confused
 - **Per-class Accuracy**: Accuracy for each digit
 
 ## Tips
 
 - Start with simple MLP, then try CNN
-- Normalize pixel values to [0, 1]
-- Use early stopping to prevent overfitting
+- Normalize pixel values to [0, 1]: Use early stopping to prevent overfitting
 - Try different optimizers (Adam, SGD)
 - Data augmentation can help improve accuracy
 - Visualize misclassified examples to understand errors

@@ -329,7 +329,7 @@ nmi = normalized_mutual_info_score(true_labels, clusters)
 
 ## Common Issues & Solutions
 
-### Issue 1: Not Scaling Features
+### Issue 1, not Scaling Features
 
 **Problem**: Features on different scales bias clustering
 
@@ -545,5 +545,5 @@ print(f"Explained variance: {cumulative[n_components-1]:.3f}")
 - Explore semi-supervised learning
 - Move to next module
 
-**Try next:** Unsupervised learning reveals hidden patterns - use domain knowledge to validate!
+**Try next:** Unsupervised learning reveals hidden patterns. Use domain knowledge to validate!
 

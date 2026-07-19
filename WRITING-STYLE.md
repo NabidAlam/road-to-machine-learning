@@ -10,15 +10,20 @@ Write like one teacher talking to a student. Prefer short sentences. Explain why
 
 Do **not** join two sentence clauses with:
 
-- Semicolons (`;`)
-- Colons (`:`) mid-sentence
-- Em-dashes (`—`) or hyphens (`-`) as clause glue
+- Semicolons (`;`) as a chain of full sentences
+- Em-dashes (the long dash character) or spaced hyphens (` - `) as clause glue
 
 **Avoid:** "Phase 0 is Python; Phase 1 is Pandas; Phase 2 is ML."
 
 **Prefer:** "Stage 0 covers Python. Stage 1 covers Pandas. Stage 2 covers ML."
 
-Colons are fine for labels before lists (`**Goal:**`, `**Note:**`) and for headers.
+**Avoid:** "No experience needed - we cover everything."
+
+**Prefer:** "No experience needed. We cover everything."
+
+Colons are fine for labels (`**Goal:**`, `**Note:**`), headers, and title: subtitle pairs.
+
+Keep en-dashes (`–`) for numeric ranges (`10–15 hours`, modules `01–02`). Keep hyphens inside names and URLs (`full-stack`, `3Blue1Brown - Essence`).
 
 ## Openings and closings
 

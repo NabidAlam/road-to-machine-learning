@@ -43,7 +43,7 @@ Learn to create and select the best features for your models.
 - **Standardization**: Mean 0, Std 1 (Z-score)
 - **Normalization**: Scale to [0, 1] range
 - **Robust Scaling**: Using median and IQR
-- **When to scale**: Required for distance-based algorithms
+- **When to scale**, required for distance-based algorithms
 
 ### 5. Dimensionality Reduction
 - **Principal Component Analysis (PCA)**: Linear dimensionality reduction
@@ -87,8 +87,8 @@ By the end of this module, you should be able to:
 - [Feature Engineering Guide](https://scikit-learn.org/stable/modules/preprocessing.html)
 
 **Free Courses:**
-- [Feature Engineering (Kaggle Learn)](https://www.kaggle.com/learn/feature-engineering) - Free comprehensive course
-- [Feature Engineering (Coursera)](https://www.coursera.org/learn/feature-engineering) - Free audit available
+- [Feature Engineering (Kaggle Learn)](https://www.kaggle.com/learn/feature-engineering): Free comprehensive course
+- [Feature Engineering (Coursera)](https://www.coursera.org/learn/feature-engineering): Free audit available
 
 **Tutorials:**
 - [Feature Engineering Tutorial](https://www.kaggle.com/learn/feature-engineering)
@@ -102,14 +102,14 @@ By the end of this module, you should be able to:
 - [Dimensionality Reduction](https://www.youtube.com/watch?v=9Z4wKJY5J8I)
 
 **Books:**
-- [Feature Engineering Book](https://www.oreilly.com/library/view/feature-engineering-for/9781491953235/) - Check library access
+- [Feature Engineering Book](https://www.oreilly.com/library/view/feature-engineering-for/9781491953235/): Check library access
 
 **[Complete Detailed Guide →](feature-engineering.md)**
 
 **Additional Resources:**
-- [Advanced Topics →](feature-engineering-advanced-topics.md) - Automated feature engineering, pipelines, advanced techniques
-- [Project Tutorial →](feature-engineering-project-tutorial.md) - Step-by-step feature engineering project
-- [Quick Reference →](feature-engineering-quick-reference.md) - Quick lookup guide for feature engineering
+- [Advanced Topics →](feature-engineering-advanced-topics.md): Automated feature engineering, pipelines, advanced techniques
+- [Project Tutorial →](feature-engineering-project-tutorial.md): Step-by-step feature engineering project
+- [Quick Reference →](feature-engineering-quick-reference.md): Quick lookup guide for feature engineering
 
 ---
 

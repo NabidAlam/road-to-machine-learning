@@ -1,4 +1,4 @@
-# Phase F — Advanced Frontend Engineering (In-Repo Lessons)
+# Phase F: Advanced Frontend Engineering (In-Repo Lessons)
 
 **Maps to:** [Blueprint Phase F](../full_stack_ai_engineer_roadmap.md#phase-f-advanced-frontend-engineering)
 
@@ -18,7 +18,7 @@
 
 ---
 
-## Lesson 1 — Typed API contracts
+## Lesson 1: Typed API contracts
 
 Generate or hand-maintain types for API responses. The goal is to catch drift when the backend changes.
 
@@ -26,7 +26,7 @@ Even without codegen, **Zod** schemas can validate unknown JSON at runtime.
 
 ---
 
-## Lesson 2 — Auth in the browser vs server
+## Lesson 2: Auth in the browser vs server
 
 **Cookies (HttpOnly)** are often preferred for session tokens to reduce XSS blast radius compared to localStorage access tokens.
 
@@ -38,7 +38,7 @@ Whatever you choose, document:
 
 ---
 
-## Lesson 3 — Data fetching patterns
+## Lesson 3: Data fetching patterns
 
 You will mix:
 
@@ -49,7 +49,7 @@ Understand cache keys and stale times; avoid refetch storms on navigation.
 
 ---
 
-## Lesson 4 — Tables, filters, and URL state
+## Lesson 4: Tables, filters, and URL state
 
 Make list pages shareable: encode filters/sort/page in the query string.
 
@@ -57,7 +57,7 @@ Debounce search inputs; cancel in-flight requests when parameters change.
 
 ---
 
-## Lesson 5 — Performance and UX guardrails
+## Lesson 5: Performance and UX guardrails
 
 - Virtualize huge lists when needed
 - Prefer skeletons over hard blocking spinners for slow queries

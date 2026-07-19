@@ -514,7 +514,7 @@ x = x.to(torch.float32)
 y = y.to(torch.long)
 ```
 
-### Pitfall 4: Not Shuffling Data
+### Pitfall 4, not Shuffling Data
 
 **Problem**: Model sees data in same order
 

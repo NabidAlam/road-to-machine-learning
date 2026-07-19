@@ -1,4 +1,4 @@
-# Supervised Learning - Regression Complete Guide
+# Supervised Learning. Regression Complete Guide
 
 This guide covers regression algorithms for predicting continuous values.
 
@@ -11,7 +11,7 @@ Beginner-friendly checklist; each line links to **code** below or to the intro f
 - **Data distribution analysis** (percentiles, histogram, boxplot) → [Data distribution analysis](#data-distribution-analysis)
 - **Feature relationships** (scatter, covariance, correlation) → [Feature relationship analysis](#feature-relationship-analysis)
 - **End-to-end persistence** (save and load model) → [End-to-end train, evaluate, and persist](#end-to-end-train-evaluate-and-persist)
-- **Statistics foundations** → [Introduction to ML. Descriptive stats](../02-introduction-to-ml/introduction-to-ml.md#descriptive-statistics-and-sampling-foundations)
+- **Statistics foundations** → [Introduction to ML: Descriptive stats](../02-introduction-to-ml/introduction-to-ml.md#descriptive-statistics-and-sampling-foundations)
 
 ## Table of Contents
 
@@ -561,7 +561,7 @@ plt.show()
 
 ## End-to-end train, evaluate, and persist
 
-Minimal **save → load → predict** flow (real deployment adds APIs, monitoring, and versioning—see the [model deployment](../13-model-deployment/README.md) module).
+Minimal **save → load → predict** flow (real deployment adds APIs, monitoring, and versioning, see the [model deployment](../13-model-deployment/README.md) module).
 
 ```python
 from pathlib import Path

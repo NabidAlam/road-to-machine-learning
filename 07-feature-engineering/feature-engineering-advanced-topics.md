@@ -1358,5 +1358,5 @@ df['important_interaction'] = df['feature1'] * df['feature2']
 - Experiment with feature interactions
 - Move to unsupervised learning module
 
-**Try next:** Feature engineering is both art and science - domain knowledge is invaluable!
+**Try next:** Feature engineering is both art and science. Domain knowledge is invaluable!
 

@@ -1088,7 +1088,7 @@ except ImportError:
 
 ---
 
-## Project: Building Blocks of a Self-Driving Car - Vision-Based Navigation Systems
+## Project: Building Blocks of a Self-Driving Car. Vision-Based Navigation Systems
 
 ### Design and Implementation of Computer Vision Systems for Self-Driving Cars
 
@@ -1322,5 +1322,5 @@ model = tfmot.sparsity.keras.prune_low_magnitude(model, **pruning_params)
 
 ---
 
-**Try next:** Advanced techniques build on fundamentals - master basics first!
+**Try next:** Advanced techniques build on fundamentals. Master basics first!
 

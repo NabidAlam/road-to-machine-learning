@@ -1,6 +1,6 @@
 # Reinforcement Learning Complete Guide
 
-This guide covers Reinforcement Learning (RL) - learning through interaction with an environment.
+This guide covers Reinforcement Learning (RL): learning through interaction with an environment.
 
 ## Table of Contents
 
@@ -154,7 +154,7 @@ For each episode:
 
 #### Q-Learning Update Rule
 
-$$Q(s,a) \leftarrow Q(s,a) + \alpha[r + \gamma \max_{a'} Q(s',a') - Q(s,a)]$$
+$$Q(s,a) \leftarrow Q(s,a) + \alpha[r + \gamma \max_{a'} Q(s',a'): Q(s,a)]$$
 
 Where:
 - **$\alpha$**: Learning rate
@@ -489,7 +489,7 @@ class REINFORCE:
 
 ### Advantage Actor-Critic (A2C)
 
-**A2C** uses advantage function $A(s,a) = Q(s,a) - V(s)$ instead of Q-values.
+**A2C** uses advantage function $A(s,a) = Q(s,a): V(s)$ instead of Q-values.
 
 **Advantage**: Reduces variance in policy gradient estimates.
 
@@ -943,7 +943,7 @@ class TradingAgent:
 5. **Deep RL**: Neural networks enable RL on high-dimensional state spaces
 6. **Start Simple**: Begin with simple environments (CartPole, FrozenLake)
 7. **Use Libraries**: Leverage established libraries (Gym, Stable-Baselines3, Ray RLlib)
-8. **Practice**: RL requires hands-on experience - implement algorithms yourself
+8. **Practice**: RL requires hands-on experience. Implement algorithms yourself
 9. **Applications**: Game playing, robotics, recommendations, finance, healthcare
 10. **Challenges**: Sample efficiency, stability, exploration, safety
 

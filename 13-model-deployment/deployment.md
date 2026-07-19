@@ -1675,7 +1675,7 @@ Container orchestration platform for managing containerized applications.
 **Key Concepts:**
 
 **1. Pods:**
-Smallest deployable unit - contains one or more containers.
+Smallest deployable unit. Contains one or more containers.
 
 ```yaml
 # pod.yaml

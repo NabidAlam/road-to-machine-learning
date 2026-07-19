@@ -654,5 +654,5 @@ print(f"Top 5 features by importance: {[feature_names[i] for i in indices[:5]]}"
 
 ---
 
-**Try next:** Interpretability is not just about understanding models—it's about building trust, ensuring fairness, and creating better ML systems.
+**Try next:** Interpretability is not just about understanding models: it's about building trust, ensuring fairness, and creating better ML systems.
 

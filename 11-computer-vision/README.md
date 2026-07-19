@@ -118,10 +118,10 @@ By the end of this module, you should be able to:
 - [OpenCV Documentation](https://docs.opencv.org/)
 
 **Free Courses:**
-- [CS231n - Stanford](http://cs231n.stanford.edu/) - Best CV course, completely free
-- [CS231n YouTube Lectures](https://www.youtube.com/playlist?list=PL3FW7Lu3i5JvHM8ljYj-zLfQRF3EO8sYv) - Full course videos
-- [Computer Vision (Coursera)](https://www.coursera.org/learn/convolutional-neural-networks) - Free audit available
-- [Fast.ai Computer Vision](https://course.fast.ai/) - Free practical course
+- [CS231n - Stanford](http://cs231n.stanford.edu/): Best CV course, completely free
+- [CS231n YouTube Lectures](https://www.youtube.com/playlist?list=PL3FW7Lu3i5JvHM8ljYj-zLfQRF3EO8sYv): Full course videos
+- [Computer Vision (Coursera)](https://www.coursera.org/learn/convolutional-neural-networks): Free audit available
+- [Fast.ai Computer Vision](https://course.fast.ai/): Free practical course
 
 **Tutorials:**
 - [CNN Tutorial (TensorFlow)](https://www.tensorflow.org/tutorials/images/cnn)
@@ -142,9 +142,9 @@ By the end of this module, you should be able to:
 **[Complete Detailed Guide →](computer-vision.md)**
 
 **Additional Resources:**
-- [Advanced Topics →](computer-vision-advanced-topics.md) - Advanced architectures, object detection, optimization
-- [Project Tutorial →](computer-vision-project-tutorial.md) - Step-by-step CIFAR-10 classification project
-- [Quick Reference →](computer-vision-quick-reference.md) - Quick lookup guide for computer vision
+- [Advanced Topics →](computer-vision-advanced-topics.md): Advanced architectures, object detection, optimization
+- [Project Tutorial →](computer-vision-project-tutorial.md): Step-by-step CIFAR-10 classification project
+- [Quick Reference →](computer-vision-quick-reference.md): Quick lookup guide for computer vision
 
 ---
 

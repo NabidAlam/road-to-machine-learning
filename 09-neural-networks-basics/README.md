@@ -1,6 +1,6 @@
 # Module 09: Neural Networks Basics
 
-Introduction to neural networks - the foundation of deep learning.
+Introduction to neural networks. The foundation of deep learning.
 
 ##  What You'll Learn
 
@@ -88,16 +88,16 @@ By the end of this module, you should be able to:
 - [PyTorch Neural Networks](https://pytorch.org/tutorials/beginner/blitz/neural_network_tutorial.html)
 
 **Free Courses:**
-- [Neural Networks and Deep Learning (Coursera)](https://www.coursera.org/learn/neural-networks-deep-learning) - Free audit available
-- [Deep Learning Specialization (Coursera)](https://www.coursera.org/specializations/deep-learning) - Free audit available
-- [Fast.ai Practical Deep Learning](https://www.fast.ai/) - Completely free course
+- [Neural Networks and Deep Learning (Coursera)](https://www.coursera.org/learn/neural-networks-deep-learning): Free audit available
+- [Deep Learning Specialization (Coursera)](https://www.coursera.org/specializations/deep-learning): Free audit available
+- [Fast.ai Practical Deep Learning](https://www.fast.ai/): Completely free course
 
 **Free Books:**
-- [Neural Networks and Deep Learning (Free Book)](http://neuralnetworksanddeeplearning.com/) - Interactive online book
-- [Deep Learning Book (Free PDF)](https://www.deeplearningbook.org/) - Comprehensive deep learning textbook
+- [Neural Networks and Deep Learning (Free Book)](http://neuralnetworksanddeeplearning.com/): Interactive online book
+- [Deep Learning Book (Free PDF)](https://www.deeplearningbook.org/): Comprehensive deep learning textbook
 
 **Video Tutorials:**
-- [3Blue1Brown - Neural Networks](https://www.youtube.com/playlist?list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi) - Best visual explanations
+- [3Blue1Brown - Neural Networks](https://www.youtube.com/playlist?list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi): Best visual explanations
 - [Neural Networks (StatQuest)](https://www.youtube.com/watch?v=CqOfi41LfDw)
 - [Backpropagation Explained](https://www.youtube.com/watch?v=Ilg3gGewQ5U)
 
@@ -109,9 +109,9 @@ By the end of this module, you should be able to:
 **[Complete Detailed Guide →](neural-networks.md)**
 
 **Additional Resources:**
-- [Advanced Topics →](neural-networks-advanced-topics.md) - Advanced architectures, optimization, regularization
-- [Project Tutorial →](neural-networks-project-tutorial.md) - Step-by-step neural network from scratch
-- [Quick Reference →](neural-networks-quick-reference.md) - Quick lookup guide for neural networks
+- [Advanced Topics →](neural-networks-advanced-topics.md): Advanced architectures, optimization, regularization
+- [Project Tutorial →](neural-networks-project-tutorial.md): Step-by-step neural network from scratch
+- [Quick Reference →](neural-networks-quick-reference.md): Quick lookup guide for neural networks
 
 ---
 

@@ -23,9 +23,7 @@ A clear and concise description of what you expected to happen.
 If applicable, add screenshots to help explain your problem.
 
 ## Environment
-- OS: [e.g., Windows 10, macOS, Linux]
-- Python Version: [e.g., 3.10]
-- Package Versions: [e.g., pandas 2.0.0]
+- OS: [e.g., Windows 10, macOS, Linux]: Python Version: [e.g., 3.10]: Package Versions: [e.g., pandas 2.0.0]
 
 ## Additional Context
 Add any other context about the problem here.

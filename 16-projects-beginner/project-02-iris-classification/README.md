@@ -214,7 +214,7 @@ for i, pred in enumerate(predictions):
 ## Key Takeaways
 
 1. **Data Exploration is Crucial**: Understanding your data before modeling helps identify patterns and potential issues
-2. **Multiple Models**: Always try multiple algorithms - different models work better for different datasets
+2. **Multiple Models**: Always try multiple algorithms. Different models work better for different datasets
 3. **Visualization Helps**: Plots make it easier to understand data and model performance
 4. **Simple Datasets First**: Starting with well-known datasets like Iris helps build confidence
 

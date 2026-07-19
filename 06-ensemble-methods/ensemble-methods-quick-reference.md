@@ -335,7 +335,7 @@ gb = GradientBoostingClassifier(
 rf = RandomForestClassifier(n_estimators=50)  # Fewer trees
 ```
 
-### Issue 2: Not Enough Diversity
+### Issue 2, not Enough Diversity
 
 **Symptoms:**
 - Ensemble performs similar to single model
@@ -454,7 +454,7 @@ good_models = [m for m, s in zip(base_models, base_scores) if s > 0.7]
 7. **Compare systematically**: Use same evaluation method
 8. **Consider computational cost**: Some ensembles are slow
 9. **Early stopping**: Prevents overfitting in boosting
-10. **Ensemble selection**: Not all models need to be included
+10. **Ensemble selection**, not all models need to be included
 
 ---
 

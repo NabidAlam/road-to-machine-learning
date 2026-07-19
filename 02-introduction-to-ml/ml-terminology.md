@@ -1,4 +1,4 @@
-# Machine Learning Terminology - Complete Reference
+# Machine Learning Terminology. Complete Reference
 
 Comprehensive glossary of machine learning terms and concepts with detailed explanations and examples.
 
@@ -610,7 +610,7 @@ Actual Negative   TN      FP
 
 ## Resources
 
-- [ML Glossary in Resources](../resources/ml_glossary.md) - Comprehensive glossary
+- [ML Glossary in Resources](../resources/ml_glossary.md): Comprehensive glossary
 - [Scikit-learn Glossary](https://scikit-learn.org/stable/glossary.html)
 
 ---

@@ -1,6 +1,6 @@
 # NumPy Complete Guide
 
-This guide covers NumPy - the foundation of numerical computing in Python and essential for machine learning.
+This guide covers NumPy. The foundation of numerical computing in Python and essential for machine learning.
 
 ## ML toolbox curriculum map (this guide)
 

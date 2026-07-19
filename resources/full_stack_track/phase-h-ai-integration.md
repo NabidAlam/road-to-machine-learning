@@ -1,4 +1,4 @@
-# Phase H — AI Integration for Full-Stack Products (In-Repo Lessons)
+# Phase H: AI Integration for Full-Stack Products (In-Repo Lessons)
 
 **Maps to:** [Blueprint Phase H](../full_stack_ai_engineer_roadmap.md#phase-h-ai-integration-for-full-stack-products)
 
@@ -18,7 +18,7 @@
 
 ---
 
-## Lesson 1 — Where models live in your architecture
+## Lesson 1: Where models live in your architecture
 
 Avoid calling provider APIs directly from every UI component. Prefer:
 
@@ -28,7 +28,7 @@ Avoid calling provider APIs directly from every UI component. Prefer:
 
 ---
 
-## Lesson 2 — Prompting and structured outputs
+## Lesson 2: Prompting and structured outputs
 
 Define stable system prompts for behavior and user prompts for task inputs.
 
@@ -36,7 +36,7 @@ When you need machine-readable results, use **JSON schema** or tool calling patt
 
 ---
 
-## Lesson 3 — Streaming and latency UX
+## Lesson 3: Streaming and latency UX
 
 Stream tokens when long answers are expected; show partial UI states and cancellation.
 
@@ -44,7 +44,7 @@ Always handle provider errors: show a fallback message and log correlation IDs.
 
 ---
 
-## Lesson 4 — RAG and evaluation
+## Lesson 4: RAG and evaluation
 
 RAG is not “embed everything and hope.” You need:
 
@@ -56,7 +56,7 @@ Deep dive in this repo: [RAG Comprehensive Guide](../rag_comprehensive_guide.md)
 
 ---
 
-## Lesson 5 — Safety, abuse, and cost controls
+## Lesson 5: Safety, abuse, and cost controls
 
 Threat model prompt injection for any tool-enabled agent. Cap token usage, throttle requests, and monitor anomalous spikes.
 

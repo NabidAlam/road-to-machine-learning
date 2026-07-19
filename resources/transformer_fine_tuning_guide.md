@@ -704,7 +704,7 @@ trainer = Trainer(
 ### Official Documentation
 
 - [Hugging Face Transformers](https://huggingface.co/docs/transformers)
-- [Hugging Face Course](https://huggingface.co/course) - Free comprehensive NLP course
+- [Hugging Face Course](https://huggingface.co/course): Free comprehensive NLP course
 - [T5 Paper](https://arxiv.org/abs/1910.10683)
 - [BERT Paper](https://arxiv.org/abs/1810.04805)
 - [GPT Paper](https://cdn.openai.com/research-covers/language-unsupervised/language_understanding_paper.pdf)

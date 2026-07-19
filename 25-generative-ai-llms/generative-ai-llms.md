@@ -121,11 +121,11 @@ For production deployment patterns, see:
 
 ### Comprehensive Guides
 
-- [Generative AI Comprehensive Guide](../resources/generative_ai_comprehensive_guide.md) - Complete overview
-- [RAG Comprehensive Guide](../resources/rag_comprehensive_guide.md) - RAG implementation
-- [LangChain Guide](../resources/langchain_guide.md) - LangChain framework
-- [AI Agents Guide](../resources/ai_agents_guide.md) - AI agents
-- [GenAI Production Deployment Guide](../resources/genai_production_deployment.md) - Production patterns
+- [Generative AI Comprehensive Guide](../resources/generative_ai_comprehensive_guide.md): Complete overview
+- [RAG Comprehensive Guide](../resources/rag_comprehensive_guide.md): RAG implementation
+- [LangChain Guide](../resources/langchain_guide.md): LangChain framework
+- [AI Agents Guide](../resources/ai_agents_guide.md): AI agents
+- [GenAI Production Deployment Guide](../resources/genai_production_deployment.md): Production patterns
 
 ### Quick Start
 

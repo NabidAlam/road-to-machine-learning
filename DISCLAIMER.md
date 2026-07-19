@@ -134,8 +134,8 @@ If you are an EU resident and GDPR applies to your interaction with this reposit
 ### Legal Basis
 
 This repository processes **no personal data**. It is a static educational resource. Any data processing that occurs is:
-- By GitHub (the platform) - subject to GitHub's policies
-- By external websites (third parties) - subject to their own policies
+- By GitHub (the platform): subject to GitHub's policies
+- By external websites (third parties): subject to their own policies
 
 **The repository maintainers are not data controllers or processors** for any personal data related to this repository.
 

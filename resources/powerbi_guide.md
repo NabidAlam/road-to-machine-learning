@@ -1503,7 +1503,7 @@ SUMMARIZE(
 
 ## Data Preparation (Power Query Mastery)
 
-### Get Data - Storage Modes
+### Get Data. Storage Modes
 
 **Storage Mode Options:**
 

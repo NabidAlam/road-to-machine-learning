@@ -1,4 +1,4 @@
-# Phase A — TypeScript Foundations (In-Repo Lessons)
+# Phase A: TypeScript Foundations (In-Repo Lessons)
 
 **Maps to:** [Blueprint Phase A](../full_stack_ai_engineer_roadmap.md#phase-a-typescript-foundations)
 
@@ -23,7 +23,7 @@
 ## Prerequisites
 
 - Comfortable running commands in a terminal.
-- Basic programming (variables, loops). If you only know Python, that is enough to start.
+- Basic programming (variables, loops). If you only know Python. That is enough to start.
 
 Install **Node.js** (using [nvm](https://github.com/nvm-sh/nvm#installing-and-updating) is recommended so you can switch versions per project). Then:
 
@@ -39,7 +39,7 @@ Create `src/lesson01.ts` and run with `npx ts-node src/lesson01.ts` (or compile 
 
 ---
 
-## Lesson 1 — Tooling and your first types
+## Lesson 1: Tooling and your first types
 
 TypeScript adds a **type layer** that disappears at runtime. The compiler catches mistakes early.
 
@@ -75,7 +75,7 @@ const u: User = { id: "u1" };
 
 ---
 
-## Lesson 2 — Functions and narrowing
+## Lesson 2: Functions and narrowing
 
 **Parameter and return types:**
 
@@ -106,7 +106,7 @@ const len = u.displayName?.length ?? 0;
 
 ---
 
-## Lesson 3 — Objects, arrays, and immutability patterns
+## Lesson 3: Objects, arrays, and immutability patterns
 
 **Readonly** helps express intent:
 
@@ -134,7 +134,7 @@ function describe({ title, year }: { title: string; year: number }): string {
 
 ---
 
-## Lesson 4 — Unions, intersections, and literals
+## Lesson 4: Unions, intersections, and literals
 
 **Literal types** pin exact values:
 
@@ -160,7 +160,7 @@ type Route = (typeof routes)[number];
 
 ---
 
-## Lesson 5 — Generics (the practical slice)
+## Lesson 5: Generics (the practical slice)
 
 Generics let you reuse logic while keeping types precise.
 
@@ -182,7 +182,7 @@ function getId<T extends { id: string }>(obj: T): string {
 
 ---
 
-## Lesson 6 — Classes, interfaces, and guards
+## Lesson 6: Classes, interfaces, and guards
 
 **Interfaces** describe object shapes; **classes** are runtime values with types.
 

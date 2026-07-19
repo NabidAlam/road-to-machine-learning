@@ -799,11 +799,11 @@ y_pred_fair = postprocessor.predict(X_test, sensitive_features=test_groups)
 
 ## Key Takeaways
 
-1. **Bias is Inevitable**: All data and models have some bias - the goal is to identify and mitigate harmful bias
+1. **Bias is Inevitable**: All data and models have some bias. The goal is to identify and mitigate harmful bias
 
-2. **Fairness is Context-Dependent**: Different definitions of fairness may conflict - choose based on context
+2. **Fairness is Context-Dependent**: Different definitions of fairness may conflict. Choose based on context
 
-3. **Trade-offs Exist**: Fairness and accuracy may trade off - document and justify choices
+3. **Trade-offs Exist**: Fairness and accuracy may trade off. Document and justify choices
 
 4. **Testing is Essential**: Test models across demographic groups before deployment
 
@@ -817,5 +817,5 @@ y_pred_fair = postprocessor.predict(X_test, sensitive_features=test_groups)
 
 ---
 
-**Try next:** Building ethical ML systems is not just about compliance - it's about building systems that are fair, trustworthy, and beneficial for all users.
+**Try next:** Building ethical ML systems is not just about compliance. It's about building systems that are fair, trustworthy, and beneficial for all users.
 

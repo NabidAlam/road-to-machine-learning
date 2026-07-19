@@ -95,26 +95,26 @@ By the end of this module, you should be able to:
 
 **Official Documentation:**
 - [Hugging Face Documentation](https://huggingface.co/docs)
-- [Hugging Face Course](https://huggingface.co/course) - Free comprehensive NLP course
-- [NLTK Book](https://www.nltk.org/book/) - Free online book
+- [Hugging Face Course](https://huggingface.co/course): Free comprehensive NLP course
+- [NLTK Book](https://www.nltk.org/book/): Free online book
 - [spaCy Documentation](https://spacy.io/)
 - [Transformers Documentation](https://huggingface.co/docs/transformers)
 
 **Free Courses:**
-- [CS224n - Stanford NLP](https://web.stanford.edu/class/cs224n/) - Best NLP course, completely free
-- [CS224n YouTube Lectures](https://www.youtube.com/playlist?list=PLoROMvodv4rOSH4v6133s9LFPRHjEmbmJ) - Full course videos
-- [NLP Specialization (Coursera)](https://www.coursera.org/specializations/natural-language-processing) - Free audit available
-- [NLP with Deep Learning (Stanford)](https://web.stanford.edu/class/cs224n/) - Free course
+- [CS224n - Stanford NLP](https://web.stanford.edu/class/cs224n/): Best NLP course, completely free
+- [CS224n YouTube Lectures](https://www.youtube.com/playlist?list=PLoROMvodv4rOSH4v6133s9LFPRHjEmbmJ): Full course videos
+- [NLP Specialization (Coursera)](https://www.coursera.org/specializations/natural-language-processing): Free audit available
+- [NLP with Deep Learning (Stanford)](https://web.stanford.edu/class/cs224n/): Free course
 
 **Tutorials:**
 - [NLP Tutorial (Hugging Face)](https://huggingface.co/course)
 - [Text Classification Tutorial](https://huggingface.co/docs/transformers/tasks/sequence_classification)
 - [Sentiment Analysis Guide](https://huggingface.co/docs/transformers/tasks/sequence_classification)
 - [Transformers Tutorial](https://huggingface.co/docs/transformers/quicktour)
-- [Transformer Fine-Tuning Guide](../resources/transformer_fine_tuning_guide.md) - Comprehensive guide to fine-tuning T5, BERT, GPT with Hugging Face
-- [Langchain Guide](../resources/langchain_guide.md) - Complete Langchain guide for building Gen AI projects
-- [LlamaIndex Guide](../resources/llamaindex_guide.md) - Comprehensive LlamaIndex guide for data indexing and querying
-- [AI Agents Guide](../resources/ai_agents_guide.md) - Guide to building AI agents with CrewAI, AutoGen, Langgraph, AutoGPT
+- [Transformer Fine-Tuning Guide](../resources/transformer_fine_tuning_guide.md): Comprehensive guide to fine-tuning T5, BERT, GPT with Hugging Face
+- [Langchain Guide](../resources/langchain_guide.md): Complete Langchain guide for building Gen AI projects
+- [LlamaIndex Guide](../resources/llamaindex_guide.md): Comprehensive LlamaIndex guide for data indexing and querying
+- [AI Agents Guide](../resources/ai_agents_guide.md): Guide to building AI agents with CrewAI, AutoGen, Langgraph, AutoGPT
 
 **Video Tutorials:**
 - [NLP Course (Stanford CS224n)](https://www.youtube.com/playlist?list=PLoROMvodv4rOSH4v6133s9LFPRHjEmbmJ)
@@ -129,9 +129,9 @@ By the end of this module, you should be able to:
 **[Complete Detailed Guide →](nlp.md)**
 
 **Additional Resources:**
-- [Advanced Topics →](nlp-advanced-topics.md) - Advanced transformers, sequence-to-sequence, optimization
-- [Project Tutorial →](nlp-project-tutorial.md) - Step-by-step sentiment analysis project
-- [Quick Reference →](nlp-quick-reference.md) - Quick lookup guide for NLP
+- [Advanced Topics →](nlp-advanced-topics.md): Advanced transformers, sequence-to-sequence, optimization
+- [Project Tutorial →](nlp-project-tutorial.md): Step-by-step sentiment analysis project
+- [Quick Reference →](nlp-quick-reference.md): Quick lookup guide for NLP
 
 ---
 

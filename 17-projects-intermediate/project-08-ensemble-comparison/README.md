@@ -79,13 +79,13 @@ Before starting, you should have completed:
 - Analyze feature importance
 - Compare with baseline
 
-### Step 3: Boosting Methods - AdaBoost
+### Step 3: Boosting Methods. AdaBoost
 - Implement AdaBoost
 - Understand how it works (re-weighting)
 - Tune hyperparameters
 - Compare with bagging
 
-### Step 4: Advanced Boosting - XGBoost
+### Step 4: Advanced Boosting. XGBoost
 - Implement XGBoost
 - Tune key hyperparameters:
   - learning_rate, n_estimators
@@ -95,13 +95,13 @@ Before starting, you should have completed:
 - Use early stopping
 - Compare performance
 
-### Step 5: Advanced Boosting - LightGBM
+### Step 5: Advanced Boosting. LightGBM
 - Implement LightGBM
 - Understand GOSS and EFB
 - Tune hyperparameters
 - Compare with XGBoost
 
-### Step 6: Advanced Boosting - CatBoost
+### Step 6: Advanced Boosting. CatBoost
 - Implement CatBoost
 - Understand ordered boosting
 - Handle categorical features automatically

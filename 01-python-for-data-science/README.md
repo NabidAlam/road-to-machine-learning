@@ -1,6 +1,6 @@
 # Module 01: Python for Data Science
 
-Master the essential Python libraries for data manipulation, analysis, and visualization—your **data processing & visualization (ML toolbox)** for everything that follows.
+Master the essential Python libraries for data manipulation, analysis, and visualization: your **data processing & visualization (ML toolbox)** for everything that follows.
 
 ##  What You'll Learn
 
@@ -40,7 +40,7 @@ Each line below is covered **with code examples** in the linked guide (same styl
 ##  Modules
 
 ### 01-numpy
-Learn NumPy - the foundation of numerical computing in Python.
+Learn NumPy. The foundation of numerical computing in Python.
 
 **Topics:**
 - Fundamentals: `ndarray`, attributes, and data types
@@ -56,7 +56,7 @@ Learn NumPy - the foundation of numerical computing in Python.
 **[Complete Guide →](01-numpy.md)**
 
 ### 02-pandas
-Master Pandas - the most important library for data manipulation.
+Master Pandas. The most important library for data manipulation.
 
 **Topics:**
 - Series and DataFrame; file handling (CSV, Excel, JSON, and related formats)
@@ -214,9 +214,9 @@ Create professional data visualizations and dashboards with Tableau.
 
 ## Essential path vs optional depth
 
-Module 01 has **15 lessons** — too much to read linearly before starting ML. Use this split:
+Module 01 has **15 lessons**, too much to read linearly before starting ML. Use this split:
 
-### Essential path (~4–6 weeks) — required before Module 02
+### Essential path (~4–6 weeks), required before Module 02
 
 | Order | Lesson | Why |
 |-------|--------|-----|
@@ -231,7 +231,7 @@ Module 01 has **15 lessons** — too much to read linearly before starting ML. U
 
 **After first EDA project:** Read [Stakeholder Communication](../resources/stakeholder_communication.md) (30 min) before presenting charts to non-technical audiences.
 
-### Optional depth — revisit when a project needs them
+### Optional depth: revisit when a project needs them
 
 | Lesson | When to study |
 |--------|----------------|
@@ -268,13 +268,13 @@ By the end of this phase, you should be able to:
 
 1. **Data Analysis Project**: Analyze a real dataset (e.g., sales data, weather data)
 2. **Visualization Project**: Create a dashboard with multiple visualizations
-3. **Build a machine learning model from scratch**: After NumPy and Pandas, combine skills in an end-to-end numeric pipeline—for example, follow the [Prerequisites Project Tutorial: Neural Network from Scratch](../00-prerequisites/prerequisites-project-tutorial.md) (NumPy only) and/or [First ML Project Tutorial](../02-introduction-to-ml/first-ml-project-tutorial.md) for a full sklearn-style workflow
+3. **Build a machine learning model from scratch**, after NumPy and Pandas, combine skills in an end-to-end numeric pipeline: for example, follow the [Prerequisites Project Tutorial: Neural Network from Scratch](../00-prerequisites/prerequisites-project-tutorial.md) (NumPy only) and/or [First ML Project Tutorial](../02-introduction-to-ml/first-ml-project-tutorial.md) for a full sklearn-style workflow
 
 ##  Tips
 
 - Practice with real datasets from Kaggle or UCI Repository
 - Focus on understanding data structures (Series, DataFrame)
-- Learn to read documentation - it's a crucial skill
+- Learn to read documentation. It's a crucial skill
 - Experiment with different plot types
 
 ## Documentation & Learning Resources
@@ -289,7 +289,7 @@ By the end of this phase, you should be able to:
 **Free Courses & Tutorials:**
 - [NumPy Tutorial (W3Schools)](https://www.w3schools.com/python/numpy/)
 - [NumPy Quickstart Tutorial](https://numpy.org/doc/stable/user/quickstart.html)
-- [NumPy Tutorial (DataCamp)](https://www.datacamp.com/tutorial numpy-tutorial-for-beginners) - Free tutorial
+- [NumPy Tutorial (DataCamp)](https://www.datacamp.com/tutorial numpy-tutorial-for-beginners): Free tutorial
 - [NumPy Basics (Real Python)](https://realpython.com/numpy-tutorial/)
 
 **Video Tutorials:**
@@ -305,8 +305,8 @@ By the end of this phase, you should be able to:
 
 **Free Courses & Tutorials:**
 - [Pandas Tutorial (W3Schools)](https://www.w3schools.com/python/pandas/)
-- [10 Minutes to Pandas](https://pandas.pydata.org/docs/user_guide/10min.html) - Quick start guide
-- [Pandas Tutorial (DataCamp)](https://www.datacamp.com/tutorial/pandas) - Free tutorial
+- [10 Minutes to Pandas](https://pandas.pydata.org/docs/user_guide/10min.html): Quick start guide
+- [Pandas Tutorial (DataCamp)](https://www.datacamp.com/tutorial/pandas): Free tutorial
 - [Pandas Tutorial (Real Python)](https://realpython.com/pandas-python-explore-dataset/)
 
 **Video Tutorials:**
@@ -321,15 +321,15 @@ By the end of this phase, you should be able to:
 
 **Official Documentation:**
 - [Matplotlib Documentation](https://matplotlib.org/stable/contents.html)
-- [Matplotlib Gallery](https://matplotlib.org/stable/gallery/index.html) - Examples for every plot type
+- [Matplotlib Gallery](https://matplotlib.org/stable/gallery/index.html): Examples for every plot type
 - [Seaborn Documentation](https://seaborn.pydata.org/)
-- [Seaborn Gallery](https://seaborn.pydata.org/examples/index.html) - Statistical visualization examples
+- [Seaborn Gallery](https://seaborn.pydata.org/examples/index.html): Statistical visualization examples
 
 **Free Courses & Tutorials:**
 - [Matplotlib Tutorial (W3Schools)](https://www.w3schools.com/python/matplotlib_intro.asp)
 - [Matplotlib Tutorial (Real Python)](https://realpython.com/python-matplotlib-guide/)
 - [Seaborn Tutorial (Real Python)](https://realpython.com/python-seaborn-tutorial/)
-- [Data Visualization with Python (Coursera)](https://www.coursera.org/learn/python-for-data-visualization) - Free audit available
+- [Data Visualization with Python (Coursera)](https://www.coursera.org/learn/python-for-data-visualization): Free audit available
 
 **Video Tutorials:**
 - [Matplotlib Tutorial (Corey Schafer)](https://www.youtube.com/watch?v=UO98lJQ3QGI)
@@ -347,5 +347,5 @@ By the end of this phase, you should be able to:
 **Previous Module:** [00-prerequisites](../00-prerequisites/README.md)  
 **Next Module:** [02-introduction-to-ml](../02-introduction-to-ml/README.md)
 
-**Parallel (Stage 1.5):** [19-sql-database-fundamentals](../19-sql-database-fundamentals/README.md) after NumPy/Pandas lessons — for analyst and data scientist tracks.
+**Parallel (Stage 1.5):** [19-sql-database-fundamentals](../19-sql-database-fundamentals/README.md) after NumPy/Pandas lessons, for analyst and data scientist tracks.
 

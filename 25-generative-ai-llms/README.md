@@ -114,25 +114,25 @@ By the end of this module, you should be able to:
 ## Documentation & Learning Resources
 
 **Official Documentation:**
-- [LangChain Documentation](https://python.langchain.com/) - Complete LangChain guide
-- [LangGraph Documentation](https://langchain-ai.github.io/langgraph/) - Graph-based workflows
-- [Pinecone Documentation](https://docs.pinecone.io/) - Managed vector database
-- [ChromaDB Documentation](https://docs.trychroma.com/) - Open-source vector database
-- [Hugging Face Transformers](https://huggingface.co/docs/transformers/) - Pre-trained models
-- [OpenAI API Documentation](https://platform.openai.com/docs) - GPT models and API
+- [LangChain Documentation](https://python.langchain.com/): Complete LangChain guide
+- [LangGraph Documentation](https://langchain-ai.github.io/langgraph/): Graph-based workflows
+- [Pinecone Documentation](https://docs.pinecone.io/): Managed vector database
+- [ChromaDB Documentation](https://docs.trychroma.com/): Open-source vector database
+- [Hugging Face Transformers](https://huggingface.co/docs/transformers/): Pre-trained models
+- [OpenAI API Documentation](https://platform.openai.com/docs): GPT models and API
 
 **Free Courses:**
-- [LangChain Crash Course](https://www.youtube.com/watch?v=lG7Uxts9SXs) - Free YouTube course
-- [RAG Tutorial (LangChain)](https://python.langchain.com/docs/use_cases/question_answering/) - Free tutorial
-- [Vector Databases Course](https://www.deeplearning.ai/short-courses/vector-databases/) - DeepLearning.AI course
-- [Building LLM Applications](https://www.deeplearning.ai/short-courses/building-applications-with-llms/) - DeepLearning.AI course
+- [LangChain Crash Course](https://www.youtube.com/watch?v=lG7Uxts9SXs): Free YouTube course
+- [RAG Tutorial (LangChain)](https://python.langchain.com/docs/use_cases/question_answering/): Free tutorial
+- [Vector Databases Course](https://www.deeplearning.ai/short-courses/vector-databases/): DeepLearning.AI course
+- [Building LLM Applications](https://www.deeplearning.ai/short-courses/building-applications-with-llms/): DeepLearning.AI course
 
 **Tutorials:**
-- [Prompt Engineering Guide](../resources/generative_ai_comprehensive_guide.md#prompt-engineering) - Comprehensive prompt engineering
-- [RAG Implementation Guide](../resources/rag_comprehensive_guide.md) - Complete RAG guide
-- [LangChain Tutorial](../resources/langchain_guide.md) - LangChain framework guide
-- [AI Agents Guide](../resources/ai_agents_guide.md) - Building AI agents
-- [Vector Databases Guide](../resources/generative_ai_comprehensive_guide.md#vector-databases) - Vector database comparison
+- [Prompt Engineering Guide](../resources/generative_ai_comprehensive_guide.md#prompt-engineering): Comprehensive prompt engineering
+- [RAG Implementation Guide](../resources/rag_comprehensive_guide.md): Complete RAG guide
+- [LangChain Tutorial](../resources/langchain_guide.md): LangChain framework guide
+- [AI Agents Guide](../resources/ai_agents_guide.md): Building AI agents
+- [Vector Databases Guide](../resources/generative_ai_comprehensive_guide.md#vector-databases): Vector database comparison
 
 **Video Tutorials:**
 - [LangChain Crash Course (YouTube)](https://www.youtube.com/watch?v=lG7Uxts9SXs)
@@ -141,26 +141,26 @@ By the end of this module, you should be able to:
 - [Vector Databases Explained](https://www.youtube.com/watch?v=oZWVmJ5nP3U)
 
 **Practice:**
-- [LangChain Templates](https://github.com/langchain-ai/langchain/tree/master/templates) - Example projects
-- [RAG Examples](https://github.com/langchain-ai/langchain/tree/master/templates/rag) - RAG implementations
-- [Hugging Face Spaces](https://huggingface.co/spaces) - Deploy and share GenAI apps
-- [LangChain Playground](https://smith.langchain.com/) - Experiment with LangChain
+- [LangChain Templates](https://github.com/langchain-ai/langchain/tree/master/templates): Example projects
+- [RAG Examples](https://github.com/langchain-ai/langchain/tree/master/templates/rag): RAG implementations
+- [Hugging Face Spaces](https://huggingface.co/spaces): Deploy and share GenAI apps
+- [LangChain Playground](https://smith.langchain.com/): Experiment with LangChain
 
 **[Complete Detailed Guide →](generative-ai-llms.md)**
 
 **Additional Resources:**
-- [Advanced Topics →](generative-ai-llms-advanced-topics.md) - Advanced RAG, agent architectures, optimization
-- [Project Tutorial →](generative-ai-llms-project-tutorial.md) - Step-by-step RAG system project
-- [Quick Reference →](generative-ai-llms-quick-reference.md) - Quick lookup guide for GenAI
-- [Generative AI Comprehensive Guide](../resources/generative_ai_comprehensive_guide.md) - Complete overview with all concepts
-- [RAG Comprehensive Guide](../resources/rag_comprehensive_guide.md) - Deep dive into RAG implementation
-- [LangChain Guide](../resources/langchain_guide.md) - LangChain framework details
-- [AI Agents Guide](../resources/ai_agents_guide.md) - AI agents and multi-agent systems
-- [GenAI Production Deployment](../resources/genai_production_deployment.md) - Production deployment patterns
+- [Advanced Topics →](generative-ai-llms-advanced-topics.md): Advanced RAG, agent architectures, optimization
+- [Project Tutorial →](generative-ai-llms-project-tutorial.md): Step-by-step RAG system project
+- [Quick Reference →](generative-ai-llms-quick-reference.md): Quick lookup guide for GenAI
+- [Generative AI Comprehensive Guide](../resources/generative_ai_comprehensive_guide.md): Complete overview with all concepts
+- [RAG Comprehensive Guide](../resources/rag_comprehensive_guide.md): Deep dive into RAG implementation
+- [LangChain Guide](../resources/langchain_guide.md): LangChain framework details
+- [AI Agents Guide](../resources/ai_agents_guide.md): AI agents and multi-agent systems
+- [GenAI Production Deployment](../resources/genai_production_deployment.md): Production deployment patterns
 
 ---
 
 **Previous Module:** [12-natural-language-processing](../12-natural-language-processing/README.md)  
 **Next (recommended stage order):** [20-handling-imbalanced-data](../20-handling-imbalanced-data/README.md) (Stage 7.5) → then [13-model-deployment](../13-model-deployment/README.md) (Stage 8)
 
-**Folder order note:** Module 19 (SQL) is **Stage 1.5** — study it in parallel with Modules 01–02, not after this module. See [FOUNDATION_AND_JOB_READINESS.md](../FOUNDATION_AND_JOB_READINESS.md).
+**Folder order note:** Module 19 (SQL) is **Stage 1.5**, study it in parallel with Modules 01–02, not after this module. See [FOUNDATION_AND_JOB_READINESS.md](../FOUNDATION_AND_JOB_READINESS.md).

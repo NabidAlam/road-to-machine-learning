@@ -201,12 +201,12 @@ Boosting trains models sequentially, where each new model focuses on correcting 
 
 ### AdaBoost
 
-Adaptive boosting - focuses on misclassified samples by increasing their weights.
+Adaptive boosting. Focuses on misclassified samples by increasing their weights.
 
 #### How AdaBoost Works
 
 **Components:**
-1. **Weak Learners**: Simple models (typically decision stumps - depth 1 trees)
+1. **Weak Learners**: Simple models (typically decision stumps. Depth 1 trees)
 2. **Weights**: Each instance has a weight that increases if misclassified
 3. **Model Weights**: Each weak learner has a weight based on its accuracy
 4. **Final Model**: Weighted combination of all weak learners

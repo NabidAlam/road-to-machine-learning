@@ -276,5 +276,5 @@ datagen = ImageDataGenerator(
 
 ---
 
-**Try next:** CNNs excel at image data - leverage spatial structure! Start simple, use transfer learning, and iterate.
+**Try next:** CNNs excel at image data. Leverage spatial structure! Start simple, use transfer learning, and iterate.
 

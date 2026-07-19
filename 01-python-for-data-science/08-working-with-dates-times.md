@@ -1,4 +1,4 @@
-# Working with Dates and Times - Complete Guide
+# Working with Dates and Times. Complete Guide
 
 This guide covers handling dates, times, and time-based data in Python using Pandas and datetime.
 

@@ -1,4 +1,4 @@
-# Capstone: ML Engineer — Real-Time Risk Scoring System (GDPR-Safe)
+# Capstone: ML Engineer: Real-Time Risk Scoring System (GDPR-Safe)
 
 Build a **production-style ML system** that scores events in real time (e.g., fraud/risk/churn propensity) and includes: data pipeline, training, evaluation, API serving, monitoring, and retraining triggers.
 

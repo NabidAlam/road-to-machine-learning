@@ -1,6 +1,6 @@
 # 06. HTTP
 
-HTTP is the language web servers speak. Browsers, mobile apps, microservices, scrapers, IoT devices. All of them speak some flavor of HTTP. If you know one protocol cold, this is the one.
+HTTP is the language web servers speak. Browsers, mobile apps, microservices, scrapers, IoT devices. All of them speak some flavor of HTTP. If you know one protocol cold. This is the one.
 
 ## A request is just text
 
@@ -183,7 +183,7 @@ Notice how cleanly REST maps to HTTP. `POST /users` creates. `GET /users/1` read
 A method is **idempotent** if doing it twice has the same effect as doing it once.
 
 - GET, PUT, DELETE: idempotent.
-- POST: not idempotent.
+- POST, not idempotent.
 
 This matters because networks are unreliable. If your client sends a POST and times out, you can't safely retry. You might charge the card twice. But a PUT? Safe to retry.
 

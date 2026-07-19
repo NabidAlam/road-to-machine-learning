@@ -1298,10 +1298,10 @@ perm_importance = permutation_importance(model, X_test, y_test)
 
 ### Online Resources
 
-1. **SHAP Documentation** (https://shap.readthedocs.io/) - Comprehensive SHAP library documentation
-2. **LIME Documentation** (https://github.com/marcotcr/lime) - LIME library and examples
-3. **Interpretable Machine Learning Book** (https://christophm.github.io/interpretable-ml-book/) - Free online book by Christoph Molnar
-4. **AI Explainability 360** (https://aix360.mybluemix.net/) - IBM's explainability toolkit
+1. **SHAP Documentation** (https://shap.readthedocs.io/): Comprehensive SHAP library documentation
+2. **LIME Documentation** (https://github.com/marcotcr/lime): LIME library and examples
+3. **Interpretable Machine Learning Book** (https://christophm.github.io/interpretable-ml-book/): Free online book by Christoph Molnar
+4. **AI Explainability 360** (https://aix360.mybluemix.net/): IBM's explainability toolkit
 
 ### Research Papers
 
@@ -1311,8 +1311,8 @@ perm_importance = permutation_importance(model, X_test, y_test)
 
 ### Books
 
-1. "Interpretable Machine Learning" by Christoph Molnar - Comprehensive guide
-2. "Explainable AI" by Ajay Thampi - Practical guide to XAI
+1. "Interpretable Machine Learning" by Christoph Molnar. Comprehensive guide
+2. "Explainable AI" by Ajay Thampi. Practical guide to XAI
 
 ### Tools and Libraries
 

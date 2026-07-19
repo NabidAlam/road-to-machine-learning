@@ -30,7 +30,7 @@
 ## Why This Repository?
 
 - **Zero to Hero Path**: Complete learning journey from basics to advanced ML
-- **Beginner-Friendly**: No prior experience needed - we cover everything
+- **Beginner-Friendly**: No prior experience needed. We cover everything
 - **Hands-On Learning**: 23 practical projects to build your portfolio
 - **Production Focus**: Learn deployment, MLOps, and real-world skills
 - **Well-Organized**: Logical progression with clear learning objectives
@@ -61,7 +61,7 @@
 
 **Time assumptions:** Ranges in the **Est. Time** column assume about **10–15 hours/week** for a steady part-time pace and **30–40 hours/week** for an intensive full-time pace, unless a row states otherwise (for example, Full-Stack AI Engineer calls out parallel blueprint hours).
 
-**SQL timing:** Module **19** is **Stage 1.5** (parallel with Modules 01–02) for most roles — not after GenAI. Module lists like `19-21` mean you need all three modules, not that SQL comes last.
+**SQL timing:** Module **19** is **Stage 1.5** (parallel with Modules 01–02) for most roles, not after GenAI. Module lists like `19-21` mean you need all three modules, not that SQL comes last.
 
 **What each path includes:**
 - **[Career Roadmap Guide](resources/career_roadmap_guide.md)** roles: module priorities, suggested projects, essential resources, skills checklists, and time guidance grounded in this repo’s **00–25** folders.
@@ -116,7 +116,7 @@ This repository provides a structured learning path for machine learning, organi
 
 ## Learning Path
 
-> **Follow stages, not folder numbers.** Folders `13–14` (deployment) appear before `19` (SQL) on disk — that is intentional for repo layout, not teaching order. Use [START-HERE.md](START-HERE.md) and [FOUNDATION_AND_JOB_READINESS.md](FOUNDATION_AND_JOB_READINESS.md). **SQL is Stage 1.5** for most job tracks.
+> **Follow stages, not folder numbers.** Folders `13–14` (deployment) appear before `19` (SQL) on disk. That is intentional for repo layout, not teaching order. Use [START-HERE.md](START-HERE.md) and [FOUNDATION_AND_JOB_READINESS.md](FOUNDATION_AND_JOB_READINESS.md). **SQL is Stage 1.5** for most job tracks.
 
 **Note on numbering**: Folder names use **Module 00–25** (for example `09-neural-networks-basics`). **Stages** in the table below are the recommended learning sequence. A stage can span several modules. They are not the same label. Some modules can be learned in parallel depending on your goals. See each module README for prerequisites.
 
@@ -184,7 +184,7 @@ Structured courses usually stack Python, then math and stats, then tabular ML, t
 - **Project:** Build a first model end-to-end (see `02-introduction-to-ml/first-ml-project-tutorial.md` and beginner projects in module 16)
 
 ### Stage 1.5: SQL & Databases (parallel with Stages 1–2)
-**Goal**: Query and integrate relational data — required for most analyst and data scientist roles
+**Goal**: Query and integrate relational data, required for most analyst and data scientist roles
 
 - **19-sql-database-fundamentals**
   - Database fundamentals, DDL/DML, joins, subqueries, window functions
@@ -265,7 +265,7 @@ Most breakthroughs are still “layers + nonlinearity + data + optimization.” 
 - **10-deep-learning-frameworks**. Turn math into working code: PyTorch tensors and autograd, real training loops, Keras ergonomics, saving models, and shipping-friendly formats when you need them. [Study map →](10-deep-learning-frameworks/deep-learning-frameworks.md#deep-learning-curriculum-map-this-guide) · [Practice builds →](17-projects-intermediate/README.md#deep-learning-curriculum-map-projects) (MNIST, churn, tabular regression)
 
 ### Stage 6: Specialized Deep Learning
-**Goal**: See the world as tensors. Pixels and tokens.
+**Goal**, see the world as tensors. Pixels and tokens.
 
 Vision and language split into specialist toolkits here, but the mindset stays the same. Use the right inductive bias (convolution for locality, attention for pairing), build careful data pipelines, and evaluate honestly. Compare baselines, ablate one change at a time, and write down what surprised you.
 
@@ -286,7 +286,7 @@ You rarely train a frontier LLM from scratch. You compose prompts, retrieval, to
 
 ### Module 15: Time series (when your world has a clock)
 
-Forecasting and monitoring problems break the usual “shuffle and split” story. Treat **15** as a side quest you can start after you are comfortable with regression *or* after RNNs—many research and product teams touch time series even if it is not their main title.
+Forecasting and monitoring problems break the usual “shuffle and split” story. Treat **15** as a side quest you can start after you are comfortable with regression *or* after RNNs: many research and product teams touch time series even if it is not their main title.
 
 - **15-time-series-analysis**. Trend and seasonality, classical models (ARIMA family), deep sequence models, feature design for temporal data, and evaluation that respects time ordering. *Numbering note:* module 15 sits after 13–14 in the repo but fits logically here or alongside Stages 5–6.
 
@@ -295,7 +295,7 @@ Forecasting and monitoring problems break the usual “shuffle and split” stor
 
 **Note**: These modules can be learned in parallel with other phases or integrated earlier in your learning journey:
 - **DSA (recommended for interviews)**: Follow the [DSA Course (Python)](resources/dsa_course_python.md) alongside these modules to build strong coding + problem-solving fundamentals
-- **SQL** is **Stage 1.5 (Module 19)** — not part of this stage; see above
+- **SQL** is **Stage 1.5 (Module 19)**, not part of this stage; see above
 - **Imbalanced Data** is most useful after Stage 2 (Classification) when you encounter real-world datasets
 - **Model Explainability** is valuable after Stage 3 (Advanced ML) when working with complex models
 
@@ -310,7 +310,7 @@ Forecasting and monitoring problems break the usual “shuffle and split” stor
 
 - **21-model-explainability**
   - Feature Importance Methods (Tree-based, Permutation)
-  - SHAP (SHapley Additive exPlanations) - Tree, Kernel, and Advanced
+  - SHAP (SHapley Additive exPlanations): Tree, Kernel, and Advanced
   - LIME (Local Interpretable Model-agnostic Explanations)
   - Partial Dependence Plots (PDP) and ICE Plots
   - Model Interpretation Best Practices
@@ -388,7 +388,7 @@ Forecasting and monitoring problems break the usual “shuffle and split” stor
 
 **Prerequisites**: Complete Stages 0–4; modules **20–21** (Stage 7.5) help for churn, fraud, and ensemble projects
 
-**Delivery**: Each project includes `starter.py` — see [intermediate projects README](17-projects-intermediate/README.md).
+**Delivery**: Each project includes `starter.py`, see [intermediate projects README](17-projects-intermediate/README.md).
 
 #### Advanced Projects (9 projects)
 
@@ -412,7 +412,7 @@ Forecasting and monitoring problems break the usual “shuffle and split” stor
 ### Stage 10: Advanced Specialized Topics
 **Goal**: Push into domains where structure is not a tidy table of rows.
 
-**Note**: Reinforcement learning, graphs, and audio each need solid deep-learning fundamentals. Treat **22–24** as electives you pick when a problem pulls you there—after Stage 5–6 (and often after you have shipped at least one non-trivial model).
+**Note**: Reinforcement learning, graphs, and audio each need solid deep-learning fundamentals. Treat **22–24** as electives you pick when a problem pulls you there, after Stage 5–6 (and often after you have shipped at least one non-trivial model).
 
 - **22-reinforcement-learning**
   - Markov Decision Processes (MDPs)
@@ -433,8 +433,8 @@ Forecasting and monitoring problems break the usual “shuffle and split” stor
 
 - **24-audio-speech-processing**
   - Audio Signal Fundamentals (Waveforms, Spectrograms, MFCCs)
-  - Speech Recognition (ASR) - CTC, Attention-based, Whisper
-  - Text-to-Speech (TTS) - Neural TTS, Voice Cloning
+  - Speech Recognition (ASR): CTC, Attention-based, Whisper
+  - Text-to-Speech (TTS): Neural TTS, Voice Cloning
   - Audio Classification (Music, Events, Emotions)
   - Music Generation
   - Voice Processing (VAD, Speaker ID, Enhancement)
@@ -807,6 +807,7 @@ road-to-machine-learning/
     llamaindex_guide.md
     math_formulas.md
     ml_glossary.md
+    ai_engineering_glossary.md
     ml_model_testing.md
     ml_system_design_guide.md
     mlflow_comprehensive_guide.md
@@ -876,6 +877,7 @@ road-to-machine-learning/
 | [Introduction to ML Cheatsheet](resources/introduction_to_ml_cheatsheet.md) | Quick reference for ML fundamentals, types, workflow, and key concepts |
 | [Math Formulas Reference](resources/math_formulas.md) | Essential mathematical formulas for ML (Statistics, Linear Algebra, Calculus, ML metrics) |
 | [ML Glossary](resources/ml_glossary.md) | Comprehensive glossary of ML terms and concepts for beginners |
+| [AI Engineering Glossary](resources/ai_engineering_glossary.md) | Practical LLM / agent / RAG / serving jargon: what people say vs what it means |
 | [Common Errors & Debugging Guide](resources/common_errors.md) | Troubleshooting guide for common ML errors and debugging strategies |
 | [DSA for ML Guide](resources/dsa_for_ml_guide.md) | Essential data structures and algorithms for machine learning |
 | [DSA Course (Python)](resources/dsa_course_python.md) | Full beginner-to-interview DSA course in Python (patterns, trees, graphs, practice plan) |
@@ -916,6 +918,7 @@ road-to-machine-learning/
 | [AI Agents Guide](resources/ai_agents_guide.md) | Complete guide to AI agents: CrewAI, AutoGen, Langgraph, AutoGPT, MCP (Model Context Protocol), and A2A (Agent-to-Agent) communication |
 | [GenAI Production Deployment Guide](resources/genai_production_deployment.md) | Comprehensive guide to deploying GenAI at scale: RAG architectures, multi-agent systems, hyperscaler deployment (AWS, GCP, Azure), scaling strategies, monitoring, and cost optimization |
 | [Generative AI Comprehensive Guide](resources/generative_ai_comprehensive_guide.md) | Complete overview of Generative AI: LLMs, LangChain, RAG, AI Agents, Vector Databases, Multi-Agent Systems, and building production-ready GenAI applications |
+| [AI Engineering Glossary](resources/ai_engineering_glossary.md) | Fast definitions for production GenAI terms (agents, RAG, KV cache, LoRA, evals, guardrails) |
 
 #### System Design & Architecture
 
@@ -950,22 +953,22 @@ Follow my curated playlist for guided video walkthroughs:
 - [Advanced AI Engineering & Architecture Masterclass (Concept Over Code)](https://www.youtube.com/playlist?list=PLCAuWzdnX8zIhdfVRWfUc8FUhTWKROb4p)
 
 ### Career & Interview Resources
-- [Career Roadmap Guide](resources/career_roadmap_guide.md) - **Role-specific learning paths**: Data Analyst, Data Scientist, ML Engineer, LLM Engineer, GenAI Solution Architect, Computer Vision Engineer, AI Engineer, Data Engineer, MLOps Engineer, Research Scientist, BI Analyst
-- [Full-Stack AI Engineer](resources/career_roadmap_guide.md#full-stack-ai-engineer) (overview) · [In-repo lessons](resources/full_stack_track/README.md) · [Blueprint + free resources](resources/full_stack_ai_engineer_roadmap.md) - TypeScript through deployment and AI product integration
-- [Career & Portfolio Guide](resources/career_portfolio.md) - Build your portfolio, prepare for interviews, and launch your ML career
-- [Interview Preparation Guide](resources/interview_prep.md) - ML interview questions, coding challenges, system design, and preparation strategies
-- [Open Source Contribution Guide](resources/open_source_contribution.md) - How to contribute to open source projects in data science and ML
-- [Kaggle Competitions Guide](resources/kaggle_competitions.md) - Complete guide to participating in Kaggle competitions, strategy, and collaboration
-- [Docker Complete Tutorial](resources/docker_tutorial.md) - Comprehensive Docker guide for ML: containerization, Dockerfile, docker-compose, best practices, and deployment
+- [Career Roadmap Guide](resources/career_roadmap_guide.md): **Role-specific learning paths**: Data Analyst, Data Scientist, ML Engineer, LLM Engineer, GenAI Solution Architect, Computer Vision Engineer, AI Engineer, Data Engineer, MLOps Engineer, Research Scientist, BI Analyst
+- [Full-Stack AI Engineer](resources/career_roadmap_guide.md#full-stack-ai-engineer) (overview) · [In-repo lessons](resources/full_stack_track/README.md) · [Blueprint + free resources](resources/full_stack_ai_engineer_roadmap.md): TypeScript through deployment and AI product integration
+- [Career & Portfolio Guide](resources/career_portfolio.md): Build your portfolio, prepare for interviews, and launch your ML career
+- [Interview Preparation Guide](resources/interview_prep.md): ML interview questions, coding challenges, system design, and preparation strategies
+- [Open Source Contribution Guide](resources/open_source_contribution.md): How to contribute to open source projects in data science and ML
+- [Kaggle Competitions Guide](resources/kaggle_competitions.md): Complete guide to participating in Kaggle competitions, strategy, and collaboration
+- [Docker Complete Tutorial](resources/docker_tutorial.md): Comprehensive Docker guide for ML: containerization, Dockerfile, docker-compose, best practices, and deployment
 
 ### Additional Resource Files
-- [Books](resources/books.md) - Recommended books for ML and data science
-- [Courses](resources/courses.md) - Online courses and learning platforms
-- [Datasets](resources/datasets.md) - Curated list of datasets for practice
-- [Tools](resources/tools.md) - Essential tools and libraries for ML
-- [YouTube Channels](resources/youtube_channels.md) - Comprehensive list of free ML YouTube channels
-- [Blogs & Websites](resources/blogs_websites.md) - Recommended blogs, websites, and online resources
-- [Practice Platforms](resources/practice_platforms.md) - Platforms to practice ML, coding, and data science
+- [Books](resources/books.md): Recommended books for ML and data science
+- [Courses](resources/courses.md): Online courses and learning platforms
+- [Datasets](resources/datasets.md): Curated list of datasets for practice
+- [Tools](resources/tools.md): Essential tools and libraries for ML
+- [YouTube Channels](resources/youtube_channels.md): Comprehensive list of free ML YouTube channels
+- [Blogs & Websites](resources/blogs_websites.md): Recommended blogs, websites, and online resources
+- [Practice Platforms](resources/practice_platforms.md): Platforms to practice ML, coding, and data science
 
 ## Learning Tips
 
@@ -1045,7 +1048,7 @@ A: We recommend following the order, but you can:
 A: Review `00-prerequisites/01-python-basics.md` quickly - it includes ML-specific Python concepts (time complexity, iterators, generators) that may be new.
 
 **Q: I'm a statistician. Can I skip the math modules?**  
-A: Review them quickly - they focus on ML applications of math concepts you may know from a different angle.
+A: Review them quickly. They focus on ML applications of math concepts you may know from a different angle.
 
 **Q: What if I get stuck on a concept?**  
 A: 
@@ -1107,7 +1110,7 @@ A: Different roles require different module focuses:
 | **Data Engineer** | 0-1, 13-14, 19 | Data pipelines, infrastructure, SQL | 10-14 months |
 
 **Q: Do I need a degree?**  
-A: Not necessarily! Many successful ML practitioners are self-taught. However, a degree can help with:
+A, not necessarily! Many successful ML practitioners are self-taught. However, a degree can help with:
 - Getting past HR filters
 - Research positions
 - Certain companies' requirements
@@ -1118,7 +1121,7 @@ A: Not necessarily! Many successful ML practitioners are self-taught. However, a
 A: Both! Start with TensorFlow/Keras (easier for beginners), then learn PyTorch. Many jobs use both. Module 10 covers both.
 
 **Q: Do I need to know deep learning for most ML jobs?**  
-A: Not always! Many roles focus on traditional ML (modules 3-8). However, deep learning (modules 9-12) is increasingly important.
+A, not always! Many roles focus on traditional ML (modules 3-8). However, deep learning (modules 9-12) is increasingly important.
 
 **Q: How important is MLOps?**  
 A: Very important for production ML! Module 14 covers MLOps basics. Essential for ML Engineer roles, valuable for Data Scientists too.
@@ -1161,7 +1164,7 @@ A: You're ready when you can:
 ### Contributing
 
 **Q: How can I contribute?**  
-A: See [CONTRIBUTING.md](CONTRIBUTING.md). We welcome:
+A, see [CONTRIBUTING.md](CONTRIBUTING.md). We welcome:
 - Fixing typos and errors
 - Adding examples
 - Improving explanations
@@ -1203,7 +1206,7 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for detailed guidelines.
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
 ## Show Your Support
 
@@ -1238,7 +1241,7 @@ By completing this roadmap, you'll be able to:
 | **Markdown Files** | 270+ | Lessons, code examples, and exercises |
 | **Learning Time (Full-Time)** | 15-22 months | 30-40 hours/week for comprehensive coverage |
 | **Learning Time (Part-Time)** | 30-39 months | 10-15 hours/week for comprehensive coverage |
-| **Prerequisites** | Zero | Start from scratch - no prior experience needed! |
+| **Prerequisites** | Zero | Start from scratch. No prior experience needed! |
 
 ## Disclaimer
 

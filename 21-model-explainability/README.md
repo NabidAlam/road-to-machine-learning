@@ -70,9 +70,9 @@ By the end of this module, you should be able to:
 **[Complete Detailed Guide →](model-explainability.md)**
 
 **Additional Resources:**
-- [Advanced Topics →](model-explainability-advanced-topics.md) - Advanced SHAP, LIME for different data types
-- [Project Tutorial →](model-explainability-project-tutorial.md) - Step-by-step credit scoring explanation
-- [Quick Reference →](model-explainability-quick-reference.md) - Quick lookup guide
+- [Advanced Topics →](model-explainability-advanced-topics.md): Advanced SHAP, LIME for different data types
+- [Project Tutorial →](model-explainability-project-tutorial.md): Step-by-step credit scoring explanation
+- [Quick Reference →](model-explainability-quick-reference.md): Quick lookup guide
 
 ---
 

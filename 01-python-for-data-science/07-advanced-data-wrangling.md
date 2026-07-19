@@ -1,4 +1,4 @@
-# Advanced Data Wrangling - Complete Guide
+# Advanced Data Wrangling. Complete Guide
 
 Comprehensive guide to advanced data manipulation techniques: reshaping, pivoting, transforming, and optimizing data operations.
 

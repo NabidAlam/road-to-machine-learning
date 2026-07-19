@@ -68,14 +68,14 @@ By the end of this module, you should be able to:
 **[Complete Detailed Guide →](imbalanced-data.md)**
 
 **Additional Resources:**
-- [Advanced Topics →](imbalanced-data-advanced-topics.md) - Advanced resampling, ensemble methods
-- [Project Tutorial →](imbalanced-data-project-tutorial.md) - Step-by-step fraud detection project
-- [Quick Reference →](imbalanced-data-quick-reference.md) - Quick lookup guide
+- [Advanced Topics →](imbalanced-data-advanced-topics.md): Advanced resampling, ensemble methods
+- [Project Tutorial →](imbalanced-data-project-tutorial.md): Step-by-step fraud detection project
+- [Quick Reference →](imbalanced-data-quick-reference.md): Quick lookup guide
 
 ---
 
 **Previous (folder order):** [19-sql-database-fundamentals](../19-sql-database-fundamentals/README.md)  
 **Next Module:** [21-model-explainability](../21-model-explainability/README.md)
 
-**Recommended stage order:** After **Module 25** (GenAI) or after **Module 04** (classification) when you hit imbalanced data — not necessarily after SQL on disk.
+**Recommended stage order:** After **Module 25** (GenAI) or after **Module 04** (classification) when you hit imbalanced data, not necessarily after SQL on disk.
 

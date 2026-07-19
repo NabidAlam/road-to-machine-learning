@@ -420,7 +420,7 @@ Want to reduce dimensions?
 **Analysis:**
 - **Output**: Customer groups (clustering)
 - **Data**: Purchase history, demographics
-- **Labels**: Not available
+- **Labels**, not available
 
 **Solution**: Unsupervised Learning - Clustering
 
@@ -463,7 +463,7 @@ Want to reduce dimensions?
 **Wrong**: Using algorithm that doesn't fit data size
 **Right**: Consider dataset size when selecting algorithm
 
-### Mistake 4: Not Considering Interpretability Needs
+### Mistake 4, not Considering Interpretability Needs
 
 **Wrong**: Using black-box model when explanations needed
 **Right**: Use interpretable models (Decision Tree, Linear Regression) when required
@@ -524,5 +524,5 @@ Before choosing an algorithm, ask:
 
 ---
 
-**Try next:** There's no "best" algorithm - the best one depends on your specific problem, data, and requirements!
+**Try next:** There's no "best" algorithm. The best one depends on your specific problem, data, and requirements!
 

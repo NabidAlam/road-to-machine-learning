@@ -1,4 +1,4 @@
-# Phase G — Containers, Networking, and Delivery (In-Repo Lessons)
+# Phase G: Containers, Networking, and Delivery (In-Repo Lessons)
 
 **Maps to:** [Blueprint Phase G](../full_stack_ai_engineer_roadmap.md#phase-g-cloud-containers-and-delivery)
 
@@ -18,7 +18,7 @@
 
 ---
 
-## Lesson 1 — Images vs containers
+## Lesson 1: Images vs containers
 
 An **image** is a filesystem snapshot + metadata. A **container** is a running instance.
 
@@ -26,7 +26,7 @@ Rebuild images when dependencies change; bump tags for anything deployed.
 
 ---
 
-## Lesson 2 — Volumes and configuration
+## Lesson 2: Volumes and configuration
 
 - **Volumes** persist database data across container restarts
 - **Bind mounts** help local dev hot reload
@@ -34,13 +34,13 @@ Rebuild images when dependencies change; bump tags for anything deployed.
 
 ---
 
-## Lesson 3 — Multi-service Compose
+## Lesson 3: Multi-service Compose
 
 Compose links services on a shared network. Define explicit dependencies and healthchecks so APIs do not start before the database is ready.
 
 ---
 
-## Lesson 4 — Nginx as reverse proxy
+## Lesson 4: Nginx as reverse proxy
 
 Nginx can terminate TLS (in production), route paths to services, and serve static assets.
 
@@ -51,7 +51,7 @@ At minimum, learn:
 
 ---
 
-## Lesson 5 — Makefiles and developer ergonomics
+## Lesson 5: Makefiles and developer ergonomics
 
 Short commands (`make dev`, `make test`) reduce onboarding friction and match CI commands.
 

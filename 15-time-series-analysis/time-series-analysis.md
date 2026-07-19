@@ -1,4 +1,4 @@
-# Time Series Analysis - Complete Guide
+# Time Series Analysis. Complete Guide
 
 This guide covers time series analysis and forecasting using statistical and deep learning methods.
 
@@ -1007,8 +1007,8 @@ print(f"SMAPE: {smape:.2f}%")
 
 ## Key Takeaways
 
-1. **Never Random Split**: Always use time-based splitting - temporal order is critical
-2. **Check Stationarity**: Many models require stationary data - use ADF test
+1. **Never Random Split**: Always use time-based splitting. Temporal order is critical
+2. **Check Stationarity**: Many models require stationary data. Use ADF test
 3. **Feature Engineering**: Lag and rolling features are crucial for time series
 4. **Multiple Methods**: Try both statistical (ARIMA) and deep learning (LSTM) approaches
 5. **Proper Evaluation**: Use time-series specific metrics (RMSE, MAE, MAPE) and validation (walk-forward)

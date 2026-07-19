@@ -1398,7 +1398,7 @@ my-changes
 
 ## Troubleshooting
 
-### Problem: "fatal: not a git repository"
+### Problem: "fatal, not a git repository"
 
 **Solution:**
 ```bash

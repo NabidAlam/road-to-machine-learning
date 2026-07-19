@@ -1,4 +1,4 @@
-# Time Series Analysis — Additional Resources
+# Time Series Analysis: Additional Resources
 
 Curated resources to deepen your time series skills.
 

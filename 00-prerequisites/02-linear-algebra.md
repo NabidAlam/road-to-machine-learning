@@ -1,4 +1,4 @@
-# Linear Algebra for Machine Learning - Deep Dive
+# Linear Algebra for Machine Learning. Deep Dive
 
 This guide covers linear algebra concepts essential for understanding machine learning algorithms. This is the mathematical foundation of ML.
 
@@ -2104,7 +2104,7 @@ Use SVD for low-rank matrix approximation.
 
 ### Online Courses
 
-- [3Blue1Brown - Essence of Linear Algebra](https://www.youtube.com/playlist?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab) - **Highly recommended!**
+- [3Blue1Brown - Essence of Linear Algebra](https://www.youtube.com/playlist?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab): **Highly recommended!**
 - [MIT 18.06 Linear Algebra](https://ocw.mit.edu/courses/18-06-linear-algebra-spring-2010/)
 - [Khan Academy - Linear Algebra](https://www.khanacademy.org/math/linear-algebra)
 

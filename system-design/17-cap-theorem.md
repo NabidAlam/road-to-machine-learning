@@ -118,7 +118,7 @@ This phrase shows up everywhere. It means: if no new writes happen, every replic
 
 This is fine for likes, view counts, follower counts. Not fine for bank balances.
 
-Some systems offer **read-your-own-writes** consistency: after you write, your own subsequent reads see the new value, even if other users haven't yet. A useful middle ground.
+Some systems offer **read-your-own-writes** consistency, after you write, your own subsequent reads see the new value, even if other users haven't yet. A useful middle ground.
 
 ## Strong consistency models
 

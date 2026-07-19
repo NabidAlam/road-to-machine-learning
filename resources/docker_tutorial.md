@@ -23,7 +23,7 @@ Comprehensive guide to Docker for data scientists and ML engineers. Learn to con
 
 ### What is Docker?
 
-**Docker** is a platform that uses containerization to package applications and their dependencies into lightweight, portable containers. Think of it as a shipping container for software - it ensures your application runs the same way everywhere.
+**Docker** is a platform that uses containerization to package applications and their dependencies into lightweight, portable containers. Think of it as a shipping container for software. It ensures your application runs the same way everywhere.
 
 ### Key Concepts
 

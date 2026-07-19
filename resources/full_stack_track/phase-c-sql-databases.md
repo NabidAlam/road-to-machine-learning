@@ -1,4 +1,4 @@
-# Phase C — SQL and Relational Design (In-Repo Lessons)
+# Phase C: SQL and Relational Design (In-Repo Lessons)
 
 **Maps to:** [Blueprint Phase C](../full_stack_ai_engineer_roadmap.md#phase-c-database-and-sql-mastery)
 
@@ -18,7 +18,7 @@
 
 ---
 
-## Lesson 1 — Tables, keys, and relationships
+## Lesson 1: Tables, keys, and relationships
 
 A **relation** (table) stores tuples (rows) with attributes (columns). A **primary key** uniquely identifies a row. A **foreign key** references another table and enforces integrity at the database boundary.
 
@@ -31,7 +31,7 @@ Cardinality:
 
 ---
 
-## Lesson 2 — Normalization in practice
+## Lesson 2: Normalization in practice
 
 **1NF:** atomic columns (no repeating groups hidden inside one column).  
 **2NF:** remove partial dependencies on part of a composite key.  
@@ -43,7 +43,7 @@ You do not always normalize “perfectly” for analytics warehouses, but for OL
 
 ---
 
-## Lesson 3 — Query building blocks
+## Lesson 3: Query building blocks
 
 - Filtering: `WHERE`, `AND`, `OR`, `IN`, `BETWEEN`, `LIKE` / `ILIKE`
 - Sorting: `ORDER BY`
@@ -55,7 +55,7 @@ You do not always normalize “perfectly” for analytics warehouses, but for OL
 
 ---
 
-## Lesson 4 — Joins and aggregation
+## Lesson 4: Joins and aggregation
 
 - **INNER JOIN:** only matching rows
 - **LEFT JOIN:** keep left rows even if no match (watch for `NULL` columns)
@@ -67,7 +67,7 @@ You do not always normalize “perfectly” for analytics warehouses, but for OL
 
 ---
 
-## Lesson 5 — Transactions (when they matter)
+## Lesson 5: Transactions (when they matter)
 
 Use a transaction when multiple writes must succeed or fail together (money movement, creating parent + children rows).
 

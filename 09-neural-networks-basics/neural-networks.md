@@ -952,7 +952,7 @@ def l2_sgd_step(X, y, w, lr, l2_lambda):
     grad = X.T @ (pred - y) / len(X) + l2_lambda * w
     return w - lr * grad
 
-# Dropout mask (training only) — conceptual
+# Dropout mask (training only): conceptual
 def dropout(x, p=0.3, rng=np.random.default_rng(0)):
     mask = (rng.random(x.shape) > p).astype(float)
     return x * mask / (1.0 - p)  # inverted dropout scaling

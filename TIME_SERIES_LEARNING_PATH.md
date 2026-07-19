@@ -4,18 +4,18 @@ Time series appears in **three places** in this curriculum. You do **not** need 
 
 | Path | Location | Best for | Depth |
 |------|----------|----------|-------|
-| **A — Module** | [15-time-series-analysis](15-time-series-analysis/README.md) | Theory + methods (ARIMA, Prophet, LSTM) | Full module + [10 exercises](15-time-series-analysis/exercises/README.md) |
-| **B — Project** | [Intermediate project 6](17-projects-intermediate/project-06-time-series-forecasting/README.md) | Portfolio piece after Stages 3–4 | Applied brief + `starter.py` |
-| **C — Advanced** | [Advanced project 3](18-projects-advanced/project-03-time-series-forecasting/README.md) | End-to-end pipeline + deployment narrative | Capstone-style brief |
+| **A. Module** | [15-time-series-analysis](15-time-series-analysis/README.md) | Theory + methods (ARIMA, Prophet, LSTM) | Full module + [10 exercises](15-time-series-analysis/exercises/README.md) |
+| **B. Project** | [Intermediate project 6](17-projects-intermediate/project-06-time-series-forecasting/README.md) | Portfolio piece after Stages 3–4 | Applied brief + `starter.py` |
+| **C. Advanced** | [Advanced project 3](18-projects-advanced/project-03-time-series-forecasting/README.md) | End-to-end pipeline + deployment narrative | Capstone-style brief |
 
 ## Recommended choice
 
 | Your goal | Pick |
 |-----------|------|
-| Data scientist / analyst needing forecasting | **Path A** (module) — then optionally Path B for portfolio |
+| Data scientist / analyst needing forecasting | **Path A** (module), then optionally Path B for portfolio |
 | Already know ARIMA basics; want a GitHub project fast | **Path B** only |
 | ML engineer building production forecasting | **Path A** → **Path C** |
-| Not doing forecasting roles | **Skip all three** — use Stage 6 time on CV/NLP or tabular projects |
+| Not doing forecasting roles | **Skip all three**, use Stage 6 time on CV/NLP or tabular projects |
 
 ## Prerequisites (all paths)
 

@@ -278,7 +278,7 @@ env/
 
 ### Why Track Experiments?
 
-- **Compare Runs**: See what works best
+- **Compare Runs**, see what works best
 - **Reproducibility**: Recreate past experiments
 - **Collaboration**: Share results with team
 - **Learning**: Understand what improves performance

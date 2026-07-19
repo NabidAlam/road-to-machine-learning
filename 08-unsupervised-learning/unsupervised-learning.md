@@ -27,7 +27,7 @@ This guide covers finding patterns in unlabeled data.
 
 ### What is Unsupervised Learning?
 
-Learning from unlabeled data - finding hidden patterns without guidance.
+Learning from unlabeled data. Finding hidden patterns without guidance.
 
 **Key Characteristics:**
 - No target variable (labels)
@@ -335,7 +335,7 @@ Density-Based Spatial Clustering of Applications with Noise. Finds clusters of v
 **Point Types:**
 - **Core Point**: Has at least min_samples neighbors within eps
 - **Border Point**: Within eps of core point but has fewer neighbors
-- **Noise Point**: Not a core point and not within eps of any core point
+- **Noise Point**, not a core point and not within eps of any core point
 
 **Pros:**
 - No need to specify k

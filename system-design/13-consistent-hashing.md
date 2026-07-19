@@ -188,5 +188,5 @@ If you ever read about Dynamo (the Amazon paper, not DynamoDB), consistent hashi
 - The original paper: "Consistent Hashing and Random Trees" by Karger et al., 1997.
 - Amazon's Dynamo paper, 2007. Foundational reading for distributed systems: https://www.allthingsdistributed.com/files/amazon-dynamo-sosp2007.pdf.
 - "A Guide to Consistent Hashing" by Toptal: https://www.toptal.com/big-data/consistent-hashing.
-- Mailgun's blog post on rendezvous hashing, which is a great comparison: https://blog.mailgun.com/.
+- Mailgun's blog post on rendezvous hashing. Which is a great comparison: https://blog.mailgun.com/.
 - ByteByteGo on consistent hashing has good diagrams: https://blog.bytebytego.com/.

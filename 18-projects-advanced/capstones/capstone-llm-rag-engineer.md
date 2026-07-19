@@ -1,4 +1,4 @@
-# Capstone: LLM Engineer — RAG Knowledge Assistant (GDPR-Safe)
+# Capstone: LLM Engineer: RAG Knowledge Assistant (GDPR-Safe)
 
 Build a **production-style RAG (Retrieval-Augmented Generation)** system with evaluation, guardrails, and cost awareness.
 

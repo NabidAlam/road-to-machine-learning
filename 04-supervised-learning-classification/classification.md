@@ -1,4 +1,4 @@
-# Supervised Learning - Classification Complete Guide
+# Supervised Learning. Classification Complete Guide
 
 This guide covers classification algorithms for predicting categories.
 
@@ -139,7 +139,7 @@ Uses logistic (sigmoid) function to map predictions to probabilities [0, 1].
 
 ### Log loss and maximum likelihood (same coin, two views)
 
-Logistic regression is trained by minimizing **log loss** (binary cross-entropy). That objective is equivalent to **maximum likelihood estimation (MLE)** for a Bernoulli model: you pick coefficients that make the observed labels as probable as possible under the sigmoid probabilities. For **multiclass** problems, the natural generalization is the **softmax** head and **categorical cross-entropy**, again an MLE story over one-hot labels. Libraries expose this as `LogisticRegression` with `multi_class='ovr'` or `'multinomial'`—the optimization details are handled for you, but the vocabulary shows up in papers and interviews.
+Logistic regression is trained by minimizing **log loss** (binary cross-entropy). That objective is equivalent to **maximum likelihood estimation (MLE)** for a Bernoulli model: you pick coefficients that make the observed labels as probable as possible under the sigmoid probabilities. For **multiclass** problems, the natural generalization is the **softmax** head and **categorical cross-entropy**, again an MLE story over one-hot labels. Libraries expose this as `LogisticRegression` with `multi_class='ovr'` or `'multinomial'`: the optimization details are handled for you, but the vocabulary shows up in papers and interviews.
 
 ### Binary Classification
 
@@ -631,7 +631,7 @@ y_pred = best_svm.predict(X_test_scaled)
 
 ### How KNN Works
 
-Classifies based on k nearest neighbors' labels. Instance-based learning - no explicit training, just stores data.
+Classifies based on k nearest neighbors' labels. Instance-based learning. No explicit training, just stores data.
 
 **Distance Metrics:**
 - **Euclidean**: Default, straight-line distance

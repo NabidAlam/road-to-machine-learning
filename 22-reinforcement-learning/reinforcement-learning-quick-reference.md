@@ -8,7 +8,7 @@ Quick reference guide for reinforcement learning algorithms, formulas, and code 
 $$G_t = R_{t+1} + \gamma R_{t+2} + \gamma^2 R_{t+3} + \ldots$$
 
 ### Q-Learning Update
-$$Q(s,a) \leftarrow Q(s,a) + \alpha[r + \gamma \max_{a'} Q(s',a') - Q(s,a)]$$
+$$Q(s,a) \leftarrow Q(s,a) + \alpha[r + \gamma \max_{a'} Q(s',a'): Q(s,a)]$$
 
 ### Policy Gradient
 $$\nabla_{\theta} J(\theta) = \mathbb{E}_{\pi}[\nabla_{\theta} \log \pi(a|s) \cdot Q^{\pi}(s,a)]$$

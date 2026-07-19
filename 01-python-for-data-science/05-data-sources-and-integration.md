@@ -1,4 +1,4 @@
-# Data Sources and Integration - Complete Guide
+# Data Sources and Integration. Complete Guide
 
 This guide covers working with various data sources: APIs, databases, web scraping, and file formats.
 

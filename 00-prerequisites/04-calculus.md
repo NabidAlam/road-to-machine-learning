@@ -803,7 +803,7 @@ Compute derivative of f(x) = sin(x² + 1) using chain rule.
 
 ### Online Courses
 
-- [3Blue1Brown - Essence of Calculus](https://www.youtube.com/playlist?list=PLZHQObOWTQDMsr9K-rj53DwVRMYO3t5Yr) - **Highly recommended!**
+- [3Blue1Brown - Essence of Calculus](https://www.youtube.com/playlist?list=PLZHQObOWTQDMsr9K-rj53DwVRMYO3t5Yr): **Highly recommended!**
 - [Khan Academy - Calculus](https://www.khanacademy.org/math/calculus-1)
 - [MIT Single Variable Calculus](https://ocw.mit.edu/courses/18-01-single-variable-calculus-fall-2006/)
 

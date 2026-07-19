@@ -132,7 +132,7 @@ In practice: at-least-once + idempotent consumers covers 95% of systems.
 
 Some messages are poison. A bug in the consumer crashes on them forever. After N retries, move them to a **dead-letter topic** (Chapter 19). A human investigates.
 
-Back-pressure: if consumers fall behind, the queue grows. Monitor **consumer lag** (latest offset – committed offset). Alert before disks fill.
+Back-pressure: if consumers fall behind, the queue grows. Monitor **consumer lag** (latest offset, committed offset). Alert before disks fill.
 
 ## Deep dive 7: Cluster coordination
 

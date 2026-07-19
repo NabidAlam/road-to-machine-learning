@@ -1,4 +1,4 @@
-# Phase E — Advanced Backend Engineering (In-Repo Lessons)
+# Phase E: Advanced Backend Engineering (In-Repo Lessons)
 
 **Maps to:** [Blueprint Phase E](../full_stack_ai_engineer_roadmap.md#phase-e-advanced-backend-engineering)
 
@@ -18,7 +18,7 @@
 
 ---
 
-## Lesson 1 — Layering routes, controllers, services
+## Lesson 1: Layering routes, controllers, services
 
 **Route:** HTTP parsing, status mapping  
 **Controller:** request/response shaping, authz checks  
@@ -28,7 +28,7 @@ This separation makes testing easier: services should not depend on Express-spec
 
 ---
 
-## Lesson 2 — Idempotency and webhooks
+## Lesson 2: Idempotency and webhooks
 
 Payment providers retry webhooks. Your handler must be **safe to run twice**.
 
@@ -40,7 +40,7 @@ Patterns:
 
 ---
 
-## Lesson 3 — File uploads and async processing
+## Lesson 3: File uploads and async processing
 
 Validate **MIME type**, **size limits**, and **filename hygiene**. Prefer scanning and virus scanning policies for real products.
 
@@ -48,7 +48,7 @@ Offload heavy transforms to a worker queue when response latency matters.
 
 ---
 
-## Lesson 4 — Query patterns at scale
+## Lesson 4: Query patterns at scale
 
 Avoid unbounded `OFFSET` for huge tables when you can use **keyset** pagination.
 
@@ -56,7 +56,7 @@ Add indexes that match real `WHERE` + `ORDER BY` clauses; verify with `EXPLAIN`.
 
 ---
 
-## Lesson 5 — Observability for backends
+## Lesson 5: Observability for backends
 
 Minimum viable production awareness:
 

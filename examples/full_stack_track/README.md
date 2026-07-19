@@ -1,4 +1,4 @@
-# Full-stack track — examples scratch space
+# Full-stack track: examples scratch space
 
 This folder is for **your own experiments** while following:
 

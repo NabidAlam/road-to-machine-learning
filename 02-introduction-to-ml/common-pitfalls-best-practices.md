@@ -47,7 +47,7 @@ X_test_scaled = scaler.transform(X_test)  # Transform test
 
 ### Pitfall 2: Insufficient Data
 
-**Problem**: Not enough data for model to learn patterns.
+**Problem**, not enough data for model to learn patterns.
 
 **Signs:**
 - High variance in performance
@@ -209,7 +209,7 @@ X_val, X_test, y_val, y_test = train_test_split(X_temp, y_temp, test_size=0.5)
 
 **Solution**: Always use separate test set that model has never seen.
 
-### Pitfall 12: Not Checking for Data Drift
+### Pitfall 12, not Checking for Data Drift
 
 **Problem**: Model performance degrades over time as data changes.
 
@@ -219,7 +219,7 @@ X_val, X_test, y_val, y_test = train_test_split(X_temp, y_temp, test_size=0.5)
 
 ## Deployment Pitfalls
 
-### Pitfall 13: Not Versioning Models
+### Pitfall 13, not Versioning Models
 
 **Problem**: Can't reproduce results or rollback if needed.
 

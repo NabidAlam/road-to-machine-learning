@@ -114,9 +114,9 @@ By the end of this module, you should be able to:
 - [MLflow Model Serving](https://mlflow.org/docs/latest/models.html#deployment)
 
 **Free Courses:**
-- [FastAPI Course (YouTube)](https://www.youtube.com/watch?v=0sOvCWFmrtA) - Free tutorial
-- [Docker Course (YouTube)](https://www.youtube.com/watch?v=fqMOX6JJhGo) - Free comprehensive course
-- [ML Deployment (Coursera)](https://www.coursera.org/learn/introduction-to-machine-learning-in-production) - Free audit available
+- [FastAPI Course (YouTube)](https://www.youtube.com/watch?v=0sOvCWFmrtA): Free tutorial
+- [Docker Course (YouTube)](https://www.youtube.com/watch?v=fqMOX6JJhGo): Free comprehensive course
+- [ML Deployment (Coursera)](https://www.coursera.org/learn/introduction-to-machine-learning-in-production): Free audit available
 
 **Tutorials:**
 - [Deploying ML Models (Real Python)](https://realpython.com/flask-connexion-rest-api/)
@@ -160,9 +160,9 @@ By the end of this module, you should be able to:
 **[Complete Detailed Guide →](deployment.md)**
 
 **Additional Resources:**
-- [Advanced Topics →](deployment-advanced-topics.md) - Advanced deployment patterns, Kubernetes, edge deployment
-- [Project Tutorial →](deployment-project-tutorial.md) - Step-by-step model deployment project
-- [Quick Reference →](deployment-quick-reference.md) - Quick lookup guide for model deployment
+- [Advanced Topics →](deployment-advanced-topics.md): Advanced deployment patterns, Kubernetes, edge deployment
+- [Project Tutorial →](deployment-project-tutorial.md): Step-by-step model deployment project
+- [Quick Reference →](deployment-quick-reference.md): Quick lookup guide for model deployment
 
 ---
 

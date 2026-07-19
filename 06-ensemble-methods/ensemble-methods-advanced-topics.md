@@ -322,7 +322,7 @@ predictions = model.predict(X_test_missing)
 **How XGBoost Handles Missing Values:**
 1. During training, XGBoost learns the best direction (left or right child) for missing values
 2. This is more sophisticated than simple imputation
-3. Works automatically - no preprocessing needed
+3. Works automatically. No preprocessing needed
 
 #### Complete Mathematics of XGBoost
 
@@ -982,7 +982,7 @@ gb = GradientBoostingClassifier(
 )
 ```
 
-### Pitfall 2: Not Enough Diversity
+### Pitfall 2, not Enough Diversity
 
 **Problem:** All models make similar errors
 
@@ -1058,7 +1058,7 @@ if len(good_models) > 1:
 1. **Diversity is crucial**: Ensembles work best with diverse base models
 2. **Early stopping**: Prevents overfitting in boosting methods
 3. **Hyperparameter tuning**: Critical for ensemble performance
-4. **Ensemble selection**: Not all models need to be in ensemble
+4. **Ensemble selection**, not all models need to be in ensemble
 5. **Feature importance**: Use permutation importance for reliability
 6. **Interpretability**: SHAP and partial dependence help understand ensembles
 7. **Avoid pitfalls**: Watch for overfitting, lack of diversity, too many models

@@ -1,4 +1,4 @@
-# Getting Started - Your First ML Project
+# Getting Started. Your First ML Project
 
 Welcome! This guide will help you complete your first machine learning project in about 30 minutes.
 
@@ -65,7 +65,7 @@ The script will:
 
 ## Next Steps
 
-1. Modify the code - try different models
+1. Modify the code. Try different models
 2. Experiment with different train/test splits
 3. Add your own features
 4. Move to the next project: House Price Prediction
@@ -89,7 +89,7 @@ The script will:
 - **Simple Dataset**: Well-known, clean data
 - **Clear Results**: Easy to understand outcomes
 - **Complete Example**: Full working code provided
-- **Quick Win**: See results in minutes
+- **Quick Win**, see results in minutes
 
 ---
 

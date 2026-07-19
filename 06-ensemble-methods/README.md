@@ -72,8 +72,8 @@ By the end of this module, you should be able to:
 - [CatBoost Documentation](https://catboost.ai/en/docs/)
 
 **Free Courses:**
-- [Ensemble Methods (Coursera)](https://www.coursera.org/learn/machine-learning) - Advanced topics
-- [XGBoost Tutorial (Kaggle Learn)](https://www.kaggle.com/learn/xgboost) - Free micro-course
+- [Ensemble Methods (Coursera)](https://www.coursera.org/learn/machine-learning): Advanced topics
+- [XGBoost Tutorial (Kaggle Learn)](https://www.kaggle.com/learn/xgboost): Free micro-course
 
 **Tutorials:**
 - [Ensemble Methods Explained](https://scikit-learn.org/stable/modules/ensemble.html)
@@ -87,8 +87,8 @@ By the end of this module, you should be able to:
 - [Random Forest vs Gradient Boosting](https://www.youtube.com/watch?v=3kYujfHjvrA)
 
 **Practice:**
-- [Ensemble Methods (Kaggle)](https://www.kaggle.com/learn/ensemble-methods) - Free course
-- [XGBoost Competitions (Kaggle)](https://www.kaggle.com/competitions) - Practice with real data
+- [Ensemble Methods (Kaggle)](https://www.kaggle.com/learn/ensemble-methods): Free course
+- [XGBoost Competitions (Kaggle)](https://www.kaggle.com/competitions): Practice with real data
 
 **[Complete Detailed Guide →](ensemble-methods.md)**
 

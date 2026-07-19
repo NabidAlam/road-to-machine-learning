@@ -1,4 +1,4 @@
-# Module 03: Supervised Learning - Regression
+# Module 03: Supervised Learning. Regression
 
 Learn to predict continuous values using regression algorithms.
 
@@ -81,9 +81,9 @@ By the end of this module, you should be able to:
 - [Scikit-learn Linear Models](https://scikit-learn.org/stable/modules/linear_model.html)
 
 **Free Courses:**
-- [Linear Regression (Coursera)](https://www.coursera.org/learn/machine-learning) - Week 1-2 of Andrew Ng's course
-- [Regression Analysis (edX)](https://www.edx.org/course/regression-analysis) - Free audit available
-- [Linear Regression (Kaggle Learn)](https://www.kaggle.com/learn/linear-regression) - Free micro-course
+- [Linear Regression (Coursera)](https://www.coursera.org/learn/machine-learning): Week 1-2 of Andrew Ng's course
+- [Regression Analysis (edX)](https://www.edx.org/course/regression-analysis): Free audit available
+- [Linear Regression (Kaggle Learn)](https://www.kaggle.com/learn/linear-regression): Free micro-course
 
 **Tutorials:**
 - [Linear Regression Tutorial (Real Python)](https://realpython.com/linear-regression-in-python/)
@@ -96,7 +96,7 @@ By the end of this module, you should be able to:
 - [Lasso Regression (StatQuest)](https://www.youtube.com/watch?v=NGf0voTMlcs)
 
 **Practice:**
-- [House Prices Competition (Kaggle)](https://www.kaggle.com/c/house-prices-advanced-regression-techniques) - Practice regression
+- [House Prices Competition (Kaggle)](https://www.kaggle.com/c/house-prices-advanced-regression-techniques): Practice regression
 - [Regression Exercises (GitHub)](https://github.com/justmarkham/scikit-learn-videos)
 
 **[Complete Detailed Guide →](regression.md)**

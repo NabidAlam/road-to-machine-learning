@@ -1,6 +1,6 @@
 # How to Use the Study Hub for Maximum Learning
 
-This guide is for the **[Nabid In Motion Study Hub](https://nabidinmotion.github.io)** — the subscriber site that syncs this curriculum. It explains **how to learn here**, not what to learn (see [START-HERE.md](START-HERE.md) for that).
+This guide is for the **[Nabid In Motion Study Hub](https://nabidinmotion.github.io)**, the subscriber site that syncs this curriculum. It explains **how to learn here**, not what to learn (see [START-HERE.md](START-HERE.md) for that).
 
 **Time to read:** ~8 minutes · **Time to set up:** ~10 minutes once
 
@@ -24,10 +24,10 @@ This guide is for the **[Nabid In Motion Study Hub](https://nabidinmotion.github
    The hub filters modules to what matters for that job. You can switch roles anytime.
 
 2. **Set weekly goals** on the homepage progress card:  
-   - **Reading goal** — e.g. 3–5 lessons/week (part-time) or 8–12 (full-time)  
-   - **Focus goal** — e.g. 150–300 minutes of deep work/week
+   - **Reading goal**, e.g. 3–5 lessons/week (part-time) or 8–12 (full-time)  
+   - **Focus goal**, e.g. 150–300 minutes of deep work/week
 
-3. **Open “Today’s practice path”** (homepage) or **Continue Learning** — start the next lesson in your filtered path.
+3. **Open “Today’s practice path”** (homepage) or **Continue Learning**, start the next lesson in your filtered path.
 
 4. **Clone the curriculum repo** on your computer:
 
@@ -40,9 +40,9 @@ This guide is for the **[Nabid In Motion Study Hub](https://nabidinmotion.github
    ```
 
 5. **Bookmark these three guides** (read on-site or on GitHub):  
-   - [START-HERE.md](START-HERE.md) — stage order (not folder numbers)  
-   - [FOUNDATION_AND_JOB_READINESS.md](FOUNDATION_AND_JOB_READINESS.md) — exit gates before advancing  
-   - [LEARNING_ROADMAP.md](LEARNING_ROADMAP.md) — visual milestones
+   - [START-HERE.md](START-HERE.md), stage order (not folder numbers)  
+   - [FOUNDATION_AND_JOB_READINESS.md](FOUNDATION_AND_JOB_READINESS.md), exit gates before advancing  
+   - [LEARNING_ROADMAP.md](LEARNING_ROADMAP.md), visual milestones
 
 ---
 
@@ -56,8 +56,8 @@ Read → Reproduce → Reflect → Build → Review
 
 | Step | On the study hub | On your machine |
 |------|------------------|-----------------|
-| **Read** | Open one lesson; skim objectives first | — |
-| **Reproduce** | — | Re-type examples without the guide open |
+| **Read** | Open one lesson; skim objectives first |, |
+| **Reproduce** |, | Re-type examples without the guide open |
 | **Reflect** | Mark **Confused** if anything is fuzzy; add a bookmark | One sentence in a notes file: “I learned X” |
 | **Build** | Update **Project tracker** (separate from lesson checkboxes) | Run `starter.py` or project scripts in `16–18/` |
 | **Review** | Check weekly goals; revisit **Confused** lessons | Spaced repetition: quick-ref sheets |
@@ -72,8 +72,8 @@ Read → Reproduce → Reflect → Build → Review
 
 - Open from **Modules** (filter by phase) or **Continue Learning**.  
 - Each module README is the overview; numbered lessons are the depth.  
-- **Module 01:** follow the [essential path](01-python-for-data-science/README.md#essential-path-vs-optional-depth) — not all 15 lessons before ML.  
-- **SQL (Module 19):** [Stage 1.5](START-HERE.md#default-learning-order-short-version) — parallel with Modules 01–02 for most roles.
+- **Module 01:** follow the [essential path](01-python-for-data-science/README.md#essential-path-vs-optional-depth), not all 15 lessons before ML.  
+- **SQL (Module 19):** [Stage 1.5](START-HERE.md#default-learning-order-short-version), parallel with Modules 01–02 for most roles.
 
 ### Career path filter
 
@@ -85,18 +85,18 @@ Read → Reproduce → Reflect → Build → Review
 
 - Saved in **localStorage** only (this browser).  
 - Use **Export progress** / **Import progress** on the homepage before switching devices.  
-- Lesson progress ≠ project completion — track both.
+- Lesson progress ≠ project completion, track both.
 
 ### Project tracker
 
 - **23 projects** in three tiers; status is independent of lesson checkboxes.  
 - Start **beginner projects after Stage 2** (modules 02–05), not after finishing all modules.  
-- Intermediate projects include `starter.py` scaffolds — run locally after downloading data.
+- Intermediate projects include `starter.py` scaffolds, run locally after downloading data.
 
 ### Bookmarks & Confused
 
-- **Bookmark** — return later (references, cheat sheets).  
-- **Confused** — your personal review queue; revisit within 48 hours for best retention.
+- **Bookmark**, return later (references, cheat sheets).  
+- **Confused**, your personal review queue; revisit within 48 hours for best retention.
 
 ### Practice path
 
@@ -106,7 +106,7 @@ Read → Reproduce → Reflect → Build → Review
 ### Videos
 
 - YouTube opens in a new tab (no embedded players).  
-- Pair videos with the matching module lesson — video for intuition, lesson for code.
+- Pair videos with the matching module lesson, video for intuition, lesson for code.
 
 ---
 
@@ -153,7 +153,7 @@ Adjust goals on the homepage to match your real schedule. Consistency beats mara
 |-----|-----|-------|
 | 1 | Pick role; set weekly goals; read [Getting Started](GETTING_STARTED.md) on-site | Clone repo; run Iris project |
 | 2–3 | Module 00 overview + one math/Python lesson | Reproduce examples in Jupyter |
-| 4–5 | Module 01 essential: NumPy + Pandas lessons | Same — type code yourself |
+| 4–5 | Module 01 essential: NumPy + Pandas lessons | Same, type code yourself |
 | 6 | Start Module 19 SQL if analyst/DS track | SQLZoo or lesson exercises |
 | 7 | Review **Confused** items; export progress backup | Push a GitHub repo with week-1 notes |
 

@@ -1,6 +1,6 @@
 # Intermediate Projects
 
-More challenging projects that combine multiple ML concepts and techniques. Each project includes a **`starter.py` scaffold** — run it, then replace `TODO` sections with your implementation.
+More challenging projects that combine multiple ML concepts and techniques. Each project includes a **`starter.py` scaffold**, run it, then replace `TODO` sections with your implementation.
 
 > **Starter usage:** `cd project-XX-name` → download dataset per README → `python starter.py`
 
@@ -264,9 +264,9 @@ After completing these projects, you should be able to:
 
 ##  Additional Resources
 
-- [Kaggle Competitions](https://www.kaggle.com/competitions) - Practice with real competitions
-- [Papers with Code](https://paperswithcode.com/) - See state-of-the-art approaches
-- [Towards Data Science](https://towardsdatascience.com/) - Learn from others' projects
+- [Kaggle Competitions](https://www.kaggle.com/competitions): Practice with real competitions
+- [Papers with Code](https://paperswithcode.com/): See state-of-the-art approaches
+- [Towards Data Science](https://towardsdatascience.com/): Learn from others' projects
 
 ---
 

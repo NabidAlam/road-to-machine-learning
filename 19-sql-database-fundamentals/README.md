@@ -2,7 +2,7 @@
 
 Master SQL and database management for data science.
 
-> **Teaching stage:** This is **Stage 1.5** in the recommended path — start in **parallel with Module 01–02** if you target data analyst, data scientist, ML engineer, or BI roles. Do not wait until after GenAI (Module 25). See [FOUNDATION_AND_JOB_READINESS.md](../FOUNDATION_AND_JOB_READINESS.md).
+> **Teaching stage:** This is **Stage 1.5** in the recommended path, start in **parallel with Module 01–02** if you target data analyst, data scientist, ML engineer, or BI roles. Do not wait until after GenAI (Module 25). See [FOUNDATION_AND_JOB_READINESS.md](../FOUNDATION_AND_JOB_READINESS.md).
 
 ## What You'll Learn
 
@@ -105,14 +105,14 @@ By the end of this module, you should be able to:
 **[Complete Detailed Guide →](sql-database.md)**
 
 **Additional Resources:**
-- [Advanced Topics →](sql-database-advanced-topics.md) - Advanced window functions, optimization, indexes
-- [Project Tutorial →](sql-database-project-tutorial.md) - Step-by-step SQL project
-- [Quick Reference →](sql-database-quick-reference.md) - Quick lookup guide for SQL
+- [Advanced Topics →](sql-database-advanced-topics.md): Advanced window functions, optimization, indexes
+- [Project Tutorial →](sql-database-project-tutorial.md): Step-by-step SQL project
+- [Quick Reference →](sql-database-quick-reference.md): Quick lookup guide for SQL
 
 ---
 
 **Previous (folder order):** [18-projects-advanced](../18-projects-advanced/README.md)  
 **Next (folder order):** [20-handling-imbalanced-data](../20-handling-imbalanced-data/README.md)
 
-**Recommended stage order:** Start after **Module 01** (lessons 2–3) in parallel with Stages 1–2 — this is **Stage 1.5**, not a capstone after projects or GenAI.
+**Recommended stage order:** Start after **Module 01** (lessons 2–3) in parallel with Stages 1–2. This is **Stage 1.5**, not a capstone after projects or GenAI.
 

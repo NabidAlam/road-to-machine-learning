@@ -438,7 +438,7 @@ f1 = f1_score(y_test, y_pred)
 pr_auc = average_precision_score(y_test, y_proba)
 ```
 
-### Pitfall 3: Not Validating on Original Data
+### Pitfall 3, not Validating on Original Data
 
 ```python
 # Always evaluate on original test distribution

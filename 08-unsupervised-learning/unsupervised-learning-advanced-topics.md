@@ -850,7 +850,7 @@ print(f"Label Propagation Accuracy: {accuracy_score(y, predictions):.3f}")
 
 ## Common Pitfalls and Solutions
 
-### Pitfall 1: Not Scaling Features
+### Pitfall 1, not Scaling Features
 
 **Problem**: Features on different scales bias clustering
 

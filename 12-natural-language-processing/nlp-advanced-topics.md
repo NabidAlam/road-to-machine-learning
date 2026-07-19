@@ -1197,7 +1197,7 @@ model, tokenizer = train_sft("gpt2", train_data)
 ### Parameter Efficient Fine-Tuning (PEFT)
 
 **Why PEFT?**
-Full fine-tuning requires updating all model parameters, which is:
+Full fine-tuning requires updating all model parameters. Which is:
 - **Memory Intensive**: Need to store gradients for all parameters
 - **Slow**: Many parameters to update
 - **Expensive**: High compute costs
@@ -2248,5 +2248,5 @@ qa_chain = RetrievalQA.from_chain_type(
 
 ---
 
-**Try next:** Transformers have revolutionized NLP - use them! RAG extends their capabilities with external knowledge.
+**Try next:** Transformers have revolutionized NLP. Use them! RAG extends their capabilities with external knowledge.
 

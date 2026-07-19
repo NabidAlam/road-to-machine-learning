@@ -94,10 +94,10 @@ By the end of this module, you should be able to:
 - [PyTorch Examples](https://github.com/pytorch/examples)
 
 **Free Courses:**
-- [Fast.ai Practical Deep Learning](https://www.fast.ai/) - Completely free, top-down approach
-- [Deep Learning Specialization (Coursera)](https://www.coursera.org/specializations/deep-learning) - Free audit available
-- [TensorFlow Developer Certificate Course](https://www.coursera.org/professional-certificates/tensorflow-in-practice) - Free audit available
-- [PyTorch for Deep Learning (YouTube)](https://www.youtube.com/watch?v=V_xro1bcAuA) - Free course
+- [Fast.ai Practical Deep Learning](https://www.fast.ai/): Completely free, top-down approach
+- [Deep Learning Specialization (Coursera)](https://www.coursera.org/specializations/deep-learning): Free audit available
+- [TensorFlow Developer Certificate Course](https://www.coursera.org/professional-certificates/tensorflow-in-practice): Free audit available
+- [PyTorch for Deep Learning (YouTube)](https://www.youtube.com/watch?v=V_xro1bcAuA): Free course
 
 **Video Tutorials:**
 - [TensorFlow Tutorial (Sentdex)](https://www.youtube.com/playlist?list=PLQVvvaa0QuDfhTox0AjmQ6tvTgMBZBEFN)
@@ -112,9 +112,9 @@ By the end of this module, you should be able to:
 **[Complete Detailed Guide →](deep-learning-frameworks.md)**
 
 **Additional Resources:**
-- [Advanced Topics →](deep-learning-frameworks-advanced-topics.md) - Custom layers, advanced training, optimization, deployment
-- [Project Tutorial →](deep-learning-frameworks-project-tutorial.md) - Step-by-step comparison of Keras and PyTorch
-- [Quick Reference →](deep-learning-frameworks-quick-reference.md) - Quick lookup guide for both frameworks
+- [Advanced Topics →](deep-learning-frameworks-advanced-topics.md): Custom layers, advanced training, optimization, deployment
+- [Project Tutorial →](deep-learning-frameworks-project-tutorial.md): Step-by-step comparison of Keras and PyTorch
+- [Quick Reference →](deep-learning-frameworks-quick-reference.md): Quick lookup guide for both frameworks
 
 ---
 
