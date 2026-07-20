@@ -18,6 +18,7 @@ This guide provides clear, role-specific learning paths for different careers in
 - [Research Scientist](#research-scientist)
 - [Business Intelligence Analyst](#business-intelligence-analyst)
 - [Full-Stack AI Engineer](#full-stack-ai-engineer)
+- [Backend Engineer](#backend-engineer)
 
 ---
 
@@ -797,6 +798,59 @@ This guide provides clear, role-specific learning paths for different careers in
 
 ---
 
+## Backend Engineer
+
+**Role Focus**: Design, build, and operate APIs and services that clients and other systems depend on. You care about request lifecycle, data integrity, security, observability, and graceful failure. This path is **language-agnostic** at the concept layer and pairs with hands-on Node/Postgres lessons in the Full-Stack Track.
+
+**Start here:** [Backend Engineering from First Principles](backend_engineering_roadmap.md)
+
+### Core learning path
+
+| Phase | Focus | Primary resources |
+|-------|--------|-------------------|
+| **0–1** | HTTP, routing, serialization | [Backend roadmap](backend_engineering_roadmap.md#phase-1-the-request-path), [System Design HTTP](../system-design/06-http.md), [Phase B](full_stack_track/phase-b-node-apis.md) |
+| **2–3** | Auth, REST, layering, Postgres | [API Design](../system-design/09-api-design.md), [Phase C](full_stack_track/phase-c-sql-databases.md), [Module 19](../19-sql-database-fundamentals/README.md) |
+| **4–5** | Cache, queues, search | [Caching](../system-design/10-caching.md), [Message Queues](../system-design/19-message-queues.md), [Phase E](full_stack_track/phase-e-backend-advanced.md) |
+| **6–7** | Ops, security, scale, concurrency | [Backend roadmap Phases 5–7](backend_engineering_roadmap.md#phase-5-reliability-and-operations), [System Design scaling](../system-design/12-proxies-and-load-balancing.md) |
+
+### Essential modules (this repository)
+
+| Module | Topics | Priority |
+|--------|--------|----------|
+| **19-sql-database-fundamentals** | SQL, joins, relational design | ⭐⭐⭐ Critical |
+| **13-model-deployment** | FastAPI, serving, API patterns for ML | ⭐⭐ Important (if you serve models) |
+| **14-mlops-basics** | Monitoring, deployment pipelines | ⭐⭐ Important (as you ship) |
+
+### Recommended portfolio builds
+
+| Level | Build | Why it matters |
+|-------|--------|----------------|
+| **Starter** | REST API + Postgres + auth | Proves request path and persistence |
+| **Intermediate** | Cache + background jobs + structured logs | Mirrors real team services |
+| **Advanced** | Search + graceful shutdown + load test notes | Shows production thinking |
+
+### Essential resources (in this repo)
+
+| Area | Files |
+|------|-------|
+| **Roadmap** | [Backend Engineering from First Principles](backend_engineering_roadmap.md) |
+| **Architecture** | [System Design for Beginners](../system-design/README.md) |
+| **Hands-on** | [Full-Stack Track Phases B, C, E](full_stack_track/README.md) |
+| **ML APIs** | [Model Deployment](../13-model-deployment/README.md), [ML System Design Guide](ml_system_design_guide.md) |
+
+### Skills checklist
+
+- HTTP methods, status codes, and headers
+- REST resource design and OpenAPI contracts
+- Postgres schema, indexes, and transactions
+- Authn/authz (sessions or JWT + RBAC)
+- Caching and message queues
+- Structured logging and basic metrics
+- Security baseline (OWASP API Top 10 awareness)
+- IO vs CPU concurrency model for your stack
+
+---
+
 ## Full-Stack AI Engineer
 
 **Role Focus**: Ship AI-enabled products end to end: typed application code, APIs, databases, frontend, containers, and safe LLM features (RAG, streaming, evaluation). You still lean on this repo for **ML literacy** and **GenAI fundamentals**; the rest is a structured companion path with external learning and portfolio builds.
@@ -866,6 +920,7 @@ This guide provides clear, role-specific learning paths for different careers in
 | **Research Scientist** | Novel methods, experiments, write-ups | Theory, Math, Research | Research Projects, Papers |
 | **BI Analyst** | Business Intelligence | Visualization, Reporting | Dashboards, Business Reports |
 | **Full-Stack AI Engineer** | End-to-end AI products | TypeScript, APIs, SQL, Next.js, LLM/RAG | Auth + data app + AI feature in production |
+| **Backend Engineer** | APIs and services | HTTP, Postgres, cache, queues, security | REST API + auth + observability in production |
 
 ---
 

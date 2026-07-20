@@ -57,7 +57,7 @@
 | **BI Analyst** | Business Intelligence | 10-15 months | 00-01, 19-21 | [View Guide →](resources/career_roadmap_guide.md#business-intelligence-analyst) |
 | **Full-Stack AI Engineer** | End-to-end AI products | 12-24 months (15-25 hrs/week, parallel with blueprint) | 00-01, 19, 25 + [In-repo lessons](resources/full_stack_track/README.md) + [Blueprint A–H](resources/full_stack_ai_engineer_roadmap.md#phase-a-typescript-foundations) | [View Guide →](resources/career_roadmap_guide.md#full-stack-ai-engineer) |
 
-**Foundational side track:** [System Design for Beginners](system-design/README.md): 31 lessons covering HTTP, TCP, DNS, caching, load balancing, CAP, sharding, and message queues, plus a capstone and 9 interview-style design problems (rate limiter, social feed, chat, video, file storage, maps, KV store, message queue, and a real-time ML feature store). Useful for ML Engineer, MLOps, Data Engineer, AI Engineer, and Full-Stack AI Engineer paths. Pairs with the [ML System Design Guide](resources/ml_system_design_guide.md), which applies these foundations to ML services.
+**Foundational side track:** [System Design for Beginners](system-design/README.md): 31 lessons covering HTTP, TCP, DNS, caching, load balancing, CAP, sharding, and message queues, plus a capstone and 9 interview-style design problems (rate limiter, social feed, chat, video, file storage, maps, KV store, message queue, and a real-time ML feature store). Useful for ML Engineer, MLOps, Data Engineer, AI Engineer, and Full-Stack AI Engineer paths. Pairs with the [ML System Design Guide](resources/ml_system_design_guide.md), which applies these foundations to ML services. For **application backend engineering** (auth, Postgres, queues, ops), use the [Backend Engineering Roadmap](resources/backend_engineering_roadmap.md) alongside Phases B/C/E of the [Full-Stack Track](resources/full_stack_track/README.md).
 
 **Time assumptions:** Ranges in the **Est. Time** column assume about **10–15 hours/week** for a steady part-time pace and **30–40 hours/week** for an intensive full-time pace, unless a row states otherwise (for example, Full-Stack AI Engineer calls out parallel blueprint hours).
 
@@ -809,6 +809,7 @@ road-to-machine-learning/
     ml_glossary.md
     ai_engineering_glossary.md
     ai_myths_busted.md
+    backend_engineering_roadmap.md
     ml_model_testing.md
     ml_system_design_guide.md
     mlflow_comprehensive_guide.md
@@ -880,6 +881,7 @@ road-to-machine-learning/
 | [ML Glossary](resources/ml_glossary.md) | Comprehensive glossary of ML terms and concepts for beginners |
 | [AI Engineering Glossary](resources/ai_engineering_glossary.md) | Practical LLM / agent / RAG / serving jargon: what people say vs what it means |
 | [AI Myths Busted](resources/ai_myths_busted.md) | Expert myth-busting for AI/ML/DL: what people believe, what is actually going on, and one line to remember |
+| [Backend Engineering Roadmap](resources/backend_engineering_roadmap.md) | First-principles backend path: HTTP through scale, with in-repo links and free resources |
 | [Common Errors & Debugging Guide](resources/common_errors.md) | Troubleshooting guide for common ML errors and debugging strategies |
 | [DSA for ML Guide](resources/dsa_for_ml_guide.md) | Essential data structures and algorithms for machine learning |
 | [DSA Course (Python)](resources/dsa_course_python.md) | Full beginner-to-interview DSA course in Python (patterns, trees, graphs, practice plan) |
@@ -891,6 +893,7 @@ road-to-machine-learning/
 | [Complete Git & GitHub Guide](resources/git_guide.md) | Comprehensive Git tutorial with commands, outputs, practice exercises, and solutions |
 | [Docker Complete Tutorial](resources/docker_tutorial.md) | Comprehensive Docker guide for ML: containerization, Dockerfile, docker-compose, best practices, and deployment |
 | [Web Scraping Guide](resources/web_scraping_guide.md) | Complete web scraping guide from basics to advanced: Requests, Beautiful Soup, Selenium, Scrapy, CAPTCHA handling |
+| [Backend Engineering Roadmap](resources/backend_engineering_roadmap.md) | HTTP, REST, Postgres, caching, queues, security, scaling, and ops with free links and repo cross-refs |
 | [Full-Stack Track (in-repo lessons)](resources/full_stack_track/README.md) | TypeScript through AI integration: chapter lessons paired with the [Full-Stack AI Blueprint](resources/full_stack_ai_engineer_roadmap.md) |
 
 #### Advanced ML Topics

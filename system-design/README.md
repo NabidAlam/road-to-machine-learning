@@ -13,6 +13,7 @@ This folder is a **foundational side track** that pairs with the main [Road to M
 - **Start here** if you're heading toward ML Engineer, MLOps, Data Engineer, AI Engineer, or Full-Stack AI Engineer.
 - **Then** read the [ML System Design Guide](../resources/ml_system_design_guide.md) for how these ideas apply to serving models, drift, and MLOps.
 - **For interviews,** see the [Interview Preparation Guide](../resources/interview_prep.md#system-design-questions).
+- **For application backend engineering** (routing, auth, Postgres, queues, ops), see the [Backend Engineering Roadmap](../resources/backend_engineering_roadmap.md).
 
 You can read this in parallel with the numbered modules. It pairs especially well with module 13 (deployment) and 14 (MLOps).
 
