@@ -1668,5 +1668,5 @@ dvc repro
 - Explore advanced MLOps tools
 - Practice with [16-projects-beginner](../16-projects-beginner/README.md)
 
-**Try next:** MLOps makes ML production-ready! Invest time in proper tooling and practices.
+**Try next:** Add a training script that pins deps, logs metrics, and writes a model version tag.
 

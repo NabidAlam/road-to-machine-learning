@@ -406,5 +406,5 @@ r2 = r2_score(y_true, y_pred)
 
 ---
 
-**Try next:** Start simple, iterate, and always validate your approach!
+**Try next:** Baseline, then one change, then validate. Refuse three changes at once.
 

@@ -544,5 +544,5 @@ plt.show()
 
 ---
 
-**Try next:** Proper evaluation is the foundation of reliable machine learning models!
+**Try next:** Write the eval metric and split method at the top of your notebook before training.
 

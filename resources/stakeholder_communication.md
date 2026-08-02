@@ -521,5 +521,5 @@ ROI = (Gains - Costs) / Costs × 100%
 
 ---
 
-**Try next:** Great ML models are useless if stakeholders don't understand or trust them. Communication is as important as technical skills!
+**Try next:** Rewrite your last model result as three bullets a non-ML manager can act on.
 

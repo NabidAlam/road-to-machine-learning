@@ -44,7 +44,7 @@ Comprehensive list of free YouTube channels for learning machine learning, data 
 
 ### 7. **Two Minute Papers**
    - **Focus**: Latest research papers explained simply
-   - **Why**: Stay updated with cutting-edge research
+   - **Why**: Follow new papers and releases without chasing every headline
    - **Key Topics**: AI research, computer vision, NLP
    - **Link**: [YouTube](https://www.youtube.com/user/keeroyz)
 

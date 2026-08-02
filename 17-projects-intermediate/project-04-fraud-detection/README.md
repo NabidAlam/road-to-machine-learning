@@ -44,10 +44,9 @@ By completing this project, you will learn to:
 - Analyze fraud patterns
 
 ### Step 2: Handle Imbalance
-- Use SMOTE for oversampling
-- Use undersampling techniques
-- Adjust class weights
-- Try different sampling strategies
+- Prefer class weights before aggressive resampling
+- If you use SMOTE (or similar), apply it **only inside training folds** (never on the full dataset before splitting)
+- Undersampling and different sampling strategies as ablations
 
 ### Step 3: Feature Engineering
 - Create time-based features
@@ -70,9 +69,9 @@ By completing this project, you will learn to:
 - Use cross-validation
 
 ### Step 6: Model Evaluation
-- Focus on recall (catch fraud)
-- Calculate precision (minimize false alarms)
-- ROC-AUC curve
+- Optimize a **cost-sensitive** threshold (false alarms cost ops time; misses cost fraud loss)
+- Report precision, recall, PR-AUC (not accuracy)
+- ROC-AUC as a secondary view
 - Precision-Recall curve
 - Cost-benefit analysis
 
@@ -91,11 +90,11 @@ By completing this project, you will learn to:
 
 ## Evaluation Metrics
 
-- **Recall**: Most important (catch actual fraud)
-- **Precision**: Minimize false positives
-- **F1-Score**: Balance
-- **ROC-AUC**: Overall performance
-- **Cost**: Financial impact
+- **Recall**: catch actual fraud (misses are expensive)
+- **Precision**: bound alert load / false alarms (also expensive in ops)
+- **PR-AUC / F1**: summarize the trade-off; pick a threshold from cost, not from a slogan
+- **ROC-AUC**: secondary overall ranking metric
+- **Cost**: explicit \$ impact of FP vs FN if you can estimate it
 
 ## Key Challenges
 

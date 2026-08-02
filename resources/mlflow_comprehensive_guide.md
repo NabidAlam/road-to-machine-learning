@@ -1527,5 +1527,5 @@ gcloud run deploy iris-classifier --image gcr.io/project/iris-classifier --platf
 
 ---
 
-**Try next:** MLFlow is a powerful tool for managing the complete ML lifecycle. Start with basic experiment tracking, then gradually add model registry, hyperparameter tuning, and deployment capabilities. Focus on reproducibility and collaboration!
+**Try next:** Log params, metrics, and the model artifact for your next training run. Compare two runs side by side.
 

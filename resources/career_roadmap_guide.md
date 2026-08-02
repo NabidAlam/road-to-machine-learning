@@ -2,6 +2,8 @@
 
 This guide provides clear, role-specific learning paths for different careers in data science and machine learning. Each path includes recommended modules, projects, and resources tailored to the specific role.
 
+**Honesty note:** Month ranges are study estimates for this repo’s content, not job guarantees. Titles like “Solution Architect” or “Research Scientist” also need depth, portfolio evidence, and (for research) math/experimentation practice beyond checklist completion.
+
 **Canonical stage order and the module 15 (time series) branch** match the root [README](../README.md#learning-path-overview). Stage 6 is vision and language (modules **11–12**). Module **15** is an optional parallel track, see [TIME_SERIES_LEARNING_PATH.md](../TIME_SERIES_LEARNING_PATH.md). **SQL is Stage 1.5 (module 19)**, not Stage 7.5.
 
 ## Table of Contents
@@ -946,4 +948,4 @@ This guide provides clear, role-specific learning paths for different careers in
 
 ---
 
-**Try next:** These are guidelines, not strict rules. Adjust based on your background, goals, and available time. The most important thing is consistent practice and building real projects!
+**Try next:** Pick one role row above. Schedule the next two modules on your calendar this week.

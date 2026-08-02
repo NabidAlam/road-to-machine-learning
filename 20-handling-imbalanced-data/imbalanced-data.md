@@ -644,5 +644,5 @@ cost_matrix = {
 
 ---
 
-**Try next:** Handling imbalanced data is crucial for real-world ML applications! The minority class is often the most important, so don't let high accuracy fool you. Focus on metrics that matter for your business problem.
+**Try next:** Plot precision-recall for your imbalanced task. Pick a threshold from cost, not from accuracy.
 

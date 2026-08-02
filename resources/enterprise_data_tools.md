@@ -451,5 +451,5 @@ df_transformed.to_csv('s3://bucket/data.csv', index=False)
 
 ---
 
-**Try next:** Enterprise tools provide powerful capabilities but require proper setup and configuration. Start with understanding your requirements, then choose tools that best fit your needs!
+**Try next:** List your data volume, latency need, and team skills. Only then pick a vendor tool.
 

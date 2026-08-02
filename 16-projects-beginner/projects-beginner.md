@@ -342,5 +342,5 @@ git commit -m "Initial project setup"
 
 ---
 
-**Try next:** Projects are where learning happens! Start simple and iterate.
+**Try next:** Finish one beginner project README end to end, including a short error analysis.
 

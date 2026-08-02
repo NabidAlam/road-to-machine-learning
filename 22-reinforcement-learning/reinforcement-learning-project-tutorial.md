@@ -6,12 +6,12 @@ Step-by-step tutorial: Building a DQN agent for CartPole.
 
 ### Objective
 
-Train a DQN agent to balance a pole on a cart using OpenAI Gym.
+Train a DQN agent to balance a pole on a cart using **Gymnasium** (CartPole-v1).
 
 ### Step 1: Setup
 
 ```python
-import gym
+import gymnasium as gym
 import numpy as np
 import torch
 import torch.nn as nn
@@ -98,12 +98,13 @@ agent = DQNAgent(state_size=4, action_size=2)
 
 episodes = 500
 for episode in range(episodes):
-    state = env.reset()
+    state, info = env.reset()
     total_reward = 0
     
     while True:
         action = agent.act(state)
-        next_state, reward, done, _ = env.step(action)
+        next_state, reward, terminated, truncated, info = env.step(action)
+        done = terminated or truncated
         agent.remember(state, action, reward, next_state, done)
         state = next_state
         total_reward += reward
@@ -122,13 +123,13 @@ for episode in range(episodes):
 
 ```python
 # Test trained agent
-state = env.reset()
+state, info = env.reset()
 total_reward = 0
 while True:
     action = agent.act(state)
-    state, reward, done, _ = env.step(action)
+    state, reward, terminated, truncated, info = env.step(action)
+    done = terminated or truncated
     total_reward += reward
-    env.render()
     if done:
         break
 print(f"Test Reward: {total_reward}")

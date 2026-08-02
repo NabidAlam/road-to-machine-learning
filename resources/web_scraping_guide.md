@@ -1623,5 +1623,5 @@ df.to_csv('news_articles.csv', index=False)
 
 ---
 
-**Try next:** Web scraping is a powerful tool, but use it responsibly and ethically. Always respect website terms of service and rate limits!
+**Try next:** Scrape one allowed page with rate limiting and a robots.txt check. Store raw HTML before parsing.
 

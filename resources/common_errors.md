@@ -540,5 +540,5 @@ def train_model_safe(X_train, y_train):
 
 ---
 
-**Try next:** Most errors come from data issues. Always inspect and validate your data first!
+**Try next:** Print dtypes, null rates, and a few rows before the next model fit.
 

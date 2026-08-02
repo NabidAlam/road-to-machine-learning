@@ -742,5 +742,5 @@ def clean_messy_text(text):
 
 ---
 
-**Try next:** Regular expressions are essential for text data. Master the basics and practice with real-world examples!
+**Try next:** Extract emails or dates from a messy text file with one regex. Add a unit test for a failure case.
 

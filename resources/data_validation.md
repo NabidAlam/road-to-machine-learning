@@ -699,5 +699,5 @@ else:
 
 ---
 
-**Try next:** Garbage in, garbage out. Always validate your data before it reaches your models!
+**Try next:** Add three schema checks (nulls, ranges, duplicates) before your next training run.
 

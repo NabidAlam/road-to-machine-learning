@@ -52,9 +52,8 @@ User Query → Embedding → Vector Search → Context Retrieval → LLM → Res
 #### Production RAG Architecture
 
 ```python
-from langchain.vectorstores import Pinecone
-from langchain.embeddings import OpenAIEmbeddings
-from langchain.llms import OpenAI
+from langchain_community.vectorstores import Pinecone
+from langchain_openai import OpenAIEmbeddings, ChatOpenAI
 from langchain.chains import RetrievalQA
 
 class ProductionRAGSystem:
@@ -66,11 +65,11 @@ class ProductionRAGSystem:
             embedding=self.embeddings
         )
         
-        # LLM with caching
-        self.llm = OpenAI(
+        # Chat LLM (temperature=0 lowers randomness; not a correctness guarantee)
+        self.llm = ChatOpenAI(
+            model="gpt-4o",
             temperature=0,
-            model_name="gpt-4",
-            max_tokens=1000
+            max_tokens=1000,
         )
         
         # RAG chain
@@ -725,5 +724,5 @@ def sanitize_input(text: str) -> str:
 
 ---
 
-**Try next:** Production GenAI deployment requires careful planning, monitoring, and optimization. Start simple, iterate, and scale gradually!
+**Try next:** Add latency, cost-per-query, and failure logging to one GenAI endpoint before you add features.
 

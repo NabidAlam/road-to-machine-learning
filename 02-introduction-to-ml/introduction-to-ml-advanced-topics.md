@@ -602,5 +602,5 @@ class ModelVersioning:
 
 ---
 
-**Try next:** Advanced ML practices will make your projects more successful and maintainable!
+**Try next:** Add a config file and a seed to your last training script. Re-run and confirm the metric matches.
 

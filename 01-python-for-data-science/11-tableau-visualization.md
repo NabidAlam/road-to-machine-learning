@@ -460,5 +460,5 @@ Create financial dashboard:
 
 ---
 
-**Try next:** Tableau excels at quick, interactive visualizations. Use it when you need to create professional dashboards without coding!
+**Try next:** Build one Tableau (or similar) view that answers a single business question.
 

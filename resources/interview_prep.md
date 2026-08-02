@@ -579,5 +579,5 @@ As sample size increases, distribution of sample means approaches normal distrib
 
 ---
 
-**Try next:** Practice is key. The more you practice explaining concepts and solving problems, the more confident you'll be in interviews!
+**Try next:** Explain bias-variance to a friend in five minutes. Record yourself and cut the fluff.
 

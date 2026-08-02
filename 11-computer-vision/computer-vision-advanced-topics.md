@@ -17,26 +17,26 @@ Comprehensive guide to advanced computer vision techniques and architectures.
 
 ### ResNet (Residual Networks)
 
-Skip connections solve vanishing gradient problem.
+Skip connections ease deep-net **optimization** (the degradation problem). They are often described as helping with vanishing gradients, but that is not the main ResNet claim. Residuals let you train much deeper stacks in practice.
 
 ```python
 from tensorflow import keras
 from tensorflow.keras import layers
 
-def residual_block(x, filters, kernel_size=3):
-    """ResNet residual block"""
+def residual_block(x, filters, kernel_size=3, stride=1):
+    """ResNet residual block (projection shortcut when stride>1 or channel mismatch)"""
     shortcut = x
     
     # Main path
-    x = layers.Conv2D(filters, kernel_size, padding='same')(x)
+    x = layers.Conv2D(filters, kernel_size, strides=stride, padding='same')(x)
     x = layers.BatchNormalization()(x)
     x = layers.ReLU()(x)
     x = layers.Conv2D(filters, kernel_size, padding='same')(x)
     x = layers.BatchNormalization()(x)
     
-    # Skip connection (if dimensions don't match, use 1x1 conv)
-    if shortcut.shape[-1] != filters:
-        shortcut = layers.Conv2D(filters, 1)(shortcut)
+    # Skip connection (1x1 projection if channels or spatial size change)
+    if shortcut.shape[-1] != filters or stride != 1:
+        shortcut = layers.Conv2D(filters, 1, strides=stride)(shortcut)
         shortcut = layers.BatchNormalization()(shortcut)
     
     # Add skip connection
@@ -67,7 +67,7 @@ model = keras.Model(inputs, outputs)
 
 ### EfficientNet
 
-Best accuracy/efficiency trade-off.
+Strong ImageNet accuracy/size trade-off in the original EfficientNet paper (B0–B7 family). Not a forever "best" across every task.
 
 ```python
 from tensorflow.keras.applications import EfficientNetB0
@@ -207,7 +207,7 @@ def rcnn_pipeline(image):
 - **YOLOv3 (2018)**: Multi-scale detection
 - **YOLOv4 (2020)**: Improved performance
 - **YOLOv5 (2020)**: PyTorch implementation
-- **YOLOv8 (2023)**: Latest version
+- **YOLOv8 (2023)**: Major Ultralytics release (check current docs for newer YOLO versions)
 
 ```python
 try:
@@ -1322,5 +1322,5 @@ model = tfmot.sparsity.keras.prune_low_magnitude(model, **pruning_params)
 
 ---
 
-**Try next:** Advanced techniques build on fundamentals. Master basics first!
+**Try next:** Get a plain CNN above chance before you try detection or segmentation.
 

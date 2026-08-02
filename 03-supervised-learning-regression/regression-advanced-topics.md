@@ -1135,5 +1135,5 @@ model = complete_regression_analysis(X_train, y_train, feature_names)
 
 ---
 
-**Try next:** A good regression model requires careful diagnostics and validation!
+**Try next:** Plot residuals vs predicted. Fix structure before you add more features.
 

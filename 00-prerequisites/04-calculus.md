@@ -819,4 +819,4 @@ Compute derivative of f(x) = sin(x² + 1) using chain rule.
 
 ---
 
-**Try next:** Calculus is the tool that makes ML optimization possible. Understanding gradients is key to understanding how models learn!
+**Try next:** Compute d/dx of (wx-y)^2 for a scalar w. Then watch that term in a training step.

@@ -2,7 +2,7 @@
 
 Learn to build modern AI applications using Large Language Models (LLMs), prompt engineering, vector databases, RAG systems, and AI agents.
 
-**How this module fits:** Stage 7 in the main README. Best after Module 12 (NLP) or alongside it if you learn by building products. The in-repo [generative-ai-llms.md](generative-ai-llms.md) guide is an overview. Deep dives live in [resources/generative_ai_comprehensive_guide.md](../resources/generative_ai_comprehensive_guide.md), [resources/rag_comprehensive_guide.md](../resources/rag_comprehensive_guide.md), and linked guides below.
+**How this module fits:** Stage 7 in the main README. Best after Module 12 (NLP) or alongside it if you learn by building products. **This folder is a hub:** [generative-ai-llms.md](generative-ai-llms.md) maps topics; the real depth is in [resources/generative_ai_comprehensive_guide.md](../resources/generative_ai_comprehensive_guide.md), [resources/rag_comprehensive_guide.md](../resources/rag_comprehensive_guide.md), and the linked guides below. Use the project tutorial and quick reference here for hands-on practice.
 
 **Suggested path:** Prompt engineering → embeddings and vector search → RAG pipeline → agents → production checklist in [resources/genai_production_deployment.md](../resources/genai_production_deployment.md).
 

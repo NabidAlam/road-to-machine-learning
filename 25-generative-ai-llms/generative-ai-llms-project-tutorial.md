@@ -18,15 +18,14 @@ Build a Retrieval-Augmented Generation (RAG) system that can answer questions ab
 
 ```python
 # Install required packages
-# pip install langchain openai chromadb tiktoken pypdf
+# pip install langchain langchain-openai langchain-community langchain-text-splitters chromadb pypdf
 
 import os
-from langchain.document_loaders import PyPDFLoader
-from langchain.text_splitter import RecursiveCharacterTextSplitter
-from langchain.embeddings import OpenAIEmbeddings
-from langchain.vectorstores import Chroma
+from langchain_community.document_loaders import PyPDFLoader
+from langchain_text_splitters import RecursiveCharacterTextSplitter
+from langchain_openai import OpenAIEmbeddings, ChatOpenAI
+from langchain_community.vectorstores import Chroma
 from langchain.chains import RetrievalQA
-from langchain.llms import OpenAI
 
 # Set API key
 os.environ["OPENAI_API_KEY"] = "your-api-key-here"
@@ -87,7 +86,8 @@ retriever = vectorstore.as_retriever(
 
 ```python
 # Create QA chain
-llm = OpenAI(temperature=0)
+# temperature=0 lowers randomness; not a correctness guarantee
+llm = ChatOpenAI(model="gpt-4o-mini", temperature=0)
 
 qa_chain = RetrievalQA.from_chain_type(
     llm=llm,
@@ -175,7 +175,7 @@ print(result["answer"])  # Uses previous context
 # app.py
 import streamlit as st
 from langchain.chains import RetrievalQA
-from langchain.llms import OpenAI
+from langchain_openai import ChatOpenAI
 
 # Load vector store
 vectorstore = Chroma(persist_directory="./chroma_db", embedding_function=embeddings)
@@ -183,7 +183,7 @@ retriever = vectorstore.as_retriever()
 
 # Create QA chain
 qa_chain = RetrievalQA.from_chain_type(
-    llm=OpenAI(temperature=0),
+    llm=ChatOpenAI(model="gpt-4o-mini", temperature=0),
     chain_type="stuff",
     retriever=retriever
 )

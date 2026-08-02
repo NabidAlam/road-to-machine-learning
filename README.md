@@ -1,4 +1,4 @@
-﻿# Road to ML: From Zero to Hero
+﻿# Road to ML: From Basics to Advanced Topics
 
 <div align="center">
 
@@ -11,7 +11,7 @@
 
 **A comprehensive, step-by-step guide to learning Machine Learning from absolute basics to advanced topics**
 
-*Perfect for beginners • 26 Learning Modules • 23 Real-World Projects • Production-Ready Skills*
+*Structured path for beginners • 26 Learning Modules • 23 Real-World Projects • Deployment and MLOps topics*
 
 [Start Here](START-HERE.md) • [How to Use the Study Hub](HOW_TO_USE_THE_STUDY_HUB.md) • [Foundation & job readiness](FOUNDATION_AND_JOB_READINESS.md) • [Get Started](#getting-started) • [Learning Path](#learning-path) • [Projects](#stage-9-projects) • [System Design](system-design/README.md) • [Full-stack AI](resources/career_roadmap_guide.md#full-stack-ai-engineer) • [Contribute](#contributing)
 
@@ -29,14 +29,14 @@
 
 ## Why This Repository?
 
-- **Zero to Hero Path**: Complete learning journey from basics to advanced ML
+- **Zero to Advanced Path**: Complete learning journey from basics to advanced ML
 - **Beginner-Friendly**: No prior experience needed. We cover everything
 - **Hands-On Learning**: 23 practical projects to build your portfolio
-- **Production Focus**: Learn deployment, MLOps, and real-world skills
+- **Production Topics**: Deployment, MLOps, and real-world failure modes (not a guarantee that one pass makes you production-ready)
 - **Well-Organized**: Logical progression with clear learning objectives
 - **Community-Driven**: Open source, contributions welcome!
 
-**Perfect for**: Students, career switchers, self-learners, and anyone wanting to master ML
+**Built for**: Students, career switchers, and self-learners who want a structured ML path. Outcomes depend on practice, projects, and the job market. This repo does not guarantee a hire.
 
 ## Career Paths
 
@@ -57,9 +57,9 @@
 | **BI Analyst** | Business Intelligence | 10-15 months | 00-01, 19-21 | [View Guide →](resources/career_roadmap_guide.md#business-intelligence-analyst) |
 | **Full-Stack AI Engineer** | End-to-end AI products | 12-24 months (15-25 hrs/week, parallel with blueprint) | 00-01, 19, 25 + [In-repo lessons](resources/full_stack_track/README.md) + [Blueprint A–H](resources/full_stack_ai_engineer_roadmap.md#phase-a-typescript-foundations) | [View Guide →](resources/career_roadmap_guide.md#full-stack-ai-engineer) |
 
-**Foundational side track:** [System Design for Beginners](system-design/README.md): 31 lessons covering HTTP, TCP, DNS, caching, load balancing, CAP, sharding, and message queues, plus a capstone and 9 interview-style design problems (rate limiter, social feed, chat, video, file storage, maps, KV store, message queue, and a real-time ML feature store). Useful for ML Engineer, MLOps, Data Engineer, AI Engineer, and Full-Stack AI Engineer paths. Pairs with the [ML System Design Guide](resources/ml_system_design_guide.md), which applies these foundations to ML services. For **application backend engineering** (auth, Postgres, queues, ops), use the [Backend Engineer Roadmap](resources/backend_engineering_roadmap.md) alongside Phases B/C/E of the [Full-Stack Track](resources/full_stack_track/README.md).
+**Foundational side track:** [System Design for Beginners](system-design/README.md): **31 lessons** (22 foundations + 9 interview-style designs) covering HTTP, TCP, DNS, caching, load balancing, CAP, sharding, and message queues, including a capstone-style design sequence (rate limiter, social feed, chat, video, file storage, maps, KV store, message queue, and a real-time ML feature store). Useful for ML Engineer, MLOps, Data Engineer, AI Engineer, and Full-Stack AI Engineer paths. Pairs with the [ML System Design Guide](resources/ml_system_design_guide.md), which applies these foundations to ML services. For **application backend engineering** (auth, Postgres, queues, ops), use the [Backend Engineer Roadmap](resources/backend_engineering_roadmap.md) alongside Phases B/C/E of the [Full-Stack Track](resources/full_stack_track/README.md).
 
-**Time assumptions:** Ranges in the **Est. Time** column assume about **10–15 hours/week** for a steady part-time pace and **30–40 hours/week** for an intensive full-time pace, unless a row states otherwise (for example, Full-Stack AI Engineer calls out parallel blueprint hours).
+**Time assumptions:** Ranges in the **Est. Time** column assume about **10–15 hours/week** for a steady part-time pace and **30–40 hours/week** for an intensive full-time pace, unless a row states otherwise (for example, Full-Stack AI Engineer calls out parallel blueprint hours). Time-to-role also depends on prior software experience, portfolio quality, and hiring markets. Finishing modules is not the same as getting hired.
 
 **SQL timing:** Module **19** is **Stage 1.5** (parallel with Modules 01–02) for most roles, not after GenAI. Module lists like `19-21` mean you need all three modules, not that SQL comes last.
 

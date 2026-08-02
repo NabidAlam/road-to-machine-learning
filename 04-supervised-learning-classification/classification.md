@@ -1859,5 +1859,5 @@ Need interpretability?
 - Learn about handling imbalanced data
 - Move to [05-model-evaluation-optimization](../05-model-evaluation-optimization/README.md)
 
-**Try next:** Try multiple algorithms, compare performance, and choose based on your specific needs!
+**Try next:** Compare two classifiers on the same folds. Pick with a pre-registered metric.
 

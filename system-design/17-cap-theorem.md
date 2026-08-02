@@ -10,8 +10,6 @@ In a distributed system, you have three properties:
 - **A - Availability**: every request gets a response, even if some nodes are down.
 - **P - Partition tolerance**: the system keeps working even when the network between nodes is broken.
 
-The theorem says: **you can have any two, but not all three at once during a network partition**.
-
 ## What's a partition
 
 A network partition is when some nodes can't talk to others, even though both are up. Maybe a cable failed. Maybe a region lost connectivity. Maybe the load balancer dropped them. From inside, each side sees the other as "down".
@@ -23,9 +21,9 @@ A network partition is when some nodes can't talk to others, even though both ar
                   (X = network broken)
 ```
 
-In a real distributed system, partitions happen. Not "if". "When". They're rare on a single-data-center network. They're common across continents. So P is non-negotiable.
+In a real distributed system, partitions happen. Not "if". "When". They're rare on a single-data-center network. They're common across continents. So **P is forced** once you accept partitions as inevitable.
 
-That leaves you choosing between C and A, **during the partition**.
+The useful statement (see Brewer's later clarifications): **during a partition, choose C or A**. You do not freely pick "any two of three" as a lifestyle; you face a C-vs-A decision while P is already on.
 
 ## CP: prefer consistency
 

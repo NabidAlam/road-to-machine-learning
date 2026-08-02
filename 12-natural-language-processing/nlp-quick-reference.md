@@ -94,5 +94,5 @@ classifier = pipeline("sentiment-analysis")
 
 ---
 
-**Try next:** Transformers are state-of-the-art. Use them!
+**Try next:** Run a Hugging Face pipeline on ten real examples from your domain. Note where it fails.
 

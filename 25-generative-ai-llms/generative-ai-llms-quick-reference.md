@@ -88,8 +88,8 @@ response = client.chat.completions.create(
 
 ```python
 import chromadb
-from langchain.vectorstores import Chroma
-from langchain.embeddings import OpenAIEmbeddings
+from langchain_community.vectorstores import Chroma
+from langchain_openai import OpenAIEmbeddings
 
 # Create client
 client = chromadb.Client()
@@ -114,16 +114,9 @@ results = collection.query(
 ### Pinecone
 
 ```python
-import pinecone
-from langchain.vectorstores import Pinecone
+from langchain_community.vectorstores import Pinecone
 
-# Initialize
-pinecone.init(api_key="your-api-key", environment="us-east-1")
-
-# Create index
-pinecone.create_index("documents", dimension=1536)
-
-# Create vector store
+# Create vector store (check current Pinecone client + LangChain docs for auth)
 vectorstore = Pinecone.from_documents(
     documents=chunks,
     embedding=embeddings,
@@ -137,7 +130,7 @@ results = vectorstore.similarity_search("query", k=3)
 ### FAISS
 
 ```python
-from langchain.vectorstores import FAISS
+from langchain_community.vectorstores import FAISS
 
 # Create vector store
 vectorstore = FAISS.from_documents(
@@ -163,14 +156,14 @@ results = vectorstore.similarity_search("query", k=3)
 
 ```python
 from langchain.chains import RetrievalQA
-from langchain.llms import OpenAI
+from langchain_openai import ChatOpenAI
 
 # Create retriever
 retriever = vectorstore.as_retriever(search_kwargs={"k": 3})
 
 # Create QA chain
 qa_chain = RetrievalQA.from_chain_type(
-    llm=OpenAI(),
+    llm=ChatOpenAI(model="gpt-4o-mini", temperature=0),
     chain_type="stuff",
     retriever=retriever
 )
@@ -183,7 +176,7 @@ result = qa_chain({"query": "What is AI?"})
 
 ```python
 qa_chain = RetrievalQA.from_chain_type(
-    llm=OpenAI(),
+    llm=ChatOpenAI(model="gpt-4o-mini", temperature=0),
     chain_type="stuff",
     retriever=retriever,
     return_source_documents=True
@@ -221,35 +214,36 @@ result = chain({"question": "What is AI?"})
 ### Basic LLM
 
 ```python
-from langchain.llms import OpenAI
+from langchain_openai import ChatOpenAI
 
-llm = OpenAI(temperature=0.7)
-response = llm("Explain machine learning")
+llm = ChatOpenAI(model="gpt-4o-mini", temperature=0.7)
+response = llm.invoke("Explain machine learning")
+print(response.content)
 ```
 
 ### Prompt Templates
 
 ```python
-from langchain.prompts import PromptTemplate
+from langchain_core.prompts import ChatPromptTemplate
 
-template = "Tell me about {topic}"
-prompt = PromptTemplate(input_variables=["topic"], template=template)
-response = llm(prompt.format(topic="AI"))
+prompt = ChatPromptTemplate.from_template("Tell me about {topic}")
+chain = prompt | llm
+response = chain.invoke({"topic": "AI"})
+print(response.content)
 ```
 
 ### Chains
 
 ```python
-from langchain.chains import LLMChain
-
-chain = LLMChain(llm=llm, prompt=prompt)
-response = chain.run(topic="AI")
+# LCEL style (prompt | model) is preferred over LLMChain
+chain = prompt | llm
+response = chain.invoke({"topic": "AI"})
 ```
 
 ### Document Loaders
 
 ```python
-from langchain.document_loaders import PyPDFLoader, TextLoader
+from langchain_community.document_loaders import PyPDFLoader, TextLoader
 
 # PDF
 loader = PyPDFLoader("document.pdf")
@@ -263,7 +257,7 @@ documents = loader.load()
 ### Text Splitters
 
 ```python
-from langchain.text_splitter import RecursiveCharacterTextSplitter
+from langchain_text_splitters import RecursiveCharacterTextSplitter
 
 splitter = RecursiveCharacterTextSplitter(
     chunk_size=1000,
@@ -280,7 +274,7 @@ chunks = splitter.split_documents(documents)
 
 ```python
 from langchain.agents import initialize_agent, Tool
-from langchain.llms import OpenAI
+from langchain_openai import ChatOpenAI
 
 tools = [
     Tool(
@@ -292,7 +286,7 @@ tools = [
 
 agent = initialize_agent(
     tools,
-    OpenAI(),
+    ChatOpenAI(model="gpt-4o-mini", temperature=0),
     agent="zero-shot-react-description",
     verbose=True
 )

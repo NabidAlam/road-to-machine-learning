@@ -1874,10 +1874,10 @@ Generated Response
 ### Basic RAG Implementation
 
 ```python
-from langchain.embeddings import HuggingFaceEmbeddings
-from langchain.vectorstores import FAISS
-from langchain.text_splitter import RecursiveCharacterTextSplitter
-from langchain.llms import OpenAI
+from langchain_community.embeddings import HuggingFaceEmbeddings
+from langchain_community.vectorstores import FAISS
+from langchain_text_splitters import RecursiveCharacterTextSplitter
+from langchain_openai import ChatOpenAI
 from langchain.chains import RetrievalQA
 
 # 1. Load and split documents
@@ -1898,8 +1898,8 @@ vectorstore = FAISS.from_documents(documents, embeddings)
 # 4. Create retriever
 retriever = vectorstore.as_retriever(search_kwargs={"k": 3})
 
-# 5. Create LLM
-llm = OpenAI(temperature=0)
+# 5. Create LLM (temperature=0 lowers randomness; not a correctness guarantee)
+llm = ChatOpenAI(model="gpt-4o-mini", temperature=0)
 
 # 6. Create RAG chain
 qa_chain = RetrievalQA.from_chain_type(
@@ -1946,7 +1946,7 @@ response2 = conversational_chain({"question": "How does it work?"})  # Remembers
 
 **1. Document Loaders:**
 ```python
-from langchain.document_loaders import PyPDFLoader, TextLoader, WebBaseLoader
+from langchain_community.document_loaders import PyPDFLoader, TextLoader, WebBaseLoader
 
 # Load PDF
 loader = PyPDFLoader("document.pdf")
@@ -1959,7 +1959,7 @@ documents = loader.load()
 
 **2. Text Splitting:**
 ```python
-from langchain.text_splitter import RecursiveCharacterTextSplitter
+from langchain_text_splitters import RecursiveCharacterTextSplitter
 
 text_splitter = RecursiveCharacterTextSplitter(
     chunk_size=1000,
@@ -1972,10 +1972,11 @@ chunks = text_splitter.split_documents(documents)
 
 **3. Embeddings:**
 ```python
-from langchain.embeddings import OpenAIEmbeddings, HuggingFaceEmbeddings
+from langchain_openai import OpenAIEmbeddings
+from langchain_community.embeddings import HuggingFaceEmbeddings
 
 # OpenAI embeddings
-embeddings = OpenAIEmbeddings()
+embeddings = OpenAIEmbeddings(model="text-embedding-3-small")
 
 # Or Hugging Face (free)
 embeddings = HuggingFaceEmbeddings(
@@ -1985,7 +1986,7 @@ embeddings = HuggingFaceEmbeddings(
 
 **4. Vector Stores:**
 ```python
-from langchain.vectorstores import FAISS, Chroma, Pinecone
+from langchain_community.vectorstores import FAISS, Chroma, Pinecone
 
 # FAISS (local)
 vectorstore = FAISS.from_documents(chunks, embeddings)
@@ -1997,9 +1998,7 @@ vectorstore = Chroma.from_documents(
     persist_directory="./chroma_db"
 )
 
-# Pinecone (cloud)
-import pinecone
-pinecone.init(api_key="your-key", environment="us-east-1")
+# Pinecone (cloud) — check current Pinecone + LangChain docs for auth
 vectorstore = Pinecone.from_documents(chunks, embeddings, index_name="rag-index")
 ```
 
@@ -2026,8 +2025,10 @@ retriever = vectorstore.as_retriever(
 **Case Study 1: Document Q&A System**
 
 ```python
-from langchain.document_loaders import DirectoryLoader
-from langchain.vectorstores import FAISS
+from langchain_community.document_loaders import DirectoryLoader
+from langchain_community.vectorstores import FAISS
+from langchain_community.embeddings import HuggingFaceEmbeddings
+from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain.chains import RetrievalQA
 
 # Load all documents from directory
@@ -2055,8 +2056,8 @@ result = qa_chain({"query": "What are the key findings?"})
 **Case Study 2: Code Documentation Assistant**
 
 ```python
-from langchain.document_loaders import TextLoader
-from langchain.text_splitter import Language
+from langchain_community.document_loaders import TextLoader
+from langchain_text_splitters import Language, RecursiveCharacterTextSplitter
 
 # Load code files
 loader = TextLoader("codebase.py")
@@ -2108,10 +2109,10 @@ retriever = vectorstore.as_retriever(
 **1. Better Chunking:**
 ```python
 # Semantic chunking (preserve meaning)
-from langchain.text_splitter import SemanticChunker
-from langchain.embeddings import OpenAIEmbeddings
+from langchain_experimental.text_splitter import SemanticChunker
+from langchain_openai import OpenAIEmbeddings
 
-embeddings = OpenAIEmbeddings()
+embeddings = OpenAIEmbeddings(model="text-embedding-3-small")
 text_splitter = SemanticChunker(embeddings)
 chunks = text_splitter.create_documents([text])
 ```
@@ -2248,5 +2249,5 @@ qa_chain = RetrievalQA.from_chain_type(
 
 ---
 
-**Try next:** Transformers have revolutionized NLP. Use them! RAG extends their capabilities with external knowledge.
+**Try next:** Fine-tune or retrieve on a domain corpus you care about. Compare against a frozen baseline.
 

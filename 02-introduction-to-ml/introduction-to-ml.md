@@ -888,5 +888,5 @@ print(classification_report(y_test, y_pred, target_names=iris.target_names))
 - Move to [03-supervised-learning-regression](../03-supervised-learning-regression/README.md) for regression
 - Or [04-supervised-learning-classification](../04-supervised-learning-classification/README.md) for classification
 
-**Try next:** Understanding the fundamentals is crucial before diving into algorithms!
+**Try next:** State train vs test leakage in one sentence using your last project as the example.
 

@@ -1,5 +1,7 @@
 # Generative AI & Modern LLM Applications
 
+This file is the **module hub** (map + links), not a full textbook chapter. Deep implementation lives under `resources/`. Work the suggested path below, then return here for the next topic.
+
 Complete guide to building modern AI applications using Large Language Models (LLMs), prompt engineering, vector databases, and RAG systems.
 
 ## Table of Contents

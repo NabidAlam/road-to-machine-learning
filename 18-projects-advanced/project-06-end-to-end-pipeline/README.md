@@ -1,6 +1,6 @@
 # Project 6: End-to-End ML Pipeline
 
-Build a complete, production-ready ML system from data to deployment.
+Build a complete, production-**style** ML system from data to a local/staging deploy (API + metrics stub + retraining plan). Not a blank check for hardened production.
 
 ## Difficulty
 Advanced

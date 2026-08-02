@@ -2607,5 +2607,5 @@ ORDER BY difference DESC;
 
 ---
 
-**Try next:** SQL is the foundation of data manipulation. Master it to excel in data science! Start with simple queries and gradually build complexity. Practice with real datasets and don't be afraid to experiment.
+**Try next:** Write one JOIN and one window function on a real table. Explain the row grain aloud.
 

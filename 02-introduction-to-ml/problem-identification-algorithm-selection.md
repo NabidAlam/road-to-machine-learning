@@ -524,5 +524,5 @@ Before choosing an algorithm, ask:
 
 ---
 
-**Try next:** There's no "best" algorithm. The best one depends on your specific problem, data, and requirements!
+**Try next:** Shortlist two algorithms with a reason each. Compare on the same validation split.
 

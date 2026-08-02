@@ -409,5 +409,5 @@ print(f"Mean CV Score: {scores.mean():.4f} (+/- {scores.std()*2:.4f})")
 
 ---
 
-**Try next:** Learning from mistakes is part of the journey. Follow best practices to avoid common pitfalls!
+**Try next:** Pick one pitfall from this page and show it failing on a tiny toy dataset.
 

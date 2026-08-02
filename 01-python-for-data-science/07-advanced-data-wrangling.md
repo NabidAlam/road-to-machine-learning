@@ -411,5 +411,5 @@ Group data by multiple levels and calculate custom aggregations.
 
 ---
 
-**Try next:** Advanced data wrangling skills are crucial for real-world data science. Practice reshaping and transforming data!
+**Try next:** Reshape one wide table to long (or the reverse) and verify row counts did not invent duplicates.
 

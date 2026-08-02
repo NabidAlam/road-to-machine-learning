@@ -141,16 +141,18 @@ class SimpleGNN(nn.Module):
 
 **Graph Convolutional Network (GCN)** performs convolution on graphs.
 
-#### GCN Formula
+#### GCN Formula (Kipf & Welling style)
 
-$$H^{(l+1)} = \sigma(D^{-1/2} A D^{-1/2} H^{(l)} W^{(l)})$$
+$$H^{(l+1)} = \sigma(\tilde{D}^{-1/2} \tilde{A} \tilde{D}^{-1/2} H^{(l)} W^{(l)})$$
 
 Where:
 - $H^{(l)}$: Node features at layer $l$
-- $A$: Adjacency matrix
-- $D$: Degree matrix (diagonal matrix with node degrees)
+- $\tilde{A} = A + I$: adjacency with self-loops
+- $\tilde{D}$: degree matrix of $\tilde{A}$
 - $W^{(l)}$: Learnable weight matrix
 - $\sigma$: Activation function
+
+(If you omit self-loops and write $D^{-1/2} A D^{-1/2}$, that is a different normalization. Match the formula to the adjacency you actually build.)
 
 ### Implementation
 
@@ -230,49 +232,45 @@ $$\alpha_{vu} = \text{softmax}(\text{LeakyReLU}(a^T [W h_v \| W h_u]))$$
 
 ### Implementation
 
+The from-scratch multi-head math is easy to get wrong (head dims, masking shape). Prefer **PyG `GATConv`** in projects. Below is a **single-head** teaching sketch only.
+
 ```python
+import torch
+import torch.nn as nn
+import torch.nn.functional as F
+
 class GATLayer(nn.Module):
-    def __init__(self, in_features, out_features, num_heads=1):
-        super(GATLayer, self).__init__()
-        self.num_heads = num_heads
-        self.out_features = out_features
-        
-        self.W = nn.Linear(in_features, out_features * num_heads)
-        self.a = nn.Parameter(torch.empty(size=(2 * out_features, 1)))
-        
-        self.reset_parameters()
-    
-    def reset_parameters(self):
+    """Single-head GAT (Velickovic et al.). Not a production multi-head impl."""
+    def __init__(self, in_features, out_features, negative_slope=0.2):
+        super().__init__()
+        self.W = nn.Linear(in_features, out_features, bias=False)
+        self.a = nn.Parameter(torch.empty(2 * out_features))
+        self.negative_slope = negative_slope
         nn.init.xavier_uniform_(self.W.weight)
-        nn.init.xavier_uniform_(self.a)
+        nn.init.xavier_uniform_(self.a.unsqueeze(0))
     
     def forward(self, x, adj):
-        # x: [N, in_features]
-        # adj: [N, N]
-        
+        # x: [N, F_in], adj: [N, N] binary (or weighted) adjacency with self-loops
         N = x.size(0)
-        Wh = self.W(x)  # [N, out_features * num_heads]
-        Wh = Wh.view(N, self.num_heads, self.out_features)
+        h = self.W(x)  # [N, F_out]
         
-        # Compute attention
-        a_input = self._prepare_attentional_mechanism_input(Wh)
-        e = F.leaky_relu(torch.matmul(a_input, self.a).squeeze(-1))
+        # Pairwise attention logits e_ij = LeakyReLU(a^T [h_i || h_j])
+        h_i = h.unsqueeze(1).expand(N, N, -1)
+        h_j = h.unsqueeze(0).expand(N, N, -1)
+        e = F.leaky_relu(
+            (torch.cat([h_i, h_j], dim=-1) * self.a).sum(dim=-1),
+            negative_slope=self.negative_slope,
+        )  # [N, N]
         
-        # Masked attention
-        attention = torch.where(adj > 0, e, torch.tensor(-9e15))
-        attention = F.softmax(attention, dim=1)
+        # Mask non-edges, then softmax over neighbors of i
+        e = e.masked_fill(adj <= 0, float("-inf"))
+        alpha = F.softmax(e, dim=1)  # [N, N]
         
-        # Apply attention
-        h_prime = torch.matmul(attention.unsqueeze(1), Wh).squeeze(1)
-        
-        return F.elu(h_prime)
-    
-    def _prepare_attentional_mechanism_input(self, Wh):
-        # Prepare for attention computation
-        N = Wh.size(0)
-        Wh1 = Wh.unsqueeze(1).expand(N, N, self.num_heads, self.out_features)
-        Wh2 = Wh.unsqueeze(0).expand(N, N, self.num_heads, self.out_features)
-        return torch.cat([Wh1, Wh2], dim=-1)
+        return F.elu(alpha @ h)  # [N, F_out]
+
+# Production path (multi-head, sparse graphs):
+# from torch_geometric.nn import GATConv
+# conv = GATConv(in_channels, out_channels, heads=8, concat=True)
 ```
 
 ---
@@ -281,7 +279,7 @@ class GATLayer(nn.Module):
 
 ### GraphSAGE
 
-**GraphSAGE (Graph Sample and Aggregate)** learns node embeddings by sampling and aggregating from neighborhoods. Unlike GCN which requires the full graph, GraphSAGE can work inductively on new nodes.
+**GraphSAGE (Graph Sample and Aggregate)** learns node embeddings by sampling and aggregating from neighborhoods. Classic Kipf GCN training is often **transductive** (labels and full graph available at train time). GraphSAGE is built for **inductive** settings: new nodes (or graphs) with features can be embedded without retraining from scratch. You can still run a GCN-style layer on a new graph if you have features and edges; the inductive recipe is what GraphSAGE emphasizes.
 
 #### Key Features
 
@@ -356,13 +354,13 @@ class LSTMAggregator(nn.Module):
 
 ### Graph Isomorphism Network (GIN)
 
-**Graph Isomorphism Network (GIN)** is provably as powerful as the Weisfeiler-Lehman (WL) graph isomorphism test, making it one of the most expressive GNN architectures.
+**Graph Isomorphism Network (GIN)** is designed to match the discriminative power of the **1-Weisfeiler-Lehman (1-WL)** test. That is a strong upper bound for many message-passing GNNs, not a claim that GIN separates every pair of non-isomorphic graphs (1-WL itself cannot).
 
 #### Why GIN?
 
-- **Maximum Expressive Power**: Can distinguish any non-isomorphic graphs
-- **Theoretical Guarantees**: Based on graph theory
-- **Simple Architecture**: Easy to implement
+- **1-WL-level expressivity**: Matches 1-WL on many graph distinction tasks
+- **Not universal isomorphism**: Some non-isomorphic graphs remain indistinguishable under 1-WL / GIN
+- **Simple Architecture**: Easy to implement relative to that theoretical target
 
 #### GIN Formula
 

@@ -314,5 +314,5 @@ Use this to track where you are:
 
 ---
 
-**Try next:** The journey of a thousand miles begins with a single step. Start today! 
+**Try next:** Open Module 00 and finish one exercise block before you close the laptop. 
 

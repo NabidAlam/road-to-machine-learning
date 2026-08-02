@@ -112,5 +112,5 @@ plt.show()
 
 ---
 
-**Try next:** Advanced techniques improve performance but start simple!
+**Try next:** Finish the baseline README path first. Add one advanced idea only if the metric still needs it.
 

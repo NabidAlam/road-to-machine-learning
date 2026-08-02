@@ -1230,5 +1230,5 @@ print(f"Multi-Level Ensemble Accuracy: {accuracy_score(y_test, final_pred):.3f}"
 - Try combining different ensemble methods
 - Move to [07-feature-engineering](../07-feature-engineering/README.md)
 
-**Try next:** Ensembles often win competitions! Diversity and proper tuning are key to success.
+**Try next:** Train a single model and a simple ensemble on the same split. Compare lift vs training cost.
 

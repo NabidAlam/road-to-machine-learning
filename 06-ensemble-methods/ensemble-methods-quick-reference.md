@@ -531,5 +531,5 @@ if hasattr(model, 'feature_importances_'):
 
 ---
 
-**Try next:** Ensembles often win competitions! Diversity and proper tuning are key to success!
+**Try next:** Train a single model and a simple ensemble on the same split. Compare lift vs training cost.
 

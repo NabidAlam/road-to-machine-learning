@@ -1195,5 +1195,5 @@ glueContext.write_dynamic_frame.from_jdbc_conf(
 
 ---
 
-**Try next:** Data integration is a crucial skill. Practice with real APIs and databases to master it!
+**Try next:** Pull one public API into a DataFrame and join it to a local CSV on a shared key.
 

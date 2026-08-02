@@ -1,6 +1,6 @@
 # Advanced Projects
 
-Complex, production-ready projects that demonstrate mastery of ML concepts. **These nine projects ship as detailed README briefs and capstone-style specs.** You design and implement the full pipeline.
+Complex, **production-style** portfolio projects. Completing a brief is not the same as SRE-hardened production (auth, multi-AZ, SLOs, on-call). **These nine projects ship as detailed README briefs and capstone-style specs.** You design and implement the full pipeline.
 
 > **Time series:** Project 3 overlaps with [Module 15](../15-time-series-analysis/README.md) and [intermediate project 6](../17-projects-intermediate/project-06-time-series-forecasting/README.md), pick one path: [TIME_SERIES_LEARNING_PATH.md](../TIME_SERIES_LEARNING_PATH.md).
 
@@ -103,7 +103,7 @@ Build advanced forecasting models for complex time series data.
 **Time**: 2-3 weeks  
 **Skills**: Modern LLMs, RAG, Vector Databases, LangChain, Prompt Engineering
 
-Build a production-ready RAG (Retrieval-Augmented Generation) system that ingests documents, stores embeddings in vector databases, and answers questions using GPT-4/Llama 3 or other LLMs.
+Build a production-**style** RAG (Retrieval-Augmented Generation) system that ingests documents, stores embeddings in vector databases, and answers questions using GPT-4/Llama 3 or other LLMs. Treat eval, citations, and cost logs as part of "done."
 
 **What you'll learn:**
 - Prompt engineering techniques
@@ -173,7 +173,7 @@ Detect and localize multiple objects in images.
 **Time**: 2-3 weeks  
 **Skills**: MLOps, CI/CD, Model Deployment, Monitoring, Full Stack
 
-Build a complete, production-ready ML system from data to deployment.
+Build a complete, production-**style** ML system from data to a local or staging deploy. A README checklist is not a multi-region production launch.
 
 **What you'll learn:**
 - End-to-end ML pipeline
@@ -253,10 +253,10 @@ Build a comprehensive explainable ML system using SHAP, LIME, and other interpre
 **Time**: 1-2 weeks  
 **Skills**: FastAPI, Docker, REST APIs, Cloud Deployment, Model Monitoring
 
-Deploy a machine learning model as a production-ready API service with Docker, monitoring, and best practices.
+Deploy a machine learning model as a production-**shaped** API demo with Docker, basic monitoring hooks, and clear gaps called out (auth, SLOs, on-call).
 
 **What you'll learn:**
-- Building production-ready REST APIs with FastAPI
+- Building production-**shaped** REST APIs with FastAPI (demo quality, not a blank check for production)
 - Containerizing ML models with Docker
 - Deploying models to cloud platforms
 - Implementing model versioning
@@ -323,7 +323,7 @@ project-name/
 ##  Learning Outcomes
 
 After completing these projects, you should be able to:
-- Build production-ready ML systems
+- Build production-**style** ML systems you can demo and extend
 - Apply state-of-the-art techniques
 - Handle complex, real-world problems
 - Deploy and monitor ML models

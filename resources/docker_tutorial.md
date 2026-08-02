@@ -1064,5 +1064,5 @@ services:
 
 ---
 
-**Try next:** Docker is essential for ML production. Start simple, practice regularly, and gradually adopt best practices. Containerization makes your ML applications portable, reproducible, and production-ready!
+**Try next:** Dockerize one inference script. Run the same image locally and confirm the prediction matches.
 

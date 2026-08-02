@@ -136,7 +136,7 @@ Builds complete ML pipelines:
 #### 4. Research/Innovation
 - **When**: Developing new algorithms or approaches
 - **Why**: AutoML uses existing methods
-- **Example**: Academic research, cutting-edge applications
+- **Example**: Academic research, novel applications where custom models still win
 
 #### 5. Very Large Datasets
 - **When**: Datasets don't fit in memory
@@ -559,5 +559,5 @@ final_score = automl.score(X_test, y_test)
 
 ---
 
-**Try next:** AutoML is a powerful tool, but it's not a replacement for understanding ML. Use it to accelerate development, not to skip learning!
+**Try next:** Run AutoML on a dataset you already modeled by hand. Compare features and failure cases.
 

@@ -1041,14 +1041,11 @@ config = {
 Core language model interface.
 
 ```python
-from langchain.llms import OpenAI
-from langchain.chat_models import ChatOpenAI
+from langchain_openai import ChatOpenAI
 
-# Text completion model
-llm = OpenAI(temperature=0.7)
-
-# Chat model (GPT-3.5, GPT-4)
-chat = ChatOpenAI(model_name="gpt-3.5-turbo", temperature=0.7)
+# Chat models are the current OpenAI integration path
+chat = ChatOpenAI(model="gpt-4o-mini", temperature=0.7)
+# Stronger option when needed: ChatOpenAI(model="gpt-4o", temperature=0.7)
 ```
 
 #### 2. Prompt Templates
@@ -1489,10 +1486,10 @@ Response + Sources
 ### RAG Implementation Example
 
 ```python
-from langchain.embeddings import HuggingFaceEmbeddings
-from langchain.vectorstores import FAISS
-from langchain.text_splitter import RecursiveCharacterTextSplitter
-from langchain.llms import OpenAI
+from langchain_community.embeddings import HuggingFaceEmbeddings
+from langchain_community.vectorstores import FAISS
+from langchain_text_splitters import RecursiveCharacterTextSplitter
+from langchain_openai import ChatOpenAI
 from langchain.chains import RetrievalQA
 
 # 1. Load and split documents
@@ -1513,8 +1510,8 @@ vectorstore = FAISS.from_documents(documents, embeddings)
 # 4. Create retriever
 retriever = vectorstore.as_retriever(search_kwargs={"k": 3})
 
-# 5. Create LLM
-llm = OpenAI(temperature=0)
+# 5. Create LLM (temperature=0 lowers randomness; not a correctness guarantee)
+llm = ChatOpenAI(model="gpt-4o-mini", temperature=0)
 
 # 6. Create RAG chain
 qa_chain = RetrievalQA.from_chain_type(
@@ -1828,9 +1825,9 @@ The Generative AI project lifecycle is a systematic approach to building, deploy
 
 ```python
 import streamlit as st
-from langchain.llms import OpenAI
-from langchain.vectorstores import FAISS
-from langchain.embeddings import HuggingFaceEmbeddings
+from langchain_openai import ChatOpenAI
+from langchain_community.vectorstores import FAISS
+from langchain_community.embeddings import HuggingFaceEmbeddings
 from langchain.chains import RetrievalQA
 
 # Page config
@@ -1851,7 +1848,8 @@ def load_vectorstore():
 @st.cache_resource
 def load_rag_chain():
     vectorstore = load_vectorstore()
-    llm = OpenAI(temperature=0)
+    # temperature=0 lowers randomness; not a correctness guarantee
+    llm = ChatOpenAI(model="gpt-4o-mini", temperature=0)
     retriever = vectorstore.as_retriever(search_kwargs={"k": 3})
     qa_chain = RetrievalQA.from_chain_type(
         llm=llm,
@@ -1949,5 +1947,5 @@ if prompt := st.chat_input("Ask a question..."):
 
 ---
 
-**Try next:** Generative AI is a rapidly evolving field. Start with simple applications, understand the fundamentals, and gradually build more complex systems. Always consider ethical implications, costs, and limitations when building production applications!
+**Try next:** Ship one small RAG or agent demo with cost logging and a citation check. Expand only after that works.
 

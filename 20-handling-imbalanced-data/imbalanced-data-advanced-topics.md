@@ -102,5 +102,5 @@ Practical goal: pick a threshold that hits a target like “Recall >= 0.85 at Pr
 
 ---
 
-**Try next:** Advanced techniques help with extreme imbalance!
+**Try next:** Try class weights before SMOTE. If you oversample, do it only inside training folds.
 

@@ -106,9 +106,10 @@ model = keras.Sequential([
 class CNN(nn.Module):
     def __init__(self):
         super().__init__()
-        self.conv1 = nn.Conv2d(1, 32, 3)
+        # padding=1 keeps spatial size before pooling (28→14→7 on MNIST)
+        self.conv1 = nn.Conv2d(1, 32, 3, padding=1)
         self.pool = nn.MaxPool2d(2)
-        self.conv2 = nn.Conv2d(32, 64, 3)
+        self.conv2 = nn.Conv2d(32, 64, 3, padding=1)
         self.fc = nn.Linear(64 * 7 * 7, 10)
     
     def forward(self, x):
@@ -149,7 +150,7 @@ model = keras.Sequential([base_model, layers.GlobalAveragePooling2D(), layers.De
 
 **VGG16**: 13 conv + 3 FC, all 3×3 filters, very deep
 
-**ResNet**: Skip connections solve vanishing gradient, enables 100+ layers
+**ResNet**: Residual/skip connections ease deep training (degradation); enables 100+ layers in practice
 
 ---
 
@@ -276,5 +277,5 @@ datagen = ImageDataGenerator(
 
 ---
 
-**Try next:** CNNs excel at image data. Leverage spatial structure! Start simple, use transfer learning, and iterate.
+**Try next:** Freeze a pretrained backbone, train a linear head, then unfreeze the last block.
 

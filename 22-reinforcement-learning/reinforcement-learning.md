@@ -154,7 +154,7 @@ For each episode:
 
 #### Q-Learning Update Rule
 
-$$Q(s,a) \leftarrow Q(s,a) + \alpha[r + \gamma \max_{a'} Q(s',a'): Q(s,a)]$$
+$$Q(s,a) \leftarrow Q(s,a) + \alpha[r + \gamma \max_{a'} Q(s',a') - Q(s,a)]$$
 
 Where:
 - **$\alpha$**: Learning rate
@@ -456,8 +456,10 @@ class REINFORCE:
     
     def select_action(self, state):
         probs = self.policy(torch.FloatTensor(state))
-        action = torch.multinomial(probs, 1)
-        return action.item(), probs[action]
+        dist = torch.distributions.Categorical(probs)
+        action = dist.sample()
+        # Must return log π(a|s), not the probability itself
+        return action.item(), dist.log_prob(action)
     
     def update(self, rewards, log_probs):
         returns = []
@@ -489,7 +491,7 @@ class REINFORCE:
 
 ### Advantage Actor-Critic (A2C)
 
-**A2C** uses advantage function $A(s,a) = Q(s,a): V(s)$ instead of Q-values.
+**A2C** uses advantage function $A(s,a) = Q(s,a) - V(s)$ instead of Q-values.
 
 **Advantage**: Reduces variance in policy gradient estimates.
 
@@ -524,8 +526,9 @@ class A2CAgent:
     
     def select_action(self, state):
         probs, value = self.model(torch.FloatTensor(state).unsqueeze(0))
-        action = torch.multinomial(probs, 1)
-        return action.item(), probs[action], value
+        dist = torch.distributions.Categorical(probs)
+        action = dist.sample()
+        return action.item(), dist.log_prob(action), value
     
     def update(self, states, actions, rewards, next_states, dones, values, log_probs):
         # Compute returns
@@ -644,12 +647,15 @@ class TRPOAgent:
 4. **Reward Shaping**: Design rewards to guide learning
 5. **Frame Stacking**: Use multiple frames for temporal information
 
-### Using OpenAI Gym
+### Using Gymnasium (formerly OpenAI Gym)
 
-**OpenAI Gym** provides standardized RL environments.
+**Gymnasium** provides standardized RL environments (prefer this over legacy `gym`).
 
 ```python
-import gym
+import gymnasium as gym  # prefer Gymnasium; older `import gym` APIs differ
+# reset: obs, info = env.reset()
+# step:  obs, reward, terminated, truncated, info = env.step(action)
+# done = terminated or truncated
 
 # Create environment
 env = gym.make('CartPole-v1')
@@ -659,7 +665,7 @@ print(f"Observation space: {env.observation_space}")
 print(f"Action space: {env.action_space}")
 
 # Reset environment
-state = env.reset()
+state, info = env.reset()
 
 # Run episode
 done = False
@@ -667,7 +673,8 @@ total_reward = 0
 step = 0
 while not done:
     action = agent.act(state)  # Choose action
-    next_state, reward, done, info = env.step(action)  # Take action
+    next_state, reward, terminated, truncated, info = env.step(action)
+    done = terminated or truncated
     agent.remember(state, action, reward, next_state, done)  # Store experience
     state = next_state
     total_reward += reward
@@ -702,7 +709,10 @@ print(f"Episode reward: {total_reward}, Steps: {step}")
 ### Custom Environments
 
 ```python
-import gym
+import gymnasium as gym  # prefer Gymnasium; older `import gym` APIs differ
+# reset: obs, info = env.reset()
+# step:  obs, reward, terminated, truncated, info = env.step(action)
+# done = terminated or truncated
 from gym import spaces
 import numpy as np
 
@@ -755,7 +765,10 @@ pip install stable-baselines3
 
 ```python
 from stable_baselines3 import DQN
-import gym
+import gymnasium as gym  # prefer Gymnasium; older `import gym` APIs differ
+# reset: obs, info = env.reset()
+# step:  obs, reward, terminated, truncated, info = env.step(action)
+# done = terminated or truncated
 
 env = gym.make('CartPole-v1')
 model = DQN('MlpPolicy', env, verbose=1)
@@ -781,7 +794,10 @@ pip install ray[rllib]
 #### Atari Games
 
 ```python
-import gym
+import gymnasium as gym  # prefer Gymnasium; older `import gym` APIs differ
+# reset: obs, info = env.reset()
+# step:  obs, reward, terminated, truncated, info = env.step(action)
+# done = terminated or truncated
 from stable_baselines3 import DQN
 
 # Create Atari environment
@@ -792,12 +808,12 @@ model = DQN('CnnPolicy', env, verbose=1)
 model.learn(total_timesteps=1000000)
 
 # Test agent
-obs = env.reset()
+obs, info = env.reset()
 for _ in range(1000):
     action, _ = model.predict(obs)
-    obs, reward, done, info = env.step(action)
-    if done:
-        obs = env.reset()
+    obs, reward, terminated, truncated, info = env.step(action)
+    if terminated or truncated:
+        obs, info = env.reset()
 ```
 
 #### Chess and Go

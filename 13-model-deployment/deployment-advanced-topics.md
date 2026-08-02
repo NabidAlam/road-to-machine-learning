@@ -836,5 +836,5 @@ estimator = TensorFlow(
 
 ---
 
-**Try next:** Production deployment requires optimization and monitoring!
+**Try next:** Log p95 latency and error rate for one day on your local or staging endpoint.
 

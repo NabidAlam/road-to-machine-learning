@@ -1071,8 +1071,10 @@ print(f"Sample std: {np.std(sample, ddof=1):.2f}")  # Use ddof=1 for sample
 
 ### Central Limit Theorem
 
+The CLT is about the **sampling distribution of the sample mean** (and similar averages): for large enough *n*, that distribution is approximately normal under mild conditions. It does **not** mean “the raw data become normal once *n* = 30.”
+
 ```python
-# CLT: Sample means are normally distributed (for large n)
+# CLT: Sample means are approximately normally distributed (for large n)
 
 sample_means = []
 for _ in range(1000):
@@ -1125,8 +1127,10 @@ A statistical method to make inferences about a population using sample data. He
 
 ### Types of Hypotheses
 
-- **Null Hypothesis (H₀)**: Assumes no effect or no difference exists
-- **Alternative Hypothesis (H₁)**: Assumes a significant effect or difference exists
+- **Null Hypothesis (H₀)**: The default claim you test against (often “no effect” or “no difference”)
+- **Alternative Hypothesis (H₁ / Hₐ)**: The competing claim you entertain if evidence against H₀ is strong enough
+
+Do not write “significant” into H₁. Statistical significance is a **decision outcome** after you compare a p-value (or test statistic) to α, not part of the hypothesis statement.
 
 ### Steps in Hypothesis Testing
 
@@ -1135,13 +1139,15 @@ A statistical method to make inferences about a population using sample data. He
 3. **Choose the test statistic** (Z, t, χ², ANOVA)
 4. **Compute the test statistic** from sample data
 5. **Compare with the critical value** or **p-value**
-6. **Reject H₀** if p-value < α; otherwise, **fail to reject H₀**
+6. **Reject H₀** if p-value < α; otherwise, **fail to reject H₀** (this is not the same as “proving H₀ true”)
 
 ### Z-Test
 
-Used when population variance is known or sample size > 30.
+Use a **Z-test for a mean** when the population standard deviation **σ is known** (rare in practice) and the sampling distribution of the mean is approximately normal (exact if the population is normal; approximate for large *n* via the CLT).
 
-**Formula:** `Z = (X̄ - μ) / (σ / √n)`
+If **σ is unknown**, use a **t-test** with the sample standard deviation. The old rule of thumb “use Z when *n* > 30” is misleading: large *n* does not turn an unknown-σ problem into a Z-test.
+
+**Formula (known σ):** `Z = (X̄ - μ) / (σ / √n)`
 
 Where:
 - X̄ = Sample mean
@@ -1534,5 +1540,5 @@ Perform t-tests to compare model performances.
 
 ---
 
-**Try next:** Statistics helps you understand and evaluate your ML models!
+**Try next:** Re-run one model eval with a confidence interval or bootstrap. Notice how point accuracy alone misleads.
 

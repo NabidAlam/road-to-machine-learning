@@ -840,5 +840,5 @@ model = AutoModelForSequenceClassification.from_pretrained(model_name, num_label
 - Explore advanced NLP tasks (NER, QA, translation)
 - Move to [13-model-deployment](../13-model-deployment/README.md)
 
-**Try next:** NLP is rapidly evolving with transformers! Use pre-trained models when possible.
+**Try next:** Fine-tune a small encoder on a classification task you care about. Compare to bag-of-words.
 

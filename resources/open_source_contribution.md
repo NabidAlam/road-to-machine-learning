@@ -343,5 +343,5 @@ def test_calculate_accuracy_perfect():
 
 ---
 
-**Try next:** Every contribution matters, no matter how small. Start contributing today!
+**Try next:** Open one good first issue. Fix a typo or doc link and open a PR.
 

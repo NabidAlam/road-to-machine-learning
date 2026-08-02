@@ -447,5 +447,5 @@ pr_auc = average_precision_score(y_test, y_proba)
 
 ---
 
-**Try next:** Imbalanced data requires special handling. Use appropriate metrics and techniques!
+**Try next:** Replace accuracy with PR-AUC on your next imbalanced notebook.
 

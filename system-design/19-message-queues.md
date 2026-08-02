@@ -119,7 +119,7 @@ This is the "are you sure my message will be processed?" question.
 
 **At-least-once**: always delivered, possibly more than once. Use when misses are worse than duplicates (e.g. order processing). The consumer must be idempotent.
 
-**Exactly-once**: delivered exactly once. The holy grail. Practically very hard, expensive in some systems, sometimes available (Kafka with transactions, some careful designs).
+**Exactly-once** (broker / log sense): Kafka transactions and similar designs can give exactly-once **within a carefully scoped read–process–write pipeline**. That is not the same as end-to-end exactly-once for every external side effect (charges, emails, third-party APIs). For those, design for at-least-once delivery plus **idempotency**.
 
 Most production systems pick **at-least-once + idempotent consumers**. The queue might deliver the same message twice on retry. Your code handles that gracefully (using idempotency keys, dedup on a unique field, etc.).
 

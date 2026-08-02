@@ -1242,9 +1242,9 @@ Big O notation describes the worst-case scenario for how long an algorithm takes
 def get_first_element(lst):
     return lst[0]  # Always takes same time
 
-# Dictionary lookup is O(1) on average
+# Dictionary lookup is O(1) on average (hash table). Worst case can be O(n) with pathological collisions.
 my_dict = {'a': 1, 'b': 2, 'c': 3}
-value = my_dict['a']  # O(1)
+value = my_dict['a']  # O(1) average
 ```
 
 2. **O(log n): Logarithmic Time**
@@ -1361,9 +1361,9 @@ my_list = [1, 2, 3, 4, 5]
 if 3 in my_list:  # O(n) - checks each element
     print("Found")
 
-# Dictionary lookup: O(1) - direct hash lookup
+# Dictionary lookup: O(1) on average (hash table; worst case can be worse)
 my_dict = {1: 'a', 2: 'b', 3: 'c', 4: 'd', 5: 'e'}
-if 3 in my_dict:  # O(1) - direct access
+if 3 in my_dict:  # O(1) average
     print("Found")
 ```
 
@@ -1380,11 +1380,11 @@ def has_duplicate_inefficient(lst):
 
 # Efficient: O(n)
 def has_duplicate_efficient(lst):
-    seen = set()  # O(1) lookup
+    seen = set()  # O(1) average membership
     for item in lst:
-        if item in seen:  # O(1) check
+        if item in seen:  # O(1) average
             return True
-        seen.add(item)  # O(1) add
+        seen.add(item)  # O(1) average
     return False
 ```
 
@@ -1906,5 +1906,5 @@ root.mainloop()
 - Try solving problems on [HackerRank](https://www.hackerrank.com/) or [LeetCode](https://leetcode.com/)
 - Move to [02-linear-algebra.md](02-linear-algebra.md) when comfortable
 
-**Try next:** Practice is key! Code along with examples and experiment with variations.
+**Try next:** Rewrite one example without looking. If you stall, peek once, then finish solo.
 

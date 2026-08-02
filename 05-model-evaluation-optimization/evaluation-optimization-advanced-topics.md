@@ -492,5 +492,5 @@ param_grid = {
 - Profile model performance
 - Move to ensemble methods module
 
-**Try next:** Proper evaluation is crucial for reliable model performance estimates!
+**Try next:** Lock the test set. Tune only on validation. Write that rule on your next experiment card.
 

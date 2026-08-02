@@ -545,5 +545,5 @@ print(f"Explained variance: {cumulative[n_components-1]:.3f}")
 - Explore semi-supervised learning
 - Move to next module
 
-**Try next:** Unsupervised learning reveals hidden patterns. Use domain knowledge to validate!
+**Try next:** Run k-means for k=2..8 and plot inertia. Pick k with a reason, not only the elbow myth.
 

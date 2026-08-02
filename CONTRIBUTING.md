@@ -123,5 +123,5 @@ Your contributions make this repository better for everyone learning ML. Thank y
 
 ---
 
-**Try next:** The goal is to help people learn ML. Keep contributions clear, beginner-friendly, and well-documented.
+**Try next:** Open a PR that fixes one unclear paragraph or broken link.
 

@@ -520,5 +520,5 @@ print(f"Pi estimate: {pi_estimate:.4f}")
 
 ---
 
-**Try next:** These advanced topics will be used throughout your ML journey. Master them now to make everything easier later!
+**Try next:** Derive the gradient of a simple MSE loss by hand once. Then check it against autograd.
 

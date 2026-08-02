@@ -461,5 +461,5 @@ Filter data based on date ranges and extract specific periods.
 
 ---
 
-**Try next:** Date/time handling is crucial for time series analysis. Master these operations for effective data analysis!
+**Try next:** Parse messy timestamps, localize to one timezone, and resample to daily means.
 

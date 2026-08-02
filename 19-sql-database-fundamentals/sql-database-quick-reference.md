@@ -33,5 +33,5 @@ HAVING COUNT(*) > 5;
 
 ---
 
-**Try next:** Practice SQL regularly!
+**Try next:** Do ten queries on a public dataset today: filters, joins, group by, window.
 

@@ -583,5 +583,5 @@ if abs(skew(df['feature'])) > 1:
 - Learn domain-specific feature engineering
 - Move to next module
 
-**Try next:** Good features beat complex algorithms!
+**Try next:** Ablate your top three features. If score collapses, you found the real signal.
 

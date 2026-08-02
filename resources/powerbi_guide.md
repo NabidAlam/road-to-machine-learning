@@ -2629,4 +2629,4 @@ Use AI services for text/image analysis
 
 ---
 
-**Try next:** Power BI is a powerful tool for business intelligence. Start with basic visualizations, learn DAX gradually, and focus on creating clear, actionable insights for stakeholders!
+**Try next:** Build one dashboard with three visuals and one DAX measure. Show it to someone who will use it.

@@ -457,5 +457,5 @@ t_value = stats.t.ppf(0.975, n - p - 1)  # 95% CI
 
 ---
 
-**Try next:** Start simple, validate assumptions, iterate and improve!
+**Try next:** Check residual plots before you celebrate R².
 

@@ -70,7 +70,7 @@ For each key, you have N replicas. Each request specifies:
 - **W** = how many replicas must acknowledge a write
 - **R** = how many replicas must respond to a read
 
-If `R + W > N`, you get strong consistency (overlap guarantees at least one fresh replica). Otherwise eventual.
+If `R + W > N`, quorums overlap so a read can see the latest **completed** write under the usual Dynamo-style assumptions (same replica set, no sloppy quorum tricks). Concurrent writers still need conflict resolution (LWW, vector clocks, etc.). Otherwise expect eventual consistency.
 
 | Profile      | Settings (N=3) | Behavior                             |
 | ------------ | -------------- | ------------------------------------ |

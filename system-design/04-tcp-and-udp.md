@@ -6,11 +6,11 @@ TCP is the careful one. UDP is the fast one. Picking the right one is one of tho
 
 ## TCP: reliable, ordered, slow
 
-TCP guarantees three things:
+TCP aims for three properties **while the connection stays healthy**:
 
-1. **Delivery**: every packet arrives. If it doesn't, it's resent.
-2. **Order**: packets are reassembled in the order they were sent.
-3. **No duplicates**: each packet is delivered once.
+1. **Delivery**: lost segments are detected and resent (until the connection fails or is reset).
+2. **Order**: bytes are delivered to the app in send order.
+3. **Dedup at the stream layer**: the receiver reassembles a byte stream; your app can still see retries at higher layers.
 
 To do this, TCP starts every conversation with a handshake.
 
@@ -29,9 +29,9 @@ Client                                Server
   | <---- data ---------------------    |
 ```
 
-That's three round trips before the first byte of real data. If the server is 100 ms away, you pay 300 ms before you've sent anything useful. This is fine for normal web traffic. It's a problem for things like games.
+The classic three-way handshake costs about **one RTT** before the client can send application data (the final ACK can ride with the first data segment). If the server is 100 ms away, that is roughly **100 ms**, not 300 ms. TLS and HTTP/2 setup add more round trips on top.
 
-Every packet TCP sends is also acknowledged. If it doesn't hear back fast enough, it resends. This is what makes TCP "reliable", and also why it can stall: one missing packet holds up everything behind it.
+Every packet TCP sends is also acknowledged. If it doesn't hear back fast enough, it resends. That is what people mean by TCP "reliability", and also why it can stall: one missing segment holds up everything behind it. Apps still need timeouts, retries, and idempotency for real failures.
 
 **TCP is used for**: HTTP, HTTPS, SSH, email (SMTP/IMAP), most databases. Anything where wrong data is worse than slow data.
 
@@ -140,7 +140,7 @@ Real systems mix both. A video call uses UDP for the video stream and TCP for th
 
 ## Things to remember
 
-- TCP guarantees delivery and order. Pays for it with handshake and retries.
+- TCP aims for ordered, reliable delivery while the connection is healthy. Pays for it with handshake and retries. Apps still handle timeouts and resets.
 - UDP sends and forgets. Faster, but the app must handle loss.
 - TCP for "must arrive correctly". UDP for "must arrive fast".
 - HTTP/3 is changing this by putting reliability into UDP via QUIC.

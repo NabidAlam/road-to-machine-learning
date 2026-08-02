@@ -1102,5 +1102,5 @@ print(flattened)  # Back to 1D
 - Work through the exercises
 - Move to [02-pandas.md](02-pandas.md) to learn data manipulation
 
-**Try next:** NumPy is the foundation - master it well!
+**Try next:** Rewrite one Python loop as vectorized NumPy. Check speed and shape.
 

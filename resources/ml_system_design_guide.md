@@ -1426,5 +1426,5 @@ Structured ML system design (whether for interviews or architecture reviews) rew
 
 ---
 
-**Try next:** System design is iterative. Start with a simple architecture, measure performance, identify bottlenecks, and optimize. Focus on the metrics that matter for your use case: the goal is a system people can **operate**, not a diagram that wins a single meeting.
+**Try next:** Draw the request path, pick one SLO, and name the first bottleneck you would measure.
 

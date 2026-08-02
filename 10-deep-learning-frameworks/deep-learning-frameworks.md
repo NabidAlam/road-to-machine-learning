@@ -3166,7 +3166,7 @@ ds_test = ds_test.map(preprocess).batch(32)
 - Learn about advanced architectures
 - Move to [11-computer-vision](../11-computer-vision/README.md) for CNNs
 
-**Try next:** Frameworks make it easier, but understanding fundamentals is key! Master both for maximum flexibility.
+**Try next:** Port one training loop between PyTorch and Keras. Note what each hides.
 
 ---
 
@@ -3350,4 +3350,4 @@ ds_test = ds_test.map(preprocess).batch(32)
 
 ---
 
-**Try next:** The best way to learn is by doing! Start with simple projects and gradually increase complexity. Both frameworks are powerful. Mastering both gives you maximum flexibility in your ML career.
+**Try next:** Finish one end-to-end notebook in your primary framework this week. Ship the metric chart.

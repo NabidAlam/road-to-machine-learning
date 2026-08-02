@@ -21,5 +21,5 @@ explanation = explainer.explain_instance(X_test.iloc[0].values, model.predict_pr
 
 ---
 
-**Try next:** Explainability builds trust!
+**Try next:** Pick the top three important features and write why each could be causal or merely correlated.
 

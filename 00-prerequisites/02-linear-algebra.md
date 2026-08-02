@@ -2126,5 +2126,5 @@ Use SVD for low-rank matrix approximation.
 
 ---
 
-**Try next:** Linear algebra is the foundation. Master these concepts, and ML algorithms will make much more sense!
+**Try next:** Multiply a small matrix by hand, then do the same with NumPy. Match shapes and result.
 

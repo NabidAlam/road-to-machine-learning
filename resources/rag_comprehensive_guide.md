@@ -32,12 +32,12 @@ Complete guide to building, deploying, and optimizing RAG systems for production
 
 ### Why RAG?
 
-**Problems RAG Solves:**
-- **Outdated Information**: LLMs have training cutoffs, RAG provides current data
-- **Domain-Specific Knowledge**: Use private/custom knowledge bases
-- **Hallucination Reduction**: Ground responses in retrieved facts
-- **Transparency**: Can cite sources and provide references
-- **Cost Efficiency**: Reduce need for fine-tuning on domain data
+**Problems RAG Helps With:**
+- **Outdated Information**: LLMs have training cutoffs; RAG can inject fresher documents
+- **Domain-Specific Knowledge**: Use private/custom knowledge bases without retraining weights
+- **Grounding (not a truth layer)**: Retrieved text *can* reduce unsupported answers; the model may still ignore context, stitch sources badly, or invent between chunks. See [AI Myths Busted](ai_myths_busted.md#rag-eliminates-hallucinations)
+- **Transparency**: You can return retrieved passages as citations (still verify them)
+- **Cost Efficiency**: Often cheaper than fine-tuning when knowledge changes often
 
 **Use Cases:**
 - Question-answering systems
@@ -74,7 +74,7 @@ RAG combines two key components:
 | **Latency** | Slightly higher (retrieval step) | Lower (direct inference) |
 | **Transparency** | Can cite sources | Black box |
 | **Domain Knowledge** | External knowledge base | Learned in weights |
-| **Hallucination** | Reduced (grounded in docs) | Can hallucinate |
+| **Unsupported answers** | Often fewer when retrieval and prompts are good; not eliminated | Can still invent |
 
 **When to Use RAG:**
 - Frequently changing knowledge
@@ -169,7 +169,7 @@ Response + Sources
 - Consider semantic boundaries
 
 ```python
-from langchain.text_splitter import RecursiveCharacterTextSplitter
+from langchain_text_splitters import RecursiveCharacterTextSplitter
 
 text_splitter = RecursiveCharacterTextSplitter(
     chunk_size=1000,      # Size of each chunk
@@ -189,16 +189,17 @@ documents = text_splitter.split_documents(your_documents)
 ### 2. Embedding Models
 
 **Choosing Embedding Model:**
-- **OpenAI**: `text-embedding-ada-002` (high quality, paid)
+- **OpenAI**: `text-embedding-3-small` (current default path; check docs for latest)
 - **Hugging Face**: `sentence-transformers/all-MiniLM-L6-v2` (free, good quality)
-- **Cohere**: `embed-english-v2.0` (high quality)
+- **Cohere**: current Cohere embed models (high quality)
 - **Instructor**: Task-specific embeddings
 
 ```python
-from langchain.embeddings import OpenAIEmbeddings, HuggingFaceEmbeddings
+from langchain_openai import OpenAIEmbeddings
+from langchain_community.embeddings import HuggingFaceEmbeddings
 
-# Option 1: OpenAI (paid, high quality)
-embeddings = OpenAIEmbeddings(model="text-embedding-ada-002")
+# Option 1: OpenAI (paid)
+embeddings = OpenAIEmbeddings(model="text-embedding-3-small")
 
 # Option 2: Hugging Face (free, good quality)
 embeddings = HuggingFaceEmbeddings(
@@ -218,16 +219,14 @@ embeddings = HuggingFaceEmbeddings(
 
 ```python
 # FAISS (Local)
-from langchain.vectorstores import FAISS
+from langchain_community.vectorstores import FAISS
 
 vectorstore = FAISS.from_documents(documents, embeddings)
 vectorstore.save_local("faiss_index")
 
-# Pinecone (Cloud)
-from langchain.vectorstores import Pinecone
-import pinecone
+# Pinecone (Cloud) — API shape changes often; check current Pinecone + LangChain docs
+from langchain_community.vectorstores import Pinecone
 
-pinecone.init(api_key="your-key", environment="us-east-1")
 vectorstore = Pinecone.from_documents(
     documents, 
     embeddings, 
@@ -296,10 +295,10 @@ prompt = PromptTemplate(
 ### Basic RAG with Langchain
 
 ```python
-from langchain.embeddings import HuggingFaceEmbeddings
-from langchain.vectorstores import FAISS
-from langchain.text_splitter import RecursiveCharacterTextSplitter
-from langchain.llms import OpenAI
+from langchain_community.embeddings import HuggingFaceEmbeddings
+from langchain_community.vectorstores import FAISS
+from langchain_text_splitters import RecursiveCharacterTextSplitter
+from langchain_openai import ChatOpenAI
 from langchain.chains import RetrievalQA
 
 # 1. Load and split documents
@@ -320,8 +319,8 @@ vectorstore = FAISS.from_documents(documents, embeddings)
 # 4. Create retriever
 retriever = vectorstore.as_retriever(search_kwargs={"k": 3})
 
-# 5. Create LLM
-llm = OpenAI(temperature=0)
+# 5. Create LLM (temperature=0 lowers randomness; not a correctness guarantee)
+llm = ChatOpenAI(model="gpt-4o-mini", temperature=0)
 
 # 6. Create RAG chain
 qa_chain = RetrievalQA.from_chain_type(
@@ -401,17 +400,17 @@ for node in response.source_nodes:
 **Expand query** to improve retrieval:
 
 ```python
-from langchain.llms import OpenAI
+from langchain_openai import ChatOpenAI
 
 def expand_query(original_query):
-    llm = OpenAI()
+    llm = ChatOpenAI(model="gpt-4o-mini", temperature=0)
     prompt = f"""Expand this query to improve search results:
     
     Original: {original_query}
     
     Expanded:"""
-    expanded = llm(prompt)
-    return expanded
+    expanded = llm.invoke(prompt)
+    return expanded.content
 
 # Use expanded query for retrieval
 expanded_query = expand_query("ML")
@@ -485,7 +484,9 @@ parent_retriever.add_documents(documents)
 
 ```python
 from langchain.retrievers.self_query.base import SelfQueryRetriever
-from langchain.llms import OpenAI
+from langchain_openai import ChatOpenAI
+
+llm = ChatOpenAI(model="gpt-4o-mini", temperature=0)
 
 # Metadata fields
 metadata_field_info = [
@@ -545,16 +546,15 @@ distances, indices = index.search(query_embedding.reshape(1, -1), k)
 ### Pinecone Example
 
 ```python
-import pinecone
+from pinecone import Pinecone
 
-# Initialize
-pinecone.init(api_key="your-key", environment="us-east-1")
+# Initialize (Pinecone v3+ client; check current docs if this drifts)
+pc = Pinecone(api_key="your-key")
 
-# Create index
-pinecone.create_index("rag-index", dimension=384)
+# Create index if needed (serverless/pod options vary by account)
+# pc.create_index(name="rag-index", dimension=384, metric="cosine", ...)
 
-# Connect to index
-index = pinecone.Index("rag-index")
+index = pc.Index("rag-index")
 
 # Upsert vectors
 index.upsert(vectors=[
@@ -750,10 +750,10 @@ if __name__ == "__main__":
 **Problem**: Too much context, exceeds token limit  
 **Solution**: Limit top-k, use summarization, filter retrieved docs
 
-### 4. Hallucination
+### 4. Hallucination / unsupported answers
 
-**Problem**: LLM generates incorrect information  
-**Solution**: Better prompts, more relevant retrieval, post-processing
+**Problem**: LLM invents facts or ignores retrieved context  
+**Solution**: Better prompts, stronger retrieval/re-ranking, citation checks, and abstain-when-unsure behavior. RAG helps; it does not eliminate this failure mode (see [AI Myths Busted](ai_myths_busted.md#rag-eliminates-hallucinations)).
 
 ### 5. Slow Performance
 
@@ -792,5 +792,5 @@ if __name__ == "__main__":
 
 ---
 
-**Try next:** RAG is powerful but requires careful tuning. Focus on retrieval quality first, then optimize generation. Test with real queries and iterate based on results!
+**Try next:** Pick 20 real user questions. Measure retrieval hit rate before you touch the generator.
 

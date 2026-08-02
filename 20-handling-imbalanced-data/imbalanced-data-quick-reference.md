@@ -23,5 +23,5 @@ from sklearn.metrics import f1_score, average_precision_score
 
 ---
 
-**Try next:** Don't use accuracy for imbalanced data!
+**Try next:** Report PR-AUC or recall at a fixed precision on your next imbalanced task.
 

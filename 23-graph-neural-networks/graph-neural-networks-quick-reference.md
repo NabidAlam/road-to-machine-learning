@@ -8,7 +8,7 @@ Quick reference for GNN formulas, architectures, and code.
 $$h_v^{(l+1)} = \text{UPDATE}(h_v^{(l)}, \text{AGGREGATE}(\{h_u^{(l)} : u \in \mathcal{N}(v)\}))$$
 
 ### GCN
-$$H^{(l+1)} = \sigma(D^{-1/2} A D^{-1/2} H^{(l)} W^{(l)})$$
+$$H^{(l+1)} = \sigma(\tilde{D}^{-1/2} \tilde{A} \tilde{D}^{-1/2} H^{(l)} W^{(l)}),\quad \tilde{A}=A+I$$
 
 ### GAT Attention
 $$\alpha_{vu} = \text{softmax}(\text{LeakyReLU}(a^T [W h_v \| W h_u]))$$

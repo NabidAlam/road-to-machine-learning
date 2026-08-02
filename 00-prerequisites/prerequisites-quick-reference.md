@@ -407,5 +407,5 @@ if hasattr(obj, 'method'):
 
 ---
 
-**Try next:** This is a quick reference. For detailed explanations, see the main guides!
+**Try next:** Use this page while coding. Open the main guide when a line here is unclear.
 

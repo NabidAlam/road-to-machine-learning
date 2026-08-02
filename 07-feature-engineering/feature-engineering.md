@@ -1587,5 +1587,5 @@ for name, encoder in encodings.items():
 - Learn domain-specific feature engineering
 - Move to [08-unsupervised-learning](../08-unsupervised-learning/README.md)
 
-**Try next:** Good features beat complex algorithms! Invest time in feature engineering.
+**Try next:** Spend one hour on features before you try a fancier model. Log both scores.
 

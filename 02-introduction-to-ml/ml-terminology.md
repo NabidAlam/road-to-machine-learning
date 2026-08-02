@@ -615,5 +615,5 @@ Actual Negative   TN      FP
 
 ---
 
-**Try next:** Understanding terminology helps you understand ML concepts and communicate effectively!
+**Try next:** Define bias, variance, and leakage in your own words without opening the page.
 

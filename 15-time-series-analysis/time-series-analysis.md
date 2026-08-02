@@ -1050,5 +1050,5 @@ print(f"SMAPE: {smape:.2f}%")
 - Learn about anomaly detection in time series
 - Move to next module or practice projects
 
-**Try next:** Time series analysis requires understanding temporal dependencies. Always respect the time order of your data!
+**Try next:** Plot lag features and ACF once. Then forbid random shuffle in your split.
 

@@ -45,10 +45,12 @@ Complete guide to Langchain for building Generative AI applications and projects
 ### Installation
 
 ```bash
-pip install langchain openai
-# Or for specific features
-pip install langchain[all]
+pip install langchain langchain-openai langchain-community langchain-text-splitters
+# Optional: local / Hugging Face integrations
+pip install langchain-huggingface sentence-transformers
 ```
+
+> **API note:** Prefer `ChatOpenAI` from `langchain_openai`. The old `langchain.llms.OpenAI` completion wrapper and models like `text-davinci-003` are retired.
 
 ---
 
@@ -70,25 +72,19 @@ pip install langchain[all]
 ### Basic Example
 
 ```python
-from langchain.llms import OpenAI
-from langchain.prompts import PromptTemplate
-from langchain.chains import LLMChain
+from langchain_openai import ChatOpenAI
+from langchain_core.prompts import ChatPromptTemplate
 
-# Initialize LLM
-llm = OpenAI(temperature=0.7)
+# Chat models are the current OpenAI path (not completion / davinci)
+llm = ChatOpenAI(model="gpt-4o-mini", temperature=0.7)
 
-# Create prompt template
-prompt = PromptTemplate(
-    input_variables=["topic"],
-    template="Write a short article about {topic}"
+prompt = ChatPromptTemplate.from_template(
+    "Write a short article about {topic}"
 )
 
-# Create chain
-chain = LLMChain(llm=llm, prompt=prompt)
-
-# Run
-result = chain.run("machine learning")
-print(result)
+chain = prompt | llm
+result = chain.invoke({"topic": "machine learning"})
+print(result.content)
 ```
 
 ---
@@ -98,27 +94,25 @@ print(result)
 ### Using OpenAI
 
 ```python
-from langchain.llms import OpenAI
-from langchain.chat_models import ChatOpenAI
+from langchain_openai import ChatOpenAI
 
-# Text completion model
-llm = OpenAI(
-    model_name="text-davinci-003",
-    temperature=0.7,
-    max_tokens=500
-)
-
-# Chat model (GPT-3.5, GPT-4)
+# Default: a current small chat model for tutorials
 chat = ChatOpenAI(
-    model_name="gpt-3.5-turbo",
-    temperature=0.7
+    model="gpt-4o-mini",
+    temperature=0.7,
+    max_tokens=500,
 )
+
+# Stronger (and costlier) option when you need it
+# chat = ChatOpenAI(model="gpt-4o", temperature=0.7)
 ```
+
+`temperature=0` lowers randomness. It does **not** guarantee identical outputs across providers, or that the answer is correct.
 
 ### Using Hugging Face
 
 ```python
-from langchain.llms import HuggingFacePipeline
+from langchain_community.llms import HuggingFacePipeline
 
 llm = HuggingFacePipeline.from_model_id(
     model_id="gpt2",
@@ -130,7 +124,7 @@ llm = HuggingFacePipeline.from_model_id(
 ### Using Local Models
 
 ```python
-from langchain.llms import LlamaCpp
+from langchain_community.llms import LlamaCpp
 
 llm = LlamaCpp(
     model_path="./models/llama-7b.gguf",
@@ -396,7 +390,7 @@ memory = ConversationEntityMemory(llm=llm)
 ### Loading from Files
 
 ```python
-from langchain.document_loaders import TextLoader, PyPDFLoader, CSVLoader
+from langchain_community.document_loaders import TextLoader, PyPDFLoader, CSVLoader
 
 # Text file
 loader = TextLoader("document.txt")
@@ -414,7 +408,7 @@ documents = loader.load()
 ### Loading from Web
 
 ```python
-from langchain.document_loaders import WebBaseLoader
+from langchain_community.document_loaders import WebBaseLoader
 
 loader = WebBaseLoader("https://example.com/article")
 documents = loader.load()
@@ -423,7 +417,7 @@ documents = loader.load()
 ### Loading from Directory
 
 ```python
-from langchain.document_loaders import DirectoryLoader
+from langchain_community.document_loaders import DirectoryLoader
 
 loader = DirectoryLoader(
     "./documents/",
@@ -440,10 +434,11 @@ documents = loader.load()
 ### Creating Embeddings
 
 ```python
-from langchain.embeddings import OpenAIEmbeddings, HuggingFaceEmbeddings
+from langchain_openai import OpenAIEmbeddings
+from langchain_community.embeddings import HuggingFaceEmbeddings
 
 # OpenAI embeddings
-embeddings = OpenAIEmbeddings()
+embeddings = OpenAIEmbeddings(model="text-embedding-3-small")
 
 # Hugging Face embeddings (free)
 embeddings = HuggingFaceEmbeddings(
@@ -454,8 +449,8 @@ embeddings = HuggingFaceEmbeddings(
 ### FAISS Vector Store
 
 ```python
-from langchain.vectorstores import FAISS
-from langchain.text_splitter import RecursiveCharacterTextSplitter
+from langchain_community.vectorstores import FAISS
+from langchain_text_splitters import RecursiveCharacterTextSplitter
 
 # Split documents
 text_splitter = RecursiveCharacterTextSplitter(
@@ -477,7 +472,7 @@ vectorstore = FAISS.load_local("faiss_index", embeddings)
 ### Chroma Vector Store
 
 ```python
-from langchain.vectorstores import Chroma
+from langchain_community.vectorstores import Chroma
 
 # Create with persistence
 vectorstore = Chroma.from_documents(
@@ -564,9 +559,9 @@ result = qa_chain({"question": "What is RAG?"})
 ### Project 1: Document Q&A System
 
 ```python
-from langchain.document_loaders import DirectoryLoader
-from langchain.text_splitter import RecursiveCharacterTextSplitter
-from langchain.vectorstores import FAISS
+from langchain_community.document_loaders import DirectoryLoader
+from langchain_text_splitters import RecursiveCharacterTextSplitter
+from langchain_community.vectorstores import FAISS
 from langchain.chains import RetrievalQA
 
 # Load documents
@@ -671,5 +666,5 @@ result = agent.run("Write Python code to sort a list")
 
 ---
 
-**Try next:** Langchain makes it easy to build powerful AI applications. Start simple, then gradually add complexity!
+**Try next:** Build one chain end to end (load, split, retrieve, answer). Add agents only when a single chain is not enough.
 

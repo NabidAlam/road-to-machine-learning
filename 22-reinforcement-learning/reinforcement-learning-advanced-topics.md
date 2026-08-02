@@ -242,12 +242,13 @@ class DAgger:
     def collect_data(self, env, num_episodes=10):
         """Collect data using current learner policy"""
         for _ in range(num_episodes):
-            state = env.reset()
+            state, info = env.reset()
             done = False
             while not done:
                 # Use learner policy
                 action = self.learner.act(state)
-                next_state, reward, done, info = env.step(action)
+                next_state, reward, terminated, truncated, info = env.step(action)
+                done = terminated or truncated
                 
                 # Get expert action for this state
                 expert_action = self.expert.act(state)
@@ -369,27 +370,49 @@ class MAML:
 
 ### Reptile
 
-**Reptile** is a simpler meta-learning algorithm.
+**Reptile** is a simpler meta-learning algorithm: from the meta-init θ, take k SGD steps on a task to get θ', then move θ toward θ'. Reset to θ before each task. Do **not** chain adaptations without resetting.
 
 ```python
 class Reptile:
-    def __init__(self, model, lr_inner=0.01, lr_outer=0.001):
+    def __init__(self, model, lr_inner=0.01, lr_outer=0.001, k_shots=5):
         self.model = model
         self.lr_inner = lr_inner
         self.lr_outer = lr_outer
-        self.optimizer = optim.Adam(self.model.parameters(), lr=lr_outer)
+        self.k_shots = k_shots
+    
+    def _clone_params(self):
+        return [p.data.clone() for p in self.model.parameters()]
+    
+    def _set_params(self, params):
+        for p, src in zip(self.model.parameters(), params):
+            p.data.copy_(src)
+    
+    def adapt_to_task(self, task):
+        """k SGD steps on the current model weights (in place)."""
+        for _ in range(self.k_shots):
+            loss = self.compute_loss(task)  # your task loss
+            self.model.zero_grad()
+            loss.backward()
+            with torch.no_grad():
+                for p in self.model.parameters():
+                    if p.grad is not None:
+                        p.data -= self.lr_inner * p.grad
     
     def meta_update(self, tasks):
-        """Reptile meta-update"""
-        initial_params = [p.clone() for p in self.model.parameters()]
+        """θ ← θ + ε * mean_i(θ'_i - θ), with reset to θ before each task."""
+        initial = self._clone_params()
+        deltas = [torch.zeros_like(p) for p in initial]
         
         for task in tasks:
-            # Adapt to task
-            self.adapt_to_task(task)
+            self._set_params(initial)          # reset before every task
+            self.adapt_to_task(task)           # → θ'
+            for d, p, init in zip(deltas, self.model.parameters(), initial):
+                d += p.data - init
         
-        # Update: move towards adapted parameters
-        for initial, current in zip(initial_params, self.model.parameters()):
-            current.data += self.lr_outer * (initial - current)
+        n = max(len(tasks), 1)
+        for init, d in zip(initial, deltas):
+            init += self.lr_outer * (d / n)    # ε (θ' − θ)
+        self._set_params(initial)
 ```
 
 ---
@@ -701,7 +724,7 @@ class C51DQN(nn.Module):
 ## Key Takeaways
 
 1. **Multi-Agent RL**: Complex but powerful for real-world systems (MADDPG, Mean Field)
-2. **Hierarchical RL**: Handles long-horizon tasks effectively (Options, HER)
+2. **Hierarchical RL**: Handles long-horizon tasks (Options, feudal / HIRO-style methods). **HER** is goal-relabeling for sparse rewards, not HRL.
 3. **Imitation Learning**: Useful when rewards are hard to define (BC, DAgger, GAIL)
 4. **Transfer Learning**: Accelerate learning on new tasks
 5. **Continuous Actions**, required for robotics and control (DDPG, TD3)

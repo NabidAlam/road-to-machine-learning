@@ -472,5 +472,5 @@ with torch.no_grad():
 - Learn advanced techniques
 - Move to computer vision module
 
-**Try next:** Frameworks are tools - understanding fundamentals is key!
+**Try next:** Train MNIST once in your primary framework without copying a blog post end to end.
 

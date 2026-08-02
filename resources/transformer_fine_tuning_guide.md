@@ -727,5 +727,5 @@ trainer = Trainer(
 
 ---
 
-**Try next:** Fine-tuning transformers is a powerful technique for adapting pre-trained models to your specific tasks. Start with smaller models and simpler tasks, then gradually move to more complex scenarios. Always monitor your training and validate on held-out data!
+**Try next:** Fine-tune a small model for one epoch on a held-out split. Stop if val loss rises.
 

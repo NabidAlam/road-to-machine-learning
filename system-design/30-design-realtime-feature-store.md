@@ -174,7 +174,7 @@ POST /score
 Flow:
 1. Look up features for `user:42` and `merchant:998` in the online store. One Redis pipeline call. Under 5 ms.
 2. Concatenate features in the order the model expects.
-3. Run inference (separate model server. Triton, BentoML, vLLM, whatever).
+3. Run inference (separate model server for tabular/feature scores: Triton, BentoML, or similar. Use **vLLM** when the model is an LLM, not for generic `/score` tabular inference).
 4. Return prediction + the feature snapshot used (for debugging, drift detection, and audit).
 
 Step 4 is underrated. When the model regresses, you want to know *which feature went weird*.

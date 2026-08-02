@@ -95,5 +95,5 @@ model = Sequential([
 
 ---
 
-**Try next:** Always respect temporal order!
+**Try next:** Split by time, not by random rows, on your next time-series notebook.
 

@@ -1039,5 +1039,5 @@ print(f"  Calibrated: {roc_auc_score(y_test, rf_calibrated_proba):.4f}")
 - Analyze learning curves for different models
 - Move to [06-ensemble-methods](../06-ensemble-methods/README.md)
 
-**Try next:** Never touch test set until final evaluation! Use validation set for all tuning and model selection.
+**Try next:** Delete the test load from your tuning notebook. Put it in a final_eval.py you run once.
 

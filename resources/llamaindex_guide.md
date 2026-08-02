@@ -376,10 +376,11 @@ chat_engine = ContextChatEngine.from_defaults(
 ### Custom LLMs
 
 ```python
-from llama_index.llms import OpenAI, HuggingFaceLLM
+from llama_index.llms.openai import OpenAI
+from llama_index.llms.huggingface import HuggingFaceLLM
 
-# OpenAI
-llm = OpenAI(temperature=0.7, model="gpt-3.5-turbo")
+# OpenAI chat model (pick a current model id from OpenAI's docs)
+llm = OpenAI(temperature=0.7, model="gpt-4o-mini")
 
 # Hugging Face
 llm = HuggingFaceLLM(
@@ -531,5 +532,5 @@ response = query_engine.query("What are the key findings across all papers?")
 
 ---
 
-**Try next:** LlamaIndex excels at indexing and querying large document collections. Use it for document-based AI applications!
+**Try next:** Index a folder of your own PDFs and ask five questions you already know the answers to.
 

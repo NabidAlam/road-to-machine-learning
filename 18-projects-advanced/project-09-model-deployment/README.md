@@ -1,6 +1,6 @@
 # Project 9: Model Deployment & Serving Project
 
-Deploy a machine learning model as a production-ready API service with Docker, monitoring, and best practices.
+Deploy a machine learning model as a production-**shaped** API demo with Docker, monitoring hooks, and honest limits (auth, multi-AZ, SLOs still to add).
 
 ## Difficulty
 Advanced
@@ -21,7 +21,7 @@ Advanced
 ## Learning Objectives
 
 By completing this project, you will learn to:
-- Build production-ready REST APIs with FastAPI
+- Build production-**shaped** REST APIs with FastAPI for a portfolio demo
 - Containerize ML models with Docker
 - Deploy models to cloud platforms
 - Implement model versioning

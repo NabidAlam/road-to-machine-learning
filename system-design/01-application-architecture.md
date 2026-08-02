@@ -107,7 +107,7 @@ def charge_user(user_id, amount):
 
 In production, these logs flow into something like Datadog or Loki where you can search across all servers at once.
 
-## The CAP triangle of an app's life
+## The ops trade-off triangle of an app's life
 
 Every real product is trying to optimize three things at the same time. You can pick two:
 
@@ -117,7 +117,7 @@ Every real product is trying to optimize three things at the same time. You can 
 
 A static site is fast and cheap but limited. Netflix is fast and available but eats billions in infrastructure. A grad student's project is cheap and (sort of) available but slow.
 
-We'll see this trade-off again in the CAP theorem chapter, but it shows up everywhere.
+This is **not** the CAP theorem (consistency / availability / partition tolerance). CAP shows up later when you spread data across machines. This triangle is everyday product/ops tension.
 
 ## Reliability and the language of nines
 

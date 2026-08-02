@@ -690,7 +690,7 @@ conv_same = layers.Conv2D(32, (3, 3), padding='same', strides=1)
 conv_stride2 = layers.Conv2D(64, (3, 3), padding='same', strides=2)
 
 # Custom padding
-conv_custom = layers.Conv2D(32, (3, 3), padding=1, strides=1)  # Explicit padding value
+conv_custom = layers.Conv2D(32, (3, 3), padding='same', strides=1)  # Keras: 'valid' or 'same' (not an int)
 ```
 
 **PyTorch:**
@@ -2038,7 +2038,7 @@ resnet18.summary()
 
 **Key Takeaways:**
 - Residual connections enable very deep networks
-- Skip connections solve vanishing gradient problem
+- Residual/skip connections ease deep-net optimization (degradation); vanishing gradients are a related but separate story
 - ResNet is foundation for many modern architectures
 - Still widely used in production systems
 
@@ -2100,7 +2100,7 @@ model.compile(
 | **VGG16** | 138M | 71.3% | Good baseline |
 | **ResNet50** | 25M | 76.0% | Deep, accurate |
 | **MobileNetV2** | 3.4M | 71.3% | Mobile/edge devices |
-| **EfficientNet** | 5.3M | 77.1% | Best accuracy/size ratio |
+| **EfficientNet** | 5.3M | 77.1% | Strong accuracy/size trade-off in the original paper (example numbers) |
 | **InceptionV3** | 23M | 78.0% | High accuracy |
 
 ```python
@@ -2507,5 +2507,5 @@ model.fit(train_data, epochs=5)
 - Explore object detection and segmentation
 - Move to [12-natural-language-processing](../12-natural-language-processing/README.md)
 
-**Try next:** CNNs revolutionized computer vision! Practice with real datasets to master them.
+**Try next:** Train a small CNN on CIFAR-10 or Fashion-MNIST. Plot train vs val loss before you reach for transfer learning.
 

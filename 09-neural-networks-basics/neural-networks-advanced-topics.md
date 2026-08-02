@@ -563,5 +563,5 @@ def monitor_training(model, X_train, y_train, X_val, y_val, epochs=1000):
 - Learn about convolutional and recurrent networks
 - Move to deep learning frameworks module
 
-**Try next:** Understanding these advanced concepts is crucial for building effective neural networks!
+**Try next:** Train the same net with and without batch norm (or dropout). Plot the two loss curves.
 

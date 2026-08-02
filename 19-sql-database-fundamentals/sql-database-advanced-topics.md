@@ -370,5 +370,5 @@ JOIN b ON a.id = b.a_id;
 
 ---
 
-**Try next:** Advanced SQL skills make you a better data scientist! NoSQL complements SQL for specific use cases.
+**Try next:** Rewrite one analytics query with a CTE. Time it. Then decide if indexes matter.
 

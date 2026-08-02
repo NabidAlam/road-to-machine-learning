@@ -461,5 +461,5 @@ encoder = OneHotEncoder(
 
 ---
 
-**Try next:** Advanced MLOps requires proper tooling and practices!
+**Try next:** Add a smoke test that loads the model and scores one batch after every train job.
 

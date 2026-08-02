@@ -959,5 +959,5 @@ for i, (name1, result1) in enumerate(results.items()):
 - Learn association rules (market basket analysis)
 - Move to [09-neural-networks-basics](../09-neural-networks-basics/README.md)
 
-**Try next:** Unsupervised learning reveals hidden patterns! Use domain knowledge to validate results.
+**Try next:** Cluster a dataset you know, then check whether clusters match labels or domain groups you trust.
 

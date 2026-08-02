@@ -1072,5 +1072,5 @@ if len(good_models) > 1:
 - Learn about advanced boosting libraries (XGBoost, LightGBM, CatBoost)
 - Move to feature engineering module
 
-**Try next:** Diversity and proper tuning are keys to successful ensembles!
+**Try next:** Change one base learner and re-measure. If the score barely moves, simplify.
 

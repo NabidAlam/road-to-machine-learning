@@ -116,5 +116,5 @@ client.transition_model_version_stage("ModelName", 1, "Production")
 
 ---
 
-**Try next:** MLOps makes ML production-ready!
+**Try next:** Version one model artifact and record how you would roll it back.
 

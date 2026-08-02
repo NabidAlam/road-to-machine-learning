@@ -96,5 +96,5 @@ result = permutation_importance(model, X_val, y_val, n_repeats=5, random_state=4
 
 ---
 
-**Try next:** Advanced techniques provide deeper insights!
+**Try next:** Compare local vs global explanations on three examples that the model got wrong.
 

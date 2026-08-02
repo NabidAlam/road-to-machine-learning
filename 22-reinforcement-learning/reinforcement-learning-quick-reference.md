@@ -8,7 +8,7 @@ Quick reference guide for reinforcement learning algorithms, formulas, and code 
 $$G_t = R_{t+1} + \gamma R_{t+2} + \gamma^2 R_{t+3} + \ldots$$
 
 ### Q-Learning Update
-$$Q(s,a) \leftarrow Q(s,a) + \alpha[r + \gamma \max_{a'} Q(s',a'): Q(s,a)]$$
+$$Q(s,a) \leftarrow Q(s,a) + \alpha[r + \gamma \max_{a'} Q(s',a') - Q(s,a)]$$
 
 ### Policy Gradient
 $$\nabla_{\theta} J(\theta) = \mathbb{E}_{\pi}[\nabla_{\theta} \log \pi(a|s) \cdot Q^{\pi}(s,a)]$$
@@ -24,9 +24,9 @@ $$Q^{\pi}(s,a) = \sum_{s',r} P(s',r|s,a) [r + \gamma \sum_{a'} \pi(a'|s') Q^{\pi
 | **DQN** | Value-based | Discrete | Yes | Deep, experience replay |
 | **Double DQN** | Value-based | Discrete | Yes | Reduces overestimation |
 | **REINFORCE** | Policy-based | Discrete/Continuous | No | Monte Carlo |
-| **Actor-Critic** | Both | Discrete/Continuous | Yes | Combines value & policy |
-| **DDPG** | Actor-Critic | Continuous | Yes | Deterministic policy |
-| **PPO** | Policy-based | Discrete/Continuous | Yes | Stable updates |
+| **A2C / typical Actor-Critic** | Both | Discrete/Continuous | No | On-policy; learn from current policy rollouts |
+| **DDPG / SAC** | Actor-Critic | Continuous | Yes | Off-policy actor-critic with replay |
+| **PPO** | Policy-based | Discrete/Continuous | No | On-policy; clipped surrogate updates |
 
 ## Code Snippets
 
@@ -56,7 +56,7 @@ loss = -log_prob * advantage
 
 ## Libraries
 
-- **Gym**: `import gym; env = gym.make('CartPole-v1')`
+- **Gymnasium**: `import gymnasium as gym; env = gym.make('CartPole-v1')` then `obs, info = env.reset()` and `obs, r, terminated, truncated, info = env.step(a)`
 - **Stable-Baselines3**: `from stable_baselines3 import DQN`
 - **Ray RLlib**: `from ray.rllib.algorithms import ppo`
 

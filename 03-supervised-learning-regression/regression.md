@@ -717,5 +717,5 @@ print(f"R²: {r2_score(y, y_pred):.3f}")
 - Experiment with different regularization strengths
 - Move to [04-supervised-learning-classification](../04-supervised-learning-classification/README.md) for classification
 
-**Try next:** Start simple (linear), then add complexity only if needed!
+**Try next:** Fit linear regression first. Only add polynomials if residual plots demand it.
 

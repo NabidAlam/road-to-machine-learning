@@ -412,5 +412,5 @@ np.random.randn(3, 3)       # Normal distribution
 
 ---
 
-**Try next:** Master these fundamentals before diving into ML! They form the foundation for understanding algorithms and models.
+**Try next:** Quiz yourself on gradient, matrix multiply, and a p-value without notes. Patch gaps in Module 00.
 

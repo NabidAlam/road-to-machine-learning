@@ -1337,5 +1337,5 @@ perm_importance = permutation_importance(model, X_test, y_test)
 
 ---
 
-**Try next:** Explainable models build trust, enable debugging, and ensure compliance! Start with simple methods (feature importance) and progress to advanced techniques (SHAP) as needed. Always validate explanations with domain experts.
+**Try next:** Run SHAP or permutation importance on one model. Ask a domain person if the top features make sense.
 

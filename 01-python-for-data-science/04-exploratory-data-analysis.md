@@ -956,5 +956,5 @@ Expected Impact: 20% reduction in churn = $400K saved
 
 ---
 
-**Try next:** Good EDA leads to better models. Spend time understanding your data before modeling, and communicate your findings clearly to drive action!
+**Try next:** Write five findings from EDA before you train. Keep at least one that surprised you.
 

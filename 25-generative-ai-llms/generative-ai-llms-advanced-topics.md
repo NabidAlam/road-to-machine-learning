@@ -93,8 +93,8 @@ def tree_of_thoughts(problem, depth=3):
 **Concept**: Combine semantic search with keyword search.
 
 ```python
-from langchain.retrievers import BM25Retriever
-from langchain.vectorstores import FAISS
+from langchain_community.retrievers import BM25Retriever
+from langchain_community.vectorstores import FAISS
 
 # Semantic retriever
 vector_retriever = vectorstore.as_retriever(search_kwargs={"k": 5})
@@ -346,10 +346,11 @@ def evaluate_agent(agent, test_cases):
 ### Model Selection
 
 ```python
-# Use smaller models when possible
+# Use smaller / cheaper chat models when the task is simple
+# Model ids change; confirm current names in provider docs
 models = {
-    "simple": "gpt-3.5-turbo",  # Cheaper
-    "complex": "gpt-4"  # More expensive
+    "simple": "gpt-4o-mini",  # Usually cheaper
+    "complex": "gpt-4o"       # Stronger, usually costlier
 }
 
 def select_model(task_complexity):
@@ -420,13 +421,13 @@ def filter_output(response):
 ### Load Balancing
 
 ```python
-from langchain.llms import OpenAI
+from langchain_openai import ChatOpenAI
 
 # Multiple API keys for load distribution
 llms = [
-    OpenAI(openai_api_key=key1),
-    OpenAI(openai_api_key=key2),
-    OpenAI(openai_api_key=key3)
+    ChatOpenAI(model="gpt-4o-mini", openai_api_key=key1),
+    ChatOpenAI(model="gpt-4o-mini", openai_api_key=key2),
+    ChatOpenAI(model="gpt-4o-mini", openai_api_key=key3),
 ]
 
 def get_llm():
@@ -438,12 +439,12 @@ def get_llm():
 
 ```python
 import asyncio
-from langchain.llms import OpenAI
+from langchain_openai import ChatOpenAI
 
 async def async_generate(prompts):
     """Process prompts asynchronously"""
-    llm = OpenAI()
-    tasks = [llm.agenerate(prompt) for prompt in prompts]
+    llm = ChatOpenAI(model="gpt-4o-mini")
+    tasks = [llm.ainvoke(prompt) for prompt in prompts]
     return await asyncio.gather(*tasks)
 ```
 

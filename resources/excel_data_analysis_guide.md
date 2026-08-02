@@ -2425,5 +2425,5 @@ result
 
 ---
 
-**Try next:** Excel is a powerful tool for data analysis. Master the basics first, then gradually learn advanced features. Practice with real datasets and focus on creating clear, actionable insights!
+**Try next:** Clean one messy CSV in Excel (or Sheets), then rebuild the same clean steps in pandas.
 

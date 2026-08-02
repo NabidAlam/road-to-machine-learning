@@ -329,12 +329,16 @@ ML Engineer passionate about building production-ready ML systems.
 4. **Company Size**: Big tech pays more
 5. **Skills**: Specialized skills (Deep Learning, MLOps)
 
-### Salary Ranges (US, 2024)
+### Illustrative ranges (US tech, ballpark)
 
-- **Entry Level (0-2 years)**: $70,000 - $100,000
-- **Mid Level (2-5 years)**: $100,000 - $150,000
-- **Senior Level (5+ years)**: $150,000 - $250,000+
-- **Staff/Principal**: $200,000 - $400,000+
+These are **examples**, not offers or promises. Comp moves with company, city, level title, equity, and year. Check current sources (Levels.fyi, Blind, local postings) before negotiating.
+
+- **Entry Level (0-2 years)**: often roughly $70,000 - $130,000+ total cash depending on market
+- **Mid Level (2-5 years)**: often roughly $100,000 - $180,000+
+- **Senior Level (5+ years)**: often roughly $150,000 - $250,000+
+- **Staff/Principal**: often roughly $200,000 - $400,000+ (wide spread; equity matters)
+
+Non-US markets (including EU/DE) use different bands and currency. Do not treat US figures as global.
 
 ### Negotiation Tips
 
@@ -481,5 +485,5 @@ ML Engineer passionate about building production-ready ML systems.
 
 ---
 
-**Try next:** Building a career in ML takes time and persistence. Focus on continuous learning, building projects, and networking. Your portfolio is your best asset. Make it shine!
+**Try next:** Publish one project with a clear problem, metric, and README. Then apply to five roles that match that project.
 

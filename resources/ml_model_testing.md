@@ -629,5 +629,5 @@ def test_model_with_mocked_data_source():
 
 ---
 
-**Try next:** Good tests give you confidence to deploy and refactor. Start with critical paths and expand coverage over time!
+**Try next:** Add one test that fails if prediction shape or score drifts beyond a bound.
 

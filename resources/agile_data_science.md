@@ -321,5 +321,5 @@ Each team member answers:
 
 ---
 
-**Try next:** Agile is about adapting to change and delivering value continuously. In data science, this means building models iteratively, getting feedback early, and continuously improving both models and process!
+**Try next:** Ship a weak model to stakeholders in one sprint. Collect feedback before the next training round.
 

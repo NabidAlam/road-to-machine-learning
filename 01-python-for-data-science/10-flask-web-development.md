@@ -661,5 +661,5 @@ Create a web dashboard that:
 
 ---
 
-**Try next:** Flask gives you flexibility and control. Start simple and add features as needed!
+**Try next:** Serve one sklearn model behind a Flask POST endpoint. Hit it with curl.
 

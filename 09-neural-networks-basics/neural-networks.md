@@ -1072,5 +1072,5 @@ for x, y_true, y_pred in zip(X_xor, y_xor, predictions):
 - Learn about regularization techniques
 - Move to [10-deep-learning-frameworks](../10-deep-learning-frameworks/README.md) for frameworks
 
-**Try next:** Understanding fundamentals helps when using frameworks! Master the basics before moving to high-level APIs.
+**Try next:** Implement one forward pass of a tiny net in NumPy before you call nn.Linear.
 

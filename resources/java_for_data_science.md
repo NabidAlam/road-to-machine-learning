@@ -406,5 +406,5 @@ Dataset<Row> predictions = model.transform(testDF);
 
 ---
 
-**Try next:** Java is valuable for enterprise integration and big data processing. Use it when you need to integrate with Java systems or work with Spark at scale. For most data science tasks, Python remains the primary choice!
+**Try next:** Only switch to Java/Spark when data size or existing stack forces it. Otherwise stay in Python.
 

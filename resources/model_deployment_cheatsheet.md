@@ -524,5 +524,5 @@ start_http_server(8000)
 
 ---
 
-**Try next:** Deploy models that are tested, monitored, and secure!
+**Try next:** Add auth or an API key check and a /health endpoint to your serving demo.
 

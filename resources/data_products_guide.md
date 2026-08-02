@@ -433,5 +433,5 @@ def predict(request: PredictionRequest):
 
 ---
 
-**Try next:** A data product is only valuable if it's used. Focus on solving real business problems, getting user feedback, and continuously improving!
+**Try next:** Ask one intended user what decision the product should change. Design the metric from that answer.
 

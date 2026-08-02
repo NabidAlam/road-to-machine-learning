@@ -562,5 +562,5 @@ optimizer = optim.Adam(model.parameters(), lr=0.0001)  # Instead of 0.001
 - Explore deployment options
 - Move to computer vision module
 
-**Try next:** Advanced techniques require understanding fundamentals first!
+**Try next:** Implement one advanced trick only after a plain training loop matches a known toy metric.
 

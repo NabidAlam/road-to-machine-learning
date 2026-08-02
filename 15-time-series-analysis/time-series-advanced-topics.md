@@ -117,5 +117,5 @@ anomalies = iso_forest.fit_predict(data.values.reshape(-1, 1))
 
 ---
 
-**Try next:** Advanced techniques build on fundamentals!
+**Try next:** Forecast with a naive seasonal baseline before you try a fancy model.
 

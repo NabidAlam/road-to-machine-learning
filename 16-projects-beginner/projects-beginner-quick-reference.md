@@ -79,5 +79,5 @@ model = LinearRegression()
 
 ---
 
-**Try next:** Start simple and iterate!
+**Try next:** Ship a baseline, then change one thing. Keep a short changelog of score deltas.
 

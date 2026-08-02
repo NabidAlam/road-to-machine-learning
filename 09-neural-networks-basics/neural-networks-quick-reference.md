@@ -501,5 +501,5 @@ def backward(activations, y, weights, activation='sigmoid'):
 - Learn about advanced optimizers (Adam, RMSprop)
 - Move to deep learning frameworks module
 
-**Try next:** Understanding fundamentals is crucial before using frameworks!
+**Try next:** Write cross-entropy for two classes by hand, then match PyTorch.
 

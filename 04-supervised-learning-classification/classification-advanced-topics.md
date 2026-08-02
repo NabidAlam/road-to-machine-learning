@@ -597,5 +597,5 @@ model = LogisticRegression(class_weight='balanced')
 - Learn about model interpretability tools (SHAP, LIME)
 - Move to ensemble methods module
 
-**Try next:** Classification is more than just accuracy. Understand your data and use appropriate metrics!
+**Try next:** Choose precision or recall from the cost of false positives vs false negatives.
 

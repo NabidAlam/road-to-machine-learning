@@ -565,9 +565,10 @@ Thought → Action → Observation → Thought → Action → ...
 **Implementation:**
 ```python
 from langchain.agents import initialize_agent, Tool
-from langchain.llms import OpenAI
+from langchain_openai import ChatOpenAI
 
-llm = OpenAI(temperature=0)
+# temperature=0 lowers randomness; not a correctness guarantee
+llm = ChatOpenAI(model="gpt-4o-mini", temperature=0)
 
 # Define tools
 tools = [
@@ -632,10 +633,10 @@ Action: Finish[Paris]
 **Implementation:**
 ```python
 from langchain.agents import create_python_agent
-from langchain.tools.python.tool import PythonREPLTool
-from langchain.llms import OpenAI
+from langchain_experimental.tools import PythonREPLTool
+from langchain_openai import ChatOpenAI
 
-llm = OpenAI(temperature=0)
+llm = ChatOpenAI(model="gpt-4o-mini", temperature=0)
 
 # Create PAL agent
 agent = create_python_agent(
@@ -1284,5 +1285,5 @@ result = crew.kickoff()
 
 ---
 
-**Try next:** AI agents are powerful but require careful design. Start simple, test thoroughly, and iterate!
+**Try next:** Give an agent one tool and one eval set. Add a second tool only after the first is reliable.
 
