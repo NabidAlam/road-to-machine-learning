@@ -8,7 +8,7 @@ Comprehensive quick reference for deploying ML models to production.
 - [API Development](#api-development)
 - [Containerization](#containerization)
 - [Cloud Deployment](#cloud-deployment)
-- [A/B Testing](#ab-testing)
+- [A/B Testing](#a-b-testing)
 - [Model Serving](#model-serving)
 - [Monitoring](#monitoring)
 

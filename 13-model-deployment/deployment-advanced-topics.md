@@ -8,7 +8,7 @@ Comprehensive guide to advanced deployment techniques and best practices.
 - [Advanced API Patterns](#advanced-api-patterns)
 - [Kubernetes Deployment](#kubernetes-deployment)
 - [Edge Deployment](#edge-deployment)
-- [A/B Testing](#ab-testing)
+- [A/B Testing](#a-b-testing)
 - [Model Versioning](#model-versioning)
 - [Common Pitfalls and Solutions](#common-pitfalls-and-solutions)
 

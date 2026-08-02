@@ -1,19 +1,18 @@
 # Notify the Study Hub repo to re-sync when curriculum changes on main.
 #
-# Setup (one time):
-# 1. Create a fine-grained PAT with Contents read/write on the study hub repo.
-# 2. Settings → Secrets → Actions: STUDY_HUB_DISPATCH_TOKEN = <PAT>
-# 3. Settings → Variables → Actions: STUDY_HUB_REPO = NabidInMotion/nabidinmotion.github.io
-# 4. Commit and push this file to main.
+# Currently manual-only: auto-dispatch was failing (token missing access to the
+# private NabidInMotion hub). You already bump the submodule by hand when needed.
+#
+# To re-enable on push after rotating the PAT:
+# 1. Fine-grained PAT with Contents read/write on NabidInMotion/nabidinmotion.github.io
+# 2. Secret STUDY_HUB_DISPATCH_TOKEN = <PAT>
+# 3. Variable STUDY_HUB_REPO = NabidInMotion/nabidinmotion.github.io
+# 4. Restore the `push:` trigger below (and remove workflow_dispatch-only).
 
 name: Notify study hub
 
 on:
-  push:
-    branches: [main]
-    paths:
-      - "**/*.md"
-      - "!.github/**"
+  workflow_dispatch:
 
 jobs:
   dispatch:

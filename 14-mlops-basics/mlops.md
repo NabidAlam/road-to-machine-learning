@@ -8,7 +8,7 @@ This guide covers managing the complete ML lifecycle.
 - [Version Control for ML](#version-control-for-ml)
 - [Experiment Tracking](#experiment-tracking)
 - [Model Registry](#model-registry)
-- [CI/CD for ML](#cicd-for-ml)
+- [CI/CD for ML](#ci-cd-for-ml)
 - [Data Pipeline](#data-pipeline)
 - [Reproducibility](#reproducibility)
 - [Practice Exercises](#practice-exercises)

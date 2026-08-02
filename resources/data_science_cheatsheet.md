@@ -9,7 +9,7 @@ Quick reference for common syntax and operations used in everyday data science a
 - [Matplotlib & Seaborn](#matplotlib-seaborn)
 - [Scikit-learn](#scikit-learn)
 - [PyTorch](#pytorch)
-- [TensorFlow/Keras](#tensorflowkeras)
+- [TensorFlow/Keras](#tensorflow-keras)
 - [OpenCV](#opencv)
 - [Hyperparameter Tuning & Model Optimization](#hyperparameter-tuning-model-optimization)
 - [FastAPI & Web Development](#fastapi-web-development)

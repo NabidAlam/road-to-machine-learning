@@ -7,7 +7,7 @@ Quick reference for MLOps tools and practices.
 - [Version Control](#version-control)
 - [Experiment Tracking](#experiment-tracking)
 - [Model Registry](#model-registry)
-- [CI/CD](#cicd)
+- [CI/CD](#ci-cd)
 - [Common Issues & Solutions](#common-issues-solutions)
 - [Best Practices Checklist](#best-practices-checklist)
 

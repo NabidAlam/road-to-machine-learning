@@ -7,7 +7,7 @@ Comprehensive quick reference for MLOps tools, practices, and workflows.
 - [Version Control](#version-control)
 - [Experiment Tracking](#experiment-tracking)
 - [Model Registry](#model-registry)
-- [CI/CD](#cicd)
+- [CI/CD](#ci-cd)
 - [Model Monitoring](#model-monitoring)
 - [Data Versioning](#data-versioning)
 - [Pipeline Orchestration](#pipeline-orchestration)

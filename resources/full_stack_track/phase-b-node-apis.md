@@ -1,6 +1,6 @@
 # Phase B: Node.js, HTTP, and API Core (In-Repo Lessons)
 
-**Maps to:** [Blueprint Phase B](../full_stack_ai_engineer_roadmap.md#phase-b-nodejs-express-and-api-core)
+**Maps to:** [Blueprint Phase B](../full_stack_ai_engineer_roadmap.md#phase-b-node-js-express-and-api-core)
 
 **Goal:** Understand how a request becomes a response, then ship a small REST API with validation and clear errors.
 

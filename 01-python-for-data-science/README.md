@@ -246,7 +246,7 @@ Module 01 has **15 lessons**, too much to read linearly before starting ML. Use 
 
 ### Exit gate (Stage 1)
 
-Before Module 02, you should pass [Gate B in FOUNDATION_AND_JOB_READINESS.md](../FOUNDATION_AND_JOB_READINESS.md#gate-b--after-module-01-stage-1).
+Before Module 02, you should pass [Gate B in FOUNDATION_AND_JOB_READINESS.md](../FOUNDATION_AND_JOB_READINESS.md#gate-b-after-module-01-stage-1).
 
 ##  Learning Objectives
 

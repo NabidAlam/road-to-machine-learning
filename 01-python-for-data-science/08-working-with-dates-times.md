@@ -5,7 +5,7 @@ This guide covers handling dates, times, and time-based data in Python using Pan
 ## Table of Contents
 
 - [Introduction](#introduction)
-- [Creating Date/Time Objects](#creating-datetime-objects)
+- [Creating Date/Time Objects](#creating-date-time-objects)
 - [Parsing Dates](#parsing-dates)
 - [Date Arithmetic](#date-arithmetic)
 - [Time Series Indexing](#time-series-indexing)

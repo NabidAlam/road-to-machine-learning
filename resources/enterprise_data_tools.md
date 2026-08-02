@@ -6,7 +6,7 @@ Comprehensive guide to enterprise data platforms and tools used in production da
 
 - [Introduction](#introduction)
 - [Data Warehouses](#data-warehouses)
-- [ETL/ELT Tools](#etlelt-tools)
+- [ETL/ELT Tools](#etl-elt-tools)
 - [Data Quality Tools](#data-quality-tools)
 - [Business Intelligence Tools](#business-intelligence-tools)
 - [Integration](#integration)

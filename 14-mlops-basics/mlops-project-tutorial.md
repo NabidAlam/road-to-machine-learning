@@ -8,7 +8,7 @@ Step-by-step walkthrough of setting up a complete MLOps pipeline.
 - [Step 1: Set Up Version Control](#step-1-set-up-version-control)
 - [Step 2: Set Up Experiment Tracking](#step-2-set-up-experiment-tracking)
 - [Step 3: Create Reproducible Pipeline](#step-3-create-reproducible-pipeline)
-- [Step 4: Set Up CI/CD](#step-4-set-up-cicd)
+- [Step 4: Set Up CI/CD](#step-4-set-up-ci-cd)
 - [Step 5: Model Registry](#step-5-model-registry)
 
 ---
