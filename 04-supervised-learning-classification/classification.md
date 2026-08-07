@@ -1861,3 +1861,8 @@ Need interpretability?
 
 **Try next:** Compare two classifiers on the same folds. Pick with a pre-registered metric.
 
+
+> [!RECALL]
+> When should you prefer precision over recall?
+>
+> When false positives are costly (e.g. flagging spam that isn’t). Prefer recall when missing positives is costly.

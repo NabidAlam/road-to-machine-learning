@@ -1589,3 +1589,8 @@ for name, encoder in encodings.items():
 
 **Try next:** Spend one hour on features before you try a fancier model. Log both scores.
 
+
+> [!RECALL]
+> What is data leakage in feature engineering?
+>
+> Using information that would not be available at prediction time (e.g. fitting scalers on the full dataset before the split).

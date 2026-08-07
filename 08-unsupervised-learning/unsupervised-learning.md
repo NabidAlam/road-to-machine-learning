@@ -961,3 +961,8 @@ for i, (name1, result1) in enumerate(results.items()):
 
 **Try next:** Cluster a dataset you know, then check whether clusters match labels or domain groups you trust.
 
+
+> [!RECALL]
+> What is the key difference between supervised and unsupervised learning?
+>
+> Unsupervised methods find structure without labeled targets (clusters, components); supervised predicts a known label.

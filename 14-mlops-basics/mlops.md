@@ -1670,3 +1670,8 @@ dvc repro
 
 **Try next:** Add a training script that pins deps, logs metrics, and writes a model version tag.
 
+
+> [!RECALL]
+> What does model monitoring catch that unit tests usually miss?
+>
+> Production drift: changing data distributions, degraded metrics, and silent feature pipeline breaks over time.

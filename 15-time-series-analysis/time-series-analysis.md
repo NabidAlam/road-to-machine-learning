@@ -1052,3 +1052,8 @@ print(f"SMAPE: {smape:.2f}%")
 
 **Try next:** Plot lag features and ACF once. Then forbid random shuffle in your split.
 
+
+> [!RECALL]
+> Why must you be careful with random train/test splits on time series?
+>
+> Future values can leak into training; prefer time-ordered splits (train past → test future).

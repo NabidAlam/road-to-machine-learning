@@ -1339,3 +1339,8 @@ perm_importance = permutation_importance(model, X_test, y_test)
 
 **Try next:** Run SHAP or permutation importance on one model. Ask a domain person if the top features make sense.
 
+
+> [!RECALL]
+> What is the difference between global and local explainability?
+>
+> Global explains overall model behavior; local explains one prediction (e.g. why this loan was denied).

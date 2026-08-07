@@ -1041,3 +1041,8 @@ print(f"  Calibrated: {roc_auc_score(y_test, rf_calibrated_proba):.4f}")
 
 **Try next:** Delete the test load from your tuning notebook. Put it in a final_eval.py you run once.
 
+
+> [!RECALL]
+> Why is a hold-out test set evaluated only once at the end?
+>
+> Repeated peeking turns the test set into a tuning set and overfits your evaluation.

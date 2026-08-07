@@ -1074,3 +1074,8 @@ for x, y_true, y_pred in zip(X_xor, y_xor, predictions):
 
 **Try next:** Implement one forward pass of a tiny net in NumPy before you call nn.Linear.
 
+
+> [!RECALL]
+> What does the loss function measure during neural network training?
+>
+> How wrong the model’s predictions are versus the targets—training adjusts weights to reduce that error.

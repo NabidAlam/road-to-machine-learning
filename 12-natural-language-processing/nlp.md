@@ -842,3 +842,8 @@ model = AutoModelForSequenceClassification.from_pretrained(model_name, num_label
 
 **Try next:** Fine-tune a small encoder on a classification task you care about. Compare to bag-of-words.
 
+
+> [!RECALL]
+> What problem do embeddings solve for text?
+>
+> They map tokens into dense vectors so models can use semantic similarity instead of sparse one-hot IDs.

@@ -967,3 +967,8 @@ class TradingAgent:
 
 **Next Steps**: Explore [Advanced Topics](reinforcement-learning-advanced-topics.md) for multi-agent RL, hierarchical RL, imitation learning, and meta-learning.
 
+
+> [!RECALL]
+> In RL, what is the role of the reward signal?
+>
+> It scores actions over time so the agent learns a policy that maximizes expected cumulative reward.

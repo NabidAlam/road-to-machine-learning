@@ -646,3 +646,8 @@ cost_matrix = {
 
 **Try next:** Plot precision-recall for your imbalanced task. Pick a threshold from cost, not from accuracy.
 
+
+> [!RECALL]
+> Why can accuracy be misleading on imbalanced classes?
+>
+> A model that always predicts the majority class can score high accuracy while never finding the rare class.

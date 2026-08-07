@@ -719,3 +719,8 @@ print(f"R²: {r2_score(y, y_pred):.3f}")
 
 **Try next:** Fit linear regression first. Only add polynomials if residual plots demand it.
 
+
+> [!RECALL]
+> What does a regression model predict, and how is that different from classification?
+>
+> A continuous numeric target (e.g. price, temperature). Classification predicts a discrete class label.

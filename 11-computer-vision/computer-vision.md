@@ -2509,3 +2509,8 @@ model.fit(train_data, epochs=5)
 
 **Try next:** Train a small CNN on CIFAR-10 or Fashion-MNIST. Plot train vs val loss before you reach for transfer learning.
 
+
+> [!RECALL]
+> Why are convolutions a natural fit for images?
+>
+> They share local filters across space, capturing translation-tolerant patterns with far fewer parameters than dense layers.

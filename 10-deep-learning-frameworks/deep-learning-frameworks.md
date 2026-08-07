@@ -3351,3 +3351,8 @@ ds_test = ds_test.map(preprocess).batch(32)
 ---
 
 **Try next:** Finish one end-to-end notebook in your primary framework this week. Ship the metric chart.
+
+> [!RECALL]
+> Why do frameworks use automatic differentiation (autograd)?
+>
+> So gradients for backpropagation are computed from the computation graph without hand-derived derivatives.

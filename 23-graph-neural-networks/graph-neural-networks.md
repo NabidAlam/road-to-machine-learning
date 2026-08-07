@@ -811,3 +811,8 @@ class ResidualGCN(nn.Module):
 
 **Next Steps**: Explore [Advanced Topics](graph-neural-networks-advanced-topics.md) for graph transformers, dynamic graphs, heterogeneous graphs, and graph generation.
 
+
+> [!RECALL]
+> What extra information do GNNs use that tabular models usually ignore?
+>
+> Graph structure—nodes exchange messages along edges so predictions can depend on neighbors.

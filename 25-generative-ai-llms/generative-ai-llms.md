@@ -140,3 +140,8 @@ For production deployment patterns, see:
 ---
 
 **Next**: Complete the Advanced Project "LLM Chatbot & RAG System" to apply these concepts.
+
+> [!RECALL]
+> What does “next-token prediction” mean for a language model?
+>
+> The model is trained to predict the probability of the next token given previous tokens—generation samples from that distribution.

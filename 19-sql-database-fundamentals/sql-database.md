@@ -2609,3 +2609,8 @@ ORDER BY difference DESC;
 
 **Try next:** Write one JOIN and one window function on a real table. Explain the row grain aloud.
 
+
+> [!RECALL]
+> When do you use INNER JOIN versus LEFT JOIN?
+>
+> INNER keeps only matching rows in both tables; LEFT keeps all left-table rows and nulls for non-matches.

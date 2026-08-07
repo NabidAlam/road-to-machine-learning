@@ -2619,3 +2619,8 @@ def detect_data_drift(new_features, training_features):
 
 **Try next:** Wrap your best model in a FastAPI endpoint and send one real prediction request.
 
+
+> [!RECALL]
+> Name one difference between offline batch scoring and online real-time inference.
+>
+> Batch processes many rows on a schedule; online serves low-latency predictions per request (API).
