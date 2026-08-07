@@ -1,6 +1,6 @@
 # How to Use the Study Hub for Maximum Learning
 
-This guide is for the **[Nabid In Motion Study Hub](https://nabidinmotion.github.io)**, the subscriber site that syncs this curriculum. It explains **how to learn here**, not what to learn (see [START-HERE.md](START-HERE.md) for that).
+This guide is for the **[Nabid In Motion Study Hub](https://nabidinmotion.com/)**, the subscriber site that syncs this curriculum. It explains **how to learn here**, not what to learn (see [START-HERE.md](START-HERE.md) for that).
 
 **Time to read:** ~8 minutes · **Time to set up:** ~10 minutes once
 
@@ -178,4 +178,4 @@ Use [exit gates in FOUNDATION_AND_JOB_READINESS.md](FOUNDATION_AND_JOB_READINESS
 
 ---
 
-**Start now:** [Study Hub homepage](https://nabidinmotion.github.io) → pick your role → **Continue Learning**.
+**Start now:** [Study Hub homepage](https://nabidinmotion.com/) → pick your role → **Continue Learning**.
