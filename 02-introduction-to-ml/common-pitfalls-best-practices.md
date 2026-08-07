@@ -411,3 +411,8 @@ print(f"Mean CV Score: {scores.mean():.4f} (+/- {scores.std()*2:.4f})")
 
 **Try next:** Pick one pitfall from this page and show it failing on a tiny toy dataset.
 
+
+> [!RECALL]
+> When must you split train/test relative to preprocessing?
+>
+> Split first — fit preprocessors only on train to avoid leakage.

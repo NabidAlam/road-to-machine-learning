@@ -531,3 +531,8 @@ print(sys.executable)
 
 **Try next:** Copy the full traceback into search. Fix the first root cause, not the last symptom.
 
+
+> [!RECALL]
+> Why use a virtual environment for ML projects?
+>
+> Isolate package versions per project so installs do not break other work.

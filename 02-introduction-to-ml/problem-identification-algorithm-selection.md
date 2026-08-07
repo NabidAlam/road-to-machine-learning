@@ -526,3 +526,8 @@ Before choosing an algorithm, ask:
 
 **Try next:** Shortlist two algorithms with a reason each. Compare on the same validation split.
 
+
+> [!RECALL]
+> What should you decide before picking an algorithm?
+>
+> Problem type (output), data shape/size, and constraints like interpretability or latency.

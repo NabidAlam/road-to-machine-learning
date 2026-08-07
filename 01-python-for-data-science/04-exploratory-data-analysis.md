@@ -958,3 +958,8 @@ Expected Impact: 20% reduction in churn = $400K saved
 
 **Try next:** Write five findings from EDA before you train. Keep at least one that surprised you.
 
+
+> [!RECALL]
+> Why do EDA before training a model?
+>
+> To find quality issues, distributions, and surprises that would silently break training.

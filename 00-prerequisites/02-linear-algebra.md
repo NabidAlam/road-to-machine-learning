@@ -2128,3 +2128,8 @@ Use SVD for low-rank matrix approximation.
 
 **Try next:** Multiply a small matrix by hand, then do the same with NumPy. Match shapes and result.
 
+
+> [!RECALL]
+> Why does matrix multiplication order matter in ML?
+>
+> AB is not BA in general; shapes must align and order encodes the transform.

@@ -890,3 +890,8 @@ print(classification_report(y_test, y_pred, target_names=iris.target_names))
 
 **Try next:** State train vs test leakage in one sentence using your last project as the example.
 
+
+> [!RECALL]
+> Name the three main types of machine learning.
+>
+> Supervised, unsupervised, and reinforcement learning.

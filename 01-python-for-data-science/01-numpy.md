@@ -1104,3 +1104,8 @@ print(flattened)  # Back to 1D
 
 **Try next:** Rewrite one Python loop as vectorized NumPy. Check speed and shape.
 
+
+> [!RECALL]
+> When should you prefer a NumPy array over a Python list for numeric work?
+>
+> When you need vectorized ops, fixed dtype, and fast multi-dimensional math.

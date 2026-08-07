@@ -820,3 +820,8 @@ Compute derivative of f(x) = sin(x² + 1) using chain rule.
 ---
 
 **Try next:** Compute d/dx of (wx-y)^2 for a scalar w. Then watch that term in a training step.
+
+> [!RECALL]
+> In gradient descent, which direction do you step relative to the gradient?
+>
+> Opposite the gradient (negative gradient) to reduce the loss.

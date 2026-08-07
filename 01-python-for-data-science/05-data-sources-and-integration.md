@@ -1197,3 +1197,8 @@ glueContext.write_dynamic_frame.from_jdbc_conf(
 
 **Try next:** Pull one public API into a DataFrame and join it to a local CSV on a shared key.
 
+
+> [!RECALL]
+> After loading external data, what should you always do next?
+>
+> Validate schema, missingness, and join keys before trusting downstream analysis.

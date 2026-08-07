@@ -1447,3 +1447,8 @@ if __name__ == '__main__':
 
 **Try next:** Redraw one chart so a stranger can answer the business question in five seconds.
 
+
+> [!RECALL]
+> What should a good plot answer before you decorate it?
+>
+> One clear question about the data a stranger can read in a few seconds.

@@ -1604,3 +1604,8 @@ result = df.groupby('category')['value'].mean().compute()
 
 **Try next:** Take a slow pandas pipeline and profile which step dominates. Only then consider Polars.
 
+
+> [!RECALL]
+> What is the difference between a Series and a DataFrame?
+>
+> A Series is one labeled column; a DataFrame is a table of aligned Series (columns).

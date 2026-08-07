@@ -1908,3 +1908,8 @@ root.mainloop()
 
 **Try next:** Rewrite one example without looking. If you stall, peek once, then finish solo.
 
+
+> [!RECALL]
+> What does indentation control in Python?
+>
+> Code block structure (functions, loops, conditionals) — not just style.

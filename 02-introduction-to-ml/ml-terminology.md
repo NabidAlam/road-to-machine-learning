@@ -617,3 +617,8 @@ Actual Negative   TN      FP
 
 **Try next:** Define bias, variance, and leakage in your own words without opening the page.
 
+
+> [!RECALL]
+> In one sentence, what is overfitting?
+>
+> The model fits training noise so well that it fails on new data.
