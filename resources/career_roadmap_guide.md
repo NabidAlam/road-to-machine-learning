@@ -161,7 +161,7 @@ This guide provides clear, role-specific learning paths for different careers in
 | **Deep Learning** | 09-10 | Neural Networks, TensorFlow, PyTorch | 2-3 months |
 | **Production** | 13-14 | Model Deployment, MLOps, CI/CD | 3-4 months |
 | **Essential Skills** | 20-21 | Imbalanced Data, Explainability | 1-2 months |
-| **Total** | **14 modules** | **Complete Path** | **17-26 months** |
+| **Total** | **16 modules** | **Complete Path** | **17-26 months** |
 
 ### Essential Modules
 
