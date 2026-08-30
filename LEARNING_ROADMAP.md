@@ -261,7 +261,7 @@ While this repository doesn't offer certificates, you can:
 1. **Build Portfolio**: Complete projects
 2. **Share on GitHub**: Show your work
 3. **Write Blog Posts**: Explain what you learned
-4. **Contribute**: Help improve this repo
+4. **Report issues**: Broken links or errors via GitHub Issues on this repo
 5. **Get Certified**: Consider Coursera, Udacity certificates
 
 ##  Staying Motivated

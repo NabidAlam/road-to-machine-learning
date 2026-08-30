@@ -5,15 +5,15 @@
 [![GitHub stars](https://img.shields.io/github/stars/NabidAlam/road-to-machine-learning?style=social)](https://github.com/NabidAlam/road-to-machine-learning/stargazers)
 [![GitHub forks](https://img.shields.io/github/forks/NabidAlam/road-to-machine-learning?style=social)](https://github.com/NabidAlam/road-to-machine-learning/network/members)
 [![GitHub issues](https://img.shields.io/github/issues/NabidAlam/road-to-machine-learning)](https://github.com/NabidAlam/road-to-machine-learning/issues)
-[![GitHub license](https://img.shields.io/github/license/NabidAlam/road-to-machine-learning)](https://github.com/NabidAlam/road-to-machine-learning/blob/main/LICENSE)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://makeapullrequest.com)
+[![GitHub license](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/NabidAlam/road-to-machine-learning/blob/main/LICENSE)
+[![Maintainer curated](https://img.shields.io/badge/PRs-not%20accepted-lightgrey)](CONTRIBUTING.md)
 [![Subscribe on YouTube](https://img.shields.io/badge/YouTube-Subscribe-red?logo=youtube&logoColor=white)](https://www.youtube.com/@NabidInMotion?sub_confirmation=1)
 
 **A comprehensive, step-by-step guide to learning Machine Learning from absolute basics to advanced topics**
 
 *Structured path for beginners • 26 Learning Modules • 23 Real-World Projects • Deployment and MLOps topics*
 
-[Start Here](START-HERE.md) • [How to Use the Study Hub](HOW_TO_USE_THE_STUDY_HUB.md) • [Foundation & job readiness](FOUNDATION_AND_JOB_READINESS.md) • [Get Started](#getting-started) • [Learning Path](#learning-path) • [Projects](#stage-9-projects) • [System Design](system-design/README.md) • [Full-stack AI](resources/career_roadmap_guide.md#full-stack-ai-engineer) • [Contribute](#contributing)
+[Start Here](START-HERE.md) • [How to Use the Study Hub](HOW_TO_USE_THE_STUDY_HUB.md) • [Foundation & job readiness](FOUNDATION_AND_JOB_READINESS.md) • [Get Started](#getting-started) • [Learning Path](#learning-path) • [Projects](#stage-9-projects) • [System Design](system-design/README.md) • [Full-stack AI](resources/career_roadmap_guide.md#full-stack-ai-engineer) • [Feedback](#contributing)
 
 </div>
 
@@ -34,7 +34,7 @@
 - **Hands-On Learning**: 23 practical projects to build your portfolio
 - **Production Topics**: Deployment, MLOps, and real-world failure modes (not a guarantee that one pass makes you production-ready)
 - **Well-Organized**: Logical progression with clear learning objectives
-- **Community-Driven**: Open source, contributions welcome!
+- **Maintainer-curated**: Open MIT curriculum. Updates ship via the [Study Hub](https://nabidinmotion.com/). See [CONTRIBUTING.md](CONTRIBUTING.md) for feedback.
 
 **Built for**: Students, career switchers, and self-learners who want a structured ML path. Outcomes depend on practice, projects, and the job market. This repo does not guarantee a hire.
 
@@ -103,7 +103,7 @@ You don't need to finish all 26 ML modules first. The system design track is **p
 - [Career Paths](#career-paths)
 - [Full-stack AI quick start](#full-stack-ai-quick-start)
 - [System design foundations](#system-design-foundations)
-- [Contributing](#contributing)
+- [Feedback](#contributing)
 
 ## Overview
 
@@ -1169,16 +1169,11 @@ A: You're ready when you can:
 
 ### Contributing
 
-**Q: How can I contribute?**  
-A, see [CONTRIBUTING.md](CONTRIBUTING.md). We welcome:
-- Fixing typos and errors
-- Adding examples
-- Improving explanations
-- Adding projects
-- Translating content
+**Q: How can I suggest a fix or report an error?**  
+A: Open a [GitHub Issue](https://github.com/NabidAlam/road-to-machine-learning/issues). We do not accept pull requests. See [CONTRIBUTING.md](CONTRIBUTING.md).
 
 **Q: Can I use this content for my course/tutorial?**  
-A: Yes! This is open source (MIT License). Please credit the repository and contributors.
+A: Yes. This is open source (MIT License). Please credit the repository and Nabid In Motion.
 
 ---
 
@@ -1186,29 +1181,15 @@ A: Yes! This is open source (MIT License). Please credit the repository and cont
 
 ## Contributing
 
-We welcome contributions! This repository is for the community, by the community. Here's how you can help:
+This repository is **maintainer-curated**. Pull requests are not accepted.
 
-### Ways to Contribute
+### How to help
 
-- **Add Projects**: Share your ML projects with the community
-- **Improve Documentation**: Fix typos, clarify explanations, add examples
-- **Create Exercises**: Add practice problems and solutions
-- **Report Issues**: Found a bug? Let us know!
-- **Suggest Features**: Have an idea? Open an issue!
+- **Report issues**: Broken links, typos, or factual errors via [GitHub Issues](https://github.com/NabidAlam/road-to-machine-learning/issues)
+- **Learn on the Study Hub**: [nabidinmotion.com](https://nabidinmotion.com/) is the canonical reader experience
+- **Fork for yourself**: MIT License allows personal forks and attribution in your own notes
 
-### Quick Start for Contributors
-
-1. **Fork** the repository
-2. **Clone** your fork: `git clone https://github.com/YOUR_USERNAME/road-to-machine-learning.git`
-3. **Create** a branch: `git checkout -b feature/amazing-feature`
-4. **Make** your changes
-5. **Commit**: `git commit -m 'Add amazing feature'`
-6. **Push**: `git push origin feature/amazing-feature`
-7. **Open** a Pull Request
-
-See [CONTRIBUTING.md](CONTRIBUTING.md) for detailed guidelines.
-
-**Your contributions make this resource better for everyone!**
+See [CONTRIBUTING.md](CONTRIBUTING.md) for the full policy.
 
 ## License
 
@@ -1221,9 +1202,9 @@ If you find this repository helpful, please consider:
 - **Star this repo** - It helps others discover this resource
 - **Fork it** - Create your own learning path
 - **Share it** - Help others on their ML journey
-- **Contribute** - Add projects, fix issues, improve content
+- **Open an issue** - Report broken links or factual errors (no PRs). See [CONTRIBUTING.md](CONTRIBUTING.md)
 
-**Every star and fork helps the community grow!**
+**Every star helps learners find the path.**
 
 ## What You'll Achieve
 

@@ -1,127 +1,50 @@
 # Contributing to Road to ML
 
-Thank you for your interest in contributing to Road to ML! This repository is built by the community, for the community. Every contribution, no matter how small, helps make this resource better for everyone learning machine learning.
+Thank you for using Road to ML. This curriculum is **maintainer-curated**. The canonical reading experience is the [Nabid In Motion Study Hub](https://nabidinmotion.com/).
 
-## First Time Contributing?
+## Pull requests
 
-Don't worry! We welcome contributors of all skill levels. Whether you're:
-- Fixing a typo
-- Adding a project
-- Improving documentation
-- Creating exercises
-- Reporting bugs
+**We do not accept pull requests** for content, code, or documentation changes.
 
-Your contribution matters! This is a great way to learn, practice, and give back to the ML community.
+This keeps the syllabus consistent, avoids supply-chain risk on the live Study Hub, and lets the maintainer ship updates on a single timeline.
 
-**Style:** Follow [WRITING-STYLE.md](WRITING-STYLE.md) for lesson tone, numbering (Module vs Stage), and punctuation.
+If you open a PR, it will be closed with a link to this file. You do not need to delete your fork.
 
-## How to Contribute
+## What you can do
 
-### Reporting Issues
+### Report issues (welcome)
 
-If you find a bug, have a suggestion, or want to request a feature:
+Use [GitHub Issues](https://github.com/NabidAlam/road-to-machine-learning/issues) for:
 
-1. Check if the issue already exists
-2. Create a new issue with:
-   - Clear title and description
-   - Steps to reproduce (for bugs)
-   - Expected vs actual behavior
-   - Your environment (OS, Python version, etc.)
+- Broken or outdated links
+- Factual errors in a lesson
+- Typos that affect meaning
+- Missing context that blocks learners
 
-### Contributing Code
+Please include the **file path or module name**, what you expected, and what you saw.
 
-1. **Fork the repository**
-2. **Create a branch** (`git checkout -b feature/amazing-feature`)
-3. **Make your changes**
-4. **Test your changes**
-5. **Commit** with clear messages (`git commit -m 'Add amazing feature'`)
-6. **Push** to your branch (`git push origin feature/amazing-feature`)
-7. **Open a Pull Request**
+### Learn and fork
 
-### Commit messages before you push
+- Read and star the repo
+- Fork for your own study notes (MIT License)
+- Cite the repository if you reuse material in courses or posts
 
-Hosting sites display the message you saved at `git commit` time. Before `git push`, check the latest entry (`git log -1`) and edit with `git commit --amend` if anything looks unintended. Keep learning materials vendor-neutral. `.gitignore` hides common build and editor noise; if your local tools still create paths you never want pushed, add patterns to `.git/info/exclude` in your clone (that file is not tracked).
+Forks do not receive automatic updates from this repo unless you sync while following upstream changes yourself.
 
-### Contributing Content
+## Maintainer-only updates
 
-We welcome contributions of:
-- New learning modules
-- Project examples
-- Code examples and exercises
-- Documentation improvements
-- Translations
-- Bug fixes
+All changes to `main` are made by the maintainer. Updates flow:
 
-## Code Style
+1. Markdown edits in this repository
+2. Sync into the Study Hub
+3. Publish at [nabidinmotion.com](https://nabidinmotion.com/)
 
-- Follow PEP 8 for Python code
-- Use clear, descriptive variable names
-- Add comments for complex logic
-- Include docstrings for functions/classes
-- Keep code simple and readable
+## Style reference (for maintainers)
 
-## Content Guidelines
+When editing lessons, follow [WRITING-STYLE.md](WRITING-STYLE.md) for tone, numbering (Module vs Stage), and punctuation.
 
-### For Learning Modules
+## Questions
 
-- Clear explanations suitable for beginners
-- Code examples with comments
-- Exercises with solutions
-- Links to additional resources
-- Learning objectives
+Open an issue with the **question** label or use the Study Hub contact page linked from [nabidinmotion.com](https://nabidinmotion.com/).
 
-### For Projects
-
-- Clear problem statement
-- Step-by-step instructions
-- Expected outcomes
-- Dataset information
-- Evaluation criteria
-
-## Testing
-
-- Test your code before submitting
-- Ensure notebooks run without errors
-- For Markdown changes, run internal link and anchor checks from the repo root: `python3 tools/check_md_links.py` (CI runs this on every push and pull request to `main`)
-- Check for typos and grammar
-
-## Documentation
-
-- Update README files if needed
-- Add docstrings to code
-- Include examples in documentation
-- Keep documentation up to date
-
-## Pull Request Process
-
-1. Ensure your code follows style guidelines
-2. Update documentation as needed
-3. Add tests if applicable
-4. Ensure all checks pass
-5. Request review from maintainers
-6. Address any feedback
-
-## Areas Needing Contribution
-
-- More project examples
-- Additional exercises
-- Code examples for modules
-- Translations
-- Video tutorials
-- Interactive notebooks
-
-## Questions?
-
-Feel free to:
-- Open an issue for discussion
-- Contact maintainers
-- Join discussions in issues
-
-## Thank You!
-
-Your contributions make this repository better for everyone learning ML. Thank you for taking the time to contribute!
-
----
-
-**Try next:** Open a PR that fixes one unclear paragraph or broken link.
-
+Thank you for learning with Road to ML.
