@@ -264,10 +264,9 @@ print(f"Auto reshape: {arr_auto.shape}")  # (3, 4)
 **Important:** Total elements must remain the same!
 ```python
 # This will work: 12 elements = 3 × 4
-arr.reshape(3, 4)  # ✓
-
+arr.reshape(3, 4)  # works
 # This will fail: 12 elements ≠ 3 × 5
-# arr.reshape(3, 5)  # ❌ Error!
+# arr.reshape(3, 5)  # Error
 ```
 
 ### Flatten and Ravel

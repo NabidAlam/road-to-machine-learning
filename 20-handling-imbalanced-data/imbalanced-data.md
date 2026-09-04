@@ -106,11 +106,11 @@ def check_imbalance(y):
     print(f"\nImbalance Ratio: {imbalance_ratio:.2f}:1")
     
     if imbalance_ratio > 10:
-        print("⚠️  Highly imbalanced!")
+        print("Warning: Highly imbalanced!")
     elif imbalance_ratio > 5:
-        print("⚠️  Moderately imbalanced")
+        print("Warning: Moderately imbalanced")
     else:
-        print("✓ Relatively balanced")
+        print("OK: Relatively balanced")
 
 # Example
 y = np.array([0]*900 + [1]*100)  # 90% vs 10%

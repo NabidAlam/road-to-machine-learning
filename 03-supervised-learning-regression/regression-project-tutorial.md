@@ -647,7 +647,7 @@ joblib.dump(scaler, 'scaler.pkl')
 
 ---
 
-**Congratulations!** You've built a complete regression model! 🎉
+**Congratulations!** You have built a complete regression model.
 
 **Next Steps:**
 - Try different feature engineering techniques

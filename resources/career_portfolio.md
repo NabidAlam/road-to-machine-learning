@@ -182,7 +182,7 @@ Create a `README.md` in a repository with your username to display on your profi
 
 **Example:**
 ```markdown
-# Hi, I'm [Your Name] 👋
+# Hi, I'm [Your Name]
 
 ## About Me
 ML Engineer focused on building monitored, maintainable ML systems.

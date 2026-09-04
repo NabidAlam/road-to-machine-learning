@@ -1788,7 +1788,7 @@ from langchain_community.embeddings import HuggingFaceEmbeddings
 from langchain.chains import RetrievalQA
 
 # Page config
-st.set_page_config(page_title="RAG Chatbot", page_icon="🤖")
+st.set_page_config(page_title="RAG Chatbot")
 
 # Initialize session state
 if "messages" not in st.session_state:
@@ -1817,7 +1817,7 @@ def load_rag_chain():
     return qa_chain
 
 # UI
-st.title("🤖 RAG Chatbot")
+st.title("RAG Chatbot")
 
 # Display chat history
 for message in st.session_state.messages:

@@ -283,14 +283,14 @@ comparison_df = comparison_df.sort_values('Accuracy', ascending=False)
 ## Evaluation Criteria
 
 Your comparison should:
-- ✅ Implement all major ensemble methods
-- ✅ Tune hyperparameters appropriately
-- ✅ Use proper cross-validation
-- ✅ Compare on multiple metrics
-- ✅ Include training/prediction time
-- ✅ Visualize comparisons clearly
-- ✅ Provide recommendations
-- ✅ Document trade-offs
+- Implement all major ensemble methods
+- Tune hyperparameters appropriately
+- Use proper cross-validation
+- Compare on multiple metrics
+- Include training/prediction time
+- Visualize comparisons clearly
+- Provide recommendations
+- Document trade-offs
 
 ## Metrics to Compare
 
@@ -352,12 +352,12 @@ Your comparison should:
 
 ## Common Pitfalls to Avoid
 
-- ❌ Overfitting on validation set
-- ❌ Not using proper cross-validation
-- ❌ Comparing untuned models
-- ❌ Ignoring training time
-- ❌ Not considering interpretability needs
-- ❌ Using same base models for stacking
+- Overfitting on validation set
+- Not using proper cross-validation
+- Comparing untuned models
+- Ignoring training time
+- Not considering interpretability needs
+- Using same base models for stacking
 
 ## Next Steps
 

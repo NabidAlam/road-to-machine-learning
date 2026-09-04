@@ -117,7 +117,6 @@ import seaborn as sns
 # Page configuration
 st.set_page_config(
     page_title="Customer Dashboard",
-    page_icon="📊",
     layout="wide"
 )
 
@@ -191,13 +190,13 @@ st.header("Customer Analysis")
 ## Evaluation Criteria
 
 Your dashboard should:
-- ✅ Load and display data correctly
-- ✅ Have clear, intuitive navigation
-- ✅ Include multiple interactive visualizations
-- ✅ Allow users to filter and explore data
-- ✅ Be visually appealing and well-organized
-- ✅ Include meaningful insights
-- ✅ Have proper error handling
+- Load and display data correctly
+- Have clear, intuitive navigation
+- Include multiple interactive visualizations
+- Allow users to filter and explore data
+- Be visually appealing and well-organized
+- Include meaningful insights
+- Have proper error handling
 
 ## Resources
 

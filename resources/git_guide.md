@@ -1485,6 +1485,6 @@ git remote set-url origin https://github.com/username/repo.git
 
 ---
 
-**Happy Git-ing!** 🚀
+**Happy Git-ing!**
 
 *This guide covers the essentials. Practice regularly and refer back when needed. Git becomes intuitive with experience!*

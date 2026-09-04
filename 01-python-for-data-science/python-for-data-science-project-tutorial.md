@@ -430,7 +430,7 @@ import plotly.graph_objects as go
 st.set_page_config(page_title="Real Estate Analysis", layout="wide")
 
 # Title
-st.title("🏠 Real Estate Market Analysis Dashboard")
+st.title("Real Estate Market Analysis Dashboard")
 
 # Load data
 @st.cache_data

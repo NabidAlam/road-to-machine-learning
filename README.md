@@ -51,22 +51,22 @@
 
 | Role | Focus | Est. Time | Key Modules | Full Guide |
 |------|-------|-----------|-------------|------------|
-| **Data Analyst** | Insights & Reports | 8-12 months | 00, 01, 19, 20, 21 | [View Guide →](resources/career_roadmap_guide.md#data-analyst) |
-| **Data Scientist** | Predictive Models | 13-20 months | 00-08, 15, 19-21 | [View Guide →](resources/career_roadmap_guide.md#data-scientist) |
-| **ML Engineer** | Production ML | 17-26 months | 00-10, 13-14, 19-21 | [View Guide →](resources/career_roadmap_guide.md#machine-learning-engineer) |
-| **LLM Engineer** | Language Models | 17-24 months | 00-01, 05, 09-10, 12, 25, 13-14, 19 | [View Guide →](resources/career_roadmap_guide.md#llm-engineer-large-language-models) |
-| **GenAI Solution Architect** | Production GenAI | 15-21 months | 00-01, 02, 05, 09-10, 12, 25, 13-14, 19 | [View Guide →](resources/career_roadmap_guide.md#genai-solution-architect) |
-| **Computer Vision Engineer** | Image Processing | 16-25 months | 00-01, 04-05, 09-11, 13-14, 19, 21 | [View Guide →](resources/career_roadmap_guide.md#computer-vision-engineer) |
-| **AI Engineer** | Generalist AI | 25-38 months | 00-15, 19-21, 22-24, 25 | [View Guide →](resources/career_roadmap_guide.md#ai-engineer-generalist) |
-| **Data Engineer** | Data Infrastructure | 14-20 months | 00-01, 13-14, 19-20 | [View Guide →](resources/career_roadmap_guide.md#data-engineer) |
-| **MLOps Engineer** | ML Operations | 16-24 months | 00-01, 05, 09-10, 12, 25, 13-14, 19 | [View Guide →](resources/career_roadmap_guide.md#mlops-engineer) |
-| **Research Scientist** | Novel methods, careful experiments, clear write-ups | 24-34 months | 00-12, 15, 19, 21, 22-24, 25 | [View Guide →](resources/career_roadmap_guide.md#research-scientist) |
-| **BI Analyst** | Business Intelligence | 10-15 months | 00-01, 19-21 | [View Guide →](resources/career_roadmap_guide.md#business-intelligence-analyst) |
-| **Full-Stack AI Engineer** | End-to-end AI products | 12-24 months (15-25 hrs/week, parallel with blueprint) | 00-01, 19, 25 + [In-repo lessons](resources/full_stack_track/README.md) + [Blueprint A–H](resources/full_stack_ai_engineer_roadmap.md#phase-a-typescript-foundations) | [View Guide →](resources/career_roadmap_guide.md#full-stack-ai-engineer) |
+| **Data Analyst** | Insights & Reports | 12-18 months | 00, 01, 19, 20, 21 | [View Guide →](resources/career_roadmap_guide.md#data-analyst) |
+| **Data Scientist** | Predictive Models | 18-28 months | 00-08, 15, 19-21 | [View Guide →](resources/career_roadmap_guide.md#data-scientist) |
+| **ML Engineer** | Production ML | 24-36 months | 00-10, 13-14, 19-21 | [View Guide →](resources/career_roadmap_guide.md#machine-learning-engineer) |
+| **LLM Engineer** | Language Models | 24-36 months | 00-01, 05, 09-10, 12, 25, 13-14, 19 | [View Guide →](resources/career_roadmap_guide.md#llm-engineer-large-language-models) |
+| **GenAI Solution Architect** | Production GenAI | 22-32 months | 00-01, 02, 05, 09-10, 12, 25, 13-14, 19 | [View Guide →](resources/career_roadmap_guide.md#genai-solution-architect) |
+| **Computer Vision Engineer** | Image Processing | 22-34 months | 00-01, 04-05, 09-11, 13-14, 19, 21 | [View Guide →](resources/career_roadmap_guide.md#computer-vision-engineer) |
+| **AI Engineer** | Generalist AI | 36-54 months | 00-15, 19-21, 22-24, 25 | [View Guide →](resources/career_roadmap_guide.md#ai-engineer-generalist) |
+| **Data Engineer** | Data Infrastructure | 18-28 months | 00-01, 13-14, 19-20 | [View Guide →](resources/career_roadmap_guide.md#data-engineer) |
+| **MLOps Engineer** | ML Operations | 24-36 months | 00-01, 05, 09-10, 12, 25, 13-14, 19 | [View Guide →](resources/career_roadmap_guide.md#mlops-engineer) |
+| **Research Scientist** | Novel methods, careful experiments, clear write-ups | 36-54 months | 00-12, 15, 19, 21, 22-24, 25 | [View Guide →](resources/career_roadmap_guide.md#research-scientist) |
+| **BI Analyst** | Business Intelligence | 14-22 months | 00-01, 19-21 | [View Guide →](resources/career_roadmap_guide.md#business-intelligence-analyst) |
+| **Full-Stack AI Engineer** | End-to-end AI products | 18-30 months (parallel ML + blueprint) | 00-01, 19, 25 + [In-repo lessons](resources/full_stack_track/README.md) + [Blueprint A–H](resources/full_stack_ai_engineer_roadmap.md#phase-a-typescript-foundations) | [View Guide →](resources/career_roadmap_guide.md#full-stack-ai-engineer) |
 
 **Foundational side track:** [System Design for Beginners](system-design/README.md): **31 lessons** (22 foundations + 9 interview-style designs) covering HTTP, TCP, DNS, caching, load balancing, CAP, sharding, and message queues, including a capstone-style design sequence (rate limiter, social feed, chat, video, file storage, maps, KV store, message queue, and a real-time ML feature store). Useful for ML Engineer, MLOps, Data Engineer, AI Engineer, and Full-Stack AI Engineer paths. Pairs with the [ML System Design Guide](resources/ml_system_design_guide.md), which applies these foundations to ML services. For **application backend engineering** (auth, Postgres, queues, ops), use the [Backend Engineer Roadmap](resources/backend_engineering_roadmap.md) alongside Phases B/C/E of the [Full-Stack Track](resources/full_stack_track/README.md).
 
-**Time assumptions:** Ranges in the **Est. Time** column assume about **10–15 hours/week** for a steady part-time pace and **30–40 hours/week** for an intensive full-time pace, unless a row states otherwise (for example, Full-Stack AI Engineer calls out parallel blueprint hours). Time-to-role also depends on prior software experience, portfolio quality, and hiring markets. Finishing modules is not the same as getting hired.
+**Time assumptions:** **Est. Time** is a realistic human range for someone studying about **8–12 hours/week** while keeping a job and a life. The low end assumes some prior coding comfort and steady weeks. The high end assumes more review, projects, and busy months. An intensive stretch (**20–30 hours/week**) can land nearer the low end. Time-to-role also depends on portfolio quality and hiring markets. Finishing modules is not the same as getting hired.
 
 **SQL timing:** Module **19** is **Stage 1.5** (parallel with Modules 01–02) for most roles, not after GenAI. Module lists like `19-21` mean you need all three modules, not that SQL comes last.
 
@@ -371,12 +371,12 @@ Forecasting and monitoring problems break the usual “shuffle and split” stor
 
 | # | Project Name | Skills | Time | Status |
 |---|--------------|--------|------|--------|
-| 1 | House Price Prediction | Regression, Feature Engineering, EDA | 2-3 days | ✓ Available |
-| 2 | Iris Flower Classification | Classification, EDA, Multiple Algorithms | 1 day | ✓ Available |
-| 3 | Titanic Survival Prediction | Classification, Data Cleaning, Feature Engineering | 2-3 days | ✓ Available |
-| 4 | Spam Email Detection | Text Classification, NLP Basics | 2-3 days | ✓ Available |
-| 5 | Wine Quality Prediction | Regression, Feature Engineering | 2-3 days | ✓ Available |
-| 6 | Customer Data Dashboard with Streamlit | Data Visualization, Streamlit | 3-5 days | ✓ Available |
+| 1 | House Price Prediction | Regression, Feature Engineering, EDA | 2-3 days | Available |
+| 2 | Iris Flower Classification | Classification, EDA, Multiple Algorithms | 1 day | Available |
+| 3 | Titanic Survival Prediction | Classification, Data Cleaning, Feature Engineering | 2-3 days | Available |
+| 4 | Spam Email Detection | Text Classification, NLP Basics | 2-3 days | Available |
+| 5 | Wine Quality Prediction | Regression, Feature Engineering | 2-3 days | Available |
+| 6 | Customer Data Dashboard with Streamlit | Data Visualization, Streamlit | 3-5 days | Available |
 
 **Prerequisites**: Complete Stages 0-2 before starting
 
@@ -384,14 +384,14 @@ Forecasting and monitoring problems break the usual “shuffle and split” stor
 
 | # | Project Name | Skills | Time | Status |
 |---|--------------|--------|------|--------|
-| 1 | Handwritten Digit Recognition (MNIST) | Neural Networks, Image Processing | 3-5 days | ✓ Available |
-| 2 | Customer Churn Prediction | Classification, Imbalanced Data, Business Metrics | 4-5 days | ✓ Available |
-| 3 | Movie Recommendation System | Collaborative Filtering, Content-Based | 5-7 days | ✓ Available |
-| 4 | Credit Card Fraud Detection | Anomaly Detection, Imbalanced Data | 4-5 days | ✓ Available |
-| 5 | Customer Segmentation | Clustering, Unsupervised Learning | 3-4 days | ✓ Available |
-| 6 | Time Series Forecasting | Time Series Analysis, ARIMA, LSTM | 5-7 days | ✓ Available |
-| 7 | Feature Engineering Mastery | Feature Engineering, Advanced Techniques | 4-5 days | ✓ Available |
-| 8 | Ensemble Methods Comparison | Ensemble Methods, Model Comparison | 3-4 days | ✓ Available |
+| 1 | Handwritten Digit Recognition (MNIST) | Neural Networks, Image Processing | 3-5 days | Available |
+| 2 | Customer Churn Prediction | Classification, Imbalanced Data, Business Metrics | 4-5 days | Available |
+| 3 | Movie Recommendation System | Collaborative Filtering, Content-Based | 5-7 days | Available |
+| 4 | Credit Card Fraud Detection | Anomaly Detection, Imbalanced Data | 4-5 days | Available |
+| 5 | Customer Segmentation | Clustering, Unsupervised Learning | 3-4 days | Available |
+| 6 | Time Series Forecasting | Time Series Analysis, ARIMA, LSTM | 5-7 days | Available |
+| 7 | Feature Engineering Mastery | Feature Engineering, Advanced Techniques | 4-5 days | Available |
+| 8 | Ensemble Methods Comparison | Ensemble Methods, Model Comparison | 3-4 days | Available |
 
 **Prerequisites**: Complete Stages 0–4; modules **20–21** (Stage 7.5) help for churn, fraud, and ensemble projects
 
@@ -401,15 +401,15 @@ Forecasting and monitoring problems break the usual “shuffle and split” stor
 
 | # | Project Name | Skills | Time | Status |
 |---|--------------|--------|------|--------|
-| 1 | Image Classification (CIFAR-10) | CNNs, Transfer Learning, Data Augmentation | 1-2 weeks | ✓ Available |
-| 2 | Sentiment Analysis on Reviews | NLP, RNNs/LSTMs, Transformers | 1-2 weeks | ✓ Available |
-| 3 | Time Series Forecasting (Advanced) | Advanced Time Series, Deep Learning | 1-2 weeks | ✓ Available |
-| 4 | LLM Chatbot & RAG System | Modern LLMs, RAG, Vector Databases, LangChain | 2-3 weeks | ✓ Available |
-| 5 | Object Detection | Computer Vision, YOLO, R-CNN | 1-2 weeks | ✓ Available |
-| 6 | End-to-End ML Pipeline | Full ML Pipeline, MLOps | 2-3 weeks | ✓ Available |
-| 7 | Generative Model (GAN/VAE) | GANs, VAEs, Image Generation | 1-2 weeks | ✓ Available |
-| 8 | Model Explainability & Interpretability | SHAP, LIME, Model Interpretation | 1-2 weeks | ✓ Available |
-| 9 | Model Deployment & Serving | Model Deployment, APIs, Cloud | 1-2 weeks | ✓ Available |
+| 1 | Image Classification (CIFAR-10) | CNNs, Transfer Learning, Data Augmentation | 1-2 weeks | Available |
+| 2 | Sentiment Analysis on Reviews | NLP, RNNs/LSTMs, Transformers | 1-2 weeks | Available |
+| 3 | Time Series Forecasting (Advanced) | Advanced Time Series, Deep Learning | 1-2 weeks | Available |
+| 4 | LLM Chatbot & RAG System | Modern LLMs, RAG, Vector Databases, LangChain | 2-3 weeks | Available |
+| 5 | Object Detection | Computer Vision, YOLO, R-CNN | 1-2 weeks | Available |
+| 6 | End-to-End ML Pipeline | Full ML Pipeline, MLOps | 2-3 weeks | Available |
+| 7 | Generative Model (GAN/VAE) | GANs, VAEs, Image Generation | 1-2 weeks | Available |
+| 8 | Model Explainability & Interpretability | SHAP, LIME, Model Interpretation | 1-2 weeks | Available |
+| 9 | Model Deployment & Serving | Model Deployment, APIs, Cloud | 1-2 weeks | Available |
 
 **Optional Capstones (Portfolio-Grade, GDPR-Safe):**
 - [Capstone Blueprints →](18-projects-advanced/capstones/README.md) (ML Engineer, LLM/RAG, Data/Analytics)
@@ -1116,11 +1116,11 @@ A: Different roles require different module focuses:
 
 | Role | Key Modules | Focus Areas | Est. Time |
 |------|-------------|-------------|-----------|
-| **Data Scientist** | 0-8, 15, 19-21 | Data analysis, modeling, SQL, explainability | 10-14 months |
-| **ML Engineer** | 0-14 | Full stack: modeling to deployment, MLOps | 12-18 months |
-| **Research Scientist** | 0-12, advanced topics | Deep learning, research, publications | 15-20 months |
-| **Business Analyst** | 0-7, 19 | Data analysis, SQL, business context | 8-12 months |
-| **Data Engineer** | 0-1, 13-14, 19 | Data pipelines, infrastructure, SQL | 10-14 months |
+| **Data Scientist** | 0-8, 15, 19-21 | Data analysis, modeling, SQL, explainability | 18-28 months |
+| **ML Engineer** | 0-14 | Full stack: modeling to deployment, MLOps | 24-36 months |
+| **Research Scientist** | 0-12, advanced topics | Deep learning, research, publications | 36-54 months |
+| **Business Analyst** | 0-7, 19 | Data analysis, SQL, business context | 14-22 months |
+| **Data Engineer** | 0-1, 13-14, 19 | Data pipelines, infrastructure, SQL | 18-28 months |
 
 **Q: Do I need a degree?**  
 A, not necessarily! Many successful ML practitioners are self-taught. However, a degree can help with:
@@ -1256,7 +1256,7 @@ This repository does not collect, store, or process any personal data. It is a s
 
 <div align="center">
 
-**Made with ❤️ for the ML community**
+**Built for the ML community**
 
 **Happy Learning!**
 

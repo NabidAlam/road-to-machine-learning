@@ -111,9 +111,9 @@ def check_stationarity(timeseries, title="Time Series"):
     
     is_stationary = result[1] <= 0.05
     if is_stationary:
-        print("✓ Series is STATIONARY (p-value <= 0.05)")
+        print("OK: Series is STATIONARY (p-value <= 0.05)")
     else:
-        print("✗ Series is NOT STATIONARY (p-value > 0.05)")
+        print("FAIL: Series is NOT STATIONARY (p-value > 0.05)")
     
     return is_stationary
 

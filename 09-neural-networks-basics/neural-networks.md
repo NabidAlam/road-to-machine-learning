@@ -208,7 +208,7 @@ predictions = perceptron.predict(X_and)
 
 print("AND Gate Results:")
 for i, (x, y_true, y_pred) in enumerate(zip(X_and, y_and, predictions)):
-    print(f"  Input: {x}, Target: {y_true}, Prediction: {y_pred}, {'✓' if y_true == y_pred else '✗'}")
+    print(f"  Input: {x}, Target: {y_true}, Prediction: {y_pred}, {'OK' if y_true == y_pred else 'FAIL'}")
 
 # Visualize learning
 plt.figure(figsize=(10, 4))
@@ -239,7 +239,7 @@ predictions_xor = perceptron_xor.predict(X_xor)
 
 print("\nXOR Gate Results (Perceptron fails):")
 for i, (x, y_true, y_pred) in enumerate(zip(X_xor, y_xor, predictions_xor)):
-    print(f"  Input: {x}, Target: {y_true}, Prediction: {y_pred}, {'✓' if y_true == y_pred else '✗'}")
+    print(f"  Input: {x}, Target: {y_true}, Prediction: {y_pred}, {'OK' if y_true == y_pred else 'FAIL'}")
 
 # Solution: Need multiple layers (MLP)
 print("\nSolution: Use Multi-Layer Perceptron (MLP) with hidden layer")

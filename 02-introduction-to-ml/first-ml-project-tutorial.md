@@ -170,9 +170,9 @@ plt.show()
 ```
 
 **Insights from Exploration:**
-- No missing values ✓
-- No duplicates ✓
-- 50 samples per class (balanced) ✓
+- No missing values
+- No duplicates
+- 50 samples per class (balanced)
 - Features are correlated (petal length/width highly correlated)
 - Setosa is easily separable from other two species
 
@@ -400,11 +400,11 @@ print(f"Test Accuracy: {test_acc:.4f}")
 print(f"Difference: {abs(train_acc - test_acc):.4f}")
 
 if abs(train_acc - test_acc) < 0.05:
-    print("✓ Good generalization! Model is not overfitting.")
+    print("OK: Good generalization! Model is not overfitting.")
 elif train_acc > test_acc + 0.1:
-    print("⚠ Warning: Possible overfitting (large gap between train and test)")
+    print("Warning: Possible overfitting (large gap between train and test)")
 else:
-    print("✓ Model performance is consistent.")
+    print("OK: Model performance is consistent.")
 ```
 
 ---
@@ -525,7 +525,7 @@ new_flower = np.array([[5.1, 3.5, 1.4, 0.2]])
 prediction = model.predict(new_flower)
 print(f"Prediction: {iris.target_names[prediction[0]]}")
 
-print("\n✓ First ML project complete!")
+print("\nOK: First ML project complete!")
 ```
 
 ---
@@ -622,7 +622,7 @@ print("\n✓ First ML project complete!")
 
 ---
 
-**Congratulations!** You've built your first ML model! 🎉
+**Congratulations!** You've built your first ML model.
 
 **Next**: Move to [03-supervised-learning-regression](../03-supervised-learning-regression/README.md) or [04-supervised-learning-classification](../04-supervised-learning-classification/README.md) to learn more algorithms!
 

@@ -410,35 +410,35 @@ print("\nChecking libraries...")
 
 try:
     import numpy as np
-    print("✓ NumPy:", np.__version__)
+    print("OK: NumPy:", np.__version__)
 except ImportError:
-    print("✗ NumPy not installed")
+    print("FAIL: NumPy not installed")
 
 try:
     import pandas as pd
-    print("✓ Pandas:", pd.__version__)
+    print("OK: Pandas:", pd.__version__)
 except ImportError:
-    print("✗ Pandas not installed")
+    print("FAIL: Pandas not installed")
 
 try:
     import matplotlib
-    print("✓ Matplotlib:", matplotlib.__version__)
+    print("OK: Matplotlib:", matplotlib.__version__)
 except ImportError:
-    print("✗ Matplotlib not installed")
+    print("FAIL: Matplotlib not installed")
 
 try:
     import seaborn as sns
-    print("✓ Seaborn:", sns.__version__)
+    print("OK: Seaborn:", sns.__version__)
 except ImportError:
-    print("✗ Seaborn not installed")
+    print("FAIL: Seaborn not installed")
 
 try:
     import sklearn
-    print("✓ Scikit-learn:", sklearn.__version__)
+    print("OK: Scikit-learn:", sklearn.__version__)
 except ImportError:
-    print("✗ Scikit-learn not installed")
+    print("FAIL: Scikit-learn not installed")
 
-print("\nSetup complete! ✓")
+print("\nSetup complete.")
 ```
 
 **Run:**
@@ -518,7 +518,7 @@ print(sys.executable)
 2. **Explore**: Try loading a dataset with Pandas
 3. **Move Forward**: Proceed to [01-python-for-data-science](../01-python-for-data-science/README.md)
 
-**You're now ready to start your ML journey!** 🚀
+**You're now ready to start your ML journey!** 
 
 ---
 

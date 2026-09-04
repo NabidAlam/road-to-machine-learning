@@ -2,7 +2,7 @@
 
 This guide provides clear, role-specific learning paths for different careers in data science and machine learning. Each path includes recommended modules, projects, and resources tailored to the specific role.
 
-**Honesty note:** Month ranges are study estimates for this repo’s content, not job guarantees. Titles like “Solution Architect” or “Research Scientist” also need depth, portfolio evidence, and (for research) math/experimentation practice beyond checklist completion.
+**Honesty note:** Month ranges are realistic study estimates for a human pace (about **8–12 hours/week** with a job and life), not job guarantees. The low end assumes some prior coding comfort. The high end assumes more review, projects, and interrupted weeks. Titles like “Solution Architect” or “Research Scientist” also need depth, portfolio evidence, and (for research) math/experimentation practice beyond checklist completion.
 
 **Canonical stage order and the module 15 (time series) branch** match the root [README](../README.md#learning-path-overview). Stage 6 is vision and language (modules **11–12**). Module **15** is an optional parallel track, see [TIME_SERIES_LEARNING_PATH.md](../TIME_SERIES_LEARNING_PATH.md). **SQL is Stage 1.5 (module 19)**, not Stage 7.5.
 
@@ -36,7 +36,7 @@ This guide provides clear, role-specific learning paths for different careers in
 | **Data Fundamentals** | 01 | NumPy, Pandas, Visualization, EDA | 3-4 months |
 | **SQL & Databases** | 19 | SQL, Database Fundamentals, NoSQL basics | 2-3 months |
 | **Essential Skills** | 20, 21 | Imbalanced Data, Model Explainability | 1-2 months |
-| **Total** | **5 modules** | **Complete Path** | **8-12 months** |
+| **Total** | **5 modules** | **Complete Path** | **12-18 months** |
 
 ### Essential Modules
 
@@ -92,7 +92,7 @@ This guide provides clear, role-specific learning paths for different careers in
 | **Unsupervised Learning** | 08 | Clustering, Dimensionality Reduction | 1-2 months |
 | **Time Series** | 15 | Time Series Analysis, Forecasting *(optional, [pick one path](../TIME_SERIES_LEARNING_PATH.md))* | 1-2 months |
 | **Essential Skills** | 20-21 | Imbalanced Data, Explainability | 1-2 months |
-| **Total** | **12 modules** | **Complete Path** | **13-20 months** |
+| **Total** | **12 modules** | **Complete Path** | **18-28 months** |
 
 ### Essential Modules
 
@@ -161,7 +161,7 @@ This guide provides clear, role-specific learning paths for different careers in
 | **Deep Learning** | 09-10 | Neural Networks, TensorFlow, PyTorch | 2-3 months |
 | **Production** | 13-14 | Model Deployment, MLOps, CI/CD | 3-4 months |
 | **Essential Skills** | 20-21 | Imbalanced Data, Explainability | 1-2 months |
-| **Total** | **16 modules** | **Complete Path** | **17-26 months** |
+| **Total** | **16 modules** | **Complete Path** | **24-36 months** |
 
 ### Essential Modules
 
@@ -235,7 +235,7 @@ This guide provides clear, role-specific learning paths for different careers in
 | **Generative AI** | 25 | Modern LLMs, Prompt Engineering, RAG Systems, AI Agents | 1-2 months |
 | **Production** | 13-14 | Model Deployment, MLOps | 2-3 months |
 | **Essential Skills** | 21 | Explainability | 0.5-1 month |
-| **Total** | **12 modules** | **Complete Path** | **17-24 months** |
+| **Total** | **12 modules** | **Complete Path** | **24-36 months** |
 
 ### Essential Modules
 
@@ -307,7 +307,7 @@ This guide provides clear, role-specific learning paths for different careers in
 | **Deep Learning** | 09-10 | Neural Networks, Frameworks | 2-3 months |
 | **NLP & GenAI** | 12, 25 | NLP, Transformers, Fine-tuning, RAG, Modern LLMs, AI Agents, Multi-Agent Systems | 5-6 months |
 | **Production** | 13-14 | Model Deployment, MLOps | 3-4 months |
-| **Total** | **10 modules** | **Complete Path** | **15-21 months** |
+| **Total** | **10 modules** | **Complete Path** | **22-32 months** |
 
 ### Essential Modules
 
@@ -390,7 +390,7 @@ This guide provides clear, role-specific learning paths for different careers in
 | **Computer Vision** | 11 | CNNs, Object Detection, Segmentation, GANs, Diffusion | 4-6 months |
 | **Production** | 13-14 | Model Deployment, MLOps | 2-3 months |
 | **Essential Skills** | 21 | Explainability | 0.5-1 month |
-| **Total** | **11 modules** | **Complete Path** | **16-25 months** |
+| **Total** | **11 modules** | **Complete Path** | **22-34 months** |
 
 ### Essential Modules
 
@@ -465,7 +465,7 @@ This guide provides clear, role-specific learning paths for different careers in
 | **Advanced Specialized** | 22-24 | Reinforcement Learning, Graph Neural Networks, Audio/Speech | 2-3 months |
 | **Production** | 13-14 | Model Deployment, MLOps | 3-4 months |
 | **Essential Skills** | 20-21 | Imbalanced Data, Explainability | 1-2 months |
-| **Total** | **23 modules** | **Complete Path** | **25-38 months** |
+| **Total** | **23 modules** | **Complete Path** | **36-54 months** |
 
 ### Essential Modules
 
@@ -546,7 +546,7 @@ This guide provides clear, role-specific learning paths for different careers in
 | **Production** | 13-14 | Deployment, MLOps, Kafka, Spark | 3-4 months |
 | **Databases** | 19 | SQL, NoSQL, Database Design | 3-4 months |
 | **Essential Skills** | 20 | Data Validation, Quality | 1-2 months |
-| **Total** | **8 modules** | **Complete Path** | **14-20 months** |
+| **Total** | **8 modules** | **Complete Path** | **18-28 months** |
 
 ### Essential Modules
 
@@ -609,7 +609,7 @@ This guide provides clear, role-specific learning paths for different careers in
 | **NLP & GenAI** | 12, 25 | NLP, Transformers, Modern LLMs, RAG, AI Agents | 2-3 months |
 | **Production** | 13-14 | Deployment, MLOps, CI/CD, Kafka, Spark | 4-5 months |
 | **Essential Skills** | 20-21 | Imbalanced Data, Explainability | 1-2 months |
-| **Total** | **14 modules** | **Complete Path** | **16-24 months** |
+| **Total** | **14 modules** | **Complete Path** | **24-36 months** |
 
 ### Essential Modules
 
@@ -681,7 +681,7 @@ This guide provides clear, role-specific learning paths for different careers in
 | **Generative AI** | 25 | Modern LLMs, RAG, AI Agents, Multi-Agent Systems | 1-2 months |
 | **Advanced Specialized** | 22-24 | Reinforcement Learning, Graph Neural Networks, Audio/Speech | 2-3 months |
 | **Essential Skills** | 21 | Explainability | 0.5-1 month |
-| **Total** | **20 modules** | **Complete Path** | **24-34 months** |
+| **Total** | **20 modules** | **Complete Path** | **36-54 months** |
 
 ### Essential Modules
 
@@ -756,7 +756,7 @@ This guide provides clear, role-specific learning paths for different careers in
 | **ML Basics** | 02-05 | ML Concepts (basic understanding) | 2-3 months |
 | **SQL & Databases** | 19 | SQL, Database Design, OLAP/OLTP | 2-3 months |
 | **Essential Skills** | 20-21 | Data Quality, Explainability | 1-2 months |
-| **Total** | **7 modules** | **Complete Path** | **10-15 months** |
+| **Total** | **7 modules** | **Complete Path** | **14-22 months** |
 
 ### Essential Modules
 
@@ -864,7 +864,7 @@ This guide provides clear, role-specific learning paths for different careers in
 | Track | What to use | Focus | Time (indicative) |
 |-------|-------------|-------|-------------------|
 | **ML & data core (in-repo)** | 00, 01, 19, 25 (and 13–14 as you advance) | Python stack, SQL, production/MLOps touchpoints, LLMs and GenAI | Overlap with main roadmap; treat as parallel or prerequisite slices |
-| **Product engineering (companion)** | [Full-Stack AI Engineer Blueprint](full_stack_ai_engineer_roadmap.md) Phases **A–H** and [in-repo lesson chapters](full_stack_track/README.md) | TypeScript, Node/Express, Postgres/Prisma, Next.js, Docker/Nginx, AI integration | **12–24 months** at ~15–25 hrs/week alongside ML study |
+| **Product engineering (companion)** | [Full-Stack AI Engineer Blueprint](full_stack_ai_engineer_roadmap.md) Phases **A–H** and [in-repo lesson chapters](full_stack_track/README.md) | TypeScript, Node/Express, Postgres/Prisma, Next.js, Docker/Nginx, AI integration | **18–30 months** at ~8–12 hrs/week on ML plus parallel blueprint hours |
 
 ### Essential modules (this repository)
 
