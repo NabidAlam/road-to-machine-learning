@@ -24,7 +24,7 @@ By completing this project, you will learn to:
 - Tune hyperparameters effectively
 - Evaluate deep learning models
 - Use data augmentation
-- Achieve high accuracy (>99%)
+- Achieve high accuracy on a held-out test set (often above 98% with a strong model. Treat any target as an example, not a guarantee)
 
 ## Dataset
 

@@ -1230,8 +1230,8 @@ By completing this roadmap, you'll be able to:
 | Metric | Count | Details |
 |--------|-------|---------|
 | **Learning Modules** | 26 | Modules 00-24, 25 covering all ML topics from basics to advanced including Generative AI |
-| **Projects** | 23 | 6 beginner + 8 intermediate + 9 advanced with complete code and READMEs |
-| **Resource Guides** | 50 | Cheatsheets, tutorials, and career guides |
+| **Projects** | 23 | 6 beginner + 8 intermediate + 9 advanced (READMEs for all. Beginner projects ship scripts. Intermediate and advanced are brief-led with starters where present). Plus optional capstone briefs |
+| **Resource Guides** | 55 | Cheatsheets, tutorials, and career guides under `resources/` |
 | **Markdown Files** | 270+ | Lessons, code examples, and exercises |
 | **Learning Time (Full-Time)** | 15-22 months | 30-40 hours/week for comprehensive coverage |
 | **Learning Time (Part-Time)** | 30-39 months | 10-15 hours/week for comprehensive coverage |
