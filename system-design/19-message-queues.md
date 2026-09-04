@@ -6,15 +6,12 @@ The answer is a queue. Producers push messages onto it. Consumers pull messages 
 
 ## A picture worth a thousand words
 
-```
-                                                       worker 1
-                                                          ^
-                                                          |
-   producer -->  [ queue: M, M, M, M, M ]  --> dispatch -->
-                                                          |
-                                                          v
-                                                       worker 2
-                                                       worker 3
+```mermaid
+flowchart LR
+  Prod[Producer] --> Q[(Queue)]
+  Q --> W1[Worker 1]
+  Q --> W2[Worker 2]
+  Q --> W3[Worker 3]
 ```
 
 The producer (e.g. a web server handling a signup) drops a message: "send welcome email to ada@example.com". The queue holds it. A worker picks it up, sends the email, acknowledges, the message is removed. If the worker dies, another picks it up.
@@ -40,29 +37,23 @@ Patterns this enables:
 
 **Queue (point-to-point)**: each message goes to exactly one consumer. Work is divided.
 
-```
-                worker 1 (gets M1, M3)
-                       ^
-                       |
-   producer --> queue --
-                       |
-                       v
-                worker 2 (gets M2, M4)
+```mermaid
+flowchart LR
+  Prod[Producer] --> Q[(Queue)]
+  Q --> W1[Worker 1]
+  Q --> W2[Worker 2]
 ```
 
-Used for task queues: "send this email", "resize this image". Each task happens once.
+Used for task queues: "send this email", "resize this image". Each message goes to one consumer at a time. Retries can still deliver duplicates, so consumers should be idempotent.
 
 **Pub/Sub (topic-based)**: each message goes to every subscriber. Work is fanned out.
 
-```
-                   subscriber A
-                       ^
-                       |
-   producer -> topic --+
-                       |
-                       v
-                   subscriber B
-                   subscriber C
+```mermaid
+flowchart LR
+  Prod[Producer] --> Topic[(Topic)]
+  Topic --> A[Subscriber A]
+  Topic --> B[Subscriber B]
+  Topic --> C[Subscriber C]
 ```
 
 Used for events: "user signed up". Email service sends a welcome. Analytics service logs the event. Marketing service adds them to a campaign. Same event, multiple consumers.
@@ -119,7 +110,7 @@ This is the "are you sure my message will be processed?" question.
 
 **At-least-once**: always delivered, possibly more than once. Use when misses are worse than duplicates (e.g. order processing). The consumer must be idempotent.
 
-**Exactly-once** (broker / log sense): Kafka transactions and similar designs can give exactly-once **within a carefully scoped read–process–write pipeline**. That is not the same as end-to-end exactly-once for every external side effect (charges, emails, third-party APIs). For those, design for at-least-once delivery plus **idempotency**.
+**Exactly-once** (broker / log sense): Kafka transactions and similar designs can give exactly-once **within a carefully scoped read-process-write pipeline**. That is not the same as end-to-end exactly-once for every external side effect (charges, emails, third-party APIs). For those, design for at-least-once delivery plus **idempotency**.
 
 Most production systems pick **at-least-once + idempotent consumers**. The queue might deliver the same message twice on retry. Your code handles that gracefully (using idempotency keys, dedup on a unique field, etc.).
 
@@ -143,15 +134,12 @@ What if a message keeps failing? Maybe it's malformed. Maybe a bug in your code.
 
 The pattern, after N retries, the queue moves the message to a "dead-letter queue". A human (or alert) looks at the DLQ to figure out what's wrong.
 
-```
-            attempt 1 -> fails
-            attempt 2 -> fails
-            attempt 3 -> fails
-                        |
-                        v
-                [ Dead-letter queue ]
-                        |
-                       alert/email engineer
+```mermaid
+flowchart TB
+  A1[Attempt 1 fails] --> A2[Attempt 2 fails]
+  A2 --> A3[Attempt 3 fails]
+  A3 --> DLQ[(Dead-letter queue)]
+  DLQ --> Alert[Alert engineer]
 ```
 
 Set this up early. It saves hours of pain in production.
@@ -160,15 +148,18 @@ Set this up early. It saves hours of pain in production.
 
 Kafka is technically a queue, but really it's a **distributed log**. Messages aren't deleted after a consumer reads them. They sit in a partitioned log, retained for days or weeks. Multiple consumer groups can read the same data independently.
 
-```
-   Topic "orders" with 3 partitions
-   
-   P0: [M1, M5, M9, ...]
-   P1: [M2, M6, M10, ...]
-   P2: [M3, M7, M11, ...]
-
-   Consumer group A reads all partitions
-   Consumer group B reads all partitions (independently)
+```mermaid
+flowchart TB
+  Topic[Topic orders]
+  Topic --> P0[Partition 0]
+  Topic --> P1[Partition 1]
+  Topic --> P2[Partition 2]
+  P0 --> GA[Consumer group A]
+  P1 --> GA
+  P2 --> GA
+  P0 --> GB[Consumer group B]
+  P1 --> GB
+  P2 --> GB
 ```
 
 This is why Kafka is the standard for event-driven architectures and big data pipelines. You produce once, consume many times, replay from any point, scale by partitioning.
@@ -217,18 +208,14 @@ If you do all of this in the HTTP request, the user waits 5 seconds. Bad.
 
 Queue it:
 
-```
-   user uploads
-        |
-        v
-   [ API ]  --> stores photo metadata in DB, returns success
-        |
-        v
-   [ "photo.uploaded" event on Kafka ]
-        |
-   +----+-----+-----+
-   v    v     v     v
-   thumb gen  ML  notification  analytics
+```mermaid
+flowchart TB
+  User[User uploads] --> API[API stores metadata]
+  API --> Ev[photo.uploaded event]
+  Ev --> Thumb[Thumb gen]
+  Ev --> ML[ML]
+  Ev --> Notify[Notification]
+  Ev --> Analytics[Analytics]
 ```
 
 Each consumer does its job independently. Failures in one don't affect others. You can add a new "send to ML moderation" consumer without changing the API.

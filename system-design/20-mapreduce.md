@@ -31,27 +31,20 @@ That's it. Run this against 10 TB of logs across 1,000 machines and you get the 
 
 ## What's actually happening behind the scenes
 
-```
-  Input (split into chunks)
-  +------+ +------+ +------+ +------+
-  |  C1  | |  C2  | |  C3  | |  C4  |
-  +------+ +------+ +------+ +------+
-      |       |        |       |
-      v       v        v       v
-   Map     Map      Map     Map        (run in parallel, one per chunk)
-      |       |        |       |
-      v       v        v       v
-      (each emits key-value pairs)
-      
-  ===== Shuffle / sort =====
-  (move records so the same key is on the same reducer)
-  
-      |       |        |       |
-      v       v        v       v
-   Reduce  Reduce   Reduce  Reduce      (one per group of keys)
-      |       |        |       |
-      v       v        v       v
-        Output (one part per reducer)
+```mermaid
+flowchart TB
+  C1[Chunk1] --> M1[Map]
+  C2[Chunk2] --> M2[Map]
+  C3[Chunk3] --> M3[Map]
+  C4[Chunk4] --> M4[Map]
+  M1 --> Shuffle[Shuffle sort]
+  M2 --> Shuffle
+  M3 --> Shuffle
+  M4 --> Shuffle
+  Shuffle --> R1[Reduce]
+  Shuffle --> R2[Reduce]
+  Shuffle --> R3[Reduce]
+  Shuffle --> R4[Reduce]
 ```
 
 Three big phases:

@@ -8,14 +8,18 @@ It's also the source of half the production bugs in the world, because cache inv
 
 Most data is read way more often than it's written. Think about Twitter: most tweets are written once and read thousands of times. The home page of nytimes.com is rendered once and served a million times an hour.
 
-If you can store the answer somewhere fast (RAM is ~100,000x faster than disk, remember Chapter 0), you save the database an enormous amount of work.
+If you can store the answer somewhere fast (RAM is far faster than disk. Roughly about 100,000x vs a spinning HDD, and still much faster than SSD. See Chapter 0), you save the database an enormous amount of work.
 
-```
-              without cache                      with cache
-              =============                      ==========
-
-  user ----> app ----> db                 user ----> app -> cache (hit)
-                                                       \--> db (miss)
+```mermaid
+flowchart LR
+  subgraph without [Without cache]
+    U1[User] --> A1[App] --> D1[(DB)]
+  end
+  subgraph withc [With cache]
+    U2[User] --> A2[App]
+    A2 -->|hit| C[(Cache)]
+    A2 -->|miss| D2[(DB)]
+  end
 ```
 
 A cache hit costs microseconds. A database query costs milliseconds. Multiply by a million requests per minute and you see the impact.
@@ -24,30 +28,15 @@ A cache hit costs microseconds. A database query costs milliseconds. Multiply by
 
 Anywhere there's slow data being read often. In practice:
 
-```
-+------------------+
-| Browser cache    |  user's machine, JS/CSS/images
-+------------------+
-        |
-+------------------+
-| CDN              |  Cloudflare, Akamai, near the user
-+------------------+
-        |
-+------------------+
-| Reverse proxy    |  Nginx, Varnish, in front of your app
-+------------------+
-        |
-+------------------+
-| Application      |  in-process memory (LRU map)
-+------------------+
-        |
-+------------------+
-| Distributed cache|  Redis, Memcached
-+------------------+
-        |
-+------------------+
-| Database         |  Postgres also has its own page cache in RAM
-+------------------+
+```mermaid
+flowchart TB
+  Browser[Browser cache]
+  CDN[CDN]
+  Proxy[Reverse proxy]
+  App[App memory cache]
+  Dist[(Distributed cache)]
+  DB[(Database)]
+  Browser --> CDN --> Proxy --> App --> Dist --> DB
 ```
 
 Every layer caches what the next layer down would have to compute. The trick is putting the right data in the right layer.

@@ -27,53 +27,41 @@ We need a hashing scheme where adding or removing a node moves only a small frac
 
 Consistent hashing places servers and keys on a circle (the "hash ring"). Both servers and keys are hashed to a number in some range, say 0 to 2^32.
 
-```
-                  0 / 2^32
-                     |
-                     |
-                   [ A ]
-                  /
-                 /
-          [ K1 ] 
-                                  [ K2 ]
-                                       \
-                                        \
-       [ D ]                          [ B ]
-            \                        /
-             \                      /
-                       [ C ]
-                         |
-                      key K3
-```
+Mermaid cannot draw a true circle well, so the ring is shown **flattened clockwise**. Walk from a key to the next server on the right (then wrap). That server owns the key.
 
-Picture a clock. Servers (A, B, C, D) are positions on the clock. Each key (K1, K2, K3) is also a position. To find which server a key belongs to, you start at the key's position and walk clockwise until you hit a server. That's its home.
+```mermaid
+flowchart LR
+  A[Server A] --> K1[Key K1]
+  K1 --> B[Server B]
+  B --> K2[Key K2]
+  K2 --> C[Server C]
+  C --> K3[Key K3]
+  K3 --> D[Server D]
+  D -->|wrap to start| A
+```
 
 So:
-- K1 sits between A and B going clockwise → owned by B.
-- K2 between B and C → owned by C.
-- K3 between C and D → owned by D.
+- K1 sits after A going clockwise. Owned by B.
+- K2 after B. Owned by C.
+- K3 after C. Owned by D.
 
 ## What happens when you add a server
 
-You add server E somewhere on the ring:
+You add server E between B and C on the ring:
 
-```
-                  0 / 2^32
-                     |
-                   [ A ]
-                  /
-          [ K1 ]
-                                  [ K2 ]
-                                       \
-       [ D ]                          [ B ]
-            \                        /
-             \                  [ E ]
-                       [ C ]
-                         |
-                      K3
+```mermaid
+flowchart LR
+  A[Server A] --> K1[Key K1]
+  K1 --> B[Server B]
+  B --> K2[Key K2]
+  K2 --> E[Server E]
+  E --> C[Server C]
+  C --> K3[Key K3]
+  K3 --> D[Server D]
+  D -->|wrap to start| A
 ```
 
-Now K2, which was owned by C, might be closer to E. The only keys that move are the ones between E and the next server counterclockwise. Roughly `keys / N` of them, not all of them.
+Now K2's next clockwise server is E, not C. Only keys that used to land on the arc now covered by E move. Roughly `keys / N` of them, not all of them.
 
 Same when removing: only keys that pointed at the dead server need a new home.
 

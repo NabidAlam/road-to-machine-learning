@@ -6,18 +6,14 @@ Before we talk about servers and load balancers, let's zoom in on a single compu
 
 A computer has a strict hierarchy of where it keeps data. Closer to the CPU means faster but smaller. Farther away means slower but cheaper and bigger.
 
-```
-            +------------------+
-   fastest  |   CPU registers  |  ~1 ns,    KBs
-            +------------------+
-            |    L1 / L2 / L3  |  ~1-10 ns,  MBs
-            +------------------+
-            |       RAM        |  ~100 ns,   GBs
-            +------------------+
-            |    SSD / NVMe    |  ~100 us,   TBs
-            +------------------+
-     slow   |    Hard Disk     |  ~10 ms,    TBs
-            +------------------+
+```mermaid
+flowchart TB
+  Reg[CPU registers]
+  Cache[L1 L2 L3]
+  Ram[RAM]
+  Ssd[SSD NVMe]
+  Hdd[Hard disk]
+  Reg --> Cache --> Ram --> Ssd --> Hdd
 ```
 
 A few sanity-check numbers worth memorizing:
@@ -30,7 +26,7 @@ A few sanity-check numbers worth memorizing:
 | HDD                | 10 ms            | 4-20 TB    | spinning rust, slow random reads |
 | Network round trip | 1-100 ms         | n/a        | depends on distance            |
 
-Reading from RAM is roughly 100,000 times faster than reading from a hard disk. That's the gap a cache buys you.
+Reading from RAM is roughly 100,000 times faster than reading from a spinning hard disk. An SSD is much closer to RAM than an HDD is (often on the order of ~1,000× slower than RAM for random reads, still far slower than DRAM). That's the gap a cache buys you.
 
 ## Why this matters for system design
 
@@ -50,16 +46,17 @@ Most databases (Postgres, MySQL, MongoDB) keep frequently-accessed data in RAM a
 
 A modern server CPU has somewhere between 4 and 128 cores. A core is essentially a mini-CPU that can run one task at a time.
 
-```
-+----------------------------------+
-|    CPU (8 cores)                 |
-|  +-----+ +-----+ +-----+ +-----+ |
-|  |Core1| |Core2| |Core3| |Core4| |
-|  +-----+ +-----+ +-----+ +-----+ |
-|  +-----+ +-----+ +-----+ +-----+ |
-|  |Core5| |Core6| |Core7| |Core8| |
-|  +-----+ +-----+ +-----+ +-----+ |
-+----------------------------------+
+```mermaid
+flowchart TB
+  CPU[CPU 8 cores]
+  CPU --- C1[Core1]
+  CPU --- C2[Core2]
+  CPU --- C3[Core3]
+  CPU --- C4[Core4]
+  CPU --- C5[Core5]
+  CPU --- C6[Core6]
+  CPU --- C7[Core7]
+  CPU --- C8[Core8]
 ```
 
 More cores means you can do more things in parallel. But not everything benefits from parallelism. If task B needs the result of task A, you can't speed it up by adding cores.
@@ -81,50 +78,50 @@ You'll hear this constantly. Two flavors of scaling:
 **Vertical (scale up)**: bigger machine. More RAM, more cores, faster SSD. Easy to do. Hits a ceiling. Single point of failure.
 
 **Vertical scaling**:
-```
-[ server 4 core ] -> [ server 16 core ]
+```mermaid
+flowchart LR
+  Small[Server 4 core] --> Big[Server 16 core]
 ```
 
 **Horizontal (scale out)**: more machines. No ceiling. Way more complexity (now you need load balancers, replication, etc.).
 
 **Horizontal scaling**:
-```
-[ server ] -> [ server ] [ server ] [ server ]
+```mermaid
+flowchart LR
+  One[One server] -.->|scale out| Many[Many servers<br/>behind a load balancer]
 ```
 
 The realistic answer is "both". Start by vertical scaling because it's free engineering effort. When that runs out, you go horizontal.
 
 ## A quick code thing: cache locality
 
-Even within one program, the memory hierarchy matters. Compare these two ways of summing a 2D array in Python (works the same in C, Java, etc.):
+Even within one program, the memory hierarchy matters. Contiguous layouts (C arrays, NumPy) reward walking memory in order. Nested Python lists are not one contiguous block, so the same idea is clearer in NumPy:
 
 ```python
-N = 10_000
-matrix = [[1] * N for _ in range(N)]
+import numpy as np
 
-# Row-major (fast): walk memory in order
-total = 0
-for row in matrix:
-    for x in row:
-        total += x
+N = 5_000
+matrix = np.ones((N, N), dtype=np.float64)
 
-# Column-major (slow): jump around in memory
-total = 0
+# Row-major (fast on C-order arrays): walk memory in order
+total = matrix.sum()  # NumPy uses contiguous access under the hood
+
+# Column-strided access is often slower on huge C-order arrays
+total = 0.0
 for col in range(N):
-    for row in range(N):
-        total += matrix[row][col]
+    total += matrix[:, col].sum()
 ```
 
-The first is much faster, often 5-10x, even though it's the same number of additions. The CPU's cache loads memory in chunks. If your access pattern matches that, you stay in L1. If it jumps around, you keep going back to RAM.
+The gap is workload-dependent. The CPU's cache loads memory in chunks. If your access pattern matches that, you stay hotter in cache. If it jumps around, you keep going back to RAM.
 
 System design version of this rule: keep related data together. It's why we denormalize tables, batch network calls, and group writes.
 
 ## Things to remember
 
 - Memory hierarchy: registers > cache > RAM > SSD > HDD > network.
-- Going to RAM is ~100,000x faster than going to disk.
+- Going to RAM is ~100,000x faster than going to a spinning disk (HDD). SSD is slower than RAM but much faster than HDD.
 - A server has many cores. Plan to use them, or you waste hardware.
-- Vertical scaling is easy and limited. Horizontal scaling is hard and unlimited.
+- Vertical scaling is easy and limited. Horizontal scaling is hard and has a much higher ceiling.
 
 ## Going deeper
 

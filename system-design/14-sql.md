@@ -176,7 +176,7 @@ with conn.cursor() as cur:
     print(row)
 ```
 
-Never concatenate user input into SQL strings. Use parameters (`%s`) and let the driver handle escaping. That's how SQL injection happens.
+Never concatenate user input into SQL strings. Use parameters (`%s`) and let the driver handle escaping. Concatenating raw input is how SQL injection happens.
 
 For real apps, you'll likely use an ORM (SQLAlchemy, Django ORM, Prisma, ActiveRecord). They give you objects instead of rows but generate SQL behind the scenes. Learn SQL anyway. ORMs leak.
 

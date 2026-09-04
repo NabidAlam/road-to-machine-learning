@@ -113,23 +113,18 @@ Storage (5 years, rough):
 
 ### High-level design
 
-```
-                    +------------------+
- [ Browser ] -----> |  Load balancer   |
-                    +--------+---------+
-                             |
-              +--------------+--------------+
-              v              v              v
-        [ API server ] [ API server ] [ API server ]   (stateless)
-              |              |              |
-              +------+-------+-------+------+
-                     |               |
-                     v               v
-              +-----------+    +-----------+
-              |   Redis   |    | Postgres  |
-              |  (cache)  |    |  (source  |
-              +-----------+    | of truth) |
-                               +-----------+
+```mermaid
+flowchart TB
+  Browser[Browser] --> LB[Load balancer]
+  LB --> API1[API server]
+  LB --> API2[API server]
+  LB --> API3[API server]
+  API1 --> Redis[(Redis cache)]
+  API2 --> Redis
+  API3 --> Redis
+  API1 --> PG[(Postgres)]
+  API2 --> PG
+  API3 --> PG
 ```
 
 **Two APIs:**
@@ -139,10 +134,16 @@ Storage (5 years, rough):
 
 For analytics, don't block the redirect. Emit an event (Chapter 19):
 
-```
-GET /abc  --> 302 redirect (fast)
-         --> async: publish { code, timestamp, user_agent } to Kafka
-                    --> analytics consumer updates click counts
+```mermaid
+sequenceDiagram
+  participant C as Client
+  participant API as API
+  participant K as Kafka
+  participant A as Analytics
+  C->>API: GET /abc
+  API-->>C: 302 redirect
+  API->>K: publish click event
+  K->>A: update click counts
 ```
 
 ### Deep dive 1: Generating short codes

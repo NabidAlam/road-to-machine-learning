@@ -14,19 +14,16 @@ TCP aims for three properties **while the connection stays healthy**:
 
 To do this, TCP starts every conversation with a handshake.
 
-```
-Client                                Server
-  |                                     |
-  | ----- SYN (let's talk) -----------> |
-  |                                     |
-  | <---- SYN-ACK (sure, ok) ---------- |
-  |                                     |
-  | ----- ACK (great) ----------------> |
-  |                                     |
-  |   connection established            |
-  |                                     |
-  | ----- data --------------------->   |
-  | <---- data ---------------------    |
+```mermaid
+sequenceDiagram
+  participant C as Client
+  participant S as Server
+  C->>S: SYN
+  S-->>C: SYN-ACK
+  C->>S: ACK
+  Note over C,S: connection established
+  C->>S: data
+  S-->>C: data
 ```
 
 The classic three-way handshake costs about **one RTT** before the client can send application data (the final ACK can ride with the first data segment). If the server is 100 ms away, that is roughly **100 ms**, not 300 ms. TLS and HTTP/2 setup add more round trips on top.
@@ -39,12 +36,13 @@ Every packet TCP sends is also acknowledged. If it doesn't hear back fast enough
 
 UDP does almost nothing. It just sends a packet and walks away.
 
-```
-Client                                Server
-  |                                     |
-  | ----- packet 1 ------------------> |
-  | ----- packet 2 ------------------> |  (lost in transit, oh well)
-  | ----- packet 3 ------------------> |
+```mermaid
+sequenceDiagram
+  participant C as Client
+  participant S as Server
+  C->>S: packet 1
+  C--xS: packet 2 lost
+  C->>S: packet 3
 ```
 
 No handshake. No ordering. No retries. No acknowledgments. The packet either arrives or it doesn't, and the application has to handle the difference.
@@ -64,7 +62,7 @@ If you're watching a livestream and one frame drops, you'd rather skip it than r
 | Feature | TCP | UDP |
 |---|---|---|
 | Connection | Yes (handshake) | No |
-| Reliability | Guaranteed | None |
+| Reliability | Aims for reliable delivery | Best-effort |
 | Order | Preserved | None |
 | Speed | Slower | Faster |
 | Header size | 20 bytes min | 8 bytes |

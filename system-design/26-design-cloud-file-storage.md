@@ -29,21 +29,15 @@ Five hundred petabytes is the scale at which a file system pretends to be a data
 
 ## High-level design
 
-```
-[ client (desktop sync, web, mobile) ]
-                |
-                v
-          [ API gateway ]
-                |
-   +------------+------------+
-   v            v            v
-[ Metadata ] [ Upload   ] [ Notification
-   service ]   service ]    service ]
-   |            |             |
-   v            v             v
-[ Postgres ]  [ Object   ]  [ WebSocket
-              storage ]      gateway ]
-              chunks
+```mermaid
+flowchart TB
+  Client[Client] --> GW[API gateway]
+  GW --> Meta[Metadata service]
+  GW --> Upload[Upload service]
+  GW --> Notify[Notification service]
+  Meta --> PG[(Postgres)]
+  Upload --> Obj[(Object storage)]
+  Notify --> WS[WebSocket gateway]
 ```
 
 Two storage layers, deliberately split:
@@ -114,7 +108,7 @@ Strategies:
 | Operational transform | Edits merged op by op                         | Live collaborative docs |
 | CRDTs                 | Conflict-free merge by design                 | Modern collab tools     |
 
-For file sync, **keep-both** is the safest default. The user can compare and pick. Live collaborative editing (Google Docs–style) needs OT/CRDTs and is a different beast. Out of scope here.
+For file sync, **keep-both** is the safest default. The user can compare and pick. Live collaborative editing (Google Docs style) needs OT/CRDTs and is a different beast. Out of scope here.
 
 ## Deep dive 4: Sharing and permissions
 
@@ -167,5 +161,5 @@ Users barely notice if a file shared by a friend in another region takes 2 secon
 
 - Dropbox's "Magic Pocket" blog series on building their own storage.
 - Google Drive API docs on change tokens and revisions.
-- "Content-addressable storage" and the Rabin–Karp chunking variants.
+- "Content-addressable storage" and the Rabin-Karp chunking variants.
 - *Designing Data-Intensive Applications* Chapter 5 (replication) and 9 (consistency).

@@ -10,14 +10,12 @@ A CDN is a network of servers spread around the world, all serving the same cont
 
 Your DNS routes users to the nearest one (GeoDNS, remember Chapter 5):
 
-```
-   User in Sydney                       User in Mumbai
-        |                                    |
-        v                                    v
-   [ Sydney PoP ]                       [ Mumbai PoP ]
-        |                                    |
-        +----------- origin server -----------+
-                   (your actual app)
+```mermaid
+flowchart TB
+  SydUser[User in Sydney] --> SydPoP[Sydney PoP]
+  MumUser[User in Mumbai] --> MumPoP[Mumbai PoP]
+  SydPoP --> Origin[Origin server]
+  MumPoP --> Origin
 ```
 
 The first request from a region misses and reaches your origin. The PoP caches the response and serves the next requests directly.
@@ -76,12 +74,13 @@ Cloudflare and Fastly are pull. CloudFront supports both. For 99% of use cases, 
 
 When a CDN has hundreds of edges, a cold cache means hundreds of edges all hit your origin on the first request. Origin shielding adds one "shield" PoP in between that absorbs those misses. Other PoPs pull from the shield, not directly from origin.
 
-```
-            +------- edge --+
-            |               |
-   origin --+---- shield --+--- edge --- user
-            |               |
-            +------- edge --+
+```mermaid
+flowchart LR
+  User[User] --> Edge[Edge PoP]
+  Edge -->|miss| Shield[Shield PoP]
+  Shield -->|miss| Origin[Origin]
+  Origin --> Shield
+  Shield --> Edge
 ```
 
 You set this up in the CDN config. Big traffic spikes will thank you for it.

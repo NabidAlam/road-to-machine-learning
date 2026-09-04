@@ -26,16 +26,16 @@ Tile views dominate by two orders of magnitude. The CDN does almost all the heav
 
 ## High-level design
 
-```
-[ client app ]
-    |
-    +-- tiles -----------> [ CDN ] -> [ Tile origin ]
-    |
-    +-- search ----------> [ Search API ] -> [ Elasticsearch / Postgres + PostGIS ]
-    |
-    +-- routing ---------> [ Routing API ] -> [ Road graph + traffic store ]
-    |
-    +-- navigation ------> [ Nav service ] -> WebSocket updates
+```mermaid
+flowchart TB
+  App[Client app]
+  App -->|tiles| CDN[CDN]
+  CDN --> TileOrigin[Tile origin]
+  App -->|search| Search[Search API]
+  Search --> SearchStore[(Search index PostGIS)]
+  App -->|routing| Route[Routing API]
+  Route --> Graph[(Road graph traffic)]
+  App -->|navigation| Nav[Nav service]
 ```
 
 Each capability is its own service, with very different storage needs.
@@ -66,12 +66,19 @@ Tiles are static-ish (regenerated when map data changes). That makes them a good
 Postgres with PostGIS or Elasticsearch with `geo_point` will give you good range queries out of the box at most scales.
 
 ```sql
--- PostGIS
+-- PostGIS: use geography so 500 means meters
 SELECT id, name
 FROM places
-WHERE ST_DWithin(location, ST_MakePoint(-0.13, 51.51), 500)
+WHERE ST_DWithin(
+        location::geography,
+        ST_MakePoint(-0.13, 51.51)::geography,
+        500
+      )
   AND category = 'coffee_shop'
-ORDER BY ST_Distance(location, ST_MakePoint(-0.13, 51.51));
+ORDER BY ST_Distance(
+           location::geography,
+           ST_MakePoint(-0.13, 51.51)::geography
+         );
 ```
 
 For a billion POIs, shard by geohash prefix (Chapter 16).
@@ -91,18 +98,13 @@ A routing service typically holds the whole road graph in memory per region. Que
 
 Live ETAs adjust based on current speed on each road segment.
 
-```
-client phone --GPS samples--> [ Ingestion ] --> Kafka
-                                                  |
-                                                  v
-                                      [ Aggregator: speed per segment ]
-                                                  |
-                                                  v
-                                          [ Traffic store
-                                            segment_id -> avg_speed ]
-                                                  ^
-                                                  |
-                                         [ Routing service reads ]
+```mermaid
+flowchart TB
+  Phone[Client phone] -->|GPS samples| Ing[Ingestion]
+  Ing --> Kafka[(Kafka)]
+  Kafka --> Agg[Aggregator speed per segment]
+  Agg --> Traffic[(Traffic store)]
+  Route[Routing service] --> Traffic
 ```
 
 The aggregator buckets GPS samples by road segment and time window (e.g., last 5 minutes). The routing service multiplies edge weights by the live ratio (`current_speed / free_flow_speed`) before searching.

@@ -154,26 +154,13 @@ Famously, lots of data breaches are "public S3 bucket". Bucket policies are rest
 
 ## Where it sits in your architecture
 
-```
-                +-----------+
-       user --> | CloudFront| (CDN)
-                +-----------+
-                      |
-                      v
-                +-----------+
-                |    S3     |   (object storage)
-                +-----------+
-                      ^
-                      | uploads via pre-signed URLs
-                      |
-                +-----------+
-                |  App API  |   (issues URLs, stores metadata in Postgres)
-                +-----------+
-                      |
-                      v
-                +-----------+
-                | Postgres  |   (users, paths, ownership)
-                +-----------+
+```mermaid
+flowchart LR
+  User[User] --> CDN[CDN]
+  CDN --> S3[(Object store)]
+  API[App API] -->|mint pre-signed URL| Client[Client]
+  Client -->|PUT bytes| S3
+  API --> PG[(Postgres metadata)]
 ```
 
 The DB stores "user 42 has avatar at key X". The object store stores the bytes. The CDN serves them quickly.

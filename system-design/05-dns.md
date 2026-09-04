@@ -8,23 +8,24 @@ DNS is the phone book of the internet. It's also one of the most fragile systems
 
 When you visit `news.ycombinator.com`, your browser does roughly this:
 
-```
-1. Browser:      "Hey OS, what's the IP of news.ycombinator.com?"
-2. OS cache:     (probably miss)
-3. OS asks resolver (often your router, or 8.8.8.8, or 1.1.1.1)
-4. Resolver:     "Do I have it cached?" (probably miss)
-5. Resolver asks root nameservers:
-                 "Who handles .com?"
-6. Root:         "Talk to the .com TLD nameservers."
-7. Resolver asks .com TLD:
-                 "Who handles ycombinator.com?"
-8. TLD:          "Talk to ycombinator's authoritative nameservers."
-9. Resolver asks authoritative:
-                 "What's the IP of news.ycombinator.com?"
-10. Authoritative: "209.216.230.207."
-11. Resolver caches and returns to OS.
-12. OS returns to browser.
-13. Browser connects.
+```mermaid
+sequenceDiagram
+  participant B as Browser
+  participant OS as OS cache
+  participant R as Resolver
+  participant Root as Root NS
+  participant TLD as TLD NS
+  participant Auth as Authoritative
+  B->>OS: resolve news.ycombinator.com
+  OS->>R: miss, ask resolver
+  R->>Root: who handles .com
+  Root-->>R: ask .com TLD
+  R->>TLD: who handles ycombinator.com
+  TLD-->>R: ask authoritative
+  R->>Auth: IP for news.ycombinator.com
+  Auth-->>R: A record
+  R-->>OS: cache and return
+  OS-->>B: IP
 ```
 
 Sounds slow. It would be, except every step caches aggressively. After the first lookup, the answer sits in caches for minutes to hours, depending on the **TTL** (time to live) on the record.
@@ -44,15 +45,21 @@ You'll see the IP, the TTL, and how long the lookup took.
 
 DNS is a tree.
 
-```
-                .  (root, 13 sets of servers worldwide)
-              / | \
-             /  |  \
-           .com .org .io  ...    (TLDs)
-            |
-        google.com
-          |
-       maps.google.com  www.google.com  ...   (subdomains)
+```mermaid
+flowchart TB
+  Root[Root zone]
+  Com[.com TLD]
+  Org[.org TLD]
+  Io[.io TLD]
+  Google[google.com]
+  Maps[maps.google.com]
+  Www[www.google.com]
+  Root --> Com
+  Root --> Org
+  Root --> Io
+  Com --> Google
+  Google --> Maps
+  Google --> Www
 ```
 
 Each level knows only the level below it. Root knows who handles `.com`. The `.com` servers know who handles `google.com`. Google's nameservers know what `maps.google.com` resolves to.
@@ -115,7 +122,7 @@ Because everything depends on DNS, it's a juicy target.
 - **DNS amplification**: small UDP query, big UDP reply, all spoofed at one victim. Classic DDoS.
 - **DNS over plaintext**: by default, DNS queries are unencrypted. Anyone on the path can see what you're looking up.
 
-Modern resolvers (1.1.1.1, 8.8.8.8) support **DNS over HTTPS (DoH)** or **DNS over TLS (DoT)**, which encrypt the queries. Most browsers now turn this on by default.
+Modern resolvers (1.1.1.1, 8.8.8.8) support **DNS over HTTPS (DoH)** or **DNS over TLS (DoT)**, which encrypt the queries. Many browsers support DoH. Some enable it by default or via the resolver you pick. It is not universal.
 
 ## Code: a DNS lookup in Python
 

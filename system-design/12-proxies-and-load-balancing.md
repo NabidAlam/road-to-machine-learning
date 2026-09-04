@@ -11,12 +11,12 @@ In system design we almost always mean **reverse proxy**.
 
 ## Reverse proxy
 
-```
-              +---------------+
-   user --->  | reverse proxy | ---> [ app server 1 ]
-              |               | ---> [ app server 2 ]
-              |               | ---> [ app server 3 ]
-              +---------------+
+```mermaid
+flowchart LR
+  User[User] --> Proxy[Reverse proxy]
+  Proxy --> A1[App 1]
+  Proxy --> A2[App 2]
+  Proxy --> A3[App 3]
 ```
 
 The user thinks they're talking to one server. Behind the proxy, there might be dozens. The proxy handles:
@@ -114,10 +114,11 @@ Quick refresher from Chapter 3:
 
 An L7 LB:
 
-```
-   /api/*        ---> [ api servers ]
-   /images/*     ---> [ image servers ]
-   /             ---> [ web servers ]
+```mermaid
+flowchart LR
+  Api["/api/*"] --> ApiSrv[API servers]
+  Img["/images/*"] --> ImgSrv[Image servers]
+  Root["/"] --> WebSrv[Web servers]
 ```
 
 An L4 LB doesn't know any of this. It just hashes the connection and picks a backend.
@@ -162,15 +163,19 @@ WebSockets are the legitimate use of sticky sessions, because the connection is 
 
 What if the load balancer itself dies? Then you've moved the single point of failure, not eliminated it. Real systems run multiple LBs:
 
-```
-                DNS (returns multiple IPs)
-                       |
-            +----------+----------+
-            |                     |
-       [ LB 1 ]              [ LB 2 ]
-        |    \                /    |
-        |     \              /     |
-   [ app 1 ] [ app 2 ] [ app 3 ] [ app 4 ]
+```mermaid
+flowchart TB
+  DNS[DNS multiple IPs]
+  DNS --> LB1[LB 1]
+  DNS --> LB2[LB 2]
+  LB1 --> App1[App 1]
+  LB1 --> App2[App 2]
+  LB1 --> App3[App 3]
+  LB1 --> App4[App 4]
+  LB2 --> App1
+  LB2 --> App2
+  LB2 --> App3
+  LB2 --> App4
 ```
 
 If LB 1 dies, DNS keeps directing some users to LB 2. Combine with short DNS TTLs and clients re-resolve quickly. Or use anycast IPs (one IP advertised from multiple locations, like Cloudflare and Google use).

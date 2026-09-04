@@ -44,17 +44,16 @@ You don't send a whole video or webpage in one shot. The network chops it into s
 
 Each packet carries a header that says:
 
+```mermaid
+flowchart TB
+  H1[From IP and To IP]
+  H2[Protocol and Port]
+  H3[TCP seq if TCP]
+  Payload[Payload data]
+  H1 --> H2 --> H3 --> Payload
 ```
-+--------------------+-------------------+
-|   from: 1.2.3.4    |   to: 5.6.7.8     |
-+--------------------+-------------------+
-|   protocol: TCP    |   port: 443       |
-+--------------------+-------------------+
-|   sequence: 17     |                   |
-+--------------------+-------------------+
-|              payload (data)            |
-+--------------------+-------------------+
-```
+
+Rough sketch only. IP does not carry a TCP-style sequence number. Sequence belongs to TCP when the payload is a TCP segment.
 
 Packets can take different routes, arrive out of order, or get lost. Whether you care depends on the protocol (TCP cares, UDP doesn't, more on that next chapter).
 
@@ -94,14 +93,16 @@ When your browser connects to `https://google.com`, it really connects to `142.2
 
 If you ask a textbook, you get this:
 
-```
-7. Application      (HTTP, gRPC)
-6. Presentation     (encryption, encoding)
-5. Session          (managing the connection)
-4. Transport        (TCP, UDP)
-3. Network          (IP)
-2. Data link        (Ethernet, WiFi)
-1. Physical         (cables, radio waves)
+```mermaid
+flowchart TB
+  L7[7 Application HTTP gRPC]
+  L6[6 Presentation]
+  L5[5 Session]
+  L4[4 Transport TCP UDP]
+  L3[3 Network IP]
+  L2[2 Data link]
+  L1[1 Physical]
+  L7 --> L6 --> L5 --> L4 --> L3 --> L2 --> L1
 ```
 
 In practice you'll deal with three layers as a software engineer:
@@ -116,29 +117,14 @@ When someone says "L7 load balancer", they mean it understands HTTP and can rout
 
 Same idea as your home WiFi, but at company scale.
 
-```
-                       Internet
-                          |
-                          v
-                  +----------------+
-                  |    Gateway     |
-                  +----------------+
-                          |
-        +-----------------+-----------------+
-        |                                   |
-  +-----------+                       +-----------+
-  | Web tier  |                       | Web tier  |   <- public subnet
-  +-----------+                       +-----------+
-        |                                   |
-        +-----------------+-----------------+
-                          |
-                  +----------------+
-                  |   App servers  |  <- private subnet, no public IP
-                  +----------------+
-                          |
-                  +----------------+
-                  |    Database    |  <- private subnet
-                  +----------------+
+```mermaid
+flowchart TB
+  Net[Internet] --> GW[Gateway]
+  GW --> Web1[Web tier]
+  GW --> Web2[Web tier]
+  Web1 --> App[App servers private]
+  Web2 --> App
+  App --> DB[(Database private)]
 ```
 
 The database has no internet IP. The only way to reach it is from inside the network. That's the default in any cloud (AWS VPC, GCP VPC, Azure VNet). Forgetting this is how you accidentally expose a database to the public internet and end up on the news.

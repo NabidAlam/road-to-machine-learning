@@ -14,11 +14,9 @@ In a distributed system, you have three properties:
 
 A network partition is when some nodes can't talk to others, even though both are up. Maybe a cable failed. Maybe a region lost connectivity. Maybe the load balancer dropped them. From inside, each side sees the other as "down".
 
-```
-            +---------+   X   +---------+
-            | Node A  |---x---| Node B  |
-            +---------+       +---------+
-                  (X = network broken)
+```mermaid
+flowchart LR
+  A[Node A] -.-x B[Node B]
 ```
 
 In a real distributed system, partitions happen. Not "if". "When". They're rare on a single-data-center network. They're common across continents. So **P is forced** once you accept partitions as inevitable.
@@ -29,8 +27,10 @@ The useful statement (see Brewer's later clarifications): **during a partition, 
 
 If the network is partitioned, refuse to serve queries that might return stale data. Better to return an error than the wrong answer.
 
-```
-   user -> Node A (says "I can't reach the others, sorry, error")
+```mermaid
+flowchart LR
+  User[User] --> A[Node A]
+  A -->|error cannot reach peers| User
 ```
 
 Used by: banking systems, etcd, ZooKeeper, Spanner (Google's globally-consistent DB).
@@ -41,8 +41,10 @@ When this is right: money. Inventory. Locks. Anything where a wrong answer costs
 
 If the network is partitioned, keep serving. Some users might see stale data, but the system stays up.
 
-```
-   user -> Node A (says "here's my best guess, it might be stale")
+```mermaid
+flowchart LR
+  User[User] --> A[Node A]
+  A -->|best guess maybe stale| User
 ```
 
 Used by: DNS, Cassandra, DynamoDB (default mode), most CDNs, most social media products.
@@ -51,17 +53,17 @@ When this is right: a "like" count being briefly wrong is fine. A web page being
 
 ## The CAP triangle (a famous picture)
 
-```
-                       C
-                      /
-                     /
-                    /
-                  CP --- CA --- AP
-                              \
-                               \
-                                A
-                                |
-                                P
+```mermaid
+flowchart TB
+  C[Consistency]
+  A[Availability]
+  P[Partition tolerance]
+  CP[CP systems]
+  AP[AP systems]
+  C --- CP
+  P --- CP
+  A --- AP
+  P --- AP
 ```
 
 The "CA" corner is what single-machine systems give you. As soon as you go distributed, P is forced on you. The corner becomes a choice between CP and AP.
@@ -70,14 +72,16 @@ The "CA" corner is what single-machine systems give you. As soon as you go distr
 
 Two database nodes, replicated. User updates their profile photo on Node A. Network breaks before Node B sees it.
 
-```
-  Step 1:  user -> A: "set photo to X"
-           A confirms.
-
-  Step 2:  network breaks.
-
-  Step 3:  user reads -> B
-           Does B return the old photo (AP) or refuse (CP)?
+```mermaid
+sequenceDiagram
+  participant U as User
+  participant A as Node A
+  participant B as Node B
+  U->>A: set photo to X
+  A-->>U: confirmed
+  Note over A,B: network breaks
+  U->>B: read photo
+  Note over B: AP returns old or CP refuses
 ```
 
 - **AP** (Cassandra, Dynamo default): B returns the old photo. User is briefly confused. Some day later, the systems sync. "Eventually consistent."

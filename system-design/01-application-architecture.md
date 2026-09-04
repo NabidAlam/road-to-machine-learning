@@ -6,9 +6,12 @@ In the last chapter we looked at one computer. Now let's zoom out. What does a r
 
 A user types a URL into a browser. Something somewhere on the internet sends back HTML. That's it.
 
-```
-[ Browser ]  --- request --->  [ Server ]
-            <--- HTML ---
+```mermaid
+sequenceDiagram
+  participant B as Browser
+  participant S as Server
+  B->>S: request
+  S-->>B: HTML
 ```
 
 This works for a personal blog. It breaks the moment you have:
@@ -23,23 +26,15 @@ So we add pieces.
 
 This is the architecture behind 90% of products you use:
 
-```
-[ Browser / Mobile ]
-        |
-        v
-+------------------+
-|   Web Server     |   serves HTML, handles auth, routes requests
-+------------------+
-        |
-        v
-+------------------+
-| Application code |   business logic, your Python/Go/Node code
-+------------------+
-        |
-        v
-+------------------+
-|    Database      |   Postgres, MySQL, MongoDB
-+------------------+
+```mermaid
+flowchart TB
+  Client[Browser or mobile]
+  Web[Web server]
+  App[Application code]
+  DB[(Database)]
+  Client --> Web
+  Web --> App
+  App --> DB
 ```
 
 Three tiers: presentation (frontend), application (backend logic), data (database). On a small site they might all run on one box. On big sites they run on hundreds.
@@ -48,23 +43,13 @@ Three tiers: presentation (frontend), application (backend logic), data (databas
 
 When you `git push`, your code travels through several systems before users see it.
 
-```
-You write code
-      |
-      v
-   Git repo  (GitHub, GitLab)
-      |
-      v
-   CI/CD     (GitHub Actions, CircleCI)  -- runs tests, builds artifact
-      |
-      v
-   Registry  (Docker Hub, ECR)           -- stores the build
-      |
-      v
-   Servers   (EC2, Kubernetes)           -- runs the build
-      |
-      v
-   Users
+```mermaid
+flowchart TB
+  Dev[You write code] --> Git[Git repo]
+  Git --> CI[CI/CD tests and build]
+  CI --> Reg[Container registry]
+  Reg --> Run[Servers run the build]
+  Run --> Users[Users]
 ```
 
 The big idea: code on your laptop is not code in production. There's a whole pipeline that gets it there safely.

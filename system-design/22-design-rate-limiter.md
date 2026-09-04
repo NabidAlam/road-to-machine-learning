@@ -24,28 +24,12 @@ The rate-limiter call itself must be fast. If the limit check costs 50 ms, you'v
 
 ## High-level design
 
-```
-[ client ]
-    |
-    v
-[ Load balancer ]
-    |
-    v
-+---------------------+
-|  API gateway        |
-|  - reads rule set   |
-|  - calls limiter    |
-+---------+-----------+
-          |
-          v
-   +-------------+
-   |   Redis     |   counts per key, per window
-   +-------------+
-          ^
-          | rules synced from
-   +-------------+
-   |  Postgres   |   source of truth for limit configs
-   +-------------+
+```mermaid
+flowchart TB
+  Client[Client] --> LB[Load balancer]
+  LB --> GW[API gateway]
+  GW --> Redis[(Redis counts)]
+  PG[(Postgres rules)] -.->|sync rules| GW
 ```
 
 The gateway calls Redis on every request. Redis is the only thing on the hot path. Rules live in Postgres and are reloaded into the gateway every few seconds.

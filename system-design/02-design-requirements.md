@@ -19,13 +19,9 @@ Functional requirements are usually obvious. Non-functional ones are where the a
 
 Every serious system asks these four questions:
 
-```
-+------------------+--------------------+
-|   Scalability    |   Performance      |
-+------------------+--------------------+
-|   Availability   |   Consistency      |
-+------------------+--------------------+
-```
+| Scalability | Performance |
+| --- | --- |
+| Availability | Consistency |
 
 ### Scalability
 

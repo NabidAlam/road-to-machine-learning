@@ -6,19 +6,13 @@ One database server can only do so much. Eventually you have more data than fits
 
 The idea: every write goes to a primary node, and is then copied to one or more replica nodes. Reads can hit any of them.
 
-```
-                       writes
-                          |
-                          v
-                     [ primary ]
-                       /    \
-              writes /        \  writes
-                    v          v
-                [ replica 1 ] [ replica 2 ]
-                    ^          ^
-              reads |          | reads
-                    |          |
-                   user      user
+```mermaid
+flowchart TB
+  W[Writes] --> P[Primary]
+  P --> R1[Replica 1]
+  P --> R2[Replica 2]
+  U1[User reads] --> R1
+  U2[User reads] --> R2
 ```
 
 Why bother:
@@ -93,15 +87,10 @@ Replication doesn't help with one problem: your data is too big for one machine.
 
 Sharding is partitioning. Split the data so each node owns part of it.
 
-```
-                       writes for "users A-M"
-                                 |
-                                 v
-                          [ shard 1 ]
-                                                            writes for "users N-Z"
-                                                                     |
-                                                                     v
-                                                              [ shard 2 ]
+```mermaid
+flowchart LR
+  WA[Writes users A-M] --> S1[Shard 1]
+  WB[Writes users N-Z] --> S2[Shard 2]
 ```
 
 Now you have twice the capacity. Add a third shard, you have triple. In theory, this scales forever.
@@ -144,11 +133,16 @@ Almost everything.
 
 Real systems use both. Each shard is replicated for redundancy, and shards together hold the full data.
 
-```
-       Shard 1 (users A-M)              Shard 2 (users N-Z)
-            primary                        primary
-           /      \                       /      \
-      replica    replica              replica    replica
+```mermaid
+flowchart TB
+  subgraph s1 [Shard 1 users A-M]
+    P1[Primary] --> R1a[Replica]
+    P1 --> R1b[Replica]
+  end
+  subgraph s2 [Shard 2 users N-Z]
+    P2[Primary] --> R2a[Replica]
+    P2 --> R2b[Replica]
+  end
 ```
 
 If Shard 1's primary dies, its replica gets promoted. If you need more capacity, add Shard 3.

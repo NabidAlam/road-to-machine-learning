@@ -25,19 +25,11 @@ The numbers force three decisions: partition aggressively, disk-first storage, a
 
 ## High-level design
 
-```
-producers ---write---> +-------------------+
-                       |   Broker fleet    |   each broker handles a subset of partitions
-                       +-------------------+
-                                |
-                                v
-                    +-----------------------+
-                    |  Per-partition log     |   append-only files on disk
-                    |  segments + index      |
-                    +-----------+-----------+
-                                |
-                                v
-        consumers ---pull--- track per-consumer offsets
+```mermaid
+flowchart TB
+  Cons[Consumers] -->|pull records via brokers| Brokers
+  Brokers --> Log[(Per-partition log)]
+  Prod[Producers] -->|write| Brokers
 ```
 
 Three concepts to internalize: **topic, partition, offset.**
@@ -155,4 +147,4 @@ Older Kafka used ZooKeeper. Modern Kafka uses an internal Raft (KRaft). Pulsar u
 - The original LinkedIn Kafka paper.
 - Apache Pulsar docs for the tiered storage variant.
 - Jay Kreps, "The Log: What every software engineer should know about real-time data's unifying abstraction."
-- Chapter 13 (Consistent Hashing) and Chapter 19 (Message Queues) in this course.
+- Chapter 19 (Message Queues) in this course.

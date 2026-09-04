@@ -25,30 +25,19 @@ Numbers like these mean three things: object storage from day one, CDN from day 
 
 ## High-level design
 
-```
-                            +-------------+
-   uploader  -->  API  -->  | Object store|   raw video
-                            +------+------+
-                                   |
-                                   v
-                     [ "video.uploaded" event on Kafka ]
-                                   |
-                +------------------+--------------------+
-                v                  v                    v
-       [ Transcoder workers ] [ Thumbnail gen ] [ Captions / ML moderation ]
-                |                  |                    |
-                v                  v                    v
-            +-------------+   +-----------+      +--------------+
-            | Object      |   | Thumbnails|      |  Captions DB |
-            | store       |   +-----------+      +--------------+
-            | (renditions)|
-            +------+------+
-                   |
-                   v
-              [   CDN   ]
-                   ^
-                   |
-            viewer player
+```mermaid
+flowchart TB
+  Uploader[Uploader] --> API[API]
+  API --> ObjRaw[(Object store raw)]
+  API --> Ev[video.uploaded]
+  Ev --> Trans[Transcoder]
+  Ev --> Thumb[Thumbnail gen]
+  Ev --> Cap[Captions ML]
+  Trans --> ObjRen[(Object store renditions)]
+  Thumb --> Thumbs[(Thumbnails)]
+  Cap --> CapDB[(Captions DB)]
+  ObjRen --> CDN[CDN]
+  Player[Viewer player] --> CDN
 ```
 
 The upload and processing pipeline lives off the hot path. The playback path is **player → CDN → object store**. Most viewers never hit your origin.
@@ -68,13 +57,13 @@ Resumable upload (S3 multipart, GCS resumable) so a mobile user with flaky wifi 
 
 ## Deep dive 2: Transcoding
 
-A 1080p video must be cut into 240p, 360p, 480p, 720p, 1080p, 4K. And into chunks of 4–10 seconds. And packaged for HLS or DASH (adaptive streaming).
+A 1080p source is usually cut into lower and equal renditions (for example 240p, 360p, 480p, 720p, 1080p). Do not invent a 4K ladder from a 1080p master. Chunk into segments of about 4 to 10 seconds and package for HLS or DASH (adaptive streaming).
 
 ```
 input.mp4
   -> ffmpeg -> 240p chunks (.ts)
   -> ffmpeg -> 360p chunks
-  -> ffmpeg -> ... 1080p, 4K
+  -> ffmpeg -> ... up to source max (e.g. 1080p)
   -> generate .m3u8 (HLS) or .mpd (DASH) manifest
 ```
 
@@ -88,7 +77,7 @@ The player downloads a manifest:
 
 ```
 #EXTM3U
-#EXT-X-STREAM-INF:BANDWIDTH=500000,RESOLUTION=480x270
+#EXT-X-STREAM-INF:BANDWIDTH=500000,RESOLUTION=426x240
 240p/index.m3u8
 #EXT-X-STREAM-INF:BANDWIDTH=1500000,RESOLUTION=854x480
 480p/index.m3u8

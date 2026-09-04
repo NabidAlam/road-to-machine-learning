@@ -27,25 +27,16 @@ Messages add up fast. Plan for cold storage and per-room sharding.
 
 ## High-level design
 
-```
-[ client ]  <-- persistent WebSocket -->  [ Gateway ]
-                                              |
-                                              v
-                                    +-----------------+
-                                    |   Chat API      |
-                                    +--------+--------+
-                                             |
-                +----------------+-----------+-------------+
-                v                v                          v
-        [ Kafka:                [ Postgres or            [ Redis:
-          messages ]              Cassandra:               presence,
-                                  messages ]               typing ]
-                |
-                v
-   [ Fanout workers push to gateways ]
-                |
-                v
-        [ Other connected clients ]
+```mermaid
+flowchart TB
+  Client[Client] <-->|WebSocket| GW[Gateway]
+  GW --> API[Chat API]
+  API --> Kafka[(Kafka messages)]
+  API --> Store[(Postgres or Cassandra)]
+  API --> Redis[(Redis presence)]
+  Kafka --> Pub[(Pub/sub to gateways)]
+  Pub --> GW
+  GW --> Others[Other clients]
 ```
 
 WebSockets (Chapter 07) for the live connection. Kafka for the durable backbone. Cassandra-style storage for messages (Chapter 15) because the access pattern is "give me last N messages of room X."
@@ -54,16 +45,10 @@ WebSockets (Chapter 07) for the live connection. Kafka for the durable backbone.
 
 Each online user holds a WebSocket to a **gateway** node. Gateways are stateless w.r.t. the user (any gateway can hold any user) but the **routing table** (which user is on which gateway) must be globally known.
 
-```
-+-----------+      +-----------+
-|  Gateway  |      |  Gateway  |  ... thousands of these
-+-----------+      +-----------+
-       ^                 ^
-       |                 |
-       v                 v
-+-----------------------------+
-|     Pub/sub backbone        |   Redis cluster or Kafka topic per room
-+-----------------------------+
+```mermaid
+flowchart TB
+  G1[Gateway] <--> Pub[(Pub/sub backbone)]
+  G2[Gateway] <--> Pub
 ```
 
 When a message arrives:
@@ -115,7 +100,7 @@ Typing indicators are noisier. Don't store them. Publish `user 42 typing in room
 For each `(user, room)` pair, store the last read message ID.
 
 ```
-SET HSET reads user:42  room:7 -> msg_id 9912
+HSET reads:user:42  7  9912
 ```
 
 Unread = count of messages where `created_at > last_read_at`. Per-room counter cached in Redis, incremented when new messages arrive for a user who hasn't read them.

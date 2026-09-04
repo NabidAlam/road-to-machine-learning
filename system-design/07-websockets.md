@@ -12,16 +12,18 @@ There are two ways to fake it with HTTP, and one real way to do it. The real way
 
 The client asks every few seconds: "anything new?"
 
-```
-Client                Server
-  |  GET /messages -->|
-  |  <-- []           |
-  |  (wait 3 sec)     |
-  |  GET /messages -->|
-  |  <-- []           |
-  |  (wait 3 sec)     |
-  |  GET /messages -->|
-  |  <-- [new msg]    |
+```mermaid
+sequenceDiagram
+  participant C as Client
+  participant S as Server
+  C->>S: GET /messages
+  S-->>C: empty list
+  Note over C: wait about 3 seconds
+  C->>S: GET /messages
+  S-->>C: empty list
+  Note over C: wait about 3 seconds
+  C->>S: GET /messages
+  S-->>C: new message
 ```
 
 Simple. Wasteful. Latency capped at the polling interval. Bandwidth proportional to user count, not to messages.
@@ -30,13 +32,14 @@ Simple. Wasteful. Latency capped at the polling interval. Bandwidth proportional
 
 Smarter. The client asks, the server holds the connection open until it has something to say.
 
-```
-Client                Server
-  |  GET /messages -->|
-  |                   |  (server waits up to 30s)
-  |  <-- [new msg]    |
-  |  GET /messages -->|
-  |                   |
+```mermaid
+sequenceDiagram
+  participant C as Client
+  participant S as Server
+  C->>S: GET /messages
+  Note over S: hold up to about 30s
+  S-->>C: new message
+  C->>S: GET /messages again
 ```
 
 Better latency, fewer requests, but it's still HTTP. Every reply closes the connection and a new one opens.
@@ -69,9 +72,11 @@ Sec-WebSocket-Accept: s3pPLMBiTxaQ9kYGzzhZRbK+xOo=
 
 After that the same TCP connection is no longer HTTP. It's a full-duplex pipe where either side can send small framed messages anytime.
 
-```
-Client <==================> Server
-       (one persistent connection, both ways)
+```mermaid
+flowchart LR
+  C[Client]
+  S[Server]
+  C <-->|persistent both ways| S
 ```
 
 The connection stays open until someone closes it. Could be hours. Could be days.
@@ -144,32 +149,30 @@ This is where WebSockets get interesting. One server can hold maybe 50,000 to 50
 
 Problem: if Alice is connected to server A and Bob is on server B, how does Alice's message reach Bob?
 
-```
-   Alice  -- ws -->  [ Server A ]
-                          |
-                          v
-                  ??? somehow ???
-                          |
-                          v
-                     [ Server B ]  <-- ws -- Bob
+```mermaid
+flowchart TB
+  Alice[Alice] -->|WebSocket| A[Server A]
+  Bob[Bob] -->|WebSocket| B[Server B]
+  A -.->|need a fan-out path| B
 ```
 
 You can't just put a load balancer in front and call it done. The servers need a way to talk to each other.
 
 The standard answer: a **pub/sub** layer in the middle. Redis pub/sub is the common starter pick. Each WebSocket server subscribes to channels. When server A receives a message for room "x", it publishes to channel "x". Server B is listening to "x" and forwards to its connected users.
 
-```
-  Alice -> [ A ] -> Redis pub channel "x"
-                          |
-                          v
-                       [ B ] -> Bob
+```mermaid
+flowchart LR
+  Alice[Alice] --> A[Server A]
+  A -->|publish room x| R[(Pub/sub e.g. Redis)]
+  R -->|subscribe room x| B[Server B]
+  B --> Bob[Bob]
 ```
 
 At very large scale you replace Redis with Kafka, RabbitMQ, or NATS. We'll come back to message queues in Chapter 19.
 
 ## Watch out for
 
-- **Sticky sessions**: a WebSocket lives on one server, so the load balancer must always send the same client to the same backend. Round-robin breaks WebSockets.
+- **Sticky sessions**: a WebSocket lives on one server, so after the upgrade the load balancer should keep that client on the same backend (sticky sessions or reconnect affinity). Plain round-robin on every packet is wrong. Round-robin on *new* connections can still work if each connection sticks afterward.
 - **Memory per connection**: even an idle WebSocket has buffer overhead. 100k connections × 10 KB = 1 GB just for the sockets.
 - **Heartbeats**: NAT routers and corporate firewalls love to silently drop idle TCP connections. Send a ping every 30 seconds to keep the line warm.
 - **Authentication**: there's no second HTTP request, so all auth has to happen during the initial handshake. Usually you pass a token in the URL or as a cookie.

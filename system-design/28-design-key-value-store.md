@@ -26,19 +26,12 @@ At 10 TB and 1M QPS, a single machine is not in the conversation. Hundreds of no
 
 ## High-level design
 
-```
-                    [ client ]
-                        |
-                        v
-                +----------------+
-                | Coordinator    |  (any node can act as one)
-                +-------+--------+
-                        |
-        consistent hash | -> N replicas for this key
-                        v
-        +-------+-------+-------+
-        v       v       v       v
-   [ Node A ][ Node B ][ Node C ][ ... ]    each node owns a slice of the ring
+```mermaid
+flowchart TB
+  Client[Client] --> Coord[Coordinator]
+  Coord -->|consistent hash| A[Node A]
+  Coord --> B[Node B]
+  Coord --> C[Node C]
 ```
 
 Architecture summary, lifted from the Dynamo paper:

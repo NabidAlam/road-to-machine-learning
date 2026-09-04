@@ -29,32 +29,15 @@ Two access patterns dominate: **low-latency lookup** (online) and **point-in-tim
 
 ## High-level design
 
-```
-                event sources (clicks, payments, app logs)
-                            |
-                            v
-                     +---------------+
-                     |    Kafka      |   raw event stream
-                     +-------+-------+
-                             |
-              +--------------+--------------+
-              v                             v
-     +------------------+         +-------------------+
-     | Stream processor |         |  Batch processor  |
-     | (Flink/Spark SS) |         |  (Spark/BigQuery) |
-     +--------+---------+         +---------+---------+
-              |                             |
-              v                             v
-     +------------------+         +-------------------+
-     |  Online store    |         |  Offline store     |
-     |  Redis / Aero    |         |  Parquet on S3 /   |
-     |  spike / Dynamo  |         |  BigQuery /        |
-     |  KV per entity   |         |  Snowflake         |
-     +--------+---------+         +---------+---------+
-              ^                             ^
-              |                             |
-  model server                       training jobs
-  (real-time inference)              (build datasets, train models)
+```mermaid
+flowchart TB
+  Src[Event sources] --> Kafka[(Kafka)]
+  Kafka --> Stream[Stream processor]
+  Kafka --> Batch[Batch processor]
+  Stream --> Online[(Online store)]
+  Batch --> Offline[(Offline store)]
+  Model[Model server] --> Online
+  Train[Training jobs] --> Offline
 ```
 
 Two stores, **one feature definition**. Both are populated from the same source events. Same code path or you get skew.
@@ -77,18 +60,11 @@ Two stores, **one feature definition**. Both are populated from the same source 
 
 Streaming features change second-to-second. Example: `user.clicks_in_last_5_min`.
 
-```
-event = { user_id: 42, type: "click", t: now }
-   |
-   v
-[ Flink job ]
-   - keyed by user_id
-   - sliding window 5 min, slide 10 s
-   - emit count -> sink
-   |
-   v
-   online store: HSET feat:user:42 clicks_5m 17
-   offline store: append (user_id=42, event_time=t, clicks_5m=17) to Parquet
+```mermaid
+flowchart TB
+  Ev[Click event] --> Flink[Stream job]
+  Flink --> Online[(Online store)]
+  Flink --> Offline[(Offline store)]
 ```
 
 The same Flink/Spark job writes to **both stores**. Same value, same timestamp. That's how training and serving stay aligned.
@@ -185,7 +161,7 @@ Watch four things:
 
 1. **Freshness:** is the streaming pipeline keeping up? Lag in seconds per feature view.
 2. **Schema drift:** new categories, nulls increasing, value ranges shifting.
-3. **Online–offline parity:** sample 1% of online reads, replay through the offline definition, compare. Alert if they diverge by more than a tolerance.
+3. **Online/offline parity:** sample 1% of online reads, replay through the offline definition, compare. Alert if they diverge by more than a tolerance.
 4. **Serving latency:** p99 of feature reads.
 
 If parity breaks, **stop training new models** until it's fixed. Bad parity = bad models, silently.

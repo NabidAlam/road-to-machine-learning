@@ -27,21 +27,16 @@ Read-heavy: ~150 reads for every write. Caching and precomputation will dominate
 
 ## High-level design
 
-```
-[ client ] --post--> [ API ] --> [ Post DB ]
-                       |
-                       v
-                  [ Kafka: post.created ]
-                       |
-            +----------+------------+
-            v                       v
-   [ Fanout workers ]      [ Search/analytics ]
-            |
-            v
-   [ Feed cache (Redis) ]
-            ^
-            |
-[ client ] --GET /feed--> [ API ] reads from cache
+```mermaid
+flowchart TB
+  C1[Client] -->|post| API[API]
+  API --> PostDB[(Post DB)]
+  API --> Kafka[post.created]
+  Kafka --> Fanout[Fanout workers]
+  Kafka --> Search[Search analytics]
+  Fanout --> Feed[(Feed cache Redis)]
+  C2[Client] -->|GET feed| API2[API]
+  API2 --> Feed
 ```
 
 Two paths: write path produces an event; fanout workers spread it to follower feeds; read path is a fast cache hit.
@@ -104,7 +99,7 @@ CREATE TABLE posts (
 CREATE INDEX idx_posts_author_time ON posts(author_id, created_at DESC);
 ```
 
-At your scale, **shard by post_id** (Chapter 16). Author timeline queries hit the index. For celebrity timelines specifically, also keep a Redis sorted set per author so reads never touch SQL.
+At your scale, **shard by author_id** for timelines so "posts by this user" stay on one shard (Chapter 16). If you shard only by `post_id`, author timelines become scatter-gather unless you add a separate author→posts index. For celebrity timelines specifically, also keep a Redis sorted set per author so hot reads often skip SQL.
 
 ## Deep dive 4: Deletes
 
