@@ -10,7 +10,7 @@ This guide is for the **[Nabid In Motion Study Hub](https://nabidinmotion.com/)*
 
 | This site is | This site is not |
 |--------------|------------------|
-| A reader for 265+ synced lessons | A replacement for writing code on your machine |
+| A reader for 271 synced lessons | A replacement for writing code on your machine |
 | Local progress tracking (no account) | An autograded course or certificate program |
 | Career-path filtering + project tracker | A linear playlist you finish top to bottom |
 
