@@ -34,7 +34,7 @@
 - **Hands-On Learning**: 23 practical projects to build your portfolio
 - **Production Topics**: Deployment, MLOps, and real-world failure modes (not a guarantee that one pass makes you production-ready)
 - **Well-Organized**: Logical progression with clear learning objectives
-- **Maintainer-curated**: Open MIT curriculum. Updates ship via the [Study Hub](https://nabidinmotion.com/). See [CONTRIBUTING.md](CONTRIBUTING.md) for feedback.
+- **Maintainer-curated**: Open MIT curriculum. At the moment we do not accept any public contributions. Updates ship via the [Study Hub](https://nabidinmotion.com/). See [CONTRIBUTING.md](CONTRIBUTING.md).
 
 **Built for**: Students, career switchers, and self-learners who want a structured ML path. Outcomes depend on practice, projects, and the job market. This repo does not guarantee a hire.
 
@@ -1170,7 +1170,7 @@ A: You're ready when you can:
 ### Contributing
 
 **Q: How can I suggest a fix or report an error?**  
-A: Open a [GitHub Issue](https://github.com/NabidAlam/road-to-machine-learning/issues). We do not accept pull requests. See [CONTRIBUTING.md](CONTRIBUTING.md).
+A: At the moment we do not accept any public contributions (no PRs, patches, or community edits). You may open a [GitHub Issue](https://github.com/NabidAlam/road-to-machine-learning/issues) only to report a broken link or factual error. See [CONTRIBUTING.md](CONTRIBUTING.md).
 
 **Q: Can I use this content for my course/tutorial?**  
 A: Yes. This is open source (MIT License). Please credit the repository and Nabid In Motion.
@@ -1181,13 +1181,13 @@ A: Yes. This is open source (MIT License). Please credit the repository and Nabi
 
 ## Contributing
 
-This repository is **maintainer-curated**. Pull requests are not accepted.
+This repository is **maintainer-curated**. **At the moment we do not accept any public contributions** (no pull requests, patches, or community edits).
 
-### How to help
+### What you can do
 
-- **Report issues**: Broken links, typos, or factual errors via [GitHub Issues](https://github.com/NabidAlam/road-to-machine-learning/issues)
+- **Report a problem** (optional): Broken links, typos, or factual errors via [GitHub Issues](https://github.com/NabidAlam/road-to-machine-learning/issues). That is a report, not a contribution channel.
 - **Learn on the Study Hub**: [nabidinmotion.com](https://nabidinmotion.com/) is the canonical reader experience
-- **Fork for yourself**: MIT License allows personal forks and attribution in your own notes
+- **Fork for yourself**: MIT License allows personal forks and attribution in your own notes. A personal fork is not a contribution channel.
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for the full policy.
 
@@ -1202,7 +1202,7 @@ If you find this repository helpful, please consider:
 - **Star this repo** - It helps others discover this resource
 - **Fork it** - Create your own learning path
 - **Share it** - Help others on their ML journey
-- **Open an issue** - Report broken links or factual errors (no PRs). See [CONTRIBUTING.md](CONTRIBUTING.md)
+- **Open an issue** - Report broken links or factual errors only. No public contributions at the moment. See [CONTRIBUTING.md](CONTRIBUTING.md)
 
 **Every star helps learners find the path.**
 
@@ -1241,9 +1241,9 @@ This repository contains links to external websites, courses, documentation, and
 - **Cannot guarantee** that external links will remain accessible or unchanged
 - **Do not assume liability** for any issues arising from the use of external resources
 
-**GDPR Compliance:**
+**Data protection note:**
 
-This repository does not collect, store, or process any personal data. It is a static educational resource. Any data processing occurs through GitHub (the platform) or external websites, which have their own privacy policies. See [DISCLAIMER.md](DISCLAIMER.md) for complete disclaimer and GDPR information.
+This repository does not collect, store, or process any personal data. It is a static educational resource. Any data processing occurs through GitHub (the platform) or external websites, which have their own privacy policies. This note is not a GDPR certification. See [DISCLAIMER.md](DISCLAIMER.md) for the full disclaimer and data-protection information.
 
 ---
 

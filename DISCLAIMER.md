@@ -139,22 +139,24 @@ This repository processes **no personal data**. It is a static educational resou
 
 **The repository maintainers are not data controllers or processors** for any personal data related to this repository.
 
-### Compliance Statement
+### Data protection posture
 
-This repository is designed to be GDPR-compliant by:
+This repository aims to stay transparent about data protection by:
 - Not collecting or processing personal data
 - Not using tracking technologies
 - Providing clear information about data processing by third parties (GitHub, external links)
 - Encouraging users to review privacy policies of external services
 
-**However, compliance with GDPR ultimately depends on:**
+This is an informational description of the repo’s design. It is **not** a GDPR certification or legal clearance.
+
+**Third-party processing still depends on:**
 - How you interact with the GitHub platform
 - How you use external resources linked in this repository
 - Your own data protection practices
 
 ### No Legal Advice
 
-This GDPR information is provided for informational purposes only and does not constitute legal advice. For specific GDPR compliance questions or concerns, please consult with a qualified legal professional.
+This data-protection information is provided for informational purposes only and does not constitute legal advice. For specific GDPR questions or concerns, please consult with a qualified legal professional.
 
 ## Contact
 
@@ -164,7 +166,7 @@ For GDPR-related questions about this repository specifically, please note that 
 
 ---
 
-**Last Updated:** 2025
+**Last Updated:** 2026
 
 **Note:** This disclaimer may be updated periodically. Please check back for the most current version.
 

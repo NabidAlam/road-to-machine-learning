@@ -184,8 +184,8 @@ Use [exit gates in FOUNDATION_AND_JOB_READINESS.md](FOUNDATION_AND_JOB_READINESS
 
 - **What to learn next:** [START-HERE.md](START-HERE.md)  
 - **Job-market timing:** [FOUNDATION_AND_JOB_READINESS.md](FOUNDATION_AND_JOB_READINESS.md)  
-- **Site issues:** [nabidinmotion GitHub](https://github.com/NabidInMotion/nabidinmotion.github.io)  
-- **Curriculum source:** [road-to-machine-learning](https://github.com/NabidAlam/road-to-machine-learning)
+- **Site / contact:** [nabidinmotion.com](https://nabidinmotion.com/) (Impressum / contact on the Study Hub)  
+- **Curriculum issues:** [road-to-machine-learning Issues](https://github.com/NabidAlam/road-to-machine-learning/issues)
 
 ---
 

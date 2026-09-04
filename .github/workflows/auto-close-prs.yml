@@ -1,0 +1,45 @@
+# Auto-close pull requests. This curriculum is maintainer-only.
+# At the moment we do not accept any public contributions.
+name: Auto-close pull requests
+
+on:
+  pull_request_target:
+    types: [opened, reopened, synchronize, ready_for_review]
+
+permissions:
+  pull-requests: write
+  issues: write
+
+jobs:
+  close:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Close PR with policy note
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const body = [
+              'Thanks for your interest in Road to ML.',
+              '',
+              '**At the moment we do not accept any public contributions.**',
+              'Pull requests are closed automatically. Only the maintainer updates this curriculum and the Study Hub.',
+              '',
+              'Please read [CONTRIBUTING.md](https://github.com/NabidAlam/road-to-machine-learning/blob/main/CONTRIBUTING.md).',
+              '',
+              'To report a broken link or factual error, open a GitHub Issue (problem report only).',
+              'Study Hub: https://nabidinmotion.com/'
+            ].join('\n');
+
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body
+            });
+
+            await github.rest.pulls.update({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: context.issue.number,
+              state: 'closed'
+            });

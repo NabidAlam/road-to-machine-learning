@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Study Hub (canonical reader)
+    url: https://nabidinmotion.com/
+    about: Learn on the Study Hub. Curriculum updates are maintainer-only.
+  - name: Contributing policy
+    url: https://github.com/NabidAlam/road-to-machine-learning/blob/main/CONTRIBUTING.md
+    about: At the moment we do not accept any public contributions.
