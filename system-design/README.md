@@ -17,6 +17,14 @@ This folder is a **foundational side track** that pairs with the main [Road to M
 
 You can read this in parallel with the numbered modules. It pairs especially well with module 13 (deployment) and 14 (MLOps).
 
+## Diagrams
+
+Topology and flow figures in these lessons use **Mermaid** fences (` ```mermaid `) instead of ASCII boxes.
+
+On GitHub you see the Mermaid source. On the [Study Hub](https://nabidinmotion.com/) reader they bake to SVG at sync time (Fit / zoom / pan). Hash rings in [13. Consistent Hashing](./13-consistent-hashing.md) are drawn as a clockwise walk flattened left-to-right. Mermaid is weak at true circles.
+
+The same pattern is used outside this folder for high-ROI pipelines and decision trees (RAG, ML serving, ETL / ER, MLflow, Power BI, MLOps, and several quick-reference pickers). Directory trees (`├──`) stay ASCII on purpose.
+
 ## How to read this
 
 Go in order if you're new. The first few chapters set up the vocabulary the later ones lean on.

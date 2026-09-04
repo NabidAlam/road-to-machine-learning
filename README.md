@@ -35,6 +35,7 @@
 - **Production Topics**: Deployment, MLOps, and real-world failure modes (not a guarantee that one pass makes you production-ready)
 - **Well-Organized**: Logical progression with clear learning objectives
 - **Maintainer-curated**: Open MIT curriculum. At the moment we do not accept any public contributions. Updates ship via the [Study Hub](https://nabidinmotion.com/). See [CONTRIBUTING.md](CONTRIBUTING.md).
+- **Diagrams**: System Design topologies plus selected pipelines and decision trees (RAG, ML serving, ETL, quick-reference pickers, and more) use Mermaid. On the Study Hub they render as interactive SVGs. Folder trees stay ASCII. See [system-design/README.md](system-design/README.md#diagrams).
 
 **Built for**: Students, career switchers, and self-learners who want a structured ML path. Outcomes depend on practice, projects, and the job market. This repo does not guarantee a hire.
 
