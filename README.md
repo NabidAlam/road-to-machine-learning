@@ -7,7 +7,11 @@
 [![GitHub issues](https://img.shields.io/github/issues/NabidAlam/road-to-machine-learning)](https://github.com/NabidAlam/road-to-machine-learning/issues)
 [![GitHub license](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/NabidAlam/road-to-machine-learning/blob/main/LICENSE)
 [![Maintainer curated](https://img.shields.io/badge/PRs-not%20accepted-lightgrey)](CONTRIBUTING.md)
-[![Subscribe on YouTube](https://img.shields.io/badge/YouTube-Subscribe-red?logo=youtube&logoColor=white)](https://www.youtube.com/@NabidInMotion?sub_confirmation=1)
+
+<br/>
+
+[![Sponsor NabidAlam](https://img.shields.io/badge/Sponsor-NabidAlam-ea4aaa?style=for-the-badge&logo=github&logoColor=white)](https://github.com/sponsors/NabidAlam)
+[![Subscribe on YouTube](https://img.shields.io/badge/YouTube-Subscribe-FF0000?style=for-the-badge&logo=youtube&logoColor=white)](https://www.youtube.com/@NabidInMotion?sub_confirmation=1)
 
 **A comprehensive, step-by-step guide to learning Machine Learning from absolute basics to advanced topics**
 
@@ -38,6 +42,8 @@
 - **Diagrams**: System Design topologies plus selected pipelines and decision trees (RAG, ML serving, ETL, quick-reference pickers, and more) use Mermaid. On the Study Hub they render as interactive SVGs. Folder trees stay ASCII. See [system-design/README.md](system-design/README.md#diagrams).
 
 **Built for**: Students, career switchers, and self-learners who want a structured ML path. Outcomes depend on practice, projects, and the job market. This repo does not guarantee a hire.
+
+**Optional support**: If the curriculum helps you, you can [sponsor on GitHub](https://github.com/sponsors/NabidAlam) (also the **Sponsor** button on this repo via [`.github/FUNDING.yml`](.github/FUNDING.yml)). That is voluntary. It does not unlock paid content or change the MIT license.
 
 ## Career Paths
 
