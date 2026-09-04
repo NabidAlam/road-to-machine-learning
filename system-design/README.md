@@ -78,7 +78,7 @@ Practice problems using the four-step process from Chapter 21. Each one is origi
 
 ## Books and resources I keep coming back to
 
-- *Designing Data-Intensive Applications* by Martin Kleppmann. The single best book on this topic.
+- *Designing Data-Intensive Applications* by Martin Kleppmann. A widely recommended book on this topic.
 - *System Design Interview Volume 1 & 2* by Alex Xu. Short chapters, real examples, the style I'm copying here.
 - *Site Reliability Engineering* by Google (free online: https://sre.google/books/).
 - ByteByteGo newsletter and YouTube channel. Good for visual recaps.

@@ -1,4 +1,4 @@
-# Pandas Complete Guide
+# Pandas
 
 This guide covers Pandas. The most important library for data manipulation and analysis in Python.
 
@@ -48,7 +48,7 @@ Pandas is a library for data manipulation and analysis. It provides:
 - **Easy data manipulation**: Load, clean, transform data easily
 - **Handles missing data**: Built-in functions for dealing with NaN
 - **Time series**: Excellent support for time-based data
-- **Integration**: Works seamlessly with NumPy, Matplotlib, Scikit-learn
+- **Integration**: Works with NumPy, Matplotlib, and Scikit-learn
 
 ### Installation
 

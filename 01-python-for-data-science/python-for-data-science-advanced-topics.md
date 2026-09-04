@@ -1,6 +1,6 @@
 # Advanced Python for Data Science Topics
 
-Comprehensive guide to advanced techniques for efficient data manipulation, analysis, and visualization.
+Advanced techniques for efficient data manipulation, analysis, and visualization.
 
 ## Table of Contents
 

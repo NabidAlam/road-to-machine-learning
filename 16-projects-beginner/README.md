@@ -182,13 +182,13 @@ After completing these projects, you should be able to:
 
 ---
 
-**Complete Guide:**
-- [Projects Beginner Guide →](projects-beginner.md): Comprehensive guide to building ML projects
+**Guide:**
+- [Projects Beginner Guide →](projects-beginner.md): How to structure and ship beginner ML projects
 - [Advanced Topics →](projects-beginner-advanced-topics.md): Advanced techniques for improving projects
 - [Project Tutorial →](projects-beginner-project-tutorial.md): Step-by-step Titanic project walkthrough
 - [Quick Reference →](projects-beginner-quick-reference.md): Quick lookup guide
 
-**Ready to start?** Pick a project and begin! Start with Iris Classification if you're completely new, or jump to House Price Prediction for a more comprehensive project.
+**Ready to start?** Pick a project and begin. Start with Iris Classification if you are new. Try House Price Prediction when you want a larger tabular project.
 
 **Next Level:** [17-projects-intermediate](../17-projects-intermediate/README.md)
 

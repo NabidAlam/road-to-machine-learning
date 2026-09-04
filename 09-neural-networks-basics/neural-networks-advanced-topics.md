@@ -1,6 +1,6 @@
 # Advanced Neural Networks Topics
 
-Comprehensive guide to advanced neural network concepts and techniques.
+Advanced neural network concepts and techniques.
 
 ## Table of Contents
 

@@ -1,6 +1,6 @@
 # Advanced Feature Engineering Topics
 
-Comprehensive guide to advanced feature engineering techniques, automation, and best practices.
+Advanced feature engineering techniques, automation, and practices.
 
 ## Table of Contents
 

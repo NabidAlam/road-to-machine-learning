@@ -1,6 +1,6 @@
-# AI Agents Comprehensive Guide
+# AI Agents Guide
 
-Complete guide to building advanced AI agents using CrewAI, AutoGen, Langgraph, and AutoGPT.
+Building advanced AI agents using CrewAI, AutoGen, Langgraph, and AutoGPT.
 
 ## Table of Contents
 
@@ -1286,4 +1286,3 @@ result = crew.kickoff()
 ---
 
 **Try next:** Give an agent one tool and one eval set. Add a second tool only after the first is reliable.
-

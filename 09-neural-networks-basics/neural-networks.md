@@ -1,4 +1,4 @@
-# Neural Networks Basics Complete Guide
+# Neural Networks Basics
 
 This guide covers understanding and building neural networks from scratch.
 
@@ -57,7 +57,7 @@ Neural networks are computing systems inspired by biological neural networks. Th
 - Universal function approximators
 - Automatic feature learning
 - Handle high-dimensional data
-- State-of-the-art performance in many tasks
+- Strong results on many perception and sequence tasks (task-dependent)
 
 **Applications:**
 - Image classification
@@ -1078,4 +1078,4 @@ for x, y_true, y_pred in zip(X_xor, y_xor, predictions):
 > [!RECALL]
 > What does the loss function measure during neural network training?
 >
-> How wrong the model’s predictions are versus the targets—training adjusts weights to reduce that error.
+> How wrong the model’s predictions are versus the targets. Training adjusts weights to reduce that error.

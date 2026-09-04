@@ -15,7 +15,7 @@ Understand what machine learning is, how it works, and the different types of ML
 
 | Topic | Where to study (examples in guide) |
 |-------|-------------------------------------|
-| Machine learning for beginners | [Complete guide](introduction-to-ml.md#ml-for-beginners-curriculum-map-this-guide) |
+| Machine learning for beginners | [Guide](introduction-to-ml.md#ml-for-beginners-curriculum-map-this-guide) |
 | Data types in ML; population vs sample | [Key concepts](introduction-to-ml.md#key-concepts), [Descriptive statistics and sampling](introduction-to-ml.md#descriptive-statistics-and-sampling-foundations) |
 | Descriptive statistics (mean, median, mode, variance, std) | [Descriptive statistics and sampling](introduction-to-ml.md#descriptive-statistics-and-sampling-foundations) |
 | Types of ML; workflow; first project | [Topics covered](#topics-covered) in this README; [First ML project](first-ml-project-tutorial.md) |
@@ -84,7 +84,7 @@ You are ready for **supervised learning** (regression and classification) when y
 
 ### Additional Resources
 
-- **[ML Terminology Reference](ml-terminology.md)** - Comprehensive glossary of ML terms with examples
+- **[ML Terminology Reference](ml-terminology.md)**. Glossary of ML terms with examples
 - **[Problem Identification & Algorithm Selection](problem-identification-algorithm-selection.md)** - Guide to identifying ML problems and choosing algorithms
 - **[Your First ML Project Tutorial](first-ml-project-tutorial.md)** - Step-by-step walkthrough building an Iris classifier
 - **[Common Pitfalls & Best Practices](common-pitfalls-best-practices.md):** Avoid mistakes and follow best practices

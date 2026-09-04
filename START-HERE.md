@@ -82,7 +82,7 @@ Install dependencies from the **repository root**. Individual project folders ma
 | Stage 9 | 16–18 | Projects (start beginner projects after Stage 2) |
 | Stage 10 | 22–24 | RL, graphs, audio (electives) |
 
-**Time series:** Module **15**, intermediate project 6, and advanced project 3 overlap, pick **one** path: [TIME_SERIES_LEARNING_PATH.md](TIME_SERIES_LEARNING_PATH.md).
+**Time series:** Module **15**, intermediate project 6, and advanced project 3 overlap. Pick **one** path: [TIME_SERIES_LEARNING_PATH.md](TIME_SERIES_LEARNING_PATH.md).
 
 ## Projects: what to expect
 
@@ -100,4 +100,4 @@ Install dependencies from the **repository root**. Individual project folders ma
 - Visual roadmap: [LEARNING_ROADMAP.md](LEARNING_ROADMAP.md)
 - Foundation gates & job market: [FOUNDATION_AND_JOB_READINESS.md](FOUNDATION_AND_JOB_READINESS.md)
 - Time series (pick one path): [TIME_SERIES_LEARNING_PATH.md](TIME_SERIES_LEARNING_PATH.md)
-- Study Hub (read lessons in browser): [Nabid In Motion](https://github.com/NabidAlam/nabidinmotion)
+- Study Hub (read lessons in browser): [nabidinmotion.com](https://nabidinmotion.com/)

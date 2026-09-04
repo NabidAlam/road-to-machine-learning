@@ -1,6 +1,6 @@
 # Stakeholder Communication Guide for ML Projects
 
-Comprehensive guide to effectively communicating machine learning concepts, results, and business value to non-technical stakeholders.
+Effectively communicating machine learning concepts, results, and business value to non-technical stakeholders.
 
 ## Table of Contents
 
@@ -522,4 +522,3 @@ ROI = (Gains - Costs) / Costs × 100%
 ---
 
 **Try next:** Rewrite your last model result as three bullets a non-ML manager can act on.
-

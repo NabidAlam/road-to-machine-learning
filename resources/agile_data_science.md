@@ -1,6 +1,6 @@
 # Agile Methodologies for Data Science
 
-Comprehensive guide to applying Agile principles and practices in data science and ML projects.
+Applying Agile principles and practices in data science and ML projects.
 
 ## Table of Contents
 
@@ -322,4 +322,3 @@ Each team member answers:
 ---
 
 **Try next:** Ship a weak model to stakeholders in one sprint. Collect feedback before the next training round.
-

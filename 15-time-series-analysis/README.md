@@ -90,7 +90,7 @@ Before starting this module, you should have completed:
 
 ## Resources
 
-- [Complete Guide](time-series-analysis.md)
+- [Time series guide](time-series-analysis.md)
 - [Practice Exercises](exercises/)
 - [Additional Resources](resources.md)
 

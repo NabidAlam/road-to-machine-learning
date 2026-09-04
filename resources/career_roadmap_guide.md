@@ -295,7 +295,7 @@ This guide provides clear, role-specific learning paths for different careers in
 
 ## GenAI Solution Architect
 
-**Role Focus**: Design and implement production-ready Generative AI solutions, multi-agent systems, and RAG architectures. Lead technical teams and establish GenAI best practices at scale.
+**Role Focus**: Design and implement Generative AI solutions, multi-agent systems, and RAG architectures for real products. Lead technical teams and establish GenAI best practices at scale.
 
 ### Core Learning Path
 

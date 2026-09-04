@@ -1,4 +1,4 @@
-# Audio and Speech Processing Complete Guide
+# Audio and Speech Processing
 
 This guide covers audio and speech processing with deep learning.
 
@@ -295,7 +295,7 @@ print(transcription)
 
 ### Using Pre-trained Models (Whisper)
 
-**OpenAI Whisper** is a state-of-the-art ASR model with multilingual support.
+**OpenAI Whisper** is a strong multilingual ASR model widely used as a starting point.
 
 **Whisper Models:**
 - `whisper-tiny`: Fastest, smallest

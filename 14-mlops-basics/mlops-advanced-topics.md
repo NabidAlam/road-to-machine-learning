@@ -1,6 +1,6 @@
 # Advanced MLOps Topics
 
-Comprehensive guide to advanced MLOps techniques and tools.
+Advanced MLOps techniques and tools.
 
 ## Table of Contents
 

@@ -1,6 +1,6 @@
 # Career & Portfolio Guide for ML/Data Science
 
-A comprehensive guide to building your ML portfolio, preparing for interviews, and launching your data science career.
+How to build an ML portfolio, prepare for interviews, and present your work. No hire guarantee.
 
 ## Table of Contents
 
@@ -22,7 +22,7 @@ A comprehensive guide to building your ML portfolio, preparing for interviews, a
 
 1. **Diverse Projects**: Show range across different ML domains
 2. **Real-World Problems**: Solve actual business problems
-3. **Clean Code**: Well-documented, production-ready code
+3. **Clean Code**: Well-documented code that another engineer can run
 4. **Deployed Models**: Show you can deploy, not just build
 5. **Blog Posts**: Explain your thought process
 6. **GitHub Activity**: Regular contributions show commitment
@@ -185,7 +185,7 @@ Create a `README.md` in a repository with your username to display on your profi
 # Hi, I'm [Your Name] 👋
 
 ## About Me
-ML Engineer passionate about building production-ready ML systems.
+ML Engineer focused on building monitored, maintainable ML systems.
 
 ## Skills
 - **Languages**: Python, SQL, R
@@ -486,4 +486,3 @@ Non-US markets (including EU/DE) use different bands and currency. Do not treat 
 ---
 
 **Try next:** Publish one project with a clear problem, metric, and README. Then apply to five roles that match that project.
-

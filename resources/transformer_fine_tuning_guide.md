@@ -1,6 +1,6 @@
-# Transformer Fine-Tuning Comprehensive Guide
+# Transformer Fine-Tuning Guide
 
-Complete guide to fine-tuning transformer models (T5, BERT, GPT) using the Hugging Face library for various NLP tasks.
+Fine-tuning transformer models (T5, BERT, GPT) using the Hugging Face library for various NLP tasks.
 
 ## Table of Contents
 
@@ -728,4 +728,3 @@ trainer = Trainer(
 ---
 
 **Try next:** Fine-tune a small model for one epoch on a held-out split. Stop if val loss rises.
-

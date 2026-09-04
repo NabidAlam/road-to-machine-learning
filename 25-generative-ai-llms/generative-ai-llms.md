@@ -2,7 +2,7 @@
 
 This file is the **module hub** (map + links), not a full textbook chapter. Deep implementation lives under `resources/`. Work the suggested path below, then return here for the next topic.
 
-Complete guide to building modern AI applications using Large Language Models (LLMs), prompt engineering, vector databases, and RAG systems.
+Map of modern LLM application topics: prompt engineering, vector databases, and RAG. Deep dives live under `resources/`.
 
 ## Table of Contents
 
@@ -123,8 +123,8 @@ For production deployment patterns, see:
 
 ### Comprehensive Guides
 
-- [Generative AI Comprehensive Guide](../resources/generative_ai_comprehensive_guide.md): Complete overview
-- [RAG Comprehensive Guide](../resources/rag_comprehensive_guide.md): RAG implementation
+- [Generative AI Guide](../resources/generative_ai_comprehensive_guide.md): Overview of core concepts
+- [RAG Guide](../resources/rag_comprehensive_guide.md): RAG implementation notes
 - [LangChain Guide](../resources/langchain_guide.md): LangChain framework
 - [AI Agents Guide](../resources/ai_agents_guide.md): AI agents
 - [GenAI Production Deployment Guide](../resources/genai_production_deployment.md): Production patterns
@@ -144,4 +144,4 @@ For production deployment patterns, see:
 > [!RECALL]
 > What does “next-token prediction” mean for a language model?
 >
-> The model is trained to predict the probability of the next token given previous tokens—generation samples from that distribution.
+> The model is trained to predict the probability of the next token given previous tokens. Generation samples from that distribution.

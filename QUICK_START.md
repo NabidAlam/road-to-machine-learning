@@ -1,6 +1,6 @@
 # Quick Start Guide
 
-Get the environment running in about 5 minutes. For full navigation, read [START-HERE.md](START-HERE.md) first. **follow stages, not folder numbers 00→25**.
+Get the environment running in about 5 minutes. For full navigation, read [START-HERE.md](START-HERE.md) first. **Follow stages, not folder numbers 00→25**.
 
 > **Note:** The week-by-week schedule below is an **accelerated path** for learners who already study full-time. The main [README](README.md) estimates **15–22 months** full-time for the complete curriculum.
 
@@ -11,7 +11,7 @@ git clone https://github.com/NabidAlam/road-to-machine-learning.git
 cd road-to-machine-learning
 ```
 
-If this folder lives inside the [Nabid In Motion study hub](https://github.com/NabidAlam/nabidinmotion) as a submodule, run commands from `road-to-machine-learning/` inside that parent repo.
+If you already use this folder as a local checkout beside the [Study Hub](https://nabidinmotion.com/), run commands from inside `road-to-machine-learning/`.
 
 ## Step 2: Set Up Environment
 

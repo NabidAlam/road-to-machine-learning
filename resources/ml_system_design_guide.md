@@ -1,4 +1,4 @@
-# ML System Design Comprehensive Guide
+# ML System Design Guide
 
 This guide is for anyone who wants machine learning to actually work in the real world: reliable, observable, and shippable. You do not have to read it in order. Pick a path below, wander, and come back when something breaks in your own stack and you want a map.
 
@@ -1427,4 +1427,3 @@ Structured ML system design (whether for interviews or architecture reviews) rew
 ---
 
 **Try next:** Draw the request path, pick one SLO, and name the first bottleneck you would measure.
-

@@ -1,4 +1,4 @@
-# Handling Imbalanced Data Complete Guide
+# Handling Imbalanced Data
 
 This guide covers handling imbalanced datasets in machine learning. Learn to build effective models when classes are not equally represented, with detailed explanations, code examples, and real-world applications.
 

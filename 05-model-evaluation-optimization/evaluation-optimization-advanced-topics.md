@@ -1,6 +1,6 @@
 # Advanced Model Evaluation & Optimization Topics
 
-Comprehensive guide to advanced evaluation techniques, optimization strategies, and best practices.
+Advanced evaluation techniques, optimization strategies, and practices.
 
 ## Table of Contents
 

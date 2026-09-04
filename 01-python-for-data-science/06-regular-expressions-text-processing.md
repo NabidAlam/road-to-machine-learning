@@ -1,4 +1,4 @@
-# Regular Expressions and Text Processing. Complete Guide
+# Regular Expressions and Text Processing
 
 This guide covers regular expressions and text processing techniques essential for cleaning and analyzing text data.
 

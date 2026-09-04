@@ -1,6 +1,6 @@
-# Microsoft Excel for Data Analysis Complete Guide
+# Microsoft Excel for Data Analysis
 
-Comprehensive guide to using Microsoft Excel for data analysis, from basics to advanced techniques.
+Using Microsoft Excel for data analysis, from basics to advanced techniques.
 
 ## Table of Contents
 
@@ -2426,4 +2426,3 @@ result
 ---
 
 **Try next:** Clean one messy CSV in Excel (or Sheets), then rebuild the same clean steps in pandas.
-

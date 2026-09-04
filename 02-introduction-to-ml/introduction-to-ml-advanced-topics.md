@@ -1,6 +1,6 @@
 # Advanced Introduction to ML Topics
 
-Comprehensive guide to advanced ML workflow patterns, system design, and production considerations.
+Advanced ML workflow patterns, system design notes, and production considerations.
 
 ## Table of Contents
 

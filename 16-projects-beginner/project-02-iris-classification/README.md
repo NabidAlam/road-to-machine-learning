@@ -4,7 +4,7 @@ Classify iris flowers into three species using petal and sepal measurements.
 
 ## Project Overview
 
-This is a classic machine learning project perfect for beginners. We'll use the famous Iris dataset to build a classification model that can identify iris species based on flower measurements.
+This is a classic first machine learning project. We will use the Iris dataset to build a classification model that can identify iris species based on flower measurements.
 
 ## Learning Objectives
 

@@ -1,6 +1,6 @@
 # Project 8: Model Explainability & Interpretability Project
 
-Build a comprehensive explainable ML system using SHAP, LIME, and other interpretability techniques.
+Build an explainable ML workflow using SHAP, LIME, and related interpretability tools.
 
 ## Difficulty
 Advanced
@@ -24,7 +24,7 @@ By completing this project, you will learn to:
 - Implement SHAP for different model types
 - Use LIME for local explanations
 - Create Partial Dependence Plots
-- Analyze feature importance comprehensively
+- Analyze feature importance with more than one method
 - Build explainable ML systems
 - Communicate model decisions to stakeholders
 - Ensure regulatory compliance (GDPR, financial regulations)

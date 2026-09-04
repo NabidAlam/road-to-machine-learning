@@ -1,6 +1,6 @@
 # Advanced Prerequisites Topics
 
-Comprehensive guide to advanced Python, mathematics, and optimization techniques needed for advanced machine learning.
+Advanced Python, mathematics, and optimization topics used in later ML modules.
 
 ## Table of Contents
 

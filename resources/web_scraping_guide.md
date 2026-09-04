@@ -1,6 +1,6 @@
 # Comprehensive Web Scraping Guide
 
-Complete guide to web scraping from basics to advanced techniques, covering Requests, Beautiful Soup, Selenium, and Scrapy.
+Web scraping from basics to advanced techniques, covering Requests, Beautiful Soup, Selenium, and Scrapy.
 
 ## Table of Contents
 
@@ -1624,4 +1624,3 @@ df.to_csv('news_articles.csv', index=False)
 ---
 
 **Try next:** Scrape one allowed page with rate limiting and a robots.txt check. Store raw HTML before parsing.
-

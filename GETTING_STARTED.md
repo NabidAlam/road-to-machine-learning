@@ -1,12 +1,12 @@
 # Getting Started. Your First ML Project
 
-Welcome! This guide will help you complete your first machine learning project in about 30 minutes.
+This guide walks you through a first machine learning project in about 30 minutes.
 
 For the full curriculum map, stage order, and exit gates, read [START-HERE.md](START-HERE.md) and [FOUNDATION_AND_JOB_READINESS.md](FOUNDATION_AND_JOB_READINESS.md).
 
 ## Quick Start: Iris Classification
 
-The Iris Flower Classification project is the perfect first ML project. Follow these steps:
+The Iris flower classification project is a small, clean first ML run. Follow these steps:
 
 ### Step 1: Set Up Environment
 
@@ -52,10 +52,10 @@ The script will:
 
 ### Expected Output
 
-- All models should achieve >95% accuracy
-- You'll see 5 visualization images saved
-- The best model will be identified
-- Predictions for new flower measurements
+- On this clean toy dataset, models often land above about 95% accuracy. Treat that as a demo result, not a general ML promise.
+- You will usually see visualization images saved in the project folder
+- The script will pick a best model among the ones it trains
+- It will show predictions for a few new flower measurements
 
 ## Understanding the Results
 
@@ -89,7 +89,7 @@ The script will:
 - **Simple Dataset**: Well-known, clean data
 - **Clear Results**: Easy to understand outcomes
 - **Complete Example**: Full working code provided
-- **Quick Win**, see results in minutes
+- **Quick Win**. See results in minutes on a toy dataset.
 
 ---
 

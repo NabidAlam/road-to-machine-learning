@@ -1,4 +1,4 @@
-# Introduction to Machine Learning. Complete Guide
+# Introduction to Machine Learning
 
 This guide covers understanding machine learning fundamentals, types, workflow, and applications.
 

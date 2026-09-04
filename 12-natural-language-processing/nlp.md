@@ -1,4 +1,4 @@
-# Natural Language Processing Complete Guide
+# Natural Language Processing
 
 This guide covers processing and understanding human language.
 
@@ -474,7 +474,7 @@ Stack multiple recurrent layers by returning full sequences from lower layers (`
 
 - **Attention Mechanism**: Focus on relevant parts
 - **Parallel Processing**: Faster than RNNs
-- **State-of-the-Art**: Best performance on most NLP tasks
+- **Strong default**: Often the best starting point for many NLP tasks
 - **Pre-trained Models**: Leverage large-scale training
 
 ### Transformer Architecture
@@ -787,7 +787,7 @@ model = AutoModelForSequenceClassification.from_pretrained(model_name, num_label
 
 3. **Hugging Face Transformers**: Pre-trained transformer models
    - [Documentation](https://huggingface.co/docs/transformers/)
-   - Easy access to state-of-the-art models
+   - Easy access to strong pre-trained models
 
 4. **Gensim**: Topic modeling and word embeddings
    - [Documentation](https://radimrehurek.com/gensim/)
@@ -804,7 +804,7 @@ model = AutoModelForSequenceClassification.from_pretrained(model_name, num_label
 1. **Preprocessing**: Essential for good NLP models
 2. **Word Embeddings**: Capture semantic meaning (Word2Vec, GloVe, FastText)
 3. **RNNs/LSTMs**: Handle sequential data, good for sequences
-4. **Transformers**: State-of-the-art, use pre-trained models
+4. **Transformers**: Strong default for many tasks. Prefer pre-trained models when you can
 5. **Hugging Face**: Easy access to transformer models
 6. **Fine-tuning**: Adapt pre-trained models to your task
 

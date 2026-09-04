@@ -489,4 +489,3 @@ git lfs ls-files            # List tracked files
 ---
 
 **Try next:** Pin package versions and save the git commit hash next to your model artifact.
-

@@ -1,6 +1,6 @@
 # GenAI Production Deployment Guide
 
-Comprehensive guide to deploying Generative AI applications to production at scale.
+Deploying Generative AI applications to production at scale.
 
 ## Table of Contents
 
@@ -725,4 +725,3 @@ def sanitize_input(text: str) -> str:
 ---
 
 **Try next:** Add latency, cost-per-query, and failure logging to one GenAI endpoint before you add features.
-

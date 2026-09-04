@@ -1,4 +1,4 @@
-# Supervised Learning. Classification Complete Guide
+# Supervised Learning. Classification
 
 This guide covers classification algorithms for predicting categories.
 

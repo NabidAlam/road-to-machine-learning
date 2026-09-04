@@ -1,6 +1,6 @@
-# Advanced Data Wrangling. Complete Guide
+# Advanced Data Wrangling
 
-Comprehensive guide to advanced data manipulation techniques: reshaping, pivoting, transforming, and optimizing data operations.
+Advanced data manipulation: reshaping, pivoting, transforming, and optimizing common Pandas operations.
 
 ## Table of Contents
 

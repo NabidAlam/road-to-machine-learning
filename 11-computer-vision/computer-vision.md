@@ -1,4 +1,4 @@
-# Computer Vision Complete Guide
+# Computer Vision
 
 This guide covers Convolutional Neural Networks (CNNs) and image processing.
 

@@ -76,7 +76,7 @@ STAGE 10: ADVANCED SPECIALIZATION (2-3 months full-time)
 
 ## Job market alignment
 
-**Default stage order** is comprehensive but not optimal for every hireable role. Use [FOUNDATION_AND_JOB_READINESS.md](FOUNDATION_AND_JOB_READINESS.md) for:
+**Default stage order** is comprehensive but not optimal for every target role. Use [FOUNDATION_AND_JOB_READINESS.md](FOUNDATION_AND_JOB_READINESS.md) for:
 
 - **Exit gates** after Modules 00, 01, and 02–05
 - **SQL early** (Module 19 after 01) for Data Analyst and Data Scientist paths

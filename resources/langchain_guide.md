@@ -1,8 +1,8 @@
-# Langchain Comprehensive Guide
+# LangChain Guide
 
 > **JavaScript / TypeScript:** If you build APIs or Next.js apps with LangChain, use the official [LangChain.js / TypeScript docs](https://docs.langchain.com/oss/javascript/langchain/overview). This guide’s examples are mostly **Python**; concepts (chains, tools, RAG) transfer across runtimes.
 
-Complete guide to Langchain for building Generative AI applications and projects.
+Langchain for building Generative AI applications and projects.
 
 ## Table of Contents
 
@@ -667,4 +667,3 @@ result = agent.run("Write Python code to sort a list")
 ---
 
 **Try next:** Build one chain end to end (load, split, retrieve, answer). Add agents only when a single chain is not enough.
-

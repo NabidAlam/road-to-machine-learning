@@ -1,4 +1,4 @@
-# Exploratory Data Analysis (EDA): Complete Guide
+# Exploratory Data Analysis (EDA)
 
 This guide covers performing systematic exploratory data analysis to understand your data before modeling.
 

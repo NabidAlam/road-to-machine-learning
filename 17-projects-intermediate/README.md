@@ -175,10 +175,10 @@ Forecast future values in a time series (sales, stock prices, etc.).
 **Time**: 4-5 days  
 **Skills**: Feature Engineering, Feature Selection, sklearn Pipeline, Advanced Encoding
 
-Master comprehensive feature engineering techniques on a complex real-world dataset.
+Practice feature engineering on a complex real-world dataset.
 
 **What you'll learn:**
-- Apply comprehensive feature engineering techniques
+- Apply a full feature engineering workflow
 - Use sklearn Pipeline and ColumnTransformer effectively
 - Handle mixed data types (numeric, categorical, text)
 - Implement advanced encoding techniques (WOE, Target Encoding)
@@ -199,7 +199,7 @@ Master comprehensive feature engineering techniques on a complex real-world data
 **Time**: 4-5 days  
 **Skills**: Ensemble Methods, Bagging, Boosting, Stacking, Hyperparameter Tuning
 
-Comprehensive comparison of ensemble methods: Bagging, Boosting, Stacking, and Voting.
+Compare ensemble methods: Bagging, Boosting, Stacking, and Voting.
 
 **What you'll learn:**
 - Understand different ensemble methods and when to use them
@@ -207,7 +207,7 @@ Comprehensive comparison of ensemble methods: Bagging, Boosting, Stacking, and V
 - Use advanced boosting algorithms (XGBoost, LightGBM, CatBoost)
 - Build Stacking and Voting ensembles
 - Tune hyperparameters for ensemble methods
-- Compare model performance comprehensively
+- Compare model performance across the ensembles
 
 **Dataset**: Titanic, Credit Card Fraud, Customer Churn, or House Prices
 
@@ -248,7 +248,7 @@ project-name/
 1. **Plan First**: Outline your approach before coding
 2. **Iterate**: Build baseline, then improve incrementally
 3. **Document**: Keep detailed notes on decisions and results
-4. **Visualize**: Create comprehensive visualizations
+4. **Visualize**: Create clear comparison charts
 5. **Compare**: Try multiple approaches and compare
 6. **Present**: Create a clear presentation of results
 
@@ -265,7 +265,7 @@ After completing these projects, you should be able to:
 ##  Additional Resources
 
 - [Kaggle Competitions](https://www.kaggle.com/competitions): Practice with real competitions
-- [Papers with Code](https://paperswithcode.com/): See state-of-the-art approaches
+- [Papers with Code](https://paperswithcode.com/): See current published approaches and leaderboards
 - [Towards Data Science](https://towardsdatascience.com/): Learn from others' projects
 
 ---

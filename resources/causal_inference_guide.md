@@ -1,6 +1,6 @@
 # Causal Inference Guide
 
-Comprehensive guide to causal inference in machine learning and data science.
+Causal inference in machine learning and data science.
 
 ## Table of Contents
 
@@ -298,4 +298,3 @@ treatment_effect = learner.predict(X)
 ---
 
 **Next Steps**: Apply causal inference methods to your domain of interest, starting with understanding your causal question and available data.
-

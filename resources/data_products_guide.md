@@ -1,6 +1,6 @@
 # Data Products Guide
 
-Comprehensive guide to building, deploying, and managing data products in production.
+Building, deploying, and managing data products in production.
 
 ## Table of Contents
 
@@ -20,7 +20,7 @@ Comprehensive guide to building, deploying, and managing data products in produc
 
 ### What are Data Products?
 
-**Data Products** are production-ready applications that deliver data-driven insights, predictions, or recommendations to end users. They combine:
+**Data Products** are shipped applications that deliver data-driven insights, predictions, or recommendations to end users. They combine:
 - **Data**: Raw or processed data
 - **Models**: ML models or analytical logic
 - **Infrastructure**: Deployment and serving infrastructure
@@ -28,7 +28,7 @@ Comprehensive guide to building, deploying, and managing data products in produc
 
 ### Key Characteristics
 
-- **Production-Ready**: Deployed and serving real users
+- **Shipped**: Deployed and serving real users
 - **Value-Delivering**: Solves real business problems
 - **Maintainable**: Well-documented and monitored
 - **Scalable**: Handles production load
@@ -434,4 +434,3 @@ def predict(request: PredictionRequest):
 ---
 
 **Try next:** Ask one intended user what decision the product should change. Design the metric from that answer.
-

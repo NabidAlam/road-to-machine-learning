@@ -184,7 +184,7 @@ Curated list of free blogs, websites, and online resources for learning and stay
 
 ### Daily Reading
 - **Towards Data Science**: Browse trending articles
-- **Papers With Code**: Check latest SOTA results
+- **Papers With Code**: Check current published leaderboard results
 - **Google AI Blog**: Stay updated with Google research
 
 ### Weekly Deep Dives
@@ -208,4 +208,3 @@ Curated list of free blogs, websites, and online resources for learning and stay
 ---
 
 *Tip: Don't try to read everything. Pick 3-5 blogs that match your interests and reading schedule, then explore others as needed!*
-

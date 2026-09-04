@@ -17,7 +17,7 @@ Step-by-step walkthrough of deploying a machine learning model to production.
 
 **Project**: Deploy ML Model as REST API
 
-**Goals**: Create production-ready API service
+**Goals**: Create a deployable API service with basic health and request handling
 
 ---
 

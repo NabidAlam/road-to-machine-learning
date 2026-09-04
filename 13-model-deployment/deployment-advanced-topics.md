@@ -1,6 +1,6 @@
 # Advanced Model Deployment Topics
 
-Comprehensive guide to advanced deployment techniques and best practices.
+Advanced deployment techniques and practices.
 
 ## Table of Contents
 

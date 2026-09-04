@@ -199,4 +199,3 @@ Comprehensive list of free and paid platforms to practice machine learning, codi
 ---
 
 *Tip: Don't try to use all platforms. Pick 2-3 that match your goals and stick with them consistently!*
-

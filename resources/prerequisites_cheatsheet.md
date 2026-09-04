@@ -413,4 +413,3 @@ np.random.randn(3, 3)       # Normal distribution
 ---
 
 **Try next:** Quiz yourself on gradient, matrix multiply, and a p-value without notes. Patch gaps in Module 00.
-

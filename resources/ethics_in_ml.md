@@ -1,6 +1,6 @@
 # Ethics in Machine Learning
 
-Comprehensive guide to understanding and addressing ethical issues in machine learning, including bias, fairness, and responsible AI practices.
+Understanding and addressing ethical issues in machine learning, including bias, fairness, and responsible AI practices.
 
 ## Table of Contents
 
@@ -818,4 +818,3 @@ y_pred_fair = postprocessor.predict(X_test, sensitive_features=test_groups)
 ---
 
 **Try next:** Write down who can be harmed if your model is wrong. Add one check for that failure mode.
-

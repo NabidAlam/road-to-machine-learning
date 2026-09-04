@@ -74,7 +74,7 @@ Read → Reproduce → Reflect → Build → Review
 - Each module README is the overview; numbered lessons are the depth.  
 - **Module 01:** follow the [essential path](01-python-for-data-science/README.md#essential-path-vs-optional-depth), not all 15 lessons before ML.  
 - **SQL (Module 19):** [Stage 1.5](START-HERE.md#default-learning-order-short-version), parallel with Modules 01–02 for most roles.
-- **Recall callouts:** some lessons end with `> [!RECALL]` (prompt + short answer). On the Study Hub they become expandable cards with confidence buttons — use them as concept checkpoints, not trivia.
+- **Recall callouts:** some lessons end with `> [!RECALL]` (prompt + short answer). On the Study Hub they become expandable cards with confidence buttons. Use them as concept checkpoints, not trivia.
   - **Authoring recipe (curriculum):** put **one** `[!RECALL]` near the end of each teaching module’s **primary** lesson (`{topic}.md`), not on every file. Skip quick-reference, advanced-topics, and project tutorials. Skip project modules **16–18** (learn by building). Pattern:
 
     ```markdown

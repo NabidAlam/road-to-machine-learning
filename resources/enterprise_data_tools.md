@@ -1,6 +1,6 @@
 # Enterprise Data Tools Guide
 
-Comprehensive guide to enterprise data platforms and tools used in production data science environments.
+Enterprise data platforms and tools used in production data science environments.
 
 ## Table of Contents
 
@@ -452,4 +452,3 @@ df_transformed.to_csv('s3://bucket/data.csv', index=False)
 ---
 
 **Try next:** List your data volume, latency need, and team skills. Only then pick a vendor tool.
-

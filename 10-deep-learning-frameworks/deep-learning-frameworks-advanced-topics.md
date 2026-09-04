@@ -1,6 +1,6 @@
 # Advanced Deep Learning Frameworks Topics
 
-Comprehensive guide to advanced techniques and best practices for TensorFlow/Keras and PyTorch.
+Advanced techniques and practices for TensorFlow/Keras and PyTorch.
 
 ## Table of Contents
 

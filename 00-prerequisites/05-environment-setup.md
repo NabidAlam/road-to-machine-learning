@@ -1,6 +1,6 @@
 # Environment Setup for Machine Learning
 
-Complete guide to setting up your development environment for machine learning and data science.
+Set up a local Python environment for the curriculum lessons and projects.
 
 ## Table of Contents
 

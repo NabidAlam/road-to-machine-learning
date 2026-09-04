@@ -1,6 +1,6 @@
 # Project 7: Feature Engineering Mastery Project
 
-Master comprehensive feature engineering techniques on a complex real-world dataset.
+Practice feature engineering on a complex real-world dataset.
 
 **Starter code:** Run `starter.py` after placing your training CSV in `data/`.
 
@@ -22,7 +22,7 @@ Intermediate
 ## Learning Objectives
 
 By completing this project, you will learn to:
-- Apply comprehensive feature engineering techniques
+- Apply a full feature engineering workflow
 - Use sklearn Pipeline and ColumnTransformer effectively
 - Handle mixed data types (numeric, categorical, text)
 - Implement advanced encoding techniques (WOE, Target Encoding)
@@ -46,7 +46,7 @@ Before starting, you should have completed:
 1. **House Prices Dataset** (Kaggle)
    - [House Prices: Advanced Regression Techniques](https://www.kaggle.com/c/house-prices-advanced-regression-techniques)
    - Mixed data types, many categorical features
-   - Perfect for comprehensive feature engineering
+   - Good dataset for practicing many feature transforms
 
 2. **Credit Card Default Prediction**
    - [Default of Credit Card Clients](https://www.kaggle.com/datasets/uciml/default-of-credit-card-clients-dataset)

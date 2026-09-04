@@ -1,6 +1,6 @@
-# Power BI Complete Guide for Data Analysis
+# Power BI for Data Analysis
 
-Comprehensive guide to Microsoft Power BI for data visualization, analysis, and business intelligence.
+Microsoft Power BI for data visualization, analysis, and business intelligence.
 
 ## Table of Contents
 

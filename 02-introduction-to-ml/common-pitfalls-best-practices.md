@@ -415,4 +415,4 @@ print(f"Mean CV Score: {scores.mean():.4f} (+/- {scores.std()*2:.4f})")
 > [!RECALL]
 > When must you split train/test relative to preprocessing?
 >
-> Split first — fit preprocessors only on train to avoid leakage.
+> Split first. Fit preprocessors only on train to avoid leakage.

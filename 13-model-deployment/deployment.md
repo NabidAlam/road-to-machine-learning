@@ -1,4 +1,4 @@
-# Model Deployment Complete Guide
+# Model Deployment
 
 This guide covers deploying machine learning models to production.
 
@@ -630,7 +630,7 @@ docker-compose down
 
 **What are Hugging Face Spaces?**
 
-Hugging Face Spaces provides free hosting for ML model demos and applications. It's perfect for:
+Hugging Face Spaces provides free hosting for ML model demos and applications. It fits well when you need:
 - **Portfolio projects**: Showcase your models
 - **Quick demos**: Share models with others
 - **Learning**: Practice deployment without costs
@@ -975,7 +975,7 @@ az container create --resource-group mygroup --name ml-api --image myregistry.az
 ### AWS ECS Fargate for ML Model Serving
 
 **What is ECS Fargate?**
-AWS Elastic Container Service (ECS) Fargate is a serverless container platform that eliminates the need to manage servers. Perfect for ML model serving with automatic scaling.
+AWS Elastic Container Service (ECS) Fargate is a serverless container platform that removes most server management. It is a common option for ML model serving with automatic scaling.
 
 **Why ECS Fargate for ML?**
 - **No Server Management**: Focus on your models, not infrastructure
@@ -1082,7 +1082,7 @@ aws ecs update-cluster \
 - **Auto-scaling**: Automatically scale based on CPU/memory usage
 - **Blue/Green Deployments**: Zero-downtime model updates
 - **Health Checks**: Automatic container replacement on failures
-- **Integration**: Works seamlessly with ALB, CloudWatch, X-Ray
+- **Integration**: Works with ALB, CloudWatch, and X-Ray
 
 ---
 

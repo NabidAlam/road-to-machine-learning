@@ -1,6 +1,6 @@
 # Data Structures and Algorithms for Machine Learning
 
-Comprehensive guide to essential data structures and algorithms specifically required for machine learning and data science.
+Essential data structures and algorithms specifically required for machine learning and data science.
 
 If you want a **full beginner-to-interview DSA course in Python** (arrays → graphs + problem-solving patterns + practice plan), see:
 
@@ -984,4 +984,3 @@ def brute_force_nn(X_train, query, k=5):
 3. Practice with ML-specific problems
 4. Understand complexity for optimization
 5. Use libraries but know the concepts
-

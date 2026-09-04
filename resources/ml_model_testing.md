@@ -1,6 +1,6 @@
 # ML Model Testing Guide
 
-Comprehensive guide to testing machine learning models, pipelines, and APIs for production readiness.
+Testing machine learning models, pipelines, and APIs for production readiness.
 
 ## Table of Contents
 
@@ -630,4 +630,3 @@ def test_model_with_mocked_data_source():
 ---
 
 **Try next:** Add one test that fails if prediction shape or score drifts beyond a bound.
-

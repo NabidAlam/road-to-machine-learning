@@ -1,6 +1,6 @@
-# Docker Complete Tutorial for Machine Learning
+# Docker for Machine Learning
 
-Comprehensive guide to Docker for data scientists and ML engineers. Learn to containerize your ML applications, ensure reproducibility, and deploy with confidence.
+Docker for data scientists and ML engineers. Learn to containerize your ML applications, ensure reproducibility, and deploy with confidence.
 
 ## Table of Contents
 
@@ -1065,4 +1065,3 @@ services:
 ---
 
 **Try next:** Dockerize one inference script. Run the same image locally and confirm the prediction matches.
-

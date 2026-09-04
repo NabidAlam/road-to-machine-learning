@@ -1,6 +1,6 @@
-# LlamaIndex Comprehensive Guide
+# LlamaIndex Guide
 
-Complete guide to LlamaIndex for building advanced generative AI projects with data indexing and retrieval.
+LlamaIndex for building advanced generative AI projects with data indexing and retrieval.
 
 ## Table of Contents
 
@@ -533,4 +533,3 @@ response = query_engine.query("What are the key findings across all papers?")
 ---
 
 **Try next:** Index a folder of your own PDFs and ask five questions you already know the answers to.
-

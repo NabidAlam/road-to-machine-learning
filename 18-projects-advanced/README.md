@@ -228,7 +228,7 @@ Build a generative model to create new images or text.
 **Time**: 1-2 weeks  
 **Skills**: SHAP, LIME, Model Interpretation, Explainable AI
 
-Build a comprehensive explainable ML system using SHAP, LIME, and other interpretability techniques.
+Build an explainable ML workflow using SHAP, LIME, and related interpretability tools.
 
 **What you'll learn:**
 - SHAP values (Tree, Kernel, Deep)
@@ -311,20 +311,20 @@ project-name/
 
 ##  Tips for Success
 
-1. **Research First**: Read papers and understand state-of-the-art
+1. **Research First**: Read papers and understand current strong baselines
 2. **Start Simple**: Build baseline, then add complexity
 3. **Version Control**: Use Git, DVC, MLflow extensively
 4. **Document Everything**: Code, experiments, decisions
 5. **Test Thoroughly**: Unit tests, integration tests
 6. **Deploy**: Actually deploy to production (even if simple)
 7. **Monitor**: Set up monitoring and logging
-8. **Present**: Create comprehensive presentation/report
+8. **Present**: Write a clear presentation or report
 
 ##  Learning Outcomes
 
 After completing these projects, you should be able to:
 - Build production-**style** ML systems you can demo and extend
-- Apply state-of-the-art techniques
+- Apply strong current techniques with honest eval
 - Handle complex, real-world problems
 - Deploy and monitor ML models
 - Work with large datasets
@@ -340,16 +340,13 @@ After completing these projects, you should be able to:
 
 ##  Portfolio Building
 
-These projects are perfect for:
-- Building your portfolio
-- Demonstrating skills to employers
-- Contributing to open source
-- Writing blog posts/articles
-- Presenting at meetups/conferences
+These projects help you:
+- Build portfolio evidence
+- Show skills to employers (no hire guarantee)
+- Practice open-source style READMEs
+- Draft blog posts or meetup talks
 
 ---
 
-**Ready to build something amazing?** Choose a project that interests you and start building! Remember, the journey is as important as the destination.
-
-**Congratulations on reaching the advanced level!** 
+**Ready?** Pick one project that matches your target role and start building. Keep the README honest about what you measured. 
 

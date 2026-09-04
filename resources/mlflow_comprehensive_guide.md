@@ -1,6 +1,6 @@
-# MLFlow Comprehensive Guide
+# MLflow Guide
 
-Complete guide to MLFlow for experiment tracking, model registry, hyperparameter tuning, and MLOps lifecycle management.
+MLFlow for experiment tracking, model registry, hyperparameter tuning, and MLOps lifecycle management.
 
 ## Table of Contents
 
@@ -1528,4 +1528,3 @@ gcloud run deploy iris-classifier --image gcr.io/project/iris-classifier --platf
 ---
 
 **Try next:** Log params, metrics, and the model artifact for your next training run. Compare two runs side by side.
-

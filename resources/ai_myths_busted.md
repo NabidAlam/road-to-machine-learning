@@ -286,7 +286,7 @@ Myths that break products in production.
 
 **Reality:** RAG reduces unsupported answers by grounding generation in retrieved text. The model can still ignore context, stitch sources badly, or invent between chunks. Retrieval quality and citation checks still matter.
 
-**Why it matters:** RAG is necessary for many apps. It is not a magic truth layer. See the [RAG Comprehensive Guide](rag_comprehensive_guide.md).
+**Why it matters:** RAG is necessary for many apps. It is not a magic truth layer. See the [RAG Guide](rag_comprehensive_guide.md).
 
 **Remember:** RAG helps. Verify anyway.
 

@@ -1,4 +1,4 @@
-# Supervised Learning. Regression Complete Guide
+# Supervised Learning. Regression
 
 This guide covers regression algorithms for predicting continuous values.
 

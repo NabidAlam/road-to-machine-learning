@@ -1,6 +1,6 @@
 # Advanced Regression Topics
 
-Comprehensive guide to advanced regression techniques, diagnostics, and best practices.
+Advanced regression techniques, diagnostics, and practices.
 
 ## Table of Contents
 

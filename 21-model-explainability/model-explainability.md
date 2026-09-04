@@ -1,4 +1,4 @@
-# Model Explainability Complete Guide
+# Model Explainability
 
 This guide covers understanding and explaining machine learning models. Learn to make your models interpretable and trustworthy with detailed explanations, code examples, and real-world applications.
 
@@ -756,7 +756,7 @@ plt.show()
 | **Speed** | Fast (Tree SHAP) or slow (Kernel SHAP) | Moderate |
 | **Interpretability** | Feature contributions | Feature contributions |
 | **Consistency** | Consistent (efficiency property) | May vary with sampling |
-| **Use Case** | Comprehensive explanations | Quick local explanations |
+| **Use Case** | Fuller explanations | Quick local explanations |
 
 **When to Use SHAP:**
 - Need global and local explanations
@@ -1059,7 +1059,7 @@ plt.show()
 ### Workflow
 
 1. **Start simple**: Feature importance for tree models
-2. **Use SHAP**: For comprehensive explanations
+2. **Use SHAP**: When you want detailed local or global attribution
 3. **Use LIME**: For local explanations
 4. **Visualize**: Plots help understanding
 5. **Document**: Explain findings clearly

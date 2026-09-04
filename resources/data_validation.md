@@ -1,6 +1,6 @@
 # Comprehensive Data Validation Guide
 
-Complete guide to validating data quality, detecting data drift, and ensuring data integrity for machine learning pipelines.
+Validating data quality, detecting data drift, and ensuring data integrity for machine learning pipelines.
 
 ## Table of Contents
 
@@ -700,4 +700,3 @@ else:
 ---
 
 **Try next:** Add three schema checks (nulls, ranges, duplicates) before your next training run.
-

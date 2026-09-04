@@ -428,4 +428,3 @@ explanation.show_in_notebook(show_table=True)
 ---
 
 **Try next:** Cross-check permutation importance with one local explanation method on the same model.
-

@@ -52,7 +52,7 @@ URL pattern:  /tiles/{z}/{x}/{y}.png
 
 There are about 4^20 ≈ a trillion tiles at max zoom. You don't pre-render all of them. Most are ocean or empty desert. Pre-render the popular ones; generate the rest on demand and cache.
 
-Tiles are static-ish (regenerated when map data changes). Perfect for the CDN. Versioned URLs (`/tiles/v17/{z}/{x}/{y}.png`) make invalidation trivial (Chapter 11).
+Tiles are static-ish (regenerated when map data changes). That makes them a good CDN fit. Versioned URLs (`/tiles/v17/{z}/{x}/{y}.png`) make invalidation trivial (Chapter 11).
 
 ## Deep dive 2: Geospatial search
 

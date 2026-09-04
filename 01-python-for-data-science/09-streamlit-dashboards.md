@@ -1,6 +1,6 @@
 # Streamlit for Interactive Dashboards
 
-Complete guide to building interactive web applications and dashboards with Streamlit for data science and machine learning.
+Build interactive web apps and dashboards with Streamlit for data science and machine learning demos.
 
 ## Table of Contents
 
@@ -27,7 +27,7 @@ Streamlit is an open-source Python framework for building interactive web applic
 - **Fast**: Rapid prototyping and deployment
 - **Interactive**: Built-in widgets and components
 - **No Frontend Required**: No HTML, CSS, or JavaScript needed
-- **Pythonic**: Works seamlessly with pandas, matplotlib, plotly, etc.
+- **Pythonic**: Fits pandas, matplotlib, plotly, and similar libraries
 
 ### Why Use Streamlit?
 

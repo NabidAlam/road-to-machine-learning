@@ -102,7 +102,7 @@ function unwrap(r: Result): number {
 const len = u.displayName?.length ?? 0;
 ```
 
-**Exercise:** Write a function `formatScore` that accepts `number | null` and returns a string. If `null`, return `"—"`.
+**Exercise:** Write a function `formatScore` that accepts `number | null` and returns a string. If `null`, return `"-"`.
 
 ---
 

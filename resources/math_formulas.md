@@ -474,4 +474,3 @@ MA(n) = (1/n) * Σ(x_(t-i)) for i=0 to n-1
 ---
 
 **Note**: This is a reference guide. Understanding the concepts behind these formulas is more important than memorizing them. Practice applying these formulas in context!
-

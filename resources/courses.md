@@ -142,4 +142,3 @@ For a comprehensive list of YouTube channels, see [YouTube Channels Guide](youtu
 ---
 
 *Tip: Many paid courses offer free audit options. Take advantage of free trials and audit modes!*
-

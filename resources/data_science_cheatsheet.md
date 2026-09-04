@@ -2745,4 +2745,3 @@ set1.difference(set2)  # {1, 2}
 ---
 
 **Print this cheatsheet and keep it handy!** Practice these commands daily to commit them to memory.
-

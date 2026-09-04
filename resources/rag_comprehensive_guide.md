@@ -1,6 +1,6 @@
-# RAG (Retrieval Augmented Generation) Comprehensive Guide
+# RAG Guide
 
-Complete guide to building, deploying, and optimizing RAG systems for production.
+Building and evaluating RAG systems. Retrieval helps grounding. It does not eliminate unsupported answers.
 
 > **TypeScript / Node stacks:** If you implement RAG behind a Node or Next.js service, pair this guide’s architecture sections with LangChain’s [JavaScript / TypeScript documentation](https://docs.langchain.com/oss/javascript/langchain/overview). Code snippets in this file are mostly **Python**.
 
@@ -215,7 +215,7 @@ embeddings = HuggingFaceEmbeddings(
 - **Weaviate**: Open-source, self-hosted
 - **Chroma**: Simple, embedded
 - **Qdrant**: High performance
-- **Milvus**: Scalable, production-ready
+- **Milvus**: Scalable vector DB used in many production stacks
 
 ```python
 # FAISS (Local)
@@ -224,7 +224,7 @@ from langchain_community.vectorstores import FAISS
 vectorstore = FAISS.from_documents(documents, embeddings)
 vectorstore.save_local("faiss_index")
 
-# Pinecone (Cloud) — API shape changes often; check current Pinecone + LangChain docs
+# Pinecone (Cloud). API shape changes often. Check current Pinecone + LangChain docs
 from langchain_community.vectorstores import Pinecone
 
 vectorstore = Pinecone.from_documents(
@@ -793,4 +793,3 @@ if __name__ == "__main__":
 ---
 
 **Try next:** Pick 20 real user questions. Measure retrieval hit rate before you touch the generator.
-

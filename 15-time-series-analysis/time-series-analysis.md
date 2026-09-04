@@ -1,4 +1,4 @@
-# Time Series Analysis. Complete Guide
+# Time Series Analysis
 
 This guide covers time series analysis and forecasting using statistical and deep learning methods.
 

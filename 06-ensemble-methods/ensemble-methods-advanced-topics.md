@@ -1,6 +1,6 @@
 # Advanced Ensemble Methods Topics
 
-Comprehensive guide to advanced ensemble techniques, optimization strategies, and best practices.
+Advanced ensemble techniques, optimization strategies, and practices.
 
 ## Table of Contents
 

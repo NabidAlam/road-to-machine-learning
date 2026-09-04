@@ -1,6 +1,6 @@
 # ML/Data Science Interview Preparation Guide
 
-Comprehensive guide to preparing for machine learning and data science interviews, including common questions, coding challenges, and preparation strategies.
+Preparing for machine learning and data science interviews, including common questions, coding challenges, and preparation strategies.
 
 ## Table of Contents
 
@@ -580,4 +580,3 @@ As sample size increases, distribution of sample means approaches normal distrib
 ---
 
 **Try next:** Explain bias-variance to a friend in five minutes. Record yourself and cut the fluff.
-

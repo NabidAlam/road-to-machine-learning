@@ -252,4 +252,3 @@
 ---
 
 *Tip: Start with the basics (Jupyter, Git) and add tools as you need them. Don't try to learn everything at once!*
-

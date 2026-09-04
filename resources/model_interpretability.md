@@ -1,6 +1,6 @@
 # Model Interpretability & Explainability
 
-Comprehensive guide to understanding, interpreting, and explaining machine learning model predictions.
+Understanding, interpreting, and explaining machine learning model predictions.
 
 ## Table of Contents
 
@@ -655,4 +655,3 @@ print(f"Top 5 features by importance: {[feature_names[i] for i in indices[:5]]}"
 ---
 
 **Try next:** For one protected attribute in your data, compare error rates across groups.
-

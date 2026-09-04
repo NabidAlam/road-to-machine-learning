@@ -1,6 +1,6 @@
 # Advanced Unsupervised Learning Topics
 
-Comprehensive guide to advanced unsupervised learning techniques and applications.
+Advanced unsupervised learning techniques and applications.
 
 ## Table of Contents
 

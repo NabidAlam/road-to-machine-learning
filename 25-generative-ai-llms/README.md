@@ -1,6 +1,6 @@
 # Module 25: Generative AI & Modern LLM Applications
 
-Learn to build modern AI applications using Large Language Models (LLMs), prompt engineering, vector databases, RAG systems, and AI agents.
+Build LLM apps with prompt engineering, vector search, RAG, and agents. Treat demos as demos until you add eval and monitoring.
 
 **How this module fits:** Stage 7 in the main README. Best after Module 12 (NLP) or alongside it if you learn by building products. **This folder is a hub:** [generative-ai-llms.md](generative-ai-llms.md) maps topics; the real depth is in [resources/generative_ai_comprehensive_guide.md](../resources/generative_ai_comprehensive_guide.md), [resources/rag_comprehensive_guide.md](../resources/rag_comprehensive_guide.md), and the linked guides below. Use the project tutorial and quick reference here for hands-on practice.
 
@@ -25,7 +25,7 @@ Learn to build modern AI applications using Large Language Models (LLMs), prompt
 - **Few-shot Prompting**: Provide examples to guide behavior
 - **Chain-of-Thought**: Step-by-step reasoning
 - **Generative Configuration**: Temperature, top-p, top-k, repetition penalty
-- **Handling Hallucinations**: Mitigation strategies
+- **Unsupported answers**: Mitigation strategies (RAG helps grounding; it does not fully eliminate errors)
 - **Text Embeddings**: Vector representations for semantic search
 - **Advanced Techniques**: Role-playing, output formatting, constraints
 
@@ -128,8 +128,8 @@ By the end of this module, you should be able to:
 - [Building LLM Applications](https://www.deeplearning.ai/short-courses/building-applications-with-llms/): DeepLearning.AI course
 
 **Tutorials:**
-- [Prompt Engineering Guide](../resources/generative_ai_comprehensive_guide.md#prompt-engineering): Comprehensive prompt engineering
-- [RAG Implementation Guide](../resources/rag_comprehensive_guide.md): Complete RAG guide
+- [Prompt Engineering Guide](../resources/generative_ai_comprehensive_guide.md#prompt-engineering): Prompt patterns and failure modes
+- [RAG Implementation Guide](../resources/rag_comprehensive_guide.md): RAG pipeline notes
 - [LangChain Tutorial](../resources/langchain_guide.md): LangChain framework guide
 - [AI Agents Guide](../resources/ai_agents_guide.md): Building AI agents
 - [Vector Databases Guide](../resources/generative_ai_comprehensive_guide.md#vector-databases): Vector database comparison
@@ -152,8 +152,8 @@ By the end of this module, you should be able to:
 - [Advanced Topics →](generative-ai-llms-advanced-topics.md): Advanced RAG, agent architectures, optimization
 - [Project Tutorial →](generative-ai-llms-project-tutorial.md): Step-by-step RAG system project
 - [Quick Reference →](generative-ai-llms-quick-reference.md): Quick lookup guide for GenAI
-- [Generative AI Comprehensive Guide](../resources/generative_ai_comprehensive_guide.md): Complete overview with all concepts
-- [RAG Comprehensive Guide](../resources/rag_comprehensive_guide.md): Deep dive into RAG implementation
+- [Generative AI Guide](../resources/generative_ai_comprehensive_guide.md): Concept overview
+- [RAG Guide](../resources/rag_comprehensive_guide.md): Deeper RAG implementation notes
 - [LangChain Guide](../resources/langchain_guide.md): LangChain framework details
 - [AI Agents Guide](../resources/ai_agents_guide.md): AI agents and multi-agent systems
 - [GenAI Production Deployment](../resources/genai_production_deployment.md): Production deployment patterns

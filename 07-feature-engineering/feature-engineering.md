@@ -1,6 +1,6 @@
-# Feature Engineering Complete Guide
+# Feature Engineering
 
-This guide covers creating and selecting the best features for your models.
+This guide covers creating and selecting useful features for your models.
 
 ## ML for beginners curriculum map (this guide)
 

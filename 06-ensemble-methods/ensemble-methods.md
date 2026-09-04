@@ -1,4 +1,4 @@
-# Ensemble Methods Complete Guide
+# Ensemble Methods
 
 This guide covers combining multiple models for better performance.
 

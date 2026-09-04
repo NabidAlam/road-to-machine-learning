@@ -1,6 +1,6 @@
 # Advanced Classification Topics
 
-Comprehensive guide to advanced classification techniques, handling imbalanced data, and best practices.
+Advanced classification techniques, imbalanced data notes, and practices.
 
 ## Table of Contents
 

@@ -1,6 +1,6 @@
 # Machine Learning Terminology. Complete Reference
 
-Comprehensive glossary of machine learning terms and concepts with detailed explanations and examples.
+Glossary of machine learning terms with short explanations and examples.
 
 ## Table of Contents
 

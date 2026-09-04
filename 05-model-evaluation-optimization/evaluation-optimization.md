@@ -1,4 +1,4 @@
-# Model Evaluation & Optimization Complete Guide
+# Model Evaluation and Optimization
 
 This guide covers properly evaluating models and optimizing their performance.
 
@@ -914,7 +914,7 @@ print(f"  Calibrated: {roc_auc_score(y_test, rf_calibrated_proba):.4f}")
 ### Key Points
 
 1. **Calibration doesn't change ranking**: Well-calibrated probabilities don't necessarily improve ranking (ROC-AUC), but they improve probability estimates
-2. **Use cross-validation**: Always use `CalibratedClassifierCV` with cross-validation to avoid overfitting
+2. **Use cross-validation**: Prefer `CalibratedClassifierCV` with cross-validation so calibration does not overfit a single split
 3. **Choose method**: Platt scaling for smooth calibration, Isotonic for more flexibility
 4. **Evaluate with Brier Score**: Lower Brier score = better calibration
 5. **Production importance**: Critical when probabilities are used for decision-making

@@ -1,6 +1,6 @@
 # Advanced Time Series Topics
 
-Comprehensive guide to advanced time series techniques and methods.
+Advanced time series techniques and methods.
 
 ## Table of Contents
 

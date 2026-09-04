@@ -1,6 +1,6 @@
 # Complete Git & GitHub Guide
 
-A comprehensive guide to Git and GitHub with commands, explanations, outputs, logic, practice exercises, and solutions. Perfect for learning, revision, and daily reference.
+Git and GitHub with commands, explanations, outputs, exercises, and solutions. Perfect for learning, revision, and daily reference.
 
 ## Table of Contents
 
@@ -1488,4 +1488,3 @@ git remote set-url origin https://github.com/username/repo.git
 **Happy Git-ing!** 🚀
 
 *This guide covers the essentials. Practice regularly and refer back when needed. Git becomes intuitive with experience!*
-

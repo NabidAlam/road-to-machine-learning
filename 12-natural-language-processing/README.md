@@ -111,9 +111,9 @@ By the end of this module, you should be able to:
 - [Text Classification Tutorial](https://huggingface.co/docs/transformers/tasks/sequence_classification)
 - [Sentiment Analysis Guide](https://huggingface.co/docs/transformers/tasks/sequence_classification)
 - [Transformers Tutorial](https://huggingface.co/docs/transformers/quicktour)
-- [Transformer Fine-Tuning Guide](../resources/transformer_fine_tuning_guide.md): Comprehensive guide to fine-tuning T5, BERT, GPT with Hugging Face
+- [Transformer Fine-Tuning Guide](../resources/transformer_fine_tuning_guide.md): Fine-tuning T5, BERT, GPT with Hugging Face
 - [Langchain Guide](../resources/langchain_guide.md): Complete Langchain guide for building Gen AI projects
-- [LlamaIndex Guide](../resources/llamaindex_guide.md): Comprehensive LlamaIndex guide for data indexing and querying
+- [LlamaIndex Guide](../resources/llamaindex_guide.md): LlamaIndex for data indexing and querying
 - [AI Agents Guide](../resources/ai_agents_guide.md): Guide to building AI agents with CrewAI, AutoGen, Langgraph, AutoGPT
 
 **Video Tutorials:**

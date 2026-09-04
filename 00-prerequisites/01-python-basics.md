@@ -1,6 +1,6 @@
 # Python Basics for Machine Learning
 
-Complete guide to Python fundamentals needed for machine learning and data science. **AI programming with Python**: syntax, functional patterns, OOP, files, and exceptions.
+Python fundamentals for machine learning and data science. **AI programming with Python**: syntax, functional patterns, OOP, files, and exceptions.
 
 ## Table of Contents
 
@@ -1894,7 +1894,7 @@ root.mainloop()
 3. **Lists are versatile** - most commonly used data structure
 4. **Dictionaries are powerful** - key-value pairs for structured data
 5. **Functions are first-class** - can be passed as arguments
-6. **Error handling is important** - use try/except for robust code
+6. **Error handling matters.** Use try/except when I/O or user input can fail.
 7. **OOP helps organize code** - classes and objects for complex programs
 
 ---
@@ -1912,4 +1912,4 @@ root.mainloop()
 > [!RECALL]
 > What does indentation control in Python?
 >
-> Code block structure (functions, loops, conditionals) — not just style.
+> Code block structure (functions, loops, conditionals). Not just style.

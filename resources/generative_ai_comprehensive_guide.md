@@ -1,6 +1,6 @@
-# Generative AI Comprehensive Guide
+# Generative AI Guide
 
-Complete guide to Generative AI, Large Language Models (LLMs), LangChain, RAG, AI Agents, and building production-ready GenAI applications.
+Overview of Generative AI, LLMs, LangChain, RAG, and agents. Treat demos as demos until you add eval and monitoring.
 
 ## Table of Contents
 
@@ -206,7 +206,7 @@ Attention = softmax(Q × K^T / √d) × V
 - Understand long-range dependencies
 - Parallel processing (faster training)
 - Better context understanding
-- State-of-the-art performance
+- Strong performance on many public benchmarks (task-dependent)
 
 ---
 
@@ -1338,7 +1338,7 @@ def task_planner_agent(goal):
 - Open-source
 - High performance
 - REST API
-- Production-ready
+- Commonly used in production stacks
 
 ### Functions of Vector Databases
 
@@ -1948,4 +1948,3 @@ if prompt := st.chat_input("Ask a question..."):
 ---
 
 **Try next:** Ship one small RAG or agent demo with cost logging and a citation check. Expand only after that works.
-

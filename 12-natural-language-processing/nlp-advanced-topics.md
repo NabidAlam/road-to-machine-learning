@@ -1,6 +1,6 @@
 # Advanced Natural Language Processing Topics
 
-Comprehensive guide to advanced NLP techniques and architectures.
+Advanced NLP techniques and architectures.
 
 ## Table of Contents
 
@@ -1319,7 +1319,7 @@ Evaluating LLMs is crucial for:
 - **Performance Assessment**: Measure model capabilities
 - **Comparison**: Compare different models and approaches
 - **Progress Tracking**: Monitor improvements during training
-- **Deployment Decisions**: Determine if model is production-ready
+- **Deployment Decisions**: Decide whether quality, latency, and cost are good enough to ship
 
 ### Evaluation Metrics
 
@@ -1852,7 +1852,7 @@ RAG combines:
 **Why RAG?**
 - **Up-to-date Information**: Access current information not in training data
 - **Domain-Specific**: Use private/custom knowledge bases
-- **Reduced Hallucination**: Ground responses in retrieved facts
+- **Grounding help**: Retrieved facts can reduce unsupported answers. Bad retrieval can still mislead
 - **Transparency**: Can cite sources
 
 ### RAG Architecture
@@ -1998,7 +1998,7 @@ vectorstore = Chroma.from_documents(
     persist_directory="./chroma_db"
 )
 
-# Pinecone (cloud) — check current Pinecone + LangChain docs for auth
+# Pinecone (cloud). Check current Pinecone + LangChain docs for auth
 vectorstore = Pinecone.from_documents(chunks, embeddings, index_name="rag-index")
 ```
 
@@ -2241,7 +2241,7 @@ qa_chain = RetrievalQA.from_chain_type(
 
 ## Key Takeaways
 
-1. **Transformers**: State-of-the-art for most NLP tasks
+1. **Transformers**: Strong default for many NLP tasks
 2. **Pre-trained Models**: Leverage large-scale training
 3. **Contextual Embeddings**: Better than static embeddings
 4. **Fine-tuning**: Adapt models to your task

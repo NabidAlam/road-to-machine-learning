@@ -1,6 +1,6 @@
 # Recommender Systems Guide
 
-Comprehensive guide to building recommendation systems, from collaborative filtering to deep learning approaches.
+Building recommendation systems, from collaborative filtering to deep learning approaches.
 
 ## Table of Contents
 
@@ -464,4 +464,3 @@ model.summary()
 ---
 
 **Note**: Recommender systems are critical for many applications. This guide covers basics. For production systems, consider advanced techniques, A/B testing, and real-time recommendations.
-

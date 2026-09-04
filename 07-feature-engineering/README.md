@@ -15,7 +15,7 @@ Learn to create and select the best features for your models.
 
 | Topic | Where to study |
 |-------|----------------|
-| ML-ready preprocessing and feature engineering | [Complete guide](feature-engineering.md#ml-for-beginners-curriculum-map-this-guide) |
+| ML-ready preprocessing and feature engineering | [Guide](feature-engineering.md#ml-for-beginners-curriculum-map-this-guide) |
 | EDA and cleaning (before features) | [EDA guide](../01-python-for-data-science/04-exploratory-data-analysis.md#ml-for-beginners-curriculum-map-this-guide) |
 | Beginner ML path overview | [Introduction to ML](../02-introduction-to-ml/introduction-to-ml.md#ml-for-beginners-curriculum-map-this-guide) |
 

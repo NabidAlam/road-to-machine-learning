@@ -1,6 +1,6 @@
 # Project 8: Ensemble Methods Comparison Project
 
-Comprehensive comparison of ensemble methods: Bagging, Boosting, Stacking, and Voting.
+Compare ensemble methods: Bagging, Boosting, Stacking, and Voting.
 
 **Starter code:** Run `starter.py` after placing a labeled CSV in `data/`.
 
@@ -27,7 +27,7 @@ By completing this project, you will learn to:
 - Use advanced boosting algorithms (XGBoost, LightGBM, CatBoost)
 - Build Stacking and Voting ensembles
 - Tune hyperparameters for ensemble methods
-- Compare model performance comprehensively
+- Compare model performance across the ensembles
 - Understand trade-offs between different approaches
 - Select the best ensemble for your problem
 
@@ -118,7 +118,7 @@ Before starting, you should have completed:
 - Implement Soft Voting
 - Compare voting with other ensembles
 
-### Step 9: Comprehensive Comparison
+### Step 9: Full Comparison
 - Create comparison table:
   - Accuracy/Score
   - Training time
@@ -256,7 +256,7 @@ voting_soft = VotingClassifier(
 
 ## Comparison Framework
 
-Create a comprehensive comparison:
+Create a full comparison table:
 
 ```python
 results = {

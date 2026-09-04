@@ -1922,4 +1922,3 @@ See also: `resources/practice_platforms.md`.
 - [Course Schedule](https://leetcode.com/problems/course-schedule/): Medium
 - [Shortest Path in Binary Matrix](https://leetcode.com/problems/shortest-path-in-binary-matrix/): Medium
 - [Clone Graph](https://leetcode.com/problems/clone-graph/): Medium
-

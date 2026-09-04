@@ -1,6 +1,6 @@
 # Advanced Computer Vision Topics
 
-Comprehensive guide to advanced computer vision techniques and architectures.
+Advanced computer vision techniques and architectures.
 
 ## Table of Contents
 

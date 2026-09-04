@@ -1,4 +1,4 @@
-# Beginner Projects Complete Guide
+# Beginner Projects
 
 This guide covers building your first machine learning projects.
 

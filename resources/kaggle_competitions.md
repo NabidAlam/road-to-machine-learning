@@ -1,6 +1,6 @@
-# Kaggle Competitions Complete Guide
+# Kaggle Competitions
 
-Comprehensive guide to participating in Kaggle competitions, from getting started to advanced strategies.
+Participating in Kaggle competitions, from getting started to advanced strategies.
 
 ## Table of Contents
 
@@ -521,4 +521,3 @@ print(f"Submission shape: {submission.shape}")
 ---
 
 **Try next:** Enter one playground competition. Beat a simple baseline, then stop and write what you learned.
-

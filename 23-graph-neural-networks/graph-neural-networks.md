@@ -1,4 +1,4 @@
-# Graph Neural Networks Complete Guide
+# Graph Neural Networks
 
 This guide covers Graph Neural Networks (GNNs) for learning on graph-structured data.
 
@@ -815,4 +815,4 @@ class ResidualGCN(nn.Module):
 > [!RECALL]
 > What extra information do GNNs use that tabular models usually ignore?
 >
-> Graph structure—nodes exchange messages along edges so predictions can depend on neighbors.
+> Graph structure. Nodes exchange messages along edges so predictions can depend on neighbors.

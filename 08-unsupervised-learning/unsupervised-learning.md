@@ -1,4 +1,4 @@
-# Unsupervised Learning Complete Guide
+# Unsupervised Learning
 
 This guide covers finding patterns in unlabeled data.
 

@@ -1,4 +1,4 @@
-# SQL and Database Fundamentals Complete Guide
+# SQL and Database Fundamentals
 
 This guide covers SQL and database management for data science. This guide takes you from absolute beginner to advanced SQL user with detailed explanations, examples, and real-world applications.
 

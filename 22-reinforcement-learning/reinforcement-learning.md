@@ -1,4 +1,4 @@
-# Reinforcement Learning Complete Guide
+# Reinforcement Learning
 
 This guide covers Reinforcement Learning (RL): learning through interaction with an environment.
 

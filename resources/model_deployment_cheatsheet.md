@@ -525,4 +525,3 @@ start_http_server(8000)
 ---
 
 **Try next:** Add auth or an API key check and a /health endpoint to your serving demo.
-

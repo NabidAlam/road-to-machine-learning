@@ -1,4 +1,4 @@
-# Tableau Complete Guide
+# Tableau
 
 This guide covers Tableau for data visualization and dashboard creation in data science.
 

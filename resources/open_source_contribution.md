@@ -1,6 +1,6 @@
 # Open Source Contribution Guide
 
-Comprehensive guide to contributing to open source projects in data science and machine learning.
+Contributing to open source projects in data science and machine learning.
 
 ## Table of Contents
 
@@ -344,4 +344,3 @@ def test_calculate_accuracy_perfect():
 ---
 
 **Try next:** Open one good first issue. Fix a typo or doc link and open a PR.
-

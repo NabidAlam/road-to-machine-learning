@@ -76,7 +76,7 @@ When something breaks at 3am, you need to know:
 2. **What broke?** (logging)
 3. **How badly?** (metrics)
 
-A real production app always has three companion systems:
+A real production app usually needs three companion systems:
 
 | Tool family | Examples | What it tells you |
 |---|---|---|

@@ -1,4 +1,4 @@
-# Flask Web Development Complete Guide
+# Flask Web Development
 
 This guide covers building web applications and APIs with Flask for data science and machine learning.
 
@@ -22,7 +22,7 @@ This guide covers building web applications and APIs with Flask for data science
 
 ### What is Flask?
 
-Flask is a lightweight, flexible Python web framework that makes it easy to build web applications and APIs. It's perfect for:
+Flask is a lightweight, flexible Python web framework for web apps and APIs. It fits well when you need:
 - Building REST APIs for ML models
 - Creating web dashboards
 - Developing full-stack applications
@@ -33,7 +33,7 @@ Flask is a lightweight, flexible Python web framework that makes it easy to buil
 **Advantages:**
 - **Lightweight**: Minimal dependencies, easy to learn
 - **Flexible**: You choose what you need
-- **Pythonic**: Works seamlessly with data science libraries
+- **Pythonic**: Fits common data science libraries
 - **RESTful**: Easy to build APIs
 - **Extensible**: Large ecosystem of extensions
 

@@ -54,7 +54,7 @@ By the end of this module, you should be able to:
 
 1. **Kaggle Competition**: Use ensembles to improve performance
 2. **Model Comparison**: Compare single models vs ensembles
-3. **XGBoost Project**: Build a production-ready model with XGBoost
+3. **XGBoost Project**: Build and evaluate an XGBoost model end to end
 
 ##  Key Concepts
 

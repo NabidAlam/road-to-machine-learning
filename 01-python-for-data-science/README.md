@@ -1,6 +1,6 @@
 # Module 01: Python for Data Science
 
-Master the essential Python libraries for data manipulation, analysis, and visualization: your **data processing & visualization (ML toolbox)** for everything that follows.
+Core Python libraries for data manipulation, analysis, and visualization. This is the **data processing and visualization toolbox** for the modules that follow.
 
 ##  What You'll Learn
 
@@ -149,7 +149,7 @@ Advanced data manipulation: reshaping, pivoting, and transforming data.
 **[Complete Guide →](07-advanced-data-wrangling.md)**
 
 ### 08-working-with-dates-times
-Comprehensive guide to handling dates, times, and time-based data.
+Dates, times, and time-based data handling.
 
 **Topics:**
 - Creating and Parsing Dates

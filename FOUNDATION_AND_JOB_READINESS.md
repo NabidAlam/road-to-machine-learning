@@ -1,6 +1,6 @@
 # Foundation & Job Market Readiness
 
-Expert review guide for learners, instructors, and career switchers. This document defines **what “good enough” looks like** before you advance stages, and how the curriculum maps to **hireable skills** in Germany, the US, and remote-first teams.
+Expert review guide for learners, instructors, and career switchers. This document defines **what “good enough” looks like** before you advance stages, and how the curriculum maps to **skills employers often screen for** in Germany, the US, and remote-first teams. It does not guarantee a hire.
 
 **Read this with:** [START-HERE.md](START-HERE.md) · [LEARNING_ROADMAP.md](LEARNING_ROADMAP.md) · [Career Roadmap Guide](resources/career_roadmap_guide.md)
 
@@ -66,7 +66,7 @@ You are ready for **Module 02 (ML)** when you can:
 
 ### Gate C, after Modules 02–05 (Stage 2)
 
-You are **job-market foundation-ready** for entry-level ML/tabular roles when you can:
+You are ready to start **entry-level portfolio work** for tabular ML roles when you can:
 
 - [ ] Build train/validation/test splits and explain **data leakage**
 - [ ] Train regression and classification models with scikit-learn
@@ -79,9 +79,9 @@ You are **job-market foundation-ready** for entry-level ML/tabular roles when yo
 
 ---
 
-### Gate D: Production-ready (Stages 7–8 + projects)
+### Gate D: Production skills target (Stages 7–8 + projects)
 
-Target **ML Engineer / MLOps** when you can:
+Aim at **ML Engineer / MLOps** interview prep when you can:
 
 - [ ] Expose a model via FastAPI or Flask with Docker
 - [ ] Track experiments (MLflow or W&B) and version a model artifact

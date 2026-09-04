@@ -1,4 +1,4 @@
-# Deep Learning Frameworks Complete Guide
+# Deep Learning Frameworks
 
 This guide covers TensorFlow/Keras and PyTorch for building deep learning models.
 
@@ -130,7 +130,7 @@ Deep learning frameworks provide:
 ### Framework Overview
 
 **TensorFlow/Keras:**
-- Industry standard, production-ready
+- Widely used in industry training and serving stacks
 - Great documentation and community
 - TensorFlow Serving for deployment
 - Keras: High-level API, easy to use
@@ -897,7 +897,7 @@ print("dL/dW:", W.grad, "dL/db:", b.grad)
 **Why Use Machine/Deep Learning?**
 - **Automatic Feature Learning**: No manual feature engineering
 - **Scalability**: Handles large, complex datasets
-- **Performance**: State-of-the-art results in many domains
+- **Performance**: Competitive results in many domains when tuned well
 - **Flexibility**: Adapts to various problem types
 
 **The Number One Rule of ML:**
@@ -1960,7 +1960,7 @@ test_data = CustomImageDataset(image_dir='test', transform=test_transform)
 ### Deep Learning 101 with TensorFlow
 
 **Why TensorFlow?**
-- **Production-Ready**: Industry standard for deployment
+- **Deployment**: Common choice for exporting and serving models
 - **Scalability**: Handles large-scale production systems
 - **Ecosystem**: TensorFlow Serving, TensorFlow Lite, TensorFlow.js
 - **Keras Integration**: High-level API for easy model building
