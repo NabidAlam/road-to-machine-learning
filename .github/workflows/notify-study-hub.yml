@@ -1,0 +1,35 @@
+# Notify the Study Hub repo to re-sync when curriculum changes on main.
+#
+# This file lives in road-to-machine-learning (independent repo), NOT in the study hub.
+#
+# Setup (one time):
+# 1. Create a fine-grained PAT on GitHub with Contents read/write on the study hub repo
+#    (NabidInMotion/nabidinmotion.github.io).
+# 2. In this repo → Settings → Secrets → Actions, add:
+#      STUDY_HUB_DISPATCH_TOKEN = <PAT>
+# 3. In this repo → Settings → Variables → Actions, add:
+#      STUDY_HUB_REPO = NabidInMotion/nabidinmotion.github.io
+# 4. Commit and push this workflow to main.
+#
+# After that, every push to main that changes *.md triggers Sync curriculum in the study hub.
+# Hub also runs Sync curriculum daily at 06:00 UTC and via manual workflow_dispatch.
+
+name: Notify study hub
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "**/*.md"
+      - "!.github/**"
+
+jobs:
+  dispatch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger study hub sync
+        uses: peter-evans/repository-dispatch@v3
+        with:
+          token: ${{ secrets.STUDY_HUB_DISPATCH_TOKEN }}
+          repository: ${{ vars.STUDY_HUB_REPO }}
+          event-type: curriculum-updated
