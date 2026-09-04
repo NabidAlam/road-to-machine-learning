@@ -19,24 +19,21 @@ Quick reference for unsupervised learning algorithms, metrics, and best practice
 
 ### Quick Decision Tree
 
-```
-Need unsupervised learning?
-│
-├─ Want to group similar data?
-│  ├─ Know number of groups? → K-Means
-│  ├─ Don't know number? → Hierarchical or DBSCAN
-│  ├─ Non-spherical clusters? → DBSCAN or Spectral
-│  └─ Need probabilities? → Gaussian Mixture Model
-│
-├─ Want to reduce dimensions?
-│  ├─ Linear relationships? → PCA
-│  ├─ Non-linear, visualization? → t-SNE or UMAP
-│  └─ Need to transform new data? → PCA or UMAP
-│
-└─ Want to find outliers?
-   ├─ High-dimensional data? → Isolation Forest
-   ├─ Local anomalies? → LOF
-   └─ Need probabilities? → One-Class SVM
+```mermaid
+flowchart TB
+  Start[Need unsupervised learning?] --> Group{Group similar data?}
+  Group -->|Know K| KM[K-Means]
+  Group -->|Unknown K| H[Hierarchical or DBSCAN]
+  Group -->|Non-spherical| DB[DBSCAN or Spectral]
+  Group -->|Need probs| GMM[Gaussian Mixture]
+  Start --> Dim{Reduce dimensions?}
+  Dim -->|Linear| PCA[PCA]
+  Dim -->|Viz non-linear| TS[t-SNE or UMAP]
+  Dim -->|Transform new data| PCA2[PCA or UMAP]
+  Start --> Out{Find outliers?}
+  Out -->|High-dim| IF[Isolation Forest]
+  Out -->|Local| LOF[LOF]
+  Out -->|Need probs| OCS[One-Class SVM]
 ```
 
 ### Clustering Comparison

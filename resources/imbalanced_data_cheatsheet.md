@@ -357,20 +357,14 @@ best_model = grid_search.best_estimator_
 
 ### Decision Tree
 
-```
-Is data imbalanced?
-│
-├─ YES → Use appropriate metrics (F1, PR-AUC)
-│   │
-│   ├─ Try resampling (SMOTE, ADASYN)
-│   │
-│   ├─ Use class weights
-│   │
-│   ├─ Tune threshold
-│   │
-│   └─ Consider cost-sensitive learning
-│
-└─ NO → Use standard metrics (accuracy)
+```mermaid
+flowchart TB
+  Q{Is data imbalanced?} -->|Yes| M[Use F1 / PR-AUC]
+  M --> R[Try resampling<br/>SMOTE / ADASYN]
+  M --> W[Use class weights]
+  M --> T[Tune threshold]
+  M --> C[Cost-sensitive learning]
+  Q -->|No| Std[Standard metrics<br/>accuracy OK as a start]
 ```
 
 ---

@@ -14,42 +14,26 @@ Quick lookup guide for ML concepts, algorithm selection, and workflow.
 
 ## Algorithm Selection Decision Tree
 
-```
-Need to predict something?
-│
-├─ Continuous value (price, temperature)?
-│  └─ REGRESSION
-│     ├─ Linear relationship?
-│     │  └─ Linear Regression
-│     ├─ Non-linear relationship?
-│     │  └─ Polynomial Regression, Random Forest, XGBoost
-│     └─ Need regularization?
-│        └─ Ridge, Lasso, Elastic Net
-│
-├─ Categorical value (spam/not spam, class)?
-│  └─ CLASSIFICATION
-│     ├─ Binary (2 classes)?
-│     │  ├─ Need interpretability?
-│     │  │  └─ Logistic Regression, Decision Tree
-│     │  ├─ Need best performance?
-│     │  │  └─ Random Forest, XGBoost, Neural Network
-│     │  └─ Small dataset?
-│     │     └─ SVM, KNN
-│     │
-│     └─ Multi-class (3+ classes)?
-│        ├─ Logistic Regression (multinomial)
-│        ├─ Random Forest
-│        ├─ Neural Network
-│        └─ One-vs-Rest / One-vs-One
-│
-└─ No labels available?
-   └─ UNSUPERVISED LEARNING
-      ├─ Find groups?
-      │  └─ Clustering (K-Means, Hierarchical, DBSCAN)
-      ├─ Reduce dimensions?
-      │  └─ PCA, t-SNE, UMAP
-      └─ Find anomalies?
-         └─ Isolation Forest, One-Class SVM
+```mermaid
+flowchart TB
+  Start[Need to predict something?] --> Cont[Continuous value?]
+  Start --> Cat[Categorical value?]
+  Start --> None[No labels?]
+  Cont --> Reg[REGRESSION]
+  Reg --> R1[Linear? Linear Regression]
+  Reg --> R2[Non-linear? Poly / RF / XGBoost]
+  Reg --> R3[Need regularization? Ridge / Lasso / Elastic Net]
+  Cat --> Cls[CLASSIFICATION]
+  Cls --> Bin[Binary]
+  Cls --> Multi[Multi-class]
+  Bin --> B1[Interpretability? LogReg / Tree]
+  Bin --> B2[Best performance? RF / XGBoost / NN]
+  Bin --> B3[Small data? SVM / KNN]
+  Multi --> M1[LogReg multinomial / RF / NN / OvR]
+  None --> Uns[UNSUPERVISED]
+  Uns --> U1[Groups? Clustering]
+  Uns --> U2[Dimensions? PCA / t-SNE / UMAP]
+  Uns --> U3[Anomalies? Isolation Forest / One-Class SVM]
 ```
 
 ---

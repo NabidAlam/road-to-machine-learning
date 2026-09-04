@@ -103,10 +103,18 @@ This guide covers managing the complete ML lifecycle.
 
 ### MLOps Workflow
 
-```
-Data Ingestion → EDA → Feature Engineering → Model Training → 
-Hyperparameter Tuning → Evaluation → Model Registry → 
-Deployment → Monitoring → Retraining
+```mermaid
+flowchart LR
+  I[Data Ingestion] --> EDA[EDA]
+  EDA --> FE[Feature Engineering]
+  FE --> Train[Model Training]
+  Train --> HT[Hyperparameter Tuning]
+  HT --> Eval[Evaluation]
+  Eval --> Reg[Model Registry]
+  Reg --> Dep[Deployment]
+  Dep --> Mon[Monitoring]
+  Mon --> Ret[Retraining]
+  Ret --> Train
 ```
 
 ---

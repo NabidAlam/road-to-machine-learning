@@ -18,20 +18,16 @@ Quick reference for TensorFlow/Keras and PyTorch code snippets and best practice
 
 ### Quick Decision Tree
 
-```
-Need deep learning framework?
-│
-├─ Beginner or rapid prototyping?
-│  └─ YES → Use Keras
-│
-├─ Need maximum flexibility?
-│  └─ YES → Use PyTorch
-│
-├─ Production deployment?
-│  └─ YES → Use Keras/TensorFlow
-│
-└─ Research or custom architectures?
-   └─ YES → Use PyTorch
+```mermaid
+flowchart TB
+  Start[Need a deep learning framework?] --> Beg{Beginner or rapid prototyping?}
+  Beg -->|Yes| K1[Keras]
+  Start --> Flex{Need maximum flexibility?}
+  Flex -->|Yes| P1[PyTorch]
+  Start --> Prod{Production deployment?}
+  Prod -->|Yes| K2[Keras / TensorFlow]
+  Start --> Res{Research or custom architectures?}
+  Res -->|Yes| P2[PyTorch]
 ```
 
 ### When to Use Each

@@ -122,12 +122,18 @@ If you take one thing from the table: a notebook winner can still embarrass you 
 
 Think in **pipelines**, not files: data moves through stages; each stage has inputs, outputs, owners, and failure behavior.
 
-```
-Business goal → Data sources → Ingestion & storage
-      → Feature engineering (batch / stream)
-      → Training & evaluation → Model registry
-      → Deployment (canary / shadow) → Online serving
-      → Monitoring (latency, errors, drift) → Retrain / rollback
+```mermaid
+flowchart TB
+  B[Business goal] --> D[Data sources]
+  D --> I[Ingestion and storage]
+  I --> F[Feature engineering<br/>batch / stream]
+  F --> T[Training and evaluation]
+  T --> R[Model registry]
+  R --> Dep[Deployment<br/>canary / shadow]
+  Dep --> S[Online serving]
+  S --> M[Monitoring<br/>latency, errors, drift]
+  M --> Loop[Retrain / rollback]
+  Loop --> T
 ```
 
 **Example (overnight risk refresh):** A retail bank retrains a delinquency model weekly. Raw payments land in a **data lake**; **Spark** builds training rows; **MLflow** stores metrics and the `model.pkl` artifact; **Airflow** triggers training; on success, a new version is registered and **10% canary** traffic is switched before full promotion. If **population drift** spikes, an alert opens a ticket and traffic rolls back to `v3.2`.
@@ -207,18 +213,14 @@ If the room cannot answer three of these, your first proposal should stay **smal
 ### Requests & Responses
 
 **Request Flow in ML Systems:**
-```
-Client Request
-    ↓
-API Gateway / Load Balancer
-    ↓
-Preprocessing service
-    ↓
-Model serving layer
-    ↓
-Post processing
-    ↓
-Response to Client
+
+```mermaid
+flowchart TB
+  C[Client Request] --> G[API Gateway / Load Balancer]
+  G --> Pre[Preprocessing service]
+  Pre --> M[Model serving layer]
+  M --> Post[Post processing]
+  Post --> R[Response to Client]
 ```
 
 **Request Types:**

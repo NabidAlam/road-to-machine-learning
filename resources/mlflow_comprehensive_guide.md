@@ -61,24 +61,20 @@ pip install mlflow[aws]     # AWS integration
 
 ### Where Does It Fit in MLOps Lifecycle?
 
-```
-Data Collection
-    ↓
-Data Preparation
-    ↓
-Feature Engineering
-    ↓
-Model Training → [EXPERIMENT TRACKING] ← Track parameters, metrics, artifacts
-    ↓
-Model Evaluation
-    ↓
-Model Registry → [EXPERIMENT TRACKING] ← Track model versions
-    ↓
-Model Deployment
-    ↓
-Model Monitoring → [EXPERIMENT TRACKING] ← Track production metrics
-    ↓
-Model Retraining
+```mermaid
+flowchart TB
+  D[Data Collection] --> Prep[Data Preparation]
+  Prep --> FE[Feature Engineering]
+  FE --> Train[Model Training]
+  Train -.->|experiment tracking| Track1[Params, metrics, artifacts]
+  Train --> Eval[Model Evaluation]
+  Eval --> Reg[Model Registry]
+  Reg -.->|experiment tracking| Track2[Model versions]
+  Reg --> Dep[Model Deployment]
+  Dep --> Mon[Model Monitoring]
+  Mon -.->|experiment tracking| Track3[Production metrics]
+  Mon --> Ret[Model Retraining]
+  Ret --> Train
 ```
 
 ### Benefits of Experiment Tracking
@@ -208,22 +204,16 @@ mlflow.set_tracking_uri("http://localhost:5000")
 
 ### MLOps Workflow with MLFlow
 
-```
-1. Data Versioning (DVC/Git LFS)
-    ↓
-2. Experiment Tracking (MLFlow Tracking)
-    ↓
-3. Model Training with Logging
-    ↓
-4. Model Evaluation (MLFlow Evaluation)
-    ↓
-5. Model Registry (MLFlow Registry)
-    ↓
-6. Model Deployment (MLFlow Models + Docker)
-    ↓
-7. Model Monitoring
-    ↓
-8. Retraining Loop
+```mermaid
+flowchart TB
+  V[Data Versioning<br/>DVC / Git LFS] --> T[Experiment Tracking<br/>MLflow Tracking]
+  T --> Train[Model Training with Logging]
+  Train --> E[Model Evaluation]
+  E --> R[Model Registry]
+  R --> D[Model Deployment<br/>MLflow Models plus Docker]
+  D --> M[Model Monitoring]
+  M --> Loop[Retraining Loop]
+  Loop --> Train
 ```
 
 ---

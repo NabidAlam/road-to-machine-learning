@@ -210,10 +210,14 @@ while True:
 
 ### Architecture Pattern
 
-```
-Data Sources → Data Pipeline → Feature Store → Model → API → Users
-                ↓
-            Monitoring
+```mermaid
+flowchart LR
+  S[Data Sources] --> P[Data Pipeline]
+  P --> F[Feature Store]
+  F --> M[Model]
+  M --> A[API]
+  A --> U[Users]
+  P --> Mon[Monitoring]
 ```
 
 ### Component Details

@@ -1133,18 +1133,15 @@ compare_strategies(wine.data, wine.target, "Wine")
 
 ### Decision Guide
 
-```
-How many classes?
-│
-├─ 2 classes → Use binary classifier directly
-│
-├─ 3-10 classes → Consider OvO (often more accurate)
-│  │
-│  └─ Need speed? → Use OvR
-│
-└─ > 10 classes → Use OvR (OvO becomes too expensive)
-   │
-   └─ Small dataset? → Still consider OvO
+```mermaid
+flowchart TB
+  Q{How many classes?} -->|2| Bin[Use binary classifier directly]
+  Q -->|3 to 10| OvO[Consider OvO<br/>often more accurate]
+  OvO --> Speed{Need speed?}
+  Speed -->|Yes| OvR1[Use OvR]
+  Q -->|Over 10| OvR2[Use OvR<br/>OvO gets expensive]
+  OvR2 --> Small{Small dataset?}
+  Small -->|Yes| OvO2[Still consider OvO]
 ```
 
 ### Native Multi-Class Support
@@ -1817,24 +1814,17 @@ for dataset_name, dataset in datasets.items():
 
 ### Quick Selection Guide
 
-```
-Need interpretability?
-│
-├─ YES → Logistic Regression or Decision Tree
-│
-└─ NO → Continue
-   │
-   ├─ Small dataset (< 10K samples)?
-   │  ├─ YES → SVM or KNN
-   │  └─ NO → Random Forest
-   │
-   └─ Need probabilities?
-      ├─ YES → Logistic Regression, Random Forest, or Naive Bayes
-      └─ NO → SVM or Decision Tree
-   │
-   └─ Text classification or small dataset?
-      ├─ YES → Naive Bayes
-      └─ NO → Continue with other algorithms
+```mermaid
+flowchart TB
+  Int{Need interpretability?} -->|Yes| I1[LogReg or Decision Tree]
+  Int -->|No| Size{Small dataset under 10K?}
+  Size -->|Yes| S1[SVM or KNN]
+  Size -->|No| RF[Random Forest]
+  Int -->|No| Prob{Need probabilities?}
+  Prob -->|Yes| P1[LogReg / RF / Naive Bayes]
+  Prob -->|No| P2[SVM or Decision Tree]
+  Int -->|No| Text{Text or small data?}
+  Text -->|Yes| NB[Naive Bayes]
 ```
 
 ## Key Takeaways

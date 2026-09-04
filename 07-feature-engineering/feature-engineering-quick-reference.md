@@ -19,53 +19,36 @@ Quick reference for feature engineering techniques, code snippets, and best prac
 
 ### Quick Decision Tree
 
-```
-Need to engineer features?
-│
-├─ Missing values?
-│  ├─ YES → Impute (mean/median/mode) or drop
-│  └─ NO → Continue
-│
-├─ Skewed distributions?
-│  ├─ YES → Log/Power transformation
-│  └─ NO → Continue
-│
-├─ Categorical variables?
-│  ├─ Low cardinality (< 10) → One-Hot Encoding
-│  ├─ High cardinality (> 10) → Target/Frequency Encoding
-│  └─ Ordinal → Label Encoding
-│
-├─ Different scales?
-│  ├─ YES → Standardize/Normalize
-│  └─ NO → Continue
-│
-├─ Too many features?
-│  ├─ YES → Feature Selection or PCA
-│  └─ NO → Continue
-│
-└─ Need interactions?
-   ├─ YES → Polynomial/Interaction Features
-   └─ NO → Done
+```mermaid
+flowchart TB
+  Start[Engineer features?] --> Miss{Missing values?}
+  Miss -->|Yes| M1[Impute or drop]
+  Miss -->|No| Skew{Skewed distributions?}
+  Skew -->|Yes| S1[Log / power transform]
+  Skew -->|No| Cat{Categorical variables?}
+  Cat -->|Low card| OH[One-Hot Encoding]
+  Cat -->|High card| TE[Target / Frequency Encoding]
+  Cat -->|Ordinal| LE[Label Encoding]
+  Start --> Scale{Different scales?}
+  Scale -->|Yes| Sc1[Standardize / Normalize]
+  Start --> Many{Too many features?}
+  Many -->|Yes| FS[Feature Selection or PCA]
+  Start --> Inter{Need interactions?}
+  Inter -->|Yes| Poly[Polynomial / Interaction Features]
+  Inter -->|No| Done[Done]
 ```
 
 ### Feature Engineering Workflow
 
-```
-1. Data Exploration
-   ↓
-2. Handle Missing Values
-   ↓
-3. Transform Skewed Features
-   ↓
-4. Encode Categorical Variables
-   ↓
-5. Scale Features
-   ↓
-6. Create New Features
-   ↓
-7. Feature Selection
-   ↓
-8. Dimensionality Reduction (if needed)
+```mermaid
+flowchart TB
+  E[1. Data Exploration] --> M[2. Handle Missing Values]
+  M --> T[3. Transform Skewed Features]
+  T --> C[4. Encode Categorical Variables]
+  C --> S[5. Scale Features]
+  S --> N[6. Create New Features]
+  N --> F[7. Feature Selection]
+  F --> D[8. Dimensionality Reduction<br/>if needed]
 ```
 
 ---

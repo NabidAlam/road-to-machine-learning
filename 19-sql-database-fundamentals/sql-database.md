@@ -328,14 +328,11 @@ CREATE TABLE dim_product (
 
 In practice, data flows from OLTP to OLAP:
 
-```
-OLTP Database (Operational)
-    ↓
-ETL Process (Extract, Transform, Load)
-    ↓
-OLAP Database (Data Warehouse)
-    ↓
-BI Tools (Power BI, Tableau, etc.)
+```mermaid
+flowchart TB
+  O[OLTP Database<br/>operational] --> E[ETL<br/>extract, transform, load]
+  E --> W[OLAP Database<br/>data warehouse]
+  W --> B[BI Tools<br/>Power BI, Tableau, etc.]
 ```
 
 **ETL Process**:
@@ -424,9 +421,10 @@ CREATE TABLE employee_profiles (
 ```
 
 **Visual:**
-```
-Employee 1 ──── Employee Profile 1
-Employee 2 ──── Employee Profile 2
+
+```mermaid
+erDiagram
+  EMPLOYEE ||--|| EMPLOYEE_PROFILE : has
 ```
 
 #### 2. One-to-Many (1:N)
@@ -453,11 +451,10 @@ CREATE TABLE orders (
 ```
 
 **Visual:**
-```
-Customer 1 ──── Order 1
-            └── Order 2
-            └── Order 3
-Customer 2 ──── Order 4
+
+```mermaid
+erDiagram
+  CUSTOMER ||--o{ ORDER : places
 ```
 
 #### 3. Many-to-Many (M:N)
@@ -493,12 +490,13 @@ CREATE TABLE enrollments (
 ```
 
 **Visual:**
+
+```mermaid
+erDiagram
+  STUDENT }o--o{ COURSE : enrolls
 ```
-Student 1 ──── Course 1
-         └─── Course 2
-Student 2 ──── Course 1
-         └─── Course 3
-```
+
+Enrollment uses a junction table in SQL. Mermaid shows the logical many-to-many.
 
 ### CRUD Operations
 

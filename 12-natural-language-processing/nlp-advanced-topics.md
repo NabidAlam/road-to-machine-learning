@@ -1857,18 +1857,13 @@ RAG combines:
 
 ### RAG Architecture
 
-```
-User Query
-    ↓
-Retrieval System (Vector Database)
-    ↓
-Relevant Documents Retrieved
-    ↓
-Augment Prompt with Context
-    ↓
-LLM (GPT, Llama, etc.)
-    ↓
-Generated Response
+```mermaid
+flowchart TB
+  Q[User Query] --> R[Retrieval<br/>vector database]
+  R --> D[Relevant Documents]
+  D --> P[Augment Prompt<br/>with context]
+  P --> L[LLM]
+  L --> A[Generated Response]
 ```
 
 ### Basic RAG Implementation

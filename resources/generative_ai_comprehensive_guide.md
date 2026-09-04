@@ -1450,20 +1450,14 @@ response = llm.generate(prompt)
 
 ### RAG Architecture
 
-```
-User Query
-    ↓
-Query Embedding
-    ↓
-Vector Search (VectorDB)
-    ↓
-Retrieve Top-K Documents
-    ↓
-Augment Prompt (Query + Context)
-    ↓
-LLM Generation
-    ↓
-Response + Sources
+```mermaid
+flowchart TB
+  Q[User Query] --> E[Query Embedding]
+  E --> V[Vector Search<br/>vector DB]
+  V --> K[Retrieve Top-K Documents]
+  K --> P[Augment Prompt<br/>query plus context]
+  P --> L[LLM Generation]
+  L --> R[Response plus Sources]
 ```
 
 ### Use Cases
@@ -1690,52 +1684,15 @@ The Generative AI project lifecycle is a systematic approach to building, deploy
 
 ### Lifecycle Cheat Sheet
 
-```
-┌─────────────────────────────────────────────────────────┐
-│ 1. Problem Definition                                   │
-│    - Define use case and success metrics                │
-│    - Assess feasibility and resources                   │
-└─────────────────────────────────────────────────────────┘
-                    ↓
-┌─────────────────────────────────────────────────────────┐
-│ 2. Data Preparation                                     │
-│    - Collect and validate data                          │
-│    - Preprocess and structure                           │
-└─────────────────────────────────────────────────────────┘
-                    ↓
-┌─────────────────────────────────────────────────────────┐
-│ 3. Model Selection                                      │
-│    - Choose base model (GPT-4, Llama, etc.)             │
-│    - Decide: API vs self-hosted                         │
-└─────────────────────────────────────────────────────────┘
-                    ↓
-┌─────────────────────────────────────────────────────────┐
-│ 4. Development & Testing                                │
-│    - Prompt engineering                                 │
-│    - RAG/Agent implementation                           │
-│    - Testing and evaluation                             │
-└─────────────────────────────────────────────────────────┘
-                    ↓
-┌─────────────────────────────────────────────────────────┐
-│ 5. Evaluation & Optimization                            │
-│    - Performance metrics                                │
-│    - Safety testing                                     │
-│    - User feedback and iteration                        │
-└─────────────────────────────────────────────────────────┘
-                    ↓
-┌─────────────────────────────────────────────────────────┐
-│ 6. Deployment                                           │
-│    - Infrastructure setup                               │
-│    - Monitoring and scaling                             │
-│    - Security implementation                            │
-└─────────────────────────────────────────────────────────┘
-                    ↓
-┌─────────────────────────────────────────────────────────┐
-│ 7. Monitoring & Maintenance                             │
-│    - Continuous monitoring                              │
-│    - Model updates and improvements                     │
-│    - User feedback integration                          │
-└─────────────────────────────────────────────────────────┘
+```mermaid
+flowchart TB
+  P1[1. Problem Definition<br/>use case and success metrics] --> P2[2. Data Preparation]
+  P2 --> P3[3. Model Selection<br/>API vs self-hosted]
+  P3 --> P4[4. Development and Testing<br/>prompts, RAG, agents]
+  P4 --> P5[5. Evaluation and Optimization]
+  P5 --> P6[6. Deployment<br/>infra, monitoring, security]
+  P6 --> P7[7. Monitoring and Maintenance]
+  P7 --> P4
 ```
 
 ### Key Considerations at Each Stage

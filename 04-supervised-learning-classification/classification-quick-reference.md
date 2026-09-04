@@ -16,28 +16,21 @@ Quick reference for classification algorithms, metrics, and best practices.
 
 ### Quick Decision Tree
 
-```
-Need to classify into categories?
-│
-├─ Need interpretability?
-│  ├─ YES → Logistic Regression or Decision Tree
-│  └─ NO → Continue
-│
-├─ Small dataset (< 10K samples)?
-│  ├─ YES → SVM or KNN
-│  └─ NO → Random Forest or XGBoost
-│
-├─ Need probabilities?
-│  ├─ YES → Logistic Regression or Random Forest
-│  └─ NO → SVM or Decision Tree
-│
-├─ Imbalanced data?
-│  ├─ YES → Use class weights or resampling
-│  └─ NO → Continue
-│
-└─ Non-linear relationships?
-   ├─ YES → Random Forest, SVM, or KNN
-   └─ NO → Logistic Regression
+```mermaid
+flowchart TB
+  Start[Classify into categories?] --> Int{Need interpretability?}
+  Int -->|Yes| I1[Logistic Regression or Decision Tree]
+  Int -->|No| Size{Small dataset under 10K?}
+  Size -->|Yes| S1[SVM or KNN]
+  Size -->|No| RF[Random Forest or XGBoost]
+  Start --> Prob{Need probabilities?}
+  Prob -->|Yes| P1[LogReg or Random Forest]
+  Prob -->|No| P2[SVM or Decision Tree]
+  Start --> Imb{Imbalanced data?}
+  Imb -->|Yes| I2[Class weights or resampling]
+  Start --> NL{Non-linear relationships?}
+  NL -->|Yes| N1[RF, SVM, or KNN]
+  NL -->|No| N2[Logistic Regression]
 ```
 
 ### Algorithm Comparison

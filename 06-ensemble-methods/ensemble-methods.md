@@ -976,23 +976,16 @@ print(f"Soft Voting: {accuracy_score(y_test, y_pred):.3f}")
 
 ### Algorithm Selection Guide
 
-```
-Need best performance?
-│
-├─ YES → Continue
-│  │
-│  ├─ Have diverse models?
-│  │  ├─ YES → Stacking
-│  │  └─ NO → Continue
-│  │
-│  ├─ Need fast training?
-│  │  ├─ YES → Bagging (Random Forest)
-│  │  └─ NO → Boosting (XGBoost, LightGBM)
-│  │
-│  └─ Want simplicity?
-│     └─ YES → Voting
-│
-└─ NO → Use single best model
+```mermaid
+flowchart TB
+  Q{Need best performance?} -->|No| Single[Use single best model]
+  Q -->|Yes| Div{Have diverse models?}
+  Div -->|Yes| Stack[Stacking]
+  Div -->|No| Fast{Need fast training?}
+  Fast -->|Yes| Bag[Bagging<br/>Random Forest]
+  Fast -->|No| Boost[Boosting<br/>XGBoost / LightGBM]
+  Q -->|Yes| Simp{Want simplicity?}
+  Simp -->|Yes| Vote[Voting]
 ```
 
 ## Practice Exercises

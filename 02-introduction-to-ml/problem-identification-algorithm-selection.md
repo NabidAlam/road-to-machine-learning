@@ -46,22 +46,16 @@ This guide covers identifying ML problems and selecting the right algorithms for
 
 ### Decision Framework
 
-```
-1. Can the problem be solved with simple rules?
-   YES → Use traditional programming
-   NO → Continue
-
-2. Do we have sufficient, quality data?
-   NO → Collect data first or use traditional methods
-   YES → Continue
-
-3. Do patterns exist in the data?
-   NO → ML won't help
-   YES → ML is appropriate
-
-4. Will patterns change over time?
-   NO → Traditional programming might be better
-   YES → ML can adapt
+```mermaid
+flowchart TB
+  R{Simple rules enough?} -->|Yes| Trad[Traditional programming]
+  R -->|No| Data{Sufficient quality data?}
+  Data -->|No| Collect[Collect data first]
+  Data -->|Yes| Pat{Patterns in the data?}
+  Pat -->|No| Skip[ML will not help]
+  Pat -->|Yes| Drift{Patterns change over time?}
+  Drift -->|No| Maybe[Traditional may still win]
+  Drift -->|Yes| ML[ML is appropriate]
 ```
 
 ---
@@ -135,30 +129,26 @@ This guide covers identifying ML problems and selecting the right algorithms for
 
 ### Decision Tree for Algorithm Selection
 
-```
-Start: What type of problem?
-
-├─ Regression (Continuous Output)
-│  ├─ Linear relationship? → Linear Regression
-│  ├─ Non-linear, need interpretability? → Decision Tree Regression
-│  ├─ Non-linear, need performance? → Random Forest / XGBoost
-│  └─ Complex patterns? → Neural Networks
-│
-├─ Classification (Categories)
-│  ├─ Binary classification?
-│  │  ├─ Linear boundary? → Logistic Regression
-│  │  ├─ Need interpretability? → Decision Tree
-│  │  └─ Need performance? → Random Forest / XGBoost
-│  │
-│  ├─ Multi-class classification?
-│  │  ├─ Many classes? → Neural Networks
-│  │  └─ Few classes? → Random Forest / SVM
-│  │
-│  └─ Text classification? → Naive Bayes / Neural Networks
-│
-└─ Unsupervised (No Labels)
-   ├─ Find groups? → Clustering (K-Means, DBSCAN)
-   └─ Reduce dimensions? → PCA, t-SNE
+```mermaid
+flowchart TB
+  Start[What type of problem?] --> Reg[Regression<br/>continuous output]
+  Start --> Cls[Classification<br/>categories]
+  Start --> Uns[Unsupervised<br/>no labels]
+  Reg --> R1[Linear? Linear Regression]
+  Reg --> R2[Need interpretability?<br/>Decision Tree Regression]
+  Reg --> R3[Need performance?<br/>Random Forest / XGBoost]
+  Reg --> R4[Complex patterns?<br/>Neural Networks]
+  Cls --> Bin[Binary]
+  Cls --> Multi[Multi-class]
+  Cls --> Text[Text]
+  Bin --> B1[Linear? Logistic Regression]
+  Bin --> B2[Interpretability? Decision Tree]
+  Bin --> B3[Performance? RF / XGBoost]
+  Multi --> M1[Many classes? Neural Nets]
+  Multi --> M2[Few classes? RF / SVM]
+  Text --> T1[Naive Bayes / Neural Nets]
+  Uns --> U1[Find groups? Clustering]
+  Uns --> U2[Reduce dimensions? PCA / t-SNE]
 ```
 
 ### Detailed Algorithm Guide
@@ -330,48 +320,39 @@ model = PCA(n_components=2)
 ### Quick Decision Guide
 
 #### Problem: Predict Continuous Value
-```
-Small dataset (< 1000 samples)?
-├─ YES → Linear Regression or Decision Tree
-└─ NO → Random Forest or XGBoost
 
-Need interpretability?
-├─ YES → Linear Regression or Decision Tree
-└─ NO → Random Forest or XGBoost
-
-Very large dataset (> 100K samples)?
-├─ YES → XGBoost or LightGBM
-└─ NO → Random Forest
+```mermaid
+flowchart TB
+  S{Small dataset under 1000?} -->|Yes| S1[Linear Regression or Tree]
+  S -->|No| S2[Random Forest or XGBoost]
+  I{Need interpretability?} -->|Yes| I1[Linear Regression or Tree]
+  I -->|No| I2[Random Forest or XGBoost]
+  L{Very large over 100K?} -->|Yes| L1[XGBoost or LightGBM]
+  L -->|No| L2[Random Forest]
 ```
 
 #### Problem: Predict Categories
-```
-Binary or Multi-class?
-├─ Binary → Logistic Regression, Random Forest, or XGBoost
-└─ Multi-class → Random Forest, XGBoost, or Neural Networks
 
-Need interpretability?
-├─ YES → Logistic Regression or Decision Tree
-└─ NO → Random Forest or XGBoost
-
-Text data?
-├─ YES → Naive Bayes or Neural Networks
-└─ NO → Random Forest or XGBoost
-
-Small dataset?
-├─ YES → Logistic Regression, SVM, or KNN
-└─ NO → Random Forest or XGBoost
+```mermaid
+flowchart TB
+  T{Binary or multi-class?} -->|Binary| B[LogReg / RF / XGBoost]
+  T -->|Multi-class| M[RF / XGBoost / Neural Nets]
+  I{Need interpretability?} -->|Yes| I1[LogReg or Tree]
+  I -->|No| I2[RF or XGBoost]
+  Text{Text data?} -->|Yes| Tx[Naive Bayes or Neural Nets]
+  Text -->|No| Tx2[RF or XGBoost]
+  Sm{Small dataset?} -->|Yes| Sm1[LogReg / SVM / KNN]
+  Sm -->|No| Sm2[RF or XGBoost]
 ```
 
 #### Problem: Find Patterns (No Labels)
-```
-Want to find groups?
-├─ YES → K-Means or DBSCAN
-└─ NO → Continue
 
-Want to reduce dimensions?
-├─ YES → PCA or t-SNE
-└─ NO → Other unsupervised methods
+```mermaid
+flowchart TB
+  G{Want to find groups?} -->|Yes| C[K-Means or DBSCAN]
+  G -->|No| D{Reduce dimensions?}
+  D -->|Yes| PCA[PCA or t-SNE]
+  D -->|No| O[Other unsupervised methods]
 ```
 
 ---

@@ -94,67 +94,28 @@ RAG combines two key components:
 
 ### Basic RAG Flow
 
-```
-User Query
-    ↓
-Query Embedding
-    ↓
-Vector Search (Similarity)
-    ↓
-Retrieve Top-K Documents
-    ↓
-Augment Prompt (Query + Context)
-    ↓
-LLM Generation
-    ↓
-Response + Sources
+```mermaid
+flowchart TB
+  Q[User Query] --> E[Query Embedding]
+  E --> V[Vector Search]
+  V --> K[Retrieve Top-K Documents]
+  K --> P[Augment Prompt<br/>query plus context]
+  P --> L[LLM Generation]
+  L --> R[Response plus Sources]
 ```
 
 ### Detailed Architecture
 
-```
-┌─────────────┐
-│  User Query │
-└──────┬──────┘
-       │
-       ▼
-┌─────────────────┐
-│ Query Embedding │ (Embedding Model)
-└──────┬──────────┘
-       │
-       ▼
-┌─────────────────┐
-│  Vector Search  │ (Vector Database)
-│  - FAISS        │
-│  - Pinecone     │
-│  - Weaviate     │
-└──────┬──────────┘
-       │
-       ▼
-┌─────────────────┐
-│ Retrieve Top-K  │
-│  Documents      │
-└──────┬──────────┘
-       │
-       ▼
-┌─────────────────┐
-│  Prompt Builder │
-│  - Query        │
-│  - Context      │
-│  - Instructions │
-└──────┬──────────┘
-       │
-       ▼
-┌─────────────────┐
-│      LLM        │ (GPT-4, Llama, Claude)
-│   Generation    │
-└──────┬──────────┘
-       │
-       ▼
-┌─────────────────┐
-│   Response +    │
-│    Sources      │
-└─────────────────┘
+Same path with the usual pieces named:
+
+```mermaid
+flowchart TB
+  Q[User Query] --> E[Query Embedding<br/>embedding model]
+  E --> V[Vector Search<br/>FAISS / Pinecone / Weaviate]
+  V --> K[Retrieve Top-K Documents]
+  K --> P[Prompt Builder<br/>query, context, instructions]
+  P --> L[LLM Generation]
+  L --> R[Response plus Sources]
 ```
 
 ---

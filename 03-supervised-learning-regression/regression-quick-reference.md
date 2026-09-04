@@ -16,31 +16,20 @@ Quick reference for regression algorithms, metrics, and best practices.
 
 ### Quick Decision Tree
 
-```
-Need to predict continuous value?
-│
-├─ Linear relationship?
-│  ├─ YES → Linear Regression
-│  └─ NO → Continue
-│
-├─ Non-linear but simple?
-│  ├─ YES → Polynomial Regression
-│  └─ NO → Continue
-│
-├─ Many features, risk of overfitting?
-│  ├─ YES → Ridge Regression
-│  └─ NO → Continue
-│
-├─ Need feature selection?
-│  ├─ YES → Lasso Regression
-│  └─ NO → Continue
-│
-├─ Need both regularization and feature selection?
-│  ├─ YES → Elastic Net
-│  └─ NO → Continue
-│
-└─ Many outliers?
-   └─ YES → Robust Regression (Huber, RANSAC)
+```mermaid
+flowchart TB
+  Start[Predict a continuous value?] --> L{Linear relationship?}
+  L -->|Yes| LR[Linear Regression]
+  L -->|No| NL{Non-linear but simple?}
+  NL -->|Yes| Poly[Polynomial Regression]
+  NL -->|No| Feat{Many features / overfitting risk?}
+  Feat -->|Yes| Ridge[Ridge Regression]
+  Feat -->|No| Sel{Need feature selection?}
+  Sel -->|Yes| Lasso[Lasso Regression]
+  Sel -->|No| Both{Need Ridge plus Lasso?}
+  Both -->|Yes| EN[Elastic Net]
+  Both -->|No| Out{Many outliers?}
+  Out -->|Yes| Rob[Robust Regression<br/>Huber / RANSAC]
 ```
 
 ### Algorithm Comparison

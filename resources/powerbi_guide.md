@@ -1204,12 +1204,14 @@ Total Sales = SUM(Sales[Amount])
 Simplified structure with fact table and dimension tables.
 
 **Structure:**
-```
-FactSales (Center)
-├── DimProduct (Dimension)
-├── DimCustomer (Dimension)
-├── DimDate (Dimension)
-└── DimRegion (Dimension)
+
+```mermaid
+flowchart TB
+  F[FactSales]
+  F --- P[DimProduct]
+  F --- C[DimCustomer]
+  F --- D[DimDate]
+  F --- R[DimRegion]
 ```
 
 **Advantages:**
@@ -1222,14 +1224,16 @@ FactSales (Center)
 Normalized dimensions with sub-dimensions.
 
 **Structure:**
-```
-FactSales
-├── DimProduct
-│   ├── DimCategory
-│   └── DimSubcategory
-├── DimCustomer
-│   └── DimGeography
-└── DimDate
+
+```mermaid
+flowchart TB
+  F[FactSales]
+  F --- P[DimProduct]
+  P --- Cat[DimCategory]
+  P --- Sub[DimSubcategory]
+  F --- C[DimCustomer]
+  C --- G[DimGeography]
+  F --- D[DimDate]
 ```
 
 **When to Use:**
@@ -2308,18 +2312,13 @@ Restrict data access based on user roles
 
 ### Data Flow
 
-```
-Data Sources
-    ↓
-Power Query (ETL)
-    ↓
-Data Model (DAX)
-    ↓
-Visualizations
-    ↓
-Power BI Service
-    ↓
-Users (Web, Mobile)
+```mermaid
+flowchart TB
+  S[Data Sources] --> Q[Power Query<br/>ETL]
+  Q --> M[Data Model<br/>DAX]
+  M --> V[Visualizations]
+  V --> Svc[Power BI Service]
+  Svc --> U[Users<br/>web, mobile]
 ```
 
 ### Deployment Options

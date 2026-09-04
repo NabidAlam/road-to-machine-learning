@@ -16,25 +16,19 @@ Quick reference for ensemble methods, code snippets, and best practices.
 
 ### Quick Decision Tree
 
-```
-Need to improve model performance?
-│
-├─ High variance (overfitting)?
-│  └─ YES → Bagging (Random Forest)
-│
-├─ High bias (underfitting)?
-│  └─ YES → Boosting (XGBoost, LightGBM)
-│
-├─ Have diverse models?
-│  ├─ YES → Stacking or Voting
-│  └─ NO → Continue
-│
-├─ Need best performance?
-│  ├─ YES → Stacking
-│  └─ NO → Voting
-│
-└─ Want simplicity?
-   └─ YES → Voting
+```mermaid
+flowchart TB
+  Start[Improve model performance?] --> Var{High variance / overfitting?}
+  Var -->|Yes| Bag[Bagging<br/>Random Forest]
+  Start --> Bias{High bias / underfitting?}
+  Bias -->|Yes| Boost[Boosting<br/>XGBoost / LightGBM]
+  Start --> Div{Have diverse models?}
+  Div -->|Yes| Stack[Stacking or Voting]
+  Start --> Best{Need best performance?}
+  Best -->|Yes| St2[Stacking]
+  Best -->|No| Vote[Voting]
+  Start --> Simp{Want simplicity?}
+  Simp -->|Yes| V2[Voting]
 ```
 
 ### Method Comparison
