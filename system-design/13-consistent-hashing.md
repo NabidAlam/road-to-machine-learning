@@ -83,7 +83,7 @@ Now the load is spread evenly because of the law of large numbers. Add a fourth 
 
 ## A tiny Python implementation
 
-```python
+```python code-guide=consistent-hash-ring
 import hashlib
 from bisect import bisect_right, insort
 

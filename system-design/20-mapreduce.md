@@ -56,7 +56,7 @@ Three big phases:
 
 The "hello world" of MapReduce.
 
-```python
+```python code-guide=mapreduce-hello
 def map(text):
     for word in text.split():
         yield (word.lower(), 1)
@@ -65,14 +65,15 @@ def reduce(word, counts):
     yield (word, sum(counts))
 ```
 
-Run on the complete works of Shakespeare:
+Run on the complete works of Shakespeare (example-scale counts. Exact totals depend on the corpus edition):
 
-```
+```text code-guide=skip
 ("the", 28944)
 ("and", 27437)
 ("i", 22107)
 ...
 ```
+
 
 Doesn't matter if the input is 1 KB or 1 PB. Same code. The framework scales it out.
 
@@ -132,7 +133,7 @@ Some reducers are commutative and associative (like sum, max, count). For those,
 
 In word count:
 
-```python
+```python code-guide=mapreduce-combiner
 def map(text):
     counts = {}
     for word in text.split():

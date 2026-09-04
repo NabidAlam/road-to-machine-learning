@@ -145,7 +145,7 @@ Redis is the workhorse for distributed rate limiting because it has fast atomic 
 
 A naive token bucket in pseudocode:
 
-```python
+```python code-guide=api-token-bucket
 def allowed(user_id, max_tokens=10, refill_per_sec=1):
     tokens, last = redis.hget(user_id, "tokens", "last") or (max_tokens, now())
     elapsed = now() - last

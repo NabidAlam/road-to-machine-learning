@@ -49,7 +49,7 @@ How does data get into the cache and stay fresh?
 
 The most common pattern. Your app checks the cache. If miss, fetch from DB and store.
 
-```python
+```python code-guide=cache-aside-get-user
 def get_user(user_id):
     key = f"user:{user_id}"
     cached = redis.get(key)
@@ -161,7 +161,7 @@ Fixes:
 
 Redis cookbook example:
 
-```python
+```python code-guide=cache-stampede-lock
 def get_or_set(key, fetch, ttl=300):
     val = redis.get(key)
     if val:

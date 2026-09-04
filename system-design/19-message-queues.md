@@ -81,7 +81,7 @@ For a serious distributed system or analytics pipeline, Kafka is the standard.
 
 Producer side (your web request handler):
 
-```python
+```python code-guide=queue-celery-delay
 from celery import Celery
 
 app = Celery("tasks", broker="redis://localhost:6379/0")
