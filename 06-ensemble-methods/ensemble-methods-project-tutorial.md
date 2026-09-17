@@ -693,5 +693,5 @@ print(f"- Hyperparameter tuning improves ensemble performance")
 
 ---
 
-**Congratulations!** You've built and compared multiple ensemble methods!
+**Try next:** Open [Module 07 · Feature engineering](../07-feature-engineering/README.md) and add one domain feature that moves validation score.
 

@@ -517,5 +517,5 @@ plot_decision_boundary(final_nn, X_test_scaled, y_test, "Final Model Decision Bo
 
 ---
 
-**Congratulations!** You've built a neural network from scratch and trained it successfully!
+**Try next:** Open [Module 10 · Deep learning frameworks](../10-deep-learning-frameworks/README.md) and rebuild the same net in Keras or PyTorch.
 

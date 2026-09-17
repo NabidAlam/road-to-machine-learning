@@ -26,7 +26,7 @@ Curated list of free blogs, websites, and online resources for learning and stay
 
 ### 5. **OpenAI Blog**
    - **Focus**: OpenAI research and developments
-   - **Why**: Cutting-edge AI research, GPT updates
+   - **Why**: Recent AI research, GPT updates
    - **Link**: [OpenAI Blog](https://openai.com/blog/)
 
 ## Research & Papers

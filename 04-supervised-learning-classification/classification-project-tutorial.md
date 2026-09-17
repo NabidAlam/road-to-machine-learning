@@ -608,5 +608,5 @@ print(f"Spam Probability: {result['spam_probability']:.3f}")
 
 ---
 
-**Congratulations!** You've built a complete classification model from scratch!
+**Try next:** Open [Module 05 · Model evaluation and optimization](../05-model-evaluation-optimization/README.md) and compare metrics on a held-out set.
 

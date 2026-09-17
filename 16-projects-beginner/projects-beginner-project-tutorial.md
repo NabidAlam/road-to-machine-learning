@@ -119,5 +119,5 @@ plt.show()
 
 ---
 
-**Congratulations!** You've completed your first ML project!
+**Try next:** Open another project under [Module 16](../16-projects-beginner/README.md) or move to [Module 17 · Intermediate projects](../17-projects-intermediate/README.md).
 

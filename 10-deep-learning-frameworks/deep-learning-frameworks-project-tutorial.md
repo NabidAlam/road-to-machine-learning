@@ -571,5 +571,5 @@ print("""
 
 ---
 
-**Congratulations!** You've built the same model in both frameworks and understand their differences!
+**Try next:** Open [Module 11 · Computer vision](../11-computer-vision/README.md) and train a small CNN on a toy image set.
 

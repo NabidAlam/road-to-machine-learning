@@ -622,7 +622,5 @@ print("\nOK: First ML project complete!")
 
 ---
 
-**Congratulations!** You've built your first ML model.
-
 **Next**: Move to [03-supervised-learning-regression](../03-supervised-learning-regression/README.md) or [04-supervised-learning-classification](../04-supervised-learning-classification/README.md) to learn more algorithms!
 

@@ -91,5 +91,5 @@ print(response.json())
 
 ---
 
-**Congratulations!** You've deployed a model to production!
+**Try next:** Open [Module 14 · MLOps basics](../14-mlops-basics/README.md) and log one training run with metrics.
 

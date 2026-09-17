@@ -95,5 +95,5 @@ client.transition_model_version_stage("MyModel", 1, "Production")
 
 ---
 
-**Congratulations!** You've set up a complete MLOps pipeline!
+**Try next:** Open [Module 15 · Time series](../15-time-series-analysis/README.md) or a beginner project under Module 16.
 

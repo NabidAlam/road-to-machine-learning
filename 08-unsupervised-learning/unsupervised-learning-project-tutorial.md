@@ -606,5 +606,5 @@ print("  - Actionable insights for marketing strategy")
 
 ---
 
-**Congratulations!** You've completed a comprehensive unsupervised learning project!
+**Try next:** Open [Module 09 · Neural networks basics](../09-neural-networks-basics/README.md) and implement one forward pass by hand.
 

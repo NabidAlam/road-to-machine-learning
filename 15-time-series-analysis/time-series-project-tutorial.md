@@ -100,5 +100,5 @@ print(f"LSTM RMSE: {lstm_rmse:.4f}")
 
 ---
 
-**Congratulations!** You've built a complete time series forecasting system!
+**Try next:** Open [Module 16 · Beginner projects](../16-projects-beginner/README.md) and pick one project README to implement end to end.
 

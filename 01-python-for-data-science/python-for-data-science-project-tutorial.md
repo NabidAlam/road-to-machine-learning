@@ -604,5 +604,5 @@ generate_insights(df_clean)
 
 ---
 
-**Congratulations!** You've completed a comprehensive data science project using all the tools you've learned!
+**Try next:** Open [Module 02 · Introduction to ML](../02-introduction-to-ml/README.md) and train a tiny baseline model.
 

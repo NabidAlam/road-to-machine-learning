@@ -562,5 +562,5 @@ print("Accuracy:", np.mean((predictions > 0.5).astype(int) == y))
 
 ---
 
-**Congratulations!** You've built a neural network from scratch using only NumPy!
+**Try next:** Open [Module 01 · Python for data science](../01-python-for-data-science/README.md) and run the first notebook.
 

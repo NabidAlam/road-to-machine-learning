@@ -19,14 +19,14 @@ Pair this roadmap with the in-repo tracks above. Do not read system design and N
 
 ## Table of Contents
 
-- [Phase 0: Orientation](#phase-0-orientation)
-- [Phase 1: The request path](#phase-1-the-request-path)
-- [Phase 2: API contracts and identity](#phase-2-api-contracts-and-identity)
-- [Phase 3: Data and search](#phase-3-data-and-search)
-- [Phase 4: Speed, async, and decoupling](#phase-4-speed-async-and-decoupling)
-- [Phase 5: Reliability and operations](#phase-5-reliability-and-operations)
-- [Phase 6: Security](#phase-6-security)
-- [Phase 7: Scale and concurrency](#phase-7-scale-and-concurrency)
+- [Stage 0: Orientation](#stage-0-orientation)
+- [Stage 1: The request path](#stage-1-the-request-path)
+- [Stage 2: API contracts and identity](#stage-2-api-contracts-and-identity)
+- [Stage 3: Data and search](#stage-3-data-and-search)
+- [Stage 4: Speed, async, and decoupling](#stage-4-speed-async-and-decoupling)
+- [Stage 5: Reliability and operations](#stage-5-reliability-and-operations)
+- [Stage 6: Security](#stage-6-security)
+- [Stage 7: Scale and concurrency](#stage-7-scale-and-concurrency)
 - [Expert gaps we added](#expert-gaps-we-added)
 - [Portfolio milestones](#portfolio-milestones)
 - [Free resource library](#free-resource-library)
@@ -34,15 +34,15 @@ Pair this roadmap with the in-repo tracks above. Do not read system design and N
 
 ---
 
-## Phase 0: Orientation
+## Stage 0: Orientation
 
-Read this phase once before you touch frameworks.
+Read this stage once before you touch frameworks.
 
 ### 1. How this roadmap is organized
 
 **Goal:** See the full journey before you optimize for tools.
 
-**Order in this guide:** Phase 0 → 7. Each phase ends with a small deliverable. Skip nothing in Phase 1–3 even if you already know Express or Django.
+**Order in this guide:** Stage 0 → 7. Each stage ends with a small deliverable. Skip nothing in Stage 1–3 even if you already know Express or Django.
 
 **In-repo:** [System Design README](../system-design/README.md) (side track overview), [Full-Stack AI Blueprint](full_stack_ai_engineer_roadmap.md) Phases B–E (implementation track).
 
@@ -95,7 +95,7 @@ Strong backend work means you can debug any stack: you know where routing, valid
 
 ---
 
-## Phase 1: The request path
+## Stage 1: The request path
 
 Everything in backend engineering hangs off one question: **what happens between socket open and response sent?**
 
@@ -126,7 +126,7 @@ Everything in backend engineering hangs off one question: **what happens between
 
 **Goal:** JSON as the default wire format, schema validation, date/decimal pitfalls, and versioning of payloads.
 
-**Gap in repo:** ML guides cover **model** serialization (pickle, ONNX). This phase is about **request/response bodies**.
+**Gap in repo:** ML guides cover **model** serialization (pickle, ONNX). This stage is about **request/response bodies**.
 
 **Practice:** Accept JSON, validate with a schema library, return typed errors on bad input.
 
@@ -139,7 +139,7 @@ Everything in backend engineering hangs off one question: **what happens between
 
 ---
 
-## Phase 2: API contracts and identity
+## Stage 2: API contracts and identity
 
 ### 8. Authentication and authorization
 
@@ -190,7 +190,7 @@ Everything in backend engineering hangs off one question: **what happens between
 
 ---
 
-## Phase 3: Data and search
+## Stage 3: Data and search
 
 ### 12. Mastering databases with Postgres
 
@@ -218,7 +218,7 @@ Everything in backend engineering hangs off one question: **what happens between
 
 ---
 
-## Phase 4: Speed, async, and decoupling
+## Stage 4: Speed, async, and decoupling
 
 ### 13. Caching
 
@@ -245,7 +245,7 @@ Everything in backend engineering hangs off one question: **what happens between
 
 ---
 
-## Phase 5: Reliability and operations
+## Stage 5: Reliability and operations
 
 ### 16. Error handling and fault-tolerant systems
 
@@ -262,7 +262,7 @@ Everything in backend engineering hangs off one question: **what happens between
 
 **Goal:** Environment separation, secrets vs config, feature flags, and config validation at startup.
 
-**Gap in repo:** `.env` appears in Phase B/G. This phase adds hierarchy: defaults → env → secrets manager.
+**Gap in repo:** `.env` appears in Phase B/G. This stage adds hierarchy: defaults → env → secrets manager.
 
 **In-repo (partial):** [Phase G env](../resources/full_stack_track/phase-g-containers-cloud.md), [Phase B Lesson 2](../resources/full_stack_track/phase-b-node-apis.md).
 
@@ -298,7 +298,7 @@ Everything in backend engineering hangs off one question: **what happens between
 
 ---
 
-## Phase 6: Security
+## Stage 6: Security
 
 ### 20. Backend security: everything you need to know
 
@@ -316,7 +316,7 @@ Everything in backend engineering hangs off one question: **what happens between
 
 ---
 
-## Phase 7: Scale and concurrency
+## Stage 7: Scale and concurrency
 
 ### 21–22. Backend scaling and performance engineering
 
@@ -333,7 +333,7 @@ Everything in backend engineering hangs off one question: **what happens between
 
 **Goal:** Event loop for IO, thread/process pools for CPU, when to offload to workers, and why blocking the event loop hurts Node.
 
-**Gap in repo:** Phase B mentions the event loop. This phase needs explicit IO vs CPU framing.
+**Gap in repo:** Phase B mentions the event loop. This stage needs explicit IO vs CPU framing.
 
 **In-repo (partial):** [Phase B Lesson 2](../resources/full_stack_track/phase-b-node-apis.md#lesson-2-node-mental-model), [Computer Architecture](../system-design/00-computer-architecture.md).
 

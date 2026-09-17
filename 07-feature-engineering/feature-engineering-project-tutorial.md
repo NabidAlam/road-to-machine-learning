@@ -691,5 +691,5 @@ print(f"  - Dimensionality reduction (PCA)")
 
 ---
 
-**Congratulations!** You've completed comprehensive feature engineering!
+**Try next:** Open [Module 08 · Unsupervised learning](../08-unsupervised-learning/README.md) and cluster the same feature matrix.
 

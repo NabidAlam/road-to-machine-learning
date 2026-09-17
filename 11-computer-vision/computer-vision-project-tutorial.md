@@ -214,5 +214,5 @@ plt.show()
 
 ---
 
-**Congratulations!** You've built a complete image classification system!
+**Try next:** Open [Module 12 · NLP](../12-natural-language-processing/README.md) or [Module 13 · Deployment](../13-model-deployment/README.md) for the next skill.
 

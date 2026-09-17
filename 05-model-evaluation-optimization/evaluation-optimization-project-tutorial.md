@@ -641,5 +641,5 @@ print(f"   - Only touched test set at the very end")
 
 ---
 
-**Congratulations!** You've completed a comprehensive model evaluation and optimization workflow!
+**Try next:** Open [Module 06 · Ensemble methods](../06-ensemble-methods/README.md) and beat your best single model with a simple ensemble.
 

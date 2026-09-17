@@ -647,8 +647,6 @@ joblib.dump(scaler, 'scaler.pkl')
 
 ---
 
-**Congratulations!** You have built a complete regression model.
-
 **Next Steps:**
 - Try different feature engineering techniques
 - Experiment with other regression algorithms
