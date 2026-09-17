@@ -14,9 +14,11 @@ Build a Retrieval-Augmented Generation (RAG) system that can answer questions ab
 - OpenAI API key
 - Basic understanding of LangChain and vector databases
 
+Copy the LangChain cells onto your machine with an API key and packages installed. They are tagged so the Study Hub accuracy suite does not call OpenAI or require PDFs.
+
 ### Step 1: Setup Environment
 
-```python
+```python snippet-skip
 # Install required packages
 # pip install langchain langchain-openai langchain-community langchain-text-splitters chromadb pypdf
 
@@ -33,7 +35,7 @@ os.environ["OPENAI_API_KEY"] = "your-api-key-here"
 
 ### Step 2: Load Documents
 
-```python
+```python snippet-skip
 # Load PDF document
 loader = PyPDFLoader("document.pdf")
 documents = loader.load()
@@ -44,7 +46,7 @@ print(f"First page: {documents[0].page_content[:200]}")
 
 ### Step 3: Split Documents into Chunks
 
-```python
+```python snippet-skip
 # Split documents into smaller chunks
 text_splitter = RecursiveCharacterTextSplitter(
     chunk_size=1000,
@@ -58,7 +60,7 @@ print(f"Created {len(chunks)} chunks")
 
 ### Step 4: Create Embeddings and Vector Store
 
-```python
+```python snippet-skip
 # Create embeddings
 embeddings = OpenAIEmbeddings()
 
@@ -74,7 +76,7 @@ print("Vector store created")
 
 ### Step 5: Create Retriever
 
-```python
+```python snippet-skip
 # Create retriever
 retriever = vectorstore.as_retriever(
     search_type="similarity",
@@ -84,7 +86,7 @@ retriever = vectorstore.as_retriever(
 
 ### Step 6: Create QA Chain
 
-```python
+```python snippet-skip
 # Create QA chain
 # temperature=0 lowers randomness; not a correctness guarantee
 llm = ChatOpenAI(model="gpt-4o-mini", temperature=0)
@@ -99,7 +101,7 @@ qa_chain = RetrievalQA.from_chain_type(
 
 ### Step 7: Query the System
 
-```python
+```python snippet-skip
 # Ask a question
 query = "What is the main topic of this document?"
 
@@ -114,7 +116,7 @@ for i, doc in enumerate(result['source_documents'], 1):
 
 ### Step 8: Improve with Better Prompting
 
-```python
+```python snippet-skip
 from langchain.prompts import PromptTemplate
 
 # Create custom prompt
@@ -144,7 +146,7 @@ qa_chain = RetrievalQA.from_chain_type(
 
 ### Step 9: Add Conversation Memory
 
-```python
+```python snippet-skip
 from langchain.memory import ConversationBufferMemory
 from langchain.chains import ConversationalRetrievalChain
 
@@ -171,7 +173,7 @@ print(result["answer"])  # Uses previous context
 
 ### Step 10: Deploy with Streamlit
 
-```python
+```python snippet-skip
 # app.py
 import streamlit as st
 from langchain.chains import RetrievalQA
@@ -199,7 +201,7 @@ if query:
 
 ### Step 11: Evaluation
 
-```python
+```python snippet-skip
 # Test with sample questions
 test_questions = [
     "What is the main topic?",
@@ -231,6 +233,38 @@ for question in test_questions:
 
 **Issue**: High costs
 - **Solution**: Use GPT-3.5-turbo, cache responses, optimize prompts
+
+---
+
+## Tiny local smoke (no API key)
+
+Toy retrieve-then-answer with scikit-learn TF-IDF. Same RAG idea. No OpenAI call.
+
+```python
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.metrics.pairwise import cosine_similarity
+import numpy as np
+
+docs = [
+    "Graph neural networks pass messages along edges between nodes.",
+    "Whisper is a speech recognition model that maps audio to text.",
+    "Retrieval-augmented generation retrieves document chunks and feeds them to a language model.",
+]
+query = "retrieval-augmented generation document chunks language model"
+
+vec = TfidfVectorizer()
+X = vec.fit_transform(docs)
+q = vec.transform([query])
+scores = cosine_similarity(q, X).ravel()
+top = int(np.argmax(scores))
+context = docs[top]
+# Stand-in "generation": echo the best chunk
+answer = f"Based on the corpus: {context}"
+print(f"top_doc={top} score={scores[top]:.3f}")
+print(answer)
+assert top == 2
+assert scores[top] > 0
+```
 
 ---
 

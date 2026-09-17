@@ -8,9 +8,11 @@ Step-by-step tutorial: Node classification with GCN on Cora dataset.
 
 Classify research papers in the Cora citation network using Graph Convolutional Networks.
 
+Copy the cells below onto your machine after installing PyTorch Geometric. They are tagged so the Study Hub accuracy suite does not download Cora or require GPU stacks.
+
 ### Step 1: Setup
 
-```python
+```python snippet-skip
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
@@ -20,7 +22,7 @@ from torch_geometric.nn import GCNConv
 
 ### Step 2: Load Dataset
 
-```python
+```python snippet-skip
 dataset = Planetoid(root='/tmp/Cora', name='Cora')
 data = dataset[0]
 
@@ -32,7 +34,7 @@ print(f"Classes: {dataset.num_classes}")
 
 ### Step 3: Define GCN Model
 
-```python
+```python snippet-skip
 class GCN(nn.Module):
     def __init__(self, input_dim, hidden_dim, output_dim):
         super(GCN, self).__init__()
@@ -49,7 +51,7 @@ class GCN(nn.Module):
 
 ### Step 4: Training
 
-```python
+```python snippet-skip
 model = GCN(input_dim=dataset.num_features, 
             hidden_dim=64, 
             output_dim=dataset.num_classes)
@@ -79,3 +81,33 @@ for epoch in range(200):
         print(f"Epoch {epoch}, Loss: {loss:.4f}, Accuracy: {acc:.4f}")
 ```
 
+---
+
+## Tiny local smoke (no PyG download)
+
+Runs with NumPy only. Shows one message-passing step on a tiny synthetic graph.
+
+```python
+import numpy as np
+
+rng = np.random.default_rng(0)
+n_nodes, n_feat, n_classes = 12, 8, 3
+x = rng.normal(size=(n_nodes, n_feat))
+# Undirected ring + a few random edges
+edges = [(i, (i + 1) % n_nodes) for i in range(n_nodes)]
+edges += [(0, 5), (2, 8), (3, 9)]
+adj = np.zeros((n_nodes, n_nodes))
+for i, j in edges:
+    adj[i, j] = 1.0
+    adj[j, i] = 1.0
+np.fill_diagonal(adj, 1.0)
+deg = adj.sum(axis=1)
+deg_inv_sqrt = np.diag(1.0 / np.sqrt(np.maximum(deg, 1e-8)))
+norm_adj = deg_inv_sqrt @ adj @ deg_inv_sqrt
+
+w = rng.normal(size=(n_feat, n_classes))
+h = np.maximum(0.0, norm_adj @ x @ w)  # one GCN-like layer + ReLU
+y_hat = h.argmax(axis=1)
+print(f"Synthetic nodes={n_nodes} edges={len(edges)} pred_classes={sorted(set(y_hat.tolist()))}")
+assert h.shape == (n_nodes, n_classes)
+```
