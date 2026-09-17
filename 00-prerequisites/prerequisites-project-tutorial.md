@@ -1,6 +1,6 @@
 # Prerequisites Project Tutorial: Build a Neural Network from Scratch
 
-Complete step-by-step tutorial building a neural network from scratch using only NumPy, combining Python, mathematics, and data manipulation skills.
+Build a small neural net with NumPy only. You will implement forward pass, loss, and backprop on the XOR problem.
 
 ## Table of Contents
 
@@ -27,6 +27,18 @@ Complete step-by-step tutorial building a neural network from scratch using only
 **Dataset**: We'll use a simple binary classification problem (XOR problem)
 
 **Time**: 2-3 hours
+
+### Why this matters in production
+
+Frameworks hide the chain rule. When a training job diverges, you need the same mental model you build here: shapes, gradients, and a loss that matches the task. XOR is tiny. The debugging habit is what transfers.
+
+### Concept to application
+
+Each layer is a linear map plus a nonlinearity. Backprop applies the chain rule so every weight gets a gradient from the final loss. That is the same engine under Keras and PyTorch, just with autograd instead of hand-written loops.
+
+### Stand-out signal
+
+In a portfolio note, show the XOR plot before and after training, report the final accuracy, and explain one bug you hit (vanishing gradients, bad init, wrong loss). That story beats naming-drop frameworks alone. No hire guarantees.
 
 ---
 
@@ -463,9 +475,8 @@ print(f"Test Accuracy: {np.mean(test_pred == y_test):.4f}")
 
 ## Complete Code
 
-```python
+```python snippet-id=prereq-xor-numpy-nn
 import numpy as np
-import matplotlib.pyplot as plt
 
 class NeuralNetwork:
     def __init__(self, layers, learning_rate=0.1):
@@ -536,7 +547,7 @@ y = np.array([[0], [1], [1], [0]])
 # Train
 nn = NeuralNetwork(layers=[2, 4, 1], learning_rate=0.5)
 
-for epoch in range(10000):
+for epoch in range(4000):
     activations = nn.forward(X)
     loss = nn.compute_loss(activations[-1], y)
     dW, dB = nn.backward(activations, y)

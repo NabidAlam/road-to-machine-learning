@@ -33,6 +33,18 @@ Step-by-step walkthrough of a comprehensive unsupervised learning project.
 
 **Time**: 2-3 hours
 
+### Why this matters in production
+
+Clusters are hypotheses, not ground truth. Without a business label, you validate with stability, silhouette, and whether segments change an action. Scaling is mandatory for distance-based methods.
+
+### Concept to application
+
+K-means partitions by distance to centroids. PCA finds variance directions for visualization and compression. Neither replaces a supervised metric when you eventually get labels.
+
+### Stand-out signal
+
+Name each cluster in plain language and one action you would take for that segment. Pretty plots without actions do not travel well in reviews.
+
 ---
 
 ## Step 1: Data Loading and Exploration
@@ -593,6 +605,23 @@ print("  - Actionable insights for marketing strategy")
 ```
 
 ---
+
+## Complete Code Summary
+
+```python snippet-id=unsup-kmeans-pipeline
+import numpy as np
+from sklearn.datasets import make_blobs
+from sklearn.preprocessing import StandardScaler
+from sklearn.cluster import KMeans
+from sklearn.metrics import silhouette_score
+
+X, _ = make_blobs(n_samples=300, centers=3, cluster_std=1.1, random_state=11)
+X_s = StandardScaler().fit_transform(X)
+km = KMeans(n_clusters=3, n_init=10, random_state=11)
+labels = km.fit_predict(X_s)
+sil = silhouette_score(X_s, labels)
+print(f"silhouette={sil:.3f} clusters={len(np.unique(labels))}")
+```
 
 ## Key Takeaways
 

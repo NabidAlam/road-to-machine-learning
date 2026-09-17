@@ -31,6 +31,18 @@ Step-by-step walkthrough of comprehensive feature engineering for a machine lear
 
 **Time**: 2-3 hours
 
+### Why this matters in production
+
+Features encode product knowledge. Bad fills and target leakage create fake wins that die in production. Fit encoders on train only and keep a feature dictionary with owners.
+
+### Concept to application
+
+Transforms change the hypothesis space. Logs tame skew. One-hot expands categoricals. Interactions capture pairwise structure. None of that helps if the split already peeked at the test rows.
+
+### Stand-out signal
+
+List three features you created, why each should help, and one you rejected. That reasoning is what senior reviewers look for.
+
 ---
 
 ## Step 1: Data Loading and Exploration
@@ -677,6 +689,44 @@ print(f"  - Dimensionality reduction (PCA)")
 ```
 
 ---
+
+## Complete Code Summary
+
+```python snippet-id=feateng-synthetic-pipeline
+import numpy as np
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import OneHotEncoder
+from sklearn.compose import ColumnTransformer
+from sklearn.pipeline import Pipeline
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import accuracy_score
+
+rng = np.random.default_rng(0)
+n = 300
+df = pd.DataFrame({
+    "age": rng.integers(18, 70, n),
+    "hours": rng.normal(40, 10, n).clip(1),
+    "job": rng.choice(["eng", "sales", "ops"], n),
+})
+df["label"] = ((df["age"] > 40).astype(int) + (df["hours"] > 42).astype(int) > 0).astype(int)
+X = df[["age", "hours", "job"]]
+y = df["label"]
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.25, random_state=0, stratify=y
+)
+pre = ColumnTransformer([
+    ("num", "passthrough", ["age", "hours"]),
+    ("cat", OneHotEncoder(handle_unknown="ignore"), ["job"]),
+])
+pipe = Pipeline([
+    ("pre", pre),
+    ("clf", LogisticRegression(max_iter=400, random_state=0)),
+])
+pipe.fit(X_train, y_train)
+acc = accuracy_score(y_test, pipe.predict(X_test))
+print(f"feateng_acc={acc:.3f}")
+```
 
 ## Key Takeaways
 

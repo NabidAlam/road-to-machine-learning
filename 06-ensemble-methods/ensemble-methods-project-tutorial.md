@@ -30,6 +30,18 @@ Step-by-step walkthrough of building and optimizing ensemble models for a classi
 
 **Time**: 2-3 hours
 
+### Why this matters in production
+
+Ensembles win when base models disagree for different reasons. Stacking correlated copies of the same mistake just adds latency. Measure diversity and inference cost, not only the leaderboard bump.
+
+### Concept to application
+
+Bagging reduces variance by averaging noisy trees. Boosting fits residuals. Voting and stacking combine models. All of them still leak if you scale or select features using the full dataset.
+
+### Stand-out signal
+
+Compare one strong baseline to a simple vote and report the lift vs the extra complexity. Say when you would refuse the ensemble in production. No outcome guarantees.
+
 ---
 
 ## Step 1: Data Loading and Preparation
@@ -680,6 +692,37 @@ print(f"- Hyperparameter tuning improves ensemble performance")
 ```
 
 ---
+
+## Complete Code Summary
+
+```python snippet-id=ensemble-voting-pipeline
+from sklearn.datasets import make_classification
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
+from sklearn.linear_model import LogisticRegression
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.ensemble import RandomForestClassifier, VotingClassifier
+from sklearn.metrics import accuracy_score
+
+X, y = make_classification(n_samples=500, n_features=12, n_informative=8, random_state=7)
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.25, random_state=7, stratify=y
+)
+scaler = StandardScaler()
+X_train_s = scaler.fit_transform(X_train)
+X_test_s = scaler.transform(X_test)
+vote = VotingClassifier(
+    estimators=[
+        ("lr", LogisticRegression(max_iter=400, random_state=7)),
+        ("dt", DecisionTreeClassifier(max_depth=5, random_state=7)),
+        ("rf", RandomForestClassifier(n_estimators=60, random_state=7)),
+    ],
+    voting="soft",
+)
+vote.fit(X_train_s, y_train)
+acc = accuracy_score(y_test, vote.predict(X_test_s))
+print(f"voting_acc={acc:.3f}")
+```
 
 ## Key Takeaways
 

@@ -34,6 +34,18 @@ Step-by-step walkthrough of building a neural network from scratch for classific
 
 **Time**: 2-3 hours
 
+### Why this matters in production
+
+From-scratch nets teach failure modes frameworks hide: dead activations, learning-rate blowups, and train/val gaps. Scale inputs. Watch both loss and accuracy. Keep architectures small until the data demands more.
+
+### Concept to application
+
+Forward pass produces predictions. Backward pass assigns blame. Mini-batches trade noise for speed. Initialization and activation choice decide whether gradients survive depth.
+
+### Stand-out signal
+
+Show a decision boundary, a train/val curve, and one ablation (width, learning rate, or activation). That is stronger than claiming you used deep learning.
+
 ---
 
 ## Step 1: Data Preparation
@@ -503,6 +515,67 @@ plot_decision_boundary(final_nn, X_test_scaled, y_test, "Final Model Decision Bo
 ```
 
 ---
+
+## Complete Code Summary
+
+Tiny NumPy MLP on a synthetic blob. No GPU. Private suite asserts the fit runs and beats chance.
+
+```python snippet-id=nn-scratch-tiny-pipeline
+import numpy as np
+from sklearn.datasets import make_moons
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
+
+class TinyMLP:
+    def __init__(self, n_in, n_hidden=16, lr=0.1, seed=0):
+        rng = np.random.default_rng(seed)
+        self.lr = lr
+        self.W1 = rng.normal(0, 0.5, size=(n_in, n_hidden))
+        self.b1 = np.zeros((1, n_hidden))
+        self.W2 = rng.normal(0, 0.5, size=(n_hidden, 1))
+        self.b2 = np.zeros((1, 1))
+
+    @staticmethod
+    def sigmoid(z):
+        return 1 / (1 + np.exp(-np.clip(z, -30, 30)))
+
+    def forward(self, X):
+        self.z1 = X @ self.W1 + self.b1
+        self.a1 = self.sigmoid(self.z1)
+        self.z2 = self.a1 @ self.W2 + self.b2
+        self.a2 = self.sigmoid(self.z2)
+        return self.a2
+
+    def fit(self, X, y, epochs=400):
+        y = y.reshape(-1, 1)
+        for _ in range(epochs):
+            p = self.forward(X)
+            dz2 = p - y
+            dW2 = self.a1.T @ dz2 / len(X)
+            db2 = dz2.mean(axis=0, keepdims=True)
+            dz1 = (dz2 @ self.W2.T) * self.a1 * (1 - self.a1)
+            dW1 = X.T @ dz1 / len(X)
+            db1 = dz1.mean(axis=0, keepdims=True)
+            self.W2 -= self.lr * dW2
+            self.b2 -= self.lr * db2
+            self.W1 -= self.lr * dW1
+            self.b1 -= self.lr * db1
+
+    def predict(self, X):
+        return (self.forward(X) >= 0.5).astype(int).ravel()
+
+X, y = make_moons(n_samples=300, noise=0.2, random_state=0)
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.25, random_state=0, stratify=y
+)
+scaler = StandardScaler()
+X_train_s = scaler.fit_transform(X_train)
+X_test_s = scaler.transform(X_test)
+mlp = TinyMLP(n_in=2, n_hidden=16, lr=0.5, seed=0)
+mlp.fit(X_train_s, y_train, epochs=500)
+acc = (mlp.predict(X_test_s) == y_test).mean()
+print(f"tiny_mlp_acc={acc:.3f}")
+```
 
 ## Key Takeaways
 

@@ -30,6 +30,18 @@ Step-by-step walkthrough of a complete end-to-end data science project from data
 
 **Time**: 3-4 hours
 
+### Why this matters in production
+
+Most data work fails before modeling: missing values, leakage through fills, and charts nobody can defend. Treat cleaning and EDA as production steps with explicit rules you can re-run.
+
+### Concept to application
+
+Pandas transforms are just tables under contracts. Document each fill, filter, and derived column. Downstream models inherit those decisions whether you write them down or not.
+
+### Stand-out signal
+
+Ship a short data card: source, row counts before/after cleaning, one surprising distribution, and one metric a stakeholder would care about. Outcomes vary by role. Evidence beats tool lists.
+
 ---
 
 ## Step 1: Data Collection (Web Scraping)
@@ -562,36 +574,31 @@ print("Results exported successfully!")
 
 ## Complete Code Summary
 
-```python
-# Complete Data Science Project Pipeline
+Self-contained synthetic pipeline used by the private hub snippet suite. No live APIs or Streamlit required to verify the core transforms.
+
+```python snippet-id=pyds-synthetic-clean-eda
 import numpy as np
 import pandas as pd
-import matplotlib.pyplot as plt
-import seaborn as sns
-import plotly.express as px
-import streamlit as st
 
-# 1. Data Collection
-df = collect_data()  # Web scraping or API
+rng = np.random.default_rng(42)
+n = 200
+df = pd.DataFrame({
+    "sqft": rng.normal(1800, 400, n).clip(400),
+    "bedrooms": rng.integers(1, 6, n),
+    "location": rng.choice(["A", "B", "C"], n),
+    "price": rng.normal(350000, 80000, n).clip(50000),
+})
+df.loc[rng.choice(n, 8, replace=False), "sqft"] = np.nan
 
-# 2. Data Cleaning
-df_clean = clean_data(df)
+df["sqft"] = df["sqft"].fillna(df["sqft"].median())
+df["price_per_sqft"] = df["price"] / df["sqft"]
+df = pd.get_dummies(df, columns=["location"], drop_first=True)
 
-# 3. Feature Engineering
-df_clean = engineer_features(df_clean)
-
-# 4. EDA
-perform_eda(df_clean)
-
-# 5. Visualization
-create_visualizations(df_clean)
-
-# 6. Dashboard
-create_dashboard(df_clean)
-
-# 7. Insights
-generate_insights(df_clean)
+assert df.isna().sum().sum() == 0
+assert "price_per_sqft" in df.columns
+print(f"rows={len(df)} cols={df.shape[1]} mean_ppsq={df['price_per_sqft'].mean():.2f}")
 ```
+
 
 ---
 

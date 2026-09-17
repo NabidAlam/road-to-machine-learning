@@ -29,6 +29,18 @@ Step-by-step walkthrough of properly evaluating and optimizing a machine learnin
 
 **Time**: 1-2 hours
 
+### Why this matters in production
+
+Touching the test set during tuning is silent sabotage. Real teams keep a locked holdout, tune on validation or CV, and write down the protocol so the next engineer can reproduce the number.
+
+### Concept to application
+
+Cross-validation estimates variance of the score. Learning curves separate high bias from high variance. Hyperparameters belong on validation folds, not the final test slice.
+
+### Stand-out signal
+
+Publish a one-page eval card: split sizes, metric, search space, and the single final test score. Hiring bars differ. Clear protocol is the portable skill.
+
 ---
 
 ## Step 1: Data Loading and Initial Split
@@ -628,6 +640,35 @@ print(f"   - Only touched test set at the very end")
 ```
 
 ---
+
+## Complete Code Summary
+
+```python snippet-id=eval-train-val-test
+import numpy as np
+from sklearn.datasets import load_breast_cancer
+from sklearn.model_selection import train_test_split, cross_val_score
+from sklearn.preprocessing import StandardScaler
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import accuracy_score
+
+X, y = load_breast_cancer(return_X_y=True)
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.2, random_state=42, stratify=y
+)
+X_tr, X_val, y_tr, y_val = train_test_split(
+    X_train, y_train, test_size=0.25, random_state=42, stratify=y_train
+)
+scaler = StandardScaler()
+X_tr_s = scaler.fit_transform(X_tr)
+X_val_s = scaler.transform(X_val)
+X_test_s = scaler.transform(X_test)
+model = RandomForestClassifier(n_estimators=80, random_state=42, max_depth=6)
+cv = cross_val_score(model, X_tr_s, y_tr, cv=3, scoring="accuracy")
+model.fit(X_tr_s, y_tr)
+val_acc = accuracy_score(y_val, model.predict(X_val_s))
+test_acc = accuracy_score(y_test, model.predict(X_test_s))
+print(f"cv_mean={cv.mean():.3f} val={val_acc:.3f} test={test_acc:.3f}")
+```
 
 ## Key Takeaways
 

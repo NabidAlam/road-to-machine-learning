@@ -29,6 +29,18 @@ Step-by-step walkthrough of building and training a neural network using both Ke
 
 **Time**: 2-3 hours
 
+### Why this matters in production
+
+Framework choice is a team and serving decision. Keras speeds iteration. PyTorch speeds research flexibility. Both still need the same data hygiene, metric ownership, and reproducible seeds.
+
+### Concept to application
+
+Autograd builds the backward graph for you. Devices, batching, and checkpointing become the new footguns. Start on CPU with a tiny tensor batch before you chase GPUs or full MNIST downloads in CI.
+
+### Stand-out signal
+
+Implement the same tiny model in both frameworks and compare code shape, not hype. Hiring markets differ. Dual fluency is evidence, not a guarantee.
+
 ---
 
 ## Part 1: Keras Implementation
@@ -560,6 +572,51 @@ print("""
 ```
 
 ---
+
+## Complete Code Summary
+
+CPU-only smoke pipelines. Uses tiny random tensors. Does not download MNIST in CI.
+
+```python snippet-id=dl-keras-tiny-smoke
+import numpy as np
+import os
+os.environ.setdefault("TF_CPP_MIN_LOG_LEVEL", "2")
+import tensorflow as tf
+
+tf.keras.utils.set_random_seed(0)
+X = np.random.randn(64, 16).astype("float32")
+y = (X[:, 0] > 0).astype("int32")
+model = tf.keras.Sequential([
+    tf.keras.layers.Input(shape=(16,)),
+    tf.keras.layers.Dense(8, activation="relu"),
+    tf.keras.layers.Dense(1, activation="sigmoid"),
+])
+model.compile(optimizer="adam", loss="binary_crossentropy", metrics=["accuracy"])
+hist = model.fit(X, y, epochs=3, batch_size=16, verbose=0)
+acc = float(hist.history["accuracy"][-1])
+print(f"keras_acc={acc:.3f}")
+```
+
+```python snippet-id=dl-torch-tiny-smoke
+import torch
+import torch.nn as nn
+
+torch.manual_seed(0)
+X = torch.randn(64, 16)
+y = (X[:, 0] > 0).float().unsqueeze(1)
+model = nn.Sequential(nn.Linear(16, 8), nn.ReLU(), nn.Linear(8, 1), nn.Sigmoid())
+opt = torch.optim.Adam(model.parameters(), lr=0.05)
+loss_fn = nn.BCELoss()
+for _ in range(40):
+    opt.zero_grad()
+    pred = model(X)
+    loss = loss_fn(pred, y)
+    loss.backward()
+    opt.step()
+with torch.no_grad():
+    acc = ((model(X) >= 0.5).float() == y).float().mean().item()
+print(f"torch_acc={acc:.3f}")
+```
 
 ## Key Takeaways
 

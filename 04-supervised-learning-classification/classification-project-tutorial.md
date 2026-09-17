@@ -29,6 +29,18 @@ Step-by-step walkthrough of building a real-world classification model from data
 
 **Time**: 1-2 hours
 
+### Why this matters in production
+
+Accuracy lies when classes are skewed. Production classifiers need a decision threshold, a cost story for false positives vs false negatives, and stratified splits so the test set matches reality.
+
+### Concept to application
+
+You estimate class probabilities then pick a threshold. Scaling matters for SVM and logistic regression. Trees care less about scale and more about leakage and calibration.
+
+### Stand-out signal
+
+Show precision, recall, and a confusion matrix for the operating point you chose. Say who pays for each error type. That is interview-grade. It is not a job promise.
+
 ---
 
 ## Step 1: Data Loading and Exploration
@@ -589,7 +601,35 @@ print(f"Spam Probability: {result['spam_probability']:.3f}")
 6. **Improvement**: Hyperparameter tuning and handling class imbalance
 7. **Deployment**: Saving and loading models for production use
 
-### Key Takeaways
+### Complete Code Summary
+
+```python snippet-id=clf-synthetic-pipeline
+import numpy as np
+from sklearn.datasets import make_classification
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import f1_score, accuracy_score
+
+X, y = make_classification(
+    n_samples=400, n_features=10, n_informative=6, n_redundant=2,
+    weights=[0.7, 0.3], random_state=42
+)
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.25, random_state=42, stratify=y
+)
+scaler = StandardScaler()
+X_train_s = scaler.fit_transform(X_train)
+X_test_s = scaler.transform(X_test)
+model = LogisticRegression(max_iter=500, random_state=42)
+model.fit(X_train_s, y_train)
+pred = model.predict(X_test_s)
+acc = accuracy_score(y_test, pred)
+f1 = f1_score(y_test, pred)
+print(f"accuracy={acc:.3f} f1={f1:.3f}")
+```
+
+## Key Takeaways
 
 - Always check class distribution (imbalanced data is common!)
 - Use stratified train-test split for imbalanced data
