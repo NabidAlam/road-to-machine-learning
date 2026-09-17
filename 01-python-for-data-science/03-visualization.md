@@ -1108,7 +1108,7 @@ plt.title('Sine Wave')
 plt.savefig('plot.png', dpi=300, bbox_inches='tight')  # PNG
 plt.savefig('plot.pdf', bbox_inches='tight')           # PDF
 plt.savefig('plot.svg', bbox_inches='tight')          # SVG
-plt.savefig('plot.jpg', dpi=300, quality=95)          # JPEG
+plt.savefig('plot.jpg', dpi=300, pil_kwargs={'quality': 95})  # JPEG
 
 # With transparent background
 plt.savefig('plot.png', transparent=True, dpi=300)

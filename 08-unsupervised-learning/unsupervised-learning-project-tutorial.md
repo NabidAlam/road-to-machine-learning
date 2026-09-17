@@ -369,12 +369,20 @@ print(f"Number of clusters: {optimal_k}")
 print(f"Silhouette Score: {silhouette_score(X_scaled, clusters_hierarchical):.3f}")
 
 # Compare methods
+def _safe_sil(X, labels):
+    mask = labels != -1 if np.any(labels == -1) else slice(None)
+    Xl = X[mask]
+    lab = labels[mask]
+    if len(lab) < 2 or len(np.unique(lab)) < 2:
+        return 0.0
+    return float(silhouette_score(Xl, lab))
+
 comparison = pd.DataFrame({
     'Method': ['K-Means', 'DBSCAN', 'Hierarchical'],
     'Silhouette': [
-        silhouette_score(X_scaled, clusters_kmeans),
-        silhouette_score(X_scaled[clusters_dbscan != -1], clusters_dbscan[clusters_dbscan != -1]) if n_noise < len(X_scaled) else 0,
-        silhouette_score(X_scaled, clusters_hierarchical)
+        _safe_sil(X_scaled, clusters_kmeans),
+        _safe_sil(X_scaled, clusters_dbscan),
+        _safe_sil(X_scaled, clusters_hierarchical)
     ],
     'N_Clusters': [optimal_k, n_clusters_dbscan, optimal_k]
 })
@@ -424,8 +432,7 @@ plt.show()
 # Evaluate all clustering methods
 def evaluate_clustering(X, labels, name):
     """Comprehensive clustering evaluation"""
-    if len(set(labels)) < 2:
-        return None
+    labels = np.asarray(labels)
     
     # Remove noise points for DBSCAN
     if -1 in labels:
@@ -435,6 +442,9 @@ def evaluate_clustering(X, labels, name):
     else:
         X_eval = X
         labels_eval = labels
+
+    if len(labels_eval) < 2 or len(set(labels_eval)) < 2:
+        return None
     
     metrics = {
         'Method': name,

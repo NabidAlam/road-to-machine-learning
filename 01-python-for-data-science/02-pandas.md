@@ -118,14 +118,17 @@ print(df)
 # 3    Diana   28     Paris   55000
 
 # From list of lists
-data = [['Alice', 25], ['Bob', 30], ['Charlie', 35]]
-df = pd.DataFrame(data, columns=['Name', 'Age'])
-print(df)
+rows = [['Alice', 25], ['Bob', 30], ['Charlie', 35]]
+df_from_rows = pd.DataFrame(rows, columns=['Name', 'Age'])
+print(df_from_rows)
 
 # From NumPy array
 arr = np.array([[1, 2, 3], [4, 5, 6]])
-df = pd.DataFrame(arr, columns=['A', 'B', 'C'])
-print(df)
+df_from_arr = pd.DataFrame(arr, columns=['A', 'B', 'C'])
+print(df_from_arr)
+
+# Keep the dict-based frame for later cells
+df = pd.DataFrame(data)
 ```
 
 ### DataFrame Properties
@@ -226,6 +229,14 @@ print(df.columns.is_unique)  # True
 ### Renaming Columns
 
 ```python
+# Start from a known schema so rename demos stay consistent
+df = pd.DataFrame({
+    'Name': ['Alice', 'Bob', 'Charlie', 'Diana'],
+    'Age': [25, 30, 35, 28],
+    'City': ['New York', 'London', 'Tokyo', 'Paris'],
+    'Salary': [50000, 60000, 70000, 55000]
+})
+
 # Rename single column
 df = df.rename(columns={'Age': 'Years'})
 print(df.columns)  # ['Name', 'Years', 'City', 'Salary']
@@ -241,13 +252,21 @@ df = df.rename(columns={
 df = df.rename(columns=str.lower)  # Convert to lowercase
 df = df.rename(columns=str.upper)  # Convert to uppercase
 
-# In-place renaming
-df.rename(columns={'Age': 'Years'}, inplace=True)
+# In-place renaming (column must still exist)
+df.rename(columns={'YEARS': 'AGE'}, inplace=True)
 ```
 
 ### Setting and Resetting Index
 
 ```python
+# Fresh frame for index demos
+df = pd.DataFrame({
+    'Name': ['Alice', 'Bob', 'Charlie', 'Diana'],
+    'Age': [25, 30, 35, 28],
+    'City': ['New York', 'London', 'Tokyo', 'Paris'],
+    'Salary': [50000, 60000, 70000, 55000]
+})
+
 # Set a column as index
 df_indexed = df.set_index('Name')
 print(df_indexed)
@@ -437,6 +456,19 @@ df.loc[0:2, 'Name':'City']  # Rows 0-2, columns Name to City
 Detect missing entries and handle them appropriately:
 
 ```python
+# Ensure a stable demo frame for this cell
+df = pd.DataFrame({
+    'Name': ['Alice', 'Bob', 'Charlie', 'Diana'],
+    'Age': [25, 30, 35, 28],
+    'City': ['New York', 'London', 'Tokyo', 'Paris'],
+    'Salary': [50000, 60000, 70000, 55000],
+    'Status': ['Active', 'A', 'active', 'Inactive'],
+    'Date': ['2024-01-15', '2024-02-20', '2024-03-25', '2024-04-10'],
+    'IsActive': [True, False, True, True],
+    'Department': ['Eng', 'Sales', 'Eng', 'HR'],
+    'Score': [88, 92, 79, 85],
+})
+
 # Check for missing values
 print(df.isnull())           # Boolean DataFrame (True where NaN)
 print(df.isna())             # Same as isnull()
@@ -454,18 +486,18 @@ df_clean = df.dropna(thresh=2)      # Keep rows with at least 2 non-NaN values
 # Fill missing values
 df_filled = df.fillna(0)            # Fill with constant (0)
 df_filled = df.fillna({'Age': 0, 'Salary': 50000})  # Fill different columns with different values
-df_filled = df.fillna(df.mean())    # Fill with mean (numeric columns only)
+df_filled = df.fillna(df.mean(numeric_only=True))    # Fill with mean (numeric columns only)
 df_filled = df['Age'].fillna(df['Age'].mean())  # Fill specific column with its mean
-df_filled = df.fillna(df.median())  # Fill with median
+df_filled = df.fillna(df.median(numeric_only=True))  # Fill with median
 df_filled = df.fillna(df.mode().iloc[0])  # Fill with mode
 
 # Forward fill / Backward fill
-df_ffill = df.fillna(method='ffill')  # Forward fill (use previous value)
-df_bfill = df.fillna(method='bfill')  # Backward fill (use next value)
-df_ffill_limit = df.fillna(method='ffill', limit=2)  # Limit forward fill to 2 consecutive NaNs
+df_ffill = df.ffill()  # Forward fill (use previous value)
+df_bfill = df.bfill()  # Backward fill (use next value)
+df_ffill_limit = df.ffill(limit=2)  # Limit forward fill to 2 consecutive NaNs
 
 # Interpolation
-df_interp = df.interpolate()  # Linear interpolation
+df_interp = df.interpolate(numeric_only=True)  # Linear interpolation
 ```
 
 ### Handling Duplicates
@@ -485,6 +517,16 @@ df_unique = df.drop_duplicates(subset=['Name'])  # Drop based on column
 Convert columns to correct types for data compatibility:
 
 ```python
+# Frame with mixed types for conversion demos
+df = pd.DataFrame({
+    'Name': ['Alice', 'Bob', 'Charlie', 'Diana'],
+    'Age': ['25', '30', '35', '28'],
+    'City': ['New York', 'London', 'Tokyo', 'Paris'],
+    'Salary': ['50000', '60000', '70000', '55000'],
+    'Date': ['2024-01-15', '2024-02-20', '2024-03-25', '2024-04-10'],
+    'IsActive': [1, 0, 1, 1],
+})
+
 # Check data types
 print(df.dtypes)
 
@@ -516,7 +558,7 @@ df[['Age', 'Salary']] = df[['Age', 'Salary']].astype(float)
 
 # Handle errors during conversion
 df['Age'] = pd.to_numeric(df['Age'], errors='coerce')  # Convert invalid to NaN
-df['Age'] = pd.to_numeric(df['Age'], errors='ignore')  # Leave invalid as-is
+df['Age'] = pd.to_numeric(df['Age'], errors='coerce')  # Prefer coerce over removed 'ignore'
 ```
 
 ### Replacing Values (replace)
@@ -524,6 +566,13 @@ df['Age'] = pd.to_numeric(df['Age'], errors='ignore')  # Leave invalid as-is
 Clean or fix specific data points and typos:
 
 ```python
+df = pd.DataFrame({
+    'Name': ['Alice', 'Bob', 'Charlie', 'Diana'],
+    'Age': [25, 30, 35, 28],
+    'City': ['New York', 'London', 'Tokyo', 'Paris'],
+    'Status': ['Active', 'A', 'active', 'Inactive'],
+})
+
 # Replace single value
 df['City'] = df['City'].replace('New York', 'NYC')
 
@@ -556,6 +605,19 @@ df['Status'] = df['Status'].replace(['Active', 'A', 'active'], 'ACTIVE')
 Remove unnecessary rows or columns:
 
 ```python
+# Ensure a stable demo frame for this cell
+df = pd.DataFrame({
+    'Name': ['Alice', 'Bob', 'Charlie', 'Diana'],
+    'Age': [25, 30, 35, 28],
+    'City': ['New York', 'London', 'Tokyo', 'Paris'],
+    'Salary': [50000, 60000, 70000, 55000],
+    'Status': ['Active', 'A', 'active', 'Inactive'],
+    'Date': ['2024-01-15', '2024-02-20', '2024-03-25', '2024-04-10'],
+    'IsActive': [True, False, True, True],
+    'Department': ['Eng', 'Sales', 'Eng', 'HR'],
+    'Score': [88, 92, 79, 85],
+})
+
 # Drop rows by index
 df_dropped = df.drop(0)              # Drop row with index 0
 df_dropped = df.drop([0, 2])          # Drop rows with indices 0 and 2
@@ -580,6 +642,19 @@ df_dropped = df.drop('NonExistent', axis=1, errors='ignore')  # Ignore if doesn'
 ### Detecting & Removing Duplicates
 
 ```python
+# Ensure a stable demo frame for this cell
+df = pd.DataFrame({
+    'Name': ['Alice', 'Bob', 'Charlie', 'Diana'],
+    'Age': [25, 30, 35, 28],
+    'City': ['New York', 'London', 'Tokyo', 'Paris'],
+    'Salary': [50000, 60000, 70000, 55000],
+    'Status': ['Active', 'A', 'active', 'Inactive'],
+    'Date': ['2024-01-15', '2024-02-20', '2024-03-25', '2024-04-10'],
+    'IsActive': [True, False, True, True],
+    'Department': ['Eng', 'Sales', 'Eng', 'HR'],
+    'Score': [88, 92, 79, 85],
+})
+
 # Check for duplicates
 print(df.duplicated())           # Boolean Series (True for duplicates)
 print(df.duplicated().sum())    # Count of duplicate rows
@@ -684,13 +759,26 @@ df_sorted = df.sort_values('Age', na_position='last')    # NaNs last (default)
 Summarize and understand numeric data:
 
 ```python
+# Ensure a stable demo frame for this cell
+df = pd.DataFrame({
+    'Name': ['Alice', 'Bob', 'Charlie', 'Diana'],
+    'Age': [25, 30, 35, 28],
+    'City': ['New York', 'London', 'Tokyo', 'Paris'],
+    'Salary': [50000, 60000, 70000, 55000],
+    'Status': ['Active', 'A', 'active', 'Inactive'],
+    'Date': ['2024-01-15', '2024-02-20', '2024-03-25', '2024-04-10'],
+    'IsActive': [True, False, True, True],
+    'Department': ['Eng', 'Sales', 'Eng', 'HR'],
+    'Score': [88, 92, 79, 85],
+})
+
 # Mean (average)
 print(df['Age'].mean())         # Mean of Age column
-print(df.mean())                # Mean of all numeric columns
+print(df.mean(numeric_only=True))                # Mean of all numeric columns
 
 # Median
 print(df['Age'].median())       # Median of Age column
-print(df.median())              # Median of all numeric columns
+print(df.median(numeric_only=True))              # Median of all numeric columns
 
 # Mode
 print(df['City'].mode())        # Most frequent value(s)
@@ -698,17 +786,17 @@ print(df.mode())                 # Mode for each column
 
 # Standard deviation
 print(df['Age'].std())          # Standard deviation
-print(df.std())                 # Std for all numeric columns
+print(df.std(numeric_only=True))                 # Std for all numeric columns
 
 # Variance
 print(df['Age'].var())          # Variance
-print(df.var())                 # Variance for all numeric columns
+print(df.var(numeric_only=True))                 # Variance for all numeric columns
 
 # Min and Max
 print(df['Age'].min())          # Minimum value
 print(df['Age'].max())          # Maximum value
-print(df.min())                 # Min for all columns
-print(df.max())                 # Max for all columns
+print(df.min(numeric_only=True))                 # Min for all columns
+print(df.max(numeric_only=True))                 # Max for all columns
 
 # Comprehensive summary
 print(df.describe())            # Summary statistics for numeric columns
@@ -801,6 +889,14 @@ print(df['Age'].cov(df['Salary']))
 ### GroupBy
 
 ```python
+# Ensure a stable demo frame for this cell
+df = pd.DataFrame({
+    'Name': ['Alice', 'Bob', 'Charlie', 'Diana'],
+    'Age': [25, 30, 35, 28],
+    'City': ['New York', 'London', 'Tokyo', 'Paris'],
+    'Salary': [50000, 60000, 70000, 55000],
+})
+
 # Group by column
 grouped = df.groupby('City')
 
@@ -812,13 +908,13 @@ city_stats = grouped.agg({
 print(city_stats)
 
 # Common aggregations
-grouped.mean()      # Mean of each group
-grouped.sum()       # Sum of each group
+grouped.mean(numeric_only=True)      # Mean of each group
+grouped.sum(numeric_only=True)       # Sum of each group
 grouped.count()     # Count in each group
 grouped.size()      # Size of each group
-grouped.min()       # Minimum
-grouped.max()       # Maximum
-grouped.std()       # Standard deviation
+grouped.min(numeric_only=True)       # Minimum
+grouped.max(numeric_only=True)       # Maximum
+grouped.std(numeric_only=True)       # Standard deviation
 ```
 
 ### Custom Aggregations
@@ -976,15 +1072,18 @@ print(result)
 dates = pd.date_range('2024-01-01', periods=10, freq='D')
 print(dates)
 
-# Set date as index
-df['Date'] = pd.date_range('2024-01-01', periods=len(df))
-df = df.set_index('Date')
+# Numeric frame with a DatetimeIndex for resampling demos
+df = pd.DataFrame({
+    'Age': np.arange(10),
+    'Salary': np.linspace(50000, 59000, 10),
+}, index=pd.date_range('2024-01-01', periods=10, freq='D'))
+df.index.name = 'Date'
 print(df)
 
 # Resampling
-df_daily = df.resample('D').mean()      # Daily
-df_weekly = df.resample('W').mean()     # Weekly
-df_monthly = df.resample('M').mean()    # Monthly
+df_daily = df.resample('D').mean(numeric_only=True)      # Daily
+df_weekly = df.resample('W').mean(numeric_only=True)     # Weekly
+df_monthly = df.resample('ME').mean(numeric_only=True)    # Month end
 
 # Time-based filtering
 df_jan = df[df.index.month == 1]       # January data
@@ -997,41 +1096,50 @@ Convert string or numeric date columns into datetime objects:
 
 ```python
 # Convert string to datetime
+df = pd.DataFrame({'Date': ['2024-01-15', '2024-02-20', '2024-03-25']})
 df['Date'] = pd.to_datetime(df['Date'])
 df['Date'] = pd.to_datetime(df['Date'], format='%Y-%m-%d')  # With format
 
 # Handle different formats
+df = pd.DataFrame({'Date': ['15/03/2024', '20/04/2024']})
 df['Date'] = pd.to_datetime(df['Date'], format='%d/%m/%Y')
 
 # Handle errors
-df['Date'] = pd.to_datetime(df['Date'], errors='coerce')  # Invalid → NaN
-df['Date'] = pd.to_datetime(df['Date'], errors='ignore')  # Invalid → unchanged
+df = pd.DataFrame({'Date': ['2024-01-15', 'invalid', '2024-02-20']})
+df['Date'] = pd.to_datetime(df['Date'], errors='coerce')  # Invalid -> NaT
 
 # Convert multiple columns
+df = pd.DataFrame({
+    'Start': ['2024-01-01', '2024-02-01'],
+    'End': ['2024-01-31', '2024-02-28'],
+})
 df[['Start', 'End']] = df[['Start', 'End']].apply(pd.to_datetime)
 ```
 
 ### DateTime Indexing & Resampling
 
 ```python
-# Set datetime column as index
-df['Date'] = pd.to_datetime(df['Date'])
-df = df.set_index('Date')
+# Numeric time series for resampling demos
+df = pd.DataFrame({
+    'Sales': np.random.randint(100, 500, size=90),
+    'Revenue': np.random.randint(1000, 5000, size=90),
+}, index=pd.date_range('2024-01-01', periods=90, freq='D'))
+df.index.name = 'Date'
 
 # Resample data by different time periods
-df_daily = df.resample('D').mean()      # Daily ('D')
-df_weekly = df.resample('W').mean()     # Weekly ('W')
-df_monthly = df.resample('M').mean()    # Monthly ('M')
-df_yearly = df.resample('Y').mean()     # Yearly ('Y')
-df_quarterly = df.resample('Q').mean()  # Quarterly ('Q')
+df_daily = df.resample('D').mean(numeric_only=True)      # Daily ('D')
+df_weekly = df.resample('W').mean(numeric_only=True)     # Weekly ('W')
+df_monthly = df.resample('ME').mean(numeric_only=True)    # Month end
+df_yearly = df.resample('YE').mean(numeric_only=True)     # Year end
+df_quarterly = df.resample('QE').mean(numeric_only=True)  # Quarter end
 
 # Different aggregation functions
-df_monthly_sum = df.resample('M').sum()
-df_monthly_count = df.resample('M').count()
-df_monthly_max = df.resample('M').max()
+df_monthly_sum = df.resample('ME').sum(numeric_only=True)
+df_monthly_count = df.resample('ME').count()
+df_monthly_max = df.resample('ME').max(numeric_only=True)
 
 # Multiple aggregations
-df_monthly = df.resample('M').agg({
+df_monthly = df.resample('ME').agg({
     'Sales': 'sum',
     'Revenue': 'mean'
 })
@@ -1040,6 +1148,11 @@ df_monthly = df.resample('M').agg({
 ### Date-Based Filtering & Slicing (loc)
 
 ```python
+df = pd.DataFrame(
+    {'Value': np.arange(31)},
+    index=pd.date_range('2024-01-01', periods=31, freq='D')
+)
+
 # Filter by specific date
 df_specific = df.loc['2024-01-15']
 
@@ -1068,30 +1181,35 @@ df_weekend = df[df.index.weekday >= 5]   # Weekend (Saturday=5, Sunday=6)
 Calculate moving averages, cumulative sums, or trends over time:
 
 ```python
+df = pd.DataFrame(
+    {'Value': np.random.randn(60).cumsum() + 100},
+    index=pd.date_range('2024-01-01', periods=60, freq='D')
+)
+
 # Rolling window (moving average)
-df['Rolling_Mean_7'] = df['Value'].rolling(window=7).mean()      # 7-day moving average
-df['Rolling_Mean_30'] = df['Value'].rolling(window=30).mean()    # 30-day moving average
-df['Rolling_Std'] = df['Value'].rolling(window=7).std()         # Rolling standard deviation
-df['Rolling_Sum'] = df['Value'].rolling(window=7).sum()         # Rolling sum
-df['Rolling_Max'] = df['Value'].rolling(window=7).max()         # Rolling maximum
+df['Rolling_Mean_7'] = df['Value'].rolling(window=7).mean()
+df['Rolling_Mean_30'] = df['Value'].rolling(window=30).mean()
+df['Rolling_Std'] = df['Value'].rolling(window=7).std()
+df['Rolling_Sum'] = df['Value'].rolling(window=7).sum()
+df['Rolling_Max'] = df['Value'].rolling(window=7).max()
 
 # Rolling with minimum periods
-df['Rolling_Mean'] = df['Value'].rolling(window=7, min_periods=3).mean()  # Need at least 3 values
+df['Rolling_Mean'] = df['Value'].rolling(window=7, min_periods=3).mean()
 
 # Expanding window (cumulative)
-df['Expanding_Mean'] = df['Value'].expanding().mean()           # Cumulative mean
-df['Expanding_Sum'] = df['Value'].expanding().sum()             # Cumulative sum
-df['Expanding_Max'] = df['Value'].expanding().max()             # Running maximum
-df['Expanding_Min'] = df['Value'].expanding().min()             # Running minimum
+df['Expanding_Mean'] = df['Value'].expanding().mean()
+df['Expanding_Sum'] = df['Value'].expanding().sum()
+df['Expanding_Max'] = df['Value'].expanding().max()
+df['Expanding_Min'] = df['Value'].expanding().min()
 
 # Shift values (lag/lead)
-df['Previous'] = df['Value'].shift(1)    # Previous value (lag 1)
-df['Next'] = df['Value'].shift(-1)      # Next value (lead 1)
-df['Lag_7'] = df['Value'].shift(7)      # 7 periods ago
+df['Previous'] = df['Value'].shift(1)
+df['Next'] = df['Value'].shift(-1)
+df['Lag_7'] = df['Value'].shift(7)
 
 # Percentage change
-df['Pct_Change'] = df['Value'].pct_change()                     # Period-over-period change
-df['Pct_Change_7'] = df['Value'].pct_change(periods=7)          # 7-period change
+df['Pct_Change'] = df['Value'].pct_change()
+df['Pct_Change_7'] = df['Value'].pct_change(periods=7)
 ```
 
 ### Practical Use Cases
@@ -1105,7 +1223,7 @@ sales_df = pd.DataFrame({
 sales_df = sales_df.set_index('Date')
 
 # Monthly sales report
-monthly_sales = sales_df.resample('M').sum()
+monthly_sales = sales_df.resample('ME').sum()
 print("Monthly Sales:")
 print(monthly_sales)
 
@@ -1127,9 +1245,22 @@ Use `apply()` for row- or column-wise operations and `map()` for element-wise tr
 #### Apply Function
 
 ```python
+# Ensure a stable demo frame for this cell
+df = pd.DataFrame({
+    'Name': ['Alice', 'Bob', 'Charlie', 'Diana'],
+    'Age': [25, 30, 35, 28],
+    'City': ['New York', 'London', 'Tokyo', 'Paris'],
+    'Salary': [50000, 60000, 70000, 55000],
+    'Status': ['Active', 'A', 'active', 'Inactive'],
+    'Date': ['2024-01-15', '2024-02-20', '2024-03-25', '2024-04-10'],
+    'IsActive': [True, False, True, True],
+    'Department': ['Eng', 'Sales', 'Eng', 'HR'],
+    'Score': [88, 92, 79, 85],
+})
+
 # Apply function to each column
-df.apply(np.mean)              # Mean of each column
-df.apply(lambda x: x.max() - x.min())  # Range of each column
+df.select_dtypes(include=[np.number]).apply(np.mean)
+df.select_dtypes(include=[np.number]).apply(lambda x: x.max() - x.min())  # Range of numeric columns
 
 # Apply function to each row
 df.apply(lambda row: row['Age'] + row['Salary'], axis=1)  # Row-wise
@@ -1161,6 +1292,19 @@ df['Bonus'] = df['Salary'].apply(lambda x: calculate_bonus(x, 0.1))
 Element-wise transformations on Series:
 
 ```python
+# Ensure a stable demo frame for this cell
+df = pd.DataFrame({
+    'Name': ['Alice', 'Bob', 'Charlie', 'Diana'],
+    'Age': [25, 30, 35, 28],
+    'City': ['New York', 'London', 'Tokyo', 'Paris'],
+    'Salary': [50000, 60000, 70000, 55000],
+    'Status': ['Active', 'A', 'active', 'Inactive'],
+    'Date': ['2024-01-15', '2024-02-20', '2024-03-25', '2024-04-10'],
+    'IsActive': [True, False, True, True],
+    'Department': ['Eng', 'Sales', 'Eng', 'HR'],
+    'Score': [88, 92, 79, 85],
+})
+
 # Map using dictionary
 mapping = {'New York': 'NY', 'London': 'LON', 'Tokyo': 'TYO'}
 df['City_Code'] = df['City'].map(mapping)
@@ -1181,6 +1325,19 @@ df['City_Code'] = df['City'].map(mapping).fillna('Unknown')
 Quickly apply inline transformations:
 
 ```python
+# Ensure a stable demo frame for this cell
+df = pd.DataFrame({
+    'Name': ['Alice', 'Bob', 'Charlie', 'Diana'],
+    'Age': [25, 30, 35, 28],
+    'City': ['New York', 'London', 'Tokyo', 'Paris'],
+    'Salary': [50000, 60000, 70000, 55000],
+    'Status': ['Active', 'A', 'active', 'Inactive'],
+    'Date': ['2024-01-15', '2024-02-20', '2024-03-25', '2024-04-10'],
+    'IsActive': [True, False, True, True],
+    'Department': ['Eng', 'Sales', 'Eng', 'HR'],
+    'Score': [88, 92, 79, 85],
+})
+
 # Compute totals
 df['Total'] = df.apply(lambda row: row['Age'] + row['Salary'], axis=1)
 
@@ -1205,6 +1362,19 @@ df['Category'] = df.apply(
 Define user functions for complex operations:
 
 ```python
+# Ensure a stable demo frame for this cell
+df = pd.DataFrame({
+    'Name': ['Alice', 'Bob', 'Charlie', 'Diana'],
+    'Age': [25, 30, 35, 28],
+    'City': ['New York', 'London', 'Tokyo', 'Paris'],
+    'Salary': [50000, 60000, 70000, 55000],
+    'Status': ['Active', 'A', 'active', 'Inactive'],
+    'Date': ['2024-01-15', '2024-02-20', '2024-03-25', '2024-04-10'],
+    'IsActive': [True, False, True, True],
+    'Department': ['Eng', 'Sales', 'Eng', 'HR'],
+    'Score': [88, 92, 79, 85],
+})
+
 # Complex grading function
 def calculate_grade(score):
     if score >= 90:
@@ -1244,6 +1414,19 @@ df['Name'] = df['Name'].apply(clean_name)
 
 **Automate repetitive transformations:**
 ```python
+# Ensure a stable demo frame for this cell
+df = pd.DataFrame({
+    'Name': ['Alice', 'Bob', 'Charlie', 'Diana'],
+    'Age': [25, 30, 35, 28],
+    'City': ['New York', 'London', 'Tokyo', 'Paris'],
+    'Salary': [50000, 60000, 70000, 55000],
+    'Status': ['Active', 'A', 'active', 'Inactive'],
+    'Date': ['2024-01-15', '2024-02-20', '2024-03-25', '2024-04-10'],
+    'IsActive': [True, False, True, True],
+    'Department': ['Eng', 'Sales', 'Eng', 'HR'],
+    'Score': [88, 92, 79, 85],
+})
+
 # Create derived columns
 df['Age_Group'] = df['Age'].apply(lambda x: f"{(x//10)*10}s")
 df['Salary_Per_Age'] = df.apply(lambda row: row['Salary'] / row['Age'], axis=1)
@@ -1257,6 +1440,19 @@ df['Tax_Bracket'] = df['Salary'].apply(
 
 **Performance Tips:**
 ```python
+# Ensure a stable demo frame for this cell
+df = pd.DataFrame({
+    'Name': ['Alice', 'Bob', 'Charlie', 'Diana'],
+    'Age': [25, 30, 35, 28],
+    'City': ['New York', 'London', 'Tokyo', 'Paris'],
+    'Salary': [50000, 60000, 70000, 55000],
+    'Status': ['Active', 'A', 'active', 'Inactive'],
+    'Date': ['2024-01-15', '2024-02-20', '2024-03-25', '2024-04-10'],
+    'IsActive': [True, False, True, True],
+    'Department': ['Eng', 'Sales', 'Eng', 'HR'],
+    'Score': [88, 92, 79, 85],
+})
+
 # Vectorized operations are faster than apply
 # SLOW:
 df['New'] = df['Age'].apply(lambda x: x * 2)
@@ -1296,6 +1492,19 @@ print(df.isnull().sum())
 
 **Solution:**
 ```python
+# Ensure a stable demo frame for this cell
+df = pd.DataFrame({
+    'Name': ['Alice', 'Bob', 'Charlie', 'Diana'],
+    'Age': [25, 30, 35, 28],
+    'City': ['New York', 'London', 'Tokyo', 'Paris'],
+    'Salary': [50000, 60000, 70000, 55000],
+    'Status': ['Active', 'A', 'active', 'Inactive'],
+    'Date': ['2024-01-15', '2024-02-20', '2024-03-25', '2024-04-10'],
+    'IsActive': [True, False, True, True],
+    'Department': ['Eng', 'Sales', 'Eng', 'HR'],
+    'Score': [88, 92, 79, 85],
+})
+
 filtered = df[(df['Age'] > 30) & (df['Salary'] > 60000)]
 result = filtered[['Name', 'City']]
 print(result)
@@ -1307,6 +1516,19 @@ print(result)
 
 **Solution:**
 ```python
+# Ensure a stable demo frame for this cell
+df = pd.DataFrame({
+    'Name': ['Alice', 'Bob', 'Charlie', 'Diana'],
+    'Age': [25, 30, 35, 28],
+    'City': ['New York', 'London', 'Tokyo', 'Paris'],
+    'Salary': [50000, 60000, 70000, 55000],
+    'Status': ['Active', 'A', 'active', 'Inactive'],
+    'Date': ['2024-01-15', '2024-02-20', '2024-03-25', '2024-04-10'],
+    'IsActive': [True, False, True, True],
+    'Department': ['Eng', 'Sales', 'Eng', 'HR'],
+    'Score': [88, 92, 79, 85],
+})
+
 result = df.groupby('City').agg({
     'Age': 'mean',
     'Salary': 'sum'
@@ -1320,6 +1542,19 @@ print(result)
 
 **Solution:**
 ```python
+# Ensure a stable demo frame for this cell
+df = pd.DataFrame({
+    'Name': ['Alice', 'Bob', 'Charlie', 'Diana'],
+    'Age': [25, 30, 35, 28],
+    'City': ['New York', 'London', 'Tokyo', 'Paris'],
+    'Salary': [50000, 60000, 70000, 55000],
+    'Status': ['Active', 'A', 'active', 'Inactive'],
+    'Date': ['2024-01-15', '2024-02-20', '2024-03-25', '2024-04-10'],
+    'IsActive': [True, False, True, True],
+    'Department': ['Eng', 'Sales', 'Eng', 'HR'],
+    'Score': [88, 92, 79, 85],
+})
+
 # Fill numeric columns
 numeric_cols = df.select_dtypes(include=[np.number]).columns
 df[numeric_cols] = df[numeric_cols].fillna(df[numeric_cols].mean())
@@ -1381,7 +1616,7 @@ def clean_data(df):
     df = df.drop_duplicates()
     
     # Handle missing values
-    df = df.fillna(df.mean())
+    df = df.fillna(df.mean(numeric_only=True))
     
     # Remove outliers (example: values beyond 3 standard deviations)
     for col in df.select_dtypes(include=[np.number]).columns:

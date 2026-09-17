@@ -128,13 +128,15 @@ arr.nbytes     # Total bytes
 ### Indexing and Slicing
 
 ```python
+arr = np.arange(20).reshape(5, 4)
+
 # Basic indexing
-arr[0]           # First element
-arr[-1]          # Last element
+arr[0]           # First row
+arr[-1]          # Last row
 arr[0, 0]        # 2D indexing
 
 # Slicing
-arr[1:5]         # Slice
+arr[1:5]         # Slice rows
 arr[1:5:2]       # Slice with step
 arr[:, 0]        # All rows, first column
 arr[0, :]        # First row, all columns
@@ -151,6 +153,10 @@ selected = arr[indices]
 ### Array Operations
 
 ```python
+arr = np.arange(12).reshape(3, 4)
+arr1 = np.array([[1, 2], [3, 4]])
+arr2 = np.array([[5, 6], [7, 8]])
+
 # Arithmetic
 arr + 1          # Add scalar
 arr * 2          # Multiply scalar
@@ -162,7 +168,7 @@ np.dot(arr1, arr2)  # Dot product
 # Mathematical functions
 np.sqrt(arr)
 np.exp(arr)
-np.log(arr)
+np.log(arr + 1)
 np.sin(arr)
 np.cos(arr)
 np.abs(arr)
@@ -171,6 +177,10 @@ np.abs(arr)
 ### Array Manipulation
 
 ```python
+arr = np.arange(12).reshape(3, 4)
+arr1 = np.ones((2, 3))
+arr2 = np.zeros((2, 3))
+
 # Reshaping
 arr.reshape(3, 4)
 arr.flatten()
@@ -184,7 +194,7 @@ np.concatenate([arr1, arr2], axis=0)
 # Splitting
 np.split(arr, 3)
 np.vsplit(arr, 3)
-np.hsplit(arr, 3)
+np.hsplit(arr, 4)
 ```
 
 ### Reductions
@@ -369,20 +379,28 @@ copy = arr[::2].copy()  # Copy (slow)
 ### NumPy Errors
 
 ```python
-# Error: shapes not aligned
-# Solution: Check dimensions
-arr1.shape  # Check shape
-arr2.shape  # Check shape
-result = arr1 @ arr2  # Matrix multiplication
+# Common shape mistakes and fixes
+arr1 = np.arange(6).reshape(2, 3)
+arr2 = np.arange(6).reshape(3, 2)
+print(arr1.shape, arr2.shape)
+result = arr1 @ arr2  # (2,3) @ (3,2) -> (2,2)
 
-# Error: broadcasting failed
-# Solution: Reshape arrays
-arr1 = arr1.reshape(-1, 1)  # Add dimension
-result = arr1 + arr2
+# Broadcasting: add a column vector to a matrix
+arr1 = np.arange(6).reshape(2, 3)
+col = np.array([10, 20]).reshape(-1, 1)
+result = arr1 + col
 
-# Error: memory error
-# Solution: Use generators, process in chunks
-for chunk in process_in_chunks(data, chunk_size=1000):
+# Chunked processing pattern
+data = list(range(100))
+
+def process_in_chunks(items, chunk_size=10):
+    for i in range(0, len(items), chunk_size):
+        yield items[i:i + chunk_size]
+
+def process(chunk):
+    return sum(chunk)
+
+for chunk in process_in_chunks(data, chunk_size=10):
     process(chunk)
 ```
 

@@ -94,9 +94,9 @@ dates_str = ['2024-01-15', '2024-02-20', '2024-03-25']
 dates = pd.to_datetime(dates_str)
 print(dates)
 
-# Various formats
+# Various formats (infer per element)
 dates_mixed = ['2024-01-15', '01/15/2024', 'Jan 15, 2024']
-dates = pd.to_datetime(dates_mixed)
+dates = pd.to_datetime(dates_mixed, format='mixed')
 print(dates)
 
 # Handle errors
@@ -192,11 +192,11 @@ df = pd.DataFrame({
 df = df.set_index('date')
 print(df)
 
-# Slicing by date
-print(df['2024-01-05'])  # Single date
-print(df['2024-01-01':'2024-01-05'])  # Date range
-print(df['2024-01'])  # All January
-print(df['2024'])  # All 2024
+# Slicing by date (use .loc for index labels)
+print(df.loc['2024-01-05'])  # Single date
+print(df.loc['2024-01-01':'2024-01-05'])  # Date range
+print(df.loc['2024-01'])  # All January
+print(df.loc['2024'])  # All 2024
 ```
 
 ### Date Range Selection

@@ -740,10 +740,11 @@ A = np.array([[1, 2, 3],
 # Find nullspace using SVD
 U, S, Vt = np.linalg.svd(A)
 
-# Nullspace vectors are columns of Vt corresponding to zero singular values
-# In practice, we look for very small singular values
+# Nullspace vectors are rows of Vt after the numerical rank
+# (S has length min(m, n); Vt is n×n under full SVD)
 tolerance = 1e-10
-nullspace_basis = Vt[S < tolerance]
+rank = int(np.sum(S > tolerance))
+nullspace_basis = Vt[rank:]
 
 print("Singular values:", S)
 print("Nullspace basis vectors:")
@@ -840,9 +841,10 @@ A = np.array([[1, 2, 3],
 # Nullspace using SVD
 U, S, Vt = np.linalg.svd(A)
 
-# Columns of Vt corresponding to zero singular values form nullspace basis
+# Columns of Vt after the numerical rank form a nullspace basis
 tolerance = 1e-10
-nullspace_basis = Vt[S < tolerance].T
+rank = int(np.sum(S > tolerance))
+nullspace_basis = Vt[rank:].T
 
 print("Nullspace basis:")
 print(nullspace_basis)

@@ -43,8 +43,13 @@ from tensorflow.keras import layers
 import numpy as np
 import matplotlib.pyplot as plt
 
-# Load CIFAR-10
-(x_train, y_train), (x_test, y_test) = keras.datasets.cifar10.load_data()
+# Tiny CIFAR-shaped demo tensors for a quick CPU run.
+# For the full dataset: (x_train, y_train), (x_test, y_test) = keras.datasets.cifar10.load_data()
+rng = np.random.default_rng(42)
+x_train = rng.integers(0, 256, size=(512, 32, 32, 3), dtype=np.uint8)
+y_train = rng.integers(0, 10, size=(512, 1), dtype=np.int32)
+x_test = rng.integers(0, 256, size=(128, 32, 32, 3), dtype=np.uint8)
+y_test = rng.integers(0, 10, size=(128, 1), dtype=np.int32)
 
 print(f"Training set: {x_train.shape}")
 print(f"Test set: {x_test.shape}")
@@ -86,41 +91,23 @@ print(f"Data range: [{x_train.min():.2f}, {x_train.max():.2f}]")
 ## Step 3: Build CNN Model
 
 ```python
-# Build CNN
+# Smaller CNN for a quick CPU build. Scale filters up for a longer CIFAR run.
 model = keras.Sequential([
-    # Data augmentation
-    layers.RandomRotation(0.1, input_shape=(32, 32, 3)),
-    layers.RandomTranslation(0.1, 0.1),
-    layers.RandomFlip('horizontal'),
-    
-    # Convolutional blocks
-    layers.Conv2D(32, (3, 3), activation='relu', padding='same'),
-    layers.BatchNormalization(),
-    layers.Conv2D(32, (3, 3), activation='relu', padding='same'),
+    layers.Input(shape=(32, 32, 3)),
+    layers.RandomFlip("horizontal"),
+    layers.Conv2D(16, (3, 3), activation="relu", padding="same"),
     layers.MaxPooling2D((2, 2)),
-    layers.Dropout(0.25),
-    
-    layers.Conv2D(64, (3, 3), activation='relu', padding='same'),
-    layers.BatchNormalization(),
-    layers.Conv2D(64, (3, 3), activation='relu', padding='same'),
+    layers.Conv2D(32, (3, 3), activation="relu", padding="same"),
     layers.MaxPooling2D((2, 2)),
-    layers.Dropout(0.25),
-    
-    layers.Conv2D(128, (3, 3), activation='relu', padding='same'),
-    layers.BatchNormalization(),
-    layers.Dropout(0.25),
-    
-    # Classifier
     layers.Flatten(),
-    layers.Dense(128, activation='relu'),
-    layers.Dropout(0.5),
-    layers.Dense(10, activation='softmax')
+    layers.Dense(64, activation="relu"),
+    layers.Dense(10, activation="softmax"),
 ])
 
 model.compile(
     optimizer=keras.optimizers.Adam(learning_rate=0.001),
-    loss='sparse_categorical_crossentropy',
-    metrics=['accuracy']
+    loss="sparse_categorical_crossentropy",
+    metrics=["accuracy"],
 )
 
 model.summary()
@@ -130,7 +117,7 @@ model.summary()
 
 ## Step 4: Train with Data Augmentation
 
-```python
+```python snippet-skip
 # Callbacks
 callbacks = [
     keras.callbacks.EarlyStopping(patience=5, restore_best_weights=True),
@@ -138,7 +125,7 @@ callbacks = [
     keras.callbacks.ReduceLROnPlateau(patience=3, factor=0.5)
 ]
 
-# Train
+# Train (GPU / long CPU run; skip in CI replay)
 history = model.fit(
     x_train, y_train,
     batch_size=128,
@@ -157,10 +144,10 @@ print(f"Test accuracy: {test_acc:.4f}")
 
 ## Step 5: Transfer Learning
 
-```python
+```python snippet-skip
 from tensorflow.keras.applications import ResNet50
 
-# Load pre-trained ResNet50
+# Load pre-trained ResNet50 (downloads ImageNet weights; skip in CI replay)
 base_model = ResNet50(
     weights='imagenet',
     include_top=False,

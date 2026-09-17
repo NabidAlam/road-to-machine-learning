@@ -11,7 +11,6 @@ Train a DQN agent to balance a pole on a cart using **Gymnasium** (CartPole-v1).
 ### Step 1: Setup
 
 ```python
-import gymnasium as gym
 import numpy as np
 import torch
 import torch.nn as nn
@@ -92,7 +91,10 @@ class DQNAgent:
 
 ### Step 4: Training Loop
 
-```python
+```python snippet-skip
+import gymnasium as gym
+
+# Needs gymnasium + longer CPU loop; skip in CI replay
 env = gym.make('CartPole-v1')
 agent = DQNAgent(state_size=4, action_size=2)
 
@@ -121,8 +123,8 @@ for episode in range(episodes):
 
 ### Step 5: Test Agent
 
-```python
-# Test trained agent
+```python snippet-skip
+# Test trained agent (needs env from training cell)
 state, info = env.reset()
 total_reward = 0
 while True:

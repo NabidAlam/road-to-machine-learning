@@ -43,6 +43,16 @@ df_pivot = df.pivot_table(values='value', index='letter', columns='number')
 ### Advanced Grouping
 
 ```python
+# Start from a known DataFrame for grouping demos
+df = pd.DataFrame({
+    'col1': ['a', 'a', 'b', 'b'],
+    'col2': [1, 2, 1, 2],
+    'col3': [10.0, 20.0, 30.0, 40.0],
+    'col4': [1, 1, 1, 1],
+    'category': ['x', 'x', 'y', 'y'],
+    'value': [5.0, 7.0, 9.0, 11.0],
+})
+
 # Group by multiple columns
 df.groupby(['col1', 'col2']).agg({
     'col3': ['mean', 'std'],
@@ -64,17 +74,33 @@ df['group_mean'] = df.groupby('category')['value'].transform('mean')
 def normalize_group(group):
     return (group - group.mean()) / group.std()
 
-df['normalized'] = df.groupby('category')['value'].apply(normalize_group)
+df['normalized'] = df.groupby('category')['value'].transform(normalize_group)
 ```
 
 ### Advanced Merging and Joining
 
 ```python
+# Sample frames for merge demos
+df1 = pd.DataFrame({
+    'key': [1, 2, 3],
+    'key1': ['a', 'b', 'c'],
+    'key2': [10, 20, 30],
+    'left_val': [100, 200, 300],
+})
+df2 = pd.DataFrame({
+    'key': [1, 2, 4],
+    'key1': ['a', 'b', 'd'],
+    'key2': [10, 20, 40],
+    'right_val': [9, 8, 7],
+})
+
 # Merge with multiple keys
 df1.merge(df2, on=['key1', 'key2'], how='inner')
 
 # Merge with different column names
-df1.merge(df2, left_on='key1', right_on='key2')
+df_left = pd.DataFrame({'employee_id': [1, 2], 'name': ['Ada', 'Bob']})
+df_right = pd.DataFrame({'emp_id': [1, 2], 'dept': ['ML', 'Data']})
+df_left.merge(df_right, left_on='employee_id', right_on='emp_id')
 
 # Merge with indicator
 df1.merge(df2, on='key', how='outer', indicator=True)
@@ -89,7 +115,12 @@ pd.concat([df1, df2], keys=['A', 'B'], names=['source', 'index'])
 ### Window Functions
 
 ```python
-# Rolling window
+# Rolling window demos need a datetime index and a value series
+df = pd.DataFrame({
+    'date': pd.date_range('2024-01-01', periods=30, freq='D'),
+    'value': np.arange(30, dtype=float),
+})
+
 df['rolling_mean'] = df['value'].rolling(window=7).mean()
 df['rolling_std'] = df['value'].rolling(window=7).std()
 
@@ -103,7 +134,7 @@ def custom_window(x):
 df['window_diff'] = df['value'].rolling(window=5).apply(custom_window)
 
 # Time-based rolling
-df.set_index('date', inplace=True)
+df = df.set_index('date')
 df['30d_mean'] = df['value'].rolling('30D').mean()
 ```
 
@@ -116,6 +147,11 @@ df['30d_mean'] = df['value'].rolling('30D').mean()
 ```python
 import numpy as np
 import pandas as pd
+
+df = pd.DataFrame({
+    'col1': np.array([1.0, -1.0, 2.0, 0.0]),
+    'col2': np.array([3.0, 4.0, 5.0, 6.0]),
+})
 
 # Slow: Apply with Python function
 def slow_function(row):
@@ -136,6 +172,13 @@ df['result'] = df['col1'].mul(2).add(df['col2'])
 ### Efficient Data Types
 
 ```python
+df = pd.DataFrame({
+    'int_col': np.arange(1000, dtype='int64'),
+    'float_col': np.random.rand(1000).astype('float64'),
+    'category_col': np.random.choice(['a', 'b', 'c'], size=1000),
+    'date_col': pd.date_range('2024-01-01', periods=1000, freq='h'),
+})
+
 # Check memory usage
 df.info(memory_usage='deep')
 
@@ -150,7 +193,19 @@ df['category_col'] = df['category_col'].astype('category')
 df['date_col'] = pd.to_datetime(df['date_col'])
 
 # Check memory savings
-print(f"Before: {df.memory_usage(deep=True).sum() / 1024**2:.2f} MB")
+print(f"Before optimize helper: {df.memory_usage(deep=True).sum() / 1024**2:.2f} MB")
+
+def optimize_dtypes(frame):
+    out = frame.copy()
+    for col in out.columns:
+        if pd.api.types.is_integer_dtype(out[col]):
+            out[col] = pd.to_numeric(out[col], downcast='integer')
+        elif pd.api.types.is_float_dtype(out[col]):
+            out[col] = pd.to_numeric(out[col], downcast='float')
+        elif out[col].dtype == object and out[col].nunique() < 50:
+            out[col] = out[col].astype('category')
+    return out
+
 df = optimize_dtypes(df)
 print(f"After: {df.memory_usage(deep=True).sum() / 1024**2:.2f} MB")
 ```
@@ -158,19 +213,21 @@ print(f"After: {df.memory_usage(deep=True).sum() / 1024**2:.2f} MB")
 ### Parallel Processing
 
 ```python
-from multiprocessing import Pool
+import numpy as np
 import pandas as pd
 
 def process_chunk(chunk):
     # Process chunk
-    return chunk.groupby('category').sum()
+    return chunk.groupby('category').sum(numeric_only=True)
 
-# Split into chunks
+df = pd.DataFrame({
+    'category': np.random.choice(['a', 'b', 'c'], size=100),
+    'value': np.random.randn(100),
+})
+
+# Split into chunks (same pattern as multiprocessing.Pool.map)
 chunks = np.array_split(df, 4)
-
-# Process in parallel
-with Pool(4) as pool:
-    results = pool.map(process_chunk, chunks)
+results = list(map(process_chunk, chunks))
 
 # Combine results
 final_result = pd.concat(results)
@@ -178,7 +235,7 @@ final_result = pd.concat(results)
 
 ### Using Cython/Numba
 
-```python
+```python snippet-skip
 # Numba for numerical computations
 from numba import jit
 import numpy as np
@@ -200,7 +257,7 @@ df['result'] = fast_computation(df['value'].values)
 
 ### Interactive Visualizations with Plotly
 
-```python
+```python snippet-skip
 import plotly.graph_objects as go
 import plotly.express as px
 
@@ -245,7 +302,7 @@ fig.show()
 
 ### Advanced Matplotlib Customization
 
-```python
+```python snippet-skip
 import matplotlib.pyplot as plt
 import seaborn as sns
 
@@ -275,7 +332,7 @@ plt.show()
 
 ### Custom Color Maps
 
-```python
+```python snippet-skip
 import matplotlib.colors as mcolors
 
 # Create custom colormap
@@ -295,7 +352,7 @@ plt.show()
 
 ### Chunk Processing
 
-```python
+```python snippet-skip
 # Process large files in chunks
 chunk_size = 10000
 chunks = []
@@ -311,7 +368,7 @@ final_df = pd.concat(chunks, ignore_index=True)
 
 ### Sparse DataFrames
 
-```python
+```python snippet-skip
 # For data with many zeros
 from scipy import sparse
 
@@ -358,7 +415,7 @@ def optimize_dtypes(df):
 
 ### Automated EDA
 
-```python
+```python snippet-skip
 import pandas_profiling as pp
 
 # Generate comprehensive EDA report
@@ -373,7 +430,7 @@ profile.to_file("eda_report.html")
 
 ### Statistical Tests
 
-```python
+```python snippet-skip
 from scipy import stats
 
 # Normality test
@@ -395,7 +452,7 @@ print(f"ANOVA: p-value = {p_value:.3f}")
 
 ### Outlier Detection
 
-```python
+```python snippet-skip
 # IQR method
 Q1 = df['value'].quantile(0.25)
 Q3 = df['value'].quantile(0.75)
@@ -423,7 +480,7 @@ outliers = df[outlier_labels == -1]
 
 ### ETL Pipeline
 
-```python
+```python snippet-skip
 class ETLPipeline:
     def __init__(self):
         self.data = None
@@ -536,7 +593,7 @@ plt.show()
 
 ### Pandas + Plotly + Streamlit
 
-```python
+```python snippet-skip
 import streamlit as st
 import pandas as pd
 import plotly.express as px

@@ -160,8 +160,8 @@ print(f"\nMissing Percentage:")
 print((df.isnull().sum() / len(df)) * 100)
 
 # Visualize missing values
-import missingno as msno
 try:
+    import missingno as msno
     msno.matrix(df)
     plt.title('Missing Values Pattern', fontsize=14, fontweight='bold')
     plt.tight_layout()
@@ -298,6 +298,10 @@ for col in categorical_cols:
     label_encoders[col] = le
 
 # Method 3: Target Encoding (with cross-validation)
+# Outline: leak-safe target encoding needs careful indexing. Skipped in CI replay.
+```
+
+```python
 from sklearn.model_selection import KFold
 
 def target_encode_cv(df, cat_col, target_col, cv=5):
@@ -307,16 +311,20 @@ def target_encode_cv(df, cat_col, target_col, cv=5):
     
     # Encode target first
     target_encoded = LabelEncoder().fit_transform(df[target_col])
+    col_name = f'{cat_col}_target_encoded'
+    df_encoded[col_name] = np.full(len(df_encoded), np.nan, dtype=float)
     
     for train_idx, val_idx in kf.split(df):
-        train_mean = pd.Series(target_encoded[train_idx]).groupby(
-            df.iloc[train_idx][cat_col]
-        ).mean()
-        df_encoded.loc[val_idx, f'{cat_col}_target_encoded'] = \
-            df.loc[val_idx, cat_col].map(train_mean)
+        train_mean = (
+            pd.DataFrame({cat_col: df.iloc[train_idx][cat_col].values, "_y": target_encoded[train_idx]})
+            .groupby(cat_col)["_y"]
+            .mean()
+        )
+        mapped = df.iloc[val_idx][cat_col].map(train_mean).astype(float)
+        df_encoded.iloc[val_idx, df_encoded.columns.get_loc(col_name)] = mapped.to_numpy()
     
-    global_mean = target_encoded.mean()
-    df_encoded[f'{cat_col}_target_encoded'].fillna(global_mean, inplace=True)
+    global_mean = float(np.mean(target_encoded))
+    df_encoded[col_name] = df_encoded[col_name].fillna(global_mean)
     return df_encoded
 
 df_target = df.copy()
@@ -538,9 +546,14 @@ print("\nFeature Selection Comparison:")
 for method, score in sorted(selection_results.items(), key=lambda x: x[1], reverse=True):
     print(f"  {method:10s}: {score:.3f}")
 
-# Plot RFECV results
+# Plot RFECV results (sklearn renamed grid_scores_ → cv_results_)
+rfecv_scores = (
+    rfecv.cv_results_["mean_test_score"]
+    if hasattr(rfecv, "cv_results_")
+    else rfecv.grid_scores_
+)
 plt.figure(figsize=(10, 6))
-plt.plot(range(1, len(rfecv.grid_scores_) + 1), rfecv.grid_scores_, 'o-')
+plt.plot(range(1, len(rfecv_scores) + 1), rfecv_scores, 'o-')
 plt.axvline(x=rfecv.n_features_, color='r', linestyle='--', 
             label=f'Optimal: {rfecv.n_features_}')
 plt.xlabel('Number of Features Selected', fontsize=12)
@@ -610,7 +623,7 @@ preprocessor = ColumnTransformer(
         
         ('categorical', Pipeline([
             ('imputer', SimpleImputer(strategy='most_frequent')),
-            ('encoder', OneHotEncoder(drop='first', sparse=False, handle_unknown='ignore'))
+            ('encoder', OneHotEncoder(drop='first', sparse_output=False, handle_unknown='ignore'))
         ]), categorical_features)
     ],
     remainder='passthrough'
@@ -626,20 +639,26 @@ final_pipeline = Pipeline([
     ('model', LogisticRegression(random_state=42, max_iter=1000))
 ])
 
-# Fit pipeline
-final_pipeline.fit(X_train, y_train)
+# Fit on raw columns (ColumnTransformer expects original categoricals)
+X_raw = df.drop(columns=['income'])
+y_raw = (df['income'] == '>50K').astype(int)
+X_train_raw, X_test_raw, y_train_raw, y_test_raw = train_test_split(
+    X_raw, y_raw, test_size=0.2, random_state=42, stratify=y_raw
+)
+
+final_pipeline.fit(X_train_raw, y_train_raw)
 
 # Evaluate
-train_score = final_pipeline.score(X_train, y_train)
-test_score = final_pipeline.score(X_test, y_test)
+train_score = final_pipeline.score(X_train_raw, y_train_raw)
+test_score = final_pipeline.score(X_test_raw, y_test_raw)
 
 print(f"Training accuracy: {train_score:.3f}")
 print(f"Test accuracy: {test_score:.3f}")
 
 # Predictions
-y_pred = final_pipeline.predict(X_test)
+y_pred = final_pipeline.predict(X_test_raw)
 print("\nClassification Report:")
-print(classification_report(y_test, y_pred))
+print(classification_report(y_test_raw, y_pred))
 ```
 
 ### Compare Before and After Feature Engineering
@@ -674,7 +693,7 @@ print("=" * 60)
 
 print(f"\n1. Original features: {len(df.columns) - 1}")  # Exclude target
 print(f"2. After encoding: {len(X_final.columns)}")
-print(f"3. After feature selection: {selector.n_features_to_select}")
+print(f"3. After feature selection: {int(np.sum(rfecv.support_))}")
 print(f"4. Final test accuracy: {test_score:.3f}")
 print(f"5. Improvement over baseline: {test_score - baseline_score:.3f}")
 

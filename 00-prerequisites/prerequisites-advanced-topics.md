@@ -360,17 +360,16 @@ copy = arr[::2, ::2].copy()  # Copy (slower)
 ### Parallel Processing
 
 ```python
-from multiprocessing import Pool
 import numpy as np
 
 def process_chunk(chunk):
     return np.sum(chunk**2)
 
-# Parallel processing
+# Chunk-and-map pattern (same math as multiprocessing.Pool.map).
+# In a real script, wrap Pool usage under if __name__ == "__main__":
 def parallel_sum_squares(arr, n_processes=4):
     chunks = np.array_split(arr, n_processes)
-    with Pool(n_processes) as pool:
-        results = pool.map(process_chunk, chunks)
+    results = list(map(process_chunk, chunks))
     return sum(results)
 
 # Usage

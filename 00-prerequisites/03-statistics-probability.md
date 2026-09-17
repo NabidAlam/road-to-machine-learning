@@ -348,7 +348,7 @@ print(f"Median with outlier: {np.median(data_with_outlier)}")  # 35.0
 ```python
 # Mode (most frequent value)
 data = np.array([1, 2, 2, 3, 3, 3, 4, 4, 4, 4])
-mode_result = stats.mode(data)
+mode_result = stats.mode(data, keepdims=True)
 print(f"Mode: {mode_result.mode[0]}")  # 4
 print(f"Count: {mode_result.count[0]}")  # 4
 

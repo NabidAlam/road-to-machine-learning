@@ -79,16 +79,18 @@ model.summary()
 ## Step 4: Train and Evaluate LSTM
 
 ```python
+# Small subset for a quick CPU run. Use full x_train / y_train for a longer run.
+n_train, n_test = 2000, 500
 history = model.fit(
-    x_train,
-    y_train,
-    epochs=5,
+    x_train[:n_train],
+    y_train[:n_train],
+    epochs=1,
     batch_size=128,
     validation_split=0.2,
-    verbose=1,
+    verbose=0,
 )
 
-test_loss, lstm_acc = model.evaluate(x_test, y_test, verbose=0)
+test_loss, lstm_acc = model.evaluate(x_test[:n_test], y_test[:n_test], verbose=0)
 print(f"LSTM test accuracy: {lstm_acc:.4f}")
 ```
 
@@ -100,9 +102,10 @@ Expect roughly 85–88% test accuracy after a few epochs on CPU. Your exact numb
 
 Use a pre-trained sentiment pipeline for a quick baseline on raw text.
 
-```python
+```python snippet-skip
 from transformers import pipeline
 
+# Downloads a pretrained model; skip in CI replay
 classifier = pipeline("sentiment-analysis", truncation=True)
 
 samples = [

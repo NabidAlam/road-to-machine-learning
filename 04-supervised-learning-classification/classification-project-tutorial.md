@@ -69,10 +69,9 @@ plt.rcParams['figure.figsize'] = (10, 6)
 
 # Load data (example with SMS spam dataset)
 # Download from: https://www.kaggle.com/uciml/sms-spam-collection-dataset
-df = pd.read_csv('spam.csv', encoding='latin-1')
+# df = pd.read_csv('spam.csv', encoding='latin-1')
 
-# Alternative: Use built-in dataset or create synthetic data
-# For this tutorial, we'll create a synthetic dataset
+# For this tutorial, create a synthetic dataset so the steps run offline
 from sklearn.datasets import make_classification
 from sklearn.preprocessing import StandardScaler
 
@@ -565,15 +564,13 @@ loaded_scaler = joblib.load('scaler.pkl')
 loaded_selector = joblib.load('feature_selector.pkl')
 
 # Use for prediction
+# Final model was trained on the full feature set (same columns as X_train).
+# Scaler / SelectKBest artifacts are saved for optional pipelines, not this RF path.
 def predict_spam(features):
     """Predict if message is spam"""
-    # Scale features
-    features_scaled = loaded_scaler.transform([features])
-    # Select features
-    features_selected = loaded_selector.transform(features_scaled)
-    # Predict
-    prediction = loaded_model.predict(features_selected)[0]
-    probability = loaded_model.predict_proba(features_selected)[0]
+    features_2d = np.asarray(features).reshape(1, -1)
+    prediction = loaded_model.predict(features_2d)[0]
+    probability = loaded_model.predict_proba(features_2d)[0]
     
     return {
         'prediction': 'Spam' if prediction == 1 else 'Ham',

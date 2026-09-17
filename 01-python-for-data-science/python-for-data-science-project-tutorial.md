@@ -48,7 +48,7 @@ Ship a short data card: source, row counts before/after cleaning, one surprising
 
 ### Option A: Using Public API
 
-```python
+```python snippet-skip
 import requests
 import pandas as pd
 import json
@@ -73,7 +73,7 @@ df = fetch_real_estate_data(api_url, params)
 
 ### Option B: Web Scraping with BeautifulSoup
 
-```python
+```python snippet-skip
 from bs4 import BeautifulSoup
 import requests
 import pandas as pd
@@ -110,9 +110,12 @@ def scrape_real_estate_data(url, max_pages=10):
 def extract_price(listing):
     # Implementation
     pass
+```
 
+```python
 # For this tutorial, we'll use synthetic data
 import numpy as np
+import pandas as pd
 
 np.random.seed(42)
 n_samples = 1000
@@ -204,9 +207,11 @@ df_clean['total_rooms'] = df_clean['bedrooms'] + df_clean['bathrooms']
 df_clean['age'] = 2023 - df_clean['year_built']
 df_clean['month_listed'] = df_clean['date_listed'].dt.month
 df_clean['year_listed'] = df_clean['date_listed'].dt.year
+location_labels = df_clean['location'].copy()
 
 # Categorical encoding
 df_clean = pd.get_dummies(df_clean, columns=['location'], prefix='loc')
+df_clean['location'] = location_labels
 
 print("New features created!")
 print(df_clean.columns.tolist())

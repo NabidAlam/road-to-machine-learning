@@ -494,9 +494,9 @@ class NeuralNetwork:
     def sigmoid(self, x):
         return 1 / (1 + np.exp(-np.clip(x, -250, 250)))
     
-    def sigmoid_derivative(self, x):
-        s = self.sigmoid(x)
-        return s * (1 - s)
+    def sigmoid_derivative(self, a):
+        # a is the sigmoid activation; dσ/dz = a * (1 - a)
+        return a * (1 - a)
     
     def forward(self, X):
         activations = [X]
@@ -545,6 +545,7 @@ X = np.array([[0, 0], [0, 1], [1, 0], [1, 1]])
 y = np.array([[0], [1], [1], [0]])
 
 # Train
+np.random.seed(0)
 nn = NeuralNetwork(layers=[2, 4, 1], learning_rate=0.5)
 
 for epoch in range(4000):

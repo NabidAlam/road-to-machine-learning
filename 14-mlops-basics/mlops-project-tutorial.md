@@ -86,10 +86,13 @@ jobs:
 ## Step 5: Model Registry
 
 ```python
-# Register model
+import mlflow
+
+# Register model (needs a real run id from an earlier tracking session)
 mlflow.register_model("runs:/<run_id>/model", "MyModel")
 
 # Transition to production
+client = mlflow.tracking.MlflowClient()
 client.transition_model_version_stage("MyModel", 1, "Production")
 ```
 

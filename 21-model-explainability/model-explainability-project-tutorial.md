@@ -8,7 +8,6 @@ Step-by-step explainability project for a tabular classifier.
 
 ```python
 import pandas as pd
-import shap
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.datasets import make_classification
@@ -31,6 +30,8 @@ print("Test accuracy:", round(model.score(X_test, y_test), 4))
 ### Step 2: SHAP Global Explanation
 
 ```python
+import shap
+
 explainer = shap.TreeExplainer(model)
 shap_values = explainer.shap_values(X_test)
 
@@ -43,6 +44,8 @@ Review which features push predictions toward approval vs rejection.
 ### Step 3: SHAP Local Explanation
 
 ```python
+import shap
+
 sample_idx = 0
 shap.force_plot(
     explainer.expected_value[1],
@@ -55,9 +58,10 @@ shap.force_plot(
 
 ### Step 4: LIME Local Explanation
 
-```python
+```python snippet-skip
 from lime.lime_tabular import LimeTabularExplainer
 
+# Optional local dep (lime); skip in CI when not installed
 lime_explainer = LimeTabularExplainer(
     X_train.values,
     feature_names=feature_names,

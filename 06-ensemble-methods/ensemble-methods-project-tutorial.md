@@ -59,7 +59,7 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.ensemble import (RandomForestClassifier, AdaBoostClassifier,
                               GradientBoostingClassifier, VotingClassifier,
                               StackingClassifier, BaggingClassifier)
-from sklearn.linear_model import LogisticRegression
+from sklearn.linear_model import LogisticRegression, RidgeClassifier
 from sklearn.svm import SVC
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.tree import DecisionTreeClassifier
@@ -251,12 +251,12 @@ print(f"\nBest Random Forest: {best_rf} ({rf_results[best_rf]['test_score']:.3f}
 # Bagging with different base estimators
 bagging_configs = {
     'Bagging (DT)': BaggingClassifier(
-        base_estimator=DecisionTreeClassifier(max_depth=5),
+        estimator=DecisionTreeClassifier(max_depth=5),
         n_estimators=50,
         random_state=42
     ),
     'Bagging (SVM)': BaggingClassifier(
-        base_estimator=SVC(probability=True),
+        estimator=SVC(probability=True),
         n_estimators=10,  # Fewer for SVM (slower)
         random_state=42
     )

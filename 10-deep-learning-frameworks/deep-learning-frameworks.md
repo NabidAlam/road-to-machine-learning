@@ -269,9 +269,11 @@ model.compile(optimizer='adam', loss='sparse_categorical_crossentropy', metrics=
 # Load data (MNIST example)
 (x_train, y_train), (x_test, y_test) = keras.datasets.mnist.load_data()
 
-# Preprocess
-x_train = x_train.reshape(60000, 784).astype('float32') / 255.0
-x_test = x_test.reshape(10000, 784).astype('float32') / 255.0
+# Preprocess (use a smaller slice for faster demos)
+x_train = x_train[:4000].reshape(4000, 784).astype('float32') / 255.0
+y_train = y_train[:4000]
+x_test = x_test[:1000].reshape(1000, 784).astype('float32') / 255.0
+y_test = y_test[:1000]
 
 # Alternative: Use ImageDataGenerator for augmentation
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
@@ -297,13 +299,13 @@ datagen = ImageDataGenerator(
 history = model.fit(
     x_train, y_train,
     batch_size=128,
-    epochs=10,
+    epochs=3,
     validation_split=0.2,
-    verbose=1,
+    verbose=0,
     callbacks=[
-        keras.callbacks.EarlyStopping(patience=3, restore_best_weights=True),
+        keras.callbacks.EarlyStopping(patience=2, restore_best_weights=True),
         keras.callbacks.ModelCheckpoint('best_model.h5', save_best_only=True, monitor='val_loss'),
-        keras.callbacks.ReduceLROnPlateau(patience=2, factor=0.5, min_lr=1e-7)
+        keras.callbacks.ReduceLROnPlateau(patience=1, factor=0.5, min_lr=1e-7)
     ]
 )
 
@@ -603,10 +605,19 @@ plt.show()
 ### Keras Callbacks
 
 ```python
+# Rebuild a Keras model for callback demos (PyTorch cells above redefine `model`)
+model = keras.Sequential([
+    layers.Dense(128, activation='relu', input_shape=(784,)),
+    layers.Dropout(0.2),
+    layers.Dense(64, activation='relu'),
+    layers.Dense(10, activation='softmax')
+])
+model.compile(optimizer='adam', loss='sparse_categorical_crossentropy', metrics=['accuracy'])
+
 # Early Stopping
 early_stopping = keras.callbacks.EarlyStopping(
     monitor='val_loss',
-    patience=5,
+    patience=2,
     restore_best_weights=True,
     verbose=1
 )
@@ -623,16 +634,9 @@ checkpoint = keras.callbacks.ModelCheckpoint(
 reduce_lr = keras.callbacks.ReduceLROnPlateau(
     monitor='val_loss',
     factor=0.5,
-    patience=2,
+    patience=1,
     min_lr=1e-7,
     verbose=1
-)
-
-# TensorBoard
-tensorboard = keras.callbacks.TensorBoard(
-    log_dir='./logs',
-    histogram_freq=1,
-    write_graph=True
 )
 
 # CSV Logger
@@ -641,9 +645,10 @@ csv_logger = keras.callbacks.CSVLogger('training.log')
 # Use in training
 history = model.fit(
     x_train, y_train,
-    epochs=50,
+    epochs=3,
     validation_split=0.2,
-    callbacks=[early_stopping, checkpoint, reduce_lr, tensorboard, csv_logger]
+    callbacks=[early_stopping, checkpoint, reduce_lr, csv_logger],
+    verbose=0
 )
 ```
 

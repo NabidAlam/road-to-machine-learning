@@ -490,9 +490,8 @@ df['digit_count'] = df['phone'].str.count(r'\d')
 ### Advanced Text Operations
 
 ```python
-# Extract multiple groups
-df['name_parts'] = df['name'].str.extract(r'(\w+)\s+(\w+)')
-df.columns = ['first', 'last']  # Rename columns
+# Extract multiple groups into new columns
+df[['first', 'last']] = df['name'].str.extract(r'(\w+)\s+(\w+)')
 
 # Replace with function
 def format_phone(match):
@@ -538,6 +537,7 @@ def clean_text(text):
     return text
 
 # Apply to DataFrame
+df = pd.DataFrame({'text': ['Hello, World!!!', '  Extra   spaces  ', 'MixED Case #1']})
 df['text_clean'] = df['text'].apply(clean_text)
 ```
 
@@ -605,6 +605,7 @@ def clean_customer_name(name):
     name = re.sub(r'[^a-zA-Z\s-]', '', name)
     return name
 
+df = pd.DataFrame({'customer_name': ['  john DOE!! ', 'mary-jane  smith', 'A.B.']})
 df['customer_name'] = df['customer_name'].apply(clean_customer_name)
 ```
 
@@ -617,6 +618,7 @@ def extract_product_code(text):
     match = re.search(pattern, text.upper())
     return match.group(0) if match else None
 
+df = pd.DataFrame({'description': ['Order PROD-12345 shipped', 'No code here', 'prod98765']})
 df['product_code'] = df['description'].apply(extract_product_code)
 ```
 
@@ -698,6 +700,7 @@ def standardize_phone(phone):
         return f"({digits[:3]}) {digits[3:6]}-{digits[6:]}"
     return phone
 
+df = pd.DataFrame({'phone': ['555-123-4567', '(555) 987.6543', '5551234567']})
 df['phone_standardized'] = df['phone'].apply(standardize_phone)
 ```
 

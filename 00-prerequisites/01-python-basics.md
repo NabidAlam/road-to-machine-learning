@@ -1711,14 +1711,18 @@ def button_clicked():
 button = tk.Button(root, text="Click Me", command=button_clicked)
 button.pack(pady=10)
 
-# Run application
-root.mainloop()
+# Interactive apps call root.mainloop(). Here we refresh once then close.
+root.update_idletasks()
+root.destroy()
 ```
 
 ### Common Widgets
 
 **Entry (Text Input):**
 ```python
+import tkinter as tk
+
+root = tk.Tk()
 entry = tk.Entry(root, width=30)
 entry.pack()
 
@@ -1728,40 +1732,61 @@ def get_text():
 
 button = tk.Button(root, text="Get Text", command=get_text)
 button.pack()
+root.update_idletasks()
+root.destroy()
 ```
 
 **Text Widget (Multi-line):**
 ```python
+import tkinter as tk
+
+root = tk.Tk()
 text_widget = tk.Text(root, width=40, height=10)
 text_widget.pack()
 
 # Get all text
 content = text_widget.get("1.0", tk.END)
+root.update_idletasks()
+root.destroy()
 ```
 
 **Checkbox:**
 ```python
-var = tk.BooleanVar()
+import tkinter as tk
+
+root = tk.Tk()
+var = tk.BooleanVar(master=root)
 checkbox = tk.Checkbutton(root, text="I agree", variable=var)
 checkbox.pack()
 
 def check_value():
     print(f"Checked: {var.get()}")
+
+root.update_idletasks()
+root.destroy()
 ```
 
 **Radio Buttons:**
 ```python
-var = tk.StringVar(value="option1")
+import tkinter as tk
+
+root = tk.Tk()
+var = tk.StringVar(master=root, value="option1")
 
 radio1 = tk.Radiobutton(root, text="Option 1", variable=var, value="option1")
 radio1.pack()
 
 radio2 = tk.Radiobutton(root, text="Option 2", variable=var, value="option2")
 radio2.pack()
+root.update_idletasks()
+root.destroy()
 ```
 
 **Listbox:**
 ```python
+import tkinter as tk
+
+root = tk.Tk()
 listbox = tk.Listbox(root)
 listbox.pack()
 
@@ -1774,32 +1799,50 @@ def get_selected():
     selection = listbox.curselection()
     if selection:
         print(listbox.get(selection[0]))
+
+root.update_idletasks()
+root.destroy()
 ```
 
 ### Layout Managers
 
 **Pack (Simple):**
 ```python
+import tkinter as tk
+
+root = tk.Tk()
 label1 = tk.Label(root, text="Label 1")
 label1.pack(side=tk.LEFT)
 
 label2 = tk.Label(root, text="Label 2")
 label2.pack(side=tk.RIGHT)
+root.update_idletasks()
+root.destroy()
 ```
 
 **Grid (Table-like):**
 ```python
+import tkinter as tk
+
+root = tk.Tk()
 label = tk.Label(root, text="Row 0, Col 0")
 label.grid(row=0, column=0)
 
 button = tk.Button(root, text="Row 1, Col 0")
 button.grid(row=1, column=0)
+root.update_idletasks()
+root.destroy()
 ```
 
 **Place (Absolute):**
 ```python
+import tkinter as tk
+
+root = tk.Tk()
 label = tk.Label(root, text="At (100, 50)")
 label.place(x=100, y=50)
+root.update_idletasks()
+root.destroy()
 ```
 
 ### Example: Simple Calculator
@@ -1831,12 +1874,13 @@ button.pack(pady=5)
 result_label = tk.Label(root, text="Result: ")
 result_label.pack(pady=5)
 
-root.mainloop()
+root.update_idletasks()
+root.destroy()
 ```
 
 ### Data Science Application Example
 
-```python
+```python snippet-skip
 import tkinter as tk
 from tkinter import filedialog
 import pandas as pd

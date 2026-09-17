@@ -92,7 +92,7 @@ def home():
 
 # Run application
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0', port=5000)
+    # Interactive only: app.run(debug=True, host='0.0.0.0', port=5000)
 ```
 
 **Run the application:**
@@ -163,11 +163,22 @@ def login():
 ### URL Building
 
 ```python
-from flask import url_for
+from flask import Flask, url_for
 
-# Generate URLs
-url_for('index')  # Returns '/'
-url_for('show_user', username='john')  # Returns '/user/john'
+app = Flask(__name__)
+
+@app.route('/')
+def index():
+    return 'home'
+
+@app.route('/user/<username>')
+def show_user(username):
+    return username
+
+# url_for needs an active request/app context
+with app.test_request_context():
+    print(url_for('index'))  # Returns '/'
+    print(url_for('show_user', username='john'))  # Returns '/user/john'
 ```
 
 ---
@@ -206,7 +217,7 @@ url_for('show_user', username='john')  # Returns '/user/john'
 ```
 
 **Rendering templates:**
-```python
+```python snippet-skip
 from flask import render_template
 
 @app.route('/')
@@ -216,7 +227,7 @@ def index():
 
 ### Template Variables and Filters
 
-```python
+```python snippet-skip
 @app.route('/dashboard')
 def dashboard():
     data = {
@@ -264,7 +275,7 @@ def dashboard():
 ```
 
 **Processing form data:**
-```python
+```python snippet-skip
 from flask import request, redirect, url_for, flash
 
 @app.route('/form', methods=['GET', 'POST'])
@@ -286,7 +297,7 @@ def submit_form():
 pip install flask-wtf
 ```
 
-```python
+```python snippet-skip
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField
 from wtforms.validators import DataRequired, Email
@@ -312,7 +323,7 @@ def contact():
 
 ### Building REST APIs
 
-```python
+```python snippet-skip
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 
@@ -376,7 +387,7 @@ def predict():
         return jsonify({'error': str(e)}), 400
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    # Interactive only: app.run(debug=True)
 ```
 
 **Testing the API:**
@@ -456,7 +467,7 @@ def get_users():
 
 ### Basic Session Management
 
-```python
+```python snippet-skip
 from flask import Flask, session, redirect, url_for, request
 
 app = Flask(__name__)
@@ -598,7 +609,7 @@ app.config['DATABASE_URL'] = os.environ.get('DATABASE_URL')
 ### Example: Same App in Both
 
 **Flask:**
-```python
+```python snippet-skip
 @app.route('/dashboard')
 def dashboard():
     data = get_data()
@@ -606,7 +617,7 @@ def dashboard():
 ```
 
 **Streamlit:**
-```python
+```python snippet-skip
 import streamlit as st
 
 data = get_data()

@@ -423,13 +423,13 @@ def backward_pass(x, y_true, w1, b1, w2, b2):
     
     return dL_dw1, dL_db1, dL_dw2, dL_db2
 
-# Example usage
-x = np.array([1, 2])
-y_true = np.array([0.5])
+# Example usage (column vectors so matmul shapes stay consistent)
+x = np.array([[1.0], [2.0]])
+y_true = np.array([[0.5]])
 w1 = np.random.randn(3, 2)
-b1 = np.random.randn(3)
+b1 = np.random.randn(3, 1)
 w2 = np.random.randn(1, 3)
-b2 = np.random.randn(1)
+b2 = np.random.randn(1, 1)
 
 grads = backward_pass(x, y_true, w1, b1, w2, b2)
 print("Gradients computed using chain rule (backpropagation)")

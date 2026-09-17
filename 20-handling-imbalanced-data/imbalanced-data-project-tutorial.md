@@ -13,8 +13,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import classification_report, roc_auc_score
 
-# Example: replace with your CSV (e.g. Kaggle credit card fraud)
-# df = pd.read_csv("creditcard.csv")
+# Example: replace with your local fraud table when you have one.
 # For demo, simulate imbalance:
 import numpy as np
 rng = np.random.default_rng(42)

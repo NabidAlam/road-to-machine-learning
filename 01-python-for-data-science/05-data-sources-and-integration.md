@@ -39,7 +39,7 @@ In real-world data science, data comes from various sources:
 
 ### REST APIs with Requests
 
-```python
+```python snippet-skip
 import requests
 import pandas as pd
 import json
@@ -73,7 +73,7 @@ if response.status_code == 200:
 
 ### Handling API Responses
 
-```python
+```python snippet-skip
 def fetch_api_data(url, params=None, headers=None, max_retries=3):
     """
     Fetch data from API with error handling and retries
@@ -120,7 +120,7 @@ df = fetch_all_pages('https://api.example.com/data')
 
 ### Real-World Example: Weather API
 
-```python
+```python snippet-skip
 import requests
 import pandas as pd
 from datetime import datetime
@@ -286,7 +286,7 @@ This section provides a quick overview. The full guide includes:
 
 ### BeautifulSoup for HTML Parsing
 
-```python
+```python snippet-skip
 from bs4 import BeautifulSoup
 import requests
 import pandas as pd
@@ -477,7 +477,7 @@ popup.dismiss()
 
 #### Smartprix Example (E-commerce Scraping)
 
-```python
+```python snippet-skip
 def scrape_smartprix_products(search_term, max_pages=5):
     """
     Scrape product data from Smartprix
@@ -650,7 +650,7 @@ except TimeoutException:
 
 ### Web Scraping Best Practices
 
-```python
+```python snippet-skip
 import time
 import random
 from requests.adapters import HTTPAdapter
@@ -731,7 +731,7 @@ with pd.ExcelWriter('output.xlsx') as writer:
 
 ### JSON
 
-```python
+```python snippet-skip
 # Reading JSON
 df = pd.read_json('data.json')
 df = pd.read_json('data.json', orient='records')  # List of records
@@ -853,7 +853,7 @@ validate_data(df,
 
 ### 3. Data Pipeline
 
-```python
+```python snippet-skip
 def create_data_pipeline(config):
     """
     Create automated data pipeline
@@ -981,7 +981,7 @@ connection = pymysql.connect(
 ### ETL Pipeline Example
 
 **Extract:**
-```python
+```python snippet-skip
 def extract_from_source():
     """Extract data from source (CSV, API, etc.)"""
     # Example: Extract from CSV

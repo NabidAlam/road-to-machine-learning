@@ -59,7 +59,7 @@ pip install streamlit
 
 Create a file `app.py`:
 
-```python
+```python snippet-skip
 import streamlit as st
 
 st.title("My First Streamlit App")
@@ -80,7 +80,7 @@ The app will open in your browser at `http://localhost:8501`
 
 ### Text Elements
 
-```python
+```python snippet-skip
 import streamlit as st
 
 # Title and headers
@@ -106,7 +106,7 @@ st.latex(r"E = mc^2")
 
 ### Data Display
 
-```python
+```python snippet-skip
 import pandas as pd
 import numpy as np
 
@@ -132,7 +132,7 @@ st.metric("Sales", "$1,234", "-5%")
 
 ### Images and Media
 
-```python
+```python snippet-skip
 from PIL import Image
 
 # Images
@@ -152,7 +152,7 @@ st.audio("audio.mp3")
 
 ### Matplotlib and Seaborn
 
-```python
+```python snippet-skip
 import matplotlib.pyplot as plt
 import seaborn as sns
 
@@ -169,7 +169,7 @@ st.pyplot(fig)
 
 ### Plotly (Interactive)
 
-```python
+```python snippet-skip
 import plotly.express as px
 
 # Interactive scatter plot
@@ -183,7 +183,7 @@ st.plotly_chart(fig, use_container_width=True)
 
 ### Built-in Charts
 
-```python
+```python snippet-skip
 # Line chart
 st.line_chart(df)
 
@@ -207,7 +207,7 @@ st.map(df_map)
 
 ### Input Widgets
 
-```python
+```python snippet-skip
 # Text input
 name = st.text_input("Enter your name", "Default value")
 st.write(f"Hello, {name}!")
@@ -233,7 +233,7 @@ if uploaded_file:
 
 ### Selection Widgets
 
-```python
+```python snippet-skip
 # Selectbox
 option = st.selectbox("Choose an option", ['Option 1', 'Option 2', 'Option 3'])
 
@@ -251,7 +251,7 @@ if agree:
 
 ### Sliders
 
-```python
+```python snippet-skip
 # Slider
 value = st.slider("Select a value", 0, 100, 50)
 
@@ -264,7 +264,7 @@ float_value = st.slider("Float value", 0.0, 1.0, 0.5)
 
 ### Buttons
 
-```python
+```python snippet-skip
 # Button
 if st.button("Click me"):
     st.write("Button clicked!")
@@ -283,7 +283,7 @@ st.download_button("Download CSV", csv, "data.csv", "text/csv")
 
 ### Model Prediction Interface
 
-```python
+```python snippet-skip
 import streamlit as st
 import pandas as pd
 import pickle
@@ -315,7 +315,7 @@ if st.button("Predict"):
 
 ### Data Exploration Dashboard
 
-```python
+```python snippet-skip
 import streamlit as st
 import pandas as pd
 import plotly.express as px
@@ -357,7 +357,7 @@ if uploaded_file:
 
 ### Model Performance Dashboard
 
-```python
+```python snippet-skip
 import streamlit as st
 import pandas as pd
 import plotly.express as px
@@ -409,7 +409,7 @@ st.plotly_chart(fig)
 
 ### Caching
 
-```python
+```python snippet-skip
 @st.cache
 def expensive_computation(data):
     # This function will only run once and cache the result
@@ -420,7 +420,7 @@ result = expensive_computation(large_data)
 
 ### Session State
 
-```python
+```python snippet-skip
 # Initialize session state
 if 'counter' not in st.session_state:
     st.session_state.counter = 0
@@ -434,7 +434,7 @@ st.write(f"Counter: {st.session_state.counter}")
 
 ### Sidebar
 
-```python
+```python snippet-skip
 # Everything in sidebar
 st.sidebar.title("Sidebar Title")
 st.sidebar.selectbox("Choose", ['A', 'B', 'C'])
@@ -442,7 +442,7 @@ st.sidebar.selectbox("Choose", ['A', 'B', 'C'])
 
 ### Columns
 
-```python
+```python snippet-skip
 col1, col2, col3 = st.columns(3)
 
 with col1:
@@ -457,7 +457,7 @@ with col3:
 
 ### Expander
 
-```python
+```python snippet-skip
 with st.expander("Click to expand"):
     st.write("Hidden content here")
 ```
@@ -494,7 +494,7 @@ with st.expander("Click to expand"):
 
 ## Complete Example: ML Model Dashboard
 
-```python
+```python snippet-skip
 import streamlit as st
 import pandas as pd
 import numpy as np
