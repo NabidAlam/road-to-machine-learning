@@ -1,10 +1,13 @@
 # Complete Regression Project Tutorial
 
-Step-by-step walkthrough of building a real-world regression model from data exploration to deployment.
+Walk a house-price regression from load to tuned Ridge. You will treat scaling, leakage, and error metrics the way a production ML review would.
 
 ## Table of Contents
 
 - [Project Overview](#project-overview)
+- [Why this matters in production](#why-this-matters-in-production)
+- [Concept to application](#concept-to-application)
+- [Stand-out signal](#stand-out-signal)
 - [Step 1: Data Loading and Exploration](#step-1-data-loading-and-exploration)
 - [Step 2: Data Cleaning and Preprocessing](#step-2-data-cleaning-and-preprocessing)
 - [Step 3: Feature Engineering](#step-3-feature-engineering)
@@ -19,7 +22,7 @@ Step-by-step walkthrough of building a real-world regression model from data exp
 
 **Project**: Predict House Prices
 
-**Dataset**: California Housing Dataset (or any house price dataset)
+**Dataset**: California Housing Dataset (built into scikit-learn)
 
 **Goal**: Build a regression model to predict median house values
 
@@ -28,6 +31,18 @@ Step-by-step walkthrough of building a real-world regression model from data exp
 **Difficulty**: Intermediate
 
 **Time**: 1-2 hours
+
+### Why this matters in production
+
+House price models look friendly until someone ships them. Then you meet target capping, spatial leakage, and stakeholders who hear “R² = 0.6” as “60% accurate.” Before you tune `alpha`, decide the decision the number supports (list price band, risk flag, ranking) and what a costly miss looks like in dollars.
+
+### Concept to application
+
+Ridge shrinks coefficients so correlated features do not explode. That is the same idea behind many tabular pricing and demand models: linear structure you can audit, plus regularization so the fit survives noisy columns. Scaling before Ridge is not optional trivia. Without it, `alpha` does not mean what you think across feature ranges.
+
+### Stand-out signal
+
+Show a short model card in your write-up: train/test protocol, whether geography leaked, RMSE in dollars, and one failure case (for example, luxury tails). Interviewers remember that more than another GridSearch screenshot. Outcomes still vary by role and market. This project builds evidence. It does not guarantee a job.
 
 ---
 
@@ -149,36 +164,46 @@ print(df.isnull().sum())
 
 ### Handle Outliers
 
-```python
-# Detect outliers using IQR method
+Blindly dropping tails can erase the rare homes you care about most. Use IQR as a diagnostic first. Only filter when the business problem says those rows are sensor noise, not signal.
+
+```python snippet-id=regression-remove-outliers-iqr
+import pandas as pd
+
+
 def remove_outliers_iqr(df, column):
+    """Return rows whose column value lies inside the 1.5 IQR fences."""
     Q1 = df[column].quantile(0.25)
     Q3 = df[column].quantile(0.75)
     IQR = Q3 - Q1
     lower_bound = Q1 - 1.5 * IQR
     upper_bound = Q3 + 1.5 * IQR
     return df[(df[column] >= lower_bound) & (df[column] <= upper_bound)]
+```
 
-# Remove outliers from target variable
+```python
+# Detect outliers using IQR method (optional cleaning step)
 print(f"Original shape: {df.shape}")
-df_clean = remove_outliers_iqr(df, 'MedHouseVal')
+df_clean = remove_outliers_iqr(df, "MedHouseVal")
 print(f"After removing outliers: {df_clean.shape}")
-print(f"Removed {len(df) - len(df_clean)} outliers ({100*(len(df) - len(df_clean))/len(df):.1f}%)")
+print(
+    f"Removed {len(df) - len(df_clean)} outliers "
+    f"({100 * (len(df) - len(df_clean)) / len(df):.1f}%)"
+)
 
 # Visualize before and after
 fig, axes = plt.subplots(1, 2, figsize=(12, 5))
-axes[0].boxplot(df['MedHouseVal'])
-axes[0].set_title('Before Outlier Removal')
-axes[0].set_ylabel('MedHouseVal')
+axes[0].boxplot(df["MedHouseVal"])
+axes[0].set_title("Before Outlier Removal")
+axes[0].set_ylabel("MedHouseVal")
 
-axes[1].boxplot(df_clean['MedHouseVal'])
-axes[1].set_title('After Outlier Removal')
-axes[1].set_ylabel('MedHouseVal')
+axes[1].boxplot(df_clean["MedHouseVal"])
+axes[1].set_title("After Outlier Removal")
+axes[1].set_ylabel("MedHouseVal")
 
 plt.tight_layout()
 plt.show()
 
-df = df_clean  # Use cleaned data
+df = df_clean  # Use cleaned data only if you accept the bias this introduces
 ```
 
 ### Prepare Features and Target
@@ -503,10 +528,13 @@ cv_scores = cross_val_score(
 
 print(f"\nCross-Validation Results:")
 print(f"  Mean RMSE: {np.sqrt(-cv_scores.mean()):.3f}")
-print(f"  Std RMSE: {np.sqrt(cv_scores.std()):.3f}")
-print(f"  95% Confidence Interval: "
-      f"[{np.sqrt(-cv_scores.mean() - 1.96*cv_scores.std()):.3f}, "
-      f"{np.sqrt(-cv_scores.mean() + 1.96*cv_scores.std()):.3f}]")
+rmse_folds = np.sqrt(-cv_scores)
+print(f"  Std RMSE: {rmse_folds.std():.3f}")
+print(
+    f"  95% Confidence Interval: "
+    f"[{rmse_folds.mean() - 1.96 * rmse_folds.std():.3f}, "
+    f"{rmse_folds.mean() + 1.96 * rmse_folds.std():.3f}]"
+)
 ```
 
 ---
@@ -588,7 +616,9 @@ print("\nModel and scaler saved successfully!")
 
 ## Complete Code Summary
 
-```python
+Self-contained pipeline used by the private hub snippet suite. Fit the scaler on train only. Tune Ridge with a small alpha grid.
+
+```python snippet-id=regression-california-ridge-pipeline
 # Complete Regression Project Pipeline
 import numpy as np
 import pandas as pd
@@ -599,57 +629,57 @@ from sklearn.linear_model import Ridge
 from sklearn.metrics import mean_squared_error, r2_score
 import joblib
 
-# 1. Load and explore data
+# 1. Load data
 housing = fetch_california_housing()
 df = pd.DataFrame(housing.data, columns=housing.feature_names)
-df['MedHouseVal'] = housing.target
+df["MedHouseVal"] = housing.target
 
-# 2. Prepare data
+# 2. Split before fitting any transformer
 X = df[housing.feature_names]
-y = df['MedHouseVal']
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+y = df["MedHouseVal"]
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.2, random_state=42
+)
 
-# 3. Scale features
+# 3. Scale features (fit on train only)
 scaler = StandardScaler()
 X_train_scaled = scaler.fit_transform(X_train)
 X_test_scaled = scaler.transform(X_test)
 
-# 4. Train and tune model
-ridge_params = {'alpha': [0.001, 0.01, 0.1, 1.0, 10.0, 100.0]}
-ridge_grid = GridSearchCV(Ridge(), ridge_params, cv=5, scoring='neg_mean_squared_error')
+# 4. Train and tune Ridge
+ridge_params = {"alpha": [0.001, 0.01, 0.1, 1.0, 10.0, 100.0]}
+ridge_grid = GridSearchCV(
+    Ridge(), ridge_params, cv=5, scoring="neg_mean_squared_error"
+)
 ridge_grid.fit(X_train_scaled, y_train)
 
-# 5. Evaluate
+# 5. Evaluate on held-out test
 best_model = ridge_grid.best_estimator_
 y_pred = best_model.predict(X_test_scaled)
-rmse = np.sqrt(mean_squared_error(y_test, y_pred))
-r2 = r2_score(y_test, y_pred)
+rmse = float(np.sqrt(mean_squared_error(y_test, y_pred)))
+r2 = float(r2_score(y_test, y_pred))
 
 print(f"RMSE: {rmse:.3f}")
-print(f"R²: {r2:.3f}")
+print(f"R2: {r2:.3f}")
+print(f"Best alpha: {ridge_grid.best_params_['alpha']}")
 
-# 6. Save model
-joblib.dump(best_model, 'model.pkl')
-joblib.dump(scaler, 'scaler.pkl')
+# 6. Persist artifacts (safe to run in a temp folder)
+joblib.dump(best_model, "model.pkl")
+joblib.dump(scaler, "scaler.pkl")
 ```
 
 ---
 
 ## Key Takeaways
 
-1. **Always explore data first** - Understand distributions and relationships
-2. **Handle outliers appropriately** - Don't ignore them
-3. **Check assumptions** - Use residual analysis
-4. **Scale features** - Essential for regularization
-5. **Tune hyperparameters** - Use cross-validation
-6. **Evaluate comprehensively** - Multiple metrics and diagnostics
-7. **Interpret results** - Understand what your model learned
+1. **Explore before you fit** - distributions and leakage beat fancy models
+2. **Treat outlier filters as a product choice** - not a default delete
+3. **Scale before Ridge/Lasso** - otherwise regularization is distorted
+4. **Report RMSE in dollars** - stakeholders do not think in raw target units
+5. **Tune with cross-validation** - one test score is not a design review
+6. **Save the scaler with the model** - inference must match training transforms
 
 ---
 
-**Next Steps:**
-- Try different feature engineering techniques
-- Experiment with other regression algorithms
-- Deploy your model as an API
-- Move to [04-supervised-learning-classification](../04-supervised-learning-classification/README.md)
+**Try next:** Rebuild this with a residual plot and a short model card, then continue to [04-supervised-learning-classification](../04-supervised-learning-classification/README.md).
 

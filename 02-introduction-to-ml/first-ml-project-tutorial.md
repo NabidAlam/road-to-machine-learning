@@ -1,10 +1,13 @@
 # Your First ML Project: Step-by-Step Tutorial
 
-Complete walkthrough of building your first machine learning project from scratch. Follow along to build a real ML model!
+Build a small classifier end to end. You will define the problem, split data without leakage, train a model, and read the metrics like an engineer reviewing a PR.
 
 ## Table of Contents
 
 - [Project Overview](#project-overview)
+- [Why this matters in production](#why-this-matters-in-production)
+- [Concept to application](#concept-to-application)
+- [Stand-out signal](#stand-out-signal)
 - [Step 1: Problem Definition](#step-1-problem-definition)
 - [Step 2: Data Collection](#step-2-data-collection)
 - [Step 3: Data Exploration](#step-3-data-exploration)
@@ -32,6 +35,18 @@ Complete walkthrough of building your first machine learning project from scratc
 **Difficulty**: Beginner-friendly
 
 **Time**: 30-60 minutes
+
+### Why this matters in production
+
+Iris is a toy dataset. The skills are not. Production classification still fails for the same reasons beginners fail here: leaky splits, metrics that hide minority errors, and models you cannot explain to a teammate. Practice naming the decision (what you predict), the cost of a wrong call, and how you will measure success before you touch `fit`.
+
+### Concept to application
+
+You are estimating `P(class | features)` with a Random Forest. The forest averages many shallow trees so one weird sample does not dominate. In a real product the same pattern shows up as tabular classifiers behind fraud flags, support ticket routing, or quality checks. The math is supervised learning. The job is owning the split, the metric, and the failure mode.
+
+### Stand-out signal
+
+In a portfolio or interview, do not stop at “I got 96% accuracy on Iris.” Say how you prevented leakage (`stratify`, fit scalers on train only), what you would watch if class balance shifted, and which metric you would trust if one species mattered more than the others. That is the difference between a notebook demo and evidence you can ship.
 
 ---
 
@@ -479,53 +494,43 @@ for i, (pred, prob) in enumerate(zip(predictions, probabilities)):
 
 ## Complete Code
 
-Here's the complete code in one script:
+Here's the complete code in one script. The hub snippet suite runs this block to prove the pipeline stays consistent for learners.
 
-```python
+```python snippet-id=first-ml-iris-pipeline
 # Complete First ML Project
 import numpy as np
 import pandas as pd
-import matplotlib.pyplot as plt
-import seaborn as sns
 from sklearn.datasets import load_iris
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
-from sklearn.metrics import accuracy_score, classification_report, confusion_matrix
+from sklearn.metrics import accuracy_score
 
 # 1. Load data
 iris = load_iris()
 df = pd.DataFrame(data=iris.data, columns=iris.feature_names)
-df['species'] = iris.target
-df['species_name'] = df['species'].map({0: 'setosa', 1: 'versicolor', 2: 'virginica'})
+df["species"] = iris.target
 
-# 2. Explore data
-print("Dataset Info:")
-print(df.info())
-print("\nSummary:")
-print(df.describe())
-
-# 3. Prepare data
+# 2. Prepare data (split before any fit that learns from X)
 X = df[iris.feature_names]
-y = df['species']
+y = df["species"]
 X_train, X_test, y_train, y_test = train_test_split(
     X, y, test_size=0.2, random_state=42, stratify=y
 )
 
-# 4. Train model
+# 3. Train model
 model = RandomForestClassifier(n_estimators=100, random_state=42, max_depth=5)
 model.fit(X_train, y_train)
 
-# 5. Evaluate
+# 4. Evaluate on held-out data only
 y_pred = model.predict(X_test)
 accuracy = accuracy_score(y_test, y_pred)
-print(f"\nTest Accuracy: {accuracy:.4f}")
+print(f"Test Accuracy: {accuracy:.4f}")
 
-# 6. Make predictions
+# 5. Predict one new row with the same feature order as training
 new_flower = np.array([[5.1, 3.5, 1.4, 0.2]])
 prediction = model.predict(new_flower)
 print(f"Prediction: {iris.target_names[prediction[0]]}")
-
-print("\nOK: First ML project complete!")
+print(f"Train size: {X_train.shape[0]} Test size: {X_test.shape[0]}")
 ```
 
 ---
