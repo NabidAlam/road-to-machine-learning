@@ -1341,6 +1341,6 @@ perm_importance = permutation_importance(model, X_test, y_test)
 
 
 > [!RECALL]
-> What is the difference between global and local explainability?
+> When do you need local explainability instead of only a global feature ranking?
 >
-> Global explains overall model behavior; local explains one prediction (e.g. why this loan was denied).
+> When you must explain one prediction. Global methods summarize overall behavior. Local tools such as LIME or a SHAP waterfall explain a single instance.

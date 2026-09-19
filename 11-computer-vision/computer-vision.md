@@ -2498,6 +2498,11 @@ model.fit(train_data, epochs=5)
 
 ---
 
+> [!RECALL]
+> Why prefer convolutions over fully connected layers for images?
+>
+> The same local filters are shared across space. That captures translation-tolerant patterns with far fewer parameters than dense layers on raw pixels.
+
 ## Next Steps
 
 - Practice with image datasets (MNIST, CIFAR-10, custom)
@@ -2508,9 +2513,3 @@ model.fit(train_data, epochs=5)
 - Move to [12-natural-language-processing](../12-natural-language-processing/README.md)
 
 **Try next:** Train a small CNN on CIFAR-10 or Fashion-MNIST. Plot train vs val loss before you reach for transfer learning.
-
-
-> [!RECALL]
-> Why are convolutions a natural fit for images?
->
-> They share local filters across space, capturing translation-tolerant patterns with far fewer parameters than dense layers.

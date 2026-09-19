@@ -1216,6 +1216,11 @@ print(f"Multi-Level Ensemble Accuracy: {accuracy_score(y_test, final_pred):.3f}"
 
 ---
 
+> [!RECALL]
+> How do bagging and boosting differ in what error they mainly reduce?
+>
+> Bagging averages bootstrap models to reduce variance. Boosting adds models sequentially to correct leftover errors and mainly reduce bias.
+
 ## Next Steps
 
 - Practice with real datasets (Kaggle competitions)
@@ -1224,9 +1229,3 @@ print(f"Multi-Level Ensemble Accuracy: {accuracy_score(y_test, final_pred):.3f}"
 - Move to [07-feature-engineering](../07-feature-engineering/README.md)
 
 **Try next:** Train a single model and a simple ensemble on the same split. Compare lift vs training cost.
-
-
-> [!RECALL]
-> In one sentence, why do ensembles often beat a single model?
->
-> Combining diverse models reduces variance (and sometimes bias) by averaging out individual errors.

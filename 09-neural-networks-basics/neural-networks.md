@@ -1065,6 +1065,11 @@ for x, y_true, y_pred in zip(X_xor, y_xor, predictions):
 
 ---
 
+> [!RECALL]
+> Why does a single-layer perceptron fail on XOR-style problems that an MLP can learn?
+>
+> One linear weighted sum cannot separate XOR. Hidden layers plus nonlinear activations create the curved decision regions needed.
+
 ## Next Steps
 
 - Practice building networks from scratch
@@ -1073,9 +1078,3 @@ for x, y_true, y_pred in zip(X_xor, y_xor, predictions):
 - Move to [10-deep-learning-frameworks](../10-deep-learning-frameworks/README.md) for frameworks
 
 **Try next:** Implement one forward pass of a tiny net in NumPy before you call nn.Linear.
-
-
-> [!RECALL]
-> What does the loss function measure during neural network training?
->
-> How wrong the model’s predictions are versus the targets. Training adjusts weights to reduce that error.

@@ -304,6 +304,11 @@ X_reduced = pca.fit_transform(X)
 | **Unsupervised** | Unlabeled (X only) | Find patterns | Customer groups |
 | **Reinforcement** | Experience | Maximize rewards | Game playing |
 
+> [!RECALL]
+> When do you need labeled targets, and when is unlabeled structure discovery enough?
+>
+> Supervised needs labels (X, y). Unsupervised finds patterns in X only. Reinforcement learns from rewards over time.
+
 ### Training settings and learner families
 
 These labels show up in courses and papers; they are **orthogonal** to supervised vs unsupervised (they describe *how* training runs and *what* is stored).
@@ -889,9 +894,3 @@ print(classification_report(y_test, y_pred, target_names=iris.target_names))
 - Or [04-supervised-learning-classification](../04-supervised-learning-classification/README.md) for classification
 
 **Try next:** State train vs test leakage in one sentence using your last project as the example.
-
-
-> [!RECALL]
-> Name the three main types of machine learning.
->
-> Supervised, unsupervised, and reinforcement learning.

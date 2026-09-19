@@ -648,6 +648,6 @@ cost_matrix = {
 
 
 > [!RECALL]
-> Why can accuracy be misleading on imbalanced classes?
+> Why must you split before SMOTE or other resampling?
 >
-> A model that always predicts the majority class can score high accuracy while never finding the rare class.
+> Resampling the full set before the split leaks test information into training. Fit resampling on the training split only and leave the test set untouched.

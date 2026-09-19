@@ -1246,6 +1246,11 @@ plt.show()
 4. **Customization**: Always label axes and add titles
 5. **Save high-quality**: Use high DPI for publications
 
+> [!RECALL]
+> Why decide the question a plot must answer before picking colors and decorations?
+>
+> Decoration do not fix a muddled message. One clear question lets a stranger read the data in a few seconds.
+
 ---
 
 ## Common Patterns
@@ -1446,9 +1451,3 @@ if __name__ == '__main__':
 - Move to [02-introduction-to-ml](../02-introduction-to-ml/README.md) for ML concepts
 
 **Try next:** Redraw one chart so a stranger can answer the business question in five seconds.
-
-
-> [!RECALL]
-> What should a good plot answer before you decorate it?
->
-> One clear question about the data a stranger can read in a few seconds.

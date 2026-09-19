@@ -51,6 +51,11 @@ NumPy (Numerical Python) is a library for numerical computing. It provides:
 - **Foundation**: Most ML libraries (Pandas, Scikit-learn, TensorFlow) built on NumPy
 - **Vectorization**: Perform operations on entire arrays at once
 
+> [!RECALL]
+> When should you prefer a NumPy array over a Python list for numeric work?
+>
+> When you need vectorized ops, fixed dtype, and fast multi-dimensional math.
+
 ### Installation
 
 ```python
@@ -1102,9 +1107,3 @@ print(flattened)  # Back to 1D
 - Move to [02-pandas.md](02-pandas.md) to learn data manipulation
 
 **Try next:** Rewrite one Python loop as vectorized NumPy. Check speed and shape.
-
-
-> [!RECALL]
-> When should you prefer a NumPy array over a Python list for numeric work?
->
-> When you need vectorized ops, fixed dtype, and fast multi-dimensional math.

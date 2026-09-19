@@ -1667,6 +1667,11 @@ dvc repro
 
 ---
 
+> [!RECALL]
+> Why can unit tests pass while a live model still fails after deploy?
+>
+> Tests check code contracts. Monitoring catches production drift, shifting data distributions, falling metrics, and silent feature pipeline breaks over time.
+
 ## Next Steps
 
 - Set up MLflow for your projects
@@ -1677,9 +1682,3 @@ dvc repro
 - Practice with [16-projects-beginner](../16-projects-beginner/README.md)
 
 **Try next:** Add a training script that pins deps, logs metrics, and writes a model version tag.
-
-
-> [!RECALL]
-> What does model monitoring catch that unit tests usually miss?
->
-> Production drift: changing data distributions, degraded metrics, and silent feature pipeline breaks over time.

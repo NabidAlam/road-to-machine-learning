@@ -2611,4 +2611,4 @@ ORDER BY difference DESC;
 > [!RECALL]
 > When do you use INNER JOIN versus LEFT JOIN?
 >
-> INNER keeps only matching rows in both tables; LEFT keeps all left-table rows and nulls for non-matches.
+> INNER JOIN keeps only rows that match in both tables. LEFT JOIN keeps every left-table row and fills nulls when the right side has no match.

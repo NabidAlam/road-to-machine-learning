@@ -1041,6 +1041,11 @@ print(f"SMAPE: {smape:.2f}%")
 
 ---
 
+> [!RECALL]
+> Why is a random train/test split a leakage risk for time series?
+>
+> Future values can leak into training and inflate scores. Keep time order. Train on the past. Evaluate on later periods.
+
 ## Next Steps
 
 - Practice with real time series datasets
@@ -1051,9 +1056,3 @@ print(f"SMAPE: {smape:.2f}%")
 - Move to next module or practice projects
 
 **Try next:** Plot lag features and ACF once. Then forbid random shuffle in your split.
-
-
-> [!RECALL]
-> Why must you be careful with random train/test splits on time series?
->
-> Future values can leak into training; prefer time-ordered splits (train past → test future).

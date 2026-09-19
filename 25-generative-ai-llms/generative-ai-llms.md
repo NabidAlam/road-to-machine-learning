@@ -142,6 +142,6 @@ For production deployment patterns, see:
 **Next**: Complete the Advanced Project "LLM Chatbot & RAG System" to apply these concepts.
 
 > [!RECALL]
-> What does “next-token prediction” mean for a language model?
+> Why build a RAG system instead of relying on the LLM alone?
 >
-> The model is trained to predict the probability of the next token given previous tokens. Generation samples from that distribution.
+> RAG retrieves external documents so answers can use knowledge beyond the model's parameters. This module frames RAG as knowledge-augmented AI for document Q&A.

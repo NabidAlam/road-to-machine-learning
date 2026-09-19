@@ -997,10 +997,9 @@ def spectral_subtraction(noisy_audio, noise_profile, alpha=2.0):
 
 ---
 
-**Next Steps**: Explore [Advanced Topics](audio-speech-processing-advanced-topics.md) for voice cloning, music generation with transformers, real-time processing, and speech enhancement.
-
-
 > [!RECALL]
 > Why convert raw waveforms to spectrograms (or MFCCs) for many speech models?
 >
-> They turn time-domain audio into a time–frequency representation that is denser and easier for models to learn from.
+> They show frequency content over time. That denser time-frequency view is easier for models to learn from than the raw waveform alone.
+
+**Next Steps**: Explore [Advanced Topics](audio-speech-processing-advanced-topics.md) for voice cloning, music generation with transformers, real-time processing, and speech enhancement.

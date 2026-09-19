@@ -832,6 +832,11 @@ model = AutoModelForSequenceClassification.from_pretrained(model_name, num_label
 
 ---
 
+> [!RECALL]
+> Why prefer dense word embeddings instead of one-hot token IDs?
+>
+> Embeddings map tokens to lower-dimensional vectors where similar words sit near each other. One-hot is sparse and treats every ID as unrelated.
+
 ## Next Steps
 
 - Practice with text datasets (IMDB, news articles)
@@ -841,9 +846,3 @@ model = AutoModelForSequenceClassification.from_pretrained(model_name, num_label
 - Move to [13-model-deployment](../13-model-deployment/README.md)
 
 **Try next:** Fine-tune a small encoder on a classification task you care about. Compare to bag-of-words.
-
-
-> [!RECALL]
-> What problem do embeddings solve for text?
->
-> They map tokens into dense vectors so models can use semantic similarity instead of sparse one-hot IDs.

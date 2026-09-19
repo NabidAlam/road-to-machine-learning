@@ -1580,6 +1580,11 @@ for name, encoder in encodings.items():
 
 ---
 
+> [!RECALL]
+> Why is fitting a scaler on the full dataset before the train/test split a leakage risk?
+>
+> The transform sees future test values. Fit scalers and other stats on training data only, then apply that fit to validation and test.
+
 ## Next Steps
 
 - Practice with real datasets
@@ -1588,9 +1593,3 @@ for name, encoder in encodings.items():
 - Move to [08-unsupervised-learning](../08-unsupervised-learning/README.md)
 
 **Try next:** Spend one hour on features before you try a fancier model. Log both scores.
-
-
-> [!RECALL]
-> What is data leakage in feature engineering?
->
-> Using information that would not be available at prediction time (e.g. fitting scalers on the full dataset before the split).

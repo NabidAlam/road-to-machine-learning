@@ -47,6 +47,11 @@ Regression predicts continuous numerical values. Unlike classification (which pr
 - **Want to predict a quantity**
 - **Relationship between features and target**
 
+> [!RECALL]
+> When should you choose regression instead of classification?
+>
+> When the target is a continuous quantity (price, temperature). Classification is for discrete class labels.
+
 ---
 
 ## Linear Regression
@@ -718,9 +723,3 @@ print(f"R²: {r2_score(y, y_pred):.3f}")
 - Move to [04-supervised-learning-classification](../04-supervised-learning-classification/README.md) for classification
 
 **Try next:** Fit linear regression first. Only add polynomials if residual plots demand it.
-
-
-> [!RECALL]
-> What does a regression model predict, and how is that different from classification?
->
-> A continuous numeric target (e.g. price, temperature). Classification predicts a discrete class label.

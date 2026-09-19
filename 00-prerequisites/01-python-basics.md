@@ -556,6 +556,11 @@ else:
 # Output: You are an adult
 ```
 
+> [!RECALL]
+> Why can wrong indentation change which lines run inside an if or loop?
+>
+> Indentation defines the code block. Wrong indent binds lines to the wrong parent or raises IndentationError. It is not optional style.
+
 **Comparison Operators:**
 ```python
 x = 10
@@ -1951,9 +1956,3 @@ root.mainloop()
 - Move to [02-linear-algebra.md](02-linear-algebra.md) when comfortable
 
 **Try next:** Rewrite one example without looking. If you stall, peek once, then finish solo.
-
-
-> [!RECALL]
-> What does indentation control in Python?
->
-> Code block structure (functions, loops, conditionals). Not just style.

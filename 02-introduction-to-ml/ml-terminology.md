@@ -367,6 +367,11 @@ test_accuracy = 0.60   # Poor on test
 - Regularization
 - Early stopping
 
+> [!RECALL]
+> Why can near-perfect training accuracy still mean a useless model on new data?
+>
+> Overfitting memorizes training noise. Train score looks great while test performance collapses.
+
 ### Underfitting
 
 **Definition**: Model too simple to capture patterns in data.
@@ -616,9 +621,3 @@ Actual Negative   TN      FP
 ---
 
 **Try next:** Define bias, variance, and leakage in your own words without opening the page.
-
-
-> [!RECALL]
-> In one sentence, what is overfitting?
->
-> The model fits training noise so well that it fails on new data.

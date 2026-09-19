@@ -131,6 +131,11 @@ print(df_from_arr)
 df = pd.DataFrame(data)
 ```
 
+> [!RECALL]
+> When is a Series enough, and when do you need a DataFrame instead?
+>
+> Series for one labeled column of values. DataFrame when you need a table of aligned columns.
+
 ### DataFrame Properties
 
 ```python
@@ -1838,9 +1843,3 @@ result = df.groupby('category')['value'].mean().compute()
 - Move to [03-visualization.md](03-visualization.md) to learn data visualization
 
 **Try next:** Take a slow pandas pipeline and profile which step dominates. Only then consider Polars.
-
-
-> [!RECALL]
-> What is the difference between a Series and a DataFrame?
->
-> A Series is one labeled column; a DataFrame is a table of aligned Series (columns).

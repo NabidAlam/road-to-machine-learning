@@ -2606,6 +2606,11 @@ def detect_data_drift(new_features, training_features):
 
 ---
 
+> [!RECALL]
+> When would you choose batch scoring instead of online real-time inference?
+>
+> When many rows can wait for a scheduled or bulk job and you do not need a low-latency prediction per user request.
+
 ## Next Steps
 
 - Practice deploying models to different platforms
@@ -2618,9 +2623,3 @@ def detect_data_drift(new_features, training_features):
 - Move to [14-mlops-basics](../14-mlops-basics/README.md)
 
 **Try next:** Wrap your best model in a FastAPI endpoint and send one real prediction request.
-
-
-> [!RECALL]
-> Name one difference between offline batch scoring and online real-time inference.
->
-> Batch processes many rows on a schedule; online serves low-latency predictions per request (API).

@@ -1265,6 +1265,11 @@ print("\nClassification Report:")
 print(classification_report(y_test, y_pred, target_names=iris.target_names))
 ```
 
+> [!RECALL]
+> When should you prefer precision over recall?
+>
+> When false positives are costly (for example, flagging spam that is not spam). Prefer recall when missing positives is costly.
+
 ### ROC-AUC (Binary Classification)
 
 **ROC Curve**: Plots True Positive Rate vs False Positive Rate at different thresholds
@@ -1850,9 +1855,3 @@ flowchart TB
 - Move to [05-model-evaluation-optimization](../05-model-evaluation-optimization/README.md)
 
 **Try next:** Compare two classifiers on the same folds. Pick with a pre-registered metric.
-
-
-> [!RECALL]
-> When should you prefer precision over recall?
->
-> When false positives are costly (e.g. flagging spam that isn’t). Prefer recall when missing positives is costly.

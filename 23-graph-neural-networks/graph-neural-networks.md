@@ -809,10 +809,9 @@ class ResidualGCN(nn.Module):
 
 ---
 
-**Next Steps**: Explore [Advanced Topics](graph-neural-networks-advanced-topics.md) for graph transformers, dynamic graphs, heterogeneous graphs, and graph generation.
-
-
 > [!RECALL]
-> What extra information do GNNs use that tabular models usually ignore?
+> Why can a GNN beat a tabular model when relationships between entities matter?
 >
-> Graph structure. Nodes exchange messages along edges so predictions can depend on neighbors.
+> Tabular models usually treat rows as independent. GNNs pass messages along edges so predictions can use neighbor features and graph structure.
+
+**Next Steps**: Explore [Advanced Topics](graph-neural-networks-advanced-topics.md) for graph transformers, dynamic graphs, heterogeneous graphs, and graph generation.

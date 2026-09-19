@@ -1119,6 +1119,11 @@ print(f"Sample mean: {sample_mean:.2f}")
 # Interpretation: We're 95% confident the true mean lies in this interval
 ```
 
+> [!RECALL]
+> Why report a confidence interval instead of only a single accuracy number?
+>
+> A CI gives a range of plausible values under sampling uncertainty. A lone point estimate hides that uncertainty.
+
 ---
 
 ## Hypothesis Testing
@@ -1541,9 +1546,3 @@ Perform t-tests to compare model performances.
 ---
 
 **Try next:** Re-run one model eval with a confidence interval or bootstrap. Notice how point accuracy alone misleads.
-
-
-> [!RECALL]
-> What is a confidence interval telling you that a single accuracy number is not?
->
-> A range of plausible values under sampling uncertainty, not just one point estimate.

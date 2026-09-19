@@ -509,6 +509,6 @@ Before choosing an algorithm, ask:
 
 
 > [!RECALL]
-> What should you decide before picking an algorithm?
+> Why is picking an algorithm before clarifying the problem type a mistake?
 >
-> Problem type (output), data shape/size, and constraints like interpretability or latency.
+> Output type, data shape/size, and constraints like interpretability or latency decide the shortlist. Algorithm-first skips that fit.

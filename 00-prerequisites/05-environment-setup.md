@@ -148,6 +148,11 @@ pip freeze > requirements.txt
 pip install -r requirements.txt
 ```
 
+> [!RECALL]
+> Why create a virtual environment before installing ML packages when other projects share the same machine?
+>
+> Isolates package versions per project so one install does not break another project's dependencies.
+
 ---
 
 ## Installing Essential Libraries
@@ -530,9 +535,3 @@ print(sys.executable)
 - [Git Guide](../resources/git_guide.md)
 
 **Try next:** Copy the full traceback into search. Fix the first root cause, not the last symptom.
-
-
-> [!RECALL]
-> Why use a virtual environment for ML projects?
->
-> Isolate package versions per project so installs do not break other work.
