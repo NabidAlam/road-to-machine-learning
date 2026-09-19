@@ -37,7 +37,7 @@ Same guide, three speeds: someone curious, someone wiring their first service, s
 | You are… | Suggested path |
 |-----------|----------------|
 | **New to production ML** | Start with [key terms](#key-terms-in-simple-words), then [introduction](#introduction-to-ml-system-design), [real world shapes](#real-world-systems-you-are-designing-for), and the [lifecycle](#end-to-end-ml-lifecycle). Read the [case study](#case-study-a-debit-card-risk-score) once like a short story. On the first pass you can skip code blocks entirely. |
-| **Comfortable with ML code, lighter on ops** | [Lifecycle](#end-to-end-ml-lifecycle) → [case study](#case-study-a-debit-card-risk-score) → [training versus serving](#why-training-and-serving-should-match) → [serving](#model-serving-architecture) → [monitoring](#monitoring-observability) → [testing and rollouts](#testing-safe-rollouts). |
+| **Comfortable with ML code, lighter on ops** | [Lifecycle](#end-to-end-ml-lifecycle), [case study](#case-study-a-debit-card-risk-score), [training versus serving](#why-training-and-serving-should-match), [serving](#model-serving-architecture), [monitoring](#monitoring-observability), [testing and rollouts](#testing-safe-rollouts). |
 | **Interview mode** | Skim the glossary, read the case study, then walk the [interview checklist](#interview-and-design-review-checklist) out loud. Drill only the sections where your answers feel thin. |
 
 **How callouts work**
@@ -329,8 +329,8 @@ model = DataParallel(model, device_ids=[0, 1, 2, 3])
 ```
 
 **Throughput versus latency tradeoff:**
-- Higher batch size → Higher throughput, Higher latency
-- Lower batch size → Lower throughput, Lower latency
+- Higher batch size, Higher throughput, Higher latency
+- Lower batch size, Lower throughput, Lower latency
 - Need to balance based on use case
 
 ### GPU sharing and online versus batch inference
@@ -1327,7 +1327,7 @@ class ScoreRequest(BaseModel):
 
 **Champion and challenger:** production keeps **champion**; **challenger** receives a slice (e.g. 5%) for split comparison on business KPIs, not only accuracy.
 
-**Canary deploy:** route 1% → 10% → 100% while watching error rate and p99 latency; automatic rollback if SLO breached.
+**Canary deploy:** route 1%, 10%, 100% while watching error rate and p99 latency; automatic rollback if SLO breached.
 
 **Shadow traffic:** duplicate live requests to a new version; discard responses; compare latencies and distribution of scores, **users never see failures** from the candidate.
 
@@ -1348,7 +1348,7 @@ def choose_model_version(user_id: str) -> str:
 
 ## Interview and design review checklist
 
-> **Put simply,** interviews reward **structured thinking**, not buzzwords. Walk top to bottom: users → data → model → serving → reliability → observability → rollout → cost and legal.
+> **Put simply,** interviews reward **structured thinking**, not buzzwords. Walk top to bottom: users, data, model, serving, reliability, observability, rollout, cost and legal.
 
 When someone says “design a recommendation system” or “fraud detection at scale,” walk through:
 

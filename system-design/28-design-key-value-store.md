@@ -18,7 +18,7 @@ This is the chapter where most of the earlier chapters lock into place: consiste
 ## Estimate
 
 - **Keys:** 10B
-- **Average value size:** 1 KB → 10 TB of data
+- **Average value size:** 1 KB, 10 TB of data
 - **Reads per second peak:** 1M
 - **Writes per second peak:** 200K
 

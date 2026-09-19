@@ -157,12 +157,12 @@ By the end of this module, you should be able to:
 - [SSL/TLS Explained (PowerCert)](https://www.youtube.com/watch?v=jQVwXa5CQ2Q)
 - [ML Deployment (Sentdex)](https://www.youtube.com/playlist?list=PLQVvvaa0QuDfKTOs3Keq_kaG2P55YRn5v)
 
-**[Complete Detailed Guide →](deployment.md)**
+**[Complete Detailed Guide](deployment.md)**
 
 **Additional Resources:**
-- [Advanced Topics →](deployment-advanced-topics.md): Advanced deployment patterns, Kubernetes, edge deployment
-- [Project Tutorial →](deployment-project-tutorial.md): Step-by-step model deployment project
-- [Quick Reference →](deployment-quick-reference.md): Quick lookup guide for model deployment
+- [Advanced Topics](deployment-advanced-topics.md): Advanced deployment patterns, Kubernetes, edge deployment
+- [Project Tutorial](deployment-project-tutorial.md): Step-by-step model deployment project
+- [Quick Reference](deployment-quick-reference.md): Quick lookup guide for model deployment
 
 ---
 

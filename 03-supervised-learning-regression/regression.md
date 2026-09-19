@@ -6,12 +6,12 @@ This guide covers regression algorithms for predicting continuous values.
 
 Beginner-friendly checklist; each line links to **code** below or to the intro foundations.
 
-- **Linear regression and evaluation metrics** → [Linear regression](#linear-regression), [Evaluation metrics](#evaluation-metrics)
-- **Multiple and polynomial regression** → [Linear regression](#linear-regression) (multiple features), [Polynomial regression](#polynomial-regression)
-- **Data distribution analysis** (percentiles, histogram, boxplot) → [Data distribution analysis](#data-distribution-analysis)
-- **Feature relationships** (scatter, covariance, correlation) → [Feature relationship analysis](#feature-relationship-analysis)
-- **End-to-end persistence** (save and load model) → [End-to-end train, evaluate, and persist](#end-to-end-train-evaluate-and-persist)
-- **Statistics foundations** → [Introduction to ML: Descriptive stats](../02-introduction-to-ml/introduction-to-ml.md#descriptive-statistics-and-sampling-foundations)
+- **Linear regression and evaluation metrics**. See [Linear regression](#linear-regression), [Evaluation metrics](#evaluation-metrics)
+- **Multiple and polynomial regression**. See [Linear regression](#linear-regression) (multiple features), [Polynomial regression](#polynomial-regression)
+- **Data distribution analysis** (percentiles, histogram, boxplot), [Data distribution analysis](#data-distribution-analysis)
+- **Feature relationships** (scatter, covariance, correlation), [Feature relationship analysis](#feature-relationship-analysis)
+- **End-to-end persistence** (save and load model), [End-to-end train, evaluate, and persist](#end-to-end-train-evaluate-and-persist)
+- **Statistics foundations**. See [Introduction to ML: Descriptive stats](../02-introduction-to-ml/introduction-to-ml.md#descriptive-statistics-and-sampling-foundations)
 
 ## Table of Contents
 
@@ -566,7 +566,7 @@ plt.show()
 
 ## End-to-end train, evaluate, and persist
 
-Minimal **save → load → predict** flow (real deployment adds APIs, monitoring, and versioning, see the [model deployment](../13-model-deployment/README.md) module).
+Minimal **save, load, predict** flow (real deployment adds APIs, monitoring, and versioning, see the [model deployment](../13-model-deployment/README.md) module).
 
 ```python
 from pathlib import Path

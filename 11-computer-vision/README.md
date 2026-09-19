@@ -139,12 +139,12 @@ By the end of this module, you should be able to:
 - [CIFAR-10 Classification](https://www.kaggle.com/c/cifar-10)
 - [Image Classification Projects](https://www.kaggle.com/learn/computer-vision)
 
-**[Complete Detailed Guide →](computer-vision.md)**
+**[Complete Detailed Guide](computer-vision.md)**
 
 **Additional Resources:**
-- [Advanced Topics →](computer-vision-advanced-topics.md): Advanced architectures, object detection, optimization
-- [Project Tutorial →](computer-vision-project-tutorial.md): Step-by-step CIFAR-10 classification project
-- [Quick Reference →](computer-vision-quick-reference.md): Quick lookup guide for computer vision
+- [Advanced Topics](computer-vision-advanced-topics.md): Advanced architectures, object detection, optimization
+- [Project Tutorial](computer-vision-project-tutorial.md): Step-by-step CIFAR-10 classification project
+- [Quick Reference](computer-vision-quick-reference.md): Quick lookup guide for computer vision
 
 ---
 

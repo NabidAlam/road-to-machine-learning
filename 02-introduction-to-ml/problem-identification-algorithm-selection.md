@@ -67,7 +67,7 @@ flowchart TB
 **Question**: What are we trying to predict?
 
 #### A. Continuous Value (Number)
-→ **Regression Problem**
+**Regression Problem**
 
 **Examples:**
 - House price ($250,000)
@@ -81,7 +81,7 @@ flowchart TB
 - Can perform arithmetic operations
 
 #### B. Category/Class (Label)
-→ **Classification Problem**
+**Classification Problem**
 
 **Examples:**
 - Email type (spam/not spam)
@@ -95,7 +95,7 @@ flowchart TB
 - Cannot perform arithmetic
 
 #### C. No Clear Output (Pattern Discovery)
-→ **Unsupervised Learning**
+**Unsupervised Learning**
 
 **Examples:**
 - Customer groups (unknown)
@@ -112,15 +112,15 @@ flowchart TB
 **Question**: Do we have labeled data?
 
 #### Labeled Data Available
-→ **Supervised Learning**
+**Supervised Learning**
 - Regression or Classification
 
 #### No Labels Available
-→ **Unsupervised Learning**
+**Unsupervised Learning**
 - Clustering or Dimensionality Reduction
 
 #### Can Get Labels Through Interaction
-→ **Reinforcement Learning**
+**Reinforcement Learning**
 - Agent learns from rewards
 
 ---
@@ -390,9 +390,9 @@ flowchart TB
 **Solution**: Classification
 
 **Algorithm**: 
-- **Interpretability important** → Decision Tree or Logistic Regression
-- **Performance important** → Random Forest or XGBoost
-- **Complex patterns** → Neural Networks
+- **Interpretability important**, Decision Tree or Logistic Regression
+- **Performance important**, Random Forest or XGBoost
+- **Complex patterns**, Neural Networks
 
 ### Example 3: Customer Segmentation
 
@@ -406,8 +406,8 @@ flowchart TB
 **Solution**: Unsupervised Learning - Clustering
 
 **Algorithm**: 
-- **Know number of segments** → K-Means
-- **Unknown number** → DBSCAN or Hierarchical Clustering
+- **Know number of segments**, K-Means
+- **Unknown number**, DBSCAN or Hierarchical Clustering
 
 ### Example 4: Sales Forecasting
 
@@ -421,9 +421,9 @@ flowchart TB
 **Solution**: Regression
 
 **Algorithm**:
-- **Simple pattern** → Linear Regression
-- **Complex pattern** → Random Forest or XGBoost
-- **Time series** → ARIMA, LSTM (covered later)
+- **Simple pattern**, Linear Regression
+- **Complex pattern**, Random Forest or XGBoost
+- **Time series**, ARIMA, LSTM (covered later)
 
 ---
 

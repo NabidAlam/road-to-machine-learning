@@ -4,7 +4,7 @@ Build LLM apps with prompt engineering, vector search, RAG, and agents. Treat de
 
 **How this module fits:** Stage 7 in the main README. Best after Module 12 (NLP) or alongside it if you learn by building products. **This folder is a hub:** [generative-ai-llms.md](generative-ai-llms.md) maps topics; the real depth is in [resources/generative_ai_comprehensive_guide.md](../resources/generative_ai_comprehensive_guide.md), [resources/rag_comprehensive_guide.md](../resources/rag_comprehensive_guide.md), and the linked guides below. Use the project tutorial and quick reference here for hands-on practice.
 
-**Suggested path:** Prompt engineering → embeddings and vector search → RAG pipeline → agents → production checklist in [resources/genai_production_deployment.md](../resources/genai_production_deployment.md).
+**Suggested path:** Prompt engineering, embeddings and vector search, RAG pipeline, agents, production checklist in [resources/genai_production_deployment.md](../resources/genai_production_deployment.md).
 
 ##  What You'll Learn
 
@@ -146,12 +146,12 @@ By the end of this module, you should be able to:
 - [Hugging Face Spaces](https://huggingface.co/spaces): Deploy and share GenAI apps
 - [LangChain Playground](https://smith.langchain.com/): Experiment with LangChain
 
-**[Complete Detailed Guide →](generative-ai-llms.md)**
+**[Complete Detailed Guide](generative-ai-llms.md)**
 
 **Additional Resources:**
-- [Advanced Topics →](generative-ai-llms-advanced-topics.md): Advanced RAG, agent architectures, optimization
-- [Project Tutorial →](generative-ai-llms-project-tutorial.md): Step-by-step RAG system project
-- [Quick Reference →](generative-ai-llms-quick-reference.md): Quick lookup guide for GenAI
+- [Advanced Topics](generative-ai-llms-advanced-topics.md): Advanced RAG, agent architectures, optimization
+- [Project Tutorial](generative-ai-llms-project-tutorial.md): Step-by-step RAG system project
+- [Quick Reference](generative-ai-llms-quick-reference.md): Quick lookup guide for GenAI
 - [Generative AI Guide](../resources/generative_ai_comprehensive_guide.md): Concept overview
 - [RAG Guide](../resources/rag_comprehensive_guide.md): Deeper RAG implementation notes
 - [LangChain Guide](../resources/langchain_guide.md): LangChain framework details
@@ -161,6 +161,6 @@ By the end of this module, you should be able to:
 ---
 
 **Previous Module:** [12-natural-language-processing](../12-natural-language-processing/README.md)  
-**Next (recommended stage order):** [20-handling-imbalanced-data](../20-handling-imbalanced-data/README.md) (Stage 7.5) → then [13-model-deployment](../13-model-deployment/README.md) (Stage 8)
+**Next (recommended stage order):** [20-handling-imbalanced-data](../20-handling-imbalanced-data/README.md) (Stage 7.5), then [13-model-deployment](../13-model-deployment/README.md) (Stage 8)
 
 **Folder order note:** Module 19 (SQL) is **Stage 1.5**, study it in parallel with Modules 01–02, not after this module. See [FOUNDATION_AND_JOB_READINESS.md](../FOUNDATION_AND_JOB_READINESS.md).

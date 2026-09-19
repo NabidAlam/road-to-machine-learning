@@ -1,6 +1,6 @@
 # Quick Start Guide
 
-Get the environment running in about 5 minutes. For full navigation, read [START-HERE.md](START-HERE.md) first. **Follow stages, not folder numbers 00→25**.
+Get the environment running in about 5 minutes. For full navigation, read [START-HERE.md](START-HERE.md) first. **Follow stages, not folder numbers 00 through 25**.
 
 > **Note:** The week-by-week schedule below is an **accelerated path** for learners who already study full-time. The main [README](README.md) estimates **15–22 months** full-time for the complete curriculum.
 
@@ -42,9 +42,9 @@ pip install jupyter notebook
 
 | Your background | Start here |
 |-----------------|------------|
-| Complete beginner | [GETTING_STARTED.md](GETTING_STARTED.md) → Iris project |
-| Know Python | Module 01 → Module 02 |
-| Know ML basics | Pick modules you need → projects in module 16–18 |
+| Complete beginner | [GETTING_STARTED.md](GETTING_STARTED.md), Iris project |
+| Know Python | Module 01, Module 02 |
+| Know ML basics | Pick modules you need, projects in module 16–18 |
 
 ## Step 5: First Project
 

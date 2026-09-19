@@ -351,9 +351,9 @@ def next_greater(nums):
 
 - i=0 x=2 stack=[0] ans=[-1,-1,-1,-1,-1]
 - i=1 x=1 stack=[0,1] (2 > 1)
-- i=2 x=2: pop 1 (nums[1]=1 < 2) → ans[1]=2, stack=[0]; push 2 → stack=[0,2]
-- i=3 x=4: pop 2 → ans[2]=4, pop 0 → ans[0]=4; push 3 → stack=[3]
-- i=4 x=3: push 4 → stack=[3,4]
+- i=2 x=2: pop 1 (nums[1]=1 < 2), ans[1]=2, stack=[0]; push 2, stack=[0,2]
+- i=3 x=4: pop 2, ans[2]=4, pop 0, ans[0]=4; push 3, stack=[3]
+- i=4 x=3: push 4, stack=[3,4]
 
 Final: `ans = [4, 2, 4, -1, -1]`
 
@@ -406,9 +406,9 @@ def max_sliding_window(nums, k):
 
 - i=0 x=1 dq=[0]
 - i=1 x=3 pop 0 (1 <= 3) dq=[1]
-- i=2 x=-1 dq=[1,2] → output nums[1]=3
-- i=3 x=-3 remove none, dq=[1,2,3] → output nums[1]=3
-- i=4 x=5 remove out-of-window index 1, then pop 3,2 (<=5), dq=[4] → output nums[4]=5
+- i=2 x=-1 dq=[1,2], output nums[1]=3
+- i=3 x=-3 remove none, dq=[1,2,3], output nums[1]=3
+- i=4 x=5 remove out-of-window index 1, then pop 3,2 (<=5), dq=[4], output nums[4]=5
 
 Outputs: `[3, 3, 5]`
 
@@ -494,8 +494,8 @@ def binary_search(nums, target):
 
 `nums=[1,3,4,7,9]`, `target=7`
 
-- l=0 r=4 m=2 nums[m]=4 < 7 → l=3
-- l=3 r=4 m=3 nums[m]=7 == 7 → return 3
+- l=0 r=4 m=2 nums[m]=4 < 7, l=3
+- l=3 r=4 m=3 nums[m]=7 == 7, return 3
 
 ### Binary search on answer (pattern)
 
@@ -562,10 +562,10 @@ def min_ship_capacity(weights, days):
 `weights=[3,2,2,4,1,4]`, `days=3`
 
 - lo=4 hi=16
-- mid=10 → can_ship=True → hi=9 ans=10
-- mid=6  → can_ship=True → hi=5 ans=6
-- mid=4  → can_ship=False → lo=5
-- mid=5  → can_ship=True → hi=4 ans=5
+- mid=10, can_ship=True, hi=9 ans=10
+- mid=6, can_ship=True, hi=5 ans=6
+- mid=4, can_ship=False, lo=5
+- mid=5, can_ship=True, hi=4 ans=5
 
 Answer: `5`
 
@@ -738,10 +738,10 @@ def subsets(nums):
 
 `nums=[1,2]`
 
-- i=0 skip 1 → i=1 skip 2 → add []
-- i=1 take 2 → add [2]
-- i=0 take 1 → i=1 skip 2 → add [1]
-- i=1 take 2 → add [1,2]
+- i=0 skip 1, i=1 skip 2, add []
+- i=1 take 2, add [2]
+- i=0 take 1, i=1 skip 2, add [1]
+- i=1 take 2, add [1,2]
 
 ---
 
@@ -847,8 +847,8 @@ def longest_unique_substring(s):
 
 - r=0 'a' seen={a} l=0 best=1
 - r=1 'b' seen={a,b} l=0 best=2
-- r=2 'b' already in seen → remove s[l]='a' (l=1), still 'b' in seen → remove s[l]='b' (l=2), now add 'b' → seen={b}, best=2
-- r=3 'a' add → seen={b,a} best=2
+- r=2 'b' already in seen, remove s[l]='a' (l=1), still 'b' in seen, remove s[l]='b' (l=2), now add 'b', seen={b}, best=2
+- r=3 'a' add, seen={b,a} best=2
 
 ### 11.2 Two pointers (same direction): remove duplicates in sorted array
 
@@ -1281,11 +1281,11 @@ def top_k_largest(nums, k):
 
 `nums=[5, 1, 9, 2, 7]`, `k=2`
 
-- push 5 → heap=[5]
-- push 1 → heap=[1,5] (min is 1)
-- x=9 > 1 → replace → heap=[5,9]
-- x=2 not > 5 → ignore → heap=[5,9]
-- x=7 > 5 → replace → heap=[7,9]
+- push 5, heap=[5]
+- push 1, heap=[1,5] (min is 1)
+- x=9 > 1, replace, heap=[5,9]
+- x=2 not > 5, ignore, heap=[5,9]
+- x=7 > 5, replace, heap=[7,9]
 
 Answer: `[9, 7]`
 
@@ -1330,9 +1330,9 @@ def merge_k_sorted(lists):
 
 `lists=[[1,4,7],[2,5],[3,6,9]]`
 
-- heap starts with (1,A0), (2,B0), (3,C0) → pop 1, push 4
-- heap has 2,3,4 → pop 2, push 5
-- heap has 3,4,5 → pop 3, push 6
+- heap starts with (1,A0), (2,B0), (3,C0), pop 1, push 4
+- heap has 2,3,4, pop 2, push 5
+- heap has 3,4,5, pop 3, push 6
 
 Output begins: `[1,2,3,...]` and continues sorted.
 
@@ -1360,9 +1360,9 @@ def min_meeting_rooms(intervals):
 
 `intervals=[(0,30),(5,10),(15,20)]`
 
-- start 0: push 30 → ends=[30]
-- start 5: 30 > 5 → push 10 → ends=[10,30]
-- start 15: 10 <= 15 → replace with 20 → ends=[20,30]
+- start 0: push 30, ends=[30]
+- start 5: 30 > 5, push 10, ends=[10,30]
+- start 15: 10 <= 15, replace with 20, ends=[20,30]
 
 Answer: `2`
 
@@ -1849,7 +1849,7 @@ See also: `resources/practice_platforms.md`.
 
 - Pick **one topic/week**, solve **8–15 problems**
 - Start with **Easy**, then do **Medium**
-- For each problem: write brute force → optimize → explain complexity
+- For each problem: write brute force, optimize, explain complexity
 
 **Note**: Problem difficulties are based on the platform’s labels.
 

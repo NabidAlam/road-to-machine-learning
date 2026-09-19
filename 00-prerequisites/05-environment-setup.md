@@ -242,7 +242,7 @@ jupyter lab
 
 ### Creating Your First Notebook
 
-1. Click "New" → "Python 3"
+1. Click "New", "Python 3"
 2. Write code in cells
 3. Press `Shift + Enter` to run cell
 4. Add markdown cells for documentation

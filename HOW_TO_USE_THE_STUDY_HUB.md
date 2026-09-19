@@ -51,13 +51,13 @@ This guide is for the **[Nabid In Motion Study Hub](https://nabidinmotion.com/)*
 Use this loop for **maximum retention and portfolio output**:
 
 ```
-Read → Reproduce → Reflect → Build → Review
+Read, Reproduce, Reflect, Build, Review
 ```
 
 | Step | On the study hub | On your machine |
 |------|------------------|-----------------|
-| **Read** | Open one lesson; skim objectives first |, |
-| **Reproduce** |, | Re-type examples without the guide open |
+| **Read** | Open one lesson; skim objectives first | |
+| **Reproduce** | | Re-type examples without the guide open |
 | **Reflect** | Mark **Confused** if anything is fuzzy; add a bookmark | One sentence in a notes file: “I learned X” |
 | **Build** | Update **Project tracker** (separate from lesson checkboxes) | Run `starter.py` or project scripts in `16–18/` |
 | **Review** | Check weekly goals; revisit **Confused** lessons | Spaced repetition: quick-ref sheets |
@@ -141,7 +141,7 @@ Adjust goals on the homepage to match your real schedule. Consistency beats mara
 
 | Mistake | Fix |
 |---------|-----|
-| Browsing modules 00 → 25 in folder order | Follow [stages in START-HERE](START-HERE.md#default-learning-order-short-version) |
+| Browsing modules 00 through 25 in folder order | Follow [stages in START-HERE](START-HERE.md#default-learning-order-short-version) |
 | Reading 1,900-line guides in one sitting | Objectives + one section + code; skim advanced files later |
 | Only using the study hub, never cloning GitHub | Clone repo; projects and `starter.py` files run locally |
 | Checking all lessons done, zero GitHub repos | Project tracker + public portfolio |
@@ -192,4 +192,4 @@ Use [exit gates in FOUNDATION_AND_JOB_READINESS.md](FOUNDATION_AND_JOB_READINESS
 
 ---
 
-**Start now:** [Study Hub homepage](https://nabidinmotion.com/) → pick your role → **Continue Learning**.
+**Start now:** [Study Hub homepage](https://nabidinmotion.com/), pick your role, **Continue Learning**.

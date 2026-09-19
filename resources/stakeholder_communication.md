@@ -132,7 +132,7 @@ Effective communication is crucial for ML projects because:
 
 ## Presenting Results
 
-### The Structure: Problem → Solution → Impact
+### The Structure: Problem, Solution, Impact
 
 #### 1. Start with the Business Problem
 
@@ -167,10 +167,10 @@ Effective communication is crucial for ML projects because:
 
 **1. Business Impact Dashboard**
 ```
-Current State → With ML Model
-- Churn Rate: 5% → 4.25% (15% reduction)
-- Retention Cost: $500K → $425K (savings)
-- Customer Lifetime Value: $1,000 → $1,150
+Current State, With ML Model
+- Churn Rate: 5% to 4.25% (15% reduction)
+- Retention Cost: $500K to $425K (savings)
+- Customer Lifetime Value: $1,000 to $1,150
 ```
 
 **2. Before/After Comparison**
@@ -236,7 +236,7 @@ ML model that predicts churn 30 days in advance
 
 #### Classification Problems
 
-**Technical Metric → Business Value:**
+**Technical Metric, Business Value:**
 
 | Technical | Business Translation |
 |-----------|---------------------|
@@ -255,7 +255,7 @@ Business: "We correctly identify 95% of flagged transactions as fraud,
 
 #### Regression Problems
 
-**Technical Metric → Business Value:**
+**Technical Metric, Business Value:**
 
 | Technical | Business Translation |
 |-----------|---------------------|
@@ -469,11 +469,11 @@ ROI = (Gains - Costs) / Costs × 100%
 ### 3. Address Concerns Proactively
 
 **Common Concerns:**
-- **"Will this replace our team?"** → "No, it augments their work, 
+- **"Will this replace our team?"**, "No, it augments their work, 
   allowing them to focus on high-value tasks."
-- **"What if the model is wrong?"** → "We have human oversight for 
+- **"What if the model is wrong?"**, "We have human oversight for 
   critical decisions, and the model is 85% accurate."
-- **"How much will this cost?"** → "Initial investment is $X, with 
+- **"How much will this cost?"**, "Initial investment is $X, with 
   $Y/year operating costs, but it saves $Z annually."
 
 ### 4. Use Visual Aids
@@ -486,10 +486,10 @@ ROI = (Gains - Costs) / Costs × 100%
 ### 5. Prepare for Questions
 
 **Common Questions:**
-- "How accurate is it?" → Have business translation ready
-- "What's the ROI?" → Have detailed calculation
-- "How long to implement?" → Have realistic timeline
-- "What are the risks?" → Have mitigation strategies
+- "How accurate is it?", Have business translation ready
+- "What's the ROI?", Have detailed calculation
+- "How long to implement?", Have realistic timeline
+- "What are the risks?", Have mitigation strategies
 
 ### 6. Follow Up
 

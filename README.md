@@ -51,18 +51,18 @@
 
 | Role | Focus | Est. Time | Key Modules | Full Guide |
 |------|-------|-----------|-------------|------------|
-| **Data Analyst** | Insights & Reports | 12-18 months | 00, 01, 19, 20, 21 | [View Guide →](resources/career_roadmap_guide.md#data-analyst) |
-| **Data Scientist** | Predictive Models | 18-28 months | 00-08, 15, 19-21 | [View Guide →](resources/career_roadmap_guide.md#data-scientist) |
-| **ML Engineer** | Production ML | 24-36 months | 00-10, 13-14, 19-21 | [View Guide →](resources/career_roadmap_guide.md#machine-learning-engineer) |
-| **LLM Engineer** | Language Models | 24-36 months | 00-01, 05, 09-10, 12, 25, 13-14, 19 | [View Guide →](resources/career_roadmap_guide.md#llm-engineer-large-language-models) |
-| **GenAI Solution Architect** | Production GenAI | 22-32 months | 00-01, 02, 05, 09-10, 12, 25, 13-14, 19 | [View Guide →](resources/career_roadmap_guide.md#genai-solution-architect) |
-| **Computer Vision Engineer** | Image Processing | 22-34 months | 00-01, 04-05, 09-11, 13-14, 19, 21 | [View Guide →](resources/career_roadmap_guide.md#computer-vision-engineer) |
-| **AI Engineer** | Generalist AI | 36-54 months | 00-15, 19-21, 22-24, 25 | [View Guide →](resources/career_roadmap_guide.md#ai-engineer-generalist) |
-| **Data Engineer** | Data Infrastructure | 18-28 months | 00-01, 13-14, 19-20 | [View Guide →](resources/career_roadmap_guide.md#data-engineer) |
-| **MLOps Engineer** | ML Operations | 24-36 months | 00-01, 05, 09-10, 12, 25, 13-14, 19 | [View Guide →](resources/career_roadmap_guide.md#mlops-engineer) |
-| **Research Scientist** | Novel methods, careful experiments, clear write-ups | 36-54 months | 00-12, 15, 19, 21, 22-24, 25 | [View Guide →](resources/career_roadmap_guide.md#research-scientist) |
-| **BI Analyst** | Business Intelligence | 14-22 months | 00-01, 19-21 | [View Guide →](resources/career_roadmap_guide.md#business-intelligence-analyst) |
-| **Full-Stack AI Engineer** | End-to-end AI products | 18-30 months (parallel ML + blueprint) | 00-01, 19, 25 + [In-repo lessons](resources/full_stack_track/README.md) + [Blueprint A–H](resources/full_stack_ai_engineer_roadmap.md#phase-a-typescript-foundations) | [View Guide →](resources/career_roadmap_guide.md#full-stack-ai-engineer) |
+| **Data Analyst** | Insights & Reports | 12-18 months | 00, 01, 19, 20, 21 | [View Guide](resources/career_roadmap_guide.md#data-analyst) |
+| **Data Scientist** | Predictive Models | 18-28 months | 00-08, 15, 19-21 | [View Guide](resources/career_roadmap_guide.md#data-scientist) |
+| **ML Engineer** | Production ML | 24-36 months | 00-10, 13-14, 19-21 | [View Guide](resources/career_roadmap_guide.md#machine-learning-engineer) |
+| **LLM Engineer** | Language Models | 24-36 months | 00-01, 05, 09-10, 12, 25, 13-14, 19 | [View Guide](resources/career_roadmap_guide.md#llm-engineer-large-language-models) |
+| **GenAI Solution Architect** | Production GenAI | 22-32 months | 00-01, 02, 05, 09-10, 12, 25, 13-14, 19 | [View Guide](resources/career_roadmap_guide.md#genai-solution-architect) |
+| **Computer Vision Engineer** | Image Processing | 22-34 months | 00-01, 04-05, 09-11, 13-14, 19, 21 | [View Guide](resources/career_roadmap_guide.md#computer-vision-engineer) |
+| **AI Engineer** | Generalist AI | 36-54 months | 00-15, 19-21, 22-24, 25 | [View Guide](resources/career_roadmap_guide.md#ai-engineer-generalist) |
+| **Data Engineer** | Data Infrastructure | 18-28 months | 00-01, 13-14, 19-20 | [View Guide](resources/career_roadmap_guide.md#data-engineer) |
+| **MLOps Engineer** | ML Operations | 24-36 months | 00-01, 05, 09-10, 12, 25, 13-14, 19 | [View Guide](resources/career_roadmap_guide.md#mlops-engineer) |
+| **Research Scientist** | Novel methods, careful experiments, clear write-ups | 36-54 months | 00-12, 15, 19, 21, 22-24, 25 | [View Guide](resources/career_roadmap_guide.md#research-scientist) |
+| **BI Analyst** | Business Intelligence | 14-22 months | 00-01, 19-21 | [View Guide](resources/career_roadmap_guide.md#business-intelligence-analyst) |
+| **Full-Stack AI Engineer** | End-to-end AI products | 18-30 months (parallel ML + blueprint) | 00-01, 19, 25 + [In-repo lessons](resources/full_stack_track/README.md) + [Blueprint A–H](resources/full_stack_ai_engineer_roadmap.md#phase-a-typescript-foundations) | [View Guide](resources/career_roadmap_guide.md#full-stack-ai-engineer) |
 
 **Foundational side track:** [System Design for Beginners](system-design/README.md): **31 lessons** (22 foundations + 9 interview-style designs) covering HTTP, TCP, DNS, caching, load balancing, CAP, sharding, and message queues, including a capstone-style design sequence (rate limiter, social feed, chat, video, file storage, maps, KV store, message queue, and a real-time ML feature store). Useful for ML Engineer, MLOps, Data Engineer, AI Engineer, and Full-Stack AI Engineer paths. Pairs with the [ML System Design Guide](resources/ml_system_design_guide.md), which applies these foundations to ML services. For **application backend engineering** (auth, Postgres, queues, ops), use the [Backend Engineer Roadmap](resources/backend_engineering_roadmap.md) alongside Phases B/C/E of the [Full-Stack Track](resources/full_stack_track/README.md).
 
@@ -76,7 +76,7 @@
 
 The [full roadmap guide](resources/career_roadmap_guide.md) follows the same **module numbering and Stage 6 vs. module 15 (time series) branch** as the [Learning Path Overview](#learning-path-overview) above.
 
-[**View Complete Career Roadmap Guide →**](resources/career_roadmap_guide.md)
+[**View Complete Career Roadmap Guide **](resources/career_roadmap_guide.md)
 
 ## Full-stack AI quick start
 
@@ -202,7 +202,7 @@ Structured courses usually stack Python, then math and stats, then tabular ML, t
 ### Stage 2: Machine Learning Basics
 **Goal**: Understand core ML concepts and algorithms
 
-**Machine learning for beginners** (maps with runnable examples: [Introduction](02-introduction-to-ml/introduction-to-ml.md#ml-for-beginners-curriculum-map-this-guide) → [Regression](03-supervised-learning-regression/regression.md#ml-for-beginners-curriculum-map-this-guide) → [Classification](04-supervised-learning-classification/classification.md#ml-for-beginners-curriculum-map-this-guide); EDA and preprocessing in [EDA](01-python-for-data-science/04-exploratory-data-analysis.md#ml-for-beginners-curriculum-map-this-guide) and [Feature engineering](07-feature-engineering/feature-engineering.md#ml-for-beginners-curriculum-map-this-guide); practice in [Beginner projects](16-projects-beginner/README.md#ml-for-beginners-curriculum-map-projects))
+**Machine learning for beginners** (maps with runnable examples: [Introduction](02-introduction-to-ml/introduction-to-ml.md#ml-for-beginners-curriculum-map-this-guide), [Regression](03-supervised-learning-regression/regression.md#ml-for-beginners-curriculum-map-this-guide), [Classification](04-supervised-learning-classification/classification.md#ml-for-beginners-curriculum-map-this-guide); EDA and preprocessing in [EDA](01-python-for-data-science/04-exploratory-data-analysis.md#ml-for-beginners-curriculum-map-this-guide) and [Feature engineering](07-feature-engineering/feature-engineering.md#ml-for-beginners-curriculum-map-this-guide); practice in [Beginner projects](16-projects-beginner/README.md#ml-for-beginners-curriculum-map-projects))
 
 - **02-introduction-to-ml**
   - **Machine learning for beginners** framing; data types in ML; **population vs sample**
@@ -216,7 +216,7 @@ Structured courses usually stack Python, then math and stats, then tabular ML, t
   - **Optimization lens**: gradient descent intuition and **batch vs stochastic vs mini-batch** updates (ties to Stage 0 calculus and Stage 5 deep learning)
   - **Data distribution analysis**: percentiles, histogram, boxplot (see guide)
   - **Feature relationships**: scatter plots, covariance, correlation (with regression workflow)
-  - **End-to-end regression project** path and **saving a model** (train → evaluate → persist); full walkthrough: [regression project tutorial](03-supervised-learning-regression/regression-project-tutorial.md); deployment: [model deployment module](13-model-deployment/README.md)
+ - **End-to-end regression project** path and **saving a model** (train, evaluate, persist); full walkthrough: [regression project tutorial](03-supervised-learning-regression/regression-project-tutorial.md); deployment: [model deployment module](13-model-deployment/README.md)
   - Statistical regression analysis (statsmodels: TSS, RSS, ESS, F-statistic, p-values, confidence intervals)
 
 - **04-supervised-learning-classification**
@@ -267,9 +267,9 @@ Module **08** is where you work without a target column. You cluster, reduce dim
 
 Most breakthroughs are still “layers + nonlinearity + data + optimization.” Here you learn to **read training curves**, **sanity-check gradients**, and see why a linear model fails before frameworks hide the details. If you aim toward a research-scientist path, treat this stage as lab notebook habits. Run small experiments, change one thing at a time, and keep runs reproducible.
 
-- **09-neural-networks-basics**. From linear limits to MLPs: activations, losses, backpropagation as chain rule, optimizers (SGD family through Adam), regularization, initialization, and what actually breaks training. [Study map →](09-neural-networks-basics/neural-networks.md#deep-learning-curriculum-map-this-guide)
+- **09-neural-networks-basics**. From linear limits to MLPs: activations, losses, backpropagation as chain rule, optimizers (SGD family through Adam), regularization, initialization, and what actually breaks training. [Study map](09-neural-networks-basics/neural-networks.md#deep-learning-curriculum-map-this-guide)
 
-- **10-deep-learning-frameworks**. Turn math into working code: PyTorch tensors and autograd, real training loops, Keras ergonomics, saving models, and shipping-friendly formats when you need them. [Study map →](10-deep-learning-frameworks/deep-learning-frameworks.md#deep-learning-curriculum-map-this-guide) · [Practice builds →](17-projects-intermediate/README.md#deep-learning-curriculum-map-projects) (MNIST, churn, tabular regression)
+- **10-deep-learning-frameworks**. Turn math into working code: PyTorch tensors and autograd, real training loops, Keras ergonomics, saving models, and shipping-friendly formats when you need them. [Study map](10-deep-learning-frameworks/deep-learning-frameworks.md#deep-learning-curriculum-map-this-guide) · [Practice builds](17-projects-intermediate/README.md#deep-learning-curriculum-map-projects) (MNIST, churn, tabular regression)
 
 ### Stage 6: Specialized Deep Learning
 **Goal**, see the world as tensors. Pixels and tokens.
@@ -412,7 +412,7 @@ Forecasting and monitoring problems break the usual “shuffle and split” stor
 | 9 | Model Deployment & Serving | Model Deployment, APIs, Cloud | 1-2 weeks | Available |
 
 **Optional Capstones (Portfolio-Grade, GDPR-Safe):**
-- [Capstone Blueprints →](18-projects-advanced/capstones/README.md) (ML Engineer, LLM/RAG, Data/Analytics)
+- [Capstone Blueprints](18-projects-advanced/capstones/README.md) (ML Engineer, LLM/RAG, Data/Analytics)
 
 **Prerequisites**: Complete Stages 0-7 recommended for full benefit
 

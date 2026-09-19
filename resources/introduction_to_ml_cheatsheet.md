@@ -386,7 +386,7 @@ r2 = r2_score(y_true, y_pred)
 
 ## Quick Reference
 
-### Problem Type → Algorithm
+### Problem Type, Algorithm
 
 | Problem Type | Recommended Algorithms |
 |--------------|------------------------|
@@ -396,7 +396,7 @@ r2 = r2_score(y_true, y_pred)
 | **Clustering** | K-Means, DBSCAN, Hierarchical |
 | **Anomaly Detection** | Isolation Forest, One-Class SVM |
 
-### Data Size → Algorithm
+### Data Size, Algorithm
 
 | Data Size | Recommended Approach |
 |-----------|---------------------|

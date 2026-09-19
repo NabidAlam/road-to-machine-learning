@@ -11,7 +11,7 @@ This blueprint is written to be **safe for a public GitHub repo** (no PII, no se
 Companies don’t hire for “a model”, they hire for:
 
 - translating a business problem into measurable metrics
-- building reliable pipelines (data → features → model → service)
+- building reliable pipelines (data, features, model, service)
 - monitoring and iterative improvement
 - basic security/cost/reliability reasoning
 
@@ -114,7 +114,7 @@ Raw events --------> Feature pipeline -----> Scoring API (FastAPI)
 ### Milestone 4: API serving
 
 - Build `FastAPI` endpoint:
-  - `POST /score` → returns risk score + decision + model version
+ - `POST /score`, returns risk score + decision + model version
 - Add input validation (pydantic)
 
 ### Milestone 5: Monitoring plan (what you would do in production)

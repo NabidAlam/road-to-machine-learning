@@ -24,7 +24,7 @@ Overview of Generative AI, LLMs, LangChain, RAG, and agents. Treat demos as demo
 
 **Generative AI** refers to models that **create** new content rather than just analyzing or classifying existing data.
 
-**Core Idea:** Learn data patterns → **Generate similar outputs**
+**Core Idea:** Learn data patterns, **Generate similar outputs**
 
 **Key Characteristics:**
 - Creates new, original content
@@ -69,7 +69,7 @@ Overview of Generative AI, LLMs, LangChain, RAG, and agents. Treat demos as demo
 
 **Training Process:**
 ```
-Massive Dataset → Neural Network Training → Learned Patterns → Generate New Content
+Massive Dataset, Neural Network Training, Learned Patterns, Generate New Content
 ```
 
 ---
@@ -108,7 +108,7 @@ Convert words into numerical form that models can process.
 
 **Process:**
 ```
-Text → Tokens → Numerical IDs → Model Input
+Text, Tokens, Numerical IDs, Model Input
 ```
 
 **Example:**
@@ -221,9 +221,9 @@ Attention = softmax(Q × K^T / √d) × V
 - Storytelling
 
 **Summarization:**
-- Long documents → concise summaries
-- Meeting notes → key points
-- Articles → bullet points
+- Long documents, concise summaries
+- Meeting notes, key points
+- Articles, bullet points
 
 **Question Answering:**
 - Answer questions based on knowledge
@@ -1416,13 +1416,13 @@ def retrieve_context(query, vector_db, top_k=3):
 
 ### RAG Steps
 
-**1. Convert User Query → Embedding**
+**1. Convert User Query, Embedding**
 ```python
 query = "What is machine learning?"
 query_embedding = embedding_model.encode(query)
 ```
 
-**2. Search VectorDB → Retrieve Similar Documents**
+**2. Search VectorDB, Retrieve Similar Documents**
 ```python
 results = vector_db.query(
     query_embeddings=[query_embedding],
@@ -1431,7 +1431,7 @@ results = vector_db.query(
 relevant_docs = results['documents']
 ```
 
-**3. Combine Retrieved Data → Feed to LLM**
+**3. Combine Retrieved Data, then feed to LLM**
 ```python
 # Build augmented prompt
 context = "\n".join(relevant_docs)
@@ -1541,10 +1541,10 @@ for doc in result["source_documents"]:
 ### Example: Content Creation System
 
 **Agents:**
-1. **Planner Agent** → Defines workflow and tasks
-2. **Research Agent** → Gathers information
-3. **Writer Agent** → Generates content
-4. **Reviewer Agent** → Reviews and improves
+1. **Planner Agent**, Defines workflow and tasks
+2. **Research Agent**, Gathers information
+3. **Writer Agent**, Generates content
+4. **Reviewer Agent**, Reviews and improves
 
 **Workflow:**
 ```python

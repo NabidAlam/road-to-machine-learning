@@ -36,8 +36,8 @@ This guide covers managing the complete ML lifecycle.
 
 ### MLOps vs DevOps
 
-**DevOps**: Code → Build → Deploy
-**MLOps**: Code + Data + Model → Train → Deploy → Monitor → Retrain
+**DevOps**: Code, Build, Deploy
+**MLOps**: Code + Data + Model, Train, Deploy, Monitor, Retrain
 
 **Additional Challenges:**
 - Data versioning
@@ -738,7 +738,7 @@ dependencies:
 
 - **Centralized Management**: All models in one place
 - **Versioning**: Track model versions
-- **Staging**: Dev → Staging → Production workflow
+- **Staging**: Dev, Staging, Production workflow
 - **Lineage**: Track model history and metadata
 
 ### MLflow Model Registry
@@ -791,7 +791,7 @@ for v in versions:
 ### Model Stages
 
 ```
-None → Staging → Production → Archived
+None, Staging, Production, Archived
 ```
 
 **Workflow:**
@@ -921,7 +921,7 @@ def set_seed(seed=42):
 
 **CI/CD Concepts:**
 ```
-Code Commit → Build → Test → Deploy → Monitor
+Code Commit, Build, Test, Deploy, Monitor
 ```
 
 **CI/CD Tools:**

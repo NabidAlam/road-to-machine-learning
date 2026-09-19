@@ -21,7 +21,7 @@ Ask questions. Write answers on the board (or say them out loud).
 
 **Functional**. What does it do?
 - Create a short link from a long URL?
-- Redirect short → long?
+- Redirect short, long?
 - Custom aliases (`go.company.com/promo`)?
 - Analytics (click counts)?
 - Expiration?
@@ -153,10 +153,10 @@ You need a unique, short string. Options:
 | Approach                   | Pros                                | Cons                                              |
 | -------------------------- | ----------------------------------- | ------------------------------------------------- |
 | Hash long URL (MD5/base62) | Deterministic, same URL → same code | Collisions; can't support custom codes easily     |
-| Auto-increment ID → base62 | Simple, no collisions               | Predictable; need a central ID generator at scale |
+| Auto-increment ID, base62 | Simple, no collisions | Predictable; need a central ID generator at scale |
 | Random string (6–8 chars)  | Unpredictable                       | Must check DB for collision                       |
 
-**Practical choice:** random 7-character base62 (`a-zA-Z0-9`) → 62^7 ≈ 3.5 trillion possibilities. At 6B links you're fine. On collision, retry.
+**Practical choice:** random 7-character base62 (`a-zA-Z0-9`), 62^7 ≈ 3.5 trillion possibilities. At 6B links you're fine. On collision, retry.
 
 ```python
 import secrets
@@ -191,8 +191,8 @@ Every redirect should hit Redis first (Chapter 10):
 
 ```
 GET short_code from Redis
-  hit  → 302 to long_url
-  miss → SELECT from Postgres → SET Redis → 302
+ hit, 302 to long_url
+ miss, SELECT from Postgres, SET Redis, 302
 ```
 
 Cache-aside. TTL: 24 hours (or forever until explicit delete). At 2K reads/sec, a small Redis cluster is trivial.
@@ -222,7 +222,7 @@ CAP reminder (Chapter 17): redirects are **AP**. Stale cache might 302 to an old
 Interviewers often ask feed systems after URL shorteners. Same four steps:
 
 1. **Clarify:** Fan-out on write vs read? Celebrity users? Real-time?
-2. **Estimate:** 300M users, 500 friends avg, 10 posts/day → posts/sec and fan-out write load.
+2. **Estimate:** 300M users, 500 friends avg, 10 posts/day, posts/sec and fan-out write load.
 3. **High-level:**
    - Post service writes to DB + publishes `post.created`.
    - **Fan-out on write:** precompute each follower's feed in Redis/DB (fast read, heavy write for celebrities).
@@ -252,7 +252,7 @@ Run through this mentally:
 
 ## Things to remember
 
-- Design is a **process**, not a memorized diagram. Clarify → estimate → boxes → deep dive.
+- Design is a **process**, not a memorized diagram. Clarify, estimate, boxes, deep dive.
 - Most products are **read-heavy**. Cache and CDN show up constantly.
 - **Writes** are where you need IDs, queues, and careful consistency.
 - Tie each box back to a chapter you already read: HTTP, DNS, LB, cache, SQL, queues, CAP.

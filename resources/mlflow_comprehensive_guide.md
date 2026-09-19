@@ -199,7 +199,7 @@ mlflow.set_tracking_uri("http://localhost:5000")
 **4. Model Management (MLFlow Model Registry)**
 - Centralized model repository
 - Version control for models
-- Staging workflow (None → Staging → Production → Archived)
+- Staging workflow (None, Staging, Production, Archived)
 - Model lineage tracking
 
 ### MLOps Workflow with MLFlow

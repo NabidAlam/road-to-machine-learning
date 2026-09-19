@@ -132,7 +132,7 @@ You don't need full Paxos here. Order within a room is what matters, and a singl
 
 ## Going deeper
 
-- Discord's blog series on Cassandra → ScyllaDB migration.
+- Discord's blog series on Cassandra, ScyllaDB migration.
 - Slack engineering posts on real-time messaging.
 - "Building a chat application in 2024" by various sources for current libraries.
 - *Designing Data-Intensive Applications* on stream processing (Chapter 11).

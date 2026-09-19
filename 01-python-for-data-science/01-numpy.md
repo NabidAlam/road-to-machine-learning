@@ -6,15 +6,15 @@ This guide covers NumPy. It is the usual foundation for numerical computing in P
 
 Use this checklist while you read; each item links to a section **with code** below. Topics that belong to Pandas or Matplotlib are linked to the sibling guides.
 
-- **NumPy fundamentals, `ndarray`, attributes & dtypes** → [Introduction](#introduction), [Creating arrays](#creating-arrays), [Array attributes](#array-attributes-and-methods)
-- **Array creation** (from lists, zeros/ones, ranges, random) → [Creating arrays](#creating-arrays)
-- **Indexing, slicing, data access** → [Indexing and slicing](#indexing-and-slicing), [Deep vs shallow copy](#deep-and-shallow-copy)
-- **Array manipulation & reshaping** → [Reshaping](#reshaping-and-resizing), [Advanced manipulation](#advanced-array-manipulation)
-- **Arithmetic, math & logical ops** (element-wise, comparisons, masks) → [Array operations](#array-operations), [Mathematical operations](#mathematical-operations)
-- **Broadcasting** → [Broadcasting](#broadcasting)
-- **Sorting, searching & counting** → [Sorting, searching, and counting](#sorting-searching-and-counting)
-- **Statistical analysis & linear algebra** → [Statistical functions](#statistical-functions), [Linear algebra](#linear-algebra-operations)
-- **Pandas / plots / CSV workflows** → continue in [Pandas guide](02-pandas.md#ml-toolbox-curriculum-map-this-guide) and [Visualization guide](03-visualization.md#ml-toolbox-curriculum-map-this-guide)
+- **NumPy fundamentals, `ndarray`, attributes & dtypes**. See [Introduction](#introduction), [Creating arrays](#creating-arrays), [Array attributes](#array-attributes-and-methods)
+- **Array creation** (from lists, zeros/ones, ranges, random), [Creating arrays](#creating-arrays)
+- **Indexing, slicing, data access**. See [Indexing and slicing](#indexing-and-slicing), [Deep vs shallow copy](#deep-and-shallow-copy)
+- **Array manipulation & reshaping**. See [Reshaping](#reshaping-and-resizing), [Advanced manipulation](#advanced-array-manipulation)
+- **Arithmetic, math & logical ops** (element-wise, comparisons, masks), [Array operations](#array-operations), [Mathematical operations](#mathematical-operations)
+- **Broadcasting**. See [Broadcasting](#broadcasting)
+- **Sorting, searching & counting**. See [Sorting, searching, and counting](#sorting-searching-and-counting)
+- **Statistical analysis & linear algebra**. See [Statistical functions](#statistical-functions), [Linear algebra](#linear-algebra-operations)
+- **Pandas / plots / CSV workflows**, continue in [Pandas guide](02-pandas.md#ml-toolbox-curriculum-map-this-guide) and [Visualization guide](03-visualization.md#ml-toolbox-curriculum-map-this-guide)
 
 ## Table of Contents
 

@@ -625,7 +625,7 @@ Pairs with the classic [ML Glossary](ml_glossary.md). Prefer this page for LLM, 
 
 **What people say:** "Reason then act."
 
-**What it actually means:** An agent prompting pattern that interleaves reasoning traces with tool actions (`Thought → Action → Observation`), improving multi-step tool use.
+**What it actually means:** An agent prompting pattern that interleaves reasoning traces with tool actions (`Thought, Action, Observation`), improving multi-step tool use.
 
 ### Reciprocal Rank Fusion (RRF)
 

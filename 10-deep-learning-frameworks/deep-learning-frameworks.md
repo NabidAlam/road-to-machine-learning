@@ -4,21 +4,21 @@ This guide covers TensorFlow/Keras and PyTorch for building deep learning models
 
 ## Deep learning curriculum map (this guide)
 
-NumPy fundamentals and theory → [Neural networks basics](../09-neural-networks-basics/neural-networks.md#deep-learning-curriculum-map-this-guide). Below: **PyTorch** and **TensorFlow/Keras** with runnable patterns.
+NumPy fundamentals and theory, [Neural networks basics](../09-neural-networks-basics/neural-networks.md#deep-learning-curriculum-map-this-guide). Below: **PyTorch** and **TensorFlow/Keras** with runnable patterns.
 
-- **PyTorch tensors, autograd, and computational graph** → [PyTorch tensors](#pytorch-tensors-the-foundation), [Autograd and graph](#autograd-and-the-computational-graph)
-- **Training pipeline and building networks in PyTorch** → [PyTorch workflow](#the-pytorch-workflow-pattern), [Building models](#building-models)
-- **MLP-style classification/regression in PyTorch** → [PyTorch classification](#pytorch-neural-network-classification)
-- **Regularization in frameworks (dropout, weight decay, batch norm)** → [TensorFlow/Keras sequential example](#sequential-api) (Dropout layers), [Best practices](#best-practices)
-- **Projects (MNIST, churn, house prices)** → [Intermediate DL projects](../17-projects-intermediate/README.md#deep-learning-curriculum-map-projects)
+- **PyTorch tensors, autograd, and computational graph**. See [PyTorch tensors](#pytorch-tensors-the-foundation), [Autograd and graph](#autograd-and-the-computational-graph)
+- **Training pipeline and building networks in PyTorch**. See [PyTorch workflow](#the-pytorch-workflow-pattern), [Building models](#building-models)
+- **MLP-style classification/regression in PyTorch**. See [PyTorch classification](#pytorch-neural-network-classification)
+- **Regularization in frameworks (dropout, weight decay, batch norm)**. See [TensorFlow/Keras sequential example](#sequential-api) (Dropout layers), [Best practices](#best-practices)
+- **Projects (MNIST, churn, house prices)**. See [Intermediate DL projects](../17-projects-intermediate/README.md#deep-learning-curriculum-map-projects)
 
 ## CNN and RNN curriculum map (PyTorch)
 
-Theory and activations: [Neural networks basics](../09-neural-networks-basics/neural-networks.md#deep-learning-curriculum-map-this-guide). **CNN math and architectures** → [Computer vision](../11-computer-vision/computer-vision.md#cnn-and-modern-vision-curriculum-map-this-guide). **RNN, LSTM, GRU, Transformers** → [NLP guide](../12-natural-language-processing/nlp.md#cnn-and-rnn-curriculum-map-this-guide).
+Theory and activations: [Neural networks basics](../09-neural-networks-basics/neural-networks.md#deep-learning-curriculum-map-this-guide). **CNN math and architectures**. See [Computer vision](../11-computer-vision/computer-vision.md#cnn-and-modern-vision-curriculum-map-this-guide). **RNN, LSTM, GRU, Transformers**. See [NLP guide](../12-natural-language-processing/nlp.md#cnn-and-rnn-curriculum-map-this-guide).
 
-- **CNN in PyTorch** (`nn.Conv2d`, pooling, training loop on batches) → [PyTorch computer vision](#pytorch-computer-vision)
-- **Image augmentation and pretrained CNNs** → [TorchVision / transfer in CV module](../11-computer-vision/computer-vision.md#data-augmentation), [Transfer learning](../11-computer-vision/computer-vision.md#transfer-learning)
-- **Sequence `Dataset` / `DataLoader` and padding** → [NLP: Sequence data and PyTorch](../12-natural-language-processing/nlp.md#sequence-data-and-pytorch)
+- **CNN in PyTorch** (`nn.Conv2d`, pooling, training loop on batches), [PyTorch computer vision](#pytorch-computer-vision)
+- **Image augmentation and pretrained CNNs**. See [TorchVision / transfer in CV module](../11-computer-vision/computer-vision.md#data-augmentation), [Transfer learning](../11-computer-vision/computer-vision.md#transfer-learning)
+- **Sequence `Dataset` / `DataLoader` and padding**. See [NLP: Sequence data and PyTorch](../12-natural-language-processing/nlp.md#sequence-data-and-pytorch)
 
 ## Table of Contents
 
@@ -1641,7 +1641,7 @@ for epoch in range(num_epochs):
 
 **CNN Architecture:**
 ```
-Input Image → Conv Layers → Pooling → Conv Layers → Pooling → Fully Connected → Output
+Input Image, Conv Layers, Pooling, Conv Layers, Pooling, Fully Connected, Output
 ```
 
 ### TorchVision
@@ -2368,7 +2368,7 @@ Natural Language Processing enables machines to understand, interpret, and gener
 
 **Typical NLP Architecture:**
 ```
-Text → Tokenization → Embedding → RNN/LSTM/Transformer → Output
+Text, Tokenization, Embedding, RNN/LSTM/Transformer, Output
 ```
 
 ### Preparing Text Data with TensorFlow

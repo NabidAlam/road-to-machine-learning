@@ -1110,7 +1110,7 @@ Combine variables, control flow, lists/dictionaries, file I/O (including optiona
 
 This reinforces **file handling** and **practice problems based on file handling** before you move on to NumPy-heavy work.
 
-### Runnable example (CSV in → script out)
+### Runnable example (CSV in, script out)
 
 This example uses a **temporary folder** so you can run it anywhere. It writes a small `characters.csv`, reads it back, picks random lines, and writes `screenplay.txt`. It also shows **`tell` / `seek`** when re-reading the start of the CSV after the first pass.
 

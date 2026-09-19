@@ -657,7 +657,7 @@ torch.quantization.convert(model, inplace=True)
 ```
 
 **Benefits:**
-- 4x smaller model size (float32 → int8)
+- 4x smaller model size (float32, int8)
 - 2-4x faster inference
 - Lower memory usage
 - Better for mobile/edge deployment

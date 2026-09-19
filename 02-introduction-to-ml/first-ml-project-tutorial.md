@@ -619,7 +619,7 @@ print(f"Train size: {X_train.shape[0]} Test size: {X_test.shape[0]}")
 
 ## Key Takeaways
 
-1. **Follow the Workflow**: Problem → Data → Train → Evaluate → Predict
+1. **Follow the Workflow**: Problem, Data, Train, Evaluate, Predict
 2. **Start Simple**: Begin with basic models, iterate
 3. **Evaluate Properly**: Always use separate test set
 4. **Understand Results**: Don't just look at accuracy

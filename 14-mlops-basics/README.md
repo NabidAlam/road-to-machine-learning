@@ -34,7 +34,7 @@ Learn to manage the complete ML lifecycle with MLOps practices.
 ### 3. Model Registry
 - **Model Versioning**: Track model versions
 - **Model Lineage**: Track model history
-- **Staging**: Dev → Staging → Production
+- **Staging**: Dev, Staging, Production
 - **MLflow Model Registry**: Centralized model management
 
 ### 4. CI/CD for ML
@@ -131,12 +131,12 @@ Complete these **in order** after reading the main guide. Each should produce a 
 - [MLOps Best Practices](https://ml-ops.org/content/mlops-principles)
 - [ML Engineering Guide](https://github.com/visenger/awesome-mlops)
 
-**[Complete Detailed Guide →](mlops.md)**
+**[Complete Detailed Guide](mlops.md)**
 
 **Additional Resources:**
-- [Advanced Topics →](mlops-advanced-topics.md): Advanced tracking, feature stores, monitoring, automation
-- [Project Tutorial →](mlops-project-tutorial.md): Step-by-step MLOps pipeline setup
-- [Quick Reference →](mlops-quick-reference.md): Quick lookup guide for MLOps
+- [Advanced Topics](mlops-advanced-topics.md): Advanced tracking, feature stores, monitoring, automation
+- [Project Tutorial](mlops-project-tutorial.md): Step-by-step MLOps pipeline setup
+- [Quick Reference](mlops-quick-reference.md): Quick lookup guide for MLOps
 
 ---
 

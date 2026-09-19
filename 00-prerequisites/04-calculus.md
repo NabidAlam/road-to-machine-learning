@@ -391,7 +391,7 @@ print(f"Approximate: {approx:.6f}")
 
 ```python
 # Simplified backpropagation example
-# Network: input → hidden → output
+# Network: input, hidden, output
 
 # Forward pass
 def forward_pass(x, w1, b1, w2, b2):
@@ -763,7 +763,7 @@ print(f"Newton's method is faster because it uses curvature information")
 
 ### Key Takeaway
 
-**Theory → Code → Intuition**:
+**Theory, Code, Intuition**:
 1. Understand the calculus concept (derivative, gradient)
 2. Implement it in Python
 3. Visualize the results

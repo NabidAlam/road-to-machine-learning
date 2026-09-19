@@ -17,7 +17,7 @@ Kafka, AWS SQS, Pulsar, Google Pub/Sub. Chapter 19 covered queues from a user's 
 
 - **Topics:** 10K
 - **Peak ingress:** 5M messages/sec
-- **Avg message:** 1 KB → 5 GB/sec → 400 TB/day
+- **Avg message:** 1 KB, 5 GB/sec, 400 TB/day
 - **Consumers:** 100K connected
 - **Retention 7 days:** ~3 PB live storage
 
@@ -63,8 +63,8 @@ A topic's parallelism is its partition count. More partitions = more throughput.
 
 Producer chooses a partition:
 
-- By **key** (`hash(user_id) % N`) → same key always lands on the same partition → order preserved per key.
-- **Round-robin** if no key → maximum spread.
+- By **key** (`hash(user_id) % N`), same key always lands on the same partition, order preserved per key.
+- **Round-robin** if no key, maximum spread.
 
 Each partition has a **leader broker**. All writes for that partition go through the leader.
 
@@ -134,7 +134,7 @@ Older Kafka used ZooKeeper. Modern Kafka uses an internal Raft (KRaft). Pulsar u
 
 ## Things to remember
 
-- Topic → partition → offset. Master that and the rest follows.
+- Topic, partition, offset. Master that and the rest follows.
 - The on-disk log is append-only, with sparse indexes and zero-copy reads.
 - Partition = unit of parallelism for both producers and consumers.
 - Replication with `acks=all` and `min.insync=2` is the durable default.

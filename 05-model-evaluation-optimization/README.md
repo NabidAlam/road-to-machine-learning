@@ -97,7 +97,7 @@ By the end of this module, you should be able to:
 - [Optuna Documentation](https://optuna.org/): Advanced hyperparameter optimization
 - [Hyperopt Documentation](http://hyperopt.github.io/hyperopt/): Bayesian optimization
 
-**[Complete Detailed Guide →](evaluation-optimization.md)**
+**[Complete Detailed Guide](evaluation-optimization.md)**
 
 ### Additional Resources
 

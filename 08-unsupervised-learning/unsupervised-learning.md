@@ -6,10 +6,10 @@ This guide covers finding patterns in unlabeled data.
 
 **Clustering and validation** (supervised trees/SVM: [Classification guide](../04-supervised-learning-classification/classification.md#advanced-machine-learning-curriculum-map-this-guide); ensembles: [Ensemble methods](../06-ensemble-methods/ensemble-methods.md#advanced-machine-learning-curriculum-map-this-guide)).
 
-- **K-Means clustering** → [K-Means](#k-means)
-- **Hierarchical clustering** → [Hierarchical clustering](#hierarchical-clustering)
-- **DBSCAN density-based clustering** → [DBSCAN](#dbscan)
-- **Cluster validation and visualization** → [Cluster validation and visualization techniques](#cluster-validation-and-visualization-techniques)
+- **K-Means clustering**. See [K-Means](#k-means)
+- **Hierarchical clustering**. See [Hierarchical clustering](#hierarchical-clustering)
+- **DBSCAN density-based clustering**. See [DBSCAN](#dbscan)
+- **Cluster validation and visualization**. See [Cluster validation and visualization techniques](#cluster-validation-and-visualization-techniques)
 
 ## Table of Contents
 
@@ -65,7 +65,7 @@ Learning from unlabeled data. Finding hidden patterns without guidance.
 Without labels, quality is judged by **internal indices** (silhouette, Calinski–Harabasz, Davies–Bouldin), **stability**, and **plots** (2D scatter of embedded points, dendrogram for hierarchical, core-point reachability for DBSCAN). The [K-Means](#k-means) section below includes silhouette and scatter of clusters; [Hierarchical clustering](#hierarchical-clustering) shows a **dendrogram**; [DBSCAN](#dbscan) shows density-based shapes.
 
 ```python
-# Minimal pattern: fit → silhouette → scatter (replace X with your features)
+# Minimal pattern: fit, silhouette, scatter (replace X with your features)
 import numpy as np
 from sklearn.cluster import KMeans
 from sklearn.metrics import silhouette_score

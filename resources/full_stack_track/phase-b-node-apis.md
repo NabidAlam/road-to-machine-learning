@@ -49,7 +49,7 @@ Frameworks hide details; building once with `http` teaches routing, status codes
 
 Conceptual flow:
 
-1. Accept socket → parse HTTP
+1. Accept socket, parse HTTP
 2. Match route + method
 3. Read body stream (for `POST`)
 4. Write JSON response with correct `Content-Type`

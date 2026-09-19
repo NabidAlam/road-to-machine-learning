@@ -322,7 +322,7 @@ Different isolation levels trade off correctness vs performance.
 
 ### 1) Using `SELECT *` in analytics pipelines
 
-- Pulls unnecessary columns → slower and brittle when schemas change
+- Pulls unnecessary columns, slower and brittle when schemas change
 - Prefer selecting only needed columns
 
 ### 2) Non-sargable filters (indexes can’t help)

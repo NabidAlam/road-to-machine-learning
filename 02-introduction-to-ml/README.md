@@ -68,7 +68,7 @@ Understand what machine learning is, how it works, and the different types of ML
 - Document everything
 - Version control your code and data
 
-**[Complete Detailed Guide →](introduction-to-ml.md)**
+**[Complete Detailed Guide](introduction-to-ml.md)**
 
 ## Job-ready checkpoint (before Modules 03–05)
 

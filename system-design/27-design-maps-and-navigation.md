@@ -130,14 +130,14 @@ Map data changes daily: new roads, new businesses, road closures. The pipeline:
 2. Update the master graph.
 3. Re-run CH/CRP preprocessing (incremental in modern systems).
 4. Re-render affected tiles.
-5. Bump tile version → CDN starts serving new ones.
+5. Bump tile version, CDN starts serving new ones.
 
 ## Things to remember
 
 - Tiles are static files behind a CDN. Versioned URLs.
 - Geospatial search uses geohash, S2, or PostGIS. Same idea: turn 2D space into something an index can scan.
 - Routing on continents needs preprocessing (CH/CRP), not raw Dijkstra.
-- Real-time traffic = stream of GPS → segment-level aggregation → into the edge weights.
+- Real-time traffic = stream of GPS, segment-level aggregation, into the edge weights.
 - Turn-by-turn is a WebSocket plus rerouting.
 
 ## Going deeper

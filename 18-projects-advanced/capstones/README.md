@@ -18,9 +18,9 @@ These capstones are **portfolio-grade** project blueprints designed to make you 
 
 ### 2) LLM Engineer Capstone: RAG Knowledge Assistant (with evaluation + guardrails)
 - Blueprint: [capstone-llm-rag-engineer.md](capstone-llm-rag-engineer.md)
-- Focus: ingestion → embeddings → retrieval → generation, eval harness, prompt-injection defenses
+- Focus: ingestion, embeddings, retrieval, generation, eval harness, prompt-injection defenses
 
-### 3) Data/Analytics Capstone: SQL → Metrics → Dashboard → ML
+### 3) Data/Analytics Capstone: SQL, Metrics, Dashboard, ML
 - Blueprint: [capstone-data-analytics-sql-ml.md](capstone-data-analytics-sql-ml.md)
 - Focus: analytics engineering, SQL case studies, business metrics, and a productionized ML model
 

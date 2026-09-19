@@ -97,7 +97,7 @@ CAP only talks about partitions. The Yale CS professor Daniel Abadi pointed out:
 
 In other words: even with a healthy network, getting strong consistency costs latency (more nodes to talk to, more rounds of coordination). And to get low latency, you might serve a slightly stale read.
 
-| System                 | P →                                    | E →                                                 |
+| System | P, | E, |
 | ---------------------- | -------------------------------------- | --------------------------------------------------- |
 | DynamoDB (default)     | AP                                     | EL (favor latency over consistency in normal times) |
 | Cassandra              | AP                                     | EL                                                  |

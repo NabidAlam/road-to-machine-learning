@@ -559,8 +559,8 @@ print("""
 2. Keras is easier for beginners and rapid prototyping
 3. PyTorch offers more control and flexibility
 4. Choose based on:
-   - Experience level (beginners → Keras)
-   - Project needs (research → PyTorch, production → Keras)
+   - Experience level (beginners to Keras)
+   - Project needs (research to PyTorch, production to Keras)
    - Team preferences
    - Ecosystem requirements
 

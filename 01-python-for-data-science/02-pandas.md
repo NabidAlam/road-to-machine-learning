@@ -6,15 +6,15 @@ This guide covers Pandas. The most important library for data manipulation and a
 
 Checklist aligned with the **ML toolbox** path; each item points to sections **with code** below. Numeric arrays and broadcasting are in the [NumPy guide](01-numpy.md#ml-toolbox-curriculum-map-this-guide).
 
-- **Pandas Series, DataFrame & file handling (CSV/Excel etc.)** → [Series and DataFrames](#series-and-dataframes), [Reading and writing data](#reading-and-writing-data)
-- **Data access: indexing, `loc` / `iloc` & filtering** → [Data selection and filtering](#data-selection-and-filtering)
-- **Indexing, slicing, copying & iteration patterns** → [Data selection and filtering](#data-selection-and-filtering), [DataFrame basics](#dataframe-basics-and-inspection)
-- **Modifying data** (add/drop rows & columns, assign values) → [Data cleaning](#data-cleaning) (drops, fills), [Data selection](#data-selection-and-filtering) (updates via `loc` / `iloc`)
-- **Duplicates, missing data & datetime** → [Data cleaning](#data-cleaning), [Time series operations](#time-series-operations)
-- **Sorting & basic statistics** → [Sorting and basic statistics](#sorting-and-basic-statistics)
-- **Apply functions, aggregation & GroupBy** → [Grouping and aggregation](#grouping-and-aggregation), [Advanced tricks (apply / map)](#advanced-tricks-and-performance)
-- **Merging tables** → [Merging and joining](#merging-and-joining)
-- **Plots & NumPy numerics** → [Visualization guide](03-visualization.md#ml-toolbox-curriculum-map-this-guide)
+- **Pandas Series, DataFrame & file handling (CSV/Excel etc.)**. See [Series and DataFrames](#series-and-dataframes), [Reading and writing data](#reading-and-writing-data)
+- **Data access: indexing, `loc` / `iloc` & filtering**. See [Data selection and filtering](#data-selection-and-filtering)
+- **Indexing, slicing, copying & iteration patterns**. See [Data selection and filtering](#data-selection-and-filtering), [DataFrame basics](#dataframe-basics-and-inspection)
+- **Modifying data** (add/drop rows & columns, assign values), [Data cleaning](#data-cleaning) (drops, fills), [Data selection](#data-selection-and-filtering) (updates via `loc` / `iloc`)
+- **Duplicates, missing data & datetime**. See [Data cleaning](#data-cleaning), [Time series operations](#time-series-operations)
+- **Sorting & basic statistics**. See [Sorting and basic statistics](#sorting-and-basic-statistics)
+- **Apply functions, aggregation & GroupBy**. See [Grouping and aggregation](#grouping-and-aggregation), [Advanced tricks (apply / map)](#advanced-tricks-and-performance)
+- **Merging tables**. See [Merging and joining](#merging-and-joining)
+- **Plots & NumPy numerics**. See [Visualization guide](03-visualization.md#ml-toolbox-curriculum-map-this-guide)
 
 ## Table of Contents
 

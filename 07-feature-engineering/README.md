@@ -104,12 +104,12 @@ By the end of this module, you should be able to:
 **Books:**
 - [Feature Engineering Book](https://www.oreilly.com/library/view/feature-engineering-for/9781491953235/): Check library access
 
-**[Complete Detailed Guide →](feature-engineering.md)**
+**[Complete Detailed Guide](feature-engineering.md)**
 
 **Additional Resources:**
-- [Advanced Topics →](feature-engineering-advanced-topics.md): Automated feature engineering, pipelines, advanced techniques
-- [Project Tutorial →](feature-engineering-project-tutorial.md): Step-by-step feature engineering project
-- [Quick Reference →](feature-engineering-quick-reference.md): Quick lookup guide for feature engineering
+- [Advanced Topics](feature-engineering-advanced-topics.md): Automated feature engineering, pipelines, advanced techniques
+- [Project Tutorial](feature-engineering-project-tutorial.md): Step-by-step feature engineering project
+- [Quick Reference](feature-engineering-quick-reference.md): Quick lookup guide for feature engineering
 
 ---
 

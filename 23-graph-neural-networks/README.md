@@ -93,10 +93,10 @@ Before starting this module, you should have completed:
 **Free Courses:**
 - [CS224W: Machine Learning with Graphs](http://web.stanford.edu/class/cs224w/): Stanford
 
-**[Complete Detailed Guide →](graph-neural-networks.md)**
+**[Complete Detailed Guide](graph-neural-networks.md)**
 
 **Additional Resources:**
-- [Advanced Topics →](graph-neural-networks-advanced-topics.md): Graph Transformers, Dynamic Graphs, Heterogeneous Graphs
-- [Project Tutorial →](graph-neural-networks-project-tutorial.md): Step-by-step node classification
-- [Quick Reference →](graph-neural-networks-quick-reference.md): Formulas, architectures, code snippets
+- [Advanced Topics](graph-neural-networks-advanced-topics.md): Graph Transformers, Dynamic Graphs, Heterogeneous Graphs
+- [Project Tutorial](graph-neural-networks-project-tutorial.md): Step-by-step node classification
+- [Quick Reference](graph-neural-networks-quick-reference.md): Formulas, architectures, code snippets
 

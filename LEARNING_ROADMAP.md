@@ -275,7 +275,7 @@ While this repository doesn't offer certificates, you can:
 ##  Iterative Learning
 
 ```
-Learn → Practice → Build → Review → Improve
+Learn, Practice, Build, Review, Improve
   ↑                                    ↓
   
 ```

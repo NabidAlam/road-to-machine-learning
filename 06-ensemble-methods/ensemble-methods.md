@@ -6,8 +6,8 @@ This guide covers combining multiple models for better performance.
 
 Links into sections **with code** below. Single-tree material: [Decision trees](../04-supervised-learning-classification/classification.md#decision-trees); **tree vs forest**: [comparison](../04-supervised-learning-classification/classification.md#decision-tree-versus-random-forest).
 
-- **Random Forest ensemble learning (bagging + trees)** → [Bagging](#bagging) (Random Forest lives here)
-- **Boosting, stacking, voting** → [Boosting](#boosting), [Stacking](#stacking), [Voting](#voting)
+- **Random Forest ensemble learning (bagging + trees)**. See [Bagging](#bagging) (Random Forest lives here)
+- **Boosting, stacking, voting**. See [Boosting](#boosting), [Stacking](#stacking), [Voting](#voting)
 
 ## Table of Contents
 

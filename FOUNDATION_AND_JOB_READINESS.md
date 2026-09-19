@@ -10,13 +10,13 @@ Expert review guide for learners, instructors, and career switchers. This docume
 
 | Area | Rating | Notes |
 |------|--------|-------|
-| **Breadth** | Strong | Tabular ML → DL → GenAI → deploy; 23 projects; system-design side track |
+| **Breadth** | Strong | Tabular ML, DL, GenAI, deploy; 23 projects; system-design side track |
 | **Foundation depth** | Strong | Module 00 math + Python is above typical bootcamp level |
 | **Hands-on ratio** | Mixed | Beginner projects ship code; intermediate/advanced are brief-led |
 | **Job-market alignment** | Good with gaps | SQL and portfolio gates come late in the *default* stage order |
 | **Assessment** | Self-paced only | No autograded mastery checks; use exit criteria below |
 
-**Bottom line:** Follow **stages and role paths**, not folder numbers 00→25 in order. Start **projects in parallel** after Stage 2. Treat SQL as **Stage 1.5** if you target analyst or data scientist roles.
+**Bottom line:** Follow **stages and role paths**, not folder numbers 00 through 25 in order. Start **projects in parallel** after Stage 2. Treat SQL as **Stage 1.5** if you target analyst or data scientist roles.
 
 ---
 
@@ -25,7 +25,7 @@ Expert review guide for learners, instructors, and career switchers. This docume
 | Mistake | Fix |
 |---------|-----|
 | Opening folders 00, 01, 02… in numeric order only | Use [stage table in START-HERE](START-HERE.md#default-learning-order-short-version) |
-| Doing deployment (13–14) before SQL (19) on an analyst track | Follow [Data Analyst path](resources/career_roadmap_guide.md#data-analyst): 00 → 01 → **19** early |
+| Doing deployment (13–14) before SQL (19) on an analyst track | Follow [Data Analyst path](resources/career_roadmap_guide.md#data-analyst): 00 through 01, **19** early |
 | Waiting until “Stage 9” to build projects | Start **beginner projects after Stage 2** while continuing modules |
 | Reading entire 1,900-line guides in one sitting | Use learning objectives + exit criteria; skim advanced files later |
 
@@ -55,7 +55,7 @@ You are ready for **Module 02 (ML)** when you can:
 
 - [ ] Load a CSV with Pandas, handle missing values, and summarize dtypes
 - [ ] Build at least **three** plot types (distribution, relationship, categorical)
-- [ ] Complete a short EDA narrative: question → data → chart → insight
+- [ ] Complete a short EDA narrative: question, data, chart, insight
 - [ ] Use NumPy for vectorized operations (avoid Python loops on large arrays)
 
 **Parallel track (analyst / data scientist):** Start [Module 19 SQL](19-sql-database-fundamentals/README.md) **now**, not after GenAI. Most EU and US job postings expect SQL alongside Python.
@@ -142,8 +142,8 @@ Before advancing a stage, ask:
 
 ## Next steps
 
-1. New learner → [GETTING_STARTED.md](GETTING_STARTED.md)
-2. Career switch → [career_roadmap_guide.md](resources/career_roadmap_guide.md)
-3. Compressed timeline → [QUICK_START.md](QUICK_START.md)
-4. Portfolio checklist → [career_portfolio.md](resources/career_portfolio.md)
-5. Interview prep → [interview_prep.md](resources/interview_prep.md)
+1. New learner, [GETTING_STARTED.md](GETTING_STARTED.md)
+2. Career switch, [career_roadmap_guide.md](resources/career_roadmap_guide.md)
+3. Compressed timeline, [QUICK_START.md](QUICK_START.md)
+4. Portfolio checklist, [career_portfolio.md](resources/career_portfolio.md)
+5. Interview prep, [interview_prep.md](resources/interview_prep.md)

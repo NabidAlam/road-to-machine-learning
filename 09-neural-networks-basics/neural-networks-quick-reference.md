@@ -19,7 +19,7 @@ Quick reference for neural network concepts, code snippets, and best practices.
 ### Architecture
 
 ```
-Input Layer → Hidden Layer(s) → Output Layer
+Input Layer, Hidden Layer(s), Output Layer
      ↓              ↓                ↓
   Features    Feature Learning   Predictions
 ```

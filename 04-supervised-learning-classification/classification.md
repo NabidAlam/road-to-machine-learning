@@ -6,26 +6,26 @@ This guide covers classification algorithms for predicting categories.
 
 Checklist for the **classification** part of the beginner path; sections below include **runnable sklearn examples**.
 
-- **Logistic regression** → [Logistic regression](#logistic-regression)
-- **K-Nearest Neighbours (distance-based)** → [K-Nearest Neighbors (KNN)](#k-nearest-neighbors-knn)
-- **Naive Bayes (probabilistic)** → [Naive Bayes](#naive-bayes)
-- **EDA and cleaning (workflow)** → [EDA guide](../01-python-for-data-science/04-exploratory-data-analysis.md#ml-for-beginners-curriculum-map-this-guide)
-- **Feature relationships** (scatter, covariance, correlation) → [Feature relationship analysis](#feature-relationship-analysis)
-- **Feature engineering and ML-ready preprocessing** → [Feature engineering guide](../07-feature-engineering/feature-engineering.md#ml-for-beginners-curriculum-map-this-guide)
-- **Descriptive stats and sampling** → [Introduction to ML](../02-introduction-to-ml/introduction-to-ml.md#descriptive-statistics-and-sampling-foundations)
+- **Logistic regression**. See [Logistic regression](#logistic-regression)
+- **K-Nearest Neighbours (distance-based)**. See [K-Nearest Neighbors (KNN)](#k-nearest-neighbors-knn)
+- **Naive Bayes (probabilistic)**. See [Naive Bayes](#naive-bayes)
+- **EDA and cleaning (workflow)**. See [EDA guide](../01-python-for-data-science/04-exploratory-data-analysis.md#ml-for-beginners-curriculum-map-this-guide)
+- **Feature relationships** (scatter, covariance, correlation), [Feature relationship analysis](#feature-relationship-analysis)
+- **Feature engineering and ML-ready preprocessing**. See [Feature engineering guide](../07-feature-engineering/feature-engineering.md#ml-for-beginners-curriculum-map-this-guide)
+- **Descriptive stats and sampling**. See [Introduction to ML](../02-introduction-to-ml/introduction-to-ml.md#descriptive-statistics-and-sampling-foundations)
 
 ## Advanced machine learning curriculum map (this guide)
 
 **Trees, SVM, ensembles, and supervised comparison** (clustering track: [Unsupervised learning](../08-unsupervised-learning/unsupervised-learning.md#advanced-machine-learning-curriculum-map-this-guide); Random Forest theory: [Ensemble methods](../06-ensemble-methods/ensemble-methods.md#advanced-machine-learning-curriculum-map-this-guide)).
 
-- **Decision tree classification** → [Decision trees](#decision-trees)
-- **Entropy and information gain** → [Entropy, information gain, and rule-based intuition](#entropy-information-gain-and-rule-based-intuition)
-- **Rule-based learning intuition** (readable if–then rules from trees) → [Same section](#entropy-information-gain-and-rule-based-intuition)
-- **Overfitting control (tree depth tuning)** → [Decision trees](#decision-trees) (hyperparameters), [Tree vs forest comparison](#decision-tree-versus-random-forest)
-- **Random Forest ensemble learning** → [Random forests](#random-forests)
-- **Decision tree vs Random Forest** → [Decision tree versus random forest](#decision-tree-versus-random-forest)
-- **SVM fundamentals; margin, hyperplane, and kernel intuition** → [Support vector machines](#support-vector-machines-svm), [Margins, hyperplanes, and kernels](#margin-hyperplane-and-kernel-intuition)
-- **Supervised model performance comparison; training and accuracy** → [Supervised model training and performance comparison](#supervised-model-training-and-performance-comparison), [Evaluation metrics](#evaluation-metrics)
+- **Decision tree classification**. See [Decision trees](#decision-trees)
+- **Entropy and information gain**. See [Entropy, information gain, and rule-based intuition](#entropy-information-gain-and-rule-based-intuition)
+- **Rule-based learning intuition** (readable if–then rules from trees), [Same section](#entropy-information-gain-and-rule-based-intuition)
+- **Overfitting control (tree depth tuning)**. See [Decision trees](#decision-trees) (hyperparameters), [Tree vs forest comparison](#decision-tree-versus-random-forest)
+- **Random Forest ensemble learning**. See [Random forests](#random-forests)
+- **Decision tree vs Random Forest**. See [Decision tree versus random forest](#decision-tree-versus-random-forest)
+- **SVM fundamentals; margin, hyperplane, and kernel intuition**. See [Support vector machines](#support-vector-machines-svm), [Margins, hyperplanes, and kernels](#margin-hyperplane-and-kernel-intuition)
+- **Supervised model performance comparison; training and accuracy**. See [Supervised model training and performance comparison](#supervised-model-training-and-performance-comparison), [Evaluation metrics](#evaluation-metrics)
 
 ## Table of Contents
 

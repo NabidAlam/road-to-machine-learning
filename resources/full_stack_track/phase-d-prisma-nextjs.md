@@ -37,7 +37,7 @@ Design checklist:
 Treat migrations like code review items: they change production data shapes.
 
 - **Dev:** iterate quickly, reset when needed
-- **Prod:** backward-compatible steps when possible (add nullable column → backfill → enforce)
+- **Prod:** backward-compatible steps when possible (add nullable column, backfill, enforce)
 
 Keep **`.env.example`** updated with required variables (`DATABASE_URL`, etc.).
 

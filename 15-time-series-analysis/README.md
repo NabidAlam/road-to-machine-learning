@@ -44,12 +44,12 @@ Learn to analyze and forecast time-dependent data, from basic statistical method
 - Metrics: RMSE, MAE, MAPE, SMAPE
 - Cross-Validation for Time Series
 
-**[Complete Detailed Guide →](time-series-analysis.md)**
+**[Complete Detailed Guide](time-series-analysis.md)**
 
 **Additional Resources:**
-- [Advanced Topics →](time-series-advanced-topics.md): Multivariate time series, state space models, advanced deep learning
-- [Project Tutorial →](time-series-project-tutorial.md): Step-by-step stock price forecasting project
-- [Quick Reference →](time-series-quick-reference.md): Quick lookup guide for time series analysis
+- [Advanced Topics](time-series-advanced-topics.md): Multivariate time series, state space models, advanced deep learning
+- [Project Tutorial](time-series-project-tutorial.md): Step-by-step stock price forecasting project
+- [Quick Reference](time-series-quick-reference.md): Quick lookup guide for time series analysis
 
 ## Learning Objectives
 

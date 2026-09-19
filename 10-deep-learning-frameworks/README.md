@@ -109,12 +109,12 @@ By the end of this module, you should be able to:
 - [PyTorch Examples](https://pytorch.org/tutorials/)
 - [Deep Learning Projects (Kaggle)](https://www.kaggle.com/learn/deep-learning)
 
-**[Complete Detailed Guide →](deep-learning-frameworks.md)**
+**[Complete Detailed Guide](deep-learning-frameworks.md)**
 
 **Additional Resources:**
-- [Advanced Topics →](deep-learning-frameworks-advanced-topics.md): Custom layers, advanced training, optimization, deployment
-- [Project Tutorial →](deep-learning-frameworks-project-tutorial.md): Step-by-step comparison of Keras and PyTorch
-- [Quick Reference →](deep-learning-frameworks-quick-reference.md): Quick lookup guide for both frameworks
+- [Advanced Topics](deep-learning-frameworks-advanced-topics.md): Custom layers, advanced training, optimization, deployment
+- [Project Tutorial](deep-learning-frameworks-project-tutorial.md): Step-by-step comparison of Keras and PyTorch
+- [Quick Reference](deep-learning-frameworks-quick-reference.md): Quick lookup guide for both frameworks
 
 ---
 

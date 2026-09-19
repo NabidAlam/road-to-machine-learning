@@ -99,7 +99,7 @@ CREATE TABLE posts (
 CREATE INDEX idx_posts_author_time ON posts(author_id, created_at DESC);
 ```
 
-At your scale, **shard by author_id** for timelines so "posts by this user" stay on one shard (Chapter 16). If you shard only by `post_id`, author timelines become scatter-gather unless you add a separate author→posts index. For celebrity timelines specifically, also keep a Redis sorted set per author so hot reads often skip SQL.
+At your scale, **shard by author_id** for timelines so "posts by this user" stay on one shard (Chapter 16). If you shard only by `post_id`, author timelines become scatter-gather unless you add a separate author, posts index. For celebrity timelines specifically, also keep a Redis sorted set per author so hot reads often skip SQL.
 
 ## Deep dive 4: Deletes
 

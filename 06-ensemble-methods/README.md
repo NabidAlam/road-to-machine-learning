@@ -90,7 +90,7 @@ By the end of this module, you should be able to:
 - [Ensemble Methods (Kaggle)](https://www.kaggle.com/learn/ensemble-methods): Free course
 - [XGBoost Competitions (Kaggle)](https://www.kaggle.com/competitions): Practice with real data
 
-**[Complete Detailed Guide →](ensemble-methods.md)**
+**[Complete Detailed Guide](ensemble-methods.md)**
 
 ### Additional Resources
 

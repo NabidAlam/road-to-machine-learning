@@ -102,12 +102,12 @@ By the end of this module, you should be able to:
 - [Customer Segmentation Projects](https://www.kaggle.com/datasets?search=customer+segmentation)
 - [Clustering Exercises](https://www.kaggle.com/learn/clustering)
 
-**[Complete Detailed Guide →](unsupervised-learning.md)**
+**[Complete Detailed Guide](unsupervised-learning.md)**
 
 **Additional Resources:**
-- [Advanced Topics →](unsupervised-learning-advanced-topics.md): Advanced clustering, anomaly detection, association rules
-- [Project Tutorial →](unsupervised-learning-project-tutorial.md): Step-by-step unsupervised learning project
-- [Quick Reference →](unsupervised-learning-quick-reference.md): Quick lookup guide for unsupervised learning
+- [Advanced Topics](unsupervised-learning-advanced-topics.md): Advanced clustering, anomaly detection, association rules
+- [Project Tutorial](unsupervised-learning-project-tutorial.md): Step-by-step unsupervised learning project
+- [Quick Reference](unsupervised-learning-quick-reference.md): Quick lookup guide for unsupervised learning
 
 ---
 

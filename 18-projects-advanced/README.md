@@ -278,10 +278,10 @@ Deploy a machine learning model as a production-**shaped** API demo with Docker,
 
 These are **industry-style capstone blueprints** that are designed to be **safe for a public repo** (no PII, no committed datasets).
 
-- [Capstones Index →](capstones/README.md)
-- [ML Engineer Capstone →](capstones/capstone-ml-engineer.md)
-- [LLM/RAG Capstone →](capstones/capstone-llm-rag-engineer.md)
-- [Data/Analytics (SQL → ML) Capstone →](capstones/capstone-data-analytics-sql-ml.md)
+- [Capstones Index](capstones/README.md)
+- [ML Engineer Capstone](capstones/capstone-ml-engineer.md)
+- [LLM/RAG Capstone](capstones/capstone-llm-rag-engineer.md)
+- [Data/Analytics (SQL ML) Capstone](capstones/capstone-data-analytics-sql-ml.md)
 
 ##  Project Structure
 

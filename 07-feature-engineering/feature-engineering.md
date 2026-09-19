@@ -6,9 +6,9 @@ This guide covers creating and selecting useful features for your models.
 
 **Feature engineering and ML-ready preprocessing** turn raw tables into inputs models can learn from. Pair this guide with [EDA](../01-python-for-data-science/04-exploratory-data-analysis.md#ml-for-beginners-curriculum-map-this-guide) and the [beginner ML map](../02-introduction-to-ml/introduction-to-ml.md#ml-for-beginners-curriculum-map-this-guide).
 
-- **Scaling and encodings** → [Feature scaling](#feature-scaling), [Handling categorical variables](#handling-categorical-variables)
-- **Transforms and new features** → [Feature transformation](#feature-transformation), [Creating new features](#creating-new-features)
-- **Dimensionality and selection** → [Dimensionality reduction](#dimensionality-reduction), [Feature selection](#feature-selection)
+- **Scaling and encodings**. See [Feature scaling](#feature-scaling), [Handling categorical variables](#handling-categorical-variables)
+- **Transforms and new features**. See [Feature transformation](#feature-transformation), [Creating new features](#creating-new-features)
+- **Dimensionality and selection**. See [Dimensionality reduction](#dimensionality-reduction), [Feature selection](#feature-selection)
 
 ## Table of Contents
 
@@ -31,7 +31,7 @@ This guide covers creating and selecting useful features for your models.
 **"Garbage In, Garbage Out"** - Good features are more important than algorithms!
 
 **Impact:**
-- Better features → Better models
+- Better features, Better models
 - Can improve performance more than algorithm choice
 - Domain knowledge is key
 - Often the difference between winning and losing in competitions

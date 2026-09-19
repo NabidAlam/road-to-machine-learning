@@ -94,10 +94,10 @@ Before starting this module, you should have completed:
 **Free Courses:**
 - [Speech and Language Processing](https://web.stanford.edu/~jurafsky/slp3/): Jurafsky & Martin
 
-**[Complete Detailed Guide →](audio-speech-processing.md)**
+**[Complete Detailed Guide](audio-speech-processing.md)**
 
 **Additional Resources:**
-- [Advanced Topics →](audio-speech-processing-advanced-topics.md): Voice cloning, music generation, real-time processing
-- [Project Tutorial →](audio-speech-processing-project-tutorial.md): Step-by-step ASR implementation
-- [Quick Reference →](audio-speech-processing-quick-reference.md): Audio processing, code snippets
+- [Advanced Topics](audio-speech-processing-advanced-topics.md): Voice cloning, music generation, real-time processing
+- [Project Tutorial](audio-speech-processing-project-tutorial.md): Step-by-step ASR implementation
+- [Quick Reference](audio-speech-processing-quick-reference.md): Audio processing, code snippets
 

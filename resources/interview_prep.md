@@ -259,7 +259,7 @@ Cross-validation splits data into k folds, trains on k-1 folds, validates on rem
 Backpropagation is the algorithm for training neural networks.
 
 **Process:**
-1. **Forward Pass**: Input → Hidden → Output, calculate loss
+1. **Forward Pass**: Input, Hidden, Output, calculate loss
 2. **Backward Pass**: Calculate gradients using chain rule
 3. **Update Weights**: Adjust weights using gradients and learning rate
 
@@ -303,7 +303,7 @@ Activation functions introduce non-linearity to neural networks.
 
 ## Coding Challenges
 
-If you want a structured, beginner-friendly path for DSA (arrays → graphs + patterns + practice plan), see:
+If you want a structured, beginner-friendly path for DSA (arrays, graphs + patterns + practice plan), see:
 
 - [DSA Course (Python)](dsa_course_python.md)
 

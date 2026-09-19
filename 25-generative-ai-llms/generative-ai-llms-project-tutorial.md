@@ -268,4 +268,4 @@ assert scores[top] > 0
 
 ---
 
-**Next**, see [Quick Reference →](generative-ai-llms-quick-reference.md) for code snippets.
+**Next**, see [Quick Reference](generative-ai-llms-quick-reference.md) for code snippets.

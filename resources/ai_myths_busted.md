@@ -186,7 +186,7 @@ How models get their behavior.
 
 **Reality:** Fine-tuning mostly reshapes how the model uses knowledge it already has. If a fact was never in pre-training, fine-tuning will not reliably implant it. Fine-tuning shines for style, format, tone, and task patterns. For proprietary facts, prefer RAG.
 
-**Why it matters:** Company docs → retrieval. Response format → fine-tune or strong prompting.
+**Why it matters:** Company docs, retrieval. Response format, fine-tune or strong prompting.
 
 **Remember:** Fine-tune behavior. Retrieve facts.
 
@@ -216,7 +216,7 @@ What users and builders confuse in day-to-day systems.
 
 **Reality:** Temperature scales logits before softmax. Higher temperature flattens the distribution and raises the chance of less likely tokens. Lower temperature sharpens it and makes outputs more deterministic. That is randomness control, not a creativity engine.
 
-**Why it matters:** Too repetitive → raise temperature a bit. Too chaotic → lower it. Then fix the prompt and constraints.
+**Why it matters:** Too repetitive, raise temperature a bit. Too chaotic, lower it. Then fix the prompt and constraints.
 
 **Remember:** Temperature is a randomness knob.
 

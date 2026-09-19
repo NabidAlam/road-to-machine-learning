@@ -16,9 +16,9 @@ YouTube, Vimeo, TikTok, Netflix. Users upload video, the system processes it, th
 
 ## Estimate
 
-- **Daily uploads:** 500K videos averaging 100 MB → 50 TB/day in source
-- **Each transcoded into 6 renditions** → ~300 TB/day stored
-- **Daily watch hours:** 1B → ~5 Tbps peak egress
+- **Daily uploads:** 500K videos averaging 100 MB, 50 TB/day in source
+- **Each transcoded into 6 renditions**, ~300 TB/day stored
+- **Daily watch hours:** 1B, ~5 Tbps peak egress
 - **Storage growth:** ~100 PB/year before any retention policy
 
 Numbers like these mean three things: object storage from day one, CDN from day one, and asynchronous processing for everything that isn't the playback path.
@@ -40,7 +40,7 @@ flowchart TB
   Player[Viewer player] --> CDN
 ```
 
-The upload and processing pipeline lives off the hot path. The playback path is **player → CDN → object store**. Most viewers never hit your origin.
+The upload and processing pipeline lives off the hot path. The playback path is **player, CDN, object store**. Most viewers never hit your origin.
 
 ## Deep dive 1: Upload
 

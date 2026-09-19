@@ -70,7 +70,7 @@ edges = cv2.Canny(image, threshold1=50, threshold2=150)
 ### Architecture Pattern
 
 ```
-Input → Conv → BN → ReLU → Pool → Conv → BN → ReLU → Pool → FC → Output
+Input, Conv, BN, ReLU, Pool, Conv, BN, ReLU, Pool, FC, Output
 ```
 
 ### Key Components

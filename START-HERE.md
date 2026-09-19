@@ -3,7 +3,7 @@
 Not sure where to begin? Pick the path that matches your time and goal.
 
 > **Using the subscriber study hub?** Read [HOW_TO_USE_THE_STUDY_HUB.md](HOW_TO_USE_THE_STUDY_HUB.md) first (10-min setup + learning loop).  
-> **Do not follow folder numbers 00→25 in order.** Module folders are for organization; **stages** are the teaching sequence. Read [FOUNDATION_AND_JOB_READINESS.md](FOUNDATION_AND_JOB_READINESS.md) for exit gates, role paths, and job-market timing (especially **SQL early** for analyst/data scientist roles).
+> **Do not follow folder numbers 00 through 25 in order.** Module folders are for organization; **stages** are the teaching sequence. Read [FOUNDATION_AND_JOB_READINESS.md](FOUNDATION_AND_JOB_READINESS.md) for exit gates, role paths, and job-market timing (especially **SQL early** for analyst/data scientist roles).
 
 ## If you have 30 minutes
 

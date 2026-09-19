@@ -638,7 +638,7 @@ plt.grid(True, alpha=0.3)
 plt.show()
 ```
 
-**Progression:** Histogram → Frequency Polygon → Density Curve
+**Progression:** Histogram, Frequency Polygon, Density Curve
 
 ```python
 # Complete progression visualization
@@ -1451,7 +1451,7 @@ plt.show()
 
 ### Key Takeaway
 
-**Formula → Code → Understanding**:
+**Formula, Code, Understanding**:
 1. Learn the statistical formula
 2. Implement it in Python
 3. Visualize the results

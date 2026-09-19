@@ -396,6 +396,6 @@ except OutputParserException as e:
 ---
 
 **See Also:**
-- [Module hub →](generative-ai-llms.md)
-- [Advanced Topics →](generative-ai-llms-advanced-topics.md)
-- [Project Tutorial →](generative-ai-llms-project-tutorial.md)
+- [Module hub](generative-ai-llms.md)
+- [Advanced Topics](generative-ai-llms-advanced-topics.md)
+- [Project Tutorial](generative-ai-llms-project-tutorial.md)

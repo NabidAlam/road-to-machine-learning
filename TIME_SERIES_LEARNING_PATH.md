@@ -14,7 +14,7 @@ Time series appears in **three places** in this curriculum. You do **not** need 
 |-----------|------|
 | Data scientist / analyst needing forecasting | **Path A** (module), then optionally Path B for portfolio |
 | Already know ARIMA basics; want a GitHub project fast | **Path B** only |
-| ML engineer building production forecasting | **Path A** → **Path C** |
+| ML engineer building production forecasting | **Path A**, **Path C** |
 | Not doing forecasting roles | **Skip all three**, use Stage 6 time on CV/NLP or tabular projects |
 
 ## Prerequisites (all paths)
@@ -31,7 +31,7 @@ Time series appears in **three places** in this curriculum. You do **not** need 
 
 ## Related content elsewhere
 
-- Date/time wrangling: [01 → Working with Dates & Times](01-python-for-data-science/08-working-with-dates-times.md)
+- Date/time wrangling: [01 Working with Dates & Times](01-python-for-data-science/08-working-with-dates-times.md)
 - TS features in tabular ML: [07-feature-engineering](07-feature-engineering/feature-engineering-advanced-topics.md#time-series-feature-engineering)
 - TensorFlow TS intro: [10-deep-learning-frameworks](10-deep-learning-frameworks/deep-learning-frameworks.md)
 

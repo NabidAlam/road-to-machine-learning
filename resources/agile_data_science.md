@@ -120,14 +120,14 @@ For data science projects, "Done" means:
 ### Kanban Board
 
 ```
-Backlog → To Do → In Progress → Testing → Done
+Backlog, To Do, In Progress, Testing, Done
 ```
 
 ### Data Science Workflow
 
 ```
-Backlog → Data Collection → EDA → Feature Engineering → 
-Modeling → Evaluation → Deployment → Monitoring
+Backlog, Data Collection, EDA, Feature Engineering, 
+Modeling, Evaluation, Deployment, Monitoring
 ```
 
 ### WIP Limits

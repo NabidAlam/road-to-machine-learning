@@ -126,12 +126,12 @@ By the end of this module, you should be able to:
 - [Sentiment Analysis Projects](https://www.kaggle.com/learn/natural-language-processing)
 - [NLP Datasets (Hugging Face)](https://huggingface.co/datasets)
 
-**[Complete Detailed Guide →](nlp.md)**
+**[Complete Detailed Guide](nlp.md)**
 
 **Additional Resources:**
-- [Advanced Topics →](nlp-advanced-topics.md): Advanced transformers, sequence-to-sequence, optimization
-- [Project Tutorial →](nlp-project-tutorial.md): Step-by-step sentiment analysis project
-- [Quick Reference →](nlp-quick-reference.md): Quick lookup guide for NLP
+- [Advanced Topics](nlp-advanced-topics.md): Advanced transformers, sequence-to-sequence, optimization
+- [Project Tutorial](nlp-project-tutorial.md): Step-by-step sentiment analysis project
+- [Quick Reference](nlp-quick-reference.md): Quick lookup guide for NLP
 
 ---
 

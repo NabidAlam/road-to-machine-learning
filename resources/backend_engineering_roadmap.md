@@ -42,7 +42,7 @@ Read this stage once before you touch frameworks.
 
 **Goal:** See the full journey before you optimize for tools.
 
-**Order in this guide:** Stage 0 → 7. Each stage ends with a small deliverable. Skip nothing in Stage 1–3 even if you already know Express or Django.
+**Order in this guide:** Stage 0 through 7. Each stage ends with a small deliverable. Skip nothing in Stage 1–3 even if you already know Express or Django.
 
 **In-repo:** [System Design README](../system-design/README.md) (side track overview), [Full-Stack AI Blueprint](full_stack_ai_engineer_roadmap.md) Phases B–E (implementation track).
 
@@ -157,7 +157,7 @@ Everything in backend engineering hangs off one question: **what happens between
 
 **Goal:** Validate at the boundary, transform for the domain layer, never trust the client.
 
-**Patterns:** DTO in → domain model → DTO out. Reject early with stable error shapes.
+**Patterns:** DTO in, domain model, DTO out. Reject early with stable error shapes.
 
 **In-repo (moderate):** [Phase B](../resources/full_stack_track/phase-b-node-apis.md), [Phase D](../resources/full_stack_track/phase-d-prisma-nextjs.md).
 
@@ -167,7 +167,7 @@ Everything in backend engineering hangs off one question: **what happens between
 
 ### 10. Controllers, services, repositories, middleware, and request context
 
-**Goal:** One direction of dependency: route → controller → service → repository → database. Middleware for cross-cutting concerns. Request context for user id, trace id, and locale.
+**Goal:** One direction of dependency: route, controller, service, repository, database. Middleware for cross-cutting concerns. Request context for user id, trace id, and locale.
 
 **In-repo (moderate):** [Phase E Lesson 1](../resources/full_stack_track/phase-e-backend-advanced.md#lesson-1-layering-routes-controllers-services). Repository pattern is named here as a gap to practice explicitly.
 
@@ -262,7 +262,7 @@ Everything in backend engineering hangs off one question: **what happens between
 
 **Goal:** Environment separation, secrets vs config, feature flags, and config validation at startup.
 
-**Gap in repo:** `.env` appears in Phase B/G. This stage adds hierarchy: defaults → env → secrets manager.
+**Gap in repo:** `.env` appears in Phase B/G. This stage adds hierarchy: defaults, env, secrets manager.
 
 **In-repo (partial):** [Phase G env](../resources/full_stack_track/phase-g-containers-cloud.md), [Phase B Lesson 2](../resources/full_stack_track/phase-b-node-apis.md).
 

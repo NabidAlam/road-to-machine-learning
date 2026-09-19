@@ -21,7 +21,7 @@ The hard part isn't the storage. It's **sync**.
 - **Users:** 100M, 30M active daily
 - **Files per user:** 5,000 average
 - **Total files:** 500B
-- **Average file size:** 1 MB → 500 PB total
+- **Average file size:** 1 MB, 500 PB total
 - **Writes per second peak:** 100K small uploads + 1K large ones
 - **Reads per second peak:** 500K downloads
 

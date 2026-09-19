@@ -6,16 +6,16 @@ This guide covers understanding machine learning fundamentals, types, workflow, 
 
 Use this list as a **beginner track**; each item links to a section **with code** in this file or in the next modules.
 
-- **Machine learning for beginners** → [What is ML?](#what-is-machine-learning), [Types of ML](#types-of-machine-learning), [Workflow](#machine-learning-workflow)
-- **Data types in ML** (numeric, categorical, text, time; targets vs features) → [Key concepts](#key-concepts)
-- **Population vs sample** → [Descriptive statistics and sampling foundations](#descriptive-statistics-and-sampling-foundations)
-- **Batch vs online updates**; **instance-based vs model-based** learners → [Training settings and learner families](#training-settings-and-learner-families)
-- **Descriptive statistics** (mean, median, mode, variance, standard deviation) → [Descriptive statistics and sampling foundations](#descriptive-statistics-and-sampling-foundations)
-- **Regression next** (linear, metrics, distributions, saving models) → [Regression guide](../03-supervised-learning-regression/regression.md#ml-for-beginners-curriculum-map-this-guide)
-- **Classification next** (logistic, KNN, Naive Bayes, metrics) → [Classification guide](../04-supervised-learning-classification/classification.md#ml-for-beginners-curriculum-map-this-guide)
-- **EDA and cleaning** → [EDA guide](../01-python-for-data-science/04-exploratory-data-analysis.md#ml-for-beginners-curriculum-map-this-guide)
-- **Feature engineering and ML-ready preprocessing** → [Feature engineering guide](../07-feature-engineering/feature-engineering.md#ml-for-beginners-curriculum-map-this-guide)
-- **Projects (implement algorithms in context)** → [Beginner projects](../16-projects-beginner/README.md#ml-for-beginners-curriculum-map-projects)
+- **Machine learning for beginners**. See [What is ML?](#what-is-machine-learning), [Types of ML](#types-of-machine-learning), [Workflow](#machine-learning-workflow)
+- **Data types in ML** (numeric, categorical, text, time; targets vs features), [Key concepts](#key-concepts)
+- **Population vs sample**. See [Descriptive statistics and sampling foundations](#descriptive-statistics-and-sampling-foundations)
+- **Batch vs online updates**; **instance-based vs model-based** learners, [Training settings and learner families](#training-settings-and-learner-families)
+- **Descriptive statistics** (mean, median, mode, variance, standard deviation), [Descriptive statistics and sampling foundations](#descriptive-statistics-and-sampling-foundations)
+- **Regression next** (linear, metrics, distributions, saving models), [Regression guide](../03-supervised-learning-regression/regression.md#ml-for-beginners-curriculum-map-this-guide)
+- **Classification next** (logistic, KNN, Naive Bayes, metrics), [Classification guide](../04-supervised-learning-classification/classification.md#ml-for-beginners-curriculum-map-this-guide)
+- **EDA and cleaning**. See [EDA guide](../01-python-for-data-science/04-exploratory-data-analysis.md#ml-for-beginners-curriculum-map-this-guide)
+- **Feature engineering and ML-ready preprocessing**. See [Feature engineering guide](../07-feature-engineering/feature-engineering.md#ml-for-beginners-curriculum-map-this-guide)
+- **Projects (implement algorithms in context)**. See [Beginner projects](../16-projects-beginner/README.md#ml-for-beginners-curriculum-map-projects)
 
 ## Table of Contents
 
@@ -46,13 +46,13 @@ Use this list as a **beginner track**; each item links to a section **with code*
 
 **Traditional Programming:**
 ```
-Input Data + Rules/Program → Output
+Input Data + Rules/Program, Output
 ```
 
 **Machine Learning:**
 ```
-Input Data + Output → Rules/Model (learned)
-Then: New Input Data → Model → Output
+Input Data + Output, Rules/Model (learned)
+Then: New Input Data, Model, Output
 ```
 
 ### Example Comparison
@@ -106,7 +106,7 @@ prediction = model.predict(new_email)
 
 **Standard ML Workflow:**
 ```
-Problem → Data → EDA → Features → Model → Evaluate → Improve
+Problem, Data, EDA, Features, Model, Evaluate, Improve
 ```
 
 **Detailed Steps:**
@@ -137,7 +137,7 @@ Problem → Data → EDA → Features → Model → Evaluate → Improve
 
 **How it works:**
 - Training data has both features (X) and labels (y)
-- Model learns the mapping: X → y
+- Model learns the mapping: X, y
 - Makes predictions on new, unseen data
 
 **Example:**
@@ -146,7 +146,7 @@ Problem → Data → EDA → Features → Model → Evaluate → Improve
 X_train = [[25], [30], [35], [40]]  # Features (age)
 y_train = [50000, 60000, 70000, 80000]  # Labels (salary)
 
-# Model learns: age → salary
+# Model learns: age to salary
 # Then predicts salary for new age
 ```
 
@@ -300,7 +300,7 @@ X_reduced = pca.fit_transform(X)
 
 | Type | Data | Goal | Example |
 |------|------|------|---------|
-| **Supervised** | Labeled (X, y) | Learn mapping X→y | Predict house price |
+| **Supervised** | Labeled (X, y) | Learn mapping X, y | Predict house price |
 | **Unsupervised** | Unlabeled (X only) | Find patterns | Customer groups |
 | **Reinforcement** | Experience | Maximize rewards | Game playing |
 
@@ -880,7 +880,7 @@ print(classification_report(y_test, y_pred, target_names=iris.target_names))
 
 1. **ML learns from data** - No explicit programming needed
 2. **Three main types** - Supervised, Unsupervised, Reinforcement
-3. **Follow the workflow** - Problem → Data → Model → Deploy
+3. **Follow the workflow** - Problem, Data, Model, Deploy
 4. **Avoid overfitting** - Balance model complexity
 5. **Practice** - Start with simple problems
 

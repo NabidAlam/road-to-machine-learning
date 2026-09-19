@@ -46,7 +46,7 @@ Production deployment of Generative AI involves:
 **Retrieval Augmented Generation** combines retrieval and generation:
 
 ```
-User Query → Embedding → Vector Search → Context Retrieval → LLM → Response
+User Query, Embedding, Vector Search, Context Retrieval, LLM, Response
 ```
 
 #### Production RAG Architecture

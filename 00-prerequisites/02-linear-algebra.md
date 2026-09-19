@@ -1994,7 +1994,7 @@ for word, sim in sorted_words:
 
 ### Key Takeaway
 
-**Math → Code → Intuition**:
+**Math, Code, Intuition**:
 1. Learn the mathematical concept
 2. See it in Python code
 3. Visualize it with plots

@@ -65,12 +65,12 @@ By the end of this module, you should be able to:
 **Tutorials:**
 - [SMOTE Explained](https://machinelearningmastery.com/smote-oversampling-for-imbalanced-classification/)
 
-**[Complete Detailed Guide →](imbalanced-data.md)**
+**[Complete Detailed Guide](imbalanced-data.md)**
 
 **Additional Resources:**
-- [Advanced Topics →](imbalanced-data-advanced-topics.md): Advanced resampling, ensemble methods
-- [Project Tutorial →](imbalanced-data-project-tutorial.md): Step-by-step fraud detection project
-- [Quick Reference →](imbalanced-data-quick-reference.md): Quick lookup guide
+- [Advanced Topics](imbalanced-data-advanced-topics.md): Advanced resampling, ensemble methods
+- [Project Tutorial](imbalanced-data-project-tutorial.md): Step-by-step fraud detection project
+- [Quick Reference](imbalanced-data-quick-reference.md): Quick lookup guide
 
 ---
 

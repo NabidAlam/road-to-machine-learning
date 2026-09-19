@@ -1,4 +1,4 @@
-# Capstone: Data/Analytics: SQL → Metrics → Dashboard → ML (GDPR-Safe)
+# Capstone: Data/Analytics: SQL, Metrics, Dashboard, ML (GDPR-Safe)
 
 Build a **realistic analytics workflow** (tables, SQL, metrics, dashboard) and then add a production-style ML model (e.g., churn or purchase propensity).
 
@@ -8,7 +8,7 @@ This blueprint is designed to be safe for a **public repo** by using **synthetic
 
 ## Target role
 
-- Data Analyst → Analytics Engineer → Data Scientist (product analytics)
+- Data Analyst, Analytics Engineer, Data Scientist (product analytics)
 - Great for roles that require strong SQL + practical modeling
 
 ---
@@ -73,7 +73,7 @@ Write queries for:
 
 - DAU/WAU/MAU
 - Retention (cohorts)
-- Funnel conversion (view → add_to_cart → purchase)
+- Funnel conversion (view, add_to_cart, purchase)
 - Revenue metrics (AOV, LTV proxy)
 - Window functions (rolling 7-day revenue)
 

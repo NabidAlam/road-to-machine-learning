@@ -893,7 +893,7 @@ This guide provides clear, role-specific learning paths for different careers in
 | **Full-stack lessons (in-repo)** | [Full-stack track index](full_stack_track/README.md) |
 | **System design** | [ML System Design Guide](ml_system_design_guide.md), [GenAI Production Deployment Guide](genai_production_deployment.md) |
 
-**Full phase-by-phase plan and free external links**: [Full-Stack AI Engineer Blueprint →](full_stack_ai_engineer_roadmap.md)
+**Full phase-by-phase plan and free external links**: [Full-Stack AI Engineer Blueprint](full_stack_ai_engineer_roadmap.md)
 
 ### Skills checklist
 

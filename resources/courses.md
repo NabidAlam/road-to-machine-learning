@@ -135,8 +135,8 @@ For a comprehensive list of YouTube channels, see [YouTube Channels Guide](youtu
 2. **Then**: Fast.ai Practical Deep Learning
 3. **For Theory**: CS229 (Stanford) or MIT Introduction to ML
 4. **For Specialization**: 
-   - Computer Vision → CS231n
-   - NLP → CS224n
+ - Computer Vision, CS231n
+ - NLP, CS224n
 5. **For Production**: MLOps Specialization or Full Stack Deep Learning
 
 ---

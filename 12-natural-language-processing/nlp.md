@@ -6,13 +6,13 @@ This guide covers processing and understanding human language.
 
 **CNNs** are covered in [Computer vision](../11-computer-vision/computer-vision.md#cnn-and-modern-vision-curriculum-map-this-guide) (this guide focuses on **sequences**, RNNs, LSTM/GRU, and **Transformers**). **PyTorch** patterns: [Frameworks guide](../10-deep-learning-frameworks/deep-learning-frameworks.md#cnn-and-rnn-curriculum-map-pytorch).
 
-- **Introduction to RNN; forward propagation; RNN types** → [RNNs and LSTMs](#rnns-and-lstms)
-- **Activations (Sigmoid, tanh, ReLU, Leaky ReLU, ELU, SELU)** → [Activation functions in sequence models](#activation-functions-in-sequence-models)
-- **LSTM architecture; GRU; bidirectional RNN** → [RNNs and LSTMs](#rnns-and-lstms)
-- **Hyperparameter tuning** (hidden size, layers, dropout, LR, early stopping) → [Hyperparameter tuning for sequences](#hyperparameter-tuning-for-sequences)
-- **Data handling in PyTorch** (padding, `DataLoader`, `collate_fn`) → [Sequence data and PyTorch](#sequence-data-and-pytorch)
-- **Transformers and modern deep learning**; **self-attention, scaled dot-product**; **encoder, decoder, inference** → [Transformers](#transformers)
-- **Projects** (hate speech BERT, skin lesion CNN, tweet sentiment, text generation) → [Advanced NLP / CV projects](../18-projects-advanced/README.md#cnn-and-rnn-curriculum-map-projects)
+- **Introduction to RNN; forward propagation; RNN types**. See [RNNs and LSTMs](#rnns-and-lstms)
+- **Activations (Sigmoid, tanh, ReLU, Leaky ReLU, ELU, SELU)**. See [Activation functions in sequence models](#activation-functions-in-sequence-models)
+- **LSTM architecture; GRU; bidirectional RNN**. See [RNNs and LSTMs](#rnns-and-lstms)
+- **Hyperparameter tuning** (hidden size, layers, dropout, LR, early stopping), [Hyperparameter tuning for sequences](#hyperparameter-tuning-for-sequences)
+- **Data handling in PyTorch** (padding, `DataLoader`, `collate_fn`), [Sequence data and PyTorch](#sequence-data-and-pytorch)
+- **Transformers and modern deep learning**; **self-attention, scaled dot-product**; **encoder, decoder, inference**. See [Transformers](#transformers)
+- **Projects** (hate speech BERT, skin lesion CNN, tweet sentiment, text generation), [Advanced NLP / CV projects](../18-projects-advanced/README.md#cnn-and-rnn-curriculum-map-projects)
 
 ## Table of Contents
 
@@ -53,7 +53,7 @@ Natural Language Processing enables machines to understand, interpret, and gener
 ### NLP Pipeline
 
 ```
-Raw Text → Preprocessing → Tokenization → Embedding → Model → Output
+Raw Text, Preprocessing, Tokenization, Embedding, Model, Output
 ```
 
 ## Text Preprocessing
@@ -350,9 +350,9 @@ An **RNN** maintains a **hidden state** `h_t` updated from the previous step and
 ### Forward propagation and types of RNN
 
 - **Forward pass:** for each time step `t`, compute `h_t = f(W_x x_t + W_h h_{t-1} + b)` then optional output `y_t`.
-- **One-to-many:** single input vector → sequence output (e.g., image captioning seed).
-- **Many-to-one:** sequence → single label (e.g., **sentiment** from a review).
-- **Many-to-many:** sequence in → sequence out aligned (e.g., POS tagging) or encoder–decoder (e.g., **translation**).
+- **One-to-many:** single input vector, sequence output (e.g., image captioning seed).
+- **Many-to-one:** sequence, single label (e.g., **sentiment** from a review).
+- **Many-to-many:** sequence in, sequence out aligned (e.g., POS tagging) or encoder–decoder (e.g., **translation**).
 
 ### Why RNNs for Text?
 

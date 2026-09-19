@@ -28,7 +28,7 @@ Introduction to neural networks. The foundation of deep learning.
 
 ### 2. Multi-Layer Perceptron (MLP)
 - **Hidden Layers**: Enable non-linear learning
-- **Architecture**: Input → Hidden → Output
+- **Architecture**: Input, Hidden, Output
 - **Universal Approximation**: Can approximate any function
 
 ### 3. Activation Functions
@@ -106,12 +106,12 @@ By the end of this module, you should be able to:
 - [Neural Networks Tutorial (PyTorch)](https://pytorch.org/tutorials/beginner/blitz/neural_network_tutorial.html)
 - [Understanding Neural Networks](https://towardsdatascience.com/understanding-neural-networks-19020b758230)
 
-**[Complete Detailed Guide →](neural-networks.md)**
+**[Complete Detailed Guide](neural-networks.md)**
 
 **Additional Resources:**
-- [Advanced Topics →](neural-networks-advanced-topics.md): Advanced architectures, optimization, regularization
-- [Project Tutorial →](neural-networks-project-tutorial.md): Step-by-step neural network from scratch
-- [Quick Reference →](neural-networks-quick-reference.md): Quick lookup guide for neural networks
+- [Advanced Topics](neural-networks-advanced-topics.md): Advanced architectures, optimization, regularization
+- [Project Tutorial](neural-networks-project-tutorial.md): Step-by-step neural network from scratch
+- [Quick Reference](neural-networks-quick-reference.md): Quick lookup guide for neural networks
 
 ---
 

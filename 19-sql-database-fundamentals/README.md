@@ -102,12 +102,12 @@ By the end of this module, you should be able to:
 - [LeetCode SQL](https://leetcode.com/problemset/database/)
 - [HackerRank SQL](https://www.hackerrank.com/domains/sql)
 
-**[Complete Detailed Guide →](sql-database.md)**
+**[Complete Detailed Guide](sql-database.md)**
 
 **Additional Resources:**
-- [Advanced Topics →](sql-database-advanced-topics.md): Advanced window functions, optimization, indexes
-- [Project Tutorial →](sql-database-project-tutorial.md): Step-by-step SQL project
-- [Quick Reference →](sql-database-quick-reference.md): Quick lookup guide for SQL
+- [Advanced Topics](sql-database-advanced-topics.md): Advanced window functions, optimization, indexes
+- [Project Tutorial](sql-database-project-tutorial.md): Step-by-step SQL project
+- [Quick Reference](sql-database-quick-reference.md): Quick lookup guide for SQL
 
 ---
 

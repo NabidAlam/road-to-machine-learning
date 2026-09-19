@@ -4,14 +4,14 @@ This guide covers Convolutional Neural Networks (CNNs) and image processing.
 
 ## CNN and modern vision curriculum map (this guide)
 
-**CNN track** (RNN/Transformer for **text** → [NLP guide](../12-natural-language-processing/nlp.md#cnn-and-rnn-curriculum-map-this-guide); **PyTorch CNN patterns** → [Deep learning frameworks](../10-deep-learning-frameworks/deep-learning-frameworks.md#cnn-and-rnn-curriculum-map-pytorch)).
+**CNN track** (RNN/Transformer for **text**. See [NLP guide](../12-natural-language-processing/nlp.md#cnn-and-rnn-curriculum-map-this-guide); **PyTorch CNN patterns**. See [Deep learning frameworks](../10-deep-learning-frameworks/deep-learning-frameworks.md#cnn-and-rnn-curriculum-map-pytorch)).
 
-- **CNN foundation** (conv, pool, channels) → [Convolution and edge detection](#convolution-and-edge-detection-techniques), [Convolutional layers](#understanding-and-building-convolutional-layers)
-- **Activation functions** (Sigmoid, tanh, ReLU, Leaky ReLU, ELU, SELU) → [Activation functions for CNNs](#activation-functions-for-cnns)
-- **CNN architectures and math** (receptive field, parameter count) → [CNN architectures](#cnn-architectures)
-- **CNN in PyTorch** (`nn.Conv2d`, training loops) → [Deep learning frameworks. PyTorch CV](../10-deep-learning-frameworks/deep-learning-frameworks.md#pytorch-computer-vision)
-- **Data augmentation and pre-trained CNNs** → [Data augmentation](#data-augmentation), [Transfer learning](#transfer-learning)
-- **Transformers in vision (ViT etc.)** → [Computer vision advanced topics](computer-vision-advanced-topics.md)
+- **CNN foundation** (conv, pool, channels), [Convolution and edge detection](#convolution-and-edge-detection-techniques), [Convolutional layers](#understanding-and-building-convolutional-layers)
+- **Activation functions** (Sigmoid, tanh, ReLU, Leaky ReLU, ELU, SELU), [Activation functions for CNNs](#activation-functions-for-cnns)
+- **CNN architectures and math** (receptive field, parameter count), [CNN architectures](#cnn-architectures)
+- **CNN in PyTorch** (`nn.Conv2d`, training loops), [Deep learning frameworks. PyTorch CV](../10-deep-learning-frameworks/deep-learning-frameworks.md#pytorch-computer-vision)
+- **Data augmentation and pre-trained CNNs**. See [Data augmentation](#data-augmentation), [Transfer learning](#transfer-learning)
+- **Transformers in vision (ViT etc.)**. See [Computer vision advanced topics](computer-vision-advanced-topics.md)
 
 ## Table of Contents
 
@@ -60,7 +60,7 @@ The human visual system provides inspiration for computer vision algorithms:
    - **V1 (Primary Visual Cortex)**: Detects edges, lines, orientations
    - **V2-V4**: Recognizes shapes, patterns, textures
    - **IT (Inferior Temporal Cortex)**: Recognizes objects, faces
-3. **Hierarchical Processing**: Simple features → Complex patterns → Objects
+3. **Hierarchical Processing**: Simple features, Complex patterns, Objects
 
 **Connection to CNNs:**
 - **Early Layers**: Detect edges, gradients (like V1)
@@ -337,17 +337,17 @@ Convolutional Neural Networks are specifically designed for image data and excel
 - **Translation Invariance**: Detect features anywhere in the image
 - **Parameter Sharing**: Same filters used across image (fewer parameters)
 - **Local Patterns**: Detect edges, shapes, textures, objects
-- **Hierarchical Features**: Low-level (edges) → High-level (objects)
+- **Hierarchical Features**: Low-level (edges), High-level (objects)
 
 **Why Not Fully Connected?**
-- Too many parameters (e.g., 28x28 image = 784 inputs → millions of parameters)
+- Too many parameters (e.g., 28x28 image = 784 inputs, millions of parameters)
 - Doesn't leverage spatial structure
 - Not translation invariant
 
 ### CNN Architecture
 
 ```
-Input Image → Conv Layers → Pooling → Conv Layers → Pooling → Fully Connected → Output
+Input Image, Conv Layers, Pooling, Conv Layers, Pooling, Fully Connected, Output
      ↓              ↓            ↓           ↓            ↓            ↓            ↓
   (H×W×C)    Feature Maps   Downsample  Feature Maps  Downsample   Features   Predictions
 ```
@@ -870,7 +870,7 @@ A convolutional layer consists of:
 
 **Layer Structure:**
 ```
-Input → Convolution → Batch Normalization → Activation → Output
+Input, Convolution, Batch Normalization, Activation, Output
 ```
 
 ### Designing Convolutional Layers in Deep Learning Models
@@ -878,7 +878,7 @@ Input → Convolution → Batch Normalization → Activation → Output
 **Best Practices:**
 1. **Start Small**: Begin with few filters, increase depth gradually
 2. **Small Kernels**: Use 3x3 filters (more efficient than 5x5)
-3. **Progressive Depth**: Increase filters as you go deeper (32 → 64 → 128)
+3. **Progressive Depth**: Increase filters as you go deeper (32 through 64, 128)
 4. **Regularization**: Add dropout, batch normalization
 5. **Pooling**: Reduce spatial dimensions periodically
 

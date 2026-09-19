@@ -4,18 +4,18 @@ This guide covers understanding and building neural networks from scratch.
 
 ## Deep learning curriculum map (this guide)
 
-Foundations from **math + NumPy** before frameworks. **PyTorch tensors, autograd, training loops, and ANN projects** → [Deep learning frameworks guide](../10-deep-learning-frameworks/deep-learning-frameworks.md#deep-learning-curriculum-map-this-guide).
+Foundations from **math + NumPy** before frameworks. **PyTorch tensors, autograd, training loops, and ANN projects**. See [Deep learning frameworks guide](../10-deep-learning-frameworks/deep-learning-frameworks.md#deep-learning-curriculum-map-this-guide).
 
-- **Deep learning fundamentals and applications** → [Introduction](#introduction)
-- **Machine learning vs deep learning** → [Machine learning versus deep learning](#machine-learning-versus-deep-learning)
-- **Limitations of linear models** → [Limitations of linear models](#limitations-of-linear-models); **perceptron and loss** → [Perceptron](#perceptron), [Loss functions](#loss-functions)
-- **MLP and forward propagation** → [Multi-layer perceptron](#multi-layer-perceptron)
-- **Neural network types overview** → [Neural network types overview](#neural-network-types-overview)
-- **Backpropagation (intuition and mathematics)** → [Backpropagation](#backpropagation)
-- **Optimization (Momentum, AdaGrad, RMSProp, Adam) and gradient descent** → [Gradient descent](#gradient-descent)
-- **Training challenges (vanishing/exploding gradients, scaling, early stopping)** → [Training challenges and monitoring](#training-challenges-and-monitoring)
-- **Regularization (L1/L2, weight decay, dropout) and stability (initialization, batch norm)** → [Weight initialization](#weight-initialization), [Regularization dropout and batch normalization](#regularization-dropout-and-batch-normalization)
-- **Projects (MNIST, churn, house prices with ANNs)** → [Projects below](#practice-exercises); [MNIST / intermediate](../17-projects-intermediate/README.md#deep-learning-curriculum-map-projects), [churn](../17-projects-intermediate/project-02-customer-churn/README.md), [house prices](../16-projects-beginner/project-01-house-price-prediction/README.md)
+- **Deep learning fundamentals and applications**. See [Introduction](#introduction)
+- **Machine learning vs deep learning**. See [Machine learning versus deep learning](#machine-learning-versus-deep-learning)
+- **Limitations of linear models**. See [Limitations of linear models](#limitations-of-linear-models); **perceptron and loss**. See [Perceptron](#perceptron), [Loss functions](#loss-functions)
+- **MLP and forward propagation**. See [Multi-layer perceptron](#multi-layer-perceptron)
+- **Neural network types overview**. See [Neural network types overview](#neural-network-types-overview)
+- **Backpropagation (intuition and mathematics)**. See [Backpropagation](#backpropagation)
+- **Optimization (Momentum, AdaGrad, RMSProp, Adam) and gradient descent**. See [Gradient descent](#gradient-descent)
+- **Training challenges (vanishing/exploding gradients, scaling, early stopping)**. See [Training challenges and monitoring](#training-challenges-and-monitoring)
+- **Regularization (L1/L2, weight decay, dropout) and stability (initialization, batch norm)**. See [Weight initialization](#weight-initialization), [Regularization dropout and batch normalization](#regularization-dropout-and-batch-normalization)
+- **Projects (MNIST, churn, house prices with ANNs)**. See [Projects below](#practice-exercises); [MNIST / intermediate](../17-projects-intermediate/README.md#deep-learning-curriculum-map-projects), [churn](../17-projects-intermediate/project-02-customer-churn/README.md), [house prices](../16-projects-beginner/project-01-house-price-prediction/README.md)
 
 ## Table of Contents
 
@@ -69,7 +69,7 @@ Neural networks are computing systems inspired by biological neural networks. Th
 ### Neural Network Architecture
 
 ```
-Input Layer → Hidden Layer(s) → Output Layer
+Input Layer, Hidden Layer(s), Output Layer
      ↓              ↓                ↓
   Features    Feature Learning   Predictions
 ```
@@ -926,7 +926,7 @@ import numpy as np
 rng = np.random.default_rng(0)
 X = rng.standard_normal((64, 4))
 y = X @ np.array([1.0, -0.5, 0.25, 0.0]) + 0.1 * rng.standard_normal(64)
-w = rng.standard_normal(4) * 5  # intentionally large start → larger gradients
+w = rng.standard_normal(4) * 5  # intentionally large start, larger gradients
 lr = 0.05
 for step in range(20):
     pred = X @ w
@@ -941,7 +941,7 @@ for step in range(20):
 
 ## Regularization dropout and batch normalization
 
-- **L2 (weight decay):** add `λ * ||w||²` to the loss so weights stay small; in PyTorch use `weight_decay` on the optimizer. **L1** encourages sparsity (many weights → 0).
+- **L2 (weight decay):** add `λ * ||w||²` to the loss so weights stay small; in PyTorch use `weight_decay` on the optimizer. **L1** encourages sparsity (many weights, 0).
 - **Dropout:** randomly zero hidden units during training to prevent co-adaptation; turn off at inference (scale outputs accordingly in plain NumPy; frameworks handle this).
 - **Batch normalization:** normalize layer inputs per mini-batch, learnable scale/shift; stabilizes training and often allows higher learning rates (implemented in `nn.BatchNorm1d` / Keras `BatchNormalization`).
 

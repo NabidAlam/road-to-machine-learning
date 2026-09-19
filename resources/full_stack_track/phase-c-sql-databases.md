@@ -24,7 +24,7 @@ A **relation** (table) stores tuples (rows) with attributes (columns). A **prima
 
 Cardinality:
 
-- **One-to-many:** `users` → `posts` (`posts.user_id` → `users.id`)
+- **One-to-many:** `users` to `posts` (`posts.user_id` to `users.id`)
 - **Many-to-many:** use a **junction** table (`post_tags` between `posts` and `tags`)
 
 **Exercise:** Draw three tables for a blog: `users`, `posts`, `comments`. Label PKs and FKs.
@@ -71,7 +71,7 @@ You do not always normalize “perfectly” for analytics warehouses, but for OL
 
 Use a transaction when multiple writes must succeed or fail together (money movement, creating parent + children rows).
 
-Conceptual pattern: `BEGIN` → statements → `COMMIT` or `ROLLBACK` on error.
+Conceptual pattern: `BEGIN`, statements, then `COMMIT` or `ROLLBACK` on error.
 
 ---
 
