@@ -36,6 +36,16 @@ Typical spine:
 5. [System Design](../../../system-design/README.md) and [ML System Design Guide](../../ml_system_design_guide.md) for service thinking
 6. Optional [Full-Stack AI Track](../../full_stack_track/README.md) when you build product surfaces
 
+## Related resources
+
+- [ML System Design Guide](../../ml_system_design_guide.md). Service thinking for ML products.
+- [DSA for ML Guide](../../dsa_for_ml_guide.md). Algorithm habits that still matter in ML roles.
+- [Git Guide](../../git_guide.md). Collaboration and review habits for portfolio work.
+- [Docker Tutorial](../../docker_tutorial.md). Containers for repeatable demos and services.
+- [MLOps Cheatsheet](../../mlops_cheatsheet.md). Quick sheet beside Modules 13–14.
+- [Backend Engineering Roadmap](../../backend_engineering_roadmap.md). APIs and data stores beside ML work.
+- [Ethics in ML](../../ethics_in_ml.md). Product features still need harm awareness.
+
 ## Role emphasis (not destiny)
 
 | Emphasis | Role | Why |

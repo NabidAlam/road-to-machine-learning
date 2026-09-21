@@ -14,8 +14,12 @@ These tracks help people from other fields study machine learning on this repo w
 | Earth and environment | [earth-environment/README.md](earth-environment/README.md) | Data Scientist, Data Analyst |
 | Non-software engineering | [engineering/README.md](engineering/README.md) | ML Engineer, Data Scientist |
 | CS and software | [cs-software/README.md](cs-software/README.md) | ML Engineer, AI Engineer |
+| Business, analytics, and ops | [business-analytics/README.md](business-analytics/README.md) | Data Analyst, Data Scientist |
+| Social and behavioral sciences (research) | [social-behavioral/README.md](social-behavioral/README.md) | Data Scientist, Data Analyst |
+| Education and edtech | [education-edtech/README.md](education-edtech/README.md) | Data Scientist, Data Analyst |
+| Agriculture and agronomy (applied) | [agriculture/README.md](agriculture/README.md) | Data Scientist, ML Engineer |
 
-**Start here.** Open your domain syllabus. Pick **Research support** or **Job-oriented study**. Begin at the first Module NN link in that list.
+**Start here.** Open your domain syllabus. Pick **Research support** or **Job-oriented study**. Begin at the first Module NN link in that list. Each syllabus also has a **Related resources** section with sibling guides from `resources/` (methods, ethics, communication). Shared catalogs live once here: [courses](../courses.md), [books](../books.md), [tools](../tools.md), [datasets](../datasets.md).
 
 **Pair with the Study Hub.** On [nabidinmotion.com](https://nabidinmotion.com) you can filter Career Path by role after you know which emphasis fits. Progress stays on your device.
 

@@ -32,6 +32,15 @@ You already think in systems, sensors, tolerances, and failure modes. This track
 - [Module 13](../../../13-model-deployment/README.md)–[14](../../../14-mlops-basics/README.md) for production habits
 - [Module 21](../../../21-model-explainability/README.md) for reviews and audits
 
+## Related resources
+
+- [ML System Design Guide](../../ml_system_design_guide.md). Service thinking when models sit in a loop.
+- [MLOps Cheatsheet](../../mlops_cheatsheet.md). Quick sheet beside Modules 13–14.
+- [Model Deployment Cheatsheet](../../model_deployment_cheatsheet.md). Deploy habits without overclaiming readiness.
+- [Docker Tutorial](../../docker_tutorial.md). Containers when you need a repeatable run path.
+- [Data Validation](../../data_validation.md). Sensor streams need checks before control decisions.
+- [Stakeholder Communication](../../stakeholder_communication.md). Safety reviews need plain error talk.
+
 ## Role emphasis (not destiny)
 
 | Emphasis | Role | Why |

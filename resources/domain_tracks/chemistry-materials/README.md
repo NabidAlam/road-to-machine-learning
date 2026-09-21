@@ -33,6 +33,13 @@ You already work with spectra, compositions, process parameters, and lab noteboo
 - [Module 21](../../../21-model-explainability/README.md)
 - Optional [Module 11](../../../11-computer-vision/README.md) for imaging
 
+## Related resources
+
+- [Data Validation](../../data_validation.md). Calibration and instrument drift start here.
+- [Math Formulas](../../math_formulas.md). Quick math sheet beside Module 00 work.
+- [Model Explainability Cheatsheet](../../model_explainability_cheatsheet.md). Quick sheet beside Module 21.
+- [Common Errors](../../common_errors.md). Leakage across related samples is a frequent lab trap.
+
 ## Role emphasis (not destiny)
 
 | Emphasis | Role | Why |

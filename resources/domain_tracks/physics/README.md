@@ -31,6 +31,13 @@ You already think in models, measurement error, and experiments. This track show
 - Time series habits ([Module 15](../../../15-time-series-analysis/README.md))
 - Explaining model behavior when a collaborator asks why ([Module 21](../../../21-model-explainability/README.md))
 
+## Related resources
+
+- [Math Formulas](../../math_formulas.md). Quick math sheet beside Module 00 work.
+- [Prerequisites Cheatsheet](../../prerequisites_cheatsheet.md). Baseline math and Python habits in one place.
+- [Data Validation](../../data_validation.md). Measurement noise and instrument quirks need checks.
+- [Model Explainability Cheatsheet](../../model_explainability_cheatsheet.md). Quick sheet beside Module 21.
+
 ## Role emphasis (not destiny)
 
 | Emphasis | Hub / README role | Why |

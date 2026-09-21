@@ -33,6 +33,14 @@ You already work with spatial, seasonal, and messy observational data. This trac
 - [Module 21](../../../21-model-explainability/README.md)
 - [Module 19](../../../19-sql-database-fundamentals/README.md) when archives are tabular
 
+## Related resources
+
+- [Data Validation](../../data_validation.md). Station and sensor series need checks before modeling.
+- [Ethics in ML](../../ethics_in_ml.md). Environmental claims in public need caution.
+- [Common Errors](../../common_errors.md). Time and space leakage are common failure modes.
+- [Model Explainability Cheatsheet](../../model_explainability_cheatsheet.md). Quick sheet beside Module 21.
+- [Imbalanced Data Cheatsheet](../../imbalanced_data_cheatsheet.md). Rare events and extremes need careful metrics.
+
 ## Role emphasis (not destiny)
 
 | Emphasis | Role | Why |

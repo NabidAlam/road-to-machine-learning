@@ -32,6 +32,14 @@ You already think in experiments, controls, and biological variation. This track
 - [Module 21](../../../21-model-explainability/README.md) for trust with domain experts
 - [Module 19](../../../19-sql-database-fundamentals/README.md) when data lives in warehouses
 
+## Related resources
+
+- [Ethics in ML](../../ethics_in_ml.md). Research data can harm people. Not clinical advice.
+- [Imbalanced Data Cheatsheet](../../imbalanced_data_cheatsheet.md). Rare labels are common in assays and studies.
+- [Causal Inference Guide](../../causal_inference_guide.md). When prediction is not enough for the research question.
+- [Data Validation](../../data_validation.md). Batch effects and messy tables need early checks.
+- [Model Explainability Cheatsheet](../../model_explainability_cheatsheet.md). Quick sheet beside Module 21.
+
 ## Role emphasis (not destiny)
 
 | Emphasis | Role | Why |
