@@ -25,16 +25,16 @@ You already write code and think in systems. This track is the thin overlay that
 
 ## Gaps this track closes
 
-Most gaps are role-shaped, not domain-shaped. Use the main [Career Paths](../../README.md#career-paths) table.
+Most gaps are role-shaped, not domain-shaped. Use the main [Career Paths](../../../README.md#career-paths) table.
 
 Typical spine:
 
-1. [Module 00](../../00-prerequisites/README.md)–[01](../../01-python-for-data-science/README.md)
-2. [Modules 02](../../02-introduction-to-ml/README.md)–[05](../../05-model-evaluation-optimization/README.md)
+1. [Module 00](../../../00-prerequisites/README.md)–[01](../../../01-python-for-data-science/README.md)
+2. [Modules 02](../../../02-introduction-to-ml/README.md)–[05](../../../05-model-evaluation-optimization/README.md)
 3. Role-specific modules from the Career Paths table
-4. [Module 13](../../13-model-deployment/README.md)–[14](../../14-mlops-basics/README.md) for production roles
-5. [System Design](../../system-design/README.md) and [ML System Design Guide](../ml_system_design_guide.md) for service thinking
-6. Optional [Full-Stack AI Track](../full_stack_track/README.md) when you build product surfaces
+4. [Module 13](../../../13-model-deployment/README.md)–[14](../../../14-mlops-basics/README.md) for production roles
+5. [System Design](../../../system-design/README.md) and [ML System Design Guide](../../ml_system_design_guide.md) for service thinking
+6. Optional [Full-Stack AI Track](../../full_stack_track/README.md) when you build product surfaces
 
 ## Role emphasis (not destiny)
 
@@ -43,7 +43,7 @@ Typical spine:
 | Primary | ML Engineer | Production ML fits software backgrounds |
 | Alternate | AI Engineer | Broader catalog including later modules |
 
-Also consider LLM Engineer or GenAI Solution Architect when language systems are the job. See [Career Roadmap Guide](../career_roadmap_guide.md).
+Also consider LLM Engineer or GenAI Solution Architect when language systems are the job. See [Career Roadmap Guide](../../career_roadmap_guide.md).
 
 ## Intensity maps
 
@@ -53,9 +53,9 @@ Use the Data Scientist or Research Scientist module lists in the main README. Pr
 
 ### Job-oriented study (tier C)
 
-1. Follow the ML Engineer module list in [Career Paths](../../README.md#career-paths)
+1. Follow the ML Engineer module list in [Career Paths](../../../README.md#career-paths)
 2. Add system design foundations
-3. Ship projects from [Modules 16](../../16-projects-beginner/README.md)–[18](../../18-projects-advanced/README.md) with README-quality evidence
+3. Ship projects from [Modules 16](../../../16-projects-beginner/README.md)–[18](../../../18-projects-advanced/README.md) with README-quality evidence
 4. Add full-stack chapters only if the role needs product engineering
 
 ## Ordered study checklist
@@ -68,7 +68,7 @@ Use the Data Scientist or Research Scientist module lists in the main README. Pr
 
 ## Start here
 
-[Module 00 README](../../00-prerequisites/README.md) or [Module 01 README](../../01-python-for-data-science/README.md) if prerequisites are already solid.
+[Module 00 README](../../../00-prerequisites/README.md) or [Module 01 README](../../../01-python-for-data-science/README.md) if prerequisites are already solid.
 
 ## Honesty and traps
 
@@ -76,4 +76,4 @@ Use the Data Scientist or Research Scientist module lists in the main README. Pr
 - Wrapping an API is not the same as shipping evaluated ML.
 - This track stays thin on purpose. Other domains need more bridge prose. You need disciplined module coverage.
 
-**Try next:** Open the [Career Paths](../../README.md#career-paths) table, pick ML Engineer or AI Engineer, and start the first module in that list.
+**Try next:** Open the [Career Paths](../../../README.md#career-paths) table, pick ML Engineer or AI Engineer, and start the first module in that list.

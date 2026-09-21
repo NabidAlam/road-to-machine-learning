@@ -26,11 +26,11 @@ You already think in experiments, controls, and biological variation. This track
 
 ## Gaps this track closes
 
-- [Module 01](../../01-python-for-data-science/README.md) for tables and plots
-- [Modules 02](../../02-introduction-to-ml/README.md)–[05](../../05-model-evaluation-optimization/README.md) for supervised learning and eval
-- [Module 20](../../20-handling-imbalanced-data/README.md) when classes are rare
-- [Module 21](../../21-model-explainability/README.md) for trust with domain experts
-- [Module 19](../../19-sql-database-fundamentals/README.md) when data lives in warehouses
+- [Module 01](../../../01-python-for-data-science/README.md) for tables and plots
+- [Modules 02](../../../02-introduction-to-ml/README.md)–[05](../../../05-model-evaluation-optimization/README.md) for supervised learning and eval
+- [Module 20](../../../20-handling-imbalanced-data/README.md) when classes are rare
+- [Module 21](../../../21-model-explainability/README.md) for trust with domain experts
+- [Module 19](../../../19-sql-database-fundamentals/README.md) when data lives in warehouses
 
 ## Role emphasis (not destiny)
 
@@ -39,28 +39,28 @@ You already think in experiments, controls, and biological variation. This track
 | Primary | Data Scientist | Models plus evaluation match research questions |
 | Alternate | Data Analyst | Strong when the job is clean reporting and careful slices first |
 
-See [Career Paths](../../README.md#career-paths) and [Career Roadmap Guide](../career_roadmap_guide.md). Treat times as emphasis maps only.
+See [Career Paths](../../../README.md#career-paths) and [Career Roadmap Guide](../../career_roadmap_guide.md). Treat times as emphasis maps only.
 
 ## Intensity maps
 
 ### Research support (tier B)
 
-1. [Module 00](../../00-prerequisites/README.md) if needed
-2. [Module 01](../../01-python-for-data-science/README.md)
-3. [Module 02](../../02-introduction-to-ml/README.md)
-4. [Module 04](../../04-supervised-learning-classification/README.md)
-5. [Module 05](../../05-model-evaluation-optimization/README.md)
-6. [Module 20](../../20-handling-imbalanced-data/README.md)
-7. [Module 21](../../21-model-explainability/README.md)
-8. One [Module 16](../../16-projects-beginner/README.md) classification-style project you can describe without hype
+1. [Module 00](../../../00-prerequisites/README.md) if needed
+2. [Module 01](../../../01-python-for-data-science/README.md)
+3. [Module 02](../../../02-introduction-to-ml/README.md)
+4. [Module 04](../../../04-supervised-learning-classification/README.md)
+5. [Module 05](../../../05-model-evaluation-optimization/README.md)
+6. [Module 20](../../../20-handling-imbalanced-data/README.md)
+7. [Module 21](../../../21-model-explainability/README.md)
+8. One [Module 16](../../../16-projects-beginner/README.md) classification-style project you can describe without hype
 
-Optional: [Module 12](../../12-natural-language-processing/README.md) only for text-heavy literature tasks. [Module 11](../../11-computer-vision/README.md) only for image assays after Module 05 is solid.
+Optional: [Module 12](../../../12-natural-language-processing/README.md) only for text-heavy literature tasks. [Module 11](../../../11-computer-vision/README.md) only for image assays after Module 05 is solid.
 
 ### Job-oriented study (tier B)
 
 1. Complete Research support
-2. Add [Module 07](../../07-feature-engineering/README.md) and [Module 19](../../19-sql-database-fundamentals/README.md)
-3. Add [Module 03](../../03-supervised-learning-regression/README.md) if you predict continuous endpoints
+2. Add [Module 07](../../../07-feature-engineering/README.md) and [Module 19](../../../19-sql-database-fundamentals/README.md)
+3. Add [Module 03](../../../03-supervised-learning-regression/README.md) if you predict continuous endpoints
 4. Keep deployment modules for later unless the role truly ships models
 
 ## Ordered study checklist
@@ -74,7 +74,7 @@ Optional: [Module 12](../../12-natural-language-processing/README.md) only for t
 
 ## Start here
 
-[Module 01 README](../../01-python-for-data-science/README.md) unless you need [Module 00](../../00-prerequisites/README.md) first.
+[Module 01 README](../../../01-python-for-data-science/README.md) unless you need [Module 00](../../../00-prerequisites/README.md) first.
 
 ## Honesty and traps
 
@@ -83,4 +83,4 @@ Optional: [Module 12](../../12-natural-language-processing/README.md) only for t
 - Do not publish patient-identifying data in public repos.
 - Deep learning is optional. Many tables need strong classical baselines first.
 
-**Try next:** Open [Module 04: Supervised Learning Classification](../../04-supervised-learning-classification/README.md) after you can wrangle a table in Module 01.
+**Try next:** Open [Module 04: Supervised Learning Classification](../../../04-supervised-learning-classification/README.md) after you can wrangle a table in Module 01.

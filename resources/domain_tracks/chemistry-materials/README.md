@@ -26,12 +26,12 @@ You already work with spectra, compositions, process parameters, and lab noteboo
 
 ## Gaps this track closes
 
-- [Module 01](../../01-python-for-data-science/README.md)
-- [Modules 02](../../02-introduction-to-ml/README.md)–[05](../../05-model-evaluation-optimization/README.md)
-- [Module 03](../../03-supervised-learning-regression/README.md) as the usual first modeling step
-- [Module 08](../../08-unsupervised-learning/README.md) for exploration
-- [Module 21](../../21-model-explainability/README.md)
-- Optional [Module 11](../../11-computer-vision/README.md) for imaging
+- [Module 01](../../../01-python-for-data-science/README.md)
+- [Modules 02](../../../02-introduction-to-ml/README.md)–[05](../../../05-model-evaluation-optimization/README.md)
+- [Module 03](../../../03-supervised-learning-regression/README.md) as the usual first modeling step
+- [Module 08](../../../08-unsupervised-learning/README.md) for exploration
+- [Module 21](../../../21-model-explainability/README.md)
+- Optional [Module 11](../../../11-computer-vision/README.md) for imaging
 
 ## Role emphasis (not destiny)
 
@@ -40,28 +40,28 @@ You already work with spectra, compositions, process parameters, and lab noteboo
 | Primary | Data Scientist | Property models and evaluation |
 | Alternate | ML Engineer | When models must run in a plant or lab pipeline |
 
-See [Career Paths](../../README.md#career-paths) and [Career Roadmap Guide](../career_roadmap_guide.md). Treat times as emphasis maps only.
+See [Career Paths](../../../README.md#career-paths) and [Career Roadmap Guide](../../career_roadmap_guide.md). Treat times as emphasis maps only.
 
 ## Intensity maps
 
 ### Research support (tier B)
 
-1. [Module 00](../../00-prerequisites/README.md) if needed
-2. [Module 01](../../01-python-for-data-science/README.md)
-3. [Module 02](../../02-introduction-to-ml/README.md)
-4. [Module 03](../../03-supervised-learning-regression/README.md)
-5. [Module 05](../../05-model-evaluation-optimization/README.md)
-6. [Module 08](../../08-unsupervised-learning/README.md) when exploring unlabeled spectra
-7. [Module 21](../../21-model-explainability/README.md)
-8. One [Module 16](../../16-projects-beginner/README.md) regression-style project
+1. [Module 00](../../../00-prerequisites/README.md) if needed
+2. [Module 01](../../../01-python-for-data-science/README.md)
+3. [Module 02](../../../02-introduction-to-ml/README.md)
+4. [Module 03](../../../03-supervised-learning-regression/README.md)
+5. [Module 05](../../../05-model-evaluation-optimization/README.md)
+6. [Module 08](../../../08-unsupervised-learning/README.md) when exploring unlabeled spectra
+7. [Module 21](../../../21-model-explainability/README.md)
+8. One [Module 16](../../../16-projects-beginner/README.md) regression-style project
 
 ### Job-oriented study (tier B toward C)
 
 1. Complete Research support
-2. Add [Module 04](../../04-supervised-learning-classification/README.md) and [Module 07](../../07-feature-engineering/README.md)
-3. Add [Module 19](../../19-sql-database-fundamentals/README.md) if LIMS-style data is tabular at scale
-4. Add [Module 13](../../13-model-deployment/README.md)–[14](../../14-mlops-basics/README.md) only for production roles
-5. Add [Module 11](../../11-computer-vision/README.md) only for image-heavy work after Module 05
+2. Add [Module 04](../../../04-supervised-learning-classification/README.md) and [Module 07](../../../07-feature-engineering/README.md)
+3. Add [Module 19](../../../19-sql-database-fundamentals/README.md) if LIMS-style data is tabular at scale
+4. Add [Module 13](../../../13-model-deployment/README.md)–[14](../../../14-mlops-basics/README.md) only for production roles
+5. Add [Module 11](../../../11-computer-vision/README.md) only for image-heavy work after Module 05
 
 ## Ordered study checklist
 
@@ -74,7 +74,7 @@ See [Career Paths](../../README.md#career-paths) and [Career Roadmap Guide](../c
 
 ## Start here
 
-Open [Module 00 README](../../00-prerequisites/README.md) if you need math or environment help. Otherwise open [Module 01 README](../../01-python-for-data-science/README.md).
+Open [Module 00 README](../../../00-prerequisites/README.md) if you need math or environment help. Otherwise open [Module 01 README](../../../01-python-for-data-science/README.md).
 
 ## Honesty and traps
 
@@ -82,4 +82,4 @@ Open [Module 00 README](../../00-prerequisites/README.md) if you need math or en
 - Do not treat vendor “AI for materials” marketing as a methods curriculum.
 - Lab safety and chemical handling stay outside this repo.
 
-**Try next:** Open [Module 03: Supervised Learning Regression](../../03-supervised-learning-regression/README.md) after Module 01.
+**Try next:** Open [Module 03: Supervised Learning Regression](../../../03-supervised-learning-regression/README.md) after Module 01.

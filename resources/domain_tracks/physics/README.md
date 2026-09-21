@@ -26,10 +26,10 @@ You already think in models, measurement error, and experiments. This track show
 
 ## Gaps this track closes on the shared spine
 
-- Python and tabular workflows ([Module 01](../../01-python-for-data-science/README.md))
-- Supervised learning and evaluation discipline ([Modules 02](../../02-introduction-to-ml/README.md)–[05](../../05-model-evaluation-optimization/README.md))
-- Time series habits ([Module 15](../../15-time-series-analysis/README.md))
-- Explaining model behavior when a collaborator asks why ([Module 21](../../21-model-explainability/README.md))
+- Python and tabular workflows ([Module 01](../../../01-python-for-data-science/README.md))
+- Supervised learning and evaluation discipline ([Modules 02](../../../02-introduction-to-ml/README.md)–[05](../../../05-model-evaluation-optimization/README.md))
+- Time series habits ([Module 15](../../../15-time-series-analysis/README.md))
+- Explaining model behavior when a collaborator asks why ([Module 21](../../../21-model-explainability/README.md))
 
 ## Role emphasis (not destiny)
 
@@ -38,7 +38,7 @@ You already think in models, measurement error, and experiments. This track show
 | Primary | Data Scientist | Predictive models, evaluation, and careful experiments match lab culture |
 | Alternate (later) | ML Engineer | When you must ship a model into a pipeline, not only analyze offline |
 
-See the main [Career Paths](../../README.md#career-paths) table and [Career Roadmap Guide](../career_roadmap_guide.md). Treat times as emphasis maps only.
+See the main [Career Paths](../../../README.md#career-paths) table and [Career Roadmap Guide](../../career_roadmap_guide.md). Treat times as emphasis maps only.
 
 ## Intensity maps
 
@@ -48,26 +48,26 @@ Pick one. You can change later.
 
 Goal: trustworthy analysis for papers, theses, and lab decisions.
 
-1. [Module 00](../../00-prerequisites/README.md) if math or Python is shaky
-2. [Module 01](../../01-python-for-data-science/README.md)
-3. [Module 02](../../02-introduction-to-ml/README.md)
-4. [Module 03](../../03-supervised-learning-regression/README.md)
-5. [Module 05](../../05-model-evaluation-optimization/README.md) (do not skip)
-6. [Module 15](../../15-time-series-analysis/README.md) if your data is ordered in time
-7. [Module 21](../../21-model-explainability/README.md)
-8. One beginner project from [Module 16](../../16-projects-beginner/README.md) that practices regression or forecasting habits
+1. [Module 00](../../../00-prerequisites/README.md) if math or Python is shaky
+2. [Module 01](../../../01-python-for-data-science/README.md)
+3. [Module 02](../../../02-introduction-to-ml/README.md)
+4. [Module 03](../../../03-supervised-learning-regression/README.md)
+5. [Module 05](../../../05-model-evaluation-optimization/README.md) (do not skip)
+6. [Module 15](../../../15-time-series-analysis/README.md) if your data is ordered in time
+7. [Module 21](../../../21-model-explainability/README.md)
+8. One beginner project from [Module 16](../../../16-projects-beginner/README.md) that practices regression or forecasting habits
 
-Optional later: [Module 08](../../08-unsupervised-learning/README.md) for structure discovery. [Module 09](../../09-neural-networks-basics/README.md)–[10](../../10-deep-learning-frameworks/README.md) only when simpler models fail for a clear reason.
+Optional later: [Module 08](../../../08-unsupervised-learning/README.md) for structure discovery. [Module 09](../../../09-neural-networks-basics/README.md)–[10](../../../10-deep-learning-frameworks/README.md) only when simpler models fail for a clear reason.
 
 ### Job-oriented study (tier B toward C)
 
 Goal: portfolio evidence that you can clean data, train, evaluate, and explain. Still no hire guarantee.
 
 1. Complete the Research support list
-2. Add [Module 04](../../04-supervised-learning-classification/README.md) and [Module 07](../../07-feature-engineering/README.md)
-3. Add [Module 19](../../19-sql-database-fundamentals/README.md) if your workplace data lives in tables
-4. Add [Module 13](../../13-model-deployment/README.md)–[14](../../14-mlops-basics/README.md) only when you need production habits
-5. Prefer one intermediate project from [Module 17](../../17-projects-intermediate/README.md) that you can defend end to end
+2. Add [Module 04](../../../04-supervised-learning-classification/README.md) and [Module 07](../../../07-feature-engineering/README.md)
+3. Add [Module 19](../../../19-sql-database-fundamentals/README.md) if your workplace data lives in tables
+4. Add [Module 13](../../../13-model-deployment/README.md)–[14](../../../14-mlops-basics/README.md) only when you need production habits
+5. Prefer one intermediate project from [Module 17](../../../17-projects-intermediate/README.md) that you can defend end to end
 
 ## Ordered study checklist
 
@@ -84,7 +84,7 @@ Use this as your weekly spine.
 
 ## Start here
 
-Open [Module 00 README](../../00-prerequisites/README.md) if you need math or environment help. Otherwise open [Module 01 README](../../01-python-for-data-science/README.md).
+Open [Module 00 README](../../../00-prerequisites/README.md) if you need math or environment help. Otherwise open [Module 01 README](../../../01-python-for-data-science/README.md).
 
 ## Honesty and traps
 
@@ -97,4 +97,4 @@ Open [Module 00 README](../../00-prerequisites/README.md) if you need math or en
 
 Domain chapters for physics (literacy, uncertainty, methods map) will land in this folder next. Until then, the Module NN links above are the teaching content.
 
-**Try next:** Open [Module 01: Python for Data Science](../../01-python-for-data-science/README.md) and complete its core path with a noisy measurement CSV of your choosing.
+**Try next:** Open [Module 01: Python for Data Science](../../../01-python-for-data-science/README.md) and complete its core path with a noisy measurement CSV of your choosing.
