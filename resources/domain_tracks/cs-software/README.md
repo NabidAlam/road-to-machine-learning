@@ -53,7 +53,7 @@ Typical spine:
 | Primary | ML Engineer | Production ML fits software backgrounds |
 | Alternate | AI Engineer | Broader catalog including later modules |
 
-Also consider LLM Engineer or GenAI Solution Architect when language systems are the job. See [Career Roadmap Guide](../../career_roadmap_guide.md).
+Also consider LLM Engineer or GenAI Solution Architect when language systems are the job. See [Career Roadmap Guide](../../career_roadmap_guide.md). Treat times as emphasis maps only. This track does not guarantee a hire, visa, or role outcome.
 
 ## Intensity maps
 

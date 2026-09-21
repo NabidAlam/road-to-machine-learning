@@ -78,7 +78,7 @@ Optional later: [Module 20](../../../20-handling-imbalanced-data/README.md) for 
 - [ ] Finish Module 01 with an assessment-style table (public or own)
 - [ ] Finish Modules 02, 04, and 05 with a split by learner, class, or attempt wave
 - [ ] Finish Module 21 and explain one false alert to a teacher collaborator
-- [ ] Document limits: not a teaching credential, not individualized clinical advice, no guaranteed learning gains
+- [ ] Document limits: not a teaching credential, not licensing, no guaranteed learning gains
 
 ## Start here
 

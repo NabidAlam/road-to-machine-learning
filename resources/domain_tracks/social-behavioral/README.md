@@ -31,7 +31,6 @@ You already think in studies, surveys, and careful inference. This track maps th
 - [Module 04](../../../04-supervised-learning-classification/README.md) as a common first modeling step
 - [Module 20](../../../20-handling-imbalanced-data/README.md) when classes are rare
 - [Module 21](../../../21-model-explainability/README.md)
-- [Causal Inference Guide](../../causal_inference_guide.md) when prediction is not enough
 
 ## Related resources
 
