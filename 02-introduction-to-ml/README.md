@@ -70,7 +70,7 @@ Understand what machine learning is, how it works, and the different types of ML
 
 **[Complete Detailed Guide](introduction-to-ml.md)**
 
-## Job-ready checkpoint (before Modules 03–05)
+## Readiness checkpoint (before Modules 03–05)
 
 You are ready for **supervised learning** (regression and classification) when you can:
 

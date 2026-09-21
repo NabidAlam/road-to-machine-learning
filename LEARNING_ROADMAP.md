@@ -262,7 +262,7 @@ While this repository doesn't offer certificates, you can:
 2. **Share on GitHub**: Show your work
 3. **Write Blog Posts**: Explain what you learned
 4. **Report issues**: Broken links or errors via GitHub Issues on this repo
-5. **Get Certified**: Consider Coursera, Udacity certificates
+5. **Optional third-party certificates**: Coursera or Udacity if you want them. This repo does not certify you.
 
 ##  Staying Motivated
 

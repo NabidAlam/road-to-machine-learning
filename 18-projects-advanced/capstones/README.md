@@ -1,6 +1,6 @@
-# Capstone Blueprints (Industry-Ready, GDPR-Safe)
+# Capstone Blueprints (public portfolio practice)
 
-These capstones are **portfolio-grade** project blueprints designed to make you **company job-ready** (ML Engineer / LLM Engineer / Data & Analytics). They are written to be **safe for a public GitHub repo**:
+These capstones are **portfolio-oriented** project blueprints for public GitHub practice (ML Engineer / LLM Engineer / Data & Analytics role paths). They are practice targets only. They do not guarantee a hire. They are written to be **safe for a public GitHub repo**:
 
 - Use **public datasets** (download yourself) or **synthetic data**
 - Do **not** commit datasets, model artifacts, logs, or credentials (this repo’s `.gitignore` already enforces that)

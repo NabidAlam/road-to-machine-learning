@@ -1,17 +1,17 @@
 # Foundation & Job Market Readiness
 
-Expert review guide for learners, instructors, and career switchers. This document defines **what “good enough” looks like** before you advance stages, and how the curriculum maps to **skills employers often screen for** in Germany, the US, and remote-first teams. It does not guarantee a hire.
+Curriculum study guide for learners and career switchers. This document defines **what “good enough” looks like** before you advance stages, and how the curriculum maps to **skills employers often screen for** in Germany, the US, and remote-first teams. It does not guarantee a hire.
 
 **Read this with:** [START-HERE.md](START-HERE.md) · [LEARNING_ROADMAP.md](LEARNING_ROADMAP.md) · [Career Roadmap Guide](resources/career_roadmap_guide.md)
 
 ---
 
-## Professor’s verdict (short)
+## Coverage snapshot
 
 | Area | Rating | Notes |
 |------|--------|-------|
 | **Breadth** | Strong | Tabular ML, DL, GenAI, deploy; 23 projects; system-design side track |
-| **Foundation depth** | Strong | Module 00 math + Python is above typical bootcamp level |
+| **Foundation depth** | Strong | Module 00 math + Python is denser than many short courses |
 | **Hands-on ratio** | Mixed | Beginner projects ship code; intermediate/advanced are brief-led |
 | **Job-market alignment** | Good with gaps | SQL and portfolio gates come late in the *default* stage order |
 | **Assessment** | Self-paced only | No autograded mastery checks; use exit criteria below |

@@ -413,7 +413,7 @@ Forecasting and monitoring problems break the usual “shuffle and split” stor
 | 8 | Model Explainability & Interpretability | SHAP, LIME, Model Interpretation | 1-2 weeks | Available |
 | 9 | Model Deployment & Serving | Model Deployment, APIs, Cloud | 1-2 weeks | Available |
 
-**Optional Capstones (Portfolio-Grade, GDPR-Safe):**
+**Optional Capstones (portfolio-oriented, public-repo safe):**
 - [Capstone Blueprints](18-projects-advanced/capstones/README.md) (ML Engineer, LLM/RAG, Data/Analytics)
 
 **Prerequisites**: Complete Stages 0-7 recommended for full benefit

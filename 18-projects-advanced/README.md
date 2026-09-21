@@ -274,7 +274,7 @@ Deploy a machine learning model as a production-**shaped** API demo with Docker,
 
 ---
 
-## Capstone Blueprints (Optional, Portfolio-Grade)
+## Capstone Blueprints (Optional, portfolio-oriented)
 
 These are **industry-style capstone blueprints** that are designed to be **safe for a public repo** (no PII, no committed datasets).
 
