@@ -5,6 +5,8 @@ Deploying Generative AI applications to production at scale.
 ## Table of Contents
 
 - [Introduction](#introduction)
+- [Context and prefix caching](#context-and-prefix-caching)
+- [Inference basics (batching, KV cache, quantization)](#inference-basics-batching-kv-cache-quantization)
 - [GenAI Architecture Patterns](#genai-architecture-patterns)
 - [Scaling Strategies](#scaling-strategies)
 - [Hyperscaler Deployment](#hyperscaler-deployment)
@@ -36,6 +38,48 @@ Production deployment of Generative AI involves:
 4. **Model Management**: Versioning and updates
 5. **Context Management**: Handling long contexts
 6. **Rate Limiting**: Preventing abuse
+
+Practice these ideas in **demo or staging** first. Measure tokens, latency, and error rates before you call a path live.
+
+---
+
+## Context and prefix caching
+
+Long prompts repeat the same prefix often (system rules, tool schemas, RAG instructions). Many hosted APIs support **prompt / prefix caching**. You pay less (or get lower latency) when the shared prefix hits cache and only the new suffix is billed at full rate.
+
+**Practical habits:**
+
+- Keep the **stable prefix** stable. Put system rules, schemas, and fixed tool lists first. Put user text and retrieved chunks later.
+- Avoid rewriting the whole system prompt every request. Small wording churn can miss the cache.
+- Prefer one long reusable prefix over many tiny unique system strings.
+- Still count tokens for the uncached suffix (query + retrieved context + history).
+- Provider details differ (TTL, minimum prefix length, what counts as a hit). Read your vendor docs. Do not assume OpenAI-style numbers apply everywhere.
+
+**Context engineering link:** Caching does not fix bad retrieval. Trim history and rank chunks so the suffix stays small. See Module 25 Day 4 in [generative-ai-llms.md](../25-generative-ai-llms/generative-ai-llms.md#day-1-7-study-spine).
+
+---
+
+## Inference basics (batching, KV cache, quantization)
+
+These ideas show up whether you call a hosted API or serve a model yourself. You do not need to implement a GPU kernel to use them well.
+
+### Batching
+
+Group multiple generate requests so the GPU (or API worker) processes them together. Higher throughput. Sometimes higher per-request latency. For interactive chat, keep batches small or use continuous batching in a serving stack. For offline jobs, larger batches often win on cost.
+
+### KV cache
+
+During decode, the model reuses **key/value** tensors from earlier tokens instead of recomputing attention over the full prefix every step. That is why long prompts hurt memory and why prefix caching helps. Longer contexts mean larger KV memory. Streaming tokens still pays for each new token’s compute.
+
+### Quantization (concept)
+
+Store weights (and sometimes activations) in fewer bits (for example 8-bit or 4-bit). Lower VRAM and often cheaper serving. Quality can drop on hard tasks. Measure on **your** eval set. QLoRA-style fine-tunes train adapters on a quantized base. That is adaptation, not a free accuracy upgrade. See [transformer fine-tuning guide](transformer_fine_tuning_guide.md#peft-decision-path-prompt-then-rag-then-loraqlora).
+
+### Staging checklist
+
+1. Log tokens in / out and cache hit rate if the API exposes it.
+2. Cap `max_tokens` for demo endpoints.
+3. Compare a smaller or quantized model against your faithfulness / task eval before you pay for a larger one.
 
 ---
 

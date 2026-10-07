@@ -1,21 +1,43 @@
 # Module 25: Generative AI & Modern LLM Applications
 
-Build LLM apps with prompt engineering, vector search, RAG, and agents. Treat demos as demos until you add eval and monitoring.
+Build LLM demos with prompt engineering, vector search, RAG, and agents only after eval. Do Days 1–6 (prompts, retrieval, faithfulness checks, guardrails) before tool-using agent loops. Treat demos as demos until you add retrieval eval, faithfulness checks, and monitoring. Prefer staging language before any live side-effect tools.
 
-**How this module fits:** Stage 7 in the main README. Best after Module 12 (NLP) or alongside it if you learn by building products. **This folder is a hub:** [generative-ai-llms.md](generative-ai-llms.md) maps topics; the real depth is in [resources/generative_ai_comprehensive_guide.md](../resources/generative_ai_comprehensive_guide.md), [resources/rag_comprehensive_guide.md](../resources/rag_comprehensive_guide.md), and the linked guides below. Use the project tutorial and quick reference here for hands-on practice.
+**How this module fits:** Stage 7 in the main README. Best after Module 12 (NLP) or alongside it if you learn by building. **This folder is a hub:** [generative-ai-llms.md](generative-ai-llms.md) holds the Day 1-7 spine. Depth lives in [resources/generative_ai_comprehensive_guide.md](../resources/generative_ai_comprehensive_guide.md), [resources/rag_comprehensive_guide.md](../resources/rag_comprehensive_guide.md), and the guides below.
 
-**Suggested path:** Prompt engineering, embeddings and vector search, RAG pipeline, agents, production checklist in [resources/genai_production_deployment.md](../resources/genai_production_deployment.md).
+## Day 1-7 study spine (ordered)
 
-##  What You'll Learn
+Work these in order. Details and depth links are in [generative-ai-llms.md](generative-ai-llms.md#day-1-7-study-spine).
 
-- Prompt Engineering (Zero-shot, Few-shot, Chain-of-Thought)
-- Vector Databases (Pinecone, ChromaDB, Weaviate, FAISS)
-- RAG (Retrieval-Augmented Generation) Systems
-- LLM Agents (LangChain, LangGraph, AutoGPT)
-- Multi-Agent Systems (CrewAI, AutoGen)
-- Building Production GenAI Apps
-- Generative Configuration Parameters
-- Model Evaluation and Benchmarks
+| Day | Focus |
+|-----|--------|
+| 1 | Prompts + structured outputs (schema over “please JSON”) |
+| 2 | Embeddings + vector store basics |
+| 3 | Hybrid RAG (BM25 + vector + rerank pointer) + faithfulness / retrieval eval (not BLEU) |
+| 4 | Context engineering + prompt caching / cost |
+| 5 | PEFT decision: Prompt, then RAG, then LoRA / QLoRA ([NLP PEFT](../12-natural-language-processing/nlp-advanced-topics.md#parameter-efficient-fine-tuning-peft), [fine-tuning guide](../resources/transformer_fine_tuning_guide.md#peft-decision-path-prompt-then-rag-then-loraqlora)) |
+| 6 | Guardrails + prompt injection before side-effect tools. MCP overview + permissions ([agents guide](../resources/ai_agents_guide.md)) |
+| 7 | **Agents after eval only.** Tool-using loops come after Days 1–6 retrieval/faithfulness checks. Short reasoning-model note (when costly thinking APIs help). |
+
+**Agents-after-eval rule:** Do not start Day 7 agent demos until you have a tiny retrieval/faithfulness eval from Day 3 and basic guardrails from Day 6. Sandbox tools first. Gate any write side effects.
+
+### Check yourself
+
+Wrong idea: “BLEU on chatbot replies proves the RAG works.”  
+Better: score retrieval hit-rate and faithfulness on a fixed question set with known sources.  
+Try this: write five questions with expected document IDs. Measure how often retrieval returns them before you tune prompts.
+
+**After the spine:** Staging checklist in [resources/genai_production_deployment.md](../resources/genai_production_deployment.md).
+
+## What You'll Learn
+
+- Prompt engineering and schema-shaped structured outputs
+- Embeddings and vector stores (FAISS, Chroma, managed options)
+- Hybrid RAG, rerank pointers, faithfulness / retrieval eval
+- Context engineering, caching, and cost basics
+- When to stop at prompts / RAG vs try LoRA / QLoRA (PEFT)
+- Guardrails, prompt injection awareness, MCP permissions
+- Tool-using agents in sandboxes after eval
+- Generative config parameters (temperature, top-p, and friends)
 
 ##  Topics Covered
 
@@ -48,68 +70,60 @@ Build LLM apps with prompt engineering, vector search, RAG, and agents. Treat de
 - **Query Processing**: User query to embedding conversion
 - **Context Augmentation**: Combining retrieved context with prompts
 - **LLM Integration**: Generating responses with augmented context
-- **Evaluation Metrics**: RAG-specific evaluation methods
-- **Production Patterns**: Deployment and optimization strategies
+- **Evaluation**: Faithfulness and retrieval metrics (not BLEU as the main score)
+- **Staging patterns**: Caching, cost, and monitoring before a careful live path
 
-### 4. LLM Agents
-- **What are AI Agents**: Autonomous systems that perceive, reason, and act
-- **LangChain Agents**: Building agents with LangChain
-- **LangGraph**: Graph-based agent workflows
-- **AutoGPT**: Fully autonomous goal completion
-- **Tools and Function Calling**: Integrating external tools
-- **Memory and Context**: Managing conversation history
-- **ReAct Framework**: Reasoning and Acting for tool use
-- **PAL (Program-aided Language Models)**: Code generation for precise problem solving
-- **Agent Evaluation**: Measuring agent performance
+### 4. LLM Agents (Day 7, after eval)
+- **What are AI Agents**: Loops that plan, call tools, and observe results
+- **LangChain Agents / LangGraph**: Learning tools for tool-using workflows
+- **Tools and Function Calling**: Start read-only. Gate writes
+- **Memory and Context**: Managing conversation history without stuffing the window
+- **ReAct-style loops**: Reason and act with tools
+- **Agent Evaluation**: Fixed task lists before you trust a demo
 
-### 5. Multi-Agent Systems
-- **Multi-Agent Architectures**: Coordinated agent workflows
-- **Agent Coordination**: Communication and task distribution
-- **Specialized Roles**: Planner, Research, Writer agents
-- **CrewAI**: Framework for role-playing agents
-- **AutoGen**: Conversational multi-agent systems
-- **MCP (Model Context Protocol)**: Standardized context sharing
-- **A2A Communication**: Agent-to-agent protocols
+### 5. Multi-Agent Systems and MCP
+- **Multi-Agent Architectures**: Optional demos when one loop is not enough
+- **Specialized Roles**: Planner, research, writer patterns as teaching examples
+- **CrewAI / AutoGen**: Framework options to explore, not required
+- **MCP (Model Context Protocol)**: Tool and context access with permissions
+- **Prompt injection**: Treat user and retrieved text as untrusted before side effects
 
-### 6. Building Production GenAI Apps
-- **Tech Stack**: Frontend, backend, LLM frameworks, vector databases
-- **Streamlit**: Fast Python-based UI for GenAI apps
-- **FastAPI**: Building GenAI backends
-- **Deployment Strategies**: Cloud, on-premise, hybrid
-- **Cost Optimization**: Reducing API and infrastructure costs
-- **Monitoring and Observability**: Tracking performance and usage
-- **Security Best Practices**: API keys, input validation, rate limiting
-- **Generative AI Project Lifecycle**: From problem definition to maintenance
+### 6. Staging GenAI apps
+- **Tech stack**: Frontend, backend, LLM APIs, vector stores
+- **Streamlit / FastAPI**: Common demo and API shapes
+- **Cost and caching**: Prefix / prompt cache ideas, batching, quantization concepts
+- **Monitoring**: Latency, tokens, error rates in staging
+- **Security**: API keys, input checks, rate limits
+- **Lifecycle**: Problem definition, then demo, then eval, then careful live
 
-##  Learning Objectives
+## Learning Objectives
 
 By the end of this module, you should be able to:
-- Design effective prompts for various LLM tasks
-- Set up and use vector databases for semantic search
-- Build end-to-end RAG systems for document Q&A
-- Create autonomous AI agents with tool integration
-- Design and implement multi-agent systems
-- Deploy GenAI applications to production
-- Optimize LLM applications for cost and performance
-- Evaluate and benchmark LLM applications
+- Design prompts and schema-shaped structured outputs
+- Set up embeddings and a vector store for semantic search
+- Build a demo RAG loop with hybrid retrieval ideas and faithfulness checks
+- Decide Prompt vs RAG vs LoRA / QLoRA with a short written rationale
+- Add basic guardrails before tools that change state
+- Run a tool-using agent in a sandbox after Days 1-6
+- Apply cost and caching basics on a staging path
 
-##  Projects
+## Projects
 
-1. **RAG System for Document QA**: Build a system that ingests PDFs, stores embeddings, and answers questions
-2. **LLM-Powered Research Agent**: Create an autonomous agent that researches topics and generates reports
-3. **Multi-Agent Content Creation**: Build a system with specialized agents (Planner, Research, Writer)
-4. **Prompt Engineering Playground**: Experiment with different prompting techniques
-5. **Vector Database Comparison**: Compare different vector databases for your use case
+1. **RAG document Q&A (demo)**: Ingest docs, store embeddings, answer with citations, score retrieval on a tiny set
+2. **Prompt + schema playground**: Structured outputs with validation, not free-form JSON hopes
+3. **Hybrid retrieval experiment**: BM25 + vectors (+ optional rerank). Compare hit rate
+4. **Guarded tool agent (sandbox)**: Read-only tools first. Confirm before any write
+5. **PEFT decision memo**: One page arguing Prompt, RAG, or LoRA for a sample task
 
-##  Key Concepts
+## Key Concepts
 
-- **Prompt Engineering**: The art and science of communicating with LLMs
-- **Semantic Search**: Finding information by meaning, not keywords
-- **RAG**: Combining retrieval with generation for knowledge-augmented AI
-- **Agents**: Autonomous systems that can reason and use tools
-- **Vector Embeddings**: Dense representations capturing semantic meaning
-- **Generative Configuration**: Parameters controlling LLM output (temperature, top-p, etc.)
-- **Production Deployment**: Making GenAI apps reliable, scalable, and cost-effective
+- **Prompt engineering**: Clear instructions and schemas for models
+- **Semantic search**: Finding information by meaning, not only keywords
+- **RAG**: Retrieval plus generation for knowledge outside model weights
+- **Faithfulness / retrieval eval**: Groundedness and hit rate. Not BLEU as the main RAG score
+- **Agents**: Tool-using loops. Demos until eval and human gates exist
+- **PEFT (LoRA / QLoRA)**: Efficient adaptation after Prompt and RAG fail your checks
+- **Staging deployment**: Reliability, cost, and security before a careful live path
 
 ## Documentation & Learning Resources
 

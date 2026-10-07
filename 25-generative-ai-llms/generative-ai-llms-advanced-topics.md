@@ -1,11 +1,13 @@
 # Generative AI & LLMs Advanced Topics
 
-Advanced topics in Generative AI and Large Language Model applications for production and research.
+Advanced topics in Generative AI and Large Language Model applications. Prefer demo and staging practice before any careful live path.
 
 ## Table of Contents
 
 - [Advanced Prompt Engineering](#advanced-prompt-engineering)
 - [Advanced RAG Techniques](#advanced-rag-techniques)
+- [Multimodal and document-vision RAG](#multimodal-and-document-vision-rag)
+- [Agentic RAG survey](#agentic-rag-survey)
 - [Agent Architectures](#agent-architectures)
 - [Model Optimization for Production](#model-optimization-for-production)
 - [Evaluation and Benchmarking](#evaluation-and-benchmarking)
@@ -175,6 +177,60 @@ def multi_query_retrieval(original_query):
     unique_docs = deduplicate(all_docs)
     return rerank_documents(original_query, unique_docs)
 ```
+
+---
+
+## Multimodal and document-vision RAG
+
+Short survey. Use after text RAG works. Multimodal stacks add OCR, layout, and image encoders. They also add failure modes.
+
+**Typical shapes:**
+
+1. **Parse then embed text.** Run OCR / PDF parsers (layout-aware if tables matter). Chunk the extracted text. Reuse your text RAG loop. Good first demo for scanned PDFs.
+2. **Page or region embeddings.** Embed page images or crops with a vision encoder. Retrieve by visual similarity. Useful for slides, diagrams, and forms where text extract is weak.
+3. **Late fusion.** Retrieve with text, then pass page images (or screenshots) into a multimodal model for the final answer. Keep citations to page ids.
+
+**Practical notes:**
+
+- Measure retrieval on a tiny labeled set of questions with page or chunk ids. Faithfulness still matters. Vision does not remove hallucination.
+- Tables and multi-column layouts break naive OCR. Spot-check before you trust staging answers.
+- Cost rises with image tokens. Cache parsed text when the file has not changed.
+- Treat extracted text like any other untrusted context (prompt injection can hide in PDFs).
+
+**When to skip:** Pure FAQ over clean markdown. Stay on text hybrid RAG (Day 3).
+
+---
+
+## Agentic RAG survey
+
+Agentic RAG adds model steps **around** retrieval. It is not a substitute for a working hybrid index. Use after Day 3 eval exists.
+
+**Common moves:**
+
+| Step | What it does | Watch for |
+|------|----------------|-----------|
+| **Query rewrite** | Turns a vague user ask into a search-friendly query (or several). | Drift away from the user’s intent. Keep the original for faithfulness checks. |
+| **Multi-hop retrieve** | Uses an intermediate answer to fetch the next chunks. | Loops and token spend. Cap hops in demos. |
+| **Grade documents** | A small judge (rules or a model call) drops irrelevant chunks before generation. | Biased graders. Log keep/drop rates. |
+| **Corrective retrieve** | If grades are low, rewrite and search again. | Infinite retry. Bound retries. |
+
+**Minimal grade-docs sketch:**
+
+```python
+def grade_chunk(question: str, chunk: str, llm) -> bool:
+    """Return True if chunk can help answer. Demo-only pattern."""
+    prompt = (
+        "Question: "
+        + question
+        + "\nChunk:\n"
+        + chunk
+        + "\nReply with yes or no only. Is the chunk useful for the question?"
+    )
+    reply = llm.invoke(prompt).content.strip().lower()
+    return reply.startswith("yes")
+```
+
+**Order reminder:** Hybrid retrieve (+ optional rerank) first. Then rewrite / grade if hit rate or faithfulness is still weak. Full tool-using agents stay on Day 7 after guardrails ([Module hub](generative-ai-llms.md#day-1-7-study-spine)).
 
 ---
 

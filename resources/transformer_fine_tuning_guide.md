@@ -1,9 +1,12 @@
 # Transformer Fine-Tuning Guide
 
-Fine-tuning transformer models (T5, BERT, GPT) using the Hugging Face library for various NLP tasks.
+Fine-tuning transformer models (T5, BERT, GPT-style) with Hugging Face for NLP and GenAI adaptation tasks.
+
+**Start here:** Most product problems do **not** need fine-tuning first. Use the decision path below. Then jump to the task sections when you have a clear PEFT or full-tune reason.
 
 ## Table of Contents
 
+- [PEFT decision path (Prompt, then RAG, then LoRA/QLoRA)](#peft-decision-path-prompt-then-rag-then-loraqlora)
 - [Introduction to Transformer Fine-Tuning](#introduction-to-transformer-fine-tuning)
 - [Understanding Transformer Architecture](#understanding-transformer-architecture)
 - [Fine-Tuning T5 for Text Summarization](#fine-tuning-t5-for-text-summarization)
@@ -12,6 +15,63 @@ Fine-tuning transformer models (T5, BERT, GPT) using the Hugging Face library fo
 - [Optimization Techniques](#optimization-techniques)
 - [Best Practices](#best-practices)
 - [Resources](#resources)
+
+---
+
+## PEFT decision path (Prompt, then RAG, then LoRA/QLoRA)
+
+Default order for Module 25 Day 5 and for most apps:
+
+1. **Prompt and structured outputs.** Clear instructions, few-shot examples, schema validation.
+2. **RAG / tools for facts.** If the model lacks up-to-date or private knowledge, retrieve or call an API. Do not fine-tune to memorize a wiki.
+3. **PEFT (LoRA / QLoRA)** only when eval still fails on **behavior** the base model will not keep. Examples: a fixed tone, a domain format, a classification head that needs labeled data.
+
+### When NOT to fine-tune
+
+- Facts change often (policies, inventory, tickets). Use RAG.
+- You only need JSON fields. Use schemas and validation.
+- You have fewer than a solid labeled set and no eval. Fix data and metrics first.
+- A hosted model already passes your task list with prompts + retrieval.
+
+See also: [PEFT in NLP advanced topics](../12-natural-language-processing/nlp-advanced-topics.md#parameter-efficient-fine-tuning-peft) · [Module 25 Day 5](../25-generative-ai-llms/generative-ai-llms.md#day-1-7-study-spine) · [RAG guide](rag_comprehensive_guide.md)
+
+### LoRA vs QLoRA (short)
+
+| Approach | Idea | When it helps |
+|----------|------|----------------|
+| **LoRA** | Train small low-rank adapters. Freeze most base weights. | You have GPU memory for the base in fp16/bf16 and want adapters you can swap. |
+| **QLoRA** | Quantize the base (often 4-bit). Train LoRA adapters on top. | Consumer GPU / tight VRAM. Expect a quality vs memory tradeoff. Measure it. |
+| **Full fine-tune** | Update most or all weights. | Rare for large LLMs in solo projects. Costly. Easy to overfit small data. |
+
+**PEFT** means Parameter-Efficient Fine-Tuning. LoRA is the common default. Other methods (prefix tuning, adapters) exist. Start with LoRA unless a tutorial you trust says otherwise for your stack.
+
+### Minimal LoRA sketch (Hugging Face PEFT)
+
+```python
+from peft import LoraConfig, get_peft_model, TaskType
+
+lora_config = LoraConfig(
+    task_type=TaskType.CAUSAL_LM,
+    r=8,
+    lora_alpha=16,
+    lora_dropout=0.05,
+    target_modules=["q_proj", "v_proj"],  # model-specific
+)
+
+model = get_peft_model(base_model, lora_config)
+model.print_trainable_parameters()
+# Train with your usual Trainer / loop. Save adapter weights, not a full copy of the base.
+```
+
+QLoRA adds bitsandbytes (or similar) load in 4-bit before `get_peft_model`. Follow current library docs for your model id. Pins and APIs move.
+
+### Decision checklist (write this down)
+
+- Task and success metric (not “feels smarter”).
+- Why prompt-only failed (paste failing cases).
+- Why RAG / tools are not enough (if facts were the issue, stop and fix retrieval).
+- Labeled data size and holdout plan.
+- LoRA or QLoRA based on VRAM, plus a rollback path (keep the base + adapter separate).
 
 ---
 
