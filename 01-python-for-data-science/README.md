@@ -4,15 +4,18 @@ Core Python libraries for data manipulation, analysis, and visualization. This i
 
 ##  What You'll Learn
 
+**Essential path (Gate B):**
+
 - NumPy for numerical computing (`ndarray`, dtypes, broadcasting, linear algebra)
 - Pandas for data manipulation (Series, DataFrame, I/O, `groupby`, missing data, datetimes)
-- Matplotlib and Seaborn for data visualization (line, scatter, histogram, bar, pie, and beyond)
-- Plotly and Dash for interactive visualizations
-- Streamlit for building dashboards and ML applications
-- Flask for web applications and REST APIs
-- Tableau for professional data visualization
+- Matplotlib and Seaborn for static and statistical charts
 - Exploratory Data Analysis (EDA) techniques
-- Working with APIs, databases, and web scraping
+
+**Optional depth (when a project needs them):**
+
+- Plotly and Dash for interactive visualizations
+- Streamlit dashboards, Flask APIs, Tableau BI charts
+- APIs, databases, and web scraping beyond basic CSV/Excel I/O
 
 ## ML toolbox curriculum map
 
@@ -56,7 +59,7 @@ Learn NumPy. The foundation of numerical computing in Python.
 **[Complete Guide](01-numpy.md)**
 
 ### 02-pandas
-Master Pandas. The most important library for data manipulation.
+Learn Pandas. The main library for tabular data manipulation.
 
 **Topics:**
 - Series and DataFrame; file handling (CSV, Excel, JSON, and related formats)
@@ -74,16 +77,16 @@ Master Pandas. The most important library for data manipulation.
 **[Complete Guide](02-pandas.md)**
 
 ### 03-visualization
-Create beautiful and informative visualizations.
+Create clear charts for EDA and reports.
 
-**Topics:**
+**Topics (Essential):**
 - Matplotlib: line, scatter, histogram, bar, and pie plots
 - Seaborn statistical visualizations
-- Plotly & Dash for Interactive Visualizations
-- Customizing Plots
-- Subplots and Multiple Plots
-- Building Interactive Dashboards
-- Saving Figures
+- Customizing plots, subplots, saving figures
+
+**Topics (Optional depth in the same guide):**
+- Plotly and Dash interactive charts
+- Building interactive dashboards
 
 **Time Estimate:** 1-2 weeks
 
@@ -120,7 +123,7 @@ Work with various data sources: APIs, databases, web scraping, and file formats.
 **[Complete Guide](05-data-sources-and-integration.md)**
 
 ### 06-regular-expressions-text-processing
-Master regular expressions and text processing for cleaning and analyzing text data.
+Learn regular expressions and text processing for cleaning and analyzing text data.
 
 **Topics:**
 - Regular Expressions Basics and Patterns
@@ -214,7 +217,7 @@ Create professional data visualizations and dashboards with Tableau.
 
 ## Essential path vs optional depth
 
-Module 01 has **15 lessons**, too much to read linearly before starting ML. Use this split:
+Module 01 has many lessons. Do **not** read them all linearly before ML. Match outcomes to [Gate B](../FOUNDATION_AND_JOB_READINESS.md#gate-b-after-module-01-stage-1).
 
 ### Essential path (~4–6 weeks), required before Module 02
 
@@ -222,10 +225,11 @@ Module 01 has **15 lessons**, too much to read linearly before starting ML. Use 
 |-------|--------|-----|
 | 1 | [01-numpy.md](01-numpy.md) | Numerical foundation for all ML |
 | 2 | [02-pandas.md](02-pandas.md) | Data manipulation |
-| 3 | [03-visualization.md](03-visualization.md) | Communicate findings |
+| 3 | [03-visualization.md](03-visualization.md) | Matplotlib / Seaborn charts (Essential parts) |
 | 4 | [04-exploratory-data-analysis.md](04-exploratory-data-analysis.md) | Systematic EDA before modeling |
-| 5 | [05-data-sources-and-integration.md](05-data-sources-and-integration.md) | APIs, files, basic SQL hooks |
-| 6 | [python-for-data-science-project-tutorial.md](python-for-data-science-project-tutorial.md) | End-to-end practice |
+| 5 | [python-for-data-science-project-tutorial.md](python-for-data-science-project-tutorial.md) | End-to-end practice (use CSV-first path if scraping is new) |
+
+**Essential outcomes (Gate B):** NumPy vectorized ops. Pandas load/clean/summarize. At least three plot types with Matplotlib or Seaborn. A short EDA narrative (question, data, chart, insight).
 
 **Parallel (Stage 1.5):** Start [Module 19 SQL](../19-sql-database-fundamentals/README.md) after lesson 2–3 if you target analyst or data scientist roles.
 
@@ -235,14 +239,18 @@ Module 01 has **15 lessons**, too much to read linearly before starting ML. Use 
 
 | Lesson | When to study |
 |--------|----------------|
+| [05-data-sources-and-integration.md](05-data-sources-and-integration.md) | APIs, SQL hooks, scraping beyond CSV/Excel |
+| Plotly / Dash sections in [03-visualization.md](03-visualization.md) | Interactive charts |
 | [06-regular-expressions-text-processing.md](06-regular-expressions-text-processing.md) | NLP or messy text columns |
 | [07-advanced-data-wrangling.md](07-advanced-data-wrangling.md) | Complex pivots / reshaping |
 | [08-working-with-dates-times.md](08-working-with-dates-times.md) | Time series or datetime-heavy data |
-| [09-streamlit-dashboards.md](09-streamlit-dashboards.md) | Dashboard portfolio project |
+| [09-streamlit-dashboards.md](09-streamlit-dashboards.md) | Dashboard demo project |
 | [10-flask-web-development.md](10-flask-web-development.md) | Before Module 13 deployment |
 | [11-tableau-visualization.md](11-tableau-visualization.md) | BI analyst track |
 | [python-for-data-science-advanced-topics.md](python-for-data-science-advanced-topics.md) | Polars/Dask at scale |
 | [python-for-data-science-quick-reference.md](python-for-data-science-quick-reference.md) | Cheat sheet anytime |
+
+**Optional outcomes:** Interactive Plotly/Dash charts. Streamlit or Tableau dashboards. Flask APIs. Scraping and multi-source pipelines. Regex and advanced reshape. Not required to start Module 02.
 
 ### Exit gate (Stage 1)
 
@@ -250,19 +258,21 @@ Before Module 02, you should pass [Gate B in FOUNDATION_AND_JOB_READINESS.md](..
 
 ##  Learning Objectives
 
-By the end of this phase, you should be able to:
+### Essential (before Module 02)
+
 - Perform numerical operations with NumPy
 - Load, clean, and manipulate datasets with Pandas
-- Create various types of visualizations (static and interactive)
-- Build interactive dashboards with Plotly, Dash, Streamlit, and Tableau
-- Create web applications and REST APIs with Flask
+- Create static charts with Matplotlib and Seaborn
 - Perform systematic exploratory data analysis (EDA)
-- Fetch data from APIs and databases
-- Scrape data from websites
-- Work with various file formats
+
+### Optional depth (as needed)
+
+- Build interactive charts with Plotly or Dash
+- Build dashboards with Streamlit or Tableau
+- Create web applications and REST APIs with Flask
+- Fetch data from APIs and databases. Scrape websites when needed
 - Use regular expressions for text processing
-- Reshape and transform data efficiently
-- Handle dates and times effectively
+- Reshape data and handle dates/times for harder tables
 
 ##  Projects
 

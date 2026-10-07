@@ -1,6 +1,6 @@
 # Module 11: Computer Vision
 
-Master Convolutional Neural Networks (CNNs) for image processing.
+Learn Convolutional Neural Networks (CNNs) for image classification, then use transfer learning. Object detection, segmentation, and generative vision are survey topics unless you choose a deeper project.
 
 ##  What You'll Learn
 
@@ -8,15 +8,15 @@ Master Convolutional Neural Networks (CNNs) for image processing.
 - Images, Pixels, and Color Models (RGB, Grayscale)
 - Convolution Operations and Edge Detection
 - Convolutional Neural Networks (CNNs)
-- CNN Architectures (LeNet, AlexNet, VGGNet, ResNet)
+- CNN architecture survey (LeNet, AlexNet, VGGNet, ResNet ideas)
 - ImageNet and Large-Scale Recognition
-- Transfer Learning and Fine-tuning
+- Transfer Learning and Fine-tuning (primary practice path)
 - Data Augmentation Techniques
-- Object Detection (R-CNN to YOLO)
-- Semantic and Instance Segmentation
-- GANs for Image Generation
-- Recent Breakthroughs (Vision Transformers, CLIP)
-- Real-world Computer Vision Projects
+- Object Detection survey (R-CNN family to YOLO ideas)
+- Semantic and Instance Segmentation (overview)
+- GANs and diffusion for image generation (overview)
+- Recent directions (Vision Transformers, CLIP)
+- Practice image classification projects
 
 ## CNN and RNN curriculum map (CNN track)
 
@@ -41,11 +41,11 @@ Master Convolutional Neural Networks (CNNs) for image processing.
 - **Working with RGB Images**: Multi-channel convolutions
 - **Training Optimization**: Batch normalization, dropout, callbacks
 
-### 3. CNN Architectures
-- **LeNet (1998)**: Early CNN for digit recognition
-- **AlexNet (2012)**: Breakthrough in ImageNet, key innovations
-- **VGGNet (2014)**: Deep networks with small filters
-- **ResNet (2015)**: Residual connections, skip connections
+### 3. CNN Architectures (survey + small builds)
+- **LeNet (1998)**: Early CNN for digit recognition (good first build)
+- **AlexNet (2012)**: ImageNet breakthrough ideas
+- **VGGNet (2014)**: Deep stacks of small filters
+- **ResNet (2015)**: Residual / skip connections (understand and use pretrained, not required to train ImageNet ResNet from scratch)
 - **ImageNet**: Large-scale recognition challenges and impact
 
 ### 4. Transfer Learning
@@ -60,38 +60,38 @@ Master Convolutional Neural Networks (CNNs) for image processing.
 - **Implementation**: Keras ImageDataGenerator, Albumentations
 - **Best Practices**: Realistic augmentations, avoiding over-augmentation
 
-### 6. Object Detection
-- **Evolution**: From R-CNN to YOLO
+### 6. Object Detection (survey)
+- **Evolution**: From R-CNN to YOLO (read and compare ideas)
 - **R-CNN Family**: R-CNN, Fast R-CNN, Faster R-CNN
-- **YOLO**: You Only Look Once for real-time detection
+- **YOLO**: You Only Look Once for real-time detection (optional project, not a default build-from-scratch outcome)
 - **Applications**: Face detection, autonomous vehicles, surveillance
 
-### 7. Segmentation
+### 7. Segmentation (overview)
 - **Semantic Segmentation**: Pixel-level classification
 - **Instance Segmentation**: Distinguishing individual objects
-- **Mask R-CNN**: Advanced segmentation architecture
+- **Mask R-CNN**: Segmentation architecture to know by name and idea
 - **Applications**: Medical imaging, autonomous vehicles
 
-### 8. Advanced Topics
+### 8. Advanced Topics (overview)
 - **GANs**: Generative Adversarial Networks for image synthesis
-- **Diffusion Models**: Understanding diffusion process for image generation
-- **Stable Diffusion**: Latent diffusion models with Hugging Face integration
+- **Diffusion Models**: Diffusion process for image generation
+- **Stable Diffusion**: Latent diffusion with Hugging Face integration (try when ready)
 - **VAEs**: Variational Autoencoders for image generation
 - **Vision Transformers**: Transformer architecture for vision
-- **Recent Breakthroughs**: CLIP, DALL-E, Stable Diffusion
+- **Recent directions**: CLIP, DALL-E, Stable Diffusion
 - **Emerging Technologies**: Future directions in computer vision
 
 ##  Learning Objectives
 
 By the end of this module, you should be able to:
-- Understand computer vision fundamentals (images, pixels, convolution)
-- Build CNN architectures from scratch (LeNet, AlexNet, VGGNet, ResNet)
-- Implement edge detection and image processing techniques
-- Apply transfer learning effectively
-- Augment image data for better model performance
-- Understand and implement object detection (YOLO, R-CNN)
-- Work with semantic and instance segmentation
-- Understand GANs and recent vision breakthroughs
+- Explain computer vision fundamentals (images, pixels, convolution)
+- Build a small CNN for classification and explain classic architecture ideas (LeNet-scale build, ResNet as transfer/pretrained)
+- Apply basic edge detection and image processing techniques
+- Apply transfer learning on a classification task
+- Augment image data to improve generalization
+- Summarize object detection ideas (R-CNN family, YOLO) without claiming a full YOLO train from scratch
+- Describe semantic vs instance segmentation at a survey level
+- Outline GANs / diffusion / ViT directions you might study next
 
 ##  Projects
 

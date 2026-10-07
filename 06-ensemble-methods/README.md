@@ -60,7 +60,7 @@ By the end of this module, you should be able to:
 
 - **Wisdom of the Crowd**: Multiple models often better than one
 - **Diversity**: Ensembles work best with diverse base models
-- **Bias-Variance**: Ensembles reduce variance
+- **Bias-Variance**: Bagging (e.g. Random Forest) mainly reduces variance. Boosting mainly reduces bias (and can still overfit). Do not treat every ensemble as a variance reducer.
 - **Computational Cost**: Ensembles are more expensive
 
 ## Documentation & Learning Resources

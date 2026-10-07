@@ -91,6 +91,14 @@ By the end of this module, you should be able to:
 - **Attention**: Focus on relevant information
 - **Transfer Learning**: Pre-trained models are powerful
 
+### Check yourself
+
+**Wrong mental model:** Drop a pretrained transformer on raw text, then build agents. Accuracy on train reviews is enough.
+
+**Correction:** Clean and split first. Pick a holdout metric that matches the task (F1, exact match, retrieval hit-rate). Agents come after you can measure a baseline transformer or simpler model.
+
+**Tiny task:** Tokenize 20 labeled reviews. Train/test split. Report majority-class baseline accuracy before any neural model.
+
 ## Documentation & Learning Resources
 
 **Official Documentation:**
@@ -135,6 +143,7 @@ By the end of this module, you should be able to:
 
 ---
 
-**Previous Module:** [11-computer-vision](../11-computer-vision/README.md)  
-**Next Module:** [25-generative-ai-llms](../25-generative-ai-llms/README.md)
+**Previous Module:** [11-computer-vision](../11-computer-vision/README.md)
+
+**Next path:** After NLP transformers and PEFT basics, study [Module 13 · Model deployment](../13-model-deployment/README.md) and [Module 14 · MLOps basics](../14-mlops-basics/README.md) for serve and ops habits. For LLM apps, go to [Module 25 · Generative AI & LLMs](../25-generative-ai-llms/README.md) and follow the Day 1-7 spine. Run **eval before agents** (retrieval + faithfulness on Day 3, guardrails on Day 6, agents on Day 7).
 

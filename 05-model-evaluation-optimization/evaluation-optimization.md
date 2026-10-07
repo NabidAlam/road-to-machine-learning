@@ -6,6 +6,8 @@ This guide covers properly evaluating models and optimizing their performance.
 
 - [Data Splitting](#data-splitting)
 - [Cross-Validation](#cross-validation)
+- [Nested Cross-Validation](#nested-cross-validation)
+- [Preprocessing Inside CV (Avoid Leakage)](#preprocessing-inside-cv-avoid-leakage)
 - [Hyperparameter Tuning](#hyperparameter-tuning)
 - [Bias-Variance Tradeoff](#bias-variance-tradeoff)
 - [Learning Curves](#learning-curves)
@@ -208,6 +210,76 @@ for train_idx, test_idx in tscv.split(X):
     print(f"Train: {train_idx[0]} to {train_idx[-1]}, "
           f"Test: {test_idx[0]} to {test_idx[-1]}")
 ```
+
+---
+
+## Nested Cross-Validation
+
+Ordinary GridSearchCV scores can be optimistic. The same folds help pick hyperparameters **and** report the score. Nested CV keeps an outer loop for the final estimate and an inner loop for tuning.
+
+```python
+from sklearn.model_selection import GridSearchCV, KFold
+from sklearn.ensemble import RandomForestClassifier
+import numpy as np
+
+outer_cv = KFold(n_splits=5, shuffle=True, random_state=42)
+inner_cv = KFold(n_splits=3, shuffle=True, random_state=42)
+param_grid = {"n_estimators": [50, 100], "max_depth": [5, 10, None]}
+
+outer_scores = []
+for train_idx, test_idx in outer_cv.split(X):
+    X_tr, X_te = X[train_idx], X[test_idx]
+    y_tr, y_te = y[train_idx], y[test_idx]
+
+    search = GridSearchCV(
+        RandomForestClassifier(random_state=42),
+        param_grid,
+        cv=inner_cv,
+        scoring="accuracy",
+        n_jobs=-1,
+    )
+    search.fit(X_tr, y_tr)
+    outer_scores.append(search.best_estimator_.score(X_te, y_te))
+
+print(f"Nested CV mean: {np.mean(outer_scores):.3f} (+/- {np.std(outer_scores):.3f})")
+```
+
+**When to use:** You tune hyperparameters as part of model choice and need a less biased estimate. More compute than a single GridSearchCV. Deeper patterns live in [evaluation-optimization-advanced-topics.md](evaluation-optimization-advanced-topics.md).
+
+---
+
+## Preprocessing Inside CV (Avoid Leakage)
+
+Fitting a scaler (or imputer) on **all** rows before `cross_val_score` leaks validation-fold statistics into training. Put preprocessing in a `Pipeline` so each fold fits only on its train split.
+
+```python
+from sklearn.pipeline import Pipeline
+from sklearn.preprocessing import StandardScaler
+from sklearn.linear_model import LogisticRegression
+from sklearn.model_selection import cross_val_score
+
+# Wrong: scale on full X, then CV
+# scaler = StandardScaler()
+# X_scaled = scaler.fit_transform(X)
+# cross_val_score(model, X_scaled, y, cv=5)
+
+pipeline = Pipeline([
+    ("scaler", StandardScaler()),
+    ("model", LogisticRegression(max_iter=1000)),
+])
+scores = cross_val_score(pipeline, X, y, cv=5, scoring="accuracy")
+print(f"Pipeline CV mean: {scores.mean():.3f}")
+```
+
+Same rule for train/validation/test. Fit transformers on train only. Transform validation and test with those fitted objects.
+
+### Check yourself
+
+**Wrong mental model:** Scale the whole dataset once, then run 5-fold CV. The CV mean is a trustworthy score for the tuned model.
+
+**Correction:** Preprocess inside each fold (or use a Pipeline). For tuned models, prefer nested CV or a held-out test set you never used for search.
+
+**Tiny task:** Compare `cross_val_score` after global `StandardScaler.fit_transform(X)` vs the Pipeline above on the same `X, y`. Note which mean looks higher.
 
 ---
 
@@ -950,11 +1022,12 @@ print(f"  Calibrated: {roc_auc_score(y_test, rf_calibrated_proba):.4f}")
 
 1. **Three sets**: Train, Validation, Test. Never touch test set until final evaluation
 2. **Cross-validation**: More reliable performance estimate, reduces variance
-3. **Hyperparameter tuning**: Grid search (exhaustive), Random search (faster), Bayesian optimization (smart)
-4. **Bias-Variance**: Balance model complexity. High bias (underfitting) vs high variance (overfitting)
-5. **Learning curves**: Diagnose overfitting/underfitting, determine if more data helps
-6. **Evaluation metrics**: Choose appropriate metrics based on problem type and data characteristics
-7. **Model calibration**: Ensure predicted probabilities match actual frequencies (critical for production)
+3. **Nested CV + pipelines**: Tune inside. Score outside. Fit preprocessors only on train folds
+4. **Hyperparameter tuning**: Grid search (exhaustive), Random search (faster), Bayesian optimization (smart)
+5. **Bias-Variance**: Balance model complexity. High bias (underfitting) vs high variance (overfitting)
+6. **Learning curves**: Diagnose overfitting/underfitting, determine if more data helps
+7. **Evaluation metrics**: Choose appropriate metrics based on problem type and data characteristics
+8. **Model calibration**: Check that predicted probabilities match observed frequencies when you need probability decisions
 
 ## Common Mistakes to Avoid
 
@@ -964,6 +1037,8 @@ print(f"  Calibrated: {roc_auc_score(y_test, rf_calibrated_proba):.4f}")
 4. **Overfitting to validation set**: Don't tune hyperparameters too much on validation set
 5. **Not stratifying splits**: Important for imbalanced classification problems
 6. **Choosing wrong metric**: Use metrics appropriate for your problem
+7. **Preprocess leakage**: Fitting scaler/imputer on all data before CV
+8. **Optimistic tune+score on the same folds**: Prefer nested CV or a final untouched test set
 
 ---
 

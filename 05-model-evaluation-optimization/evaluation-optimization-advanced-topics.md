@@ -16,6 +16,8 @@ Advanced evaluation techniques, optimization strategies, and practices.
 
 ## Nested Cross-Validation
 
+Core nested CV and preprocess-in-pipeline patterns are also in the main [evaluation-optimization.md](evaluation-optimization.md) path. This section keeps a fuller walkthrough.
+
 ### Why Nested CV?
 
 Standard cross-validation can overfit hyperparameters to the validation set. Nested CV provides unbiased performance estimates.

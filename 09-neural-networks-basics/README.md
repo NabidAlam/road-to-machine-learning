@@ -29,7 +29,7 @@ Introduction to neural networks. The foundation of deep learning.
 ### 2. Multi-Layer Perceptron (MLP)
 - **Hidden Layers**: Enable non-linear learning
 - **Architecture**: Input, Hidden, Output
-- **Universal Approximation**: Can approximate any function
+- **Universal Approximation**: Dense nets can approximate many continuous functions on a compact set. Not a free pass for every real dataset, noise level, or architecture choice. You still need enough width/depth, good features, and careful training.
 
 ### 3. Activation Functions
 - **Sigmoid**: S-shaped curve (0 to 1)
@@ -79,6 +79,14 @@ By the end of this module, you should be able to:
 - **Learning Rate**: How fast to learn (critical hyperparameter)
 - **Epochs**: Full pass through training data
 - **Batch Size**: Number of samples per update
+
+### Check yourself
+
+**Wrong mental model:** More layers always beat a shallow net, and UAT means any MLP will fit any problem.
+
+**Correction:** Depth helps only with capacity you can train stably. UAT is an existence result on nice function classes. Bad scaling, tiny data, or vanishing gradients still break learning.
+
+**Tiny task:** Train a 1-hidden-layer MLP and a deeper MLP on the same toy XOR or moons set. Compare train loss and holdout accuracy after the same epoch budget.
 
 ## Documentation & Learning Resources
 

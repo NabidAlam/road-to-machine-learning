@@ -1,15 +1,15 @@
 # Module 13: Model Deployment
 
-Learn to deploy machine learning models to production.
+Learn to serve machine learning models through a local or containerized API. Cloud and reverse-proxy topics are optional extensions, not a claim that you ran a full production site.
 
 ##  What You'll Learn
 
 - Model Serialization
 - REST APIs with Flask/FastAPI
 - Docker for ML
-- Cloud Deployment
-- Model Monitoring
-- Best Practices for Production
+- Optional cloud or PaaS deploy paths
+- Model Monitoring basics
+- Serve-path practices (validation, logging, versioning)
 
 ##  Topics Covered
 
@@ -29,7 +29,7 @@ Learn to deploy machine learning models to production.
   - Automatic documentation
   - Type hints
   - Async support
-- **API Design**: Best practices
+- **API Design**: Clear request/response contracts
 
 ### 3. Docker for ML
 - **Containerization**: Package model + dependencies
@@ -38,59 +38,59 @@ Learn to deploy machine learning models to production.
 - **Docker Compose**: Multi-container apps
 - **Benefits**: Reproducibility, portability
 
-### 4. Cloud Deployment
-- **AWS**: SageMaker, EC2, Lambda
+### 4. Optional cloud or PaaS paths
+- **AWS**: SageMaker, EC2, Lambda (overview + optional lab)
 - **Google Cloud**: Vertex AI, Cloud Run
 - **Azure**: Azure ML, Container Instances
-- **Heroku**: Simple deployment
-- **Choosing Platform**: Based on needs
+- **Heroku / similar**: Simple staging deploy
+- **Choosing Platform**: Based on needs and budget
 
-### 5. Production Server Setup
-- **NGINX Configuration**: Reverse proxy, load balancing, SSL termination
+### 5. Optional server setup (beyond local serve)
+- **NGINX Configuration**: Reverse proxy, load balancing, SSL termination (survey or optional lab)
 - **SSL/TLS Setup**: Let's Encrypt certificates, auto-renewal
 - **Domain Configuration**: DNS setup, subdomain routing
 - **Security**: Rate limiting, API authentication, input validation
 - **Error Handling**: Structured error responses, logging
-- **AWS EC2 Setup**: Instance configuration, systemd services, firewall
+- **AWS EC2 Setup**: Instance configuration, systemd services, firewall (optional)
 
 ### 6. Model Serving
 - **Batch Inference**: Process in batches
-- **Real-time Inference**: Low latency
-- **A/B Testing**: Compare model versions (statistical significance, multi-armed bandits, sequential testing)
-- **Canary Deployments**: Gradual rollout
+- **Online Inference**: Low-latency local or container API
+- **A/B Testing**: Compare model versions (concepts and small demos)
+- **Canary ideas**: Gradual rollout patterns (concepts)
 
 ### 7. Model Monitoring
-- **Performance Metrics**: Track accuracy over time
+- **Performance Metrics**: Track accuracy over time when labels arrive
 - **Data Drift**: Detect distribution changes
 - **Model Drift**: Performance degradation
 - **Logging**: Track predictions and errors
-- **Alerts**: Notify on issues
+- **Alerts**: Plan what you would notify on
 
 ##  Learning Objectives
 
 By the end of this module, you should be able to:
 - Serialize and load models
-- Create REST APIs for models
-- Containerize ML applications
-- Deploy to cloud platforms
-- Configure production servers (NGINX, SSL, domain)
-- Implement security best practices (rate limiting, authentication)
-- Monitor deployed models
+- Create a local REST API that scores inputs
+- Containerize that API with Docker
+- Optionally push the same image to a cloud or PaaS staging path
+- Sketch reverse-proxy / TLS / auth patterns without claiming you hardened a live site
+- Add basic validation, logging, and model version fields
+- Outline monitoring signals for a served model
 
 ##  Projects
 
-1. **Flask API**: Deploy a model with Flask
-2. **FastAPI Service**: Build FastAPI service
-3. **Docker Container**: Containerize ML app
-4. **Cloud Deployment**: Deploy to AWS/GCP/Azure
-5. **Monitoring Dashboard**: Track model performance
+1. **Flask API**: Serve a model locally with Flask
+2. **FastAPI Service**: Build a FastAPI scoring service
+3. **Docker Container**: Containerize the ML API
+4. **Optional staging deploy**: Push the container to AWS/GCP/Azure or a simple PaaS
+5. **Monitoring notes**: Log scores/latency and sketch a small dashboard
 
 ##  Key Concepts
 
-- **API Endpoints**: Expose model as service
+- **API Endpoints**: Expose model as a local or container service
 - **Containerization**: Package everything together
-- **Scalability**: Handle multiple requests
-- **Monitoring**: Track model health
+- **Serve path**: Handle requests with clear contracts
+- **Monitoring**: Track model health on the path you actually run
 - **Versioning**: Manage model versions
 
 ## Documentation & Learning Resources

@@ -104,6 +104,9 @@ By the end of this module, you should be able to:
 - **[Advanced Evaluation Topics](evaluation-optimization-advanced-topics.md)** - Nested cross-validation, custom scoring functions, model selection strategies, early stopping, ensemble model selection, performance profiling, and common pitfalls
 - **[Complete Evaluation Project Tutorial](evaluation-optimization-project-tutorial.md)** - Step-by-step walkthrough of properly evaluating and optimizing a model from data splitting to final evaluation
 - **[Evaluation Quick Reference](evaluation-optimization-quick-reference.md)** - Quick reference guide with code snippets, data splitting strategies, cross-validation methods, hyperparameter tuning, and best practices
+- **[Exercise pack](exercises/README.md)** - Assert-checked CV and leakage drills on tiny synthetic data
+- **[Experiment design / A/B testing primer](../resources/experiment_design_ab_testing.md)** - Hypothesis, metrics, and contamination checks
+- **[ML debugging lab](../resources/ml_debugging_lab.md)** - Silent failure modes (leakage, skew, vanity accuracy)
 
 ---
 

@@ -37,7 +37,7 @@ Regression predicts continuous numerical values. Unlike classification (which pr
 **Examples:**
 - House prices
 - Temperature
-- Stock prices
+- Stock prices (non-stationary series. Teaching example only, not trading advice)
 - Sales revenue
 - Age
 
@@ -70,7 +70,8 @@ where:
 - b = intercept
 ```
 
-**Example:**
+**Example (illustration only):** Scores below use the same `X, y` the model was fit on. They show the fit visually. They are **not** held-out evaluation. Use `train_test_split` for any scored claim (next example).
+
 ```python
 from sklearn.linear_model import LinearRegression
 from sklearn.metrics import mean_squared_error, r2_score
@@ -86,17 +87,17 @@ y = 2.5 * X.flatten() + 1.5 + np.random.randn(100) * 2
 model = LinearRegression()
 model.fit(X, y)
 
-# Make predictions
+# Make predictions on the same data (illustration only)
 y_pred = model.predict(X)
 
-# Evaluate
+# In-sample fit stats (not test metrics)
 mse = mean_squared_error(y, y_pred)
 r2 = r2_score(y, y_pred)
 
 print(f"Coefficient (slope): {model.coef_[0]:.2f}")
 print(f"Intercept: {model.intercept_:.2f}")
-print(f"MSE: {mse:.2f}")
-print(f"R²: {r2:.2f}")
+print(f"MSE (in-sample): {mse:.2f}")
+print(f"R² (in-sample): {r2:.2f}")
 
 # Visualize
 plt.figure(figsize=(10, 6))
@@ -113,8 +114,8 @@ plt.show()
 ```
 Coefficient (slope): 2.48
 Intercept: 1.65
-MSE: 3.89
-R²: 0.92
+MSE (in-sample): 3.89
+R² (in-sample): 0.92
 ```
 
 ### Multiple Linear Regression

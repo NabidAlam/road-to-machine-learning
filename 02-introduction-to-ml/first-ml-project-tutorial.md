@@ -61,9 +61,9 @@ In a portfolio or interview, do not stop at “I got 96% accuracy on Iris.” Sa
 - Quality control in flower production
 - Educational example
 
-**Success Criteria**: 
-- Accuracy > 90%
-- Model can classify new flowers correctly
+**Success Criteria** (toy bar only):
+- Run a stratified train/test split and report accuracy plus a confusion matrix
+- Remember Iris is linearly separable for many models. High accuracy here is expected, not proof of production skill
 
 ### Define Inputs and Outputs
 
@@ -367,7 +367,7 @@ print(classification_report(
 ))
 ```
 
-**Output:**
+**Output** (example run. Your numbers may differ slightly with seed or split):
 ```
 Test Accuracy: 1.0000 (100.00%)
 
@@ -382,6 +382,8 @@ Classification Report:
    macro avg       1.00      1.00      1.00        30
 weighted avg       1.00      1.00      1.00        30
 ```
+
+**Honesty note:** Iris is a tiny, clean toy set. A test set of about 30 rows is a small holdout. 100% accuracy here is a toy metric. It does not mean the model generalizes to messy real data.
 
 ### Confusion Matrix
 
@@ -415,11 +417,12 @@ print(f"Test Accuracy: {test_acc:.4f}")
 print(f"Difference: {abs(train_acc - test_acc):.4f}")
 
 if abs(train_acc - test_acc) < 0.05:
-    print("OK: Good generalization! Model is not overfitting.")
+    print("OK: Train and test scores are close on this tiny holdout.")
+    print("On Iris that is common. It is not strong evidence of real-world generalization.")
 elif train_acc > test_acc + 0.1:
     print("Warning: Possible overfitting (large gap between train and test)")
 else:
-    print("OK: Model performance is consistent.")
+    print("OK: Scores are in a similar range on this toy split.")
 ```
 
 ---

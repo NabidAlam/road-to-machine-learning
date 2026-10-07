@@ -68,6 +68,14 @@ Understand what machine learning is, how it works, and the different types of ML
 - Document everything
 - Version control your code and data
 
+### Check yourself
+
+**Wrong mental model:** High accuracy on the same rows you trained on means the model is ready.
+
+**Correction:** Train metrics can look great while the holdout fails. Split first. Score the holdout. Watch for leakage (fitting a scaler on all data before the split).
+
+**Tiny task:** Load a tiny CSV. Split 80/20. Fit only on train. Print train accuracy and test accuracy side by side.
+
 **[Complete Detailed Guide](introduction-to-ml.md)**
 
 ## Readiness checkpoint (before Modules 03–05)

@@ -62,7 +62,7 @@ By the end of this module, you should be able to:
 ##  Projects
 
 1. **House Price Prediction**: Predict house prices using features like size, location, etc.
-2. **Stock Price Prediction**: Predict stock prices (simplified version)
+2. **Stock Price Prediction** (caution): Prices are often non-stationary. Past patterns may not hold. This is a teaching sketch only, not trading advice.
 3. **Weather Prediction**: Predict temperature or rainfall
 
 ##  Key Concepts
