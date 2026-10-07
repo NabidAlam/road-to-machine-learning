@@ -1,6 +1,6 @@
 # Capstone: LLM Engineer: RAG Knowledge Assistant (GDPR-Safe)
 
-Build a **production-style RAG (Retrieval-Augmented Generation)** system with evaluation, guardrails, and cost awareness.
+Build a **production-style demo RAG (Retrieval-Augmented Generation)** system with evaluation, guardrails, and cost awareness. Practice goals only. Not a claim that hallucinations are solved.
 
 This blueprint is designed to be **safe for a public GitHub repo**:
 
@@ -62,17 +62,19 @@ User Query -> (optional rewrite) -> Retrieve Top-K -> Prompt -> LLM -> Answer + 
 - Store metadata:
   - source path/url, title, section heading
 
-### Milestone 2: Evaluation (mandatory for “industry-ready”)
+### Milestone 2: Evaluation (mandatory practice goal)
 
 Create a small eval set:
 
 - 30–80 Q/A pairs that can be answered from your docs
 - Include “hard” questions that require multi-chunk retrieval
+- Include cases that should refuse when evidence is missing
 
 Track:
 
 - **Retrieval**: hit rate (does top-k contain the supporting chunk?)
-- **Answer quality**: faithfulness / citation coverage
+- **Answer quality**: faithfulness / groundedness / citation coverage (primary). BLEU/ROUGE only as optional extras.
+- **Unsupported answers**: count refusals vs invented claims on the eval set
 - **Latency + cost**: tokens per query, time per query
 
 ### Milestone 3: Guardrails (practical security)
@@ -87,7 +89,7 @@ Implement:
   - disallow requests for private data
   - rate limit (basic)
 
-### Milestone 4: Production concerns (what interviewers care about)
+### Milestone 4: Staging concerns (demo quality bar)
 
 - Caching:
   - cache embeddings for unchanged docs
@@ -96,6 +98,7 @@ Implement:
   - incremental indexing for changed docs
 - Observability plan:
   - retrieval top-k sources, latency, tokens, refusal rates
+- Deploy language: local or staging demo. Call out gaps (auth, SLOs, on-call) instead of claiming live production.
 
 ---
 
@@ -111,11 +114,11 @@ Implement:
 
 ---
 
-## Interview talking points
+## Practice talking points
 
 - How you chose chunking + top-k
-- How you measured retrieval quality
-- How you reduced hallucinations (grounding + refusals)
+- How you measured retrieval quality on a fixed eval set
+- How you reduced unsupported answers (grounding + refusals). You did not “solve hallucinations.”
 - How you handled prompt injection
 - Cost controls (token budgets, caching, smaller models)
 

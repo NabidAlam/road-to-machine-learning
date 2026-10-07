@@ -1,14 +1,14 @@
 # Capstone: ML Engineer: Real-Time Risk Scoring System (GDPR-Safe)
 
-Build a **production-style ML system** that scores events in real time (e.g., fraud/risk/churn propensity) and includes: data pipeline, training, evaluation, API serving, monitoring, and retraining triggers.
+Build a **production-style demo** that scores events through an API (e.g., fraud/risk/churn propensity) and includes: data pipeline, training, evaluation, API serving, monitoring hooks, and retraining triggers. Practice goals only. Not a multi-region live launch.
 
 This blueprint is written to be **safe for a public GitHub repo** (no PII, no secrets, no datasets committed).
 
 ---
 
-## Why this is “industry-ready”
+## Why this is a strong practice goal
 
-Companies don’t hire for “a model”, they hire for:
+Role-path practice usually expects more than a notebook model:
 
 - translating a business problem into measurable metrics
 - building reliable pipelines (data, features, model, service)
@@ -19,7 +19,7 @@ Companies don’t hire for “a model”, they hire for:
 
 ## Target role
 
-- ML Engineer / Applied ML Engineer / Data Scientist (production-leaning)
+- ML Engineer / Applied ML Engineer / Data Scientist (serve-path practice)
 
 ---
 
@@ -117,7 +117,7 @@ Raw events --------> Feature pipeline -----> Scoring API (FastAPI)
  - `POST /score`, returns risk score + decision + model version
 - Add input validation (pydantic)
 
-### Milestone 5: Monitoring plan (what you would do in production)
+### Milestone 5: Monitoring plan (what you would do on a staging or live path)
 
 - Log (structured):
   - request id (random), model version, score, decision, latency
@@ -125,6 +125,7 @@ Raw events --------> Feature pipeline -----> Scoring API (FastAPI)
   - feature means/quantiles, missing rates
 - Track model quality:
   - delayed label evaluation (if labels arrive later)
+- Be honest in the README about what you actually ran vs what you only planned
 
 ### Milestone 6: CI + tests
 
@@ -144,7 +145,7 @@ Raw events --------> Feature pipeline -----> Scoring API (FastAPI)
 
 ---
 
-## What to say in interviews (talking points)
+## Practice talking points
 
 - Why you chose PR-AUC / recall tradeoffs
 - How you’d prevent training-serving skew

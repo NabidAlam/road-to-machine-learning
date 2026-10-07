@@ -103,7 +103,7 @@ Build advanced forecasting models for complex time series data.
 **Time**: 2-3 weeks  
 **Skills**: Modern LLMs, RAG, Vector Databases, LangChain, Prompt Engineering
 
-Build a production-**style** RAG (Retrieval-Augmented Generation) system that ingests documents, stores embeddings in vector databases, and answers questions using GPT-4/Llama 3 or other LLMs. Treat eval, citations, and cost logs as part of "done."
+Build a demo or staging RAG (Retrieval-Augmented Generation) system that ingests documents, stores embeddings in a vector store, and answers questions with an LLM. Treat retrieval eval, citations, and cost logs as part of "done." This is a practice demo, not a live customer system.
 
 **What you'll learn:**
 - Prompt engineering techniques
@@ -112,8 +112,8 @@ Build a production-**style** RAG (Retrieval-Augmented Generation) system that in
 - Embedding generation and storage
 - RAG pipeline implementation
 - LangChain/LangGraph for orchestration
-- Evaluation of RAG systems
-- Production deployment
+- RAG evaluation (retrieval hit-rate, faithfulness, groundedness)
+- Demo or staging deploy (local API, Spaces, or similar)
 
 **Core Components:**
 1. **Document Processing**: PDF/document parsing and chunking
@@ -121,10 +121,10 @@ Build a production-**style** RAG (Retrieval-Augmented Generation) system that in
 3. **Vector Database**: Store and retrieve relevant document chunks
 4. **LLM Integration**: Use GPT-4, Llama 3, or open-source LLMs
 5. **RAG Pipeline**: Combine retrieval with generation
-6. **Evaluation**: Measure answer quality and relevance
+6. **Evaluation**: Primary scores are retrieval hit-rate, faithfulness / groundedness, and citation coverage. BLEU/ROUGE are optional secondary n-gram checks, not the main RAG quality bar.
 
 **Dataset**: 
-- Custom PDFs/documents (technical docs, research papers, company knowledge base)
+- Custom PDFs/documents (technical docs, research papers, or a public knowledge base you own)
 - Or use public datasets like [Natural Questions](https://ai.google.com/research/NaturalQuestions)
 
 **Tech Stack:**
@@ -138,8 +138,8 @@ Build a production-**style** RAG (Retrieval-Augmented Generation) system that in
 - Citation and source tracking
 - Streaming responses
 - Chat history and context management
-- Deploy to Hugging Face Spaces or AWS
-- Add evaluation metrics (BLEU, ROUGE, semantic similarity)
+- Demo deploy to Hugging Face Spaces or a staging container
+- Grow the eval set (hard multi-chunk questions, refusal cases)
 - Implement query rewriting and query expansion
 
 ---
@@ -316,19 +316,19 @@ project-name/
 3. **Version Control**: Use Git, DVC, MLflow extensively
 4. **Document Everything**: Code, experiments, decisions
 5. **Test Thoroughly**: Unit tests, integration tests
-6. **Deploy**: Actually deploy to production (even if simple)
-7. **Monitor**: Set up monitoring and logging
+6. **Deploy**: Ship a local or staging demo (container + API), not a blank claim of live production
+7. **Monitor**: Set up basic monitoring and logging hooks you can show
 8. **Present**: Write a clear presentation or report
 
 ##  Learning Outcomes
 
 After completing these projects, you should be able to:
-- Build production-**style** ML systems you can demo and extend
+- Build production-**style** ML demos you can extend
 - Apply strong current techniques with honest eval
-- Handle complex, real-world problems
-- Deploy and monitor ML models
+- Handle complex practice problems with real datasets
+- Serve and monitor models in a local or staging setup
 - Work with large datasets
-- Optimize models for production
+- Optimize models for a demo serve path
 - Explain and present ML solutions
 
 ##  Additional Resources
