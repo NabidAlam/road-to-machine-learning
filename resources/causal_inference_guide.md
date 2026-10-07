@@ -44,7 +44,7 @@ Causal inference in machine learning and data science.
 
 - **Y(1)**: Outcome if treated
 - **Y(0)**: Outcome if not treated
-- **Causal Effect**: Y(1): Y(0)
+- **Causal Effect**: Y(1) − Y(0)
 
 **Fundamental Problem**: We can only observe one potential outcome per unit.
 
@@ -179,6 +179,8 @@ class TLearner:
 **Question**: Does a new drug improve patient outcomes?
 
 **Method**: Randomized controlled trial or propensity score matching
+
+**Methods-only note:** Drug and treatment examples below are for learning causal methods (identification, confounding, effect estimates). They are not medical advice and not a claim that this curriculum validates any therapy.
 
 ### 2. Economics
 
