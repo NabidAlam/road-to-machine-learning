@@ -44,6 +44,11 @@ You already work with tables, metrics, and stakeholder questions. This track ord
 - [Ethics in ML](../../ethics_in_ml.md). Harm and fairness habits for customer and employee data.
 - [Data Validation](../../data_validation.md). Catch bad joins and labels before you trust a KPI model.
 
+## Domain chapters
+
+- [Transfer strengths](01-transfer-strengths.md). Map spreadsheet, KPI, and stakeholder habits onto modules. Excel to Python glue without losing the business question.
+- [Eval traps](02-eval-traps.md). Join and KPI leakage, time-shuffled campaigns, and stakeholder metrics that disagree with notebook scores.
+
 ## Role emphasis (not destiny)
 
 | Emphasis | Role | Why |

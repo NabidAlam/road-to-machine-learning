@@ -2,7 +2,7 @@
 
 These tracks help people from other fields study machine learning on this repo without pretending they need every module on day one.
 
-**How it works.** Modules `00`–`25` stay the shared methods spine. Each domain folder adds a syllabus and (later) short domain chapters. You follow the checklist for your field. You still open the same Module NN lessons as everyone else.
+**How it works.** Modules `00`–`25` stay the shared methods spine. Each domain folder adds a syllabus. Several domains also have short **Domain chapters** (transfer strengths and eval traps). You follow the checklist for your field. You still open the same Module NN lessons as everyone else.
 
 **Honest limits.** This is not a separate degree. It does not guarantee a job, visa, or research result. Outcomes depend on practice, projects, and context outside this repo.
 

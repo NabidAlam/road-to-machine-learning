@@ -46,6 +46,11 @@ Typical spine:
 - [Backend Engineering Roadmap](../../backend_engineering_roadmap.md). APIs and data stores beside ML work.
 - [Ethics in ML](../../ethics_in_ml.md). Product features still need harm awareness.
 
+## Domain chapters
+
+- [Transfer strengths](01-transfer-strengths.md). Map coding and systems habits onto Modules `00`–`25`. Fast path toward ML Engineer study. Skip Tableau-first detours.
+- [Eval traps](02-eval-traps.md). Train/serve skew, time and user leakage, rare-event theater, and API wraps without an eval harness.
+
 ## Role emphasis (not destiny)
 
 | Emphasis | Role | Why |

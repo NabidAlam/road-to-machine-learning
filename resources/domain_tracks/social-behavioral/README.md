@@ -41,6 +41,10 @@ You already think in studies, surveys, and careful inference. This track maps th
 - [Model Explainability Cheatsheet](../../model_explainability_cheatsheet.md). Quick sheet beside Module 21.
 - [Data Validation](../../data_validation.md). Survey and study tables need honest checks before modeling.
 
+## Domain chapters
+
+- [Eval traps](02-eval-traps.md). Wave, site, and participant leakage, sampling mirages, predictive vs causal claims, and non-therapy limits.
+
 ## Role emphasis (not destiny)
 
 | Emphasis | Role | Why |

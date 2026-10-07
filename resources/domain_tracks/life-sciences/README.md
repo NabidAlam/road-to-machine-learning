@@ -40,6 +40,11 @@ You already think in experiments, controls, and biological variation. This track
 - [Data Validation](../../data_validation.md). Batch effects and messy tables need early checks.
 - [Model Explainability Cheatsheet](../../model_explainability_cheatsheet.md). Quick sheet beside Module 21.
 
+## Domain chapters
+
+- [Transfer strengths](01-transfer-strengths.md). Map experiment and batch instincts onto Modules `00`–`25` for research-style tables. Not clinical advice.
+- [Eval traps](02-eval-traps.md). Batch and site leakage, imbalance theater, predictive vs causal claims, and clinical overclaim bans.
+
 ## Role emphasis (not destiny)
 
 | Emphasis | Role | Why |

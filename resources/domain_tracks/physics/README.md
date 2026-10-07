@@ -38,6 +38,10 @@ You already think in models, measurement error, and experiments. This track show
 - [Data Validation](../../data_validation.md). Measurement noise and instrument quirks need checks.
 - [Model Explainability Cheatsheet](../../model_explainability_cheatsheet.md). Quick sheet beside Module 21.
 
+## Domain chapters
+
+- [Transfer strengths](01-transfer-strengths.md). Map measurement, units, and model limits onto regression, evaluation, and time series modules.
+
 ## Role emphasis (not destiny)
 
 | Emphasis | Hub / README role | Why |
