@@ -54,6 +54,12 @@ This guide covers linear algebra concepts essential for understanding machine le
 - [Applications in ML](#applications-in-ml)
 - [Practice Exercises](#practice-exercises)
 
+### Essential vs Optional (this guide)
+
+**Essential for Gate A:** Vectors, matrices, matrix multiply, transpose, inverse intuition, and why linear algebra shows up in ML (Neural Networks / PCA pointers). Stop there if you can pass the Module 00 math checklist.
+
+**Optional (MIT-breadth):** Systems of equations drills, four fundamental subspaces, full determinant / diagonalization / matrix exponential chapters, deep SVD/QR theory, positive definite proofs, FFT. Useful later. Not required before Module 01.
+
 ---
 
 ## Introduction

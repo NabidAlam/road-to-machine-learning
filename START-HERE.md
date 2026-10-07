@@ -5,14 +5,22 @@ Not sure where to begin? Pick the path that matches your time and goal.
 > **Using the subscriber study hub?** Read [HOW_TO_USE_THE_STUDY_HUB.md](HOW_TO_USE_THE_STUDY_HUB.md) first (10-min setup + learning loop).  
 > **Do not follow folder numbers 00 through 25 in order.** Module folders are for organization; **stages** are the teaching sequence. Read [FOUNDATION_AND_JOB_READINESS.md](FOUNDATION_AND_JOB_READINESS.md) for exit gates, role paths, and job-market timing (especially **SQL early** for analyst/data scientist roles).
 
-## If you have 30 minutes
+## If you are new (default)
 
-Do your first ML project today.
+Start with **Module 00** and pass [Gate A](FOUNDATION_AND_JOB_READINESS.md#gate-a-after-module-00-stage-0) before treating Iris or other projects as your main path.
+
+1. Open [00-prerequisites/README.md](00-prerequisites/README.md)
+2. Work through Python, math basics, and the Gate A checklist (movie-script capstone required)
+3. Then continue Stage 1 (Module 01)
+
+## Optional demo (about 30 minutes)
+
+Want a quick look at a tiny sklearn run? Iris is an **optional demo**. It does **not** replace Module 00 or Gate A.
 
 1. Read [GETTING_STARTED.md](GETTING_STARTED.md)
 2. Run the Iris classification project in `16-projects-beginner/project-02-iris-classification/`
 
-You will load data, train models, and see results without reading the whole curriculum first.
+You will load data, train models, and see toy-dataset results. Return to Module 00 afterward if foundations are still open.
 
 ## If you want the full map
 

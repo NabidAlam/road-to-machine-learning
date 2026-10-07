@@ -1,12 +1,14 @@
-# Getting Started. Your First ML Project
+# Getting Started. Optional Iris Demo
 
-This guide walks you through a first machine learning project in about 30 minutes.
+This guide is an **optional ~30 minute demo** of a tiny sklearn classification run. It is not the default beginner path.
+
+**Default for beginners:** start at [Module 00](00-prerequisites/README.md) and pass [Gate A](FOUNDATION_AND_JOB_READINESS.md#gate-a-after-module-00-stage-0). Iris does **not** replace Python, math, or those exit gates.
 
 For the full curriculum map, stage order, and exit gates, read [START-HERE.md](START-HERE.md) and [FOUNDATION_AND_JOB_READINESS.md](FOUNDATION_AND_JOB_READINESS.md).
 
-## Quick Start: Iris Classification
+## Optional demo: Iris Classification
 
-The Iris flower classification project is a small, clean first ML run. Follow these steps:
+The Iris flower classification project is a small, clean toy run so you can see `fit` and metrics once. Follow these steps if you want the demo:
 
 ### Step 1: Set Up Environment
 
@@ -84,14 +86,14 @@ The script will:
 - Review the code comments
 - Open an issue on GitHub
 
-## Why Start Here?
+## Why this demo exists
 
-- **Simple Dataset**: Well-known, clean data
-- **Clear Results**: Easy to understand outcomes
-- **Complete Example**: Full working code provided
-- **Quick Win**. See results in minutes on a toy dataset.
+- **Simple dataset**: Well-known, clean toy data
+- **Clear results**: Easy to read metrics and plots
+- **Complete example**: Full working code provided
+- **Quick look**: See a sklearn loop in minutes. Then return to Module 00 / Gate A if you have not finished foundations.
 
 ---
 
-**Ready?** Go to `16-projects-beginner/project-02-iris-classification/` and start coding!
+**Optional demo:** `16-projects-beginner/project-02-iris-classification/`. **Default path:** [00-prerequisites/README.md](00-prerequisites/README.md) and Gate A.
 

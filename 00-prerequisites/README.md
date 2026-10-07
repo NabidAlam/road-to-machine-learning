@@ -121,6 +121,32 @@ By the end of this phase, you should be able to:
 - Set up and use Jupyter Notebooks
 - Install and manage Python packages
 
+## Essential vs Optional (math)
+
+Module 00 math guides are long on purpose. You do **not** need every MIT-style chapter before Module 01.
+
+### Essential (Gate A)
+
+Enough to pass [Gate A](../FOUNDATION_AND_JOB_READINESS.md#gate-a-after-module-00-stage-0) and start Module 01:
+
+| Area | Minimum you can do |
+|------|--------------------|
+| Linear algebra | Add/scale vectors. Dot product. Multiply small matrices. Say why tensors and matrix multiply show up in ML |
+| Statistics | Mean, median, variance, std. Sketch a normal distribution. Basic conditional probability intuition |
+| Calculus | Derivative as slope. Gradient points uphill. Gradient descent + learning rate in plain language |
+| Python + env | Functions, classes, file I/O, Big-O of nested loops, venv + Jupyter |
+
+### Optional (MIT-breadth depth)
+
+Study later when a later module or project needs them. Not required for Gate A:
+
+- Four fundamental subspaces, full Gaussian elimination drill, Cramer's rule
+- Full SVD / QR deep theory, matrix exponentials, positive definite proofs
+- Advanced hypothesis testing suites, full ANOVA machinery
+- Heavy multivariable calculus beyond chain rule + gradient descent intuition
+
+Guides still include optional depth so you can return. Skim Essential first. Circle back for optional chapters when PCA, SVD, or backprop demand them.
+
 ## Foundation exit criteria (before Module 01)
 
 Do **not** start [Module 01](../01-python-for-data-science/README.md) until you can pass this gate. Weak foundations here are the main reason learners stall later.
@@ -134,7 +160,9 @@ Do **not** start [Module 01](../01-python-for-data-science/README.md) until you 
 | Calculus | Describe gradient descent and the role of learning rate |
 | Environment | Create a venv, `pip install` packages, open Jupyter |
 
-**Proof of work (pick one):** [Movie script capstone](01-python-basics.md#capstone-movie-script-generator) or [NumPy neural network tutorial](prerequisites-project-tutorial.md)
+**Proof of work (required):** [Movie script capstone](01-python-basics.md#capstone-movie-script-generator) plus the skill checklist above.
+
+**Optional stretch:** [NumPy neural network tutorial](prerequisites-project-tutorial.md) after the movie-script capstone. It does not replace Gate A.
 
 Full job-market context: [Foundation & Job Market Readiness](../FOUNDATION_AND_JOB_READINESS.md)
 
@@ -223,7 +251,7 @@ Each module includes:
 
 ## Exit gate (Stage 0)
 
-Before starting Module 01, complete [Gate A](../FOUNDATION_AND_JOB_READINESS.md#gate-a-after-module-00-stage-0): Python fluency, Big-O, linear algebra basics, stats, gradient intuition, and the movie-script or NumPy NN capstone.
+Before starting Module 01, complete [Gate A](../FOUNDATION_AND_JOB_READINESS.md#gate-a-after-module-00-stage-0): Python fluency, Big-O, linear algebra basics, stats, gradient intuition, and the required movie-script capstone. The NumPy NN tutorial is optional stretch only.
 
 **Next Module:** [01-python-for-data-science](../01-python-for-data-science/README.md)
 

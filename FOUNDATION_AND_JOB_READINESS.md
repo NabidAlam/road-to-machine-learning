@@ -43,7 +43,8 @@ You are ready for **Module 01** when you can **without copying from a tutorial**
 - [ ] Compute mean, variance, and interpret a normal distribution
 - [ ] Explain gradient descent in plain language
 - [ ] Run Jupyter and install packages in a virtual environment
-- [ ] **Capstone:** Complete the [movie script generator](00-prerequisites/01-python-basics.md) or [NumPy NN tutorial](00-prerequisites/prerequisites-project-tutorial.md)
+- [ ] **Capstone (required):** Complete the [movie script generator](00-prerequisites/01-python-basics.md#capstone-movie-script-generator) (checklist path above)
+- [ ] **Optional stretch:** [NumPy neural network tutorial](00-prerequisites/prerequisites-project-tutorial.md) after the movie-script capstone. It does not replace Gate A.
 
 **Job relevance:** Every technical interview assumes this baseline. Weak Python here causes attrition in Module 01.
 

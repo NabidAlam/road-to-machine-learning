@@ -1,6 +1,6 @@
 # Learning Roadmap. Visual Guide
 
-A visual representation of your ML learning journey from zero to hero.
+A visual stage map of the ML learning path in this curriculum.
 
 **Numbering:** **Stages** below are the recommended learning order. **Module numbers** (00–25) are folder names on disk. Module 09 is not Stage 9. See [START-HERE.md](START-HERE.md).
 
@@ -10,7 +10,7 @@ A visual representation of your ML learning journey from zero to hero.
 
 ```
 
-                    ROAD TO ML: ZERO TO HERO                  
+                    ROAD TO ML: STAGE MAP
 
 
 STAGE 0: FOUNDATION (2-3 months full-time, 4-6 months part-time)
@@ -127,7 +127,7 @@ STAGE 10: ADVANCED SPECIALIZATION (2-3 months full-time)
 - [ ] Optimized model with quantization
 - [ ] Set up MLOps pipeline (MLflow, W&B)
 - [ ] Completed advanced project
-- [ ] Portfolio ready!
+- [ ] Projects documented on GitHub for practice review
 
 ##  Skill Progression
 
@@ -192,7 +192,7 @@ STAGE 10: ADVANCED SPECIALIZATION (2-3 months full-time)
 
 ## Time Estimates
 
-**Note**: These are realistic estimates for comprehensive learning. The "Accelerated Path" below is for experienced programmers only.
+**Note**: These are realistic estimates for comprehensive learning. The skim-only sprint below is for experienced programmers who want a survey pass, not depth.
 
 | STAGE | Full-Time (30-40 hrs/week) | Part-Time (10-15 hrs/week) |
 |-------|---------------------------|----------------------------|
@@ -224,18 +224,18 @@ STAGE 10: ADVANCED SPECIALIZATION (2-3 months full-time)
 -  Deploy model locally
 -  Share on GitHub
 
-##  Accelerated Path (For Experienced Programmers)
+##  Skim-only sprint (experienced programmers)
 
-If you already know Python and basic math:
+If you already know Python and basic math, you can survey topics quickly. This is a skim pass. It does not replace Gate A/B, full module depth, or the 15–22 month path in the main README.
 
 1. **Week 1**: Data science basics (NumPy, Pandas)
 2. **Week 2**: ML basics (Regression, Classification)
-3. **Week 3**: Advanced ML (Ensembles, Feature Engineering)
-4. **Week 4**: Deep Learning basics
-5. **Week 5-6**: Specialize (CV or NLP)
-6. **Week 7-8**: Build portfolio projects
+3. **Week 3**: Ensembles and feature engineering (overview)
+4. **Week 4**: Deep learning basics (overview)
+5. **Week 5-6**: Sample CV or NLP lessons (overview)
+6. **Week 7-8**: One or two practice projects from modules 16–18
 
-**Total**: 2 months to advanced level
+**Total**: about 2 months of survey coverage. Not a claim of advanced proficiency.
 
 ##  Resource Allocation
 
