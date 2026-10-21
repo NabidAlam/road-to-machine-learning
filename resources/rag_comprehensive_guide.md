@@ -88,6 +88,8 @@ RAG combines two key components:
 - Latency-critical applications
 - Sufficient training data
 
+For private codebases and internal APIs, prefer RAG (or tools) before LoRA on synthetic single-file Q&A. See [Private codebases (common failure mode)](transformer_fine_tuning_guide.md#private-codebases-common-failure-mode).
+
 ---
 
 ## RAG Architecture

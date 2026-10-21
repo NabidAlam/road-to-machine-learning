@@ -7,6 +7,7 @@ Fine-tuning transformer models (T5, BERT, GPT-style) with Hugging Face for NLP a
 ## Table of Contents
 
 - [PEFT decision path (Prompt, then RAG, then LoRA/QLoRA)](#peft-decision-path-prompt-then-rag-then-loraqlora)
+- [Private codebases (common failure mode)](#private-codebases-common-failure-mode)
 - [Introduction to Transformer Fine-Tuning](#introduction-to-transformer-fine-tuning)
 - [Understanding Transformer Architecture](#understanding-transformer-architecture)
 - [Fine-Tuning T5 for Text Summarization](#fine-tuning-t5-for-text-summarization)
@@ -34,6 +35,21 @@ Default order for Module 25 Day 5 and for most apps:
 - A hosted model already passes your task list with prompts + retrieval.
 
 See also: [PEFT in NLP advanced topics](../12-natural-language-processing/nlp-advanced-topics.md#parameter-efficient-fine-tuning-peft) · [Module 25 Day 5](../25-generative-ai-llms/generative-ai-llms.md#day-1-7-study-spine) · [RAG guide](rag_comprehensive_guide.md)
+
+### Private codebases (common failure mode)
+
+Default for “help me use our internal APIs” is **retrieval + good prompts**, not LoRA on auto-generated Q&A from single files. Private facts belong in an index you can update. See [RAG guide](rag_comprehensive_guide.md) and [Phase H Lesson 4](full_stack_track/phase-h-ai-integration.md#lesson-4-rag-with-citations-and-evaluation).
+
+**Bad pattern:** dump files with a parser, invent synthetic Q&A per file, watch train and validation loss look fine, then get weak answers at inference. Isolated files drop cross-file context (callers, configs, shared types). Model-written Q&A often stays shallow (syntax) instead of real tasks (implement, debug, optimize). Loss alone is not a usefulness metric.
+
+**If you still fine-tune for behavior** (tone, format, a labeled skill the base model will not keep):
+
+- Prefer cross-file or neighbor context in each example when the window allows.
+- Prefer human or curated examples over pure self-generated Q&A. Mix completion or fill-in-the-middle samples with Q&A.
+- Filter junk. Hold out cases that check compile, run, or groundedness. Not only loss curves.
+- Internal **docs** Q&A often beats raw **code** Q&A for guidance-style bots. Fix retrieval first if the model simply lacks the right snippets.
+
+Trainer hyperparameter tweaks come after data and task design. They do not fix a shallow synthetic dataset.
 
 ### LoRA vs QLoRA (short)
 
